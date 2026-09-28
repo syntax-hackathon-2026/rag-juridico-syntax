@@ -24,7 +24,7 @@ python scripts/evaluate.py --submission entrega.jsonl --split sample --ragas
 ```
 
 ```bash
-# Validar corpus_manifest.json contra CORPUS_DIR (corpus/ e indice/); --strict para la entrega
+# Validar corpus_manifest.json contra data_corpus/ (corpus/ e indice/); --strict para la entrega
 python src/validaciones/manifest.py
 ```
 
@@ -120,23 +120,21 @@ Referencia: `../Hackathon 2026/entregables/sabado/corpus_manifest.ejemplo.json`.
 - **Rutas**: nunca absolutas ni dependientes de la máquina (`/Users/...`, `C:\...`); si se registra una ruta, es relativa a la raíz del corpus.
 - **Edición**: idealmente lo genera un script a partir de `corpus/` para no editarlo a mano; si se edita a mano, una persona a la vez (es un JSON en git y los conflictos de merge son dolorosos).
 
-### Carpeta externa (OneDrive) y rutas
+### Carpeta local del corpus y rutas
 
-El corpus procesado y el índice viven **fuera del repo**, en una carpeta sincronizada de OneDrive cuya ruta cambia por máquina (2 Windows + 1 Mac). `corpus_manifest.json` **no** está ahí: vive versionado en la raíz del repo y se copia al comprimido al empaquetar.
+El corpus procesado y el índice se generan en `data_corpus/` dentro del repo: una carpeta **local de cada persona**, en `.gitignore`. No hay configuración por máquina ni carpeta compartida; el pipeline la reconstruye desde cero con el comando único, igual que en el contenedor limpio del jurado. `corpus_manifest.json` **no** está ahí: vive versionado en la raíz del repo y se copia al comprimido al empaquetar.
 
 ```
-<CORPUS_DIR>/                  (OneDrive; "mantener siempre en este dispositivo")
+data_corpus/                   (en .gitignore)
 ├── corpus/   un archivo por doc_id: corpus/<doc_id>.<ext>
 ├── indice/   index.faiss + chunks.jsonl
 └── raw/      descargas originales (opcional, regenerable)
 ```
 
-- **Configuración por persona**: copiar `.env.example` a `.env` (raíz, no se versiona) y poner `CORPUS_DIR=<ruta local>` sin comillas ni escapes (`C:\Users\ana\OneDrive\rag-corpus` en Windows). Precedencia: variable de entorno > `.env` > `<repo>/data_corpus` (por defecto; ignorado por git, es lo que ve un contenedor limpio).
-- **`src/config.py` es el único lugar donde se definen rutas**: exporta `ROOT`, `MANIFEST_PATH`, `CORPUS_DIR`, `CORPUS_TEXTOS`, `INDICE_DIR`, `RAW_DIR`, `CHUNKS_PATH`, `FAISS_PATH`, más `exigir_corpus_dir()` y `verificar_indice()` (comprueba que `chunks.jsonl` e `index.faiss` existan y tengan el mismo número de fragmentos; llamarla al arrancar cualquier proceso que use el índice). Los scripts hacen `sys.path.insert(0, str(ROOT / "src")); import config` (como `src/validaciones/*.py`). Nunca escribir rutas a mano ni usar `os.getcwd()`.
+- **`src/config.py` es el único lugar donde se definen rutas**: exporta `ROOT`, `MANIFEST_PATH`, `CORPUS_DIR` (= `ROOT / "data_corpus"`), `CORPUS_TEXTOS`, `INDICE_DIR`, `RAW_DIR`, `CHUNKS_PATH`, `FAISS_PATH`, más `verificar_indice()` (comprueba que `chunks.jsonl` e `index.faiss` existan y tengan el mismo número de fragmentos; llamarla al arrancar cualquier proceso que use el índice). Los scripts hacen `sys.path.insert(0, str(ROOT / "src")); import config` (como `src/validaciones/*.py`). Nunca escribir rutas a mano ni usar `os.getcwd()`.
 - **Un archivo por `doc_id` en `corpus/`**: cada uno ingiere documentos distintos sin pisarse. El `sha256` del manifest es el de ese archivo.
-- **Una sola persona reconstruye `indice/`** y avisa antes: `index.faiss` es binario y OneDrive crea copias en conflicto si dos lo escriben. Si aparecen archivos tipo `index-<PC>.faiss`, hay un conflicto: no usarlos, resolver entre el equipo.
 - **Validar antes de subir cambios y antes de entregar**: `python src/validaciones/manifest.py` (formato, `sha256` contra `corpus/`, `n_fragmentos` contra `chunks.jsonl`, `doc_id` de los chunks ⊆ manifest). Con `--strict` (entrega final) los placeholders y archivos ausentes son error.
-- **Empaquetado final** (aún por hacer, `package_corpus.py`): `corpus/` + `indice/` + `LICENSE` + copia de `corpus_manifest.json` → comprimido `Syntax-corpus...` a un enlace público **aparte** de la carpeta de trabajo (el enunciado exige lectura pública para cualquiera con el vínculo e índice congelado); anotar el hash del comprimido en `CORPUS.md`.
+- **Empaquetado final** (aún por hacer, `package_corpus.py`): `corpus/` + `indice/` + `LICENSE` + copia de `corpus_manifest.json` → comprimido `Syntax-corpus...` subido a OneDrive con enlace público (el enunciado exige lectura pública para cualquiera con el vínculo e índice congelado); anotar el hash del comprimido en `CORPUS.md`.
 
 ## Arquitectura
 
