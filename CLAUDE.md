@@ -28,7 +28,35 @@ python scripts/evaluate.py --submission entrega.jsonl --split sample --ragas
 python src/validaciones/manifest.py
 ```
 
-Todavía no existen `run.sh`, `requirements.txt` ni tests (están vacíos). Contrato de entrega: `bash run.sh` o `python src/main.py --split sample` debe reconstruir el índice y generar la entrega con un solo comando. Cuando se cree el código, documentar aquí los comandos reales (ingesta, retrieval_eval, main).
+Todavía no existen `run.sh`, `src/main.py` ni tests, y `requirements.txt` está vacío (se llena a medida que se introducen imports; ver "Entorno y dependencias"). Contrato de entrega: `bash run.sh` o `python src/main.py --split sample` debe reconstruir el índice y generar la entrega con un solo comando. Cuando se cree el código, documentar aquí los comandos reales (ingesta, retrieval_eval, main).
+
+## Entorno y dependencias (`src/reproducibilidad/`)
+
+Tres scripts, solo stdlib (corren sin instalar nada, en Windows y Mac):
+
+```bash
+python3.11 src/reproducibilidad/preparar_entorno.py      # crea .venv, instala requirements.txt y verifica deps
+python3.11 src/reproducibilidad/preparar_entorno.py --evaluador --recrear   # + deps del juez; .venv de cero
+python src/reproducibilidad/verificar_deps.py            # exit 1 si un import de src/ no está en requirements.txt o no está fijado
+python src/reproducibilidad/verificar_deps.py --fix      # agrega los faltantes ya instalados como paquete==version
+python src/reproducibilidad/registrar_entorno.py --salida evaluation/entornos/<experimento>.json   # commit, python, SO, device, paquetes
+```
+
+**Regla para todos los agentes: `requirements.txt` crece junto con los imports, nunca después.** Al introducir un import de un paquete de terceros en `src/`:
+
+1. `pip install <paquete>` dentro de `.venv` (activar con `source .venv/bin/activate` en Mac o `.venv\Scripts\activate` en Windows).
+2. `python src/reproducibilidad/verificar_deps.py --fix`: agrega `paquete==version` (versión instalada, orden alfabético) a `requirements.txt`. Nunca escribir líneas sin `==`.
+3. Si el nombre del import difiere del paquete de pip y no está en el diccionario `ALIAS` de `verificar_deps.py` (p. ej. `fitz`→`pymupdf`, `faiss`→`faiss-cpu`, `sklearn`→`scikit-learn`), agregarlo ahí.
+4. Volver a correr `verificar_deps.py` hasta que diga `ok`, y commitear el import y la línea de `requirements.txt` **en el mismo commit**.
+
+Detalles:
+
+- Se escanea todo `src/` con `ast` (también los imports dentro de funciones, como el `import faiss` de `config.verificar_indice()`, que hoy falta declarar). Se ignoran stdlib, `__future__` y módulos locales (`src/*`, `scripts/*`, p. ej. `config`, `citations`).
+- Import opcional a propósito (backend alternativo, detección de `torch` en `registrar_entorno.py`): marcar la línea con `# dep: opcional`, cargarlo dentro de la función que lo usa y protegerlo con `importlib.util.find_spec`. No usar el marcador para saltarse una dependencia real del pipeline.
+- Deps que no se importan directamente (p. ej. `accelerate`, runtime de `transformers`) se agregan a mano con `==`; `verificar_deps.py` solo las muestra como aviso.
+- `scripts/requirements-evaluador.txt` es oficial del jurado: no editarlo. Nuestras deps van solo en `requirements.txt` de la raíz.
+- Ruedas de GPU (`torch` con CUDA, `llama-cpp-python` con Metal/CUDA) dependen de la plataforma: fijar la versión en `requirements.txt` y documentar en `README.md` el índice o flag de instalación por plataforma, no mantener archivos de requirements separados por máquina.
+- Cada fila de `evaluation/experiments.csv` debe poder enlazar su JSON de `registrar_entorno.py`; la corrida final de las 992 guarda el suyo como prueba de la configuración congelada.
 
 ## Contrato de datos (verificado en el código)
 
