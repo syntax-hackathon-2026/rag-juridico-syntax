@@ -62,6 +62,24 @@ Modelo de chunk: **un artículo = una unidad** (inciso/parágrafo solo si el art
 
 Entregables del corpus: `corpus_manifest.json`, `corpus/`, `indice/` (`index.faiss` + `chunks.jsonl`), `LICENSE`, y la bitácora `CORPUS.md` (plantilla en la raíz, con tabla de evolución del puntaje).
 
+### Formato de `corpus_manifest.json`
+
+Referencia: `../Hackathon 2026/entregables/sabado/corpus_manifest.ejemplo.json`. **Va versionado en el repo (raíz) y también dentro del comprimido del corpus (`enunciado.pdf`, secc. 9 y 9.3); deben ser el mismo archivo.** `corpus/` e `indice/` no se versionan.
+
+- **Nivel raíz**: `equipo`, `licencia` (el ejemplo usa `CC-BY-4.0`; debe coincidir con `LICENSE`), `fecha_generacion`, `enlace_nube` (el mismo del README, sección "Corpus e índice") y `documentos` (lista, un registro por documento).
+- **Campos obligatorios por documento** (enunciado): `doc_id`, `titulo`, `fuente`, `url`, `fecha_consulta`, `areas`.
+- **Campos adicionales que trae el ejemplo** (los mantenemos): `n_articulos`, `n_fragmentos`, `metodo_ingesta`, `sha256`.
+- **`doc_id`**: `snake_case` en minúsculas, sin tildes, `tipo_numero_año`: `ley_1564_2012`, `sentencia_c_355_2006`. Debe ser idéntico en `CORPUS.md`, en la metadata de cada chunk y en `pasajes_recuperados.doc_id` (el evaluador lo valida contra el manifest). Es estable: no renombrar una vez indexado.
+- **`fecha_consulta` / `fecha_generacion`**: ISO `AAAA-MM-DD` (fecha real de descarga, no la de hoy al editar).
+- **`areas`**: lista de strings con los nombres exactos de las 10 áreas del banco (`Derecho procesal`, `Derecho civil`, `Derecho constitucional`…, ver `CORPUS.md` sección 2). Un documento puede tener varias.
+- **`n_articulos`**: entero para normas; `null` (no `0`) para sentencias u otros documentos sin articulado. **`n_fragmentos`**: entero, debe coincidir con los chunks de ese `doc_id` en `chunks.jsonl`.
+- **`metodo_ingesta`**: texto corto con el método real: `"parser HTML + segmentacion por articulo"`, `"extraccion de PDF con OCR + segmentacion por parrafo"`.
+- **`sha256`**: hash del **archivo procesado** (el de `corpus/`), no del original descargado; se recalcula si el archivo cambia.
+- **Texto**: los valores del ejemplo van en ASCII sin tildes (`Codigo`, `Secretaria`, `indice`). Seguir esa convención en `titulo`, `fuente` y `metodo_ingesta`; solo las URLs y los nombres propios se dejan tal cual. JSON con indentación de 2 espacios, UTF-8, `\n`.
+- **Placeholders del ejemplo** (`<URL>`, `2026-XX-XX`, `<hash...>`) son solo de plantilla: ninguno puede quedar en la entrega final.
+- **Rutas**: nunca absolutas ni dependientes de la máquina (`/Users/...`, `C:\...`); si se registra una ruta, es relativa a la raíz del corpus.
+- **Edición**: idealmente lo genera un script a partir de `corpus/` para no editarlo a mano; si se edita a mano, una persona a la vez (es un JSON en git y los conflictos de merge son dolorosos).
+
 ## Arquitectura
 
 **v0 (primer objetivo, antes de cualquier otra cosa):**
