@@ -23,7 +23,40 @@ pip install -r scripts/requirements-evaluador.txt
 python scripts/evaluate.py --submission entrega.jsonl --split sample --ragas
 ```
 
-Todavía no existen `src/`, `run.sh`, `requirements.txt` ni tests (están vacíos). Contrato de entrega: `bash run.sh` o `python src/main.py --split sample` debe reconstruir el índice y generar la entrega con un solo comando. Cuando se cree el código, documentar aquí los comandos reales (ingesta, retrieval_eval, main).
+```bash
+# Validar corpus_manifest.json contra data_corpus/ (corpus/ e indice/); --strict para la entrega
+python src/validaciones/manifest.py
+```
+
+Todavía no existen `run.sh`, `src/main.py` ni tests, y `requirements.txt` está vacío (se llena a medida que se introducen imports; ver "Entorno y dependencias"). Contrato de entrega: `bash run.sh` o `python src/main.py --split sample` debe reconstruir el índice y generar la entrega con un solo comando. Cuando se cree el código, documentar aquí los comandos reales (ingesta, retrieval_eval, main).
+
+## Entorno y dependencias (`src/reproducibilidad/`)
+
+Tres scripts, solo stdlib (corren sin instalar nada, en Windows y Mac):
+
+```bash
+python3.11 src/reproducibilidad/preparar_entorno.py      # crea .venv, instala requirements.txt y verifica deps
+python3.11 src/reproducibilidad/preparar_entorno.py --evaluador --recrear   # + deps del juez; .venv de cero
+python src/reproducibilidad/verificar_deps.py            # exit 1 si un import de src/ no está en requirements.txt o no está fijado
+python src/reproducibilidad/verificar_deps.py --fix      # agrega los faltantes ya instalados como paquete==version
+python src/reproducibilidad/registrar_entorno.py --salida evaluation/entornos/<experimento>.json   # commit, python, SO, device, paquetes
+```
+
+**Regla para todos los agentes: `requirements.txt` crece junto con los imports, nunca después.** Al introducir un import de un paquete de terceros en `src/`:
+
+1. `pip install <paquete>` dentro de `.venv` (activar con `source .venv/bin/activate` en Mac o `.venv\Scripts\activate` en Windows).
+2. `python src/reproducibilidad/verificar_deps.py --fix`: agrega `paquete==version` (versión instalada, orden alfabético) a `requirements.txt`. Nunca escribir líneas sin `==`.
+3. Si el nombre del import difiere del paquete de pip y no está en el diccionario `ALIAS` de `verificar_deps.py` (p. ej. `fitz`→`pymupdf`, `faiss`→`faiss-cpu`, `sklearn`→`scikit-learn`), agregarlo ahí.
+4. Volver a correr `verificar_deps.py` hasta que diga `ok`, y commitear el import y la línea de `requirements.txt` **en el mismo commit**.
+
+Detalles:
+
+- Se escanea todo `src/` con `ast` (también los imports dentro de funciones, como el `import faiss` de `config.verificar_indice()`, que hoy falta declarar). Se ignoran stdlib, `__future__` y módulos locales (`src/*`, `scripts/*`, p. ej. `config`, `citations`).
+- Import opcional a propósito (backend alternativo, detección de `torch` en `registrar_entorno.py`): marcar la línea con `# dep: opcional`, cargarlo dentro de la función que lo usa y protegerlo con `importlib.util.find_spec`. No usar el marcador para saltarse una dependencia real del pipeline.
+- Deps que no se importan directamente (p. ej. `accelerate`, runtime de `transformers`) se agregan a mano con `==`; `verificar_deps.py` solo las muestra como aviso.
+- `scripts/requirements-evaluador.txt` es oficial del jurado: no editarlo. Nuestras deps van solo en `requirements.txt` de la raíz.
+- Ruedas de GPU (`torch` con CUDA, `llama-cpp-python` con Metal/CUDA) dependen de la plataforma: fijar la versión en `requirements.txt` y documentar en `README.md` el índice o flag de instalación por plataforma, no mantener archivos de requirements separados por máquina.
+- Cada fila de `evaluation/experiments.csv` debe poder enlazar su JSON de `registrar_entorno.py`; la corrida final de las 992 guarda el suyo como prueba de la configuración congelada.
 
 ## Contrato de datos (verificado en el código)
 
@@ -86,6 +119,22 @@ Referencia: `../Hackathon 2026/entregables/sabado/corpus_manifest.ejemplo.json`.
 - **Placeholders del ejemplo** (`<URL>`, `2026-XX-XX`, `<hash...>`) son solo de plantilla: ninguno puede quedar en la entrega final.
 - **Rutas**: nunca absolutas ni dependientes de la máquina (`/Users/...`, `C:\...`); si se registra una ruta, es relativa a la raíz del corpus.
 - **Edición**: idealmente lo genera un script a partir de `corpus/` para no editarlo a mano; si se edita a mano, una persona a la vez (es un JSON en git y los conflictos de merge son dolorosos).
+
+### Carpeta local del corpus y rutas
+
+El corpus procesado y el índice se generan en `data_corpus/` dentro del repo: una carpeta **local de cada persona**, en `.gitignore`. No hay configuración por máquina ni carpeta compartida; el pipeline la reconstruye desde cero con el comando único, igual que en el contenedor limpio del jurado. `corpus_manifest.json` **no** está ahí: vive versionado en la raíz del repo y se copia al comprimido al empaquetar.
+
+```
+data_corpus/                   (en .gitignore)
+├── corpus/   un archivo por doc_id: corpus/<doc_id>.<ext>
+├── indice/   index.faiss + chunks.jsonl
+└── raw/      descargas originales (opcional, regenerable)
+```
+
+- **`src/config.py` es el único lugar donde se definen rutas**: exporta `ROOT`, `MANIFEST_PATH`, `CORPUS_DIR` (= `ROOT / "data_corpus"`), `CORPUS_TEXTOS`, `INDICE_DIR`, `RAW_DIR`, `CHUNKS_PATH`, `FAISS_PATH`, más `verificar_indice()` (comprueba que `chunks.jsonl` e `index.faiss` existan y tengan el mismo número de fragmentos; llamarla al arrancar cualquier proceso que use el índice). Los scripts hacen `sys.path.insert(0, str(ROOT / "src")); import config` (como `src/validaciones/*.py`). Nunca escribir rutas a mano ni usar `os.getcwd()`.
+- **Un archivo por `doc_id` en `corpus/`**: cada uno ingiere documentos distintos sin pisarse. El `sha256` del manifest es el de ese archivo.
+- **Validar antes de subir cambios y antes de entregar**: `python src/validaciones/manifest.py` (formato, `sha256` contra `corpus/`, `n_fragmentos` contra `chunks.jsonl`, `doc_id` de los chunks ⊆ manifest). Con `--strict` (entrega final) los placeholders y archivos ausentes son error.
+- **Empaquetado final** (aún por hacer, `package_corpus.py`): `corpus/` + `indice/` + `LICENSE` + copia de `corpus_manifest.json` → comprimido `Syntax-corpus...` subido a OneDrive con enlace público (el enunciado exige lectura pública para cualquiera con el vínculo e índice congelado); anotar el hash del comprimido en `CORPUS.md`.
 
 ## Arquitectura
 
