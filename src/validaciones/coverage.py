@@ -10,8 +10,8 @@ Con indice (indice/chunks.jsonl, una linea JSON por fragmento con campo
 "texto"), reporta ademas que cuerpos y articulos faltan.
 
 Uso:
-    python scripts/coverage.py
-    python scripts/coverage.py --chunks indice/chunks.jsonl --verbose
+    python src/validaciones/coverage.py
+    python src/validaciones/coverage.py --chunks indice/chunks.jsonl --verbose
 """
 from __future__ import annotations
 
@@ -21,10 +21,9 @@ import sys
 from collections import defaultdict
 from pathlib import Path
 
-sys.path.insert(0, str(Path(__file__).resolve().parent))
+ROOT = Path(__file__).resolve().parents[2]
+sys.path.insert(0, str(ROOT / "scripts"))
 import citations  # noqa: E402
-
-ROOT = Path(__file__).resolve().parent.parent
 
 
 def load_jsonl(path: Path) -> list[dict]:
