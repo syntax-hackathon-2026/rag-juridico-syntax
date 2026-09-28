@@ -6,7 +6,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 # Proyecto
 
-Hackathon LATAM AI Week 2026 (Uniandes): **RAG de derecho colombiano** con un decoder abierto de **≤ 8B parámetros**, `temperature=0`, sobre un **corpus jurídico que construimos nosotros**. Equipo de 3 (Sofía Morato, Joel David Niño, Santiago Muñoz), mezcla de Windows y Mac, con acceso a máquinas potentes en el campus.
+Hackathon LATAM AI Week 2026 (Uniandes): **RAG de derecho colombiano** con un decoder abierto de **≤ 8B parámetros**, `temperature=0`, sobre un **corpus jurídico que construimos nosotros**. El equipo se llama **Syntax**: usar exactamente ese nombre donde las plantillas dicen `<Nombre del equipo>` (`CORPUS.md`, `README.md`, `LICENSE`, campo `equipo` de `corpus_manifest.json`, nombre del comprimido del corpus). Somos 3 (Sofía Morato, Joel David Niño, Santiago Muñoz), mezcla de Windows y Mac, con acceso a máquinas potentes en el campus.
 
 Plazos: **vie 17:00** reporte de avance (PDF de 1 página por correo) · **sáb 09:00** se entregan las 992 preguntas · **sáb 15:00** cierre (repo + enlace público al corpus/índice) y verificación en vivo. Las 992 preguntas deben correr en ~6 h ⇒ objetivo **< 10 s/pregunta** (límite teórico 21,8 s).
 
@@ -61,6 +61,13 @@ Fuentes por orden de ataque: **Secretaría del Senado** (HTML limpio, artículo 
 Modelo de chunk: **un artículo = una unidad** (inciso/parágrafo solo si el artículo es largo), con metadata `chunk_id, doc_id, document_type, document_number, year, article, section, validity, source_url, start_offset, end_offset`. Separar `retrieval_text` (puede llevar encabezado "Ley X de Y, art. N" para mejorar la búsqueda, estilo contextual retrieval con reglas) de `source_text` (literal; es lo que va en `pasajes_recuperados.texto`).
 
 Entregables del corpus: `corpus_manifest.json`, `corpus/`, `indice/` (`index.faiss` + `chunks.jsonl`), `LICENSE`, y la bitácora `CORPUS.md` (plantilla en la raíz, con tabla de evolución del puntaje).
+
+### Licencia del corpus (decidida)
+
+- **CC-BY-4.0**, igual que el ejemplo oficial. Cubre el trabajo de Syntax (selección, limpieza, segmentación, metadatos, encabezados de fragmentos e índice), no los textos normativos y jurisprudenciales, que son de libre reproducción (Ley 23 de 1982, art. 41).
+- El archivo ya está escrito en `../LICENSE` (carpeta del proyecto, fuera del repo): encabezado en español con alcance y atribución ("Copyright (c) 2026 Syntax") + texto legal oficial de CC-BY-4.0 sin modificar. Se copia tal cual a la raíz del comprimido del corpus.
+- Mantener coherentes: `"licencia": "CC-BY-4.0"` en `corpus_manifest.json`, sección 5 de `CORPUS.md` y columna "Licencia" de `README.md`.
+- Implicaciones: no usar encoders con licencia no comercial para el índice publicado (p. ej. `jina-embeddings-v3` es CC-BY-NC-4.0; `bge-m3` y `multilingual-e5-large` son MIT). No incluir doctrina ni textos con derechos de autor. Si se reutiliza un dataset de terceros (p. ej. `justicedao/ipfs_colombia_laws_ir`), verificar que su licencia sea compatible y citarlo.
 
 ### Formato de `corpus_manifest.json`
 
