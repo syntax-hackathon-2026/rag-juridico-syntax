@@ -28,6 +28,14 @@ python scripts/evaluate.py --submission entrega.jsonl --split sample --ragas
 python src/validaciones/manifest.py
 ```
 
+```bash
+# Descargar las fuentes de data/seed_targets.json a data_corpus/raw/<doc_id>/ (solo stdlib, idempotente)
+python src/ingesta/descargar_fuentes.py                  # --solo <doc_id>... | --limite N | --forzar
+python src/ingesta/descargar_fuentes.py --corpus-md      # regenera el inventario de CORPUS.md desde data/fuentes_descargadas.json
+```
+
+`data/fuentes_descargadas.json` (versionado) registra por `doc_id` la URL real, fecha de consulta, estado (`descargado | no_encontrado | sin_resolver | error`) y sha256 de lo descargado. Las URLs de la semilla son de búsqueda; el script las resuelve a Senado (normas, con sus partes `_prNNN`), relatoría de la Corte Constitucional (C/T/SU) y el PDF de la CAN (Decisión 486). Corte Suprema (SL/SP/SC) y lo que solo está en SUIN quedan `sin_resolver`.
+
 Todavía no existen `run.sh`, `src/main.py` ni tests, y `requirements.txt` está vacío (se llena a medida que se introducen imports; ver "Entorno y dependencias"). Contrato de entrega: `bash run.sh` o `python src/main.py --split sample` debe reconstruir el índice y generar la entrega con un solo comando. Cuando se cree el código, documentar aquí los comandos reales (ingesta, retrieval_eval, main).
 
 ## Entorno y dependencias (`src/reproducibilidad/`)
