@@ -46,6 +46,7 @@ _CORTE_SENADO = re.compile(
     r"^(<\s*NOTA DEL EDITOR|Las notas de vigencia, concordancias, notas del editor|"
     r"Disposiciones analizadas por Avance Jur[ií]dico)", re.I)
 _NAV_SENADO = re.compile(r"^(Anterior\s*\|\s*Siguiente|Inicio|Artículo)$", re.I)
+_OPCION_INDICE = re.compile(r'<option value="(?:ç[^"]*?ç\.htmlç)?([^"]*)">([^<]*)', re.I)
 _SENTENCIA_PEGADA = re.compile(r"^SENTENCIA\s+[CTSU]{1,2}\s*-\s*\d", re.I)
 
 
@@ -166,6 +167,18 @@ def articulos_detectados(bloques: list[str]) -> list[int]:
     return [int(m[1]) for b in bloques if (m := _ARTICULO.match(b))]
 
 
+def indice_avance_juridico(html: str) -> tuple[set[str], int]:
+    """Del indice de navegacion (<select> de articulos): partes _prNNN que enlaza y n.o de articulos.
+
+    Es la referencia exacta de completitud: contar encabezados "ARTICULO N" en el texto
+    falla en las leyes modificatorias, que citan los articulos que reforman.
+    """
+    opciones = _OPCION_INDICE.findall(html)
+    partes = {m[1] for valor, _ in opciones if (m := re.match(r"(_pr\d{3})", valor))}
+    n_articulos = sum(1 for _, etiqueta in opciones if re.match(r"\d", etiqueta.strip()))
+    return partes, n_articulos
+
+
 def extraer_documento(carpeta: Path) -> tuple[str, dict]:
     archivos = ordenar_partes([f for f in carpeta.iterdir()
                                if f.is_file() and f.suffix.lower() in (".html", ".htm")])
@@ -176,24 +189,25 @@ def extraer_documento(carpeta: Path) -> tuple[str, dict]:
     bloques = [b for html in paginas for b in EXTRACTORES[fuente](html)]
     texto = _texto.limpiar_texto("\n\n".join(bloques))
 
-    arts = articulos_detectados(bloques)
     info = {
         "metodo_ingesta": METODO,
         "extractor": fuente,
         "n_partes": len(archivos),
-        "n_articulos_detectados": len(arts),
+        "n_articulos_detectados": len(articulos_detectados(bloques)),
     }
     avisos = []
     if len(texto) < MIN_CHARS:
         avisos.append(f"texto muy corto ({len(texto)} chars)")
     if fuente == "avance_juridico":
-        if not arts:
+        partes, n_indice = indice_avance_juridico(paginas[0])
+        if n_indice:
+            info["n_articulos_indice"] = n_indice
+        presentes = {m[1] for f in archivos if (m := re.search(r"(_pr\d{3})\.html?$", f.name, re.I))}
+        faltan = sorted(partes - presentes)
+        if faltan:
+            avisos.append(f"faltan partes enlazadas en el indice: {faltan[:5]}")
+        if not info["n_articulos_detectados"]:
             avisos.append("norma sin articulos detectados")
-        else:
-            # la numeracion admite repeticiones (2o. y 2A, articulos transitorios) pero no huecos grandes
-            saltos = [(a, b) for a, b in zip(arts, arts[1:]) if b > a + 5]
-            if saltos:
-                avisos.append(f"saltos en la numeracion de articulos: {saltos[:3]} (falta una parte _prNNN?)")
     if avisos:
         info["aviso"] = "; ".join(avisos)
     return texto, info
