@@ -29,12 +29,12 @@ python src/validaciones/manifest.py
 ```
 
 ```bash
-# Descargar las fuentes de data/seed_targets.json a data_corpus/raw/<doc_id>/ (solo stdlib, idempotente)
+# Descargar las fuentes de data/seed_targets.json a data/raw_sources/<tipo>/<doc_id>/ (solo stdlib, idempotente)
 python src/ingesta/descargar_fuentes.py                  # --solo <doc_id>... | --limite N | --forzar
 python src/ingesta/descargar_fuentes.py --corpus-md      # regenera el inventario de CORPUS.md desde data/fuentes_descargadas.json
 ```
 
-`data/fuentes_descargadas.json` (versionado) registra por `doc_id` la URL real, fecha de consulta, estado (`descargado | no_encontrado | sin_resolver | error`) y sha256 de lo descargado. Las URLs de la semilla son de búsqueda; el script las resuelve a Senado (normas, con sus partes `_prNNN`), relatoría de la Corte Constitucional (C/T/SU) y el PDF de la CAN (Decisión 486). Corte Suprema (SL/SP/SC) y lo que solo está en SUIN quedan `sin_resolver`.
+`data/fuentes_descargadas.json` (versionado) registra por `doc_id` la URL real, fecha de consulta, estado (`descargado | no_encontrado | sin_resolver | error`) y sha256 de lo descargado. Las fuentes originales van en `data/raw_sources/<tipo>/<doc_id>/`, clasificadas por tipo de archivo (`html`, `pdf`, `pdf_escaneado`, `otros`; ver `config.TIPOS_FUENTE`); el script clasifica por extensión y la distinción `pdf_escaneado` (necesita OCR) se hace a mano al mover el archivo. **La Constitución y el CGP no se descargan con el script:** sus PDF se bajan a mano a `data/raw_sources/pdf/<doc_id>/` (`constitucion_politica_1991`, `codigo_general_proceso`) para controlar la calidad del dato; el script solo los registra (`estado: manual` hasta que existan los archivos, luego `descargado` con `descarga manual`). Las URLs de la semilla son de búsqueda; el script las resuelve a Senado (normas, con sus partes `_prNNN`), relatoría de la Corte Constitucional (C/T/SU) y el PDF de la CAN (Decisión 486). Corte Suprema (SL/SP/SC) y lo que solo está en SUIN quedan `sin_resolver`.
 
 Todavía no existen `run.sh`, `src/main.py` ni tests, y `requirements.txt` está vacío (se llena a medida que se introducen imports; ver "Entorno y dependencias"). Contrato de entrega: `bash run.sh` o `python src/main.py --split sample` debe reconstruir el índice y generar la entrega con un solo comando. Cuando se cree el código, documentar aquí los comandos reales (ingesta, retrieval_eval, main).
 
@@ -136,10 +136,11 @@ El corpus procesado y el índice se generan en `data_corpus/` dentro del repo: u
 data_corpus/                   (en .gitignore)
 ├── corpus/   un archivo por doc_id: corpus/<doc_id>.<ext>
 ├── indice/   index.faiss + chunks.jsonl
-└── raw/      descargas originales (opcional, regenerable)
 ```
 
-- **`src/config.py` es el único lugar donde se definen rutas**: exporta `ROOT`, `MANIFEST_PATH`, `CORPUS_DIR` (= `ROOT / "data_corpus"`), `CORPUS_TEXTOS`, `INDICE_DIR`, `RAW_DIR`, `CHUNKS_PATH`, `FAISS_PATH`, más `verificar_indice()` (comprueba que `chunks.jsonl` e `index.faiss` existan y tengan el mismo número de fragmentos; llamarla al arrancar cualquier proceso que use el índice). Los scripts hacen `sys.path.insert(0, str(ROOT / "src")); import config` (como `src/validaciones/*.py`). Nunca escribir rutas a mano ni usar `os.getcwd()`.
+Las fuentes originales **no** viven aquí sino en `data/raw_sources/<tipo>/<doc_id>/` (versionable, fuera de `data_corpus/`). `src/config.py` exporta `RAW_SOURCES_DIR`, `TIPOS_FUENTE`, `raw_dir(tipo, doc_id)`, `raw_dirs_existentes(doc_id)` y `tipo_por_extension()`.
+
+- **`src/config.py` es el único lugar donde se definen rutas**: exporta `ROOT`, `MANIFEST_PATH`, `CORPUS_DIR` (= `ROOT / "data_corpus"`), `CORPUS_TEXTOS`, `INDICE_DIR`, `RAW_SOURCES_DIR`, `CHUNKS_PATH`, `FAISS_PATH`, más `verificar_indice()` (comprueba que `chunks.jsonl` e `index.faiss` existan y tengan el mismo número de fragmentos; llamarla al arrancar cualquier proceso que use el índice). Los scripts hacen `sys.path.insert(0, str(ROOT / "src")); import config` (como `src/validaciones/*.py`). Nunca escribir rutas a mano ni usar `os.getcwd()`.
 - **Un archivo por `doc_id` en `corpus/`**: cada uno ingiere documentos distintos sin pisarse. El `sha256` del manifest es el de ese archivo.
 - **Validar antes de subir cambios y antes de entregar**: `python src/validaciones/manifest.py` (formato, `sha256` contra `corpus/`, `n_fragmentos` contra `chunks.jsonl`, `doc_id` de los chunks ⊆ manifest). Con `--strict` (entrega final) los placeholders y archivos ausentes son error.
 - **Empaquetado final** (aún por hacer, `package_corpus.py`): `corpus/` + `indice/` + `LICENSE` + copia de `corpus_manifest.json` → comprimido `Syntax-corpus...` subido a OneDrive con enlace público (el enunciado exige lectura pública para cualquiera con el vínculo e índice congelado); anotar el hash del comprimido en `CORPUS.md`.

@@ -11,12 +11,16 @@ reglas deterministas y guarda las paginas tal cual llegan (sin limpiar):
   - Sentencias C-, T-, SU- -> Relatoria de la Corte Constitucional
     (`relatoria/2006/C-355-06.htm`; las SU van sin guion: `SU214-16.htm`). La relatoria responde 200 con una pagina
     generica cuando la sentencia no existe; se detecta por contenido.
+  - Documentos de MANUALES (Constitucion, CGP): no se descargan; se bajan a mano
+    como PDF a data/raw_sources/pdf/<doc_id>/ para controlar la calidad del dato.
+    El script solo registra lo que encuentre ahi (estado `manual` si aun falta).
   - Sentencias de la Corte Suprema (SL, SP, SC), acuerdos y normas que solo estan
     en SUIN-Juriscol (aplicacion Angular sin URL estable) quedan `sin_resolver`
     con la URL de busqueda de la semilla, para descarga manual.
 
 Salidas:
-  - data_corpus/raw/<doc_id>/<archivo original>   (local, en .gitignore)
+  - data/raw_sources/<tipo>/<doc_id>/<archivo original>   (tipo = html | pdf |
+    pdf_escaneado | otros, segun la extension; ver config.py)
   - data/fuentes_descargadas.json                  (versionado: doc_id, url,
     fecha de consulta, estado, sha256 de lo descargado); es la fuente para
     CORPUS.md y corpus_manifest.json.
@@ -85,6 +89,8 @@ CODIGOS = {
     "codigo_nacional_policia": ("codigo_nacional_policia", "Codigo Nacional de Seguridad y Convivencia "
                                 "Ciudadana (Ley 1801 de 2016)", "ley_1801_2016.html"),
 }
+# Documentos de alto impacto cuya fuente se descarga a mano (PDF), no con este script.
+MANUALES = {"constitucion_politica_1991", "codigo_general_proceso"}
 PREFIJOS_CC = {"C", "T", "SU"}
 PREFIJOS_CSJ = {"SL", "SP", "SC"}
 
@@ -98,7 +104,8 @@ class Objetivo:
     areas: list[str]
     items_del_banco: int
     canonico: list
-    estado: str = "pendiente"  # descargado | no_encontrado | sin_resolver | error
+    estado: str = "pendiente"  # descargado | manual | no_encontrado | sin_resolver | error
+    tipo_fuente: str | None = None  # html | pdf | pdf_escaneado | otros (carpeta en raw_sources)
     fecha_consulta: str | None = None
     archivos: list[str] = field(default_factory=list)
     bytes: int = 0
@@ -167,11 +174,36 @@ def partes_senado(url: str) -> list[str]:
     return [f"{raiz}_pr{i:03d}.html" for i in range(1, MAX_PARTES + 1)]
 
 
+def registrar_manual(obj: Objetivo) -> None:
+    """Registra los archivos que el equipo puso a mano en raw_sources/<tipo>/<doc_id>/."""
+    carpetas = config.raw_dirs_existentes(obj.doc_id)
+    if not carpetas:
+        obj.estado = "manual"
+        obj.nota = f"descargar a mano en data/raw_sources/pdf/{obj.doc_id}/"
+        return
+    if len(carpetas) > 1:
+        obj.estado, obj.nota = "error", f"{obj.doc_id} tiene archivos en varios tipos de fuente"
+        return
+    archivos = sorted(f for f in carpetas[0].iterdir() if f.is_file() and not f.name.startswith("."))
+    h = hashlib.sha256()
+    for f in archivos:
+        h.update(f.read_bytes())
+    obj.estado = "descargado"
+    obj.tipo_fuente = carpetas[0].parent.name
+    obj.archivos = [f.name for f in archivos]
+    obj.bytes = sum(f.stat().st_size for f in archivos)
+    obj.sha256 = h.hexdigest()
+    obj.fecha_consulta = dt.date.fromtimestamp(max(f.stat().st_mtime for f in archivos)).isoformat()
+    obj.nota = "descarga manual"
+
+
 def procesar(obj: Objetivo, forzar: bool) -> None:
-    carpeta = config.RAW_DIR / obj.doc_id
     if obj.estado == "sin_resolver":
         return
-    if carpeta.is_dir() and any(carpeta.iterdir()) and not forzar:
+    if obj.doc_id in MANUALES:
+        registrar_manual(obj)
+        return
+    if config.raw_dirs_existentes(obj.doc_id) and not forzar:
         obj.estado = "descargado"
         obj.nota = "ya estaba descargado (usar --forzar para repetir)"
         return
@@ -192,14 +224,18 @@ def procesar(obj: Objetivo, forzar: bool) -> None:
                 break
             paginas.append((url, parte))
 
+    nombres = [url.rsplit("/", 1)[-1] for url, _ in paginas]
+    tipo = config.tipo_por_extension(nombres[0])
+    for previa in config.raw_dirs_existentes(obj.doc_id):  # --forzar: reemplaza en cualquier tipo
+        for viejo in previa.iterdir():
+            viejo.unlink()
+    carpeta = config.raw_dir(tipo, obj.doc_id)
     carpeta.mkdir(parents=True, exist_ok=True)
-    for viejo in carpeta.iterdir():
-        viejo.unlink()
     h = hashlib.sha256()
-    for url, datos in paginas:
-        nombre = url.rsplit("/", 1)[-1]
+    for nombre, (_, datos) in zip(nombres, paginas):
         (carpeta / nombre).write_bytes(datos)
         h.update(datos)
+    obj.tipo_fuente = tipo
     obj.estado = "descargado"
     obj.fecha_consulta = dt.date.today().isoformat()
     obj.archivos = [url.rsplit("/", 1)[-1] for url, _ in paginas]
@@ -299,7 +335,7 @@ def main() -> int:
     if args.limite:
         objetivos = objetivos[: args.limite]
 
-    config.RAW_DIR.mkdir(parents=True, exist_ok=True)
+    config.RAW_SOURCES_DIR.mkdir(parents=True, exist_ok=True)
     for i, obj in enumerate(objetivos, 1):
         previo = registro.get(obj.doc_id)
         try:

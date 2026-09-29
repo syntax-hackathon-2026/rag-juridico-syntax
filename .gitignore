@@ -8,7 +8,6 @@ venv/
 models/
 indice/
 corpus/
-raw/
 data_corpus/
 *.gguf
 *.faiss

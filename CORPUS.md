@@ -18,8 +18,6 @@ fuente cambia. "Áreas" son las áreas del banco de preguntas (enunciado, secci�
 
 | doc_id | Título | Fuente | URL | Fecha de consulta | Artículos | Fragmentos | Áreas |
 |---|---|---|---|---|---:|---:|---|
-| `constitucion_politica_1991` | Constitucion Politica de Colombia de 1991 | Secretaria del Senado | [enlace](http://www.secretariasenado.gov.co/senado/basedoc/constitucion_politica_1991.html) | 2026-09-28 | — | — | Administrativo, Comercial y sociedades, Constitucional, Familia, Laboral, Mercados, Penal, Procesal, Tributario |
-| `codigo_general_proceso` | Codigo General del Proceso (Ley 1564 de 2012) | Secretaria del Senado | [enlace](http://www.secretariasenado.gov.co/senado/basedoc/ley_1564_2012.html) | 2026-09-28 | — | — | Civil, Comercial y sociedades, Familia, Mercados, Penal, Procesal, Tributario |
 | `codigo_sustantivo_trabajo` | Codigo Sustantivo del Trabajo | Secretaria del Senado | [enlace](http://www.secretariasenado.gov.co/senado/basedoc/codigo_sustantivo_trabajo.html) | 2026-09-28 | — | — | Laboral |
 | `estatuto_tributario` | Estatuto Tributario (Decreto 624 de 1989) | Secretaria del Senado | [enlace](http://www.secretariasenado.gov.co/senado/basedoc/estatuto_tributario.html) | 2026-09-28 | — | — | Civil, Constitucional, Tributario |
 | `decision_andina_486` | Decision 486 de 2000 de la Comunidad Andina, Regimen Comun sobre Propiedad Industrial | Comunidad Andina | [enlace](https://www.comunidadandina.org/StaticFiles/DocOf/DEC486.pdf) | 2026-09-28 | — | — | Comercial y sociedades, Mercados |
@@ -164,10 +162,12 @@ fuente cambia. "Áreas" son las áreas del banco de preguntas (enunciado, secci�
 | `sentencia_t_925_2014` | Sentencia T-925 de 2014 | Relatoria de la Corte Constitucional | [enlace](https://www.corteconstitucional.gov.co/relatoria/2014/T-925-14.htm) | 2026-09-28 | — | — | Constitucional |
 | `sentencia_t_970_2014` | Sentencia T-970 de 2014 | Relatoria de la Corte Constitucional | [enlace](https://www.corteconstitucional.gov.co/relatoria/2014/T-970-14.htm) | 2026-09-28 | — | — | Constitucional |
 
-**Pendientes de descarga (41).** Objetivos de `data/seed_targets.json` que el script no pudo descargar; el detalle está en `data/fuentes_descargadas.json`.
+**Pendientes de descarga (43).** Objetivos de `data/seed_targets.json` que el script no pudo descargar; el detalle está en `data/fuentes_descargadas.json`.
 
 | doc_id | Estado | Motivo |
 |---|---|---|
+| `constitucion_politica_1991` | manual | descargar a mano en data/raw_sources/pdf/constitucion_politica_1991/ |
+| `codigo_general_proceso` | manual | descargar a mano en data/raw_sources/pdf/codigo_general_proceso/ |
 | `ley_153_1887` | no_encontrado | http://www.secretariasenado.gov.co/senado/basedoc/ley_0153_1887.html no existe en Secretaria del Senado |
 | `ley_54_1990` | no_encontrado | http://www.secretariasenado.gov.co/senado/basedoc/ley_0054_1990.html no existe en Secretaria del Senado |
 | `decreto_1563_2012` | no_encontrado | http://www.secretariasenado.gov.co/senado/basedoc/decreto_1563_2012.html no existe en Secretaria del Senado |
@@ -261,7 +261,11 @@ paso (ver el ejemplo para el nivel de detalle esperado por el jurado).*
    sentencias C/T/SU en la relatoría de la Corte Constitucional
    (`relatoria/AAAA/C-NNN-AA.htm`) y la Decisión Andina 486 en el PDF oficial de la
    Comunidad Andina. Los originales se guardan sin modificar en
-   `data_corpus/raw/<doc_id>/`, con pausa de 1 s entre peticiones. La URL real, la
+   `data/raw_sources/<tipo>/<doc_id>/`, clasificados por tipo de archivo (`html`,
+   `pdf`, `pdf_escaneado`, `otros`), con pausa de 1 s entre peticiones. Los
+   documentos de mayor impacto (Constitución y Código General del Proceso) no se
+   descargan con el script: sus PDF se obtienen a mano para controlar la calidad
+   del dato, y el script solo los registra. La URL real, la
    fecha de consulta, el estado y el sha256 de cada descarga quedan en
    `data/fuentes_descargadas.json`, a partir del cual se genera el inventario de la
    sección 1.
