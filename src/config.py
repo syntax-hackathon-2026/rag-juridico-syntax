@@ -11,14 +11,16 @@ Estructura de CORPUS_DIR:
 
 `corpus_manifest.json` NO esta en CORPUS_DIR: vive versionado en la raiz del repo.
 
-Las fuentes originales (sin procesar) viven aparte, en `<repo>/data/raw_sources/`,
-clasificadas por tipo de archivo:
+Las fuentes originales (sin procesar) viven en `<repo>/data/raw/` (ignorada por
+git, regenerable con src/ingesta/descargar_fuentes.py), por formato:
 
-    raw_sources/<tipo>/<doc_id>/<archivo original>
+    raw/html/<doc_id>/<archivo original>   descargas automaticas (Senado en partes
+                                           <base>.html, <base>_pr001.html, ...)
+    raw/pdf/<archivo original>             PDF manuales o descargados
+    raw/rtf/<archivo original>             RTF/DOCX manuales
 
-con `tipo` en TIPOS_FUENTE (html, pdf, pdf_escaneado, otros). Las descargas
-automaticas y las manuales (p. ej. los PDF de la Constitucion y del CGP) usan la
-misma estructura.
+Los PDF/RTF se asocian a su doc_id en data/mapa_archivos.json; las carpetas de
+raw/html/ ya se llaman como el doc_id.
 
 Todo el codigo debe importar las rutas de aqui; nadie escribe rutas a mano.
 """
@@ -31,36 +33,31 @@ MANIFEST_PATH = ROOT / "corpus_manifest.json"
 CORPUS_DIR = ROOT / "data_corpus"
 CORPUS_TEXTOS = CORPUS_DIR / "corpus"
 INDICE_DIR = CORPUS_DIR / "indice"
-RAW_SOURCES_DIR = ROOT / "data" / "raw_sources"
-RAW_DIR = ROOT / "data" / "raw"  # descargas manuales por tipo (pdf/, rtf/); leen los parsers de src/ingesta/parsear_*.py
+RAW_DIR = ROOT / "data" / "raw"  # originales por formato (html/, pdf/, rtf/); leen los parsers de src/ingesta/parsear_*.py
+RAW_HTML_DIR = RAW_DIR / "html"
 PARSEO_PATH = CORPUS_DIR / "parseo.json"  # inventario del parseo, fuera de corpus/ (que se publica tal cual)
 MAPA_ARCHIVOS_PATH = ROOT / "data" / "mapa_archivos.json"  # archivo original -> doc_id (versionado)
-TIPOS_FUENTE = ("html", "pdf", "pdf_escaneado", "otros")
 CHUNKS_PATH = INDICE_DIR / "chunks.jsonl"
 FAISS_PATH = INDICE_DIR / "index.faiss"
 
 
-def raw_dir(tipo: str, doc_id: str) -> Path:
-    """Carpeta de las fuentes originales de un doc_id para un tipo de archivo."""
-    if tipo not in TIPOS_FUENTE:
-        raise ValueError(f"tipo de fuente desconocido: {tipo!r} (validos: {TIPOS_FUENTE})")
-    return RAW_SOURCES_DIR / tipo / doc_id
+def raw_html_dir(doc_id: str) -> Path:
+    """Carpeta con las paginas HTML originales de un doc_id."""
+    return RAW_HTML_DIR / doc_id
 
 
-def raw_dirs_existentes(doc_id: str) -> list[Path]:
-    """Carpetas con archivos originales de un doc_id, en cualquier tipo."""
-    dirs = (raw_dir(tipo, doc_id) for tipo in TIPOS_FUENTE)
-    return [d for d in dirs if d.is_dir() and any(d.iterdir())]
+def docs_en_raw() -> set[str]:
+    """doc_id que ya tienen algun original en data/raw/ (HTML o PDF/RTF mapeado)."""
+    import json
+    import unicodedata
 
-
-def tipo_por_extension(nombre: str) -> str:
-    """Tipo de fuente segun la extension. No distingue PDF escaneado: eso es manual."""
-    ext = Path(nombre).suffix.lower()
-    if ext in (".html", ".htm"):
-        return "html"
-    if ext == ".pdf":
-        return "pdf"
-    return "otros"
+    nfc = lambda s: unicodedata.normalize("NFC", s)  # macOS entrega nombres en NFD
+    docs = {d.name for d in RAW_HTML_DIR.glob("*") if d.is_dir() and any(d.iterdir())}
+    if MAPA_ARCHIVOS_PATH.is_file():
+        mapa = json.loads(MAPA_ARCHIVOS_PATH.read_text(encoding="utf-8"))
+        presentes = {nfc(f.name) for sub in ("pdf", "rtf") for f in (RAW_DIR / sub).glob("*")}
+        docs |= {doc for nombre, doc in mapa.items() if nfc(nombre) in presentes}
+    return docs
 
 
 def contar_chunks() -> int:

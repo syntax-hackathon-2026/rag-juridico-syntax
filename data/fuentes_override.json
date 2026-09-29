@@ -1,0 +1,46 @@
+{
+  "_comentario": "doc_id de la semilla -> correccion. Manda sobre las reglas de src/ingesta/descargar_fuentes.py. Campos: doc_id (si la semilla trae una errata), titulo, fuente, url, estado (errata | no_encontrado | sin_resolver), nota. Solo URLs verificadas; nada inventado.",
+  "decreto_1563_2012": {
+    "doc_id": "ley_1563_2012",
+    "titulo": "Ley 1563 de 2012 (Estatuto de Arbitraje Nacional e Internacional)",
+    "fuente": "Secretaria del Senado",
+    "url": "http://www.secretariasenado.gov.co/senado/basedoc/ley_1563_2012.html",
+    "nota": "errata de la semilla: 'Decreto 1563 de 2012' (area procesal) es la Ley 1563 de 2012"
+  },
+  "decreto_663_1993": {
+    "titulo": "Estatuto Organico del Sistema Financiero (Decreto 663 de 1993)",
+    "fuente": "Secretaria del Senado",
+    "url": "http://www.secretariasenado.gov.co/senado/basedoc/estatuto_organico_sistema_financiero.html",
+    "nota": "el Senado lo publica con el nombre del estatuto"
+  },
+  "ley_2737_1989": {
+    "doc_id": "decreto_2737_1989",
+    "titulo": "Codigo del Menor (Decreto 2737 de 1989)",
+    "fuente": "Normograma de Colpensiones (compilacion Avance Juridico)",
+    "url": "https://normativa.colpensiones.gov.co/colpens/docs/codigo_menor.htm",
+    "nota": "errata de la semilla: es el Decreto 2737 de 1989 (derogado casi por completo por la Ley 1098 de 2006)"
+  },
+  "ley_964_2006": {
+    "doc_id": "ley_964_2005",
+    "titulo": "Ley 964 de 2005 (Mercado de Valores)",
+    "fuente": "Secretaria del Senado",
+    "url": "http://www.secretariasenado.gov.co/senado/basedoc/ley_0964_2005.html",
+    "nota": "errata de la semilla: la Ley 964 es de 2005"
+  },
+  "ley_11500_2007": {
+    "estado": "errata",
+    "nota": "errata de la semilla: es la Ley 1150 de 2007, ya en el corpus como ley_1150_2007"
+  },
+  "ley_1150_2005": {
+    "estado": "errata",
+    "nota": "errata de la semilla: la Ley 1150 es de 2007, ya en el corpus como ley_1150_2007"
+  },
+  "ley_116_2006": {
+    "estado": "errata",
+    "nota": "errata de la semilla: probablemente la Ley 1116 de 2006 (insolvencia), ya en el corpus como ley_1116_2006"
+  },
+  "sentencia_su_6_1991": {
+    "estado": "no_encontrado",
+    "nota": "no existen sentencias SU de 1991 (la Corte empezo en 1992); referencia de la semilla probablemente erronea"
+  }
+}
