@@ -23,13 +23,15 @@
         null,
         null
       ],
-      "estado": "manual",
-      "tipo_fuente": null,
-      "fecha_consulta": null,
-      "archivos": [],
-      "bytes": 0,
-      "sha256": null,
-      "nota": "descargar a mano en data/raw_sources/pdf/constitucion_politica_1991/"
+      "estado": "descargado",
+      "tipo_fuente": "pdf",
+      "fecha_consulta": "2026-09-29",
+      "archivos": [
+        "Constitución_Política_1_de_1991_Asamblea_Nacional_Constituyente.pdf"
+      ],
+      "bytes": 2730167,
+      "sha256": "9094dc31fec3d2d609fc4a1f02a61a0bff3661b536766575939cc6efbf68f9a7",
+      "nota": "ya estaba en data/raw/ (usar --forzar para repetir)"
     },
     {
       "doc_id": "codigo_general_proceso",
@@ -51,13 +53,15 @@
         null,
         null
       ],
-      "estado": "manual",
-      "tipo_fuente": null,
-      "fecha_consulta": null,
-      "archivos": [],
-      "bytes": 0,
-      "sha256": null,
-      "nota": "descargar a mano en data/raw_sources/pdf/codigo_general_proceso/"
+      "estado": "descargado",
+      "tipo_fuente": "pdf",
+      "fecha_consulta": "2026-09-29",
+      "archivos": [
+        "Ley_1564_de_2012.pdf"
+      ],
+      "bytes": 669474,
+      "sha256": "640a513938c9f8257d4554db736adcef6f353cd6c8b14b10a7c7d500af4bdd5e",
+      "nota": "ya estaba en data/raw/ (usar --forzar para repetir)"
     },
     {
       "doc_id": "codigo_sustantivo_trabajo",
@@ -74,30 +78,14 @@
         null
       ],
       "estado": "descargado",
-      "fecha_consulta": "2026-09-28",
+      "tipo_fuente": "pdf",
+      "fecha_consulta": "2026-09-29",
       "archivos": [
-        "codigo_sustantivo_trabajo.html",
-        "codigo_sustantivo_trabajo_pr001.html",
-        "codigo_sustantivo_trabajo_pr002.html",
-        "codigo_sustantivo_trabajo_pr003.html",
-        "codigo_sustantivo_trabajo_pr004.html",
-        "codigo_sustantivo_trabajo_pr005.html",
-        "codigo_sustantivo_trabajo_pr006.html",
-        "codigo_sustantivo_trabajo_pr007.html",
-        "codigo_sustantivo_trabajo_pr008.html",
-        "codigo_sustantivo_trabajo_pr009.html",
-        "codigo_sustantivo_trabajo_pr010.html",
-        "codigo_sustantivo_trabajo_pr011.html",
-        "codigo_sustantivo_trabajo_pr012.html",
-        "codigo_sustantivo_trabajo_pr013.html",
-        "codigo_sustantivo_trabajo_pr014.html",
-        "codigo_sustantivo_trabajo_pr015.html",
-        "codigo_sustantivo_trabajo_pr016.html",
-        "codigo_sustantivo_trabajo_pr017.html"
+        "Decreto_2663_de_1950.pdf"
       ],
-      "bytes": 1554216,
-      "sha256": "846d1bdc3d8fccb6d085d4db8d610ab4392ddf724543e888d8df9a99d87afcb2",
-      "nota": ""
+      "bytes": 535739,
+      "sha256": "0b9787f08ff0d5b1f311788f63756c3b61eac4d2fc8056c020f6a793b19f3920",
+      "nota": "ya estaba en data/raw/ (usar --forzar para repetir)"
     },
     {
       "doc_id": "estatuto_tributario",
@@ -116,49 +104,14 @@
         null
       ],
       "estado": "descargado",
-      "fecha_consulta": "2026-09-28",
+      "tipo_fuente": "pdf",
+      "fecha_consulta": "2026-09-29",
       "archivos": [
-        "estatuto_tributario.html",
-        "estatuto_tributario_pr001.html",
-        "estatuto_tributario_pr002.html",
-        "estatuto_tributario_pr003.html",
-        "estatuto_tributario_pr004.html",
-        "estatuto_tributario_pr005.html",
-        "estatuto_tributario_pr006.html",
-        "estatuto_tributario_pr007.html",
-        "estatuto_tributario_pr008.html",
-        "estatuto_tributario_pr009.html",
-        "estatuto_tributario_pr010.html",
-        "estatuto_tributario_pr011.html",
-        "estatuto_tributario_pr012.html",
-        "estatuto_tributario_pr013.html",
-        "estatuto_tributario_pr014.html",
-        "estatuto_tributario_pr015.html",
-        "estatuto_tributario_pr016.html",
-        "estatuto_tributario_pr017.html",
-        "estatuto_tributario_pr018.html",
-        "estatuto_tributario_pr019.html",
-        "estatuto_tributario_pr020.html",
-        "estatuto_tributario_pr021.html",
-        "estatuto_tributario_pr022.html",
-        "estatuto_tributario_pr023.html",
-        "estatuto_tributario_pr024.html",
-        "estatuto_tributario_pr025.html",
-        "estatuto_tributario_pr026.html",
-        "estatuto_tributario_pr027.html",
-        "estatuto_tributario_pr028.html",
-        "estatuto_tributario_pr029.html",
-        "estatuto_tributario_pr030.html",
-        "estatuto_tributario_pr031.html",
-        "estatuto_tributario_pr032.html",
-        "estatuto_tributario_pr033.html",
-        "estatuto_tributario_pr034.html",
-        "estatuto_tributario_pr035.html",
-        "estatuto_tributario_pr036.html"
+        "Decreto_Ley_624_de_1989.pdf"
       ],
-      "bytes": 6020558,
-      "sha256": "0eb0456549e95836d1bd32843a3a0c2bf47eaf94452d1804aedff483f23da8ba",
-      "nota": ""
+      "bytes": 2721945,
+      "sha256": "3263a045dbf31e581d5102d0d9632fc2d68a52059ab18a22ef1968129ce90daf",
+      "nota": "ya estaba en data/raw/ (usar --forzar para repetir)"
     },
     {
       "doc_id": "decision_andina_486",
@@ -176,13 +129,14 @@
         null
       ],
       "estado": "descargado",
+      "tipo_fuente": "pdf",
       "fecha_consulta": "2026-09-28",
       "archivos": [
         "DEC486.pdf"
       ],
       "bytes": 489444,
       "sha256": "3a5f24e3c3e24ab9cb0a9f8d825b8fd190315b2d821f3507e68f78fdab25a9bc",
-      "nota": ""
+      "nota": "ya estaba en data/raw/ (usar --forzar para repetir)"
     },
     {
       "doc_id": "estatuto_consumidor",
@@ -200,15 +154,14 @@
         null
       ],
       "estado": "descargado",
-      "fecha_consulta": "2026-09-28",
+      "tipo_fuente": "pdf",
+      "fecha_consulta": "2026-09-29",
       "archivos": [
-        "ley_1480_2011.html",
-        "ley_1480_2011_pr001.html",
-        "ley_1480_2011_pr002.html"
+        "Ley_1480_de_2011.pdf"
       ],
-      "bytes": 245237,
-      "sha256": "5ced3aa9ebcec91719e9f129994364f7d5f3d52799ba96a9ce6497c8f543983f",
-      "nota": ""
+      "bytes": 165371,
+      "sha256": "abc87704f34ff0f02cfc02e3e82c1b18bb72ce50e3e21b6be12d749d07101859",
+      "nota": "ya estaba en data/raw/ (usar --forzar para repetir)"
     },
     {
       "doc_id": "ley_80_1993",
@@ -226,14 +179,14 @@
         "1993"
       ],
       "estado": "descargado",
-      "fecha_consulta": "2026-09-28",
+      "tipo_fuente": "pdf",
+      "fecha_consulta": "2026-09-29",
       "archivos": [
-        "ley_0080_1993.html",
-        "ley_0080_1993_pr001.html"
+        "Ley_80_de_1993.pdf"
       ],
-      "bytes": 266940,
-      "sha256": "8239a664c9b94a4a5a3585d1f0e4e6f722e2ab0f383cc30111bf3c3bbbb57aab",
-      "nota": ""
+      "bytes": 261216,
+      "sha256": "e06d406f5a75268056621edb2c5606172cc6b0658b70d7be3bf0010238f48258",
+      "nota": "ya estaba en data/raw/ (usar --forzar para repetir)"
     },
     {
       "doc_id": "ley_2220_2022",
@@ -251,16 +204,14 @@
         "2022"
       ],
       "estado": "descargado",
-      "fecha_consulta": "2026-09-28",
+      "tipo_fuente": "pdf",
+      "fecha_consulta": "2026-09-29",
       "archivos": [
-        "ley_2220_2022.html",
-        "ley_2220_2022_pr001.html",
-        "ley_2220_2022_pr002.html",
-        "ley_2220_2022_pr003.html"
+        "Ley_2220_de_2022.pdf"
       ],
-      "bytes": 347315,
-      "sha256": "ae7d0efe539ec3c41a983ca67b9ed3ae6daf3d5a71c029108eb122a73aead04a",
-      "nota": ""
+      "bytes": 234424,
+      "sha256": "922023de500482ddffb5c6a8308e31fc5e2f1f98983737b528960ba143515ee5",
+      "nota": "ya estaba en data/raw/ (usar --forzar para repetir)"
     },
     {
       "doc_id": "decreto_2153_1992",
@@ -277,14 +228,14 @@
         "1992"
       ],
       "estado": "descargado",
-      "fecha_consulta": "2026-09-28",
+      "tipo_fuente": "pdf",
+      "fecha_consulta": "2026-09-29",
       "archivos": [
-        "decreto_2153_1992.html",
-        "decreto_2153_1992_pr001.html"
+        "Decreto_2153_de_1992.pdf"
       ],
-      "bytes": 141621,
-      "sha256": "47ee8d7226da76421d186526c1b80b1547dd034a2608621e5c7d658552dabc6b",
-      "nota": ""
+      "bytes": 162362,
+      "sha256": "e34591d8dd3bad043bbe903aff65d47a1951b17b0192ddb6e51eeeb6b0fc4c1e",
+      "nota": "ya estaba en data/raw/ (usar --forzar para repetir)"
     },
     {
       "doc_id": "ley_1116_2006",
@@ -302,15 +253,14 @@
         "2006"
       ],
       "estado": "descargado",
-      "fecha_consulta": "2026-09-28",
+      "tipo_fuente": "pdf",
+      "fecha_consulta": "2026-09-29",
       "archivos": [
-        "ley_1116_2006.html",
-        "ley_1116_2006_pr001.html",
-        "ley_1116_2006_pr002.html"
+        "Ley_1116_de_2006.pdf"
       ],
-      "bytes": 308109,
-      "sha256": "8aaf6294efb4c5f5b13887337f698ac9f1cd01597f8f01d5a2fac849e3369187",
-      "nota": ""
+      "bytes": 214978,
+      "sha256": "fecd12cf01eada50387d44a90a0cb6fdbf948ce01cd7ce24176c39919a0fca03",
+      "nota": "ya estaba en data/raw/ (usar --forzar para repetir)"
     },
     {
       "doc_id": "sentencia_c_355_2006",
@@ -328,13 +278,15 @@
         "2006"
       ],
       "estado": "descargado",
-      "fecha_consulta": "2026-09-28",
+      "tipo_fuente": "pdf",
+      "fecha_consulta": "2026-09-29",
       "archivos": [
-        "C-355-06.htm"
+        "sentencia-c-355-de-2006.pdf",
+        "c-355-06.rtf"
       ],
-      "bytes": 3398037,
-      "sha256": "13254dea6a3c8e4ca7ff13a931f55179262c5746f47d533e16f126b57384eae6",
-      "nota": ""
+      "bytes": 6540983,
+      "sha256": "e0c9f42ffb9139f8309cd1a70f70f0473518ea327117a0e0cbf0bef95e7e8c6d",
+      "nota": "ya estaba en data/raw/ (usar --forzar para repetir)"
     },
     {
       "doc_id": "ley_1581_2012",
@@ -353,13 +305,14 @@
         "2012"
       ],
       "estado": "descargado",
-      "fecha_consulta": "2026-09-28",
+      "tipo_fuente": "pdf",
+      "fecha_consulta": "2026-09-29",
       "archivos": [
-        "ley_1581_2012.html"
+        "Ley_1581_de_2012.pdf"
       ],
-      "bytes": 1143394,
-      "sha256": "f3c1d5bc945423906a8394df6a8472ad5637dcacc24111de2620ba0659d1bf1d",
-      "nota": ""
+      "bytes": 99131,
+      "sha256": "bb5607a2b117928c46c808b4161bd4f72660603be4ad0fc9e56b8fb9a4d873c7",
+      "nota": "ya estaba en data/raw/ (usar --forzar para repetir)"
     },
     {
       "doc_id": "codigo_infancia",
@@ -376,17 +329,14 @@
         null
       ],
       "estado": "descargado",
-      "fecha_consulta": "2026-09-28",
+      "tipo_fuente": "pdf",
+      "fecha_consulta": "2026-09-29",
       "archivos": [
-        "ley_1098_2006.html",
-        "ley_1098_2006_pr001.html",
-        "ley_1098_2006_pr002.html",
-        "ley_1098_2006_pr003.html",
-        "ley_1098_2006_pr004.html"
+        "codigoinfancialey1098.pdf"
       ],
-      "bytes": 512632,
-      "sha256": "0fb696a5b675c634189da4195b789feab3f9246b7a29e20d363fc39fed448365",
-      "nota": ""
+      "bytes": 871885,
+      "sha256": "a78fa5a33067dcaa2fd7eda9d7b17344cde5d460be69a7c2ce4ff50a7b6ac659",
+      "nota": "ya estaba en data/raw/ (usar --forzar para repetir)"
     },
     {
       "doc_id": "ley_1258_2008",
@@ -403,14 +353,14 @@
         "2008"
       ],
       "estado": "descargado",
-      "fecha_consulta": "2026-09-28",
+      "tipo_fuente": "pdf",
+      "fecha_consulta": "2026-09-29",
       "archivos": [
-        "ley_1258_2008.html",
-        "ley_1258_2008_pr001.html"
+        "Ley_1258_de_2008.pdf"
       ],
-      "bytes": 91490,
-      "sha256": "5da384c2f1c90fb00456f0a63cb68f84a35480ecb9ccfe991106c9ed470e8e62",
-      "nota": ""
+      "bytes": 95086,
+      "sha256": "5e71f5c50f3a37bfe296f48b5955d6877a86aefd0340265966ba424185ce2a8a",
+      "nota": "ya estaba en data/raw/ (usar --forzar para repetir)"
     },
     {
       "doc_id": "sentencia_c_207_2019",
@@ -427,13 +377,14 @@
         "2019"
       ],
       "estado": "descargado",
-      "fecha_consulta": "2026-09-28",
+      "tipo_fuente": "rtf",
+      "fecha_consulta": "2026-09-29",
       "archivos": [
-        "C-207-19.htm"
+        "c-207-19.rtf"
       ],
-      "bytes": 797995,
-      "sha256": "31f394b5e0d9b8cf0bc44a1b2408867b8d839e56c75213c3accb7abb5178e325",
-      "nota": ""
+      "bytes": 243855,
+      "sha256": "a10454eb7ca918966deb479d76ab9ca93eb1d4b2f5677b415125bf7bcc262193",
+      "nota": "ya estaba en data/raw/ (usar --forzar para repetir)"
     },
     {
       "doc_id": "sentencia_sl_3385_2022",
@@ -449,12 +400,15 @@
         "SL-3385",
         "2022"
       ],
-      "estado": "sin_resolver",
-      "fecha_consulta": null,
-      "archivos": [],
-      "bytes": 0,
-      "sha256": null,
-      "nota": "Corte Suprema: sin URL predecible; descargar a mano"
+      "estado": "descargado",
+      "tipo_fuente": "pdf",
+      "fecha_consulta": "2026-09-29",
+      "archivos": [
+        "CSJ_SCL_SL3385_2022_2022.pdf"
+      ],
+      "bytes": 148445,
+      "sha256": "dbfaa33006356eaae8fc1a640213e728eaeeafd6349f269bdce57488c75b4b3c",
+      "nota": "ya estaba en data/raw/ (usar --forzar para repetir)"
     },
     {
       "doc_id": "sentencia_t_323_2024",
@@ -471,13 +425,14 @@
         "2024"
       ],
       "estado": "descargado",
-      "fecha_consulta": "2026-09-28",
+      "tipo_fuente": "rtf",
+      "fecha_consulta": "2026-09-29",
       "archivos": [
-        "T-323-24.htm"
+        "t-323-24.rtf"
       ],
-      "bytes": 1384020,
-      "sha256": "57f50252c71423895b97321d03012a5de145186b9cdb6032e590670335618310",
-      "nota": ""
+      "bytes": 775988,
+      "sha256": "34f599517f1f701d01e8d0ecf6bf162f550f91d3f5707c33e3fee1dc0336127b",
+      "nota": "ya estaba en data/raw/ (usar --forzar para repetir)"
     },
     {
       "doc_id": "ley_1010_2006",
@@ -494,13 +449,14 @@
         "2006"
       ],
       "estado": "descargado",
-      "fecha_consulta": "2026-09-28",
+      "tipo_fuente": "html",
+      "fecha_consulta": "2026-09-29",
       "archivos": [
         "ley_1010_2006.html"
       ],
-      "bytes": 55419,
-      "sha256": "f3c79ea347af961dc975d81cf225046d1b8cdf9c89e5d5240cd72cadf1bfea08",
-      "nota": ""
+      "bytes": 54478,
+      "sha256": "fc942a1eb260a1612a540d11a4d1fdc0f1e51a2e493c5830350689d0777c44f7",
+      "nota": "ya estaba en data/raw/ (usar --forzar para repetir)"
     },
     {
       "doc_id": "ley_1150_2007",
@@ -517,13 +473,14 @@
         "2007"
       ],
       "estado": "descargado",
-      "fecha_consulta": "2026-09-28",
+      "tipo_fuente": "html",
+      "fecha_consulta": "2026-09-29",
       "archivos": [
         "ley_1150_2007.html"
       ],
-      "bytes": 132716,
-      "sha256": "0e0dcdbc26c8824d4a8d0a89a8300f3057b78d136a1d2e1c7ceba6b1b65f3043",
-      "nota": ""
+      "bytes": 131771,
+      "sha256": "3922de814f75e22d9a0e4e2239591c483671f5317c6a36a0ea8f7cac70479985",
+      "nota": "ya estaba en data/raw/ (usar --forzar para repetir)"
     },
     {
       "doc_id": "ley_1340_2009",
@@ -540,19 +497,20 @@
         "2009"
       ],
       "estado": "descargado",
-      "fecha_consulta": "2026-09-28",
+      "tipo_fuente": "html",
+      "fecha_consulta": "2026-09-29",
       "archivos": [
         "ley_1340_2009.html"
       ],
-      "bytes": 79883,
-      "sha256": "8a51dbbc69dbd5e2cf623a8a2b10d164c613ab42f1bac47e7998ffa9e9088f1d",
-      "nota": ""
+      "bytes": 78942,
+      "sha256": "fee04b5457c057635640fbaac888e7b48a90eb58c74004eae037a06b660b68d5",
+      "nota": "ya estaba en data/raw/ (usar --forzar para repetir)"
     },
     {
       "doc_id": "ley_153_1887",
       "titulo": "Ley 153 de 1887",
-      "fuente": "Secretaria del Senado",
-      "url": "http://www.secretariasenado.gov.co/senado/basedoc/ley_0153_1887.html",
+      "fuente": "Normograma de la CRA (compilacion Avance Juridico)",
+      "url": "https://normas.cra.gov.co/gestor/docs/ley_0153_1887.htm",
       "areas": [
         "Derecho civil",
         "Derecho tributario"
@@ -563,12 +521,15 @@
         "153",
         "1887"
       ],
-      "estado": "no_encontrado",
-      "fecha_consulta": null,
-      "archivos": [],
-      "bytes": 0,
-      "sha256": null,
-      "nota": "http://www.secretariasenado.gov.co/senado/basedoc/ley_0153_1887.html no existe en Secretaria del Senado"
+      "estado": "descargado",
+      "tipo_fuente": "html",
+      "fecha_consulta": "2026-09-29",
+      "archivos": [
+        "ley_0153_1887.htm"
+      ],
+      "bytes": 270772,
+      "sha256": "255d6536bd52874935dfaadc04c1a106464a47a62bdd7f77aa15bdcdc635a358",
+      "nota": ""
     },
     {
       "doc_id": "ley_2437_2024",
@@ -586,19 +547,20 @@
         "2024"
       ],
       "estado": "descargado",
-      "fecha_consulta": "2026-09-28",
+      "tipo_fuente": "html",
+      "fecha_consulta": "2026-09-29",
       "archivos": [
         "ley_2437_2024.html"
       ],
-      "bytes": 85346,
-      "sha256": "5ba56513fd37125951a50ce06388940c88e29d31b49eb4bf02030353a94ecc50",
-      "nota": ""
+      "bytes": 84405,
+      "sha256": "8e3f3b4c893d997afc99944ac8a3494c7b14db7c58dc21e91f333ee81c2185dd",
+      "nota": "ya estaba en data/raw/ (usar --forzar para repetir)"
     },
     {
       "doc_id": "ley_54_1990",
       "titulo": "Ley 54 de 1990",
-      "fuente": "Secretaria del Senado",
-      "url": "http://www.secretariasenado.gov.co/senado/basedoc/ley_0054_1990.html",
+      "fuente": "Normograma de la CRA (compilacion Avance Juridico)",
+      "url": "https://normas.cra.gov.co/gestor/docs/ley_0054_1990.htm",
       "areas": [
         "Derecho de familia"
       ],
@@ -608,12 +570,15 @@
         "54",
         "1990"
       ],
-      "estado": "no_encontrado",
-      "fecha_consulta": null,
-      "archivos": [],
-      "bytes": 0,
-      "sha256": null,
-      "nota": "http://www.secretariasenado.gov.co/senado/basedoc/ley_0054_1990.html no existe en Secretaria del Senado"
+      "estado": "descargado",
+      "tipo_fuente": "html",
+      "fecha_consulta": "2026-09-29",
+      "archivos": [
+        "ley_0054_1990.htm"
+      ],
+      "bytes": 55428,
+      "sha256": "dd748dc73d840a26005afb89f4f21d18ef173828a239af53c5e5a80d5f17fad0",
+      "nota": ""
     },
     {
       "doc_id": "ley_979_2005",
@@ -630,13 +595,14 @@
         "2005"
       ],
       "estado": "descargado",
-      "fecha_consulta": "2026-09-28",
+      "tipo_fuente": "html",
+      "fecha_consulta": "2026-09-29",
       "archivos": [
         "ley_0979_2005.html"
       ],
-      "bytes": 25289,
-      "sha256": "b6344ef227931e0761fef48c79eb743f3cf76838799165213aaf4ec0c67e81cf",
-      "nota": ""
+      "bytes": 24348,
+      "sha256": "75820d6519f357a50b5fb36fc2b43ef9d43b0d21ee019597088863bf0b215fa7",
+      "nota": "ya estaba en data/raw/ (usar --forzar para repetir)"
     },
     {
       "doc_id": "sentencia_c_394_2017",
@@ -654,13 +620,14 @@
         "2017"
       ],
       "estado": "descargado",
+      "tipo_fuente": "html",
       "fecha_consulta": "2026-09-28",
       "archivos": [
         "C-394-17.htm"
       ],
       "bytes": 531593,
       "sha256": "bc476dda2fab8bb87f3a244f76fc65155ab5ddc6545521a072d8ff83e1eddcdd",
-      "nota": ""
+      "nota": "ya estaba en data/raw/ (usar --forzar para repetir)"
     },
     {
       "doc_id": "sentencia_c_55_2022",
@@ -678,13 +645,14 @@
         "2022"
       ],
       "estado": "descargado",
+      "tipo_fuente": "html",
       "fecha_consulta": "2026-09-28",
       "archivos": [
         "C-055-22.htm"
       ],
       "bytes": 4815493,
       "sha256": "80ca65f0df0c73936e7705f2f28cbcfa37331b95997c283ea6f8c0ef84b1bb6c",
-      "nota": ""
+      "nota": "ya estaba en data/raw/ (usar --forzar para repetir)"
     },
     {
       "doc_id": "sentencia_su_315_2025",
@@ -701,13 +669,14 @@
         "2025"
       ],
       "estado": "descargado",
+      "tipo_fuente": "html",
       "fecha_consulta": "2026-09-28",
       "archivos": [
         "SU315-25.htm"
       ],
       "bytes": 867802,
       "sha256": "47c75d45c0a47734851bdf18422e71309c3bc611259d312e90996203a362a72b",
-      "nota": ""
+      "nota": "ya estaba en data/raw/ (usar --forzar para repetir)"
     },
     {
       "doc_id": "sentencia_t_243_2018",
@@ -724,13 +693,14 @@
         "2018"
       ],
       "estado": "descargado",
+      "tipo_fuente": "html",
       "fecha_consulta": "2026-09-28",
       "archivos": [
         "T-243-18.htm"
       ],
       "bytes": 247381,
       "sha256": "86dba79e505bf0f5f17879f088588af9bd438cea814304f3228c53a43574e2c8",
-      "nota": ""
+      "nota": "ya estaba en data/raw/ (usar --forzar para repetir)"
     },
     {
       "doc_id": "sentencia_t_760_2008",
@@ -748,34 +718,14 @@
         "2008"
       ],
       "estado": "descargado",
+      "tipo_fuente": "html",
       "fecha_consulta": "2026-09-28",
       "archivos": [
         "T-760-08.htm"
       ],
       "bytes": 2099989,
       "sha256": "68777ec244b2effd2b188c6bc8c35149c3722aa802fdacbb99ff3ab8a4ab63e6",
-      "nota": ""
-    },
-    {
-      "doc_id": "decreto_1563_2012",
-      "titulo": "Decreto 1563 de 2012",
-      "fuente": "Secretaria del Senado",
-      "url": "http://www.secretariasenado.gov.co/senado/basedoc/decreto_1563_2012.html",
-      "areas": [
-        "Derecho procesal"
-      ],
-      "items_del_banco": 2,
-      "canonico": [
-        "decreto",
-        "1563",
-        "2012"
-      ],
-      "estado": "no_encontrado",
-      "fecha_consulta": null,
-      "archivos": [],
-      "bytes": 0,
-      "sha256": null,
-      "nota": "http://www.secretariasenado.gov.co/senado/basedoc/decreto_1563_2012.html no existe en Secretaria del Senado"
+      "nota": "ya estaba en data/raw/ (usar --forzar para repetir)"
     },
     {
       "doc_id": "ley_1095_2006",
@@ -793,13 +743,40 @@
         "2006"
       ],
       "estado": "descargado",
-      "fecha_consulta": "2026-09-28",
+      "tipo_fuente": "html",
+      "fecha_consulta": "2026-09-29",
       "archivos": [
         "ley_1095_2006.html"
       ],
-      "bytes": 32367,
-      "sha256": "a86fd9c8ac0c08c320e8491426e6ada7ac312f304def8a574fda01acfb59b3a0",
-      "nota": ""
+      "bytes": 31426,
+      "sha256": "d2295ac73d60990ac755d2e02633e069d75991a551e0e3d4bdc35fb96a99f743",
+      "nota": "ya estaba en data/raw/ (usar --forzar para repetir)"
+    },
+    {
+      "doc_id": "ley_1563_2012",
+      "titulo": "Ley 1563 de 2012 (Estatuto de Arbitraje Nacional e Internacional)",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/ley_1563_2012.html",
+      "areas": [
+        "Derecho procesal"
+      ],
+      "items_del_banco": 2,
+      "canonico": [
+        "decreto",
+        "1563",
+        "2012"
+      ],
+      "estado": "descargado",
+      "tipo_fuente": "html",
+      "fecha_consulta": "2026-09-29",
+      "archivos": [
+        "ley_1563_2012.html",
+        "ley_1563_2012_pr001.html",
+        "ley_1563_2012_pr002.html"
+      ],
+      "bytes": 233907,
+      "sha256": "db9ac5ab544d22ed9dad19600440e77a3e761de4fbee51b2cc3c1193ad3043ba",
+      "nota": "errata de la semilla: 'Decreto 1563 de 2012' (area procesal) es la Ley 1563 de 2012"
     },
     {
       "doc_id": "ley_2141_2021",
@@ -817,13 +794,14 @@
         "2021"
       ],
       "estado": "descargado",
-      "fecha_consulta": "2026-09-28",
+      "tipo_fuente": "html",
+      "fecha_consulta": "2026-09-29",
       "archivos": [
         "ley_2141_2021.html"
       ],
-      "bytes": 24425,
-      "sha256": "a7ca4577722a4f96def417bd071caad92969342d8494443111e0db01678905d4",
-      "nota": ""
+      "bytes": 23484,
+      "sha256": "eb81835ff39110946d414594447a652a452775b0a2e470ded507e3a095d8ec11",
+      "nota": "ya estaba en data/raw/ (usar --forzar para repetir)"
     },
     {
       "doc_id": "ley_2452_2025",
@@ -840,7 +818,8 @@
         "2025"
       ],
       "estado": "descargado",
-      "fecha_consulta": "2026-09-28",
+      "tipo_fuente": "html",
+      "fecha_consulta": "2026-09-29",
       "archivos": [
         "ley_2452_2025.html",
         "ley_2452_2025_pr001.html",
@@ -852,9 +831,9 @@
         "ley_2452_2025_pr007.html",
         "ley_2452_2025_pr008.html"
       ],
-      "bytes": 870093,
-      "sha256": "c48058afa08ac9a6d590aa8656ee109e7de66a564bf649988cb1a4c6c0d17bb6",
-      "nota": ""
+      "bytes": 861608,
+      "sha256": "d44671681f1f4c9b7563fee50890165705e8309fa0aa5fddccb976c5806ae8bb",
+      "nota": "ya estaba en data/raw/ (usar --forzar para repetir)"
     },
     {
       "doc_id": "ley_2466_2025",
@@ -871,13 +850,14 @@
         "2025"
       ],
       "estado": "descargado",
-      "fecha_consulta": "2026-09-28",
+      "tipo_fuente": "html",
+      "fecha_consulta": "2026-09-29",
       "archivos": [
         "ley_2466_2025.html"
       ],
-      "bytes": 167597,
-      "sha256": "365eaf749271294bc008a11057fac2004f7f54e043719b465ae3de2cfeeb1307",
-      "nota": ""
+      "bytes": 166652,
+      "sha256": "cf30892fac5654580af00cc12dc05789875edf5d0e55d7a4d937e99acaa548e7",
+      "nota": "ya estaba en data/raw/ (usar --forzar para repetir)"
     },
     {
       "doc_id": "ley_256_1996",
@@ -894,19 +874,20 @@
         "1996"
       ],
       "estado": "descargado",
-      "fecha_consulta": "2026-09-28",
+      "tipo_fuente": "html",
+      "fecha_consulta": "2026-09-29",
       "archivos": [
         "ley_0256_1996.html"
       ],
-      "bytes": 51221,
-      "sha256": "8ca30ba7eea9bb7efed22be4d8bbb94f263e52f884d444655de1e19f40e08e2f",
-      "nota": ""
+      "bytes": 50280,
+      "sha256": "7473318ff5debc79bdd8fe0a1f4294da1830466a6f4d2cdb800d63a7241ed7aa",
+      "nota": "ya estaba en data/raw/ (usar --forzar para repetir)"
     },
     {
       "doc_id": "ley_50_1990",
       "titulo": "Ley 50 de 1990",
-      "fuente": "Secretaria del Senado",
-      "url": "http://www.secretariasenado.gov.co/senado/basedoc/ley_0050_1990.html",
+      "fuente": "Normograma de la CRA (compilacion Avance Juridico)",
+      "url": "https://normas.cra.gov.co/gestor/docs/ley_0050_1990.htm",
       "areas": [
         "Derecho laboral"
       ],
@@ -916,12 +897,15 @@
         "50",
         "1990"
       ],
-      "estado": "no_encontrado",
-      "fecha_consulta": null,
-      "archivos": [],
-      "bytes": 0,
-      "sha256": null,
-      "nota": "http://www.secretariasenado.gov.co/senado/basedoc/ley_0050_1990.html no existe en Secretaria del Senado"
+      "estado": "descargado",
+      "tipo_fuente": "html",
+      "fecha_consulta": "2026-09-29",
+      "archivos": [
+        "ley_0050_1990.htm"
+      ],
+      "bytes": 248729,
+      "sha256": "baad1b15f1461dbcefed13dd2a6daf6547a51796d62b8a661ea04b884b3a23ec",
+      "nota": ""
     },
     {
       "doc_id": "sentencia_c_117_2018",
@@ -938,13 +922,14 @@
         "2018"
       ],
       "estado": "descargado",
+      "tipo_fuente": "html",
       "fecha_consulta": "2026-09-28",
       "archivos": [
         "C-117-18.htm"
       ],
       "bytes": 741234,
       "sha256": "d93fd01310b9eaa91499390c874a245861ce6986cdb31571076ca49335a5cf00",
-      "nota": ""
+      "nota": "ya estaba en data/raw/ (usar --forzar para repetir)"
     },
     {
       "doc_id": "sentencia_c_127_2011",
@@ -961,13 +946,14 @@
         "2011"
       ],
       "estado": "descargado",
+      "tipo_fuente": "html",
       "fecha_consulta": "2026-09-28",
       "archivos": [
         "C-127-11.htm"
       ],
       "bytes": 204608,
       "sha256": "8df9fcc2d481f5ed8ced101459da2703a7d93f6e634e298df445035ffb03d1b1",
-      "nota": ""
+      "nota": "ya estaba en data/raw/ (usar --forzar para repetir)"
     },
     {
       "doc_id": "sentencia_c_134_2019",
@@ -985,13 +971,14 @@
         "2019"
       ],
       "estado": "descargado",
+      "tipo_fuente": "html",
       "fecha_consulta": "2026-09-28",
       "archivos": [
         "C-134-19.htm"
       ],
       "bytes": 152882,
       "sha256": "dd518e04dc3d6ef48c223b1efe75fb047192aeb71052ff6701ca8401c54b3ec1",
-      "nota": ""
+      "nota": "ya estaba en data/raw/ (usar --forzar para repetir)"
     },
     {
       "doc_id": "sentencia_c_15_2018",
@@ -1009,13 +996,14 @@
         "2018"
       ],
       "estado": "descargado",
+      "tipo_fuente": "html",
       "fecha_consulta": "2026-09-28",
       "archivos": [
         "C-015-18.htm"
       ],
       "bytes": 421635,
       "sha256": "38b8759ef21de0b4fa68e7d00926c4f547382429089d6e25e1bbfd6a9c5a81e5",
-      "nota": ""
+      "nota": "ya estaba en data/raw/ (usar --forzar para repetir)"
     },
     {
       "doc_id": "sentencia_c_164_2022",
@@ -1033,13 +1021,14 @@
         "2022"
       ],
       "estado": "descargado",
+      "tipo_fuente": "html",
       "fecha_consulta": "2026-09-28",
       "archivos": [
         "C-164-22.htm"
       ],
       "bytes": 621684,
       "sha256": "8358177e15dda6d5d8122e4548643e9e4e8294b39f15e4bf7c3afa4a54ba9b96",
-      "nota": ""
+      "nota": "ya estaba en data/raw/ (usar --forzar para repetir)"
     },
     {
       "doc_id": "sentencia_c_259_2015",
@@ -1057,13 +1046,14 @@
         "2015"
       ],
       "estado": "descargado",
+      "tipo_fuente": "html",
       "fecha_consulta": "2026-09-28",
       "archivos": [
         "C-259-15.htm"
       ],
       "bytes": 451890,
       "sha256": "cd4f645a5215cfb291e5a8f3fbd09492f1d39ee59029cb37b760e70d3266c775",
-      "nota": ""
+      "nota": "ya estaba en data/raw/ (usar --forzar para repetir)"
     },
     {
       "doc_id": "sentencia_c_35_2009",
@@ -1080,13 +1070,14 @@
         "2009"
       ],
       "estado": "descargado",
+      "tipo_fuente": "html",
       "fecha_consulta": "2026-09-28",
       "archivos": [
         "C-035-09.htm"
       ],
       "bytes": 220182,
       "sha256": "bae27d90b33946bbc5b113a181726205144e3808220a0358383541f38d7faeb0",
-      "nota": ""
+      "nota": "ya estaba en data/raw/ (usar --forzar para repetir)"
     },
     {
       "doc_id": "sentencia_c_431_2001",
@@ -1104,13 +1095,14 @@
         "2001"
       ],
       "estado": "descargado",
+      "tipo_fuente": "html",
       "fecha_consulta": "2026-09-28",
       "archivos": [
         "C-431-01.htm"
       ],
       "bytes": 44800,
       "sha256": "f1e744879c1a8170d3cd8263cbf28108a5f31fa2ec5f263f9871ab7fe753326e",
-      "nota": ""
+      "nota": "ya estaba en data/raw/ (usar --forzar para repetir)"
     },
     {
       "doc_id": "sentencia_c_500_2024",
@@ -1128,13 +1120,14 @@
         "2024"
       ],
       "estado": "descargado",
+      "tipo_fuente": "html",
       "fecha_consulta": "2026-09-28",
       "archivos": [
         "C-500-24.htm"
       ],
       "bytes": 362869,
       "sha256": "211dd6cbc4fe45ac6281323a6b84ee6936737457c63b90def3187c53b6caeae7",
-      "nota": ""
+      "nota": "ya estaba en data/raw/ (usar --forzar para repetir)"
     },
     {
       "doc_id": "sentencia_c_507_2004",
@@ -1151,13 +1144,14 @@
         "2004"
       ],
       "estado": "descargado",
+      "tipo_fuente": "html",
       "fecha_consulta": "2026-09-28",
       "archivos": [
         "C-507-04.htm"
       ],
       "bytes": 730334,
       "sha256": "57f8136d8b6ee6e030d352bfbd59678779025ab6f8c226b605101dad409b2f51",
-      "nota": ""
+      "nota": "ya estaba en data/raw/ (usar --forzar para repetir)"
     },
     {
       "doc_id": "sentencia_c_540_2023",
@@ -1174,13 +1168,14 @@
         "2023"
       ],
       "estado": "descargado",
+      "tipo_fuente": "html",
       "fecha_consulta": "2026-09-28",
       "archivos": [
         "C-540-23.htm"
       ],
       "bytes": 492402,
       "sha256": "21f5d01519d39c804c0719224aa04c1903586308dd646e54d2c3d7c28fa09956",
-      "nota": ""
+      "nota": "ya estaba en data/raw/ (usar --forzar para repetir)"
     },
     {
       "doc_id": "sentencia_c_582_1999",
@@ -1197,13 +1192,14 @@
         "1999"
       ],
       "estado": "descargado",
+      "tipo_fuente": "html",
       "fecha_consulta": "2026-09-28",
       "archivos": [
         "C-582-99.htm"
       ],
       "bytes": 92608,
       "sha256": "ccf16fe0fee60cb72d960db64d89ddb84e571d24fc431b47371901f245e45438",
-      "nota": ""
+      "nota": "ya estaba en data/raw/ (usar --forzar para repetir)"
     },
     {
       "doc_id": "sentencia_c_746_2011",
@@ -1221,13 +1217,14 @@
         "2011"
       ],
       "estado": "descargado",
+      "tipo_fuente": "html",
       "fecha_consulta": "2026-09-28",
       "archivos": [
         "C-746-11.htm"
       ],
       "bytes": 111266,
       "sha256": "edc6faafd105d7532ba96c023b7db83da82441e24b82fb2641389ee60afc0529",
-      "nota": ""
+      "nota": "ya estaba en data/raw/ (usar --forzar para repetir)"
     },
     {
       "doc_id": "sentencia_c_748_2011",
@@ -1245,13 +1242,14 @@
         "2011"
       ],
       "estado": "descargado",
+      "tipo_fuente": "html",
       "fecha_consulta": "2026-09-28",
       "archivos": [
         "C-748-11.htm"
       ],
       "bytes": 1903545,
       "sha256": "1ee572344bd0db5e0496baea73f373271c8d84a79ef44d2a1a74f5e495e3a997",
-      "nota": ""
+      "nota": "ya estaba en data/raw/ (usar --forzar para repetir)"
     },
     {
       "doc_id": "sentencia_c_94_2021",
@@ -1268,13 +1266,14 @@
         "2021"
       ],
       "estado": "descargado",
+      "tipo_fuente": "html",
       "fecha_consulta": "2026-09-28",
       "archivos": [
         "C-094-21.htm"
       ],
       "bytes": 670954,
       "sha256": "1eb9c37e01277fe831099848bfcbab90734fc13b6b07581a996adde607bef08f",
-      "nota": ""
+      "nota": "ya estaba en data/raw/ (usar --forzar para repetir)"
     },
     {
       "doc_id": "sentencia_c_96_2024",
@@ -1291,13 +1290,14 @@
         "2024"
       ],
       "estado": "descargado",
+      "tipo_fuente": "html",
       "fecha_consulta": "2026-09-28",
       "archivos": [
         "C-096-24.htm"
       ],
       "bytes": 671144,
       "sha256": "741ed59919b4e39a5e83780ea336cde9d29de51e86644c1261d271e3bffbc230",
-      "nota": ""
+      "nota": "ya estaba en data/raw/ (usar --forzar para repetir)"
     },
     {
       "doc_id": "sentencia_sl_648_2018",
@@ -1314,11 +1314,12 @@
         "2018"
       ],
       "estado": "sin_resolver",
+      "tipo_fuente": null,
       "fecha_consulta": null,
       "archivos": [],
       "bytes": 0,
       "sha256": null,
-      "nota": "Corte Suprema: sin URL predecible; descargar a mano"
+      "nota": "Corte Suprema: sin URL predecible; agregar a data/fuentes_override.json"
     },
     {
       "doc_id": "sentencia_sp_1680_2022",
@@ -1335,11 +1336,12 @@
         "2022"
       ],
       "estado": "sin_resolver",
+      "tipo_fuente": null,
       "fecha_consulta": null,
       "archivos": [],
       "bytes": 0,
       "sha256": null,
-      "nota": "Corte Suprema: sin URL predecible; descargar a mano"
+      "nota": "Corte Suprema: sin URL predecible; agregar a data/fuentes_override.json"
     },
     {
       "doc_id": "sentencia_sp_1945_2019",
@@ -1356,11 +1358,12 @@
         "2019"
       ],
       "estado": "sin_resolver",
+      "tipo_fuente": null,
       "fecha_consulta": null,
       "archivos": [],
       "bytes": 0,
       "sha256": null,
-      "nota": "Corte Suprema: sin URL predecible; descargar a mano"
+      "nota": "Corte Suprema: sin URL predecible; agregar a data/fuentes_override.json"
     },
     {
       "doc_id": "sentencia_su_111_2025",
@@ -1377,13 +1380,14 @@
         "2025"
       ],
       "estado": "descargado",
+      "tipo_fuente": "html",
       "fecha_consulta": "2026-09-28",
       "archivos": [
         "SU111-25.htm"
       ],
       "bytes": 758383,
       "sha256": "1c7be1d69feed8299099ebabf41c38f21ce97bcbe7f4e9eead85c08787bd2c87",
-      "nota": ""
+      "nota": "ya estaba en data/raw/ (usar --forzar para repetir)"
     },
     {
       "doc_id": "sentencia_su_214_2016",
@@ -1400,13 +1404,14 @@
         "2016"
       ],
       "estado": "descargado",
+      "tipo_fuente": "html",
       "fecha_consulta": "2026-09-28",
       "archivos": [
         "SU214-16.htm"
       ],
       "bytes": 2557156,
       "sha256": "1644d3af32b02571b2f8ba0305170c3282b6849def6197df16c2c8ad38b1a85b",
-      "nota": ""
+      "nota": "ya estaba en data/raw/ (usar --forzar para repetir)"
     },
     {
       "doc_id": "sentencia_t_547_2017",
@@ -1424,13 +1429,14 @@
         "2017"
       ],
       "estado": "descargado",
+      "tipo_fuente": "html",
       "fecha_consulta": "2026-09-28",
       "archivos": [
         "T-547-17.htm"
       ],
       "bytes": 289939,
       "sha256": "25b215b219a3954e6fe6aa7856aeb17482746fe786199021b24646f579805349",
-      "nota": ""
+      "nota": "ya estaba en data/raw/ (usar --forzar para repetir)"
     },
     {
       "doc_id": "acuerdo_2_2015",
@@ -1447,11 +1453,12 @@
         "2015"
       ],
       "estado": "sin_resolver",
+      "tipo_fuente": null,
       "fecha_consulta": null,
       "archivos": [],
       "bytes": 0,
       "sha256": null,
-      "nota": "tipo 'acuerdo' sin regla de resolucion"
+      "nota": "tipo 'acuerdo' sin regla de resolucion; agregar a data/fuentes_override.json"
     },
     {
       "doc_id": "codigo_disciplinario",
@@ -1468,7 +1475,8 @@
         null
       ],
       "estado": "descargado",
-      "fecha_consulta": "2026-09-28",
+      "tipo_fuente": "html",
+      "fecha_consulta": "2026-09-29",
       "archivos": [
         "ley_1952_2019.html",
         "ley_1952_2019_pr001.html",
@@ -1478,9 +1486,9 @@
         "ley_1952_2019_pr005.html",
         "ley_1952_2019_pr006.html"
       ],
-      "bytes": 639301,
-      "sha256": "5f0015c7f290142ee47b62a8e982e51b767b94862ac9aaca11c42b5fb614a079",
-      "nota": ""
+      "bytes": 632706,
+      "sha256": "5de66b4696f4982a0c65de14d2bd91b0296e6d2ddba108693e9912e038ce8b64",
+      "nota": "ya estaba en data/raw/ (usar --forzar para repetir)"
     },
     {
       "doc_id": "codigo_nacional_policia",
@@ -1497,7 +1505,8 @@
         null
       ],
       "estado": "descargado",
-      "fecha_consulta": "2026-09-28",
+      "tipo_fuente": "html",
+      "fecha_consulta": "2026-09-29",
       "archivos": [
         "ley_1801_2016.html",
         "ley_1801_2016_pr001.html",
@@ -1506,15 +1515,15 @@
         "ley_1801_2016_pr004.html",
         "ley_1801_2016_pr005.html"
       ],
-      "bytes": 806723,
-      "sha256": "dbe5333ae25b1bfdff9d4abb55569750f925f0792b46006136a50efba37d4315",
-      "nota": ""
+      "bytes": 801057,
+      "sha256": "01a2a3024eb872dbd5579563874187992f1f5e0686337d825cfc1ec94b6f2ae7",
+      "nota": "ya estaba en data/raw/ (usar --forzar para repetir)"
     },
     {
       "doc_id": "decreto_1082_2015",
       "titulo": "Decreto 1082 de 2015",
-      "fuente": "Secretaria del Senado",
-      "url": "http://www.secretariasenado.gov.co/senado/basedoc/decreto_1082_2015.html",
+      "fuente": "Normograma de la CRA (compilacion Avance Juridico)",
+      "url": "https://normas.cra.gov.co/gestor/docs/decreto_1082_2015.htm",
       "areas": [
         "Derecho administrativo"
       ],
@@ -1524,12 +1533,15 @@
         "1082",
         "2015"
       ],
-      "estado": "no_encontrado",
-      "fecha_consulta": null,
-      "archivos": [],
-      "bytes": 0,
-      "sha256": null,
-      "nota": "http://www.secretariasenado.gov.co/senado/basedoc/decreto_1082_2015.html no existe en Secretaria del Senado"
+      "estado": "descargado",
+      "tipo_fuente": "html",
+      "fecha_consulta": "2026-09-29",
+      "archivos": [
+        "decreto_1082_2015.htm"
+      ],
+      "bytes": 1566829,
+      "sha256": "fdda2e8282abebb8ce932122c1652e4f5114ab6f8c3dec07722e3c7d5b58541d",
+      "nota": ""
     },
     {
       "doc_id": "decreto_1742_2020",
@@ -1546,14 +1558,15 @@
         "2020"
       ],
       "estado": "descargado",
-      "fecha_consulta": "2026-09-28",
+      "tipo_fuente": "html",
+      "fecha_consulta": "2026-09-29",
       "archivos": [
         "decreto_1742_2020.html",
         "decreto_1742_2020_pr001.html"
       ],
-      "bytes": 349071,
-      "sha256": "6072e4baded7976639147a06802b5474a596de9a936d6bf7e487b2deb0d563fd",
-      "nota": ""
+      "bytes": 347181,
+      "sha256": "5062825223485198cac0e5e2a85d28ddc3e0e6d7d62bad75319f9f782fc93596",
+      "nota": "ya estaba en data/raw/ (usar --forzar para repetir)"
     },
     {
       "doc_id": "decreto_175_2025",
@@ -1570,13 +1583,14 @@
         "2025"
       ],
       "estado": "descargado",
-      "fecha_consulta": "2026-09-28",
+      "tipo_fuente": "html",
+      "fecha_consulta": "2026-09-29",
       "archivos": [
         "decreto_0175_2025.html"
       ],
-      "bytes": 75338,
-      "sha256": "828b988824ff89ca303742e519ed0628deb912ff710583917467be33fe418216",
-      "nota": ""
+      "bytes": 74397,
+      "sha256": "0cbce421cae422dc07c7c1b36bba5d11e0cb3810317df7324a9d6410e7b9a70d",
+      "nota": "ya estaba en data/raw/ (usar --forzar para repetir)"
     },
     {
       "doc_id": "decreto_2067_1991",
@@ -1593,20 +1607,21 @@
         "1991"
       ],
       "estado": "descargado",
-      "fecha_consulta": "2026-09-28",
+      "tipo_fuente": "html",
+      "fecha_consulta": "2026-09-29",
       "archivos": [
         "decreto_2067_1991.html",
         "decreto_2067_1991_pr001.html"
       ],
-      "bytes": 96274,
-      "sha256": "e0bcc52c5dab5bd9e28d80179ff682702a8b146f1e57a619b67eda3aaa0cf119",
-      "nota": ""
+      "bytes": 94392,
+      "sha256": "606b73a1430c50aa0d5d8c93c2dba341a7f3b411a13b918f0572ef0dfaad938a",
+      "nota": "ya estaba en data/raw/ (usar --forzar para repetir)"
     },
     {
       "doc_id": "decreto_24_2016",
       "titulo": "Decreto 24 de 2016",
-      "fuente": "Secretaria del Senado",
-      "url": "http://www.secretariasenado.gov.co/senado/basedoc/decreto_0024_2016.html",
+      "fuente": "Normograma de Colpensiones (compilacion Avance Juridico)",
+      "url": "https://normativa.colpensiones.gov.co/colpens/docs/decreto_0024_2016.htm",
       "areas": [
         "Derecho comercial y sociedades"
       ],
@@ -1616,18 +1631,52 @@
         "24",
         "2016"
       ],
-      "estado": "no_encontrado",
-      "fecha_consulta": null,
-      "archivos": [],
-      "bytes": 0,
-      "sha256": null,
-      "nota": "http://www.secretariasenado.gov.co/senado/basedoc/decreto_0024_2016.html no existe en Secretaria del Senado"
+      "estado": "descargado",
+      "tipo_fuente": "html",
+      "fecha_consulta": "2026-09-29",
+      "archivos": [
+        "decreto_0024_2016.htm"
+      ],
+      "bytes": 25897,
+      "sha256": "9f43980b98121454fc94cada92bd2dd2e0d96762361efd26ff17fc7488bd96c9",
+      "nota": ""
+    },
+    {
+      "doc_id": "decreto_2737_1989",
+      "titulo": "Codigo del Menor (Decreto 2737 de 1989)",
+      "fuente": "Normograma de Colpensiones (compilacion Avance Juridico)",
+      "url": "https://normativa.colpensiones.gov.co/colpens/docs/codigo_menor.htm",
+      "areas": [
+        "Derecho laboral"
+      ],
+      "items_del_banco": 1,
+      "canonico": [
+        "ley",
+        "2737",
+        "1989"
+      ],
+      "estado": "descargado",
+      "tipo_fuente": "html",
+      "fecha_consulta": "2026-09-29",
+      "archivos": [
+        "codigo_menor.htm",
+        "codigo_menor_pr001.htm",
+        "codigo_menor_pr002.htm",
+        "codigo_menor_pr003.htm",
+        "codigo_menor_pr004.htm",
+        "codigo_menor_pr005.htm",
+        "codigo_menor_pr006.htm",
+        "codigo_menor_pr007.htm"
+      ],
+      "bytes": 638552,
+      "sha256": "74ab10b706e88a66910e4002d5d9ee3e1d56375c43658fc8001bec68a469c421",
+      "nota": "errata de la semilla: es el Decreto 2737 de 1989 (derogado casi por completo por la Ley 1098 de 2006)"
     },
     {
       "doc_id": "decreto_405_2025",
       "titulo": "Decreto 405 de 2025",
-      "fuente": "Secretaria del Senado",
-      "url": "http://www.secretariasenado.gov.co/senado/basedoc/decreto_0405_2025.html",
+      "fuente": "Normograma de Colpensiones (compilacion Avance Juridico)",
+      "url": "https://normativa.colpensiones.gov.co/compilacion/docs/decreto_0405_2025.htm",
       "areas": [
         "Derecho laboral"
       ],
@@ -1637,12 +1686,15 @@
         "405",
         "2025"
       ],
-      "estado": "no_encontrado",
-      "fecha_consulta": null,
-      "archivos": [],
-      "bytes": 0,
-      "sha256": null,
-      "nota": "http://www.secretariasenado.gov.co/senado/basedoc/decreto_0405_2025.html no existe en Secretaria del Senado"
+      "estado": "descargado",
+      "tipo_fuente": "html",
+      "fecha_consulta": "2026-09-29",
+      "archivos": [
+        "decreto_0405_2025.htm"
+      ],
+      "bytes": 56498,
+      "sha256": "f4d95a085fd8039aa15dfdbc08e23404eeddf1ffc6394823759c21ae3ae1a783",
+      "nota": ""
     },
     {
       "doc_id": "decreto_4334_2008",
@@ -1659,19 +1711,20 @@
         "2008"
       ],
       "estado": "descargado",
-      "fecha_consulta": "2026-09-28",
+      "tipo_fuente": "html",
+      "fecha_consulta": "2026-09-29",
       "archivos": [
         "decreto_4334_2008.html"
       ],
-      "bytes": 58350,
-      "sha256": "04a95cde94fd8e059bb453659eaa1cf336c14e326c714fa36fc06ff89f049cf7",
-      "nota": ""
+      "bytes": 57409,
+      "sha256": "2dc0f7c8a5ec46e25c9b08e84898b13f668706df8cbc63ded2d4594ab6b84408",
+      "nota": "ya estaba en data/raw/ (usar --forzar para repetir)"
     },
     {
       "doc_id": "decreto_4436_2005",
       "titulo": "Decreto 4436 de 2005",
-      "fuente": "Secretaria del Senado",
-      "url": "http://www.secretariasenado.gov.co/senado/basedoc/decreto_4436_2005.html",
+      "fuente": "Normograma de Colpensiones (compilacion Avance Juridico)",
+      "url": "https://normativa.colpensiones.gov.co/colpens/docs/decreto_4436_2005.htm",
       "areas": [
         "Derecho de familia"
       ],
@@ -1681,12 +1734,15 @@
         "4436",
         "2005"
       ],
-      "estado": "no_encontrado",
-      "fecha_consulta": null,
-      "archivos": [],
-      "bytes": 0,
-      "sha256": null,
-      "nota": "http://www.secretariasenado.gov.co/senado/basedoc/decreto_4436_2005.html no existe en Secretaria del Senado"
+      "estado": "descargado",
+      "tipo_fuente": "html",
+      "fecha_consulta": "2026-09-29",
+      "archivos": [
+        "decreto_4436_2005.htm"
+      ],
+      "bytes": 27207,
+      "sha256": "9c7eab8575a271a65e2393ef905ae74f35a42bd4b247f971060e5e40b43deee0",
+      "nota": ""
     },
     {
       "doc_id": "decreto_46_2024",
@@ -1703,6 +1759,7 @@
         "2024"
       ],
       "estado": "no_encontrado",
+      "tipo_fuente": null,
       "fecha_consulta": null,
       "archivos": [],
       "bytes": 0,
@@ -1724,19 +1781,20 @@
         "2011"
       ],
       "estado": "descargado",
-      "fecha_consulta": "2026-09-28",
+      "tipo_fuente": "html",
+      "fecha_consulta": "2026-09-29",
       "archivos": [
         "decreto_4886_2011.html"
       ],
-      "bytes": 149523,
-      "sha256": "afb7443d4ed987b9da91724fe8e497f7002760b2437db6e2401a862a94b5ccaf",
-      "nota": ""
+      "bytes": 148578,
+      "sha256": "fef7568aea25f173723fada396d1e1dccb5da2ad11c3131ad9ffe414c5208638",
+      "nota": "ya estaba en data/raw/ (usar --forzar para repetir)"
     },
     {
       "doc_id": "decreto_663_1993",
-      "titulo": "Decreto 663 de 1993",
+      "titulo": "Estatuto Organico del Sistema Financiero (Decreto 663 de 1993)",
       "fuente": "Secretaria del Senado",
-      "url": "http://www.secretariasenado.gov.co/senado/basedoc/decreto_0663_1993.html",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/estatuto_organico_sistema_financiero.html",
       "areas": [
         "Derecho comercial y sociedades"
       ],
@@ -1746,18 +1804,33 @@
         "663",
         "1993"
       ],
-      "estado": "no_encontrado",
-      "fecha_consulta": null,
-      "archivos": [],
-      "bytes": 0,
-      "sha256": null,
-      "nota": "http://www.secretariasenado.gov.co/senado/basedoc/decreto_0663_1993.html no existe en Secretaria del Senado"
+      "estado": "descargado",
+      "tipo_fuente": "html",
+      "fecha_consulta": "2026-09-29",
+      "archivos": [
+        "estatuto_organico_sistema_financiero.html",
+        "estatuto_organico_sistema_financiero_pr001.html",
+        "estatuto_organico_sistema_financiero_pr002.html",
+        "estatuto_organico_sistema_financiero_pr003.html",
+        "estatuto_organico_sistema_financiero_pr004.html",
+        "estatuto_organico_sistema_financiero_pr005.html",
+        "estatuto_organico_sistema_financiero_pr006.html",
+        "estatuto_organico_sistema_financiero_pr007.html",
+        "estatuto_organico_sistema_financiero_pr008.html",
+        "estatuto_organico_sistema_financiero_pr009.html",
+        "estatuto_organico_sistema_financiero_pr010.html",
+        "estatuto_organico_sistema_financiero_pr011.html",
+        "estatuto_organico_sistema_financiero_pr012.html"
+      ],
+      "bytes": 1817324,
+      "sha256": "491fc1e602877215cdcc84a24ab4075e2358caebb5c71f8cd3700cb9839b11f8",
+      "nota": "el Senado lo publica con el nombre del estatuto"
     },
     {
       "doc_id": "decreto_780_2016",
       "titulo": "Decreto 780 de 2016",
-      "fuente": "Secretaria del Senado",
-      "url": "http://www.secretariasenado.gov.co/senado/basedoc/decreto_0780_2016.html",
+      "fuente": "Normograma de la CRA (compilacion Avance Juridico)",
+      "url": "https://normas.cra.gov.co/gestor/docs/decreto_0780_2016.htm",
       "areas": [
         "Derecho penal"
       ],
@@ -1767,18 +1840,21 @@
         "780",
         "2016"
       ],
-      "estado": "no_encontrado",
-      "fecha_consulta": null,
-      "archivos": [],
-      "bytes": 0,
-      "sha256": null,
-      "nota": "http://www.secretariasenado.gov.co/senado/basedoc/decreto_0780_2016.html no existe en Secretaria del Senado"
+      "estado": "descargado",
+      "tipo_fuente": "html",
+      "fecha_consulta": "2026-09-29",
+      "archivos": [
+        "decreto_0780_2016.htm"
+      ],
+      "bytes": 5242783,
+      "sha256": "e82d2576931b0b3ff47ce4742de4c560cf33f90c1b887d1e4177bd0faab10cf0",
+      "nota": ""
     },
     {
       "doc_id": "decreto_875_2008",
       "titulo": "Decreto 875 de 2008",
-      "fuente": "Secretaria del Senado",
-      "url": "http://www.secretariasenado.gov.co/senado/basedoc/decreto_0875_2008.html",
+      "fuente": "Normograma de la CRA (compilacion Avance Juridico)",
+      "url": "https://normas.cra.gov.co/gestor/docs/decreto_0875_2008.htm",
       "areas": [
         "Derecho laboral"
       ],
@@ -1788,12 +1864,15 @@
         "875",
         "2008"
       ],
-      "estado": "no_encontrado",
-      "fecha_consulta": null,
-      "archivos": [],
-      "bytes": 0,
-      "sha256": null,
-      "nota": "http://www.secretariasenado.gov.co/senado/basedoc/decreto_0875_2008.html no existe en Secretaria del Senado"
+      "estado": "descargado",
+      "tipo_fuente": "html",
+      "fecha_consulta": "2026-09-29",
+      "archivos": [
+        "decreto_0875_2008.htm"
+      ],
+      "bytes": 42683,
+      "sha256": "25c0ba303aaaa5a75de7c9315c63ee7dd315b74ab238632f8ec46c95e76daf27",
+      "nota": ""
     },
     {
       "doc_id": "decreto_960_1970",
@@ -1810,7 +1889,8 @@
         "1970"
       ],
       "estado": "descargado",
-      "fecha_consulta": "2026-09-28",
+      "tipo_fuente": "html",
+      "fecha_consulta": "2026-09-29",
       "archivos": [
         "decreto_0960_1970.html",
         "decreto_0960_1970_pr001.html",
@@ -1819,9 +1899,9 @@
         "decreto_0960_1970_pr004.html",
         "decreto_0960_1970_pr005.html"
       ],
-      "bytes": 380607,
-      "sha256": "b907c42d91a71e3551dee1b74598c9d4d216ae19767dd6e239abbcaa0c9d0897",
-      "nota": ""
+      "bytes": 374961,
+      "sha256": "6e1710dcd3a81b97f59abe8de7ce267c34dcbf65e51831aa0173b8ace5e1ed6b",
+      "nota": "ya estaba en data/raw/ (usar --forzar para repetir)"
     },
     {
       "doc_id": "ley_11500_2007",
@@ -1837,12 +1917,13 @@
         "11500",
         "2007"
       ],
-      "estado": "no_encontrado",
+      "estado": "errata",
+      "tipo_fuente": null,
       "fecha_consulta": null,
       "archivos": [],
       "bytes": 0,
       "sha256": null,
-      "nota": "http://www.secretariasenado.gov.co/senado/basedoc/ley_11500_2007.html no existe en Secretaria del Senado"
+      "nota": "errata de la semilla: es la Ley 1150 de 2007, ya en el corpus como ley_1150_2007"
     },
     {
       "doc_id": "ley_1150_2005",
@@ -1858,12 +1939,13 @@
         "1150",
         "2005"
       ],
-      "estado": "no_encontrado",
+      "estado": "errata",
+      "tipo_fuente": null,
       "fecha_consulta": null,
       "archivos": [],
       "bytes": 0,
       "sha256": null,
-      "nota": "http://www.secretariasenado.gov.co/senado/basedoc/ley_1150_2005.html no existe en Secretaria del Senado"
+      "nota": "errata de la semilla: la Ley 1150 es de 2007, ya en el corpus como ley_1150_2007"
     },
     {
       "doc_id": "ley_1151_2007",
@@ -1880,16 +1962,17 @@
         "2007"
       ],
       "estado": "descargado",
-      "fecha_consulta": "2026-09-28",
+      "tipo_fuente": "html",
+      "fecha_consulta": "2026-09-29",
       "archivos": [
         "ley_1151_2007.html",
         "ley_1151_2007_pr001.html",
         "ley_1151_2007_pr002.html",
         "ley_1151_2007_pr003.html"
       ],
-      "bytes": 694245,
-      "sha256": "70801a9bb9098075f239d572338f3c7ac20851b54bc96cea551b93743b9f0244",
-      "nota": ""
+      "bytes": 690473,
+      "sha256": "0ae8806ad65676ccf7e004a548f01abe01e112f073d38d8ae6cd35a1e2e5ce8c",
+      "nota": "ya estaba en data/raw/ (usar --forzar para repetir)"
     },
     {
       "doc_id": "ley_116_2006",
@@ -1905,12 +1988,13 @@
         "116",
         "2006"
       ],
-      "estado": "no_encontrado",
+      "estado": "errata",
+      "tipo_fuente": null,
       "fecha_consulta": null,
       "archivos": [],
       "bytes": 0,
       "sha256": null,
-      "nota": "http://www.secretariasenado.gov.co/senado/basedoc/ley_0116_2006.html no existe en Secretaria del Senado"
+      "nota": "errata de la semilla: probablemente la Ley 1116 de 2006 (insolvencia), ya en el corpus como ley_1116_2006"
     },
     {
       "doc_id": "ley_137_1994",
@@ -1927,14 +2011,15 @@
         "1994"
       ],
       "estado": "descargado",
-      "fecha_consulta": "2026-09-28",
+      "tipo_fuente": "html",
+      "fecha_consulta": "2026-09-29",
       "archivos": [
         "ley_0137_1994.html",
         "ley_0137_1994_pr001.html"
       ],
-      "bytes": 113007,
-      "sha256": "709ed1e63b75b5eac9f359c56ec3277fc51a459c07acbb5a664c110634ec7ba8",
-      "nota": ""
+      "bytes": 111125,
+      "sha256": "938d1dbe408d079fbd2b46442b6c244905bdb0bfd3ce5ffeaf0495639902fc20",
+      "nota": "ya estaba en data/raw/ (usar --forzar para repetir)"
     },
     {
       "doc_id": "ley_1473_2011",
@@ -1951,19 +2036,20 @@
         "2011"
       ],
       "estado": "descargado",
-      "fecha_consulta": "2026-09-28",
+      "tipo_fuente": "html",
+      "fecha_consulta": "2026-09-29",
       "archivos": [
         "ley_1473_2011.html"
       ],
-      "bytes": 49429,
-      "sha256": "76460bdc4df653733373134f40ed349223d8d7658a7980c12271e34c52fc9602",
-      "nota": ""
+      "bytes": 48488,
+      "sha256": "938915a901cb7adbce24f48ce6fd0018a26177d168c781d07ee495a65e0cff23",
+      "nota": "ya estaba en data/raw/ (usar --forzar para repetir)"
     },
     {
       "doc_id": "ley_155_1959",
       "titulo": "Ley 155 de 1959",
-      "fuente": "Secretaria del Senado",
-      "url": "http://www.secretariasenado.gov.co/senado/basedoc/ley_0155_1959.html",
+      "fuente": "Normograma de la CRA (compilacion Avance Juridico)",
+      "url": "https://normas.cra.gov.co/gestor/docs/ley_0155_1959.htm",
       "areas": [
         "Derecho de los mercados [competencia, consumidor, datos personales y propiedad intelectual]"
       ],
@@ -1973,12 +2059,15 @@
         "155",
         "1959"
       ],
-      "estado": "no_encontrado",
-      "fecha_consulta": null,
-      "archivos": [],
-      "bytes": 0,
-      "sha256": null,
-      "nota": "http://www.secretariasenado.gov.co/senado/basedoc/ley_0155_1959.html no existe en Secretaria del Senado"
+      "estado": "descargado",
+      "tipo_fuente": "html",
+      "fecha_consulta": "2026-09-29",
+      "archivos": [
+        "ley_0155_1959.htm"
+      ],
+      "bytes": 63909,
+      "sha256": "73dd2748e5c294819107ab3d4635931bfebf2a23d82958c274b75c1ae212e4a9",
+      "nota": ""
     },
     {
       "doc_id": "ley_1562_2012",
@@ -1995,13 +2084,14 @@
         "2012"
       ],
       "estado": "descargado",
-      "fecha_consulta": "2026-09-28",
+      "tipo_fuente": "html",
+      "fecha_consulta": "2026-09-29",
       "archivos": [
         "ley_1562_2012.html"
       ],
-      "bytes": 102642,
-      "sha256": "4529ff4b154cd5e7a4fe379a4fba2a42c501bf06e23edf82b67c1183a38162a3",
-      "nota": ""
+      "bytes": 101697,
+      "sha256": "1bd03739670805e05f0c0db4e84e2ffdaae416996be0f9471a15188ef4800ddd",
+      "nota": "ya estaba en data/raw/ (usar --forzar para repetir)"
     },
     {
       "doc_id": "ley_1607_2012",
@@ -2018,7 +2108,8 @@
         "2012"
       ],
       "estado": "descargado",
-      "fecha_consulta": "2026-09-28",
+      "tipo_fuente": "html",
+      "fecha_consulta": "2026-09-29",
       "archivos": [
         "ley_1607_2012.html",
         "ley_1607_2012_pr001.html",
@@ -2026,9 +2117,9 @@
         "ley_1607_2012_pr003.html",
         "ley_1607_2012_pr004.html"
       ],
-      "bytes": 795820,
-      "sha256": "9341fed15e06729db0847b018ee9419e95b377869f166a85ee9ebb97a8f3a47e",
-      "nota": ""
+      "bytes": 791099,
+      "sha256": "f83cae80d611195ec646db695f77cd4fcd3cc849299196e53077b55fa52c7896",
+      "nota": "ya estaba en data/raw/ (usar --forzar para repetir)"
     },
     {
       "doc_id": "ley_160_1994",
@@ -2045,15 +2136,16 @@
         "1994"
       ],
       "estado": "descargado",
-      "fecha_consulta": "2026-09-28",
+      "tipo_fuente": "html",
+      "fecha_consulta": "2026-09-29",
       "archivos": [
         "ley_0160_1994.html",
         "ley_0160_1994_pr001.html",
         "ley_0160_1994_pr002.html"
       ],
-      "bytes": 292733,
-      "sha256": "622f0297bdf5a5958492135390dc291d070ba4125288f92c72d914314ced60f3",
-      "nota": ""
+      "bytes": 289902,
+      "sha256": "5789b9cef16a7decdfb82ef0b498ac7d3bb080d6782782323cdee76ccd1d0add",
+      "nota": "ya estaba en data/raw/ (usar --forzar para repetir)"
     },
     {
       "doc_id": "ley_1692_2017",
@@ -2070,6 +2162,7 @@
         "2017"
       ],
       "estado": "no_encontrado",
+      "tipo_fuente": null,
       "fecha_consulta": null,
       "archivos": [],
       "bytes": 0,
@@ -2091,13 +2184,14 @@
         "2013"
       ],
       "estado": "descargado",
-      "fecha_consulta": "2026-09-28",
+      "tipo_fuente": "html",
+      "fecha_consulta": "2026-09-29",
       "archivos": [
         "ley_1700_2013.html"
       ],
-      "bytes": 40034,
-      "sha256": "c318f74228d9699d85b4dd176a73848b335f3e9f342515092a6ba3d8c1c1fb4d",
-      "nota": ""
+      "bytes": 39093,
+      "sha256": "78e7588e1a2dee37098c5f3d24e14757eff9bed04d3bde5755fd424e758c7f3f",
+      "nota": "ya estaba en data/raw/ (usar --forzar para repetir)"
     },
     {
       "doc_id": "ley_1755_2015",
@@ -2114,13 +2208,14 @@
         "2015"
       ],
       "estado": "descargado",
-      "fecha_consulta": "2026-09-28",
+      "tipo_fuente": "html",
+      "fecha_consulta": "2026-09-29",
       "archivos": [
         "ley_1755_2015.html"
       ],
-      "bytes": 50784,
-      "sha256": "7ff3302dcf1f1f821d627e973a3676bd07465112484471d40c15ea4a687546c8",
-      "nota": ""
+      "bytes": 49843,
+      "sha256": "40bc6067aeb3345dc14f1e729a03564a617c9545f8a1783a788bf456899e542b",
+      "nota": "ya estaba en data/raw/ (usar --forzar para repetir)"
     },
     {
       "doc_id": "ley_1819_2016",
@@ -2137,7 +2232,8 @@
         "2016"
       ],
       "estado": "descargado",
-      "fecha_consulta": "2026-09-28",
+      "tipo_fuente": "html",
+      "fecha_consulta": "2026-09-29",
       "archivos": [
         "ley_1819_2016.html",
         "ley_1819_2016_pr001.html",
@@ -2148,9 +2244,9 @@
         "ley_1819_2016_pr006.html",
         "ley_1819_2016_pr007.html"
       ],
-      "bytes": 1326786,
-      "sha256": "7deec68773878533d1abb6634a1bcc822f05d6a9414ac1c39e2cc48441af95be",
-      "nota": ""
+      "bytes": 1319226,
+      "sha256": "a92ba8842d2ee35dae2937d6e114bf5e281009611eba6b01ee4da0a1200fd8be",
+      "nota": "ya estaba en data/raw/ (usar --forzar para repetir)"
     },
     {
       "doc_id": "ley_1909_2018",
@@ -2167,13 +2263,14 @@
         "2018"
       ],
       "estado": "descargado",
-      "fecha_consulta": "2026-09-28",
+      "tipo_fuente": "html",
+      "fecha_consulta": "2026-09-29",
       "archivos": [
         "ley_1909_2018.html"
       ],
-      "bytes": 76468,
-      "sha256": "dcf6cd90f1f9144bf314ae1052516ea38888140200d75481b7dc0bdc4b7288c3",
-      "nota": ""
+      "bytes": 75527,
+      "sha256": "4564fe3d4500870746e3f2477ea8b3d1120708651b1548c93e52ab000fb5d2b7",
+      "nota": "ya estaba en data/raw/ (usar --forzar para repetir)"
     },
     {
       "doc_id": "ley_2114_2021",
@@ -2190,13 +2287,14 @@
         "2021"
       ],
       "estado": "descargado",
-      "fecha_consulta": "2026-09-28",
+      "tipo_fuente": "html",
+      "fecha_consulta": "2026-09-29",
       "archivos": [
         "ley_2114_2021.html"
       ],
-      "bytes": 43234,
-      "sha256": "0b6da2aead5651b8166268696baa1385d73104d7aad3300a130f5b97174d8b95",
-      "nota": ""
+      "bytes": 42293,
+      "sha256": "d5381731016de445c2fa1b050d9827aa5e64e2188be5cbdb88008a55c1e77038",
+      "nota": "ya estaba en data/raw/ (usar --forzar para repetir)"
     },
     {
       "doc_id": "ley_2157_2021",
@@ -2213,13 +2311,14 @@
         "2021"
       ],
       "estado": "descargado",
-      "fecha_consulta": "2026-09-28",
+      "tipo_fuente": "html",
+      "fecha_consulta": "2026-09-29",
       "archivos": [
         "ley_2157_2021.html"
       ],
-      "bytes": 45813,
-      "sha256": "6131a448f0a737cc812f4855d28435c5a2cfd7536af48ee57190880513d3489c",
-      "nota": ""
+      "bytes": 44872,
+      "sha256": "fea33e9e2871e34086bcecb4692138f0614087f2a432f2f3d47387c5458c5412",
+      "nota": "ya estaba en data/raw/ (usar --forzar para repetir)"
     },
     {
       "doc_id": "ley_2160_2021",
@@ -2236,13 +2335,14 @@
         "2021"
       ],
       "estado": "descargado",
-      "fecha_consulta": "2026-09-28",
+      "tipo_fuente": "html",
+      "fecha_consulta": "2026-09-29",
       "archivos": [
         "ley_2160_2021.html"
       ],
-      "bytes": 34700,
-      "sha256": "83705f04dd4d0782598eca035d1f94ab352e9a3bfd2241aceb006010549cf92f",
-      "nota": ""
+      "bytes": 33759,
+      "sha256": "2400b648e1dc2d65ee25129342be9b4a4fd24eacd33fc9a3954f747c6f8b00fd",
+      "nota": "ya estaba en data/raw/ (usar --forzar para repetir)"
     },
     {
       "doc_id": "ley_2251_2022",
@@ -2259,13 +2359,14 @@
         "2022"
       ],
       "estado": "descargado",
-      "fecha_consulta": "2026-09-28",
+      "tipo_fuente": "html",
+      "fecha_consulta": "2026-09-29",
       "archivos": [
         "ley_2251_2022.html"
       ],
-      "bytes": 66315,
-      "sha256": "6317cdfdf207d852b30a79161f8aef7af2a0d2a17aaf9217bf7f2474d4225e1f",
-      "nota": ""
+      "bytes": 65374,
+      "sha256": "f70b293a6fa14013d2383604b85053deae191e57ce27721ae034cce3fe83d837",
+      "nota": "ya estaba en data/raw/ (usar --forzar para repetir)"
     },
     {
       "doc_id": "ley_23_1961",
@@ -2282,6 +2383,7 @@
         "1961"
       ],
       "estado": "no_encontrado",
+      "tipo_fuente": null,
       "fecha_consulta": null,
       "archivos": [],
       "bytes": 0,
@@ -2289,31 +2391,10 @@
       "nota": "http://www.secretariasenado.gov.co/senado/basedoc/ley_0023_1961.html no existe en Secretaria del Senado"
     },
     {
-      "doc_id": "ley_2737_1989",
-      "titulo": "Ley 2737 de 1989",
-      "fuente": "Secretaria del Senado",
-      "url": "http://www.secretariasenado.gov.co/senado/basedoc/ley_2737_1989.html",
-      "areas": [
-        "Derecho laboral"
-      ],
-      "items_del_banco": 1,
-      "canonico": [
-        "ley",
-        "2737",
-        "1989"
-      ],
-      "estado": "no_encontrado",
-      "fecha_consulta": null,
-      "archivos": [],
-      "bytes": 0,
-      "sha256": null,
-      "nota": "http://www.secretariasenado.gov.co/senado/basedoc/ley_2737_1989.html no existe en Secretaria del Senado"
-    },
-    {
       "doc_id": "ley_29_1982",
       "titulo": "Ley 29 de 1982",
-      "fuente": "Secretaria del Senado",
-      "url": "http://www.secretariasenado.gov.co/senado/basedoc/ley_0029_1982.html",
+      "fuente": "Normograma de Colpensiones (compilacion Avance Juridico)",
+      "url": "https://normativa.colpensiones.gov.co/colpens/docs/ley_0029_1982.htm",
       "areas": [
         "Derecho de familia"
       ],
@@ -2323,12 +2404,15 @@
         "29",
         "1982"
       ],
-      "estado": "no_encontrado",
-      "fecha_consulta": null,
-      "archivos": [],
-      "bytes": 0,
-      "sha256": null,
-      "nota": "http://www.secretariasenado.gov.co/senado/basedoc/ley_0029_1982.html no existe en Secretaria del Senado"
+      "estado": "descargado",
+      "tipo_fuente": "html",
+      "fecha_consulta": "2026-09-29",
+      "archivos": [
+        "ley_0029_1982.htm"
+      ],
+      "bytes": 25323,
+      "sha256": "dc77872080609189d7a0171178055c0471e68b1f96b05f808ebff69f08112e74",
+      "nota": ""
     },
     {
       "doc_id": "ley_527_1999",
@@ -2345,14 +2429,15 @@
         "1999"
       ],
       "estado": "descargado",
-      "fecha_consulta": "2026-09-28",
+      "tipo_fuente": "html",
+      "fecha_consulta": "2026-09-29",
       "archivos": [
         "ley_0527_1999.html",
         "ley_0527_1999_pr001.html"
       ],
-      "bytes": 98420,
-      "sha256": "4bd67048f95d156f114aa50e6661a23f002dff3d5636395c3fa433dde3ad2184",
-      "nota": ""
+      "bytes": 96538,
+      "sha256": "c292485222ce7c2a6f092b1d6006fdaed5d4cde710e22889f21d36bee864160e",
+      "nota": "ya estaba en data/raw/ (usar --forzar para repetir)"
     },
     {
       "doc_id": "ley_600_2000",
@@ -2369,7 +2454,8 @@
         "2000"
       ],
       "estado": "descargado",
-      "fecha_consulta": "2026-09-28",
+      "tipo_fuente": "html",
+      "fecha_consulta": "2026-09-29",
       "archivos": [
         "ley_0600_2000.html",
         "ley_0600_2000_pr001.html",
@@ -2385,9 +2471,9 @@
         "ley_0600_2000_pr011.html",
         "ley_0600_2000_pr012.html"
       ],
-      "bytes": 1372227,
-      "sha256": "f0485e49e300fd88e7e0e0112147b3cd288f100569ce978102436e59fe30a7d4",
-      "nota": ""
+      "bytes": 1359954,
+      "sha256": "b4da3560fe1910e42331514427bfadea12f79248d037ddc131d7b2803c2d33b6",
+      "nota": "ya estaba en data/raw/ (usar --forzar para repetir)"
     },
     {
       "doc_id": "ley_640_2001",
@@ -2404,14 +2490,15 @@
         "2001"
       ],
       "estado": "descargado",
-      "fecha_consulta": "2026-09-28",
+      "tipo_fuente": "html",
+      "fecha_consulta": "2026-09-29",
       "archivos": [
         "ley_0640_2001.html",
         "ley_0640_2001_pr001.html"
       ],
-      "bytes": 116695,
-      "sha256": "d1647a22db28a0e80bb6d1bc5bb323e1bef507f9b13c411615250299ab07c510",
-      "nota": ""
+      "bytes": 114813,
+      "sha256": "17256f4f5bfbd9ef370e2cd7fa3ff243cc25dd64f7bfaf2d8a4799bfc1ceb431",
+      "nota": "ya estaba en data/raw/ (usar --forzar para repetir)"
     },
     {
       "doc_id": "ley_678_2001",
@@ -2428,13 +2515,14 @@
         "2001"
       ],
       "estado": "descargado",
-      "fecha_consulta": "2026-09-28",
+      "tipo_fuente": "html",
+      "fecha_consulta": "2026-09-29",
       "archivos": [
         "ley_0678_2001.html"
       ],
-      "bytes": 67206,
-      "sha256": "993ef6ba14892ab57cad75593e348d75b54e3b6cf62e4ca0d12b27fd6a328797",
-      "nota": ""
+      "bytes": 66265,
+      "sha256": "e5cb026999e8f7c52672ff1ffe54fe930d0b61f22ffc25d4e9761999326d6b46",
+      "nota": "ya estaba en data/raw/ (usar --forzar para repetir)"
     },
     {
       "doc_id": "ley_721_2001",
@@ -2451,19 +2539,20 @@
         "2001"
       ],
       "estado": "descargado",
-      "fecha_consulta": "2026-09-28",
+      "tipo_fuente": "html",
+      "fecha_consulta": "2026-09-29",
       "archivos": [
         "ley_0721_2001.html"
       ],
-      "bytes": 33885,
-      "sha256": "18dc4041d315deb57a1eab8d6c039970318138e36387afcd9f122eb75c588727",
-      "nota": ""
+      "bytes": 32944,
+      "sha256": "3832206d70c8a37f285c45fd17d9e17fc44e811608e95620fd7160c29719c4d8",
+      "nota": "ya estaba en data/raw/ (usar --forzar para repetir)"
     },
     {
       "doc_id": "ley_75_1968",
       "titulo": "Ley 75 de 1968",
-      "fuente": "Secretaria del Senado",
-      "url": "http://www.secretariasenado.gov.co/senado/basedoc/ley_0075_1968.html",
+      "fuente": "Normograma de Colpensiones (compilacion Avance Juridico)",
+      "url": "https://normativa.colpensiones.gov.co/colpens/docs/ley_0075_1968.htm",
       "areas": [
         "Derecho de familia"
       ],
@@ -2473,12 +2562,16 @@
         "75",
         "1968"
       ],
-      "estado": "no_encontrado",
-      "fecha_consulta": null,
-      "archivos": [],
-      "bytes": 0,
-      "sha256": null,
-      "nota": "http://www.secretariasenado.gov.co/senado/basedoc/ley_0075_1968.html no existe en Secretaria del Senado"
+      "estado": "descargado",
+      "tipo_fuente": "html",
+      "fecha_consulta": "2026-09-29",
+      "archivos": [
+        "ley_0075_1968.htm",
+        "ley_0075_1968_pr001.htm"
+      ],
+      "bytes": 109085,
+      "sha256": "b00419f3fcfe0246c02cd56100c2caf7f8eec03067406b23b7f81d35c62cd95d",
+      "nota": ""
     },
     {
       "doc_id": "ley_769_2002",
@@ -2495,7 +2588,8 @@
         "2002"
       ],
       "estado": "descargado",
-      "fecha_consulta": "2026-09-28",
+      "tipo_fuente": "html",
+      "fecha_consulta": "2026-09-29",
       "archivos": [
         "ley_0769_2002.html",
         "ley_0769_2002_pr001.html",
@@ -2503,9 +2597,9 @@
         "ley_0769_2002_pr003.html",
         "ley_0769_2002_pr004.html"
       ],
-      "bytes": 527855,
-      "sha256": "feefb0803fb394fb8aef4643200edf213411a7a2795c6b800d0310a2e470f28a",
-      "nota": ""
+      "bytes": 523138,
+      "sha256": "6d34c708b5da5bdf19b62100c38997a8f56fd9ad59f4bd867aa910cdd4945652",
+      "nota": "ya estaba en data/raw/ (usar --forzar para repetir)"
     },
     {
       "doc_id": "ley_820_2003",
@@ -2522,20 +2616,21 @@
         "2003"
       ],
       "estado": "descargado",
-      "fecha_consulta": "2026-09-28",
+      "tipo_fuente": "html",
+      "fecha_consulta": "2026-09-29",
       "archivos": [
         "ley_0820_2003.html",
         "ley_0820_2003_pr001.html"
       ],
-      "bytes": 113005,
-      "sha256": "7e476bc25b6795609fbea065515052ddb9b8d5c180e1efe4c7efd0d85450545c",
-      "nota": ""
+      "bytes": 111123,
+      "sha256": "94bc295b5972f8f9f57792aa862b2a97171fbea43ed9e2e6347c61acae2c60b5",
+      "nota": "ya estaba en data/raw/ (usar --forzar para repetir)"
     },
     {
-      "doc_id": "ley_964_2006",
-      "titulo": "Ley 964 de 2006",
+      "doc_id": "ley_964_2005",
+      "titulo": "Ley 964 de 2005 (Mercado de Valores)",
       "fuente": "Secretaria del Senado",
-      "url": "http://www.secretariasenado.gov.co/senado/basedoc/ley_0964_2006.html",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/ley_0964_2005.html",
       "areas": [
         "Derecho comercial y sociedades"
       ],
@@ -2545,12 +2640,17 @@
         "964",
         "2006"
       ],
-      "estado": "no_encontrado",
-      "fecha_consulta": null,
-      "archivos": [],
-      "bytes": 0,
-      "sha256": null,
-      "nota": "http://www.secretariasenado.gov.co/senado/basedoc/ley_0964_2006.html no existe en Secretaria del Senado"
+      "estado": "descargado",
+      "tipo_fuente": "html",
+      "fecha_consulta": "2026-09-29",
+      "archivos": [
+        "ley_0964_2005.html",
+        "ley_0964_2005_pr001.html",
+        "ley_0964_2005_pr002.html"
+      ],
+      "bytes": 259358,
+      "sha256": "285e4518596a6927066ddf729be93709868170a68b66e5558c7a8a23085bdd1e",
+      "nota": "errata de la semilla: la Ley 964 es de 2005"
     },
     {
       "doc_id": "sentencia_c_1033_2002",
@@ -2567,13 +2667,14 @@
         "2002"
       ],
       "estado": "descargado",
+      "tipo_fuente": "html",
       "fecha_consulta": "2026-09-28",
       "archivos": [
         "C-1033-02.htm"
       ],
       "bytes": 179430,
       "sha256": "a0ceefb750be4f20cda5707757d8cb6bf45d468c230c738ac3b1c3cf68b54297",
-      "nota": ""
+      "nota": "ya estaba en data/raw/ (usar --forzar para repetir)"
     },
     {
       "doc_id": "sentencia_c_106_2018",
@@ -2590,13 +2691,14 @@
         "2018"
       ],
       "estado": "descargado",
+      "tipo_fuente": "html",
       "fecha_consulta": "2026-09-28",
       "archivos": [
         "C-106-18.htm"
       ],
       "bytes": 451460,
       "sha256": "124bee261f05366abea9d0fd6ba8a6513ae2a56077f0b84cfc92b14c8677f425",
-      "nota": ""
+      "nota": "ya estaba en data/raw/ (usar --forzar para repetir)"
     },
     {
       "doc_id": "sentencia_c_1189_2000",
@@ -2613,13 +2715,14 @@
         "2000"
       ],
       "estado": "descargado",
+      "tipo_fuente": "html",
       "fecha_consulta": "2026-09-28",
       "archivos": [
         "C-1189-00.htm"
       ],
       "bytes": 230291,
       "sha256": "9c823139b126fd986a282db8091a72de732dc305fab2a67114451971314c2bcc",
-      "nota": ""
+      "nota": "ya estaba en data/raw/ (usar --forzar para repetir)"
     },
     {
       "doc_id": "sentencia_c_131_2018",
@@ -2636,13 +2739,14 @@
         "2018"
       ],
       "estado": "descargado",
+      "tipo_fuente": "html",
       "fecha_consulta": "2026-09-28",
       "archivos": [
         "C-131-18.htm"
       ],
       "bytes": 271683,
       "sha256": "953cb175ea738297a05aa220b71831f05b14fdb33c5a0c84e739793daa5902af",
-      "nota": ""
+      "nota": "ya estaba en data/raw/ (usar --forzar para repetir)"
     },
     {
       "doc_id": "sentencia_c_145_2018",
@@ -2659,13 +2763,14 @@
         "2018"
       ],
       "estado": "descargado",
+      "tipo_fuente": "html",
       "fecha_consulta": "2026-09-28",
       "archivos": [
         "C-145-18.htm"
       ],
       "bytes": 319178,
       "sha256": "2bbe08cc9c23f2df1b89610e4bf6782e718e0089a095d68e73e04e14409f0351",
-      "nota": ""
+      "nota": "ya estaba en data/raw/ (usar --forzar para repetir)"
     },
     {
       "doc_id": "sentencia_c_145_2020",
@@ -2682,13 +2787,14 @@
         "2020"
       ],
       "estado": "descargado",
+      "tipo_fuente": "html",
       "fecha_consulta": "2026-09-28",
       "archivos": [
         "C-145-20.htm"
       ],
       "bytes": 1603416,
       "sha256": "dc9c093a03d4ff889d4a37eeeed2c88f8d089dde30ec6d7789002002a06018f4",
-      "nota": ""
+      "nota": "ya estaba en data/raw/ (usar --forzar para repetir)"
     },
     {
       "doc_id": "sentencia_c_149_1993",
@@ -2705,13 +2811,14 @@
         "1993"
       ],
       "estado": "descargado",
+      "tipo_fuente": "html",
       "fecha_consulta": "2026-09-28",
       "archivos": [
         "C-149-93.htm"
       ],
       "bytes": 132088,
       "sha256": "3f59473f8165a9d7eac46f436af6fb3ea38fb6df0b54a3bab8fcd3efe93c6878",
-      "nota": ""
+      "nota": "ya estaba en data/raw/ (usar --forzar para repetir)"
     },
     {
       "doc_id": "sentencia_c_170_2004",
@@ -2728,13 +2835,14 @@
         "2004"
       ],
       "estado": "descargado",
+      "tipo_fuente": "html",
       "fecha_consulta": "2026-09-28",
       "archivos": [
         "C-170-04.htm"
       ],
       "bytes": 350188,
       "sha256": "0f6fb3dac71a156778e9b6a499fca505406622cbf4ae6a67cb1a4d9449008db1",
-      "nota": ""
+      "nota": "ya estaba en data/raw/ (usar --forzar para repetir)"
     },
     {
       "doc_id": "sentencia_c_183_2025",
@@ -2751,13 +2859,14 @@
         "2025"
       ],
       "estado": "descargado",
+      "tipo_fuente": "html",
       "fecha_consulta": "2026-09-28",
       "archivos": [
         "C-183-25.htm"
       ],
       "bytes": 561539,
       "sha256": "3e2eaff8289e97e7360a596de8f77d588478f135129950ac22023928e0e0b0cb",
-      "nota": ""
+      "nota": "ya estaba en data/raw/ (usar --forzar para repetir)"
     },
     {
       "doc_id": "sentencia_c_201_2002",
@@ -2774,13 +2883,14 @@
         "2002"
       ],
       "estado": "descargado",
+      "tipo_fuente": "html",
       "fecha_consulta": "2026-09-28",
       "archivos": [
         "C-201-02.htm"
       ],
       "bytes": 310721,
       "sha256": "f89f974b1c951a882eccc1935cad7684ab595070d330651da192d91ae95c3a17",
-      "nota": ""
+      "nota": "ya estaba en data/raw/ (usar --forzar para repetir)"
     },
     {
       "doc_id": "sentencia_c_225_1995",
@@ -2797,13 +2907,14 @@
         "1995"
       ],
       "estado": "descargado",
+      "tipo_fuente": "html",
       "fecha_consulta": "2026-09-28",
       "archivos": [
         "C-225-95.htm"
       ],
       "bytes": 432338,
       "sha256": "98566f5351d767a89ebb566ee5ee4c5b253d7116aeabc9ffc6a4c76dd4a01427",
-      "nota": ""
+      "nota": "ya estaba en data/raw/ (usar --forzar para repetir)"
     },
     {
       "doc_id": "sentencia_c_22_1996",
@@ -2820,13 +2931,14 @@
         "1996"
       ],
       "estado": "descargado",
+      "tipo_fuente": "html",
       "fecha_consulta": "2026-09-28",
       "archivos": [
         "C-022-96.htm"
       ],
       "bytes": 86973,
       "sha256": "57b566b51cbe4272e01ac2e3a7ef34ad758f0555fa3cc3a3dc25c5afb1560967",
-      "nota": ""
+      "nota": "ya estaba en data/raw/ (usar --forzar para repetir)"
     },
     {
       "doc_id": "sentencia_c_233_2021",
@@ -2843,13 +2955,14 @@
         "2021"
       ],
       "estado": "descargado",
+      "tipo_fuente": "html",
       "fecha_consulta": "2026-09-28",
       "archivos": [
         "C-233-21.htm"
       ],
       "bytes": 1444241,
       "sha256": "271d8061be5da5bc2d7ed61c5425496c5fd2b50946cc2d38a6e93ed2045602d5",
-      "nota": ""
+      "nota": "ya estaba en data/raw/ (usar --forzar para repetir)"
     },
     {
       "doc_id": "sentencia_c_239_1997",
@@ -2866,13 +2979,14 @@
         "1997"
       ],
       "estado": "descargado",
+      "tipo_fuente": "html",
       "fecha_consulta": "2026-09-28",
       "archivos": [
         "C-239-97.htm"
       ],
       "bytes": 632225,
       "sha256": "37603f2bd9a27638eceb81d53477edabbd7d55428e47d665c894f1b19f0dc9a1",
-      "nota": ""
+      "nota": "ya estaba en data/raw/ (usar --forzar para repetir)"
     },
     {
       "doc_id": "sentencia_c_276_2025",
@@ -2889,13 +3003,14 @@
         "2025"
       ],
       "estado": "descargado",
+      "tipo_fuente": "html",
       "fecha_consulta": "2026-09-28",
       "archivos": [
         "C-276-25.htm"
       ],
       "bytes": 551726,
       "sha256": "9020134aecca9b400cdb6c600c2809efef33dbc5413396bb6ca8f797b92b196a",
-      "nota": ""
+      "nota": "ya estaba en data/raw/ (usar --forzar para repetir)"
     },
     {
       "doc_id": "sentencia_c_332_2025",
@@ -2912,13 +3027,14 @@
         "2025"
       ],
       "estado": "descargado",
+      "tipo_fuente": "html",
       "fecha_consulta": "2026-09-28",
       "archivos": [
         "C-332-25.htm"
       ],
       "bytes": 521799,
       "sha256": "9d3f3d1103d3ec847fa27a70857d80e510043ae5aafddb559a73cc21da40f530",
-      "nota": ""
+      "nota": "ya estaba en data/raw/ (usar --forzar para repetir)"
     },
     {
       "doc_id": "sentencia_c_335_2008",
@@ -2935,13 +3051,14 @@
         "2008"
       ],
       "estado": "descargado",
+      "tipo_fuente": "html",
       "fecha_consulta": "2026-09-28",
       "archivos": [
         "C-335-08.htm"
       ],
       "bytes": 253488,
       "sha256": "d59511b7e6187ed631e97935bf687c2b420afcdd9edf3fdfdfbc0528027c89b7",
-      "nota": ""
+      "nota": "ya estaba en data/raw/ (usar --forzar para repetir)"
     },
     {
       "doc_id": "sentencia_c_345_2017",
@@ -2958,13 +3075,14 @@
         "2017"
       ],
       "estado": "descargado",
+      "tipo_fuente": "html",
       "fecha_consulta": "2026-09-28",
       "archivos": [
         "C-345-17.htm"
       ],
       "bytes": 412179,
       "sha256": "bcf04cccbe41a0e79c3228fd5b5120002ef2e7791e79a140494062fba1437f5e",
-      "nota": ""
+      "nota": "ya estaba en data/raw/ (usar --forzar para repetir)"
     },
     {
       "doc_id": "sentencia_c_389_2023",
@@ -2981,13 +3099,14 @@
         "2023"
       ],
       "estado": "descargado",
+      "tipo_fuente": "html",
       "fecha_consulta": "2026-09-28",
       "archivos": [
         "C-389-23.htm"
       ],
       "bytes": 384097,
       "sha256": "ae91a42204d9a118f76b1b30c3164dfa9b8083e8aa3d35ce3e5bd9cd015d8def",
-      "nota": ""
+      "nota": "ya estaba en data/raw/ (usar --forzar para repetir)"
     },
     {
       "doc_id": "sentencia_c_39_2025",
@@ -3004,13 +3123,14 @@
         "2025"
       ],
       "estado": "descargado",
+      "tipo_fuente": "html",
       "fecha_consulta": "2026-09-28",
       "archivos": [
         "C-039-25.htm"
       ],
       "bytes": 815985,
       "sha256": "78cde64e8438105d8731c98e743ef919f3d7c602a6e0cc88644496b0104b8b5a",
-      "nota": ""
+      "nota": "ya estaba en data/raw/ (usar --forzar para repetir)"
     },
     {
       "doc_id": "sentencia_c_413_1996",
@@ -3027,13 +3147,14 @@
         "1996"
       ],
       "estado": "descargado",
+      "tipo_fuente": "html",
       "fecha_consulta": "2026-09-28",
       "archivos": [
         "C-413-96.htm"
       ],
       "bytes": 64733,
       "sha256": "dcd04d7e80e327be8e11c2b2e7047ab8f0408fc191bbc7b62f94c91e62e45b7d",
-      "nota": ""
+      "nota": "ya estaba en data/raw/ (usar --forzar para repetir)"
     },
     {
       "doc_id": "sentencia_c_459_2023",
@@ -3050,13 +3171,14 @@
         "2023"
       ],
       "estado": "descargado",
+      "tipo_fuente": "html",
       "fecha_consulta": "2026-09-28",
       "archivos": [
         "C-459-23.htm"
       ],
       "bytes": 377065,
       "sha256": "2f09f2c6f6b57ac1890a6efcde57ebcb1f8d6d5a5fa9a125c3e2c276014d6f21",
-      "nota": ""
+      "nota": "ya estaba en data/raw/ (usar --forzar para repetir)"
     },
     {
       "doc_id": "sentencia_c_486_1993",
@@ -3073,13 +3195,14 @@
         "1993"
       ],
       "estado": "descargado",
+      "tipo_fuente": "html",
       "fecha_consulta": "2026-09-28",
       "archivos": [
         "C-486-93.htm"
       ],
       "bytes": 219836,
       "sha256": "4d6e2995af939e689f134138fc6c696741474ad5723f33cd6fd121acd345b25e",
-      "nota": ""
+      "nota": "ya estaba en data/raw/ (usar --forzar para repetir)"
     },
     {
       "doc_id": "sentencia_c_4_1998",
@@ -3096,13 +3219,14 @@
         "1998"
       ],
       "estado": "descargado",
+      "tipo_fuente": "html",
       "fecha_consulta": "2026-09-28",
       "archivos": [
         "C-004-98.htm"
       ],
       "bytes": 100329,
       "sha256": "1dab7b63d30f4c9d6e4485304e9271bf1367a725e2d3a45d90dd0d2f0159e2f6",
-      "nota": ""
+      "nota": "ya estaba en data/raw/ (usar --forzar para repetir)"
     },
     {
       "doc_id": "sentencia_c_533_2000",
@@ -3119,13 +3243,14 @@
         "2000"
       ],
       "estado": "descargado",
+      "tipo_fuente": "html",
       "fecha_consulta": "2026-09-28",
       "archivos": [
         "C-533-00.htm"
       ],
       "bytes": 102688,
       "sha256": "b005182ed94a2002e45f0a4e6bbf3649ab2b3d6465562ef9da2ef8d089619b1c",
-      "nota": ""
+      "nota": "ya estaba en data/raw/ (usar --forzar para repetir)"
     },
     {
       "doc_id": "sentencia_c_535_2002",
@@ -3142,13 +3267,14 @@
         "2002"
       ],
       "estado": "descargado",
+      "tipo_fuente": "html",
       "fecha_consulta": "2026-09-28",
       "archivos": [
         "C-535-02.htm"
       ],
       "bytes": 95244,
       "sha256": "58d5553496cca9108a8c2bfc2604865132207a12f6ba22a71bd402ba8c80de27",
-      "nota": ""
+      "nota": "ya estaba en data/raw/ (usar --forzar para repetir)"
     },
     {
       "doc_id": "sentencia_c_537_1995",
@@ -3165,13 +3291,14 @@
         "1995"
       ],
       "estado": "descargado",
+      "tipo_fuente": "html",
       "fecha_consulta": "2026-09-28",
       "archivos": [
         "C-537-95.htm"
       ],
       "bytes": 205133,
       "sha256": "d27312e04e51ca36903ef9bc75b3dec8c6370440298e291e5d6cae697fa88124",
-      "nota": ""
+      "nota": "ya estaba en data/raw/ (usar --forzar para repetir)"
     },
     {
       "doc_id": "sentencia_c_683_2015",
@@ -3188,13 +3315,14 @@
         "2015"
       ],
       "estado": "descargado",
+      "tipo_fuente": "html",
       "fecha_consulta": "2026-09-28",
       "archivos": [
         "C-683-15.htm"
       ],
       "bytes": 1160536,
       "sha256": "a3c5d3b13473aee3b5ddd0066519d5e36f709bcc8f0dc0550272e13e87195c5c",
-      "nota": ""
+      "nota": "ya estaba en data/raw/ (usar --forzar para repetir)"
     },
     {
       "doc_id": "sentencia_c_700_1999",
@@ -3211,13 +3339,14 @@
         "1999"
       ],
       "estado": "descargado",
+      "tipo_fuente": "html",
       "fecha_consulta": "2026-09-28",
       "archivos": [
         "C-700-99.htm"
       ],
       "bytes": 726098,
       "sha256": "82aa49bb94e6b392d2cd346f1b110d7329c923b5a3fb8baeb8b92e903d702643",
-      "nota": ""
+      "nota": "ya estaba en data/raw/ (usar --forzar para repetir)"
     },
     {
       "doc_id": "sentencia_c_80_2025",
@@ -3234,13 +3363,14 @@
         "2025"
       ],
       "estado": "descargado",
+      "tipo_fuente": "html",
       "fecha_consulta": "2026-09-28",
       "archivos": [
         "C-080-25.htm"
       ],
       "bytes": 485709,
       "sha256": "e5b5b073e757b6ca3d0d747c39dd9b8ecd33e9461ee82bd125d4887acdc52425",
-      "nota": ""
+      "nota": "ya estaba en data/raw/ (usar --forzar para repetir)"
     },
     {
       "doc_id": "sentencia_c_891_2012",
@@ -3257,13 +3387,14 @@
         "2012"
       ],
       "estado": "descargado",
+      "tipo_fuente": "html",
       "fecha_consulta": "2026-09-28",
       "archivos": [
         "C-891-12.htm"
       ],
       "bytes": 252154,
       "sha256": "5a98d1151dd831eb38b6845a4ee538bd23a26edcd0fce794aed778e47ccc06d5",
-      "nota": ""
+      "nota": "ya estaba en data/raw/ (usar --forzar para repetir)"
     },
     {
       "doc_id": "sentencia_c_964_2003",
@@ -3280,13 +3411,14 @@
         "2003"
       ],
       "estado": "descargado",
+      "tipo_fuente": "html",
       "fecha_consulta": "2026-09-28",
       "archivos": [
         "C-964-03.htm"
       ],
       "bytes": 228818,
       "sha256": "96bf9a9aadd0a4e8c304a72bef70bdf45ef8943dd1754c2f65422b6550008dea",
-      "nota": ""
+      "nota": "ya estaba en data/raw/ (usar --forzar para repetir)"
     },
     {
       "doc_id": "sentencia_c_985_2010",
@@ -3303,13 +3435,14 @@
         "2010"
       ],
       "estado": "descargado",
+      "tipo_fuente": "html",
       "fecha_consulta": "2026-09-28",
       "archivos": [
         "C-985-10.htm"
       ],
       "bytes": 244407,
       "sha256": "cd51a96c316a4fc6d3512cfb7dd3b169f2db3b9a819dd72ef482d5f6a2c2056c",
-      "nota": ""
+      "nota": "ya estaba en data/raw/ (usar --forzar para repetir)"
     },
     {
       "doc_id": "sentencia_sc_1121_2018",
@@ -3326,11 +3459,12 @@
         "2018"
       ],
       "estado": "sin_resolver",
+      "tipo_fuente": null,
       "fecha_consulta": null,
       "archivos": [],
       "bytes": 0,
       "sha256": null,
-      "nota": "Corte Suprema: sin URL predecible; descargar a mano"
+      "nota": "Corte Suprema: sin URL predecible; agregar a data/fuentes_override.json"
     },
     {
       "doc_id": "sentencia_sc_18392_2017",
@@ -3347,11 +3481,12 @@
         "2017"
       ],
       "estado": "sin_resolver",
+      "tipo_fuente": null,
       "fecha_consulta": null,
       "archivos": [],
       "bytes": 0,
       "sha256": null,
-      "nota": "Corte Suprema: sin URL predecible; descargar a mano"
+      "nota": "Corte Suprema: sin URL predecible; agregar a data/fuentes_override.json"
     },
     {
       "doc_id": "sentencia_sc_3085_2024",
@@ -3368,11 +3503,12 @@
         "2024"
       ],
       "estado": "sin_resolver",
+      "tipo_fuente": null,
       "fecha_consulta": null,
       "archivos": [],
       "bytes": 0,
       "sha256": null,
-      "nota": "Corte Suprema: sin URL predecible; descargar a mano"
+      "nota": "Corte Suprema: sin URL predecible; agregar a data/fuentes_override.json"
     },
     {
       "doc_id": "sentencia_sc_3674_2021",
@@ -3389,11 +3525,12 @@
         "2021"
       ],
       "estado": "sin_resolver",
+      "tipo_fuente": null,
       "fecha_consulta": null,
       "archivos": [],
       "bytes": 0,
       "sha256": null,
-      "nota": "Corte Suprema: sin URL predecible; descargar a mano"
+      "nota": "Corte Suprema: sin URL predecible; agregar a data/fuentes_override.json"
     },
     {
       "doc_id": "sentencia_sc_425_2024",
@@ -3410,11 +3547,12 @@
         "2024"
       ],
       "estado": "sin_resolver",
+      "tipo_fuente": null,
       "fecha_consulta": null,
       "archivos": [],
       "bytes": 0,
       "sha256": null,
-      "nota": "Corte Suprema: sin URL predecible; descargar a mano"
+      "nota": "Corte Suprema: sin URL predecible; agregar a data/fuentes_override.json"
     },
     {
       "doc_id": "sentencia_sc_8453_2016",
@@ -3431,11 +3569,12 @@
         "2016"
       ],
       "estado": "sin_resolver",
+      "tipo_fuente": null,
       "fecha_consulta": null,
       "archivos": [],
       "bytes": 0,
       "sha256": null,
-      "nota": "Corte Suprema: sin URL predecible; descargar a mano"
+      "nota": "Corte Suprema: sin URL predecible; agregar a data/fuentes_override.json"
     },
     {
       "doc_id": "sentencia_sl_1050_2023",
@@ -3452,11 +3591,12 @@
         "2023"
       ],
       "estado": "sin_resolver",
+      "tipo_fuente": null,
       "fecha_consulta": null,
       "archivos": [],
       "bytes": 0,
       "sha256": null,
-      "nota": "Corte Suprema: sin URL predecible; descargar a mano"
+      "nota": "Corte Suprema: sin URL predecible; agregar a data/fuentes_override.json"
     },
     {
       "doc_id": "sentencia_sl_1730_2020",
@@ -3473,11 +3613,12 @@
         "2020"
       ],
       "estado": "sin_resolver",
+      "tipo_fuente": null,
       "fecha_consulta": null,
       "archivos": [],
       "bytes": 0,
       "sha256": null,
-      "nota": "Corte Suprema: sin URL predecible; descargar a mano"
+      "nota": "Corte Suprema: sin URL predecible; agregar a data/fuentes_override.json"
     },
     {
       "doc_id": "sentencia_sl_1972_2025",
@@ -3494,11 +3635,12 @@
         "2025"
       ],
       "estado": "sin_resolver",
+      "tipo_fuente": null,
       "fecha_consulta": null,
       "archivos": [],
       "bytes": 0,
       "sha256": null,
-      "nota": "Corte Suprema: sin URL predecible; descargar a mano"
+      "nota": "Corte Suprema: sin URL predecible; agregar a data/fuentes_override.json"
     },
     {
       "doc_id": "sentencia_sp_1167_2022",
@@ -3515,11 +3657,12 @@
         "2022"
       ],
       "estado": "sin_resolver",
+      "tipo_fuente": null,
       "fecha_consulta": null,
       "archivos": [],
       "bytes": 0,
       "sha256": null,
-      "nota": "Corte Suprema: sin URL predecible; descargar a mano"
+      "nota": "Corte Suprema: sin URL predecible; agregar a data/fuentes_override.json"
     },
     {
       "doc_id": "sentencia_sp_3218_2021",
@@ -3536,11 +3679,12 @@
         "2021"
       ],
       "estado": "sin_resolver",
+      "tipo_fuente": null,
       "fecha_consulta": null,
       "archivos": [],
       "bytes": 0,
       "sha256": null,
-      "nota": "Corte Suprema: sin URL predecible; descargar a mano"
+      "nota": "Corte Suprema: sin URL predecible; agregar a data/fuentes_override.json"
     },
     {
       "doc_id": "sentencia_su_11_2020",
@@ -3557,13 +3701,14 @@
         "2020"
       ],
       "estado": "descargado",
+      "tipo_fuente": "html",
       "fecha_consulta": "2026-09-28",
       "archivos": [
         "SU011-20.htm"
       ],
       "bytes": 498619,
       "sha256": "0d47af1e91035f96ac69ef0b6de0dcf8f09c6f9231edbc9b67a38910a850ac68",
-      "nota": ""
+      "nota": "ya estaba en data/raw/ (usar --forzar para repetir)"
     },
     {
       "doc_id": "sentencia_su_138_2024",
@@ -3580,13 +3725,14 @@
         "2024"
       ],
       "estado": "descargado",
+      "tipo_fuente": "html",
       "fecha_consulta": "2026-09-28",
       "archivos": [
         "SU138-24.htm"
       ],
       "bytes": 984265,
       "sha256": "9b7fc38b3907bd6de402846365929ec434d94123a25676c9bc7576fb0347c28f",
-      "nota": ""
+      "nota": "ya estaba en data/raw/ (usar --forzar para repetir)"
     },
     {
       "doc_id": "sentencia_su_149_2021",
@@ -3603,13 +3749,14 @@
         "2021"
       ],
       "estado": "descargado",
+      "tipo_fuente": "html",
       "fecha_consulta": "2026-09-28",
       "archivos": [
         "SU149-21.htm"
       ],
       "bytes": 520097,
       "sha256": "7ae08dd75f005f2b24840b46e1a1e2b9e47cc773dd59183cb921ce277b1eee56",
-      "nota": ""
+      "nota": "ya estaba en data/raw/ (usar --forzar para repetir)"
     },
     {
       "doc_id": "sentencia_su_207_2022",
@@ -3626,13 +3773,14 @@
         "2022"
       ],
       "estado": "descargado",
+      "tipo_fuente": "html",
       "fecha_consulta": "2026-09-28",
       "archivos": [
         "SU207-22.htm"
       ],
       "bytes": 625696,
       "sha256": "271c68df12abfad74f37d9c5d7420e9c8336b14f902036519a16b6868d597a2f",
-      "nota": ""
+      "nota": "ya estaba en data/raw/ (usar --forzar para repetir)"
     },
     {
       "doc_id": "sentencia_su_240_2015",
@@ -3649,13 +3797,14 @@
         "2015"
       ],
       "estado": "descargado",
+      "tipo_fuente": "html",
       "fecha_consulta": "2026-09-28",
       "archivos": [
         "SU240-15.htm"
       ],
       "bytes": 314215,
       "sha256": "ef6f7fac16974ca189d2d1c5b04d226e376902f1d4c7dd481f50eb68f1344b1f",
-      "nota": ""
+      "nota": "ya estaba en data/raw/ (usar --forzar para repetir)"
     },
     {
       "doc_id": "sentencia_su_27_2021",
@@ -3672,13 +3821,14 @@
         "2021"
       ],
       "estado": "descargado",
+      "tipo_fuente": "html",
       "fecha_consulta": "2026-09-28",
       "archivos": [
         "SU027-21.htm"
       ],
       "bytes": 502719,
       "sha256": "8a5b2921134462354912939a47b8bd9046d2262e689eba0833c97c63db7c215e",
-      "nota": ""
+      "nota": "ya estaba en data/raw/ (usar --forzar para repetir)"
     },
     {
       "doc_id": "sentencia_su_296_2023",
@@ -3695,13 +3845,14 @@
         "2023"
       ],
       "estado": "descargado",
+      "tipo_fuente": "html",
       "fecha_consulta": "2026-09-28",
       "archivos": [
         "SU296-23.htm"
       ],
       "bytes": 536028,
       "sha256": "d79c7f4983a4282cd1c494e737d11bd9b6e1c5bdcac8782c9197717493e45784",
-      "nota": ""
+      "nota": "ya estaba en data/raw/ (usar --forzar para repetir)"
     },
     {
       "doc_id": "sentencia_su_380_2021",
@@ -3718,13 +3869,14 @@
         "2021"
       ],
       "estado": "descargado",
+      "tipo_fuente": "html",
       "fecha_consulta": "2026-09-28",
       "archivos": [
         "SU380-21.htm"
       ],
       "bytes": 464185,
       "sha256": "be2883c5b4697827293688add85ba96ee49bfc672345835ab1d6e66c5c269364",
-      "nota": ""
+      "nota": "ya estaba en data/raw/ (usar --forzar para repetir)"
     },
     {
       "doc_id": "sentencia_su_396_2024",
@@ -3741,13 +3893,14 @@
         "2024"
       ],
       "estado": "descargado",
+      "tipo_fuente": "html",
       "fecha_consulta": "2026-09-28",
       "archivos": [
         "SU396-24.htm"
       ],
       "bytes": 963812,
       "sha256": "20914fd055d5ee0b3e80c67b99ca533104c4ae71083e681b569260c057833c7a",
-      "nota": ""
+      "nota": "ya estaba en data/raw/ (usar --forzar para repetir)"
     },
     {
       "doc_id": "sentencia_su_425_2025",
@@ -3764,13 +3917,14 @@
         "2025"
       ],
       "estado": "descargado",
+      "tipo_fuente": "html",
       "fecha_consulta": "2026-09-28",
       "archivos": [
         "SU425-25.htm"
       ],
       "bytes": 415635,
       "sha256": "a5e684b7ef14ac051681775cdb78264d08974dcf127312011011c97976428527",
-      "nota": ""
+      "nota": "ya estaba en data/raw/ (usar --forzar para repetir)"
     },
     {
       "doc_id": "sentencia_su_429_2024",
@@ -3787,13 +3941,14 @@
         "2024"
       ],
       "estado": "descargado",
+      "tipo_fuente": "html",
       "fecha_consulta": "2026-09-28",
       "archivos": [
         "SU429-24.htm"
       ],
       "bytes": 1030480,
       "sha256": "e924fe8a00d0a76c0dfd3604e7bd9fe6e51f5f3ed420bc8e2fff740ecbee08b7",
-      "nota": ""
+      "nota": "ya estaba en data/raw/ (usar --forzar para repetir)"
     },
     {
       "doc_id": "sentencia_su_431_2015",
@@ -3810,13 +3965,14 @@
         "2015"
       ],
       "estado": "descargado",
+      "tipo_fuente": "html",
       "fecha_consulta": "2026-09-28",
       "archivos": [
         "SU431-15.htm"
       ],
       "bytes": 584684,
       "sha256": "605dae2f0ad6a8dabb91d6a48a7819d9f2e7a47f6e3f0ee7337b0b475e1ebb60",
-      "nota": ""
+      "nota": "ya estaba en data/raw/ (usar --forzar para repetir)"
     },
     {
       "doc_id": "sentencia_su_455_2020",
@@ -3833,13 +3989,14 @@
         "2020"
       ],
       "estado": "descargado",
+      "tipo_fuente": "html",
       "fecha_consulta": "2026-09-28",
       "archivos": [
         "SU455-20.htm"
       ],
       "bytes": 338478,
       "sha256": "aad464b754cf34f67df4410effb4b2d84b190494df3b1f5cfd08fabba79b8c97",
-      "nota": ""
+      "nota": "ya estaba en data/raw/ (usar --forzar para repetir)"
     },
     {
       "doc_id": "sentencia_su_488_2011",
@@ -3856,6 +4013,7 @@
         "2011"
       ],
       "estado": "no_encontrado",
+      "tipo_fuente": null,
       "fecha_consulta": null,
       "archivos": [],
       "bytes": 0,
@@ -3877,13 +4035,14 @@
         "2015"
       ],
       "estado": "descargado",
+      "tipo_fuente": "html",
       "fecha_consulta": "2026-09-28",
       "archivos": [
         "SU500-15.htm"
       ],
       "bytes": 705126,
       "sha256": "e2151941545bfbbd0d61e8f6246c9855f49b58a2197d846322a11bf58203c91d",
-      "nota": ""
+      "nota": "ya estaba en data/raw/ (usar --forzar para repetir)"
     },
     {
       "doc_id": "sentencia_su_566_2015",
@@ -3900,13 +4059,14 @@
         "2015"
       ],
       "estado": "descargado",
+      "tipo_fuente": "html",
       "fecha_consulta": "2026-09-28",
       "archivos": [
         "SU566-15.htm"
       ],
       "bytes": 511192,
       "sha256": "e55335252851b27819c888562f1b8088d3b6e016ce5cd91e8922529f414257c7",
-      "nota": ""
+      "nota": "ya estaba en data/raw/ (usar --forzar para repetir)"
     },
     {
       "doc_id": "sentencia_su_6_1991",
@@ -3923,11 +4083,12 @@
         "1991"
       ],
       "estado": "no_encontrado",
+      "tipo_fuente": null,
       "fecha_consulta": null,
       "archivos": [],
       "bytes": 0,
       "sha256": null,
-      "nota": "https://www.corteconstitucional.gov.co/relatoria/1991/SU006-91.htm no existe en Relatoria de la Corte Constitucional"
+      "nota": "no existen sentencias SU de 1991 (la Corte empezo en 1992); referencia de la semilla probablemente erronea"
     },
     {
       "doc_id": "sentencia_t_1001_2001",
@@ -3944,13 +4105,14 @@
         "2001"
       ],
       "estado": "descargado",
+      "tipo_fuente": "html",
       "fecha_consulta": "2026-09-28",
       "archivos": [
         "T-1001-01.htm"
       ],
       "bytes": 199019,
       "sha256": "2be6b4f46aebdd9e81dd5fcac806fa80a5b116694620e7baee4d6c2eb44749f8",
-      "nota": ""
+      "nota": "ya estaba en data/raw/ (usar --forzar para repetir)"
     },
     {
       "doc_id": "sentencia_t_1059_2001",
@@ -3967,13 +4129,14 @@
         "2001"
       ],
       "estado": "descargado",
+      "tipo_fuente": "html",
       "fecha_consulta": "2026-09-28",
       "archivos": [
         "T-1059-01.htm"
       ],
       "bytes": 137904,
       "sha256": "4432b43fedf3152cebfe9a8488a58577309bd656fb7bb4534dc9b42e128e818a",
-      "nota": ""
+      "nota": "ya estaba en data/raw/ (usar --forzar para repetir)"
     },
     {
       "doc_id": "sentencia_t_1096_2008",
@@ -3990,13 +4153,14 @@
         "2008"
       ],
       "estado": "descargado",
+      "tipo_fuente": "html",
       "fecha_consulta": "2026-09-28",
       "archivos": [
         "T-1096-08.htm"
       ],
       "bytes": 186459,
       "sha256": "aacc867382c01f37911196ade9b30297a0b117edf803b85e5ae01d99ca25c85e",
-      "nota": ""
+      "nota": "ya estaba en data/raw/ (usar --forzar para repetir)"
     },
     {
       "doc_id": "sentencia_t_145_2016",
@@ -4013,13 +4177,14 @@
         "2016"
       ],
       "estado": "descargado",
+      "tipo_fuente": "html",
       "fecha_consulta": "2026-09-28",
       "archivos": [
         "T-145-16.htm"
       ],
       "bytes": 310166,
       "sha256": "2a1f3a348a6650bc6118333a7cbff2e74a4b11a1dbf86cda2019ea9b59db1874",
-      "nota": ""
+      "nota": "ya estaba en data/raw/ (usar --forzar para repetir)"
     },
     {
       "doc_id": "sentencia_t_230_2023",
@@ -4036,13 +4201,14 @@
         "2023"
       ],
       "estado": "descargado",
+      "tipo_fuente": "html",
       "fecha_consulta": "2026-09-28",
       "archivos": [
         "T-230-23.htm"
       ],
       "bytes": 151878,
       "sha256": "f619c4845eafbf0d0f3718df656cf1e3e1a1f311b17fb3f78e87b8f19263e7b8",
-      "nota": ""
+      "nota": "ya estaba en data/raw/ (usar --forzar para repetir)"
     },
     {
       "doc_id": "sentencia_t_232_2025",
@@ -4059,13 +4225,14 @@
         "2025"
       ],
       "estado": "descargado",
+      "tipo_fuente": "html",
       "fecha_consulta": "2026-09-28",
       "archivos": [
         "T-232-25.htm"
       ],
       "bytes": 475602,
       "sha256": "c3997d63641f64748135ea2957eb12d80a2c7187cf2325a85077b64ca640060a",
-      "nota": ""
+      "nota": "ya estaba en data/raw/ (usar --forzar para repetir)"
     },
     {
       "doc_id": "sentencia_t_248_2025",
@@ -4082,6 +4249,7 @@
         "2025"
       ],
       "estado": "no_encontrado",
+      "tipo_fuente": null,
       "fecha_consulta": null,
       "archivos": [],
       "bytes": 0,
@@ -4103,13 +4271,14 @@
         "2025"
       ],
       "estado": "descargado",
+      "tipo_fuente": "html",
       "fecha_consulta": "2026-09-28",
       "archivos": [
         "T-262-25.htm"
       ],
       "bytes": 555227,
       "sha256": "0d943ccc4f905d573c9810ee499290d967d3abc9607f0ad619328ecc6d39c306",
-      "nota": ""
+      "nota": "ya estaba en data/raw/ (usar --forzar para repetir)"
     },
     {
       "doc_id": "sentencia_t_26_2025",
@@ -4126,13 +4295,14 @@
         "2025"
       ],
       "estado": "descargado",
+      "tipo_fuente": "html",
       "fecha_consulta": "2026-09-28",
       "archivos": [
         "T-026-25.htm"
       ],
       "bytes": 743860,
       "sha256": "6ff3d7754553690f871f7ac1f26f80dee9f5fd0b1871bb0f3eb9e2d8cd7cd52a",
-      "nota": ""
+      "nota": "ya estaba en data/raw/ (usar --forzar para repetir)"
     },
     {
       "doc_id": "sentencia_t_325_2025",
@@ -4149,13 +4319,14 @@
         "2025"
       ],
       "estado": "descargado",
+      "tipo_fuente": "html",
       "fecha_consulta": "2026-09-28",
       "archivos": [
         "T-325-25.htm"
       ],
       "bytes": 307935,
       "sha256": "ccdb7c892595e16c0b3cd80d88677acd28b12c1903d4aad9ccf03b664756dcab",
-      "nota": ""
+      "nota": "ya estaba en data/raw/ (usar --forzar para repetir)"
     },
     {
       "doc_id": "sentencia_t_350_2025",
@@ -4172,13 +4343,14 @@
         "2025"
       ],
       "estado": "descargado",
+      "tipo_fuente": "html",
       "fecha_consulta": "2026-09-28",
       "archivos": [
         "T-350-25.htm"
       ],
       "bytes": 460136,
       "sha256": "38a16a1a32ffcebb55d3811768c3d2e8447d2dbc47c9c546375811ac1a20a350",
-      "nota": ""
+      "nota": "ya estaba en data/raw/ (usar --forzar para repetir)"
     },
     {
       "doc_id": "sentencia_t_429_2011",
@@ -4195,13 +4367,14 @@
         "2011"
       ],
       "estado": "descargado",
+      "tipo_fuente": "html",
       "fecha_consulta": "2026-09-28",
       "archivos": [
         "T-429-11.htm"
       ],
       "bytes": 150044,
       "sha256": "eb8c65396d9bc7f6577983af27ebf13ac8ac64dea50349f2933c4f83fcfbf47d",
-      "nota": ""
+      "nota": "ya estaba en data/raw/ (usar --forzar para repetir)"
     },
     {
       "doc_id": "sentencia_t_445_2024",
@@ -4218,13 +4391,14 @@
         "2024"
       ],
       "estado": "descargado",
+      "tipo_fuente": "html",
       "fecha_consulta": "2026-09-28",
       "archivos": [
         "T-445-24.htm"
       ],
       "bytes": 595008,
       "sha256": "67f45d53928f97b0f103dd290b4973105e1a46747321724ad424848e1106ed35",
-      "nota": ""
+      "nota": "ya estaba en data/raw/ (usar --forzar para repetir)"
     },
     {
       "doc_id": "sentencia_t_4_2026",
@@ -4241,13 +4415,14 @@
         "2026"
       ],
       "estado": "descargado",
+      "tipo_fuente": "html",
       "fecha_consulta": "2026-09-28",
       "archivos": [
         "T-004-26.htm"
       ],
       "bytes": 447581,
       "sha256": "800cb76086d02803680c390e350c1712b7683484579a3af9763e3c9361db3d20",
-      "nota": ""
+      "nota": "ya estaba en data/raw/ (usar --forzar para repetir)"
     },
     {
       "doc_id": "sentencia_t_67_2025",
@@ -4264,13 +4439,14 @@
         "2025"
       ],
       "estado": "descargado",
+      "tipo_fuente": "html",
       "fecha_consulta": "2026-09-28",
       "archivos": [
         "T-067-25.htm"
       ],
       "bytes": 822267,
       "sha256": "c5ad44cb4a496538f18ca6787acb0fadae313146bf871fd97c7d676efdf68a05",
-      "nota": ""
+      "nota": "ya estaba en data/raw/ (usar --forzar para repetir)"
     },
     {
       "doc_id": "sentencia_t_71_2016",
@@ -4287,13 +4463,14 @@
         "2016"
       ],
       "estado": "descargado",
+      "tipo_fuente": "html",
       "fecha_consulta": "2026-09-28",
       "archivos": [
         "T-071-16.htm"
       ],
       "bytes": 315576,
       "sha256": "2443af277a00875dff51f8407c76f8e6c121170a65abce67a0bd1b1bbf259704",
-      "nota": ""
+      "nota": "ya estaba en data/raw/ (usar --forzar para repetir)"
     },
     {
       "doc_id": "sentencia_t_77_2025",
@@ -4310,13 +4487,14 @@
         "2025"
       ],
       "estado": "descargado",
+      "tipo_fuente": "html",
       "fecha_consulta": "2026-09-28",
       "archivos": [
         "T-077-25.htm"
       ],
       "bytes": 371801,
       "sha256": "4ff50c5021f40cbf8e7c1e3fba39390dd4f3dfb45e736f2462c5e82cf26bc155",
-      "nota": ""
+      "nota": "ya estaba en data/raw/ (usar --forzar para repetir)"
     },
     {
       "doc_id": "sentencia_t_925_2014",
@@ -4333,13 +4511,14 @@
         "2014"
       ],
       "estado": "descargado",
+      "tipo_fuente": "html",
       "fecha_consulta": "2026-09-28",
       "archivos": [
         "T-925-14.htm"
       ],
       "bytes": 177323,
       "sha256": "4c2317cdc43ddef9165adebd5ad8bab990555e1a487fd82e7b96f19a58ce89e8",
-      "nota": ""
+      "nota": "ya estaba en data/raw/ (usar --forzar para repetir)"
     },
     {
       "doc_id": "sentencia_t_970_2014",
@@ -4356,13 +4535,14 @@
         "2014"
       ],
       "estado": "descargado",
+      "tipo_fuente": "html",
       "fecha_consulta": "2026-09-28",
       "archivos": [
         "T-970-14.htm"
       ],
       "bytes": 384345,
       "sha256": "8a4eff0c2231c2dba18ee71ec768b964d7e4a6c6b0104b816ff3b5b948e50f78",
-      "nota": ""
+      "nota": "ya estaba en data/raw/ (usar --forzar para repetir)"
     }
   ]
 }

@@ -218,9 +218,9 @@ def es_pagina_valida(obj: Objetivo, contenido: bytes) -> bool:
 
 
 def partes_senado(url: str) -> list[str]:
-    """URLs de las partes siguientes de una norma del Senado: <base>_pr001.html, ..."""
-    raiz = url.removesuffix(".html")
-    return [f"{raiz}_pr{i:03d}.html" for i in range(1, MAX_PARTES + 1)]
+    """URLs de las partes siguientes de una norma del Senado o un espejo: <base>_pr001.html, ..."""
+    raiz, ext = url.rsplit(".", 1)
+    return [f"{raiz}_pr{i:03d}.{ext}" for i in range(1, MAX_PARTES + 1)]
 
 
 def _nfc(s: str) -> str:
@@ -302,9 +302,6 @@ def procesar(obj: Objetivo, forzar: bool) -> None:
     time.sleep(PAUSA_S)
     if contenido is None and obj.fuente == FUENTE_SENADO:
         contenido = buscar_en_espejos(obj)
-        if contenido is not None:  # los espejos no parten la norma en _prNNN
-            guardar_html(obj, [(obj.url, contenido)])
-            return
     if contenido is None or not es_pagina_valida(obj, contenido):
         obj.estado = "no_encontrado"
         obj.nota = f"{obj.url} no existe en {obj.fuente}"
@@ -317,7 +314,7 @@ def procesar(obj: Objetivo, forzar: bool) -> None:
         return
 
     paginas = [(obj.url, contenido)]
-    if obj.fuente == FUENTE_SENADO:
+    if obj.fuente == FUENTE_SENADO or obj.fuente in {f for f, _ in ESPEJOS_AJ}:
         for url in partes_senado(obj.url):
             parte = descargar(url)
             time.sleep(PAUSA_S)

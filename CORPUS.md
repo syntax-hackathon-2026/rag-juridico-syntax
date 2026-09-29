@@ -18,35 +18,42 @@ fuente cambia. "Áreas" son las áreas del banco de preguntas (enunciado, secci�
 
 | doc_id | Título | Fuente | URL | Fecha de consulta | Artículos | Fragmentos | Áreas |
 |---|---|---|---|---|---:|---:|---|
-| `codigo_sustantivo_trabajo` | Codigo Sustantivo del Trabajo | Secretaria del Senado | [enlace](http://www.secretariasenado.gov.co/senado/basedoc/codigo_sustantivo_trabajo.html) | 2026-09-28 | — | — | Laboral |
-| `estatuto_tributario` | Estatuto Tributario (Decreto 624 de 1989) | Secretaria del Senado | [enlace](http://www.secretariasenado.gov.co/senado/basedoc/estatuto_tributario.html) | 2026-09-28 | — | — | Civil, Constitucional, Tributario |
+| `constitucion_politica_1991` | Constitucion Politica de Colombia de 1991 | Secretaria del Senado | [enlace](http://www.secretariasenado.gov.co/senado/basedoc/constitucion_politica_1991.html) | 2026-09-29 | — | — | Administrativo, Comercial y sociedades, Constitucional, Familia, Laboral, Mercados, Penal, Procesal, Tributario |
+| `codigo_general_proceso` | Codigo General del Proceso (Ley 1564 de 2012) | Secretaria del Senado | [enlace](http://www.secretariasenado.gov.co/senado/basedoc/ley_1564_2012.html) | 2026-09-29 | — | — | Civil, Comercial y sociedades, Familia, Mercados, Penal, Procesal, Tributario |
+| `codigo_sustantivo_trabajo` | Codigo Sustantivo del Trabajo | Secretaria del Senado | [enlace](http://www.secretariasenado.gov.co/senado/basedoc/codigo_sustantivo_trabajo.html) | 2026-09-29 | — | — | Laboral |
+| `estatuto_tributario` | Estatuto Tributario (Decreto 624 de 1989) | Secretaria del Senado | [enlace](http://www.secretariasenado.gov.co/senado/basedoc/estatuto_tributario.html) | 2026-09-29 | — | — | Civil, Constitucional, Tributario |
 | `decision_andina_486` | Decision 486 de 2000 de la Comunidad Andina, Regimen Comun sobre Propiedad Industrial | Comunidad Andina | [enlace](https://www.comunidadandina.org/StaticFiles/DocOf/DEC486.pdf) | 2026-09-28 | — | — | Comercial y sociedades, Mercados |
-| `estatuto_consumidor` | Estatuto del Consumidor (Ley 1480 de 2011) | Secretaria del Senado | [enlace](http://www.secretariasenado.gov.co/senado/basedoc/ley_1480_2011.html) | 2026-09-28 | — | — | Civil, Mercados |
-| `ley_80_1993` | Ley 80 de 1993 | Secretaria del Senado | [enlace](http://www.secretariasenado.gov.co/senado/basedoc/ley_0080_1993.html) | 2026-09-28 | — | — | Administrativo, Laboral |
-| `ley_2220_2022` | Ley 2220 de 2022 | Secretaria del Senado | [enlace](http://www.secretariasenado.gov.co/senado/basedoc/ley_2220_2022.html) | 2026-09-28 | — | — | Civil, Procesal |
-| `decreto_2153_1992` | Decreto 2153 de 1992 | Secretaria del Senado | [enlace](http://www.secretariasenado.gov.co/senado/basedoc/decreto_2153_1992.html) | 2026-09-28 | — | — | Mercados |
-| `ley_1116_2006` | Ley 1116 de 2006 | Secretaria del Senado | [enlace](http://www.secretariasenado.gov.co/senado/basedoc/ley_1116_2006.html) | 2026-09-28 | — | — | Comercial y sociedades, Procesal |
-| `sentencia_c_355_2006` | Sentencia C-355 de 2006 | Relatoria de la Corte Constitucional | [enlace](https://www.corteconstitucional.gov.co/relatoria/2006/C-355-06.htm) | 2026-09-28 | — | — | Constitucional, Penal |
-| `ley_1581_2012` | Ley 1581 de 2012 | Secretaria del Senado | [enlace](http://www.secretariasenado.gov.co/senado/basedoc/ley_1581_2012.html) | 2026-09-28 | — | — | Administrativo, Constitucional, Mercados |
-| `codigo_infancia` | Codigo de la Infancia y la Adolescencia (Ley 1098 de 2006) | Secretaria del Senado | [enlace](http://www.secretariasenado.gov.co/senado/basedoc/ley_1098_2006.html) | 2026-09-28 | — | — | Familia |
-| `ley_1258_2008` | Ley 1258 de 2008 | Secretaria del Senado | [enlace](http://www.secretariasenado.gov.co/senado/basedoc/ley_1258_2008.html) | 2026-09-28 | — | — | Comercial y sociedades |
-| `sentencia_c_207_2019` | Sentencia C-207 de 2019 | Relatoria de la Corte Constitucional | [enlace](https://www.corteconstitucional.gov.co/relatoria/2019/C-207-19.htm) | 2026-09-28 | — | — | Administrativo |
-| `sentencia_t_323_2024` | Sentencia T-323 de 2024 | Relatoria de la Corte Constitucional | [enlace](https://www.corteconstitucional.gov.co/relatoria/2024/T-323-24.htm) | 2026-09-28 | — | — | Constitucional |
-| `ley_1010_2006` | Ley 1010 de 2006 | Secretaria del Senado | [enlace](http://www.secretariasenado.gov.co/senado/basedoc/ley_1010_2006.html) | 2026-09-28 | — | — | Laboral |
-| `ley_1150_2007` | Ley 1150 de 2007 | Secretaria del Senado | [enlace](http://www.secretariasenado.gov.co/senado/basedoc/ley_1150_2007.html) | 2026-09-28 | — | — | Administrativo |
-| `ley_1340_2009` | Ley 1340 de 2009 | Secretaria del Senado | [enlace](http://www.secretariasenado.gov.co/senado/basedoc/ley_1340_2009.html) | 2026-09-28 | — | — | Mercados |
-| `ley_2437_2024` | Ley 2437 de 2024 | Secretaria del Senado | [enlace](http://www.secretariasenado.gov.co/senado/basedoc/ley_2437_2024.html) | 2026-09-28 | — | — | Civil, Procesal |
-| `ley_979_2005` | Ley 979 de 2005 | Secretaria del Senado | [enlace](http://www.secretariasenado.gov.co/senado/basedoc/ley_0979_2005.html) | 2026-09-28 | — | — | Familia |
+| `estatuto_consumidor` | Estatuto del Consumidor (Ley 1480 de 2011) | Secretaria del Senado | [enlace](http://www.secretariasenado.gov.co/senado/basedoc/ley_1480_2011.html) | 2026-09-29 | — | — | Civil, Mercados |
+| `ley_80_1993` | Ley 80 de 1993 | Secretaria del Senado | [enlace](http://www.secretariasenado.gov.co/senado/basedoc/ley_0080_1993.html) | 2026-09-29 | — | — | Administrativo, Laboral |
+| `ley_2220_2022` | Ley 2220 de 2022 | Secretaria del Senado | [enlace](http://www.secretariasenado.gov.co/senado/basedoc/ley_2220_2022.html) | 2026-09-29 | — | — | Civil, Procesal |
+| `decreto_2153_1992` | Decreto 2153 de 1992 | Secretaria del Senado | [enlace](http://www.secretariasenado.gov.co/senado/basedoc/decreto_2153_1992.html) | 2026-09-29 | — | — | Mercados |
+| `ley_1116_2006` | Ley 1116 de 2006 | Secretaria del Senado | [enlace](http://www.secretariasenado.gov.co/senado/basedoc/ley_1116_2006.html) | 2026-09-29 | — | — | Comercial y sociedades, Procesal |
+| `sentencia_c_355_2006` | Sentencia C-355 de 2006 | Relatoria de la Corte Constitucional | [enlace](https://www.corteconstitucional.gov.co/relatoria/2006/C-355-06.htm) | 2026-09-29 | — | — | Constitucional, Penal |
+| `ley_1581_2012` | Ley 1581 de 2012 | Secretaria del Senado | [enlace](http://www.secretariasenado.gov.co/senado/basedoc/ley_1581_2012.html) | 2026-09-29 | — | — | Administrativo, Constitucional, Mercados |
+| `codigo_infancia` | Codigo de la Infancia y la Adolescencia (Ley 1098 de 2006) | Secretaria del Senado | [enlace](http://www.secretariasenado.gov.co/senado/basedoc/ley_1098_2006.html) | 2026-09-29 | — | — | Familia |
+| `ley_1258_2008` | Ley 1258 de 2008 | Secretaria del Senado | [enlace](http://www.secretariasenado.gov.co/senado/basedoc/ley_1258_2008.html) | 2026-09-29 | — | — | Comercial y sociedades |
+| `sentencia_c_207_2019` | Sentencia C-207 de 2019 | Relatoria de la Corte Constitucional | [enlace](https://www.corteconstitucional.gov.co/relatoria/2019/C-207-19.htm) | 2026-09-29 | — | — | Administrativo |
+| `sentencia_sl_3385_2022` | Sentencia SL-3385 de 2022 | Relatoria de la Corte Suprema de Justicia | [enlace](https://www.corteconstitucional.gov.co/relatoria/?q=Sentencia%20SL-3385%20de%202022) | 2026-09-29 | — | — | Laboral |
+| `sentencia_t_323_2024` | Sentencia T-323 de 2024 | Relatoria de la Corte Constitucional | [enlace](https://www.corteconstitucional.gov.co/relatoria/2024/T-323-24.htm) | 2026-09-29 | — | — | Constitucional |
+| `ley_1010_2006` | Ley 1010 de 2006 | Secretaria del Senado | [enlace](http://www.secretariasenado.gov.co/senado/basedoc/ley_1010_2006.html) | 2026-09-29 | — | — | Laboral |
+| `ley_1150_2007` | Ley 1150 de 2007 | Secretaria del Senado | [enlace](http://www.secretariasenado.gov.co/senado/basedoc/ley_1150_2007.html) | 2026-09-29 | — | — | Administrativo |
+| `ley_1340_2009` | Ley 1340 de 2009 | Secretaria del Senado | [enlace](http://www.secretariasenado.gov.co/senado/basedoc/ley_1340_2009.html) | 2026-09-29 | — | — | Mercados |
+| `ley_153_1887` | Ley 153 de 1887 | Normograma de la CRA (compilacion Avance Juridico) | [enlace](https://normas.cra.gov.co/gestor/docs/ley_0153_1887.htm) | 2026-09-29 | — | — | Civil, Tributario |
+| `ley_2437_2024` | Ley 2437 de 2024 | Secretaria del Senado | [enlace](http://www.secretariasenado.gov.co/senado/basedoc/ley_2437_2024.html) | 2026-09-29 | — | — | Civil, Procesal |
+| `ley_54_1990` | Ley 54 de 1990 | Normograma de la CRA (compilacion Avance Juridico) | [enlace](https://normas.cra.gov.co/gestor/docs/ley_0054_1990.htm) | 2026-09-29 | — | — | Familia |
+| `ley_979_2005` | Ley 979 de 2005 | Secretaria del Senado | [enlace](http://www.secretariasenado.gov.co/senado/basedoc/ley_0979_2005.html) | 2026-09-29 | — | — | Familia |
 | `sentencia_c_394_2017` | Sentencia C-394 de 2017 | Relatoria de la Corte Constitucional | [enlace](https://www.corteconstitucional.gov.co/relatoria/2017/C-394-17.htm) | 2026-09-28 | — | — | Constitucional, Familia |
 | `sentencia_c_55_2022` | Sentencia C-55 de 2022 | Relatoria de la Corte Constitucional | [enlace](https://www.corteconstitucional.gov.co/relatoria/2022/C-055-22.htm) | 2026-09-28 | — | — | Constitucional, Penal |
 | `sentencia_su_315_2025` | Sentencia SU-315 de 2025 | Relatoria de la Corte Constitucional | [enlace](https://www.corteconstitucional.gov.co/relatoria/2025/SU315-25.htm) | 2026-09-28 | — | — | Civil |
 | `sentencia_t_243_2018` | Sentencia T-243 de 2018 | Relatoria de la Corte Constitucional | [enlace](https://www.corteconstitucional.gov.co/relatoria/2018/T-243-18.htm) | 2026-09-28 | — | — | Laboral |
 | `sentencia_t_760_2008` | Sentencia T-760 de 2008 | Relatoria de la Corte Constitucional | [enlace](https://www.corteconstitucional.gov.co/relatoria/2008/T-760-08.htm) | 2026-09-28 | — | — | Administrativo, Constitucional |
-| `ley_1095_2006` | Ley 1095 de 2006 | Secretaria del Senado | [enlace](http://www.secretariasenado.gov.co/senado/basedoc/ley_1095_2006.html) | 2026-09-28 | — | — | Constitucional, Penal |
-| `ley_2141_2021` | Ley 2141 de 2021 | Secretaria del Senado | [enlace](http://www.secretariasenado.gov.co/senado/basedoc/ley_2141_2021.html) | 2026-09-28 | — | — | Constitucional, Laboral |
-| `ley_2452_2025` | Ley 2452 de 2025 | Secretaria del Senado | [enlace](http://www.secretariasenado.gov.co/senado/basedoc/ley_2452_2025.html) | 2026-09-28 | — | — | Laboral |
-| `ley_2466_2025` | Ley 2466 de 2025 | Secretaria del Senado | [enlace](http://www.secretariasenado.gov.co/senado/basedoc/ley_2466_2025.html) | 2026-09-28 | — | — | Laboral |
-| `ley_256_1996` | Ley 256 de 1996 | Secretaria del Senado | [enlace](http://www.secretariasenado.gov.co/senado/basedoc/ley_0256_1996.html) | 2026-09-28 | — | — | Mercados |
+| `ley_1095_2006` | Ley 1095 de 2006 | Secretaria del Senado | [enlace](http://www.secretariasenado.gov.co/senado/basedoc/ley_1095_2006.html) | 2026-09-29 | — | — | Constitucional, Penal |
+| `ley_1563_2012` | Ley 1563 de 2012 (Estatuto de Arbitraje Nacional e Internacional) | Secretaria del Senado | [enlace](http://www.secretariasenado.gov.co/senado/basedoc/ley_1563_2012.html) | 2026-09-29 | — | — | Procesal |
+| `ley_2141_2021` | Ley 2141 de 2021 | Secretaria del Senado | [enlace](http://www.secretariasenado.gov.co/senado/basedoc/ley_2141_2021.html) | 2026-09-29 | — | — | Constitucional, Laboral |
+| `ley_2452_2025` | Ley 2452 de 2025 | Secretaria del Senado | [enlace](http://www.secretariasenado.gov.co/senado/basedoc/ley_2452_2025.html) | 2026-09-29 | — | — | Laboral |
+| `ley_2466_2025` | Ley 2466 de 2025 | Secretaria del Senado | [enlace](http://www.secretariasenado.gov.co/senado/basedoc/ley_2466_2025.html) | 2026-09-29 | — | — | Laboral |
+| `ley_256_1996` | Ley 256 de 1996 | Secretaria del Senado | [enlace](http://www.secretariasenado.gov.co/senado/basedoc/ley_0256_1996.html) | 2026-09-29 | — | — | Mercados |
+| `ley_50_1990` | Ley 50 de 1990 | Normograma de la CRA (compilacion Avance Juridico) | [enlace](https://normas.cra.gov.co/gestor/docs/ley_0050_1990.htm) | 2026-09-29 | — | — | Laboral |
 | `sentencia_c_117_2018` | Sentencia C-117 de 2018 | Relatoria de la Corte Constitucional | [enlace](https://www.corteconstitucional.gov.co/relatoria/2018/C-117-18.htm) | 2026-09-28 | — | — | Tributario |
 | `sentencia_c_127_2011` | Sentencia C-127 de 2011 | Relatoria de la Corte Constitucional | [enlace](https://www.corteconstitucional.gov.co/relatoria/2011/C-127-11.htm) | 2026-09-28 | — | — | Constitucional |
 | `sentencia_c_134_2019` | Sentencia C-134 de 2019 | Relatoria de la Corte Constitucional | [enlace](https://www.corteconstitucional.gov.co/relatoria/2019/C-134-19.htm) | 2026-09-28 | — | — | Constitucional, Familia |
@@ -66,35 +73,47 @@ fuente cambia. "Áreas" son las áreas del banco de preguntas (enunciado, secci�
 | `sentencia_su_111_2025` | Sentencia SU-111 de 2025 | Relatoria de la Corte Constitucional | [enlace](https://www.corteconstitucional.gov.co/relatoria/2025/SU111-25.htm) | 2026-09-28 | — | — | Laboral |
 | `sentencia_su_214_2016` | Sentencia SU-214 de 2016 | Relatoria de la Corte Constitucional | [enlace](https://www.corteconstitucional.gov.co/relatoria/2016/SU214-16.htm) | 2026-09-28 | — | — | Familia |
 | `sentencia_t_547_2017` | Sentencia T-547 de 2017 | Relatoria de la Corte Constitucional | [enlace](https://www.corteconstitucional.gov.co/relatoria/2017/T-547-17.htm) | 2026-09-28 | — | — | Constitucional, Laboral |
-| `codigo_disciplinario` | Codigo General Disciplinario (Ley 1952 de 2019) | Secretaria del Senado | [enlace](http://www.secretariasenado.gov.co/senado/basedoc/ley_1952_2019.html) | 2026-09-28 | — | — | Administrativo |
-| `codigo_nacional_policia` | Codigo Nacional de Seguridad y Convivencia Ciudadana (Ley 1801 de 2016) | Secretaria del Senado | [enlace](http://www.secretariasenado.gov.co/senado/basedoc/ley_1801_2016.html) | 2026-09-28 | — | — | Procesal |
-| `decreto_1742_2020` | Decreto 1742 de 2020 | Secretaria del Senado | [enlace](http://www.secretariasenado.gov.co/senado/basedoc/decreto_1742_2020.html) | 2026-09-28 | — | — | Tributario |
-| `decreto_175_2025` | Decreto 175 de 2025 | Secretaria del Senado | [enlace](http://www.secretariasenado.gov.co/senado/basedoc/decreto_0175_2025.html) | 2026-09-28 | — | — | Tributario |
-| `decreto_2067_1991` | Decreto 2067 de 1991 | Secretaria del Senado | [enlace](http://www.secretariasenado.gov.co/senado/basedoc/decreto_2067_1991.html) | 2026-09-28 | — | — | Constitucional |
-| `decreto_4334_2008` | Decreto 4334 de 2008 | Secretaria del Senado | [enlace](http://www.secretariasenado.gov.co/senado/basedoc/decreto_4334_2008.html) | 2026-09-28 | — | — | Comercial y sociedades |
-| `decreto_4886_2011` | Decreto 4886 de 2011 | Secretaria del Senado | [enlace](http://www.secretariasenado.gov.co/senado/basedoc/decreto_4886_2011.html) | 2026-09-28 | — | — | Mercados |
-| `decreto_960_1970` | Decreto 960 de 1970 | Secretaria del Senado | [enlace](http://www.secretariasenado.gov.co/senado/basedoc/decreto_0960_1970.html) | 2026-09-28 | — | — | Civil |
-| `ley_1151_2007` | Ley 1151 de 2007 | Secretaria del Senado | [enlace](http://www.secretariasenado.gov.co/senado/basedoc/ley_1151_2007.html) | 2026-09-28 | — | — | Administrativo |
-| `ley_137_1994` | Ley 137 de 1994 | Secretaria del Senado | [enlace](http://www.secretariasenado.gov.co/senado/basedoc/ley_0137_1994.html) | 2026-09-28 | — | — | Tributario |
-| `ley_1473_2011` | Ley 1473 de 2011 | Secretaria del Senado | [enlace](http://www.secretariasenado.gov.co/senado/basedoc/ley_1473_2011.html) | 2026-09-28 | — | — | Tributario |
-| `ley_1562_2012` | Ley 1562 de 2012 | Secretaria del Senado | [enlace](http://www.secretariasenado.gov.co/senado/basedoc/ley_1562_2012.html) | 2026-09-28 | — | — | Laboral |
-| `ley_1607_2012` | Ley 1607 de 2012 | Secretaria del Senado | [enlace](http://www.secretariasenado.gov.co/senado/basedoc/ley_1607_2012.html) | 2026-09-28 | — | — | Tributario |
-| `ley_160_1994` | Ley 160 de 1994 | Secretaria del Senado | [enlace](http://www.secretariasenado.gov.co/senado/basedoc/ley_0160_1994.html) | 2026-09-28 | — | — | Civil |
-| `ley_1700_2013` | Ley 1700 de 2013 | Secretaria del Senado | [enlace](http://www.secretariasenado.gov.co/senado/basedoc/ley_1700_2013.html) | 2026-09-28 | — | — | Comercial y sociedades |
-| `ley_1755_2015` | Ley 1755 de 2015 | Secretaria del Senado | [enlace](http://www.secretariasenado.gov.co/senado/basedoc/ley_1755_2015.html) | 2026-09-28 | — | — | Administrativo |
-| `ley_1819_2016` | Ley 1819 de 2016 | Secretaria del Senado | [enlace](http://www.secretariasenado.gov.co/senado/basedoc/ley_1819_2016.html) | 2026-09-28 | — | — | Tributario |
-| `ley_1909_2018` | Ley 1909 de 2018 | Secretaria del Senado | [enlace](http://www.secretariasenado.gov.co/senado/basedoc/ley_1909_2018.html) | 2026-09-28 | — | — | Constitucional |
-| `ley_2114_2021` | Ley 2114 de 2021 | Secretaria del Senado | [enlace](http://www.secretariasenado.gov.co/senado/basedoc/ley_2114_2021.html) | 2026-09-28 | — | — | Laboral |
-| `ley_2157_2021` | Ley 2157 de 2021 | Secretaria del Senado | [enlace](http://www.secretariasenado.gov.co/senado/basedoc/ley_2157_2021.html) | 2026-09-28 | — | — | Mercados |
-| `ley_2160_2021` | Ley 2160 de 2021 | Secretaria del Senado | [enlace](http://www.secretariasenado.gov.co/senado/basedoc/ley_2160_2021.html) | 2026-09-28 | — | — | Administrativo |
-| `ley_2251_2022` | Ley 2251 de 2022 | Secretaria del Senado | [enlace](http://www.secretariasenado.gov.co/senado/basedoc/ley_2251_2022.html) | 2026-09-28 | — | — | Civil |
-| `ley_527_1999` | Ley 527 de 1999 | Secretaria del Senado | [enlace](http://www.secretariasenado.gov.co/senado/basedoc/ley_0527_1999.html) | 2026-09-28 | — | — | Comercial y sociedades |
-| `ley_600_2000` | Ley 600 de 2000 | Secretaria del Senado | [enlace](http://www.secretariasenado.gov.co/senado/basedoc/ley_0600_2000.html) | 2026-09-28 | — | — | Penal |
-| `ley_640_2001` | Ley 640 de 2001 | Secretaria del Senado | [enlace](http://www.secretariasenado.gov.co/senado/basedoc/ley_0640_2001.html) | 2026-09-28 | — | — | Mercados |
-| `ley_678_2001` | Ley 678 de 2001 | Secretaria del Senado | [enlace](http://www.secretariasenado.gov.co/senado/basedoc/ley_0678_2001.html) | 2026-09-28 | — | — | Procesal |
-| `ley_721_2001` | Ley 721 de 2001 | Secretaria del Senado | [enlace](http://www.secretariasenado.gov.co/senado/basedoc/ley_0721_2001.html) | 2026-09-28 | — | — | Familia |
-| `ley_769_2002` | Ley 769 de 2002 | Secretaria del Senado | [enlace](http://www.secretariasenado.gov.co/senado/basedoc/ley_0769_2002.html) | 2026-09-28 | — | — | Civil |
-| `ley_820_2003` | Ley 820 de 2003 | Secretaria del Senado | [enlace](http://www.secretariasenado.gov.co/senado/basedoc/ley_0820_2003.html) | 2026-09-28 | — | — | Comercial y sociedades |
+| `codigo_disciplinario` | Codigo General Disciplinario (Ley 1952 de 2019) | Secretaria del Senado | [enlace](http://www.secretariasenado.gov.co/senado/basedoc/ley_1952_2019.html) | 2026-09-29 | — | — | Administrativo |
+| `codigo_nacional_policia` | Codigo Nacional de Seguridad y Convivencia Ciudadana (Ley 1801 de 2016) | Secretaria del Senado | [enlace](http://www.secretariasenado.gov.co/senado/basedoc/ley_1801_2016.html) | 2026-09-29 | — | — | Procesal |
+| `decreto_1082_2015` | Decreto 1082 de 2015 | Normograma de la CRA (compilacion Avance Juridico) | [enlace](https://normas.cra.gov.co/gestor/docs/decreto_1082_2015.htm) | 2026-09-29 | — | — | Administrativo |
+| `decreto_1742_2020` | Decreto 1742 de 2020 | Secretaria del Senado | [enlace](http://www.secretariasenado.gov.co/senado/basedoc/decreto_1742_2020.html) | 2026-09-29 | — | — | Tributario |
+| `decreto_175_2025` | Decreto 175 de 2025 | Secretaria del Senado | [enlace](http://www.secretariasenado.gov.co/senado/basedoc/decreto_0175_2025.html) | 2026-09-29 | — | — | Tributario |
+| `decreto_2067_1991` | Decreto 2067 de 1991 | Secretaria del Senado | [enlace](http://www.secretariasenado.gov.co/senado/basedoc/decreto_2067_1991.html) | 2026-09-29 | — | — | Constitucional |
+| `decreto_24_2016` | Decreto 24 de 2016 | Normograma de Colpensiones (compilacion Avance Juridico) | [enlace](https://normativa.colpensiones.gov.co/colpens/docs/decreto_0024_2016.htm) | 2026-09-29 | — | — | Comercial y sociedades |
+| `decreto_2737_1989` | Codigo del Menor (Decreto 2737 de 1989) | Normograma de Colpensiones (compilacion Avance Juridico) | [enlace](https://normativa.colpensiones.gov.co/colpens/docs/codigo_menor.htm) | 2026-09-29 | — | — | Laboral |
+| `decreto_405_2025` | Decreto 405 de 2025 | Normograma de Colpensiones (compilacion Avance Juridico) | [enlace](https://normativa.colpensiones.gov.co/compilacion/docs/decreto_0405_2025.htm) | 2026-09-29 | — | — | Laboral |
+| `decreto_4334_2008` | Decreto 4334 de 2008 | Secretaria del Senado | [enlace](http://www.secretariasenado.gov.co/senado/basedoc/decreto_4334_2008.html) | 2026-09-29 | — | — | Comercial y sociedades |
+| `decreto_4436_2005` | Decreto 4436 de 2005 | Normograma de Colpensiones (compilacion Avance Juridico) | [enlace](https://normativa.colpensiones.gov.co/colpens/docs/decreto_4436_2005.htm) | 2026-09-29 | — | — | Familia |
+| `decreto_4886_2011` | Decreto 4886 de 2011 | Secretaria del Senado | [enlace](http://www.secretariasenado.gov.co/senado/basedoc/decreto_4886_2011.html) | 2026-09-29 | — | — | Mercados |
+| `decreto_663_1993` | Estatuto Organico del Sistema Financiero (Decreto 663 de 1993) | Secretaria del Senado | [enlace](http://www.secretariasenado.gov.co/senado/basedoc/estatuto_organico_sistema_financiero.html) | 2026-09-29 | — | — | Comercial y sociedades |
+| `decreto_780_2016` | Decreto 780 de 2016 | Normograma de la CRA (compilacion Avance Juridico) | [enlace](https://normas.cra.gov.co/gestor/docs/decreto_0780_2016.htm) | 2026-09-29 | — | — | Penal |
+| `decreto_875_2008` | Decreto 875 de 2008 | Normograma de la CRA (compilacion Avance Juridico) | [enlace](https://normas.cra.gov.co/gestor/docs/decreto_0875_2008.htm) | 2026-09-29 | — | — | Laboral |
+| `decreto_960_1970` | Decreto 960 de 1970 | Secretaria del Senado | [enlace](http://www.secretariasenado.gov.co/senado/basedoc/decreto_0960_1970.html) | 2026-09-29 | — | — | Civil |
+| `ley_1151_2007` | Ley 1151 de 2007 | Secretaria del Senado | [enlace](http://www.secretariasenado.gov.co/senado/basedoc/ley_1151_2007.html) | 2026-09-29 | — | — | Administrativo |
+| `ley_137_1994` | Ley 137 de 1994 | Secretaria del Senado | [enlace](http://www.secretariasenado.gov.co/senado/basedoc/ley_0137_1994.html) | 2026-09-29 | — | — | Tributario |
+| `ley_1473_2011` | Ley 1473 de 2011 | Secretaria del Senado | [enlace](http://www.secretariasenado.gov.co/senado/basedoc/ley_1473_2011.html) | 2026-09-29 | — | — | Tributario |
+| `ley_155_1959` | Ley 155 de 1959 | Normograma de la CRA (compilacion Avance Juridico) | [enlace](https://normas.cra.gov.co/gestor/docs/ley_0155_1959.htm) | 2026-09-29 | — | — | Mercados |
+| `ley_1562_2012` | Ley 1562 de 2012 | Secretaria del Senado | [enlace](http://www.secretariasenado.gov.co/senado/basedoc/ley_1562_2012.html) | 2026-09-29 | — | — | Laboral |
+| `ley_1607_2012` | Ley 1607 de 2012 | Secretaria del Senado | [enlace](http://www.secretariasenado.gov.co/senado/basedoc/ley_1607_2012.html) | 2026-09-29 | — | — | Tributario |
+| `ley_160_1994` | Ley 160 de 1994 | Secretaria del Senado | [enlace](http://www.secretariasenado.gov.co/senado/basedoc/ley_0160_1994.html) | 2026-09-29 | — | — | Civil |
+| `ley_1700_2013` | Ley 1700 de 2013 | Secretaria del Senado | [enlace](http://www.secretariasenado.gov.co/senado/basedoc/ley_1700_2013.html) | 2026-09-29 | — | — | Comercial y sociedades |
+| `ley_1755_2015` | Ley 1755 de 2015 | Secretaria del Senado | [enlace](http://www.secretariasenado.gov.co/senado/basedoc/ley_1755_2015.html) | 2026-09-29 | — | — | Administrativo |
+| `ley_1819_2016` | Ley 1819 de 2016 | Secretaria del Senado | [enlace](http://www.secretariasenado.gov.co/senado/basedoc/ley_1819_2016.html) | 2026-09-29 | — | — | Tributario |
+| `ley_1909_2018` | Ley 1909 de 2018 | Secretaria del Senado | [enlace](http://www.secretariasenado.gov.co/senado/basedoc/ley_1909_2018.html) | 2026-09-29 | — | — | Constitucional |
+| `ley_2114_2021` | Ley 2114 de 2021 | Secretaria del Senado | [enlace](http://www.secretariasenado.gov.co/senado/basedoc/ley_2114_2021.html) | 2026-09-29 | — | — | Laboral |
+| `ley_2157_2021` | Ley 2157 de 2021 | Secretaria del Senado | [enlace](http://www.secretariasenado.gov.co/senado/basedoc/ley_2157_2021.html) | 2026-09-29 | — | — | Mercados |
+| `ley_2160_2021` | Ley 2160 de 2021 | Secretaria del Senado | [enlace](http://www.secretariasenado.gov.co/senado/basedoc/ley_2160_2021.html) | 2026-09-29 | — | — | Administrativo |
+| `ley_2251_2022` | Ley 2251 de 2022 | Secretaria del Senado | [enlace](http://www.secretariasenado.gov.co/senado/basedoc/ley_2251_2022.html) | 2026-09-29 | — | — | Civil |
+| `ley_29_1982` | Ley 29 de 1982 | Normograma de Colpensiones (compilacion Avance Juridico) | [enlace](https://normativa.colpensiones.gov.co/colpens/docs/ley_0029_1982.htm) | 2026-09-29 | — | — | Familia |
+| `ley_527_1999` | Ley 527 de 1999 | Secretaria del Senado | [enlace](http://www.secretariasenado.gov.co/senado/basedoc/ley_0527_1999.html) | 2026-09-29 | — | — | Comercial y sociedades |
+| `ley_600_2000` | Ley 600 de 2000 | Secretaria del Senado | [enlace](http://www.secretariasenado.gov.co/senado/basedoc/ley_0600_2000.html) | 2026-09-29 | — | — | Penal |
+| `ley_640_2001` | Ley 640 de 2001 | Secretaria del Senado | [enlace](http://www.secretariasenado.gov.co/senado/basedoc/ley_0640_2001.html) | 2026-09-29 | — | — | Mercados |
+| `ley_678_2001` | Ley 678 de 2001 | Secretaria del Senado | [enlace](http://www.secretariasenado.gov.co/senado/basedoc/ley_0678_2001.html) | 2026-09-29 | — | — | Procesal |
+| `ley_721_2001` | Ley 721 de 2001 | Secretaria del Senado | [enlace](http://www.secretariasenado.gov.co/senado/basedoc/ley_0721_2001.html) | 2026-09-29 | — | — | Familia |
+| `ley_75_1968` | Ley 75 de 1968 | Normograma de Colpensiones (compilacion Avance Juridico) | [enlace](https://normativa.colpensiones.gov.co/colpens/docs/ley_0075_1968.htm) | 2026-09-29 | — | — | Familia |
+| `ley_769_2002` | Ley 769 de 2002 | Secretaria del Senado | [enlace](http://www.secretariasenado.gov.co/senado/basedoc/ley_0769_2002.html) | 2026-09-29 | — | — | Civil |
+| `ley_820_2003` | Ley 820 de 2003 | Secretaria del Senado | [enlace](http://www.secretariasenado.gov.co/senado/basedoc/ley_0820_2003.html) | 2026-09-29 | — | — | Comercial y sociedades |
+| `ley_964_2005` | Ley 964 de 2005 (Mercado de Valores) | Secretaria del Senado | [enlace](http://www.secretariasenado.gov.co/senado/basedoc/ley_0964_2005.html) | 2026-09-29 | — | — | Comercial y sociedades |
 | `sentencia_c_1033_2002` | Sentencia C-1033 de 2002 | Relatoria de la Corte Constitucional | [enlace](https://www.corteconstitucional.gov.co/relatoria/2002/C-1033-02.htm) | 2026-09-28 | — | — | Familia |
 | `sentencia_c_106_2018` | Sentencia C-106 de 2018 | Relatoria de la Corte Constitucional | [enlace](https://www.corteconstitucional.gov.co/relatoria/2018/C-106-18.htm) | 2026-09-28 | — | — | Constitucional |
 | `sentencia_c_1189_2000` | Sentencia C-1189 de 2000 | Relatoria de la Corte Constitucional | [enlace](https://www.corteconstitucional.gov.co/relatoria/2000/C-1189-00.htm) | 2026-09-28 | — | — | Penal |
@@ -162,53 +181,34 @@ fuente cambia. "Áreas" son las áreas del banco de preguntas (enunciado, secci�
 | `sentencia_t_925_2014` | Sentencia T-925 de 2014 | Relatoria de la Corte Constitucional | [enlace](https://www.corteconstitucional.gov.co/relatoria/2014/T-925-14.htm) | 2026-09-28 | — | — | Constitucional |
 | `sentencia_t_970_2014` | Sentencia T-970 de 2014 | Relatoria de la Corte Constitucional | [enlace](https://www.corteconstitucional.gov.co/relatoria/2014/T-970-14.htm) | 2026-09-28 | — | — | Constitucional |
 
-**Pendientes de descarga (43).** Objetivos de `data/seed_targets.json` que el script no pudo descargar; el detalle está en `data/fuentes_descargadas.json`.
+**Pendientes de descarga (24).** Objetivos de `data/seed_targets.json` que el script no pudo descargar; el detalle está en `data/fuentes_descargadas.json`.
 
 | doc_id | Estado | Motivo |
 |---|---|---|
-| `constitucion_politica_1991` | manual | descargar a mano en data/raw_sources/pdf/constitucion_politica_1991/ |
-| `codigo_general_proceso` | manual | descargar a mano en data/raw_sources/pdf/codigo_general_proceso/ |
-| `ley_153_1887` | no_encontrado | http://www.secretariasenado.gov.co/senado/basedoc/ley_0153_1887.html no existe en Secretaria del Senado |
-| `ley_54_1990` | no_encontrado | http://www.secretariasenado.gov.co/senado/basedoc/ley_0054_1990.html no existe en Secretaria del Senado |
-| `decreto_1563_2012` | no_encontrado | http://www.secretariasenado.gov.co/senado/basedoc/decreto_1563_2012.html no existe en Secretaria del Senado |
-| `ley_50_1990` | no_encontrado | http://www.secretariasenado.gov.co/senado/basedoc/ley_0050_1990.html no existe en Secretaria del Senado |
-| `decreto_1082_2015` | no_encontrado | http://www.secretariasenado.gov.co/senado/basedoc/decreto_1082_2015.html no existe en Secretaria del Senado |
-| `decreto_24_2016` | no_encontrado | http://www.secretariasenado.gov.co/senado/basedoc/decreto_0024_2016.html no existe en Secretaria del Senado |
-| `decreto_405_2025` | no_encontrado | http://www.secretariasenado.gov.co/senado/basedoc/decreto_0405_2025.html no existe en Secretaria del Senado |
-| `decreto_4436_2005` | no_encontrado | http://www.secretariasenado.gov.co/senado/basedoc/decreto_4436_2005.html no existe en Secretaria del Senado |
+| `ley_11500_2007` | errata | errata de la semilla: es la Ley 1150 de 2007, ya en el corpus como ley_1150_2007 |
+| `ley_1150_2005` | errata | errata de la semilla: la Ley 1150 es de 2007, ya en el corpus como ley_1150_2007 |
+| `ley_116_2006` | errata | errata de la semilla: probablemente la Ley 1116 de 2006 (insolvencia), ya en el corpus como ley_1116_2006 |
 | `decreto_46_2024` | no_encontrado | http://www.secretariasenado.gov.co/senado/basedoc/decreto_0046_2024.html no existe en Secretaria del Senado |
-| `decreto_663_1993` | no_encontrado | http://www.secretariasenado.gov.co/senado/basedoc/decreto_0663_1993.html no existe en Secretaria del Senado |
-| `decreto_780_2016` | no_encontrado | http://www.secretariasenado.gov.co/senado/basedoc/decreto_0780_2016.html no existe en Secretaria del Senado |
-| `decreto_875_2008` | no_encontrado | http://www.secretariasenado.gov.co/senado/basedoc/decreto_0875_2008.html no existe en Secretaria del Senado |
-| `ley_11500_2007` | no_encontrado | http://www.secretariasenado.gov.co/senado/basedoc/ley_11500_2007.html no existe en Secretaria del Senado |
-| `ley_1150_2005` | no_encontrado | http://www.secretariasenado.gov.co/senado/basedoc/ley_1150_2005.html no existe en Secretaria del Senado |
-| `ley_116_2006` | no_encontrado | http://www.secretariasenado.gov.co/senado/basedoc/ley_0116_2006.html no existe en Secretaria del Senado |
-| `ley_155_1959` | no_encontrado | http://www.secretariasenado.gov.co/senado/basedoc/ley_0155_1959.html no existe en Secretaria del Senado |
 | `ley_1692_2017` | no_encontrado | http://www.secretariasenado.gov.co/senado/basedoc/ley_1692_2017.html no existe en Secretaria del Senado |
 | `ley_23_1961` | no_encontrado | http://www.secretariasenado.gov.co/senado/basedoc/ley_0023_1961.html no existe en Secretaria del Senado |
-| `ley_2737_1989` | no_encontrado | http://www.secretariasenado.gov.co/senado/basedoc/ley_2737_1989.html no existe en Secretaria del Senado |
-| `ley_29_1982` | no_encontrado | http://www.secretariasenado.gov.co/senado/basedoc/ley_0029_1982.html no existe en Secretaria del Senado |
-| `ley_75_1968` | no_encontrado | http://www.secretariasenado.gov.co/senado/basedoc/ley_0075_1968.html no existe en Secretaria del Senado |
-| `ley_964_2006` | no_encontrado | http://www.secretariasenado.gov.co/senado/basedoc/ley_0964_2006.html no existe en Secretaria del Senado |
 | `sentencia_su_488_2011` | no_encontrado | https://www.corteconstitucional.gov.co/relatoria/2011/SU488-11.htm no existe en Relatoria de la Corte Constitucional |
-| `sentencia_su_6_1991` | no_encontrado | https://www.corteconstitucional.gov.co/relatoria/1991/SU006-91.htm no existe en Relatoria de la Corte Constitucional |
+| `sentencia_su_6_1991` | no_encontrado | no existen sentencias SU de 1991 (la Corte empezo en 1992); referencia de la semilla probablemente erronea |
 | `sentencia_t_248_2025` | no_encontrado | https://www.corteconstitucional.gov.co/relatoria/2025/T-248-25.htm no existe en Relatoria de la Corte Constitucional |
-| `sentencia_sl_3385_2022` | sin_resolver | Corte Suprema: sin URL predecible; descargar a mano |
-| `sentencia_sl_648_2018` | sin_resolver | Corte Suprema: sin URL predecible; descargar a mano |
-| `sentencia_sp_1680_2022` | sin_resolver | Corte Suprema: sin URL predecible; descargar a mano |
-| `sentencia_sp_1945_2019` | sin_resolver | Corte Suprema: sin URL predecible; descargar a mano |
-| `acuerdo_2_2015` | sin_resolver | tipo 'acuerdo' sin regla de resolucion |
-| `sentencia_sc_1121_2018` | sin_resolver | Corte Suprema: sin URL predecible; descargar a mano |
-| `sentencia_sc_18392_2017` | sin_resolver | Corte Suprema: sin URL predecible; descargar a mano |
-| `sentencia_sc_3085_2024` | sin_resolver | Corte Suprema: sin URL predecible; descargar a mano |
-| `sentencia_sc_3674_2021` | sin_resolver | Corte Suprema: sin URL predecible; descargar a mano |
-| `sentencia_sc_425_2024` | sin_resolver | Corte Suprema: sin URL predecible; descargar a mano |
-| `sentencia_sc_8453_2016` | sin_resolver | Corte Suprema: sin URL predecible; descargar a mano |
-| `sentencia_sl_1050_2023` | sin_resolver | Corte Suprema: sin URL predecible; descargar a mano |
-| `sentencia_sl_1730_2020` | sin_resolver | Corte Suprema: sin URL predecible; descargar a mano |
-| `sentencia_sl_1972_2025` | sin_resolver | Corte Suprema: sin URL predecible; descargar a mano |
-| `sentencia_sp_1167_2022` | sin_resolver | Corte Suprema: sin URL predecible; descargar a mano |
-| `sentencia_sp_3218_2021` | sin_resolver | Corte Suprema: sin URL predecible; descargar a mano |
+| `sentencia_sl_648_2018` | sin_resolver | Corte Suprema: sin URL predecible; agregar a data/fuentes_override.json |
+| `sentencia_sp_1680_2022` | sin_resolver | Corte Suprema: sin URL predecible; agregar a data/fuentes_override.json |
+| `sentencia_sp_1945_2019` | sin_resolver | Corte Suprema: sin URL predecible; agregar a data/fuentes_override.json |
+| `acuerdo_2_2015` | sin_resolver | tipo 'acuerdo' sin regla de resolucion; agregar a data/fuentes_override.json |
+| `sentencia_sc_1121_2018` | sin_resolver | Corte Suprema: sin URL predecible; agregar a data/fuentes_override.json |
+| `sentencia_sc_18392_2017` | sin_resolver | Corte Suprema: sin URL predecible; agregar a data/fuentes_override.json |
+| `sentencia_sc_3085_2024` | sin_resolver | Corte Suprema: sin URL predecible; agregar a data/fuentes_override.json |
+| `sentencia_sc_3674_2021` | sin_resolver | Corte Suprema: sin URL predecible; agregar a data/fuentes_override.json |
+| `sentencia_sc_425_2024` | sin_resolver | Corte Suprema: sin URL predecible; agregar a data/fuentes_override.json |
+| `sentencia_sc_8453_2016` | sin_resolver | Corte Suprema: sin URL predecible; agregar a data/fuentes_override.json |
+| `sentencia_sl_1050_2023` | sin_resolver | Corte Suprema: sin URL predecible; agregar a data/fuentes_override.json |
+| `sentencia_sl_1730_2020` | sin_resolver | Corte Suprema: sin URL predecible; agregar a data/fuentes_override.json |
+| `sentencia_sl_1972_2025` | sin_resolver | Corte Suprema: sin URL predecible; agregar a data/fuentes_override.json |
+| `sentencia_sp_1167_2022` | sin_resolver | Corte Suprema: sin URL predecible; agregar a data/fuentes_override.json |
+| `sentencia_sp_3218_2021` | sin_resolver | Corte Suprema: sin URL predecible; agregar a data/fuentes_override.json |
 
 <!-- inventario:fin -->
 

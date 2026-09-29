@@ -45,7 +45,7 @@ _PARTE_SENADO = re.compile(r"_pr(\d{3})\.html?$", re.I)
 _CORTE_SENADO = re.compile(
     r"^(<\s*NOTA DEL EDITOR|Las notas de vigencia, concordancias, notas del editor|"
     r"Disposiciones analizadas por Avance Jur[ií]dico)", re.I)
-_NAV_SENADO = re.compile(r"^(Anterior\s*\|\s*Siguiente|Inicio|Artículo)$", re.I)
+_NAV_SENADO = re.compile(r"^(Anterior\s*\|?\s*Siguiente|Anterior|Siguiente|Inicio|Artículo)$", re.I)
 _OPCION_INDICE = re.compile(r'<option value="(?:ç[^"]*?ç\.htmlç)?([^"]*)">([^<]*)', re.I)
 _SENTENCIA_PEGADA = re.compile(r"^SENTENCIA\s+[CTSU]{1,2}\s*-\s*\d", re.I)
 
