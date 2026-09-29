@@ -10,6 +10,8 @@ Hackathon LATAM AI Week 2026 (Uniandes): **RAG de derecho colombiano** con un de
 
 Plazos: **vie 17:00** reporte de avance (PDF de 1 página por correo) · **sáb 09:00** se entregan las 992 preguntas · **sáb 15:00** cierre (repo + enlace público al corpus/índice) y verificación en vivo. Las 992 preguntas deben correr en ~6 h ⇒ objetivo **< 10 s/pregunta** (límite teórico 21,8 s).
 
+**Estado (2026-09-29):** fase de corpus. Hecho: descarga (167 documentos con original en `data/raw/`), parseo a texto limpio (`data_corpus/corpus/<doc_id>.txt`) y `corpus_manifest.json` v1 (167 documentos, `n_fragmentos=0`). Falta, en este orden: (1) cerrar las 30 fuentes pendientes (`data/fuentes_pendientes.md`), (2) segmentar por artículo y generar `chunks.jsonl`, (3) BM25 → v0 → primer `evaluate.py`, (4) empaquetar y publicar el corpus. No existe todavía código de segmentación, indexación, retrieval ni generación (`src/indexacion/`, `src/retrieval/`, `src/generacion/` están vacíos).
+
 Los archivos oficiales viven también en `../Hackathon 2026/` (`enunciado.pdf`, `entregables/`, `Ejemplo de entrega/`). **El código oficial y el schema mandan sobre cualquier documento, incluido este.**
 
 ## Comandos
@@ -34,7 +36,7 @@ python src/ingesta/descargar_fuentes.py                  # --solo <doc_id>... | 
 python src/ingesta/descargar_fuentes.py --corpus-md      # regenera el inventario de CORPUS.md desde data/fuentes_descargadas.json
 ```
 
-`data/fuentes_descargadas.json` (versionado) registra por `doc_id` la URL real, fuente, fecha de consulta, estado (`descargado | no_encontrado | sin_resolver | errata | error`) y sha256 de lo descargado. Los originales van en `data/raw/` (en `.gitignore`, regenerable): HTML en `data/raw/html/<doc_id>/` (todas las partes de la norma), PDF en `data/raw/pdf/` con su entrada en `data/mapa_archivos.json` (el script la agrega), RTF/DOCX manuales en `data/raw/rtf/`. Lo que ya está en `data/raw/` (p. ej. los PDF/RTF bajados a mano de la Constitución, el CGP y las demás normas de alto impacto) no se vuelve a descargar: solo se registra. Resolución de URLs (las de la semilla son de búsqueda): Senado (normas, con sus partes `_prNNN`); si el Senado da 404 (leyes anteriores a 1992, decretos), el mismo nombre de archivo en los espejos de la compilación de Avance Jurídico (`normas.cra.gov.co`, `normativa.colpensiones.gov.co`, `cancilleria.gov.co`); relatoría de la Corte Constitucional (C/T/SU); PDF de la CAN (Decisión 486). **`data/fuentes_override.json`** (versionado, a mano) manda sobre las reglas: corrige erratas de la semilla (p. ej. `decreto_1563_2012` → `ley_1563_2012`, `ley_11500_2007` es `ley_1150_2007`) y da URLs que no siguen patrón; solo URLs verificadas. SUIN-Juriscol ya no se puede raspar (aplicación Angular sin HTML) y la relatoría de la Corte Suprema (SL/SP/SC) no tiene URLs predecibles: esos objetivos quedan `sin_resolver` para descarga manual a `data/raw/pdf/` + `mapa_archivos.json`.
+`data/fuentes_descargadas.json` (versionado) registra por `doc_id` la URL real, fuente, fecha de consulta, estado (`descargado | no_encontrado | sin_resolver | errata | error`) y sha256 de lo descargado. Los originales van en `data/raw/` (**versionada en git**, ~87 MB: es la evidencia de la fuente y evita depender de que los sitios sigan respondiendo; no está en `.gitignore`): HTML en `data/raw/html/<doc_id>/` (todas las partes de la norma), PDF en `data/raw/pdf/` con su entrada en `data/mapa_archivos.json` (el script la agrega), RTF/DOCX manuales en `data/raw/rtf/`. Lo que ya está en `data/raw/` (p. ej. los PDF/RTF bajados a mano de la Constitución, el CGP y las demás normas de alto impacto) no se vuelve a descargar: solo se registra. Resolución de URLs (las de la semilla son de búsqueda): Senado (normas, con sus partes `_prNNN`); si el Senado da 404 (leyes anteriores a 1992, decretos), el mismo nombre de archivo en los espejos de la compilación de Avance Jurídico (`normas.cra.gov.co`, `normativa.colpensiones.gov.co`, `cancilleria.gov.co`); relatoría de la Corte Constitucional (C/T/SU); PDF de la CAN (Decisión 486). **`data/fuentes_override.json`** (versionado, a mano) manda sobre las reglas: corrige erratas de la semilla (p. ej. `decreto_1563_2012` → `ley_1563_2012`, `ley_11500_2007` es `ley_1150_2007`) y da URLs que no siguen patrón; solo URLs verificadas. SUIN-Juriscol ya no se puede raspar (aplicación Angular sin HTML) y la relatoría de la Corte Suprema (SL/SP/SC) no tiene URLs predecibles: esos objetivos quedan `sin_resolver` para descarga manual a `data/raw/pdf/` + `mapa_archivos.json`.
 
 ```bash
 # Parsear los originales de data/raw/{pdf,rtf,html}/ a texto limpio en data_corpus/corpus/<doc_id>.txt
@@ -47,7 +49,7 @@ Los parsers detectan el formato **por contenido, no por extensión** (en `data/r
 
 `parsear_html.py` tiene un extractor por fuente, elegido por contenido. **Compilación de Avance Jurídico** (Senado y espejos): une las partes en orden (`<base>.html` y luego `_pr001`, `_pr002`…), toma solo el cuerpo de la norma (`div#aj_data` interno o `div.panel-documento`) y quita el índice de navegación, las cajas "Jurisprudencia Vigencia" (vacías, las llena JavaScript), el pie de Avance Jurídico y la sentencia de control que a veces viene pegada al final tras `<NOTA DEL EDITOR ...>` (Ley 1581/2012: 822k → 33k caracteres). Conserva las notas cortas en línea (`<Artículo modificado por …>`, `<Aparte tachado INEXEQUIBLE>`) y el texto tachado: son hechos de vigencia y así lo publica la fuente. **Relatoría de la Corte Constitucional** (HTML de Word): todo el cuerpo con sus notas al pie. En HTML solo `<br>` es salto de línea (Word parte las líneas del código fuente). Registra en `parseo.json` `extractor`, `n_partes` y `n_articulos_detectados`, y avisa si hay saltos en la numeración de artículos (falta una parte `_prNNN`).
 
-Todavía no existen `run.sh`, `src/main.py` ni tests, y `requirements.txt` está vacío (se llena a medida que se introducen imports; ver "Entorno y dependencias"). Contrato de entrega: `bash run.sh` o `python src/main.py --split sample` debe reconstruir el índice y generar la entrega con un solo comando. Cuando se cree el código, documentar aquí los comandos reales (ingesta, retrieval_eval, main).
+Todavía no existen `run.sh`, `src/main.py` ni tests, y `requirements.txt` solo lleva las deps de ingesta (`beautifulsoup4`, `lxml`, `pymupdf`; crece con los imports, ver "Entorno y dependencias"). Contrato de entrega: `bash run.sh` o `python src/main.py --split sample` debe reconstruir el índice y generar la entrega con un solo comando. Cuando se cree el código, documentar aquí los comandos reales (ingesta, retrieval_eval, main).
 
 ## Entorno y dependencias (`src/reproducibilidad/`)
 
@@ -112,6 +114,19 @@ Fuentes por orden de ataque: **Secretaría del Senado** (HTML limpio, artículo 
 
 Modelo de chunk: **un artículo = una unidad** (inciso/parágrafo solo si el artículo es largo), con metadata `chunk_id, doc_id, document_type, document_number, year, article, section, validity, source_url, start_offset, end_offset`. Separar `retrieval_text` (puede llevar encabezado "Ley X de Y, art. N" para mejorar la búsqueda, estilo contextual retrieval con reglas) de `source_text` (literal; es lo que va en `pasajes_recuperados.texto`).
 
+### Estado de las fuentes y listas de trabajo
+
+De los 186 objetivos de la semilla: **162 descargados**, 3 erratas de la semilla (estado `errata`; apuntan a un `doc_id` ya cubierto, p. ej. `ley_116_2006` → `ley_1116_2006`, `ley_11500_2007` → `ley_1150_2007`), 6 no encontrados y 15 sentencias de la Corte Suprema sin URL predecible. A esos 162 se suman **5 documentos fuera de la semilla** (`codigo_civil`, `codigo_comercio`, `codigo_penal`, `cpaca`, `ley_472_1998`) que aparecen en el `legal_basis` de `sample_50` y que la semilla no cubría (sección `_adicionales` de `fuentes_override.json`, con `doc_id` canónicos de `scripts/citations.py`) ⇒ 167 en el corpus. Dieciocho documentos de alto impacto (Constitución, CGP, CST, ET, Estatuto del Consumidor, los 5 adicionales…) se bajaron a mano en PDF (Gestor Normativo, ICBF, SUIT, RedJurista) para controlar la calidad; el script solo los registra. Sus enlaces están en `data/referencias_normativas.md`.
+
+Archivos de trabajo versionados en `data/` (léelos antes de tocar el corpus):
+
+- **`fuentes_pendientes.md`**: checklist de las **30 fuentes que faltan** (15 sentencias CSJ SL/SP/SC + `acuerdo_2_2015`, 6 no encontrados, 9 del `legal_basis` de `sample_50` fuera de la semilla). Cada ítem lleva el procedimiento de incorporación de 5 pasos; marcar `[x]` al terminar.
+- **`fuentes_faltantes_sample50.md`**: comparación del `legal_basis` de `sample_50` contra la semilla (`legal_basis` = solo para planear ingesta, nunca runtime).
+- **`areas_por_asignar.md`**: las `areas` de los 5 documentos adicionales las propuso un agente y **falta que una persona las confirme**; al decidir, actualizar `_adicionales` de `fuentes_override.json` y `corpus_manifest.json` y correr el validador.
+- **`fuentes_descargadas.json`** (URL/estado/sha256), **`fuentes_override.json`**, **`mapa_archivos.json`**: ver comandos de arriba.
+
+Pendiente decidir: si entran los no normativos (ponencia WIPO, laudo Dow Chemical) y qué hacer con `sentencia_su_6_1991` (probable errata; la Corte no emitió SU en 1991).
+
 Entregables del corpus: `corpus_manifest.json`, `corpus/`, `indice/` (`index.faiss` + `chunks.jsonl`), `LICENSE`, y la bitácora `CORPUS.md` (plantilla en la raíz, con tabla de evolución del puntaje).
 
 ### Licencia del corpus (decidida)
@@ -137,6 +152,7 @@ Referencia: `../Hackathon 2026/entregables/sabado/corpus_manifest.ejemplo.json`.
 - **Texto**: los valores del ejemplo van en ASCII sin tildes (`Codigo`, `Secretaria`, `indice`). Seguir esa convención en `titulo`, `fuente` y `metodo_ingesta`; solo las URLs y los nombres propios se dejan tal cual. JSON con indentación de 2 espacios, UTF-8, `\n`.
 - **Placeholders del ejemplo** (`<URL>`, `2026-XX-XX`, `<hash...>`) son solo de plantilla: ninguno puede quedar en la entrega final.
 - **Rutas**: nunca absolutas ni dependientes de la máquina (`/Users/...`, `C:\...`); si se registra una ruta, es relativa a la raíz del corpus.
+- **Estado actual (v1, 2026-09-29)**: 167 documentos con `n_articulos` (normas) y `metodo_ingesta` reales, `sha256` de `data_corpus/corpus/<doc_id>.txt`, `n_fragmentos=0` hasta segmentar y `enlace_nube: "<URL>"` (único aviso del validador: 0 errores, 2 avisos). Se generó desde `data/fuentes_descargadas.json` (título, fuente, URL, fecha, áreas) + `data_corpus/parseo.json` (método, sha256); **todavía no hay script versionado que lo regenere**: al segmentar, crearlo (y que recalcule `n_fragmentos` desde `chunks.jsonl`) en vez de editar a mano. Las `areas` de los 5 documentos adicionales son provisionales (ver `data/areas_por_asignar.md`).
 - **Edición**: idealmente lo genera un script a partir de `corpus/` para no editarlo a mano; si se edita a mano, una persona a la vez (es un JSON en git y los conflictos de merge son dolorosos).
 
 ### Carpeta local del corpus y rutas
@@ -204,7 +220,8 @@ Antes de añadir una técnica: qué error observado corrige, qué métrica debe 
 
 ## Convenciones de repo
 
-- Trabajar en ramas por persona/tarea y PR a `main`; no hacer push directo a `main` ni force-push.
+- Una **rama personal por integrante** (`santiago`, `sofi`), no una rama por tarea; traer `main` antes de trabajar (`git merge origin/main`) y merge a `main` por PR/cuando se pida. No hacer push directo a `main` ni force-push. Los worktrees de agentes viven en `.claude/worktrees/` y deben tener checked out la rama personal.
+- Mensajes de commit en español, sin tildes, con un resumen de una línea y el detalle de decisiones en viñetas (así se ha hecho hasta ahora).
 - No versionar `scripts/.env`, modelos, índices ni `__pycache__` (ver `.gitignore`).
 - Completar `README.md` (arquitectura, reproducción, resultados, limitaciones) y `CORPUS.md` a medida que avanza el trabajo, no al final; hay que quitar las notas en cursiva de las plantillas.
 
