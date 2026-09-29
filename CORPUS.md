@@ -180,6 +180,11 @@ fuente cambia. "Áreas" son las áreas del banco de preguntas (enunciado, secci�
 | `sentencia_t_77_2025` | Sentencia T-77 de 2025 | Relatoria de la Corte Constitucional | [enlace](https://www.corteconstitucional.gov.co/relatoria/2025/T-077-25.htm) | 2026-09-28 | — | — | Familia |
 | `sentencia_t_925_2014` | Sentencia T-925 de 2014 | Relatoria de la Corte Constitucional | [enlace](https://www.corteconstitucional.gov.co/relatoria/2014/T-925-14.htm) | 2026-09-28 | — | — | Constitucional |
 | `sentencia_t_970_2014` | Sentencia T-970 de 2014 | Relatoria de la Corte Constitucional | [enlace](https://www.corteconstitucional.gov.co/relatoria/2014/T-970-14.htm) | 2026-09-28 | — | — | Constitucional |
+| `codigo_civil` | Codigo Civil (Ley 57 de 1887) | Sistema Unico de Informacion de Tramites (SUIT) | [enlace](https://tramites1.suit.gov.co/registro-web/suit_descargar_archivo?A=115930) | 2026-09-29 | — | — | Civil, Familia |
+| `codigo_comercio` | Codigo de Comercio (Decreto 410 de 1971) | Gestor Normativo de Funcion Publica | [enlace](https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=41102) | 2026-09-29 | — | — | Comercial y sociedades |
+| `codigo_penal` | Codigo Penal (Ley 599 de 2000) | Gestor Normativo de Funcion Publica | [enlace](https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=6388) | 2026-09-29 | — | — | Penal |
+| `cpaca` | Codigo de Procedimiento Administrativo y de lo Contencioso Administrativo (Ley 1437 de 2011) | Gestor Normativo de Funcion Publica | [enlace](https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=41249) | 2026-09-29 | — | — | Administrativo, Procesal |
+| `ley_472_1998` | Ley 472 de 1998, acciones populares y de grupo | Gestor Normativo de Funcion Publica | [enlace](https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=188) | 2026-09-29 | — | — | Administrativo, Constitucional |
 
 **Pendientes de descarga (24).** Objetivos de `data/seed_targets.json` que el script no pudo descargar; el detalle está en `data/fuentes_descargadas.json`.
 
@@ -262,15 +267,17 @@ paso (ver el ejemplo para el nivel de detalle esperado por el jurado).*
    (`relatoria/AAAA/C-NNN-AA.htm`) y la Decisión Andina 486 en el PDF oficial de la
    Comunidad Andina. Los originales se guardan sin modificar en
    `data/raw_sources/<tipo>/<doc_id>/`, clasificados por tipo de archivo (`html`,
-   `pdf`, `pdf_escaneado`, `otros`), con pausa de 1 s entre peticiones. Trece
-   documentos de mayor impacto (Constitución, Código General del Proceso, Código
-   Sustantivo del Trabajo, Estatuto Tributario, Estatuto del Consumidor, Código de
-   la Infancia, Leyes 80/1993, 1116/2006, 1258/2008, 1581/2012 y 2220/2022, Decreto
-   2153/1992 y la sentencia SL3385 de 2022) no se descargan con el script: sus PDF
-   se obtienen a mano del Gestor Normativo de Función Pública, del ICBF o de
-   RedJurista (enlaces en `data/referencias_normativas.md`) para controlar la
-   calidad del dato, y el script solo los registra con esa fuente
-   (`data/fuentes_override.json`). La URL real, la
+   `pdf`, `pdf_escaneado`, `otros`), con pausa de 1 s entre peticiones. Dieciocho
+   documentos de mayor impacto no se descargan con el script: sus PDF se obtienen a
+   mano del Gestor Normativo de Función Pública, del ICBF, de la SUIT o de RedJurista
+   (enlaces en `data/referencias_normativas.md`) para controlar la calidad del dato, y
+   el script solo los registra con esa fuente (`data/fuentes_override.json`). Trece son
+   objetivos de la semilla (Constitución, CGP, CST, ET, Estatuto del Consumidor, Código
+   de la Infancia, Leyes 80/1993, 1116/2006, 1258/2008, 1581/2012 y 2220/2022, Decreto
+   2153/1992 y sentencia SL3385 de 2022). Cinco son adicionales a la semilla, tomados de
+   las fuentes del `legal_basis` de `sample_50` que la semilla no cubría (Código Civil,
+   Código de Comercio, Código Penal, CPACA y Ley 472 de 1998; sección `_adicionales` del
+   mismo archivo, con `doc_id` canónicos de `scripts/citations.py`). La URL real, la
    fecha de consulta, el estado y el sha256 de cada descarga quedan en
    `data/fuentes_descargadas.json`, a partir del cual se genera el inventario de la
    sección 1.

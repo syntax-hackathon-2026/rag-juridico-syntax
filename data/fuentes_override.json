@@ -107,5 +107,56 @@
     "fuente": "RedJurista",
     "url": "https://www.redjurista.com/appfolders/images/news/CSJ_SCL_SL3385_2022_2022.pdf",
     "nota": "PDF de RedJurista (referencias_normativas.md); la Relatoria de la Corte Suprema no tiene URL predecible"
-  }
+  },
+  "_adicionales": [
+    {
+      "doc_id": "codigo_civil",
+      "titulo": "Codigo Civil (Ley 57 de 1887)",
+      "fuente": "Sistema Unico de Informacion de Tramites (SUIT)",
+      "url": "https://tramites1.suit.gov.co/registro-web/suit_descargar_archivo?A=115930",
+      "areas": [
+        "Derecho civil",
+        "Derecho de familia"
+      ]
+    },
+    {
+      "doc_id": "codigo_comercio",
+      "titulo": "Codigo de Comercio (Decreto 410 de 1971)",
+      "fuente": "Gestor Normativo de Funcion Publica",
+      "url": "https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=41102",
+      "areas": [
+        "Derecho comercial y sociedades"
+      ]
+    },
+    {
+      "doc_id": "codigo_penal",
+      "titulo": "Codigo Penal (Ley 599 de 2000)",
+      "fuente": "Gestor Normativo de Funcion Publica",
+      "url": "https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=6388",
+      "areas": [
+        "Derecho penal"
+      ]
+    },
+    {
+      "doc_id": "cpaca",
+      "titulo": "Codigo de Procedimiento Administrativo y de lo Contencioso Administrativo (Ley 1437 de 2011)",
+      "fuente": "Gestor Normativo de Funcion Publica",
+      "url": "https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=41249",
+      "areas": [
+        "Derecho administrativo",
+        "Derecho procesal"
+      ]
+    },
+    {
+      "doc_id": "ley_472_1998",
+      "titulo": "Ley 472 de 1998, acciones populares y de grupo",
+      "fuente": "Gestor Normativo de Funcion Publica",
+      "url": "https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=188",
+      "areas": [
+        "Derecho constitucional",
+        "Derecho administrativo"
+      ]
+    }
+  ],
+  "_comentario_adicionales": "Documentos fuera de seed_targets.json (fuentes del legal_basis de sample_50, ver data/fuentes_faltantes_sample50.md). Su original ya esta en data/raw/ y se registra con esta fuente/URL (data/referencias_normativas.md); items_del_banco=0."
 }

@@ -4543,6 +4543,109 @@
       "bytes": 384345,
       "sha256": "8a4eff0c2231c2dba18ee71ec768b964d7e4a6c6b0104b816ff3b5b948e50f78",
       "nota": "ya estaba en data/raw/ (usar --forzar para repetir)"
+    },
+    {
+      "doc_id": "codigo_civil",
+      "titulo": "Codigo Civil (Ley 57 de 1887)",
+      "fuente": "Sistema Unico de Informacion de Tramites (SUIT)",
+      "url": "https://tramites1.suit.gov.co/registro-web/suit_descargar_archivo?A=115930",
+      "areas": [
+        "Derecho civil",
+        "Derecho de familia"
+      ],
+      "items_del_banco": 0,
+      "canonico": [],
+      "estado": "descargado",
+      "tipo_fuente": "pdf",
+      "fecha_consulta": "2026-09-29",
+      "archivos": [
+        "Ley_57_de_1887.pdf"
+      ],
+      "bytes": 1070425,
+      "sha256": "6384aa267c263a95d65b7ffcfd7862339ebd2a49bb517249ca84a4f51438343b",
+      "nota": "ya estaba en data/raw/ (usar --forzar para repetir)"
+    },
+    {
+      "doc_id": "codigo_comercio",
+      "titulo": "Codigo de Comercio (Decreto 410 de 1971)",
+      "fuente": "Gestor Normativo de Funcion Publica",
+      "url": "https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=41102",
+      "areas": [
+        "Derecho comercial y sociedades"
+      ],
+      "items_del_banco": 0,
+      "canonico": [],
+      "estado": "descargado",
+      "tipo_fuente": "pdf",
+      "fecha_consulta": "2026-09-29",
+      "archivos": [
+        "Decreto_410_de_1971.pdf"
+      ],
+      "bytes": 984940,
+      "sha256": "b3a1734b87501ded8e01240a416f7f1ef6ee504c20c6bccc091f793e8fff8842",
+      "nota": "ya estaba en data/raw/ (usar --forzar para repetir)"
+    },
+    {
+      "doc_id": "codigo_penal",
+      "titulo": "Codigo Penal (Ley 599 de 2000)",
+      "fuente": "Gestor Normativo de Funcion Publica",
+      "url": "https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=6388",
+      "areas": [
+        "Derecho penal"
+      ],
+      "items_del_banco": 0,
+      "canonico": [],
+      "estado": "descargado",
+      "tipo_fuente": "pdf",
+      "fecha_consulta": "2026-09-29",
+      "archivos": [
+        "Ley_599_de_2000.pdf"
+      ],
+      "bytes": 525583,
+      "sha256": "eb448bed33c3d5a33735f23c2954844c57d7457ed0bb752d10b3aeac1188a71b",
+      "nota": "ya estaba en data/raw/ (usar --forzar para repetir)"
+    },
+    {
+      "doc_id": "cpaca",
+      "titulo": "Codigo de Procedimiento Administrativo y de lo Contencioso Administrativo (Ley 1437 de 2011)",
+      "fuente": "Gestor Normativo de Funcion Publica",
+      "url": "https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=41249",
+      "areas": [
+        "Derecho administrativo",
+        "Derecho procesal"
+      ],
+      "items_del_banco": 0,
+      "canonico": [],
+      "estado": "descargado",
+      "tipo_fuente": "pdf",
+      "fecha_consulta": "2026-09-29",
+      "archivos": [
+        "Ley_1437_de_2011.pdf"
+      ],
+      "bytes": 504740,
+      "sha256": "2d58635c1dd9f5cabecfc2adf724e1dad39db6c61df75a5d9b285ee1ab3375d9",
+      "nota": "ya estaba en data/raw/ (usar --forzar para repetir)"
+    },
+    {
+      "doc_id": "ley_472_1998",
+      "titulo": "Ley 472 de 1998, acciones populares y de grupo",
+      "fuente": "Gestor Normativo de Funcion Publica",
+      "url": "https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=188",
+      "areas": [
+        "Derecho constitucional",
+        "Derecho administrativo"
+      ],
+      "items_del_banco": 0,
+      "canonico": [],
+      "estado": "descargado",
+      "tipo_fuente": "pdf",
+      "fecha_consulta": "2026-09-29",
+      "archivos": [
+        "Ley_472_de_1998.pdf"
+      ],
+      "bytes": 141101,
+      "sha256": "89c93e61ed072ad8f4b17651bd922bb3d4bc3caa56510b04a748ccc60d0df14c",
+      "nota": "ya estaba en data/raw/ (usar --forzar para repetir)"
     }
   ]
 }

@@ -139,6 +139,16 @@ def cargar_overrides() -> dict[str, dict]:
     return {k: v for k, v in datos.items() if not k.startswith("_")}
 
 
+def cargar_adicionales() -> list[Objetivo]:
+    """Documentos fuera de la semilla (`_adicionales` de fuentes_override.json), con original en data/raw/."""
+    if not OVERRIDE_PATH.is_file():
+        return []
+    datos = json.loads(OVERRIDE_PATH.read_text(encoding="utf-8"))
+    return [Objetivo(doc_id=a["doc_id"], titulo=a["titulo"], fuente=a["fuente"], url=a["url"],
+                     areas=a["areas"], items_del_banco=0, canonico=[], nota=a.get("nota", ""))
+            for a in datos.get("_adicionales", [])]
+
+
 def resolver(entrada: dict, overrides: dict[str, dict] | None = None) -> Objetivo:
     """Traduce una entrada de la semilla a doc_id, titulo, fuente y URL del documento."""
     obj = _resolver_por_regla(entrada)
@@ -437,6 +447,7 @@ def main() -> int:
         semilla = json.load(f)["documentos"]
     overrides = cargar_overrides()
     objetivos = sorted((resolver(e, overrides) for e in semilla), key=lambda o: (-o.items_del_banco, o.doc_id))
+    objetivos += cargar_adicionales()
     if not (args.solo or args.limite):
         # un override puede renombrar un doc_id (errata de la semilla): se borra la clave vieja
         vigentes = {o.doc_id for o in objetivos}
