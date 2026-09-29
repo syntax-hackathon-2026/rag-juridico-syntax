@@ -56,6 +56,8 @@ def local_modules() -> set[str]:
         for p in base.iterdir():
             if p.suffix == ".py" or (p.is_dir() and not p.name.startswith((".", "__"))):
                 names.add(p.stem)
+    # modulos hermanos dentro de subcarpetas de src/ (p. ej. src/ingesta/_texto.py)
+    names.update(p.stem for p in SRC.rglob("*.py"))
     return names
 
 

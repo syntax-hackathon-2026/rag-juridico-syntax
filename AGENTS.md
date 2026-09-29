@@ -36,6 +36,14 @@ python src/ingesta/descargar_fuentes.py --corpus-md      # regenera el inventari
 
 `data/fuentes_descargadas.json` (versionado) registra por `doc_id` la URL real, fecha de consulta, estado (`descargado | no_encontrado | sin_resolver | error`) y sha256 de lo descargado. Las fuentes originales van en `data/raw_sources/<tipo>/<doc_id>/`, clasificadas por tipo de archivo (`html`, `pdf`, `pdf_escaneado`, `otros`; ver `config.TIPOS_FUENTE`); el script clasifica por extensión y la distinción `pdf_escaneado` (necesita OCR) se hace a mano al mover el archivo. **La Constitución y el CGP no se descargan con el script:** sus PDF se bajan a mano a `data/raw_sources/pdf/<doc_id>/` (`constitucion_politica_1991`, `codigo_general_proceso`) para controlar la calidad del dato; el script solo los registra (`estado: manual` hasta que existan los archivos, luego `descargado` con `descarga manual`). Las URLs de la semilla son de búsqueda; el script las resuelve a Senado (normas, con sus partes `_prNNN`), relatoría de la Corte Constitucional (C/T/SU) y el PDF de la CAN (Decisión 486). Corte Suprema (SL/SP/SC) y lo que solo está en SUIN quedan `sin_resolver`.
 
+```bash
+# Parsear los originales de data/raw/{pdf,rtf}/ a texto limpio en data_corpus/corpus/<doc_id>.txt
+python src/ingesta/parsear_pdf.py      # PDF con capa de texto (PyMuPDF, sin OCR)
+python src/ingesta/parsear_rtf.py      # RTF y DOCX (pandoc: brew install pandoc); --solo <doc_id>... | --forzar
+```
+
+Los parsers detectan el formato **por contenido, no por extensión** (en `data/raw/rtf/` hay `.rtf` que en realidad son DOCX; algunos PDF traen bytes antes de `%PDF`). El `doc_id` sale de `data/mapa_archivos.json` (archivo original → `doc_id`; agregar ahí cada archivo nuevo, un archivo sin entrada es error y no detiene el lote). Si un `doc_id` tiene fuente nativa (RTF/DOCX) y PDF, se usa la nativa. La limpieza (`src/ingesta/_texto.py`) es solo estructural: NFKC (ligaduras), encabezados/pies repetidos, guiones blandos, saltos de línea dentro de párrafo y tablas de pandoc; el contenido normativo no se reescribe. Salida: párrafos separados por línea en blanco, más `data_corpus/parseo.json` (fuera de `corpus/`, que se publica tal cual) con `archivo_original`, `formato_real`, `metodo_ingesta` y `sha256` del `.txt`, base para generar `corpus_manifest.json`. Un PDF con < 200 caracteres/página se marca como posible escaneado (mandar a OCR, aún no implementado).
+
 Todavía no existen `run.sh`, `src/main.py` ni tests, y `requirements.txt` está vacío (se llena a medida que se introducen imports; ver "Entorno y dependencias"). Contrato de entrega: `bash run.sh` o `python src/main.py --split sample` debe reconstruir el índice y generar la entrega con un solo comando. Cuando se cree el código, documentar aquí los comandos reales (ingesta, retrieval_eval, main).
 
 ## Entorno y dependencias (`src/reproducibilidad/`)
