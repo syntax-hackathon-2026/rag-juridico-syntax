@@ -18,22 +18,22 @@ fuente cambia. "Áreas" son las áreas del banco de preguntas (enunciado, secci�
 
 | doc_id | Título | Fuente | URL | Fecha de consulta | Artículos | Fragmentos | Áreas |
 |---|---|---|---|---|---:|---:|---|
-| `constitucion_politica_1991` | Constitucion Politica de Colombia de 1991 | Secretaria del Senado | [enlace](http://www.secretariasenado.gov.co/senado/basedoc/constitucion_politica_1991.html) | 2026-09-29 | — | — | Administrativo, Comercial y sociedades, Constitucional, Familia, Laboral, Mercados, Penal, Procesal, Tributario |
-| `codigo_general_proceso` | Codigo General del Proceso (Ley 1564 de 2012) | Secretaria del Senado | [enlace](http://www.secretariasenado.gov.co/senado/basedoc/ley_1564_2012.html) | 2026-09-29 | — | — | Civil, Comercial y sociedades, Familia, Mercados, Penal, Procesal, Tributario |
-| `codigo_sustantivo_trabajo` | Codigo Sustantivo del Trabajo | Secretaria del Senado | [enlace](http://www.secretariasenado.gov.co/senado/basedoc/codigo_sustantivo_trabajo.html) | 2026-09-29 | — | — | Laboral |
-| `estatuto_tributario` | Estatuto Tributario (Decreto 624 de 1989) | Secretaria del Senado | [enlace](http://www.secretariasenado.gov.co/senado/basedoc/estatuto_tributario.html) | 2026-09-29 | — | — | Civil, Constitucional, Tributario |
+| `constitucion_politica_1991` | Constitucion Politica de Colombia de 1991 | Gestor Normativo de Funcion Publica | [enlace](https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=4125) | 2026-09-29 | — | — | Administrativo, Comercial y sociedades, Constitucional, Familia, Laboral, Mercados, Penal, Procesal, Tributario |
+| `codigo_general_proceso` | Codigo General del Proceso (Ley 1564 de 2012) | Gestor Normativo de Funcion Publica | [enlace](https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=48425) | 2026-09-29 | — | — | Civil, Comercial y sociedades, Familia, Mercados, Penal, Procesal, Tributario |
+| `codigo_sustantivo_trabajo` | Codigo Sustantivo del Trabajo | Gestor Normativo de Funcion Publica | [enlace](https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=199983) | 2026-09-29 | — | — | Laboral |
+| `estatuto_tributario` | Estatuto Tributario (Decreto 624 de 1989) | Gestor Normativo de Funcion Publica | [enlace](https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=6533) | 2026-09-29 | — | — | Civil, Constitucional, Tributario |
 | `decision_andina_486` | Decision 486 de 2000 de la Comunidad Andina, Regimen Comun sobre Propiedad Industrial | Comunidad Andina | [enlace](https://www.comunidadandina.org/StaticFiles/DocOf/DEC486.pdf) | 2026-09-28 | — | — | Comercial y sociedades, Mercados |
-| `estatuto_consumidor` | Estatuto del Consumidor (Ley 1480 de 2011) | Secretaria del Senado | [enlace](http://www.secretariasenado.gov.co/senado/basedoc/ley_1480_2011.html) | 2026-09-29 | — | — | Civil, Mercados |
-| `ley_80_1993` | Ley 80 de 1993 | Secretaria del Senado | [enlace](http://www.secretariasenado.gov.co/senado/basedoc/ley_0080_1993.html) | 2026-09-29 | — | — | Administrativo, Laboral |
-| `ley_2220_2022` | Ley 2220 de 2022 | Secretaria del Senado | [enlace](http://www.secretariasenado.gov.co/senado/basedoc/ley_2220_2022.html) | 2026-09-29 | — | — | Civil, Procesal |
-| `decreto_2153_1992` | Decreto 2153 de 1992 | Secretaria del Senado | [enlace](http://www.secretariasenado.gov.co/senado/basedoc/decreto_2153_1992.html) | 2026-09-29 | — | — | Mercados |
-| `ley_1116_2006` | Ley 1116 de 2006 | Secretaria del Senado | [enlace](http://www.secretariasenado.gov.co/senado/basedoc/ley_1116_2006.html) | 2026-09-29 | — | — | Comercial y sociedades, Procesal |
+| `estatuto_consumidor` | Estatuto del Consumidor (Ley 1480 de 2011) | Gestor Normativo de Funcion Publica | [enlace](https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=44306) | 2026-09-29 | — | — | Civil, Mercados |
+| `ley_80_1993` | Ley 80 de 1993 | Gestor Normativo de Funcion Publica | [enlace](https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=304) | 2026-09-29 | — | — | Administrativo, Laboral |
+| `ley_2220_2022` | Ley 2220 de 2022 | Gestor Normativo de Funcion Publica | [enlace](https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=188766) | 2026-09-29 | — | — | Civil, Procesal |
+| `decreto_2153_1992` | Decreto 2153 de 1992 | Gestor Normativo de Funcion Publica | [enlace](https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=38168) | 2026-09-29 | — | — | Mercados |
+| `ley_1116_2006` | Ley 1116 de 2006 | Gestor Normativo de Funcion Publica | [enlace](https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=22657) | 2026-09-29 | — | — | Comercial y sociedades, Procesal |
 | `sentencia_c_355_2006` | Sentencia C-355 de 2006 | Relatoria de la Corte Constitucional | [enlace](https://www.corteconstitucional.gov.co/relatoria/2006/C-355-06.htm) | 2026-09-29 | — | — | Constitucional, Penal |
-| `ley_1581_2012` | Ley 1581 de 2012 | Secretaria del Senado | [enlace](http://www.secretariasenado.gov.co/senado/basedoc/ley_1581_2012.html) | 2026-09-29 | — | — | Administrativo, Constitucional, Mercados |
-| `codigo_infancia` | Codigo de la Infancia y la Adolescencia (Ley 1098 de 2006) | Secretaria del Senado | [enlace](http://www.secretariasenado.gov.co/senado/basedoc/ley_1098_2006.html) | 2026-09-29 | — | — | Familia |
-| `ley_1258_2008` | Ley 1258 de 2008 | Secretaria del Senado | [enlace](http://www.secretariasenado.gov.co/senado/basedoc/ley_1258_2008.html) | 2026-09-29 | — | — | Comercial y sociedades |
+| `ley_1581_2012` | Ley 1581 de 2012 | Gestor Normativo de Funcion Publica | [enlace](https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=49981) | 2026-09-29 | — | — | Administrativo, Constitucional, Mercados |
+| `codigo_infancia` | Codigo de la Infancia y la Adolescencia (Ley 1098 de 2006) | Instituto Colombiano de Bienestar Familiar (ICBF) | [enlace](https://www.icbf.gov.co/sites/default/files/codigoinfancialey1098.pdf) | 2026-09-29 | — | — | Familia |
+| `ley_1258_2008` | Ley 1258 de 2008 | Gestor Normativo de Funcion Publica | [enlace](https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=34130) | 2026-09-29 | — | — | Comercial y sociedades |
 | `sentencia_c_207_2019` | Sentencia C-207 de 2019 | Relatoria de la Corte Constitucional | [enlace](https://www.corteconstitucional.gov.co/relatoria/2019/C-207-19.htm) | 2026-09-29 | — | — | Administrativo |
-| `sentencia_sl_3385_2022` | Sentencia SL-3385 de 2022 | Relatoria de la Corte Suprema de Justicia | [enlace](https://www.corteconstitucional.gov.co/relatoria/?q=Sentencia%20SL-3385%20de%202022) | 2026-09-29 | — | — | Laboral |
+| `sentencia_sl_3385_2022` | Sentencia SL-3385 de 2022 | RedJurista | [enlace](https://www.redjurista.com/appfolders/images/news/CSJ_SCL_SL3385_2022_2022.pdf) | 2026-09-29 | — | — | Laboral |
 | `sentencia_t_323_2024` | Sentencia T-323 de 2024 | Relatoria de la Corte Constitucional | [enlace](https://www.corteconstitucional.gov.co/relatoria/2024/T-323-24.htm) | 2026-09-29 | — | — | Constitucional |
 | `ley_1010_2006` | Ley 1010 de 2006 | Secretaria del Senado | [enlace](http://www.secretariasenado.gov.co/senado/basedoc/ley_1010_2006.html) | 2026-09-29 | — | — | Laboral |
 | `ley_1150_2007` | Ley 1150 de 2007 | Secretaria del Senado | [enlace](http://www.secretariasenado.gov.co/senado/basedoc/ley_1150_2007.html) | 2026-09-29 | — | — | Administrativo |
@@ -262,10 +262,15 @@ paso (ver el ejemplo para el nivel de detalle esperado por el jurado).*
    (`relatoria/AAAA/C-NNN-AA.htm`) y la Decisión Andina 486 en el PDF oficial de la
    Comunidad Andina. Los originales se guardan sin modificar en
    `data/raw_sources/<tipo>/<doc_id>/`, clasificados por tipo de archivo (`html`,
-   `pdf`, `pdf_escaneado`, `otros`), con pausa de 1 s entre peticiones. Los
-   documentos de mayor impacto (Constitución y Código General del Proceso) no se
-   descargan con el script: sus PDF se obtienen a mano para controlar la calidad
-   del dato, y el script solo los registra. La URL real, la
+   `pdf`, `pdf_escaneado`, `otros`), con pausa de 1 s entre peticiones. Trece
+   documentos de mayor impacto (Constitución, Código General del Proceso, Código
+   Sustantivo del Trabajo, Estatuto Tributario, Estatuto del Consumidor, Código de
+   la Infancia, Leyes 80/1993, 1116/2006, 1258/2008, 1581/2012 y 2220/2022, Decreto
+   2153/1992 y la sentencia SL3385 de 2022) no se descargan con el script: sus PDF
+   se obtienen a mano del Gestor Normativo de Función Pública, del ICBF o de
+   RedJurista (enlaces en `data/referencias_normativas.md`) para controlar la
+   calidad del dato, y el script solo los registra con esa fuente
+   (`data/fuentes_override.json`). La URL real, la
    fecha de consulta, el estado y el sha256 de cada descarga quedan en
    `data/fuentes_descargadas.json`, a partir del cual se genera el inventario de la
    sección 1.
