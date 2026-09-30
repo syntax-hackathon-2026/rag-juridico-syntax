@@ -75,7 +75,7 @@ Todavía no existen `run.sh`, `src/main.py` ni tests. Contrato de entrega: `bash
 
 ## Entorno y dependencias (`src/reproducibilidad/`)
 
-Tres scripts, solo stdlib (corren sin instalar nada, en Windows y Mac):
+Cuatro scripts, solo stdlib (corren sin instalar nada, en Windows y Mac):
 
 ```bash
 python3.11 src/reproducibilidad/preparar_entorno.py      # crea .venv, instala requirements.txt y verifica deps
@@ -83,6 +83,7 @@ python3.11 src/reproducibilidad/preparar_entorno.py --evaluador --recrear   # + 
 python src/reproducibilidad/verificar_deps.py            # exit 1 si un import de src/ no está en requirements.txt o no está fijado
 python src/reproducibilidad/verificar_deps.py --fix      # agrega los faltantes ya instalados como paquete==version
 python src/reproducibilidad/registrar_entorno.py --salida evaluation/entornos/<experimento>.json   # commit, python, SO, device, paquetes
+python src/reproducibilidad/verificar_corpus.py   # exit 1 si corpus/ o chunks.jsonl locales difieren de los congelados (--actualizar solo en la máquina de referencia)
 ```
 
 **Regla para todos los agentes: `requirements.txt` crece junto con los imports, nunca después.** Al introducir un import de un paquete de terceros en `src/`:

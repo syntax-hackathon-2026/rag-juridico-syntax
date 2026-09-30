@@ -4,7 +4,7 @@
   "fecha_generacion": "2026-09-29",
   "enlace_nube": "<URL>",
   "n_documentos": 167,
-  "n_fragmentos": 31127,
+  "n_fragmentos": 35105,
   "documentos": [
     {
       "doc_id": "constitucion_politica_1991",
@@ -178,9 +178,9 @@
         "Derecho penal"
       ],
       "n_articulos": null,
-      "n_fragmentos": 1059,
+      "n_fragmentos": 1057,
       "metodo_ingesta": "conversion de RTF/DOCX con pandoc",
-      "sha256": "3de2b79f80e04575dccf067a0ee6cacad5fd6bfc5ca16fb78b833c2e227374f1"
+      "sha256": "7924cdd549c1e099548194dc7cfc454f16adfb76bf4f4a239ad26b9b35748127"
     },
     {
       "doc_id": "ley_1581_2012",
@@ -379,9 +379,9 @@
         "Derecho de familia"
       ],
       "n_articulos": null,
-      "n_fragmentos": 192,
+      "n_fragmentos": 194,
       "metodo_ingesta": "parser HTML (BeautifulSoup) + limpieza de navegacion y notas editoriales",
-      "sha256": "311e1c2e288b9e92aac3ad9ba58cacf40d7077bb7447557df138365fa784d9a2"
+      "sha256": "f47517544aa3501f813c315c2d3c0a055634771811508c2d4e3fbeeda22eae84"
     },
     {
       "doc_id": "sentencia_c_55_2022",
@@ -394,9 +394,9 @@
         "Derecho penal"
       ],
       "n_articulos": null,
-      "n_fragmentos": 159,
+      "n_fragmentos": 935,
       "metodo_ingesta": "parser HTML (BeautifulSoup) + limpieza de navegacion y notas editoriales",
-      "sha256": "7959877d3fcad86c52ef662c6697d83721006452db4f26f88a6710e51988919b"
+      "sha256": "dd6e64046d2a9f5b213dd34843a8fc008702d10d2d80b02bc7570d63dcb2d706"
     },
     {
       "doc_id": "sentencia_su_315_2025",
@@ -408,9 +408,9 @@
         "Derecho civil"
       ],
       "n_articulos": null,
-      "n_fragmentos": 103,
+      "n_fragmentos": 170,
       "metodo_ingesta": "parser HTML (BeautifulSoup) + limpieza de navegacion y notas editoriales",
-      "sha256": "3e0cdbfb96678ada53b2a5b2d6ebfbedfa7e75ae1ffbf5bb2237d98d574dd5f7"
+      "sha256": "5cbbfb2568a9bb8e31a1afc7c71475461007c6af12db0d6099addf00ccb576e0"
     },
     {
       "doc_id": "sentencia_t_243_2018",
@@ -437,9 +437,9 @@
         "Derecho constitucional"
       ],
       "n_articulos": null,
-      "n_fragmentos": 234,
+      "n_fragmentos": 878,
       "metodo_ingesta": "parser HTML (BeautifulSoup) + limpieza de navegacion y notas editoriales",
-      "sha256": "64e6fe193d0a6a2920fdd3181a43bb0295efb58189a62ef1b4196f8cc15b594a"
+      "sha256": "0312dbe97fce6739d6983aa4eedf4b1d6ae158072172e3d9df80eea60723ac14"
     },
     {
       "doc_id": "ley_1095_2006",
@@ -551,9 +551,9 @@
         "Derecho tributario"
       ],
       "n_articulos": null,
-      "n_fragmentos": 120,
+      "n_fragmentos": 184,
       "metodo_ingesta": "parser HTML (BeautifulSoup) + limpieza de navegacion y notas editoriales",
-      "sha256": "18d99a665e47593c5f4d678749e31ff3a237ae0812429202e7db0b7403e51558"
+      "sha256": "27662b6fb4cecaa6dfc202b4cd6c830a885bde46bfd9ec5d1d8afb82ff53e94a"
     },
     {
       "doc_id": "sentencia_c_127_2011",
@@ -610,9 +610,9 @@
         "Derecho penal"
       ],
       "n_articulos": null,
-      "n_fragmentos": 136,
+      "n_fragmentos": 158,
       "metodo_ingesta": "parser HTML (BeautifulSoup) + limpieza de navegacion y notas editoriales",
-      "sha256": "119e3c3d95ee1668c88c7dbd1ee7d1259ae35f73223b7eac94895a30fa0af48c"
+      "sha256": "8fa76d1715e925301a5eb46e71e06ba4043dff319268a06b7625501e3986d57b"
     },
     {
       "doc_id": "sentencia_c_259_2015",
@@ -683,9 +683,9 @@
         "Derecho de familia"
       ],
       "n_articulos": null,
-      "n_fragmentos": 171,
+      "n_fragmentos": 256,
       "metodo_ingesta": "parser HTML (BeautifulSoup) + limpieza de navegacion y notas editoriales",
-      "sha256": "f60a4794df1ccbb41b03254c674d87c77d2865b0b3ed17d6eab50342ed0222b2"
+      "sha256": "5f90aa986de2674592a44599e92a661e67d5977607b4fbc59d894daf96a48cbb"
     },
     {
       "doc_id": "sentencia_c_540_2023",
@@ -741,9 +741,9 @@
         "Derecho de los mercados [competencia, consumidor, datos personales y propiedad intelectual]"
       ],
       "n_articulos": null,
-      "n_fragmentos": 112,
+      "n_fragmentos": 520,
       "metodo_ingesta": "parser HTML (BeautifulSoup) + limpieza de navegacion y notas editoriales",
-      "sha256": "59862eb3791a2349fa38bc94a5e3710ec9bf652734c9b1623378ee8b1ca92642"
+      "sha256": "5e3702844ab3d9cc073a1f6dada5920dcc35dfc1bf842628d4128b0d306f5f2b"
     },
     {
       "doc_id": "sentencia_c_94_2021",
@@ -755,9 +755,9 @@
         "Derecho constitucional"
       ],
       "n_articulos": null,
-      "n_fragmentos": 100,
+      "n_fragmentos": 123,
       "metodo_ingesta": "parser HTML (BeautifulSoup) + limpieza de navegacion y notas editoriales",
-      "sha256": "b6168dace784dc2557f2e931ade3447ef6e120039acfe58755de461eb4dc53cd"
+      "sha256": "eabdaae85ed8a218ba2be93a915892721c2115383a2e4f1fc60be286ecae5be6"
     },
     {
       "doc_id": "sentencia_c_96_2024",
@@ -769,9 +769,9 @@
         "Derecho de familia"
       ],
       "n_articulos": null,
-      "n_fragmentos": 137,
+      "n_fragmentos": 164,
       "metodo_ingesta": "parser HTML (BeautifulSoup) + limpieza de navegacion y notas editoriales",
-      "sha256": "5193825b84ed8e10f15e31c1b63a16bb7b16c8b0468e9325107d407acb304c3d"
+      "sha256": "392c02a07bfa51c56623d49c13d9ee657cd8e123b8c1901b9900fb6288dad7ac"
     },
     {
       "doc_id": "sentencia_su_111_2025",
@@ -783,9 +783,9 @@
         "Derecho laboral"
       ],
       "n_articulos": null,
-      "n_fragmentos": 127,
+      "n_fragmentos": 176,
       "metodo_ingesta": "parser HTML (BeautifulSoup) + limpieza de navegacion y notas editoriales",
-      "sha256": "85911aa58c1b31b8271137ed827a8a069f136831d48c9cc06660c9a862eb0d79"
+      "sha256": "25119ddfe3516ad2500d04c3a1cd5da88d062c458941a4614e394dcdd48f18e6"
     },
     {
       "doc_id": "sentencia_su_214_2016",
@@ -797,9 +797,9 @@
         "Derecho de familia"
       ],
       "n_articulos": null,
-      "n_fragmentos": 75,
+      "n_fragmentos": 559,
       "metodo_ingesta": "parser HTML (BeautifulSoup) + limpieza de navegacion y notas editoriales",
-      "sha256": "e7f3eaed00b830426899a01c74c53cb36951263b9ca1da953a59e5ab643096c9"
+      "sha256": "4e9d95cd100ff35b23ecc29787ffbfb7d0d8700a92a977a631a0f12c34f78b0c"
     },
     {
       "doc_id": "sentencia_t_547_2017",
@@ -1008,9 +1008,9 @@
         "Derecho penal"
       ],
       "n_articulos": 2396,
-      "n_fragmentos": 2914,
+      "n_fragmentos": 2913,
       "metodo_ingesta": "parser HTML (BeautifulSoup) + limpieza de navegacion y notas editoriales",
-      "sha256": "d4706f18d46a21df0fedbec321c480381271eea87387ae708d10a61be5e80637"
+      "sha256": "b5b7d2b5431909f438ff87ad162051fd275067424144e5b379954a646b54be73"
     },
     {
       "doc_id": "decreto_875_2008",
@@ -1470,9 +1470,9 @@
         "Derecho constitucional"
       ],
       "n_articulos": null,
-      "n_fragmentos": 114,
+      "n_fragmentos": 306,
       "metodo_ingesta": "parser HTML (BeautifulSoup) + limpieza de navegacion y notas editoriales",
-      "sha256": "f33eb3b9e77f23e6161eedc054d2e875bb0cc1c94043f311269eefb824d2f227"
+      "sha256": "c099524c9b1e7f9b2d17a73c63b8fe3894a95cda7cc68059e22af54331ec3bc2"
     },
     {
       "doc_id": "sentencia_c_149_1993",
@@ -1512,9 +1512,9 @@
         "Derecho civil"
       ],
       "n_articulos": null,
-      "n_fragmentos": 151,
+      "n_fragmentos": 160,
       "metodo_ingesta": "parser HTML (BeautifulSoup) + limpieza de navegacion y notas editoriales",
-      "sha256": "6457b8460ab91ba6f9310ab1396ee5afa24728d014d6e368a6ac6fc6e47ae109"
+      "sha256": "5c966b1889cccd49790aaf46f973b361108975deb8847e433f87191f434bb922"
     },
     {
       "doc_id": "sentencia_c_201_2002",
@@ -1568,9 +1568,9 @@
         "Derecho constitucional"
       ],
       "n_articulos": null,
-      "n_fragmentos": 158,
+      "n_fragmentos": 423,
       "metodo_ingesta": "parser HTML (BeautifulSoup) + limpieza de navegacion y notas editoriales",
-      "sha256": "76ecb1d33a5daaab58df9151a4d029c67dfded1d95d70ba79b1fd6b3295ceb36"
+      "sha256": "ecd699c92b115e36975cf08187d590e5d1f375871930c49f2ee5645f71df7415"
     },
     {
       "doc_id": "sentencia_c_239_1997",
@@ -1582,9 +1582,9 @@
         "Derecho constitucional"
       ],
       "n_articulos": null,
-      "n_fragmentos": 201,
+      "n_fragmentos": 209,
       "metodo_ingesta": "parser HTML (BeautifulSoup) + limpieza de navegacion y notas editoriales",
-      "sha256": "d9fabd3de13437d59a882ac90e9989b5773aced4bb4edee9b7c3aa388cd65b9f"
+      "sha256": "be6e222ed98d0af01b08393732813d471d82187ee982f3d2664d9751d9cadd89"
     },
     {
       "doc_id": "sentencia_c_276_2025",
@@ -1596,9 +1596,9 @@
         "Derecho comercial y sociedades"
       ],
       "n_articulos": null,
-      "n_fragmentos": 118,
+      "n_fragmentos": 125,
       "metodo_ingesta": "parser HTML (BeautifulSoup) + limpieza de navegacion y notas editoriales",
-      "sha256": "d03a22f76f1750d13d51a8e60aa9ba894368a98a5d4d7834424c81bd4626830e"
+      "sha256": "cfa05424dda96710c2a20e9cc4102a85223ed9e7182b6dcd2462a3fc1c62b15e"
     },
     {
       "doc_id": "sentencia_c_332_2025",
@@ -1666,9 +1666,9 @@
         "Derecho de familia"
       ],
       "n_articulos": null,
-      "n_fragmentos": 121,
+      "n_fragmentos": 186,
       "metodo_ingesta": "parser HTML (BeautifulSoup) + limpieza de navegacion y notas editoriales",
-      "sha256": "0179bfdc5c4f005f07e528c47b696f12f0601c5c11cc6508990ed14644abc503"
+      "sha256": "ce23906a3a3d1b339bcde26bec53c6361882e5d9bf1cb1fe246e6f6dec47831b"
     },
     {
       "doc_id": "sentencia_c_413_1996",
@@ -1778,9 +1778,9 @@
         "Derecho de familia"
       ],
       "n_articulos": null,
-      "n_fragmentos": 186,
+      "n_fragmentos": 406,
       "metodo_ingesta": "parser HTML (BeautifulSoup) + limpieza de navegacion y notas editoriales",
-      "sha256": "626e8a74313581a572e84d93d6159a05d06d4880f3d0f1a738abf78fcfc0c8e9"
+      "sha256": "193da046fc10efb399c6ea986d36051a858c2710428c3bb81b469f6a4eea14d1"
     },
     {
       "doc_id": "sentencia_c_700_1999",
@@ -1792,9 +1792,9 @@
         "Derecho constitucional"
       ],
       "n_articulos": null,
-      "n_fragmentos": 167,
+      "n_fragmentos": 214,
       "metodo_ingesta": "parser HTML (BeautifulSoup) + limpieza de navegacion y notas editoriales",
-      "sha256": "8c377706629a6e54327be6006443f20a1de3065d12ff145ecaca8bd2ca76e3bc"
+      "sha256": "18ceda81ef8603a7514be54d443dd30ad82d227a629eff0548176cb5440e55bf"
     },
     {
       "doc_id": "sentencia_c_80_2025",
@@ -1876,9 +1876,9 @@
         "Derecho civil"
       ],
       "n_articulos": null,
-      "n_fragmentos": 90,
+      "n_fragmentos": 211,
       "metodo_ingesta": "parser HTML (BeautifulSoup) + limpieza de navegacion y notas editoriales",
-      "sha256": "36d54041061d8fdbeaa1a591e67fb08c57e08309e3872607cd8723551535aea1"
+      "sha256": "c22dee17da1a598ef4adc4f141a32867aac88e7f18090bac48dfd05773be138a"
     },
     {
       "doc_id": "sentencia_su_149_2021",
@@ -1904,9 +1904,9 @@
         "Derecho civil"
       ],
       "n_articulos": null,
-      "n_fragmentos": 117,
+      "n_fragmentos": 134,
       "metodo_ingesta": "parser HTML (BeautifulSoup) + limpieza de navegacion y notas editoriales",
-      "sha256": "c61542a709fc8343ca3273fd94c014ec10e064d9ff79ff3d8173c61de39479fb"
+      "sha256": "ad82e7fc036bb4552dbd58d4a9e474a91138139f3571fe3ffe856d99e8923cec"
     },
     {
       "doc_id": "sentencia_su_240_2015",
@@ -1946,9 +1946,9 @@
         "Derecho laboral"
       ],
       "n_articulos": null,
-      "n_fragmentos": 148,
+      "n_fragmentos": 150,
       "metodo_ingesta": "parser HTML (BeautifulSoup) + limpieza de navegacion y notas editoriales",
-      "sha256": "ad5e17fc0d085820191524634f068d265d8c9ff3ba1f5fede73ada3013574279"
+      "sha256": "1716c8d29385e4e4581d5daf1f3f6c6a06a6a007e629476850ca4932a4881324"
     },
     {
       "doc_id": "sentencia_su_380_2021",
@@ -1974,9 +1974,9 @@
         "Derecho laboral"
       ],
       "n_articulos": null,
-      "n_fragmentos": 93,
+      "n_fragmentos": 177,
       "metodo_ingesta": "parser HTML (BeautifulSoup) + limpieza de navegacion y notas editoriales",
-      "sha256": "be42fa99a44de38b18a8e8ac23ec4063cecf37a56586dbe7b6f7a32c16b4e9a0"
+      "sha256": "d5530deacad578de5695efe9cf6366ff78f8c9a2ead0c381277424963ffa1089"
     },
     {
       "doc_id": "sentencia_su_425_2025",
@@ -2002,9 +2002,9 @@
         "Derecho penal"
       ],
       "n_articulos": null,
-      "n_fragmentos": 134,
+      "n_fragmentos": 259,
       "metodo_ingesta": "parser HTML (BeautifulSoup) + limpieza de navegacion y notas editoriales",
-      "sha256": "e3a07c3255782ad976ccdaa00e073a9af88b95ae64c7b7c5130dcbccf077659c"
+      "sha256": "76e47e75531270c13fab1262c0030d2f1c0fb15f8b9b23ce91ec829905ec7a6f"
     },
     {
       "doc_id": "sentencia_su_431_2015",
@@ -2016,9 +2016,9 @@
         "Derecho civil"
       ],
       "n_articulos": null,
-      "n_fragmentos": 161,
+      "n_fragmentos": 173,
       "metodo_ingesta": "parser HTML (BeautifulSoup) + limpieza de navegacion y notas editoriales",
-      "sha256": "5e80e37d80294241ae63009cf83f28730781708c2f3b2d492100227b1bd928bf"
+      "sha256": "33b844ccba3c1235409274ba7040e7b3a5a8467942de53fc5b5dcf4e0644ffec"
     },
     {
       "doc_id": "sentencia_su_455_2020",
@@ -2044,9 +2044,9 @@
         "Derecho civil"
       ],
       "n_articulos": null,
-      "n_fragmentos": 184,
+      "n_fragmentos": 220,
       "metodo_ingesta": "parser HTML (BeautifulSoup) + limpieza de navegacion y notas editoriales",
-      "sha256": "c71b45c08c7ea7b479f97aeeb66b27dd7b3ba4ab9f3c882808b3c0cce2f3d2b9"
+      "sha256": "79ed8f28ecd4022e9d52f1a315a84bcb77d41f3a673789c2d131d302c6c25ea6"
     },
     {
       "doc_id": "sentencia_su_566_2015",
@@ -2156,9 +2156,9 @@
         "Derecho constitucional"
       ],
       "n_articulos": null,
-      "n_fragmentos": 105,
+      "n_fragmentos": 109,
       "metodo_ingesta": "parser HTML (BeautifulSoup) + limpieza de navegacion y notas editoriales",
-      "sha256": "1f993ea24cce8cdfb66f776e3268731348de0dbde39896718cdeb5244a128e07"
+      "sha256": "b40e95d39371e40d6c5b568fa2f1e3e86ed1b15d7fe35e6acaea3da3d8ef6725"
     },
     {
       "doc_id": "sentencia_t_26_2025",
@@ -2170,9 +2170,9 @@
         "Derecho civil"
       ],
       "n_articulos": null,
-      "n_fragmentos": 109,
+      "n_fragmentos": 145,
       "metodo_ingesta": "parser HTML (BeautifulSoup) + limpieza de navegacion y notas editoriales",
-      "sha256": "1e278b251ff2658d074739537f4f0422a736c43c579ff5c699eff3079c124288"
+      "sha256": "5afe999eedba3b9992f7541c1c410bcd56d06176abbc0794ea547ad671f3c12c"
     },
     {
       "doc_id": "sentencia_t_325_2025",
@@ -2226,9 +2226,9 @@
         "Derecho constitucional"
       ],
       "n_articulos": null,
-      "n_fragmentos": 123,
+      "n_fragmentos": 138,
       "metodo_ingesta": "parser HTML (BeautifulSoup) + limpieza de navegacion y notas editoriales",
-      "sha256": "c9e79ac76e886e0a19169030b64164719ea832561feac310942de5648003ce6e"
+      "sha256": "3e50f98dfa8c7008bbc29fa53a9350f3f7d5ac18c9e32c251acffd1cca3c59df"
     },
     {
       "doc_id": "sentencia_t_4_2026",
@@ -2254,9 +2254,9 @@
         "Derecho constitucional"
       ],
       "n_articulos": null,
-      "n_fragmentos": 125,
+      "n_fragmentos": 190,
       "metodo_ingesta": "parser HTML (BeautifulSoup) + limpieza de navegacion y notas editoriales",
-      "sha256": "6952094173972df4c0df26a7c373ead7b9f03792809f0fc1aa836e31b5f42e50"
+      "sha256": "ac6cce004adb5600a3ee9e23de233956cdb5ba5c9f3a30064dd23dfb0d60610e"
     },
     {
       "doc_id": "sentencia_t_71_2016",

@@ -67,6 +67,18 @@ def decodificar(datos: bytes) -> str:
             return datos.decode("cp1252", errors="replace")
 
 
+_SCRIPT_STYLE = re.compile(r"(?is)<(script|style)\b.*?</\1>")
+_COMENTARIO = re.compile(r"(?s)<!--.*?-->")
+_ETIQUETA = re.compile(r"<[^>]+>")
+UMBRAL_COMPLETITUD = 0.85  # medido: 0,945-0,995 en las 90 sentencias de la relatoria
+
+
+def palabras_crudas(html: str) -> int:
+    """Palabras del HTML sin etiquetas, contadas con regex (no depende de lxml/libxml2)."""
+    html = _COMENTARIO.sub("", _SCRIPT_STYLE.sub("", html))
+    return len(_ETIQUETA.sub(" ", html).split())
+
+
 def ordenar_partes(archivos: list[Path]) -> list[Path]:
     """Pagina base primero y luego _pr001, _pr002... (el orden alfabetico las invierte)."""
     def clave(f: Path) -> tuple[int, str]:
@@ -198,6 +210,14 @@ def extraer_documento(carpeta: Path) -> tuple[str, dict]:
     avisos = []
     if len(texto) < MIN_CHARS:
         avisos.append(f"texto muy corto ({len(texto)} chars)")
+    if fuente == "relatoria_cc":
+        # el extractor toma todo el cuerpo: si conserva bastante menos que el HTML crudo, el
+        # parser se corto (libxml2 y HTML de Word muy anidado: distinto segun version/plataforma)
+        crudas = sum(palabras_crudas(h) for h in paginas)
+        info["completitud"] = round(len(texto.split()) / crudas, 3) if crudas else 0.0
+        if info["completitud"] < UMBRAL_COMPLETITUD:
+            avisos.append(f"texto truncado: {info['completitud']:.0%} de las palabras del HTML "
+                          f"(minimo {UMBRAL_COMPLETITUD:.0%}); revisar version de lxml/libxml2")
     if fuente == "avance_juridico":
         partes, n_indice = indice_avance_juridico(paginas[0])
         if n_indice:
