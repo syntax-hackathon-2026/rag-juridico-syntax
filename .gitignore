@@ -6,6 +6,8 @@ scripts/.env
 venv/
 .DS_Store
 models/
+modelos/
+salidas/
 indice/
 corpus/
 data_corpus/

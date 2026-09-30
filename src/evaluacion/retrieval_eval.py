@@ -34,6 +34,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 import config  # noqa: E402
+from recuperacion.consulta import consulta_de  # noqa: E402
 from recuperacion.retriever import MODOS, cargar  # noqa: E402
 
 sys.path.insert(0, str(config.ROOT / "scripts"))
@@ -58,14 +59,6 @@ def _art(a: str | None) -> str | None:
         return None
     a = re.sub(r"[°º]", "", a.lower()).replace(" ", "")
     return re.sub(r"^(\d+)o$", r"\1", a)
-
-
-def consulta_de(item: dict, tipo: str) -> str:
-    texto = item["pregunta"]
-    if tipo == "pregunta+opciones" and item.get("opciones"):
-        ops = item["opciones"]
-        texto += "\n" + "\n".join(ops.values() if isinstance(ops, dict) else ops)
-    return texto
 
 
 def evaluar(modo: str, items: list[dict], tipo_consulta: str) -> tuple[dict, list[dict]]:

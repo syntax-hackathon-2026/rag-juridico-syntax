@@ -58,6 +58,57 @@ ENCODER_MAX_SEQ = 1024
 # cuda | mps | cpu | auto (cuda > mps > cpu). Por configuracion, nunca por plataforma.
 DEVICE = os.environ.get("SYNTAX_DEVICE", "auto")
 
+# Decoder (enunciado 3.1): GGUF servido en local por llama.cpp (llama-server, API
+# compatible con OpenAI en localhost). Cada entrada fija repo, revision (commit de
+# Hugging Face) y sha256 del archivo: la corrida final y la verificacion en vivo
+# deben usar exactamente el mismo archivo. SYNTAX_LLM elige la entrada.
+MODELOS_DIR = ROOT / "modelos"  # GGUF descargados (en .gitignore)
+LLM_MODELOS = {
+    "qwen3-8b-q4": {
+        "repo": "Qwen/Qwen3-8B-GGUF",
+        "revision": "7c41481f57cb95916b40956ab2f0b139b296d974",
+        "archivo": "Qwen3-8B-Q4_K_M.gguf",
+        "sha256": "d98cdcbd03e17ce47681435b5150e34c1417f50b5c0019dd560e4882c5745785",
+        "cuantizacion": "Q4_K_M",
+        "thinking": True,  # Qwen3 hibrido: se apaga con enable_thinking=false
+    },
+    "qwen3-4b-2507-q4": {  # plan B si el 8B no cabe en el tiempo (no hay GGUF oficial de Qwen)
+        "repo": "unsloth/Qwen3-4B-Instruct-2507-GGUF",
+        "revision": "a06e946bb6b655725eafa393f4a9745d460374c9",
+        "archivo": "Qwen3-4B-Instruct-2507-Q4_K_M.gguf",
+        "sha256": "3605803b982cb64aead44f6c1b2ae36e3acdb41d8e46c8a94c6533bc4c67e597",
+        "cuantizacion": "Q4_K_M",
+        "thinking": False,
+    },
+}
+LLM = os.environ.get("SYNTAX_LLM", "qwen3-8b-q4")
+LLM_URL = os.environ.get("SYNTAX_LLM_URL", "http://127.0.0.1:8080/v1")
+LLM_CTX = 8192
+LLM_SEED = 0
+LLM_TIMEOUT_S = 600
+
+# Pipeline de respuesta. retrieval_k fijo en 10 (el evaluador mira los 10 primeros
+# pasajes); generation_k es el hiperparametro de cuantos ve el decoder.
+MODO_RECUPERACION = "hibrido"
+RETRIEVAL_K = 10
+GENERATION_K = int(os.environ.get("SYNTAX_GENERATION_K", "5"))
+# Cabeceras de la evidencia agregadas a los campos citables: no | generacion (los
+# pasajes que vio el decoder) | top10. Ver generacion/responder.py.
+CITAR_EVIDENCIA = os.environ.get("SYNTAX_CITAR_EVIDENCIA", "generacion")
+SALIDAS_DIR = ROOT / "salidas"  # entregas de desarrollo (en .gitignore)
+TRAZAS_DIR = SALIDAS_DIR / "trazas"
+SCHEMA_PATH = ROOT / "schema" / "submission.schema.json"
+SAMPLE_PATH = ROOT / "data" / "sample_50.jsonl"
+TEST_PATH = ROOT / "data" / "test_992.jsonl"  # se entrega el sabado 09:00
+SUBMISSION_PATH = ROOT / "submissions.jsonl"
+
+
+def llm_config() -> dict:
+    """Entrada de LLM_MODELOS elegida por SYNTAX_LLM, con su ruta local."""
+    if LLM not in LLM_MODELOS:
+        raise SystemExit(f"SYNTAX_LLM={LLM!r} no existe; opciones: {sorted(LLM_MODELOS)}")
+    return {**LLM_MODELOS[LLM], "nombre": LLM, "ruta": MODELOS_DIR / LLM_MODELOS[LLM]["archivo"]}
+
 
 def resolver_device() -> str:
     """Device efectivo segun DEVICE; 'auto' elige el mejor disponible."""

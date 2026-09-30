@@ -49,6 +49,8 @@ class Retriever:
     def __init__(self, cargar_denso: bool = True):
         with config.CHUNKS_PATH.open(encoding="utf-8") as f:
             self.chunks = [json.loads(l) for l in f if l.strip()]
+        for c in self.chunks:  # solo sirve para construir el indice; ahorra memoria junto al decoder
+            c.pop("retrieval_text", None)
         import bm25s
 
         self.bm25 = bm25s.BM25.load(str(config.BM25_DIR))
@@ -93,13 +95,16 @@ class Retriever:
                  n_candidatos: int = N_CANDIDATOS) -> list[RetrievedChunk]:
         if modo not in MODOS:
             raise ValueError(f"modo {modo!r}; opciones: {MODOS}")
+        ranks_rama: dict[str, dict[int, int]] = {}
         if modo == "bm25":
             ranking = self.buscar_bm25(consulta, k)
         elif modo == "denso":
             ranking = self.buscar_denso(consulta, k)
         else:
             fusion: dict[int, float] = {}
-            for rama in (self.buscar_bm25(consulta, n_candidatos), self.buscar_denso(consulta, n_candidatos)):
+            for nombre, rama in (("bm25", self.buscar_bm25(consulta, n_candidatos)),
+                                 ("denso", self.buscar_denso(consulta, n_candidatos))):
+                ranks_rama[nombre] = {i: r for r, (i, _) in enumerate(rama, 1)}
                 for r, (i, _) in enumerate(rama, 1):
                     fusion[i] = fusion.get(i, 0.0) + 1.0 / (RRF_K + r)
             ranking = sorted(fusion.items(), key=lambda p: (-p[1], self.chunks[p[0]]["chunk_id"]))
@@ -108,6 +113,8 @@ class Retriever:
             c = self.chunks[i]
             meta = {kk: c[kk] for kk in ("tipo", "articulo", "parte", "n_partes", "seccion", "vigencia",
                                         "canonico", "cabecera", "url")}
+            for nombre, ranks in ranks_rama.items():  # senal de acuerdo BM25/denso (None = fuera de los candidatos)
+                meta[f"rank_{nombre}"] = ranks.get(i)
             salida.append(RetrievedChunk(chunk_id=c["chunk_id"], doc_id=c["doc_id"], texto=c["texto"],
                                          inicio=c["inicio"], fin=c["fin"], score=s, rank=r, meta=meta))
         return salida
