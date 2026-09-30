@@ -1,0 +1,146 @@
+# Segmentación e indexación del corpus: estado y contexto
+
+Contexto para agentes y personas que continúen el trabajo de recuperación. Resume lo construido el 2026-09-29 (rama `sofi`), las decisiones de diseño y su motivo, los resultados medidos y lo que falta. Las reglas generales del proyecto están en `CLAUDE.md`; este documento no las repite.
+
+## 1. Estado en una línea
+
+`corpus/*.txt` (167 documentos) → **31.127 fragmentos** (`chunks.jsonl`) → **BM25 construido y medido**. **Índice denso bge-m3: código listo, embeddings sin calcular.** En CPU de portátil tarda horas, así que hay que correrlo en una máquina con GPU. El generador (Qwen), `src/main.py` y `run.sh` todavía no existen.
+
+## 2. Pipeline y comandos
+
+```bash
+# 0. corpus local (data_corpus/ está en .gitignore; cada persona lo regenera)
+python src/ingesta/parsear_pdf.py && python src/ingesta/parsear_rtf.py && python src/ingesta/parsear_html.py
+
+# 1. segmentar: corpus/*.txt -> data_corpus/indice/chunks.jsonl + resumen_indice.json  (~1 min, sin deps de ML)
+python src/indexacion/segmentar.py
+python src/indexacion/segmentar.py --solo codigo_civil ley_80_1993          # solo imprime la tabla, no escribe
+python src/indexacion/segmentar.py --mostrar codigo_general_proceso 42      # ver los fragmentos de un artículo
+python src/indexacion/segmentar.py --mostrar sentencia_c_355_2006 w0001     # ver una ventana de sentencia
+
+# 2. índice: bm25/ + index.faiss + indice_info.json, y actualiza corpus_manifest.json
+python src/indexacion/construir_indice.py --solo-bm25                       # sin encoder (lo que está construido hoy)
+SYNTAX_DEVICE=cuda python src/indexacion/construir_indice.py --batch 64     # con GPU (campus)
+
+# 3. probar y medir
+python src/recuperacion/retriever.py "deberes del juez" --modo bm25|denso|hibrido -k 10
+python src/evaluacion/retrieval_eval.py --modo bm25 denso hibrido --experimento e01_bge_m3
+```
+
+Todo usa rutas de `src/config.py`. En Windows, si una consola da error de codificación: `PYTHONIOENCODING=utf-8`.
+
+## 3. Archivos nuevos
+
+| Archivo | Qué hace |
+|---|---|
+| `src/indexacion/cabeceras.py` | Cuerpo canónico de cada `doc_id` (tupla en formato de `scripts/citations.py`) y encabezado citable de cada fragmento, validado con `citations.extract`. |
+| `src/indexacion/segmentar.py` | Segmentador de normas (por artículo) y sentencias (ventanas). Comprueba invariantes y escribe `chunks.jsonl` + `resumen_indice.json`. |
+| `src/indexacion/construir_indice.py` | BM25 (`bm25s`), embeddings `bge-m3` con caché, `faiss.IndexFlatIP`, `indice_info.json` y actualización del manifest. |
+| `src/recuperacion/lexico.py` | Tokenizador de BM25 compartido por indexación y consulta (`lex-v1`). |
+| `src/recuperacion/retriever.py` | `retrieve(query, k, modo) -> list[RetrievedChunk]`; modos `bm25`, `denso`, `hibrido` (RRF k=60 sobre 40 candidatos por rama). `RetrievedChunk.pasaje()` devuelve el registro listo para `pasajes_recuperados`. |
+| `src/evaluacion/retrieval_eval.py` | Métricas de recuperación sobre `sample_50` (usa `legal_basis` solo para evaluar). Escribe `evaluation/retrieval/*.jsonl`, `evaluation/experiments.csv` y `evaluation/entornos/*.json`. |
+
+Modificados: `src/config.py` (rutas del índice, `ENCODER_*`, `DEVICE`/`resolver_device()`, `FUENTES_PATH`), `src/ingesta/_texto.py` (toma `FUENTES_PATH` de config), `requirements.txt`, `CLAUDE.md`/`AGENTS.md`, `CORPUS.md` (sección 3, pasos 4–6 y decisiones), `corpus_manifest.json` (`n_fragmentos`, `sha256`).
+
+## 4. Decisiones de diseño y por qué
+
+### 4.1 Encabezado citable dentro de `texto` (la decisión más importante)
+
+El evaluador calcula el respaldo con `citations.extract(pasaje["texto"])` sobre los 10 primeros pasajes (`scripts/evaluate.py`, `citas_respaldadas`). **No mira el `doc_id`.** Un artículo suelto ("ARTÍCULO 42. Deberes del juez…") no extrae ninguna norma, así que ninguna cita quedaría respaldada. Por eso:
+
+```
+texto = cabecera + "\n" + corpus[inicio:fin]      # corpus = data_corpus/corpus/<doc_id>.txt
+```
+
+- Cabecera de norma: `Artículo 42 del Código General del Proceso.`, `Artículo 5 de la Ley 80 de 1993.`, `Artículo 2.2.1.1 del Decreto 1082 de 2015.`. Antes del primer artículo: `<Nombre>, encabezado y disposiciones iniciales.`
+- Cabecera de sentencia: `Corte Constitucional, Sentencia C-355 de 2006.` o `Corte Suprema de Justicia, Sala de Casación Laboral, Sentencia SL-3385 de 2022.`
+- Se valida que `bodies(extract(cabecera)) == {canonico}`: la cabecera extrae exactamente la norma del documento y nada más. Otras formas probadas fallan:
+  - "Constitución Política de Colombia, artículo 29" pierde el artículo (la ventana de `_articles_near` se rompe con "de colombia").
+  - "Código Civil (Ley 57 de 1887)" agrega un cuerpo espurio `("ley","57","1887")`.
+- La puntuación de citas compara a **nivel de cuerpo** (`citations.bodies` descarta el artículo). Aun así, la cabecera lleva el artículo para la validación de citas en generación.
+- Verificado con el evaluador oficial: **0 de 31.127** fragmentos quedan sin respaldo de su propio cuerpo.
+- **Para quien construya la generación:** `pasajes_recuperados[i].texto` debe ser `chunk["texto"]` tal cual, sin recortar la cabecera, y `inicio`/`fin` son offsets del cuerpo literal en `corpus/<doc_id>.txt`.
+
+### 4.2 Cuerpo canónico por documento
+
+Orden (`cabeceras.canonico`): `doc_id` que es clave de `citations.CODES` (`codigo_civil`, `cpaca`, `codigo_general_proceso`…) → regex del `doc_id` (`ley_N_AAAA`, `decreto_N_AAAA`, `sentencia_<sala>_N_AAAA`; una ley con alias de código en `citations._ALIAS_NUM` usa el alias) → `canonico` de `data/fuentes_descargadas.json` (p. ej. `constitucion_politica_1991`). El `doc_id` va primero porque el `canonico` de la semilla arrastra **erratas del propio banco**, que `fuentes_override.json` corrigió en el `doc_id`:
+
+| doc_id | La semilla/banco dice | Norma correcta (la que usa la cabecera) |
+|---|---|---|
+| `ley_1563_2012` | Decreto 1563 de 2012 (2 ítems) | Ley 1563 de 2012 |
+| `decreto_2737_1989` | Ley 2737 de 1989 (1 ítem) | Decreto 2737 de 1989 |
+| `ley_964_2005` | Ley 964 de 2006 (1 ítem) | Ley 964 de 2005 |
+
+Esos ~4 ítems pueden perder citación si su `legal_basis` usa la forma errónea. Se decidió no citar normas inexistentes.
+
+### 4.3 Unidad de fragmento
+
+- **Normas**: un artículo = un fragmento (`chunk_id` `<doc_id>#art_<N>#p1`). Si pasa de 350 palabras se parte por párrafos en `#p1..#pN` sin solapamiento (un párrafo de más de 450 palabras se parte por oraciones). El texto anterior al primer artículo va en `<doc_id>#pre#pN`. Los encabezados LIBRO/TÍTULO/CAPÍTULO/SECCIÓN no entran al texto: se guardan en `seccion`. Un id de artículo repetido (el ET repite "ARTÍCULO 1", el del decreto y el del estatuto; la Constitución tiene transitorios de varios actos legislativos) recibe el sufijo `~2`.
+- **Sentencias**: ventanas de ~350 palabras con párrafos enteros (`<doc_id>#w0001`…), 1 párrafo de solapamiento si tiene ≤ 120 palabras, sin cruzar secciones: `sintesis | antecedentes | consideraciones | resuelve | salvamento | aclaracion`. Salvamento y aclaración solo se detectan como "… de voto" (evita "2. Aclaración previa" y la firma "CON SALVAMENTO DE VOTO").
+- Formatos de encabezado de artículo reconocidos: `ARTÍCULO 1o.`, `Artículo 1°.`, `ARTÍCULO 1 ORIGEN…` (sin puntuación), `Artículo 1.-`, `ARTÍCULO 12-1.`, `ARTÍCULO 5A.`, `ARTÍCULO 2.2.1.1.1.`, `ARTÍCULO TRANSITORIO 3.`, `14 bis`. Después del número exige puntuación o espacio + mayúscula, así que "Artículo 42 del Código…" en una nota no abre un artículo.
+
+### 4.4 Normas modificatorias (modo cita)
+
+Una ley que reforma otra transcribe artículos ajenos: "ARTÍCULO 10. Modifíquese el artículo 247 del Estatuto Tributario, el cual quedará así: Artículo 247. …". Sin tratamiento, el 247 quedaría como "Artículo 247 de la Ley 1819 de 2016", una cita falsa. Regla:
+
+- Se entra en modo cita si el párrafo previo termina en `:`, si algún párrafo del artículo actual termina en la fórmula de reforma (`quedará así:`, `el siguiente texto:`… aunque haya un subtítulo en medio, caso Ley 1755/2015), o si el encabezado empieza con comillas. Un encabezado entre comillas nunca abre artículo, **ni siquiera antes del primero** (la Ley 600/2000 cita "Artículo 235" de la Constitución en su preámbulo).
+- Se sale cuando la numeración vuelve a la propia: número base entre el último y +2 (letras y `-N` comparten base), reinicio en 1 (transitorios, decreto que adopta un código) o, en decretos únicos, un número mayor del mismo nivel (`2.2.1.4 → 2.2.1.5`).
+
+### 4.5 Encoder e índice
+
+- `BAAI/bge-m3`, licencia MIT, revisión fijada `5617a9f61b028005a4858fdac845db406aefb181` (verificada en Hugging Face), 1024 dimensiones, `max_seq_length=1024`, vectores normalizados y `faiss.IndexFlatIP` exacto (el enunciado, B.3, recomienda índice exacto a esta escala). Se descartó `jina-embeddings-v3` (CC-BY-NC, incompatible con nuestra CC-BY-4.0). `multilingual-e5-large` queda como experimento si el denso sale flojo: tope de 512 tokens y exige prefijos `query:`/`passage:`.
+- **Determinismo**: el índice y la consulta van siempre en fp32, y los empates se desempatan por `chunk_id`. Caché de embeddings en `data_corpus/cache_emb/<modelo>@<rev>/*.npz` con clave sha256 del `retrieval_text`: al agregar documentos solo se codifican los nuevos, y una corrida interrumpida retoma. `--solo-bm25` borra un `index.faiss` viejo para que no quede desalineado.
+- BM25 (`bm25s` 0.3.11, lucene, k1=1.5, b=0.75) sobre `retrieval_text` = `texto` + título del manifest + siglas (`CGP`, `CST`, `ET`…) + sección. Tokenizador `lex-v1`: sin tildes (`citations.norm`), conserva `2.2.1.1`, `240-1` y `1564`, stopwords en español sin "no", "sin" ni "ley", sin stemming.
+
+### 4.6 Manifest
+
+`construir_indice.py` (salvo `--no-manifest`) reescribe en cada build `n_fragmentos` por documento y en la raíz, y `sha256` si el `.txt` cambió. **No toca `n_articulos`** ni agrega o borra documentos. Formato: `json.dumps(indent=2, ensure_ascii=False)` + `\n`, igual que el archivo original. `python src/validaciones/manifest.py` da 0 errores; solo queda el placeholder `enlace_nube`.
+
+## 5. Registro de `chunks.jsonl`
+
+```json
+{"chunk_id": "codigo_general_proceso#art_42#p1", "doc_id": "codigo_general_proceso", "tipo": "codigo",
+ "numero": "1564", "anio": "2012", "articulo": "42", "parte": 1, "n_partes": 2,
+ "seccion": "LIBRO PRIMERO SUJETOS DEL PROCESO / TÍTULO III DEBERES Y PODERES DE LOS JUECES",
+ "vigencia": "sin_nota", "canonico": ["codigo_general_proceso", null, null],
+ "cabecera": "Artículo 42 del Código General del Proceso.", "inicio": 52615, "fin": 54829,
+ "texto": "Artículo 42 del Código General del Proceso.\nArtículo 42. Deberes del juez. …",
+ "retrieval_text": "… | Codigo General del Proceso (Ley 1564 de 2012) | CGP | LIBRO PRIMERO …",
+ "url": "…", "fuente": "…", "n_palabras": 349}
+```
+
+- `tipo`: `constitucion | codigo | ley | decreto | decision | sentencia`. En los códigos, `numero`/`anio` son los de la norma que los adopta (salen del título del manifest).
+- `vigencia`: señal por regex sobre las notas en línea de los primeros 300 caracteres (`inexequible | derogado | modificado | sin_nota`; `null` en sentencias y preámbulos). **No es verdad jurídica.**
+- Invariantes comprobadas al segmentar (exit 1 si fallan): `texto == cabecera + "\n" + corpus[inicio:fin]`; fragmentos de una norma sin solaparse; `chunk_id` únicos en todo el corpus.
+
+## 6. Resultados
+
+**Segmentación** (`seg-v1`): 31.127 fragmentos, 0 errores. Artículos detectados (números base, sin transitorios) frente a `n_articulos` del manifest: exactos en Constitución 380, CGP 627, CST 487, ET 932, Código Civil 2680, Código de Comercio 2032, Decisión 486 280, Decreto 1082 786, Ley 1755 2; Código Penal 475/476, Decreto 780 2380/2396. Secciones de sentencias: consideraciones 5265, antecedentes 2890, aclaración 693, resuelve 688, síntesis 540, salvamento 390.
+
+**Recuperación, `e00_bm25_seg_v1`** (sample_50, 41 preguntas con fundamento extraíble, 19 a nivel de artículo, consulta = pregunta + opciones):
+
+| doc_hit@1 | doc_hit@3 | doc_hit@5 | doc_hit@10 | MRR | respaldo@10 | art_hit@1 | art_hit@10 | latencia |
+|---:|---:|---:|---:|---:|---:|---:|---:|---:|
+| 0,488 | 0,683 | 0,707 | 0,805 | 0,594 | 0,833 | 0,211 | 0,421 | 6 ms |
+
+`respaldo@10` es la fracción de normas de referencia que el evaluador daría por respaldadas con esos 10 pasajes: el techo de los 20 pts de citación. Fallos de doc_hit@10 (8), por diagnóstico:
+
+- CORPUS: #563 (SU-277/2025 no está en el corpus).
+- DOCUMENT_RETRIEVAL: #60, #647, #748, #247, #679, #239, #661. En casi todos, ventanas de sentencias desplazan al artículo (juez natural → T-323/2024 en lugar de CGP/Constitución; legalidad tributaria → sentencias C en lugar de la Constitución). Hipótesis a medir: denso/híbrido; después, una penalización o cuota por tipo de documento.
+
+## 7. Problemas conocidos y pendientes
+
+1. **Índice denso sin calcular.** En CPU de portátil (Windows, torch CPU) el primer bloque de 512 fragmentos tarda más de 10 minutos, así que el corpus completo llevaría muchas horas. Hay que correrlo en GPU (`SYNTAX_DEVICE=cuda … --batch 64`) y copiar `data_corpus/cache_emb/`, o todo `data_corpus/indice/`. Después: `retrieval_eval.py --modo bm25 denso hibrido`.
+2. **Los parsers no dan el mismo texto en todas las máquinas.** 33 documentos (31 sentencias HTML de la relatoría, `decreto_780_2016` y `sentencia_c_355_2006` vía pandoc) dan un `sha256` distinto en Windows/Python 3.13 que en la máquina donde se generó el primer manifest, con los originales idénticos byte a byte. Sospecha: tablas Unicode de NFKC según la versión de Python, o lxml/pandoc. El manifest versionado quedó con los `sha256` de Windows. **Una sola máquina debe generar juntos `corpus/`, `indice/` y el manifest de la entrega**; si no, los offsets y hashes no calzan.
+3. **`n_articulos` del manifest inflado en normas modificatorias** (cuenta artículos transcritos): Ley 80/1993 dice 86 y tiene 81; Ley 50/1990, 171 contra 117; Decreto 405/2025, 7 contra 2; Ley 2466/2025 22 contra 70 detectados (aquí el manifest trae el conteo del índice de navegación). Código de Policía: 200 contra 243 reales. Conviene que quien mantiene el manifest revise esos valores.
+4. **Error residual del modo cita**: Ley 1607/2012 detecta 212 artículos contra 198; ~14 artículos del ET transcritos quedan como propios. Menor, porque la cita sigue siendo correcta a nivel de cuerpo (Ley 1607).
+5. 11 sentencias no tienen sección `resuelve` detectada (p. ej. `sentencia_c_55_2022` no trae el título RESUELVE en el HTML). Las notas al pie de la relatoría quedan etiquetadas con la última sección.
+6. Pendiente del plan: `run.sh`/`src/main.py` (el comando único debe decidir si reconstruye embeddings, que es lento en CPU, o descarga el índice publicado), generación con Qwen, abstención y empaquetado del corpus.
+7. Entorno de esta corrida: Python 3.13 (3.11 no estaba instalado), `torch==2.14.0` CPU, pandoc 3.12 (winget). Versiones fijadas en `requirements.txt`; `verificar_deps.py` da ok.
+
+## 8. Trampas encontradas (para no repetirlas)
+
+- En Git Bash de Windows, un `cat > archivo` sin heredoc (o `python -` con heredoc vacío) se queda esperando stdin y cuelga la herramienta: usar `< /dev/null` o escribir el script a un archivo.
+- Salida de Python redirigida a archivo: usar `python -u` o `PYTHONUNBUFFERED=1`, o el log queda vacío hasta el final.
+- `citations.extract` es lento en volumen (~10 min sobre 31k textos): no llamarlo por fragmento en caliente; `cabeceras.cabecera` está cacheada con `lru_cache`.
+- Al insertar lógica dentro de un `if/elif/else` con Edit, verificar que no quede entre el `elif` y el `else`: así ocurrió un bug que duplicó todo el CGP en el preámbulo. La comprobación de "sin solapamiento" ahora lo detecta.

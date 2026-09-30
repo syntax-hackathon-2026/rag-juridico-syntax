@@ -283,9 +283,29 @@ paso (ver el ejemplo para el nivel de detalle esperado por el jurado).*
    sección 1.
 2. **Extracción de texto.**
 3. **Normalización.**
-4. **Segmentación.**
-5. **Extracción de metadatos.**
-6. **Indexación.**
+4. **Segmentación.** `src/indexacion/segmentar.py` (versión `seg-v1`). En las normas
+   (Constitución, códigos, leyes, decretos y Decisión 486) cada artículo es un fragmento.
+   Los artículos de más de 350 palabras se parten por párrafos (incisos, parágrafos,
+   numerales) en partes sin solapamiento, y el texto anterior al primer artículo forma
+   su propio fragmento. Los encabezados se reconocen en todas sus variantes
+   (`ARTÍCULO 1o.`, `Artículo 1°.`, `Artículo 1.-`, `ARTÍCULO 12-1.`, `ARTÍCULO 2.2.1.1.1.`,
+   `ARTÍCULO TRANSITORIO 3.`). En las normas modificatorias, los artículos transcritos
+   tras un "…quedará así:" se quedan dentro del artículo que los introduce. Las
+   sentencias se parten en ventanas de ~350 palabras con párrafos completos, sin cruzar
+   secciones (síntesis, antecedentes, consideraciones, resuelve, salvamento, aclaración).
+   El conteo de artículos detectados se contrasta con `n_articulos` del manifest:
+   coincide exactamente en la Constitución (380), el CGP (627), el CST (487), el ET
+   (932), el Código Civil (2680), el Código de Comercio (2032) y la Decisión 486 (280).
+5. **Extracción de metadatos.** Cada fragmento registra `doc_id`, tipo de norma,
+   número, año, artículo, parte, ruta LIBRO/TÍTULO/CAPÍTULO, una señal de vigencia
+   tomada de las notas en línea de la fuente (`modificado`, `derogado`, `inexequible`,
+   `sin_nota`), la tupla canónica de la norma en el formato de `scripts/citations.py`,
+   los offsets `inicio`/`fin` en `corpus/<doc_id>.txt` y la URL de origen.
+6. **Indexación.** `src/indexacion/construir_indice.py`: índice léxico BM25 (`bm25s`,
+   tokenizador sin tildes que conserva números de artículo como `2.2.1.1` o `240-1`) e
+   índice denso con `BAAI/bge-m3` (licencia MIT, 1024 dimensiones, revisión fijada)
+   en un `faiss.IndexFlatIP` exacto con vectores normalizados. La recuperación híbrida
+   combina ambos por Reciprocal Rank Fusion.
 
 **Problemas encontrados.**
 
@@ -294,8 +314,23 @@ duplicados, etc.) y cómo se resolvieron.*
 
 **Decisiones de diseño relevantes.**
 
-*Cualquier decisión no obvia (p. ej. qué información lleva el encabezado de
-cada fragmento) y por qué afecta el puntaje de citación/recuperación.*
+- **Encabezado citable en cada fragmento.** El evaluador considera respaldada una
+  cita solo si la encuentra en el texto de alguno de los diez primeros pasajes
+  recuperados. Un artículo aislado ("ARTÍCULO 42. Deberes del juez…") no nombra la
+  norma a la que pertenece. Por eso cada fragmento empieza con una línea como
+  "Artículo 42 del Código General del Proceso." o "Corte Constitucional, Sentencia
+  C-355 de 2006.", seguida del texto literal. Se verifica automáticamente que el
+  encabezado identifique exactamente la norma del documento, y los 31.127
+  fragmentos quedan respaldados por su propia norma.
+- **Encoder.** De los encoders sugeridos en el enunciado se descartó
+  `jina-embeddings-v3` porque su licencia (CC-BY-NC-4.0) es incompatible con la
+  CC-BY-4.0 del corpus publicado. Entre `bge-m3` y `multilingual-e5-large` se eligió
+  `bge-m3`: admite textos de hasta 8192 tokens, y hay artículos del ET y del CST que
+  superan los 512 de E5. Además no necesita los prefijos `query:`/`passage:`.
+- **Identidad correcta sobre la semilla.** Tres objetivos de la semilla llegan con
+  una norma mal citada en el propio banco ("Decreto 1563 de 2012", "Ley 2737 de 1989",
+  "Ley 964 de 2006"). El corpus usa la identificación correcta (Ley 1563 de 2012,
+  Decreto 2737 de 1989, Ley 964 de 2005).
 
 ## 4. Evolución del puntaje
 

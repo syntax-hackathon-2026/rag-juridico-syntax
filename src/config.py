@@ -26,6 +26,7 @@ Todo el codigo debe importar las rutas de aqui; nadie escribe rutas a mano.
 """
 from __future__ import annotations
 
+import os
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -37,8 +38,38 @@ RAW_DIR = ROOT / "data" / "raw"  # originales por formato (html/, pdf/, rtf/); l
 RAW_HTML_DIR = RAW_DIR / "html"
 PARSEO_PATH = CORPUS_DIR / "parseo.json"  # inventario del parseo, fuera de corpus/ (que se publica tal cual)
 MAPA_ARCHIVOS_PATH = ROOT / "data" / "mapa_archivos.json"  # archivo original -> doc_id (versionado)
+FUENTES_PATH = ROOT / "data" / "fuentes_descargadas.json"  # url/fuente/canonico por doc_id (versionado)
 CHUNKS_PATH = INDICE_DIR / "chunks.jsonl"
 FAISS_PATH = INDICE_DIR / "index.faiss"
+BM25_DIR = INDICE_DIR / "bm25"
+INDICE_INFO_PATH = INDICE_DIR / "indice_info.json"  # encoder, revision, n, sha256 de chunks.jsonl
+RESUMEN_INDICE_PATH = INDICE_DIR / "resumen_indice.json"  # por doc_id: fragmentos, articulos, avisos
+EMB_CACHE_DIR = CORPUS_DIR / "cache_emb"  # fuera de indice/ (no se publica): vectores por hash de texto
+EVALUATION_DIR = ROOT / "evaluation"
+EXPERIMENTS_CSV = EVALUATION_DIR / "experiments.csv"
+
+# Encoder denso (enunciado 3.1). bge-m3: MIT, 1024 dim, 8192 tokens, sin prefijos.
+# La revision fija el commit del modelo en Hugging Face: el indice publicado y las
+# consultas en vivo deben usar exactamente los mismos pesos.
+ENCODER_MODEL = "BAAI/bge-m3"
+ENCODER_REVISION = "5617a9f61b028005a4858fdac845db406aefb181"
+ENCODER_MAX_SEQ = 1024
+
+# cuda | mps | cpu | auto (cuda > mps > cpu). Por configuracion, nunca por plataforma.
+DEVICE = os.environ.get("SYNTAX_DEVICE", "auto")
+
+
+def resolver_device() -> str:
+    """Device efectivo segun DEVICE; 'auto' elige el mejor disponible."""
+    if DEVICE != "auto":
+        return DEVICE
+    import torch
+
+    if torch.cuda.is_available():
+        return "cuda"
+    if torch.backends.mps.is_available():
+        return "mps"
+    return "cpu"
 
 
 def raw_html_dir(doc_id: str) -> Path:
