@@ -78,8 +78,8 @@ Todavía no existen `run.sh`, `src/main.py` ni tests. Contrato de entrega: `bash
 Cuatro scripts, solo stdlib (corren sin instalar nada, en Windows y Mac):
 
 ```bash
-python3.11 src/reproducibilidad/preparar_entorno.py      # crea .venv, instala requirements.txt y verifica deps
-python3.11 src/reproducibilidad/preparar_entorno.py --evaluador --recrear   # + deps del juez; .venv de cero
+python3.13 src/reproducibilidad/preparar_entorno.py      # crea .venv, instala requirements.txt y verifica deps
+python3.13 src/reproducibilidad/preparar_entorno.py --evaluador --recrear   # + deps del juez; .venv de cero
 python src/reproducibilidad/verificar_deps.py            # exit 1 si un import de src/ no está en requirements.txt o no está fijado
 python src/reproducibilidad/verificar_deps.py --fix      # agrega los faltantes ya instalados como paquete==version
 python src/reproducibilidad/registrar_entorno.py --salida evaluation/entornos/<experimento>.json   # commit, python, SO, device, paquetes
@@ -234,7 +234,7 @@ Antes de añadir una técnica: qué error observado corrige, qué métrica debe 
 
 ## Equipo, plataformas y cómputo
 
-- **Windows + Mac**: escribir código portable. `pathlib`, sin rutas con `\`, abrir/escribir archivos con `encoding="utf-8"` y `newline="\n"`, sin dependencias de bash en `src/` (el `run.sh` es un envoltorio fino de `python src/main.py`). Fijar versiones en `requirements.txt` (Python 3.11 objetivo; el repo trae `.pyc` de 3.14 de los scripts oficiales, que corren en ambas).
+- **Windows + Mac**: escribir código portable. `pathlib`, sin rutas con `\`, abrir/escribir archivos con `encoding="utf-8"` y `newline="\n"`, sin dependencias de bash en `src/` (el `run.sh` es un envoltorio fino de `python src/main.py`). Fijar versiones en `requirements.txt` (Python 3.13, declarado en la línea `# python: 3.13` de `requirements.txt`; `verificar_deps.py` y `preparar_entorno.py` fallan con otra versión. Para cambiarla, editar esa línea y recrear el entorno).
 - **Un solo contrato de dispositivo**: `device = cuda | mps | cpu` por configuración, no por `if platform`. Mac: llama.cpp con Metal (`-DGGML_METAL=ON`, GGUF Q4_K_M). Campus/CUDA: mismo modelo servido por llama.cpp o vLLM. Exponer el decoder siempre tras una interfaz `generate(prompt) -> str` (idealmente endpoint OpenAI-compatible) para que el resto del código no cambie.
 - **Las máquinas del campus sirven para lo pesado y paralelizable**: embeddings del corpus completo, construcción de índices, sweeps de retrieval y las corridas largas de las 992. Los Mac sirven para iterar.
 - **Cuidado de reproducibilidad entre plataformas**: un GGUF Q4 en Mac y otra cuantización en CUDA no dan la misma salida. Los números de `experiments.csv` deben anotar plataforma y cuantización; **la corrida final de las 992 y la verificación en vivo usan una sola configuración congelada**.

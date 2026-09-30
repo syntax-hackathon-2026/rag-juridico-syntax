@@ -1,18 +1,19 @@
 """Crea el entorno virtual del proyecto (.venv) e instala requirements.txt.
 
 Portable Windows/Mac/Linux, solo stdlib. Usa el interprete con el que se
-ejecuta (objetivo: Python 3.11) y al final corre verificar_deps.py dentro del
+ejecuta (objetivo: la version de `# python:` en requirements.txt) y al final corre verificar_deps.py dentro del
 entorno para confirmar que todo import de src/ esta declarado.
 
 Uso:
-    python3.11 src/reproducibilidad/preparar_entorno.py
-    python3.11 src/reproducibilidad/preparar_entorno.py --evaluador   # + deps del juez (ragas)
-    python3.11 src/reproducibilidad/preparar_entorno.py --recrear     # borra .venv antes
+    python3.13 src/reproducibilidad/preparar_entorno.py
+    python3.13 src/reproducibilidad/preparar_entorno.py --evaluador   # + deps del juez (ragas)
+    python3.13 src/reproducibilidad/preparar_entorno.py --recrear     # borra .venv antes
 """
 from __future__ import annotations
 
 import argparse
 import os
+import re
 import shutil
 import subprocess
 import sys
@@ -21,7 +22,17 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
 VENV = ROOT / ".venv"
-PYTHON_OBJETIVO = (3, 11)
+
+
+def python_objetivo() -> tuple[int, int]:
+    """Version de Python declarada en la cabecera de requirements.txt (`# python: 3.13`)."""
+    m = re.search(r"^#\s*python:\s*(\d+)\.(\d+)\s*$", (ROOT / "requirements.txt").read_text(encoding="utf-8"), re.M)
+    if not m:
+        raise SystemExit("requirements.txt no declara `# python: X.Y`")
+    return int(m[1]), int(m[2])
+
+
+PYTHON_OBJETIVO = python_objetivo()
 
 
 def venv_python() -> Path:
@@ -48,9 +59,10 @@ def main() -> int:
     args = ap.parse_args()
 
     if sys.version_info[:2] != PYTHON_OBJETIVO:
-        print(f"aviso: Python {sys.version_info.major}.{sys.version_info.minor} "
-              f"(objetivo {PYTHON_OBJETIVO[0]}.{PYTHON_OBJETIVO[1]}); las versiones fijadas "
-              "pueden no tener wheels para este interprete")
+        print(f"ERROR: Python {sys.version_info.major}.{sys.version_info.minor} en uso, "
+              f"requirements.txt pide {PYTHON_OBJETIVO[0]}.{PYTHON_OBJETIVO[1]}; ejecutar con "
+              f"python{PYTHON_OBJETIVO[0]}.{PYTHON_OBJETIVO[1]} (no se toca .venv)")
+        return 1
 
     if args.recrear and VENV.exists():
         shutil.rmtree(VENV)

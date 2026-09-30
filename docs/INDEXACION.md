@@ -140,7 +140,7 @@ Una ley que reforma otra transcribe artículos ajenos: "ARTÍCULO 10. Modifíque
 4. **Error residual del modo cita**: Ley 1607/2012 detecta 212 artículos contra 198; ~14 artículos del ET transcritos quedan como propios. Menor, porque la cita sigue siendo correcta a nivel de cuerpo (Ley 1607).
 5. 11 sentencias no tienen sección `resuelve` detectada (p. ej. `sentencia_c_55_2022` no trae el título RESUELVE en el HTML). Las notas al pie de la relatoría quedan etiquetadas con la última sección.
 6. Pendiente del plan: `run.sh`/`src/main.py` (el comando único debe decidir si reconstruye embeddings, que es lento en CPU, o descarga el índice publicado), generación con Qwen, abstención y empaquetado del corpus.
-7. Entorno de esta corrida: Python 3.13 (3.11 no estaba instalado), `torch==2.14.0` CPU, pandoc 3.12 (winget). Versiones fijadas en `requirements.txt`; `verificar_deps.py` da ok.
+7. Entorno de esta corrida: Python 3.13 (ya es la versión oficial del proyecto, ver `# python:` en `requirements.txt`), `torch==2.14.0` CPU, pandoc 3.12 (winget). Versiones fijadas en `requirements.txt`; `verificar_deps.py` da ok.
 
 ## 8. Trampas encontradas (para no repetirlas)
 

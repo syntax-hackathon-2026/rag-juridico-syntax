@@ -104,11 +104,29 @@ def read_requirements() -> dict[str, str]:
     return reqs
 
 
+def python_requerido() -> tuple[int, int] | None:
+    """Version de Python declarada en la cabecera de requirements.txt (`# python: 3.13`)."""
+    if not REQUIREMENTS.exists():
+        return None
+    m = re.search(r"^#\s*python:\s*(\d+)\.(\d+)\s*$", REQUIREMENTS.read_text(encoding="utf-8"), re.M)
+    return (int(m[1]), int(m[2])) if m else None
+
+
 def main() -> int:
     ap = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     ap.add_argument("--fix", action="store_true",
                     help="agrega a requirements.txt los faltantes que esten instalados, fijados a su version")
     args = ap.parse_args()
+
+    requerido = python_requerido()
+    if requerido is None:
+        print("FALTA la linea `# python: X.Y` en requirements.txt (version de Python del proyecto)")
+        return 1
+    if sys.version_info[:2] != requerido:
+        print(f"PYTHON INCORRECTO: {sys.version_info.major}.{sys.version_info.minor} en uso, "
+              f"requirements.txt pide {requerido[0]}.{requerido[1]} "
+              "(recrear: python<X.Y> src/reproducibilidad/preparar_entorno.py --recrear)")
+        return 1
 
     ignore = set(sys.stdlib_module_names) | local_modules() | {"__future__"}
     installed = metadata.packages_distributions()
