@@ -3,12 +3,18 @@
     python src/indexacion/construir_indice.py              # BM25 + denso (bge-m3) + manifest
     python src/indexacion/construir_indice.py --solo-bm25  # sin encoder (iterar sin GPU)
     SYNTAX_DEVICE=cuda python src/indexacion/construir_indice.py --batch 64
+    python src/indexacion/construir_indice.py --particion 2/3 --batch 16  # solo el trozo 2 de 3
 
 Escribe en data_corpus/indice/:
   - bm25/          indice bm25s sobre retrieval_text (tokenizador de recuperacion/lexico.py)
   - index.faiss    IndexFlatIP exacto con los vectores normalizados de bge-m3; la fila i
                    es la linea i de chunks.jsonl (config.verificar_indice lo comprueba)
   - indice_info.json  encoder + revision, dimension, n, sha256 de chunks.jsonl, device...
+
+--particion i/n: codifica solo los fragmentos del trozo i, que son las claves en la posicion i-1 (mod n) de la
+lista ordenada de todas las claves (trozos disjuntos e independientes de la cache local) y que aun no estan en cache y escribe shards en la cache, sin
+construir index.faiss ni tocar el manifest. Varias personas corren trozos distintos, juntan
+sus cache_emb/ en una carpeta y una corrida final sin --particion arma el indice desde cache.
 
 Los vectores se guardan tambien en data_corpus/cache_emb/<modelo>/ con clave = sha256
 del retrieval_text: al agregar documentos solo se codifican los fragmentos nuevos o
@@ -97,7 +103,7 @@ def cargar_encoder(device: str):
     return modelo
 
 
-def construir_denso(chunks: list[dict], batch: int) -> dict:
+def construir_denso(chunks: list[dict], batch: int, particion: tuple[int, int] | None = None) -> dict | None:
     import faiss
 
     device = config.resolver_device()
@@ -106,6 +112,11 @@ def construir_denso(chunks: list[dict], batch: int) -> dict:
     faltan = sorted({k for k in claves if k not in cache})
     print(f"Denso: {len(chunks)} fragmentos, {len(chunks) - len(faltan)} en cache, "
           f"{len(faltan)} por codificar ({config.ENCODER_MODEL}, device={device})")
+    if particion:
+        i, n = particion
+        trozo = set(sorted(set(claves))[i - 1::n])  # sobre todas las claves: igual en cualquier maquina
+        faltan = [k for k in faltan if k in trozo]
+        print(f"Particion {i}/{n}: {len(faltan)} fragmentos de este trozo")
     if faltan:
         texto_de = {k: c["retrieval_text"] for k, c in zip(claves, chunks)}
         modelo = cargar_encoder(device)
@@ -121,6 +132,9 @@ def construir_denso(chunks: list[dict], batch: int) -> dict:
             ritmo = hechos / (time.time() - t0)
             print(f"  {hechos}/{len(faltan)}  {ritmo:.1f} frag/s  "
                   f"faltan ~{(len(faltan) - hechos) / ritmo / 60:.0f} min", flush=True)
+    if particion:
+        print(f"Trozo {particion[0]}/{particion[1]} listo: shards en {_dir_cache()}")
+        return None
     matriz = np.stack([cache[k] for k in claves]).astype(np.float32)
     indice = faiss.IndexFlatIP(matriz.shape[1])
     indice.add(matriz)
@@ -175,10 +189,26 @@ def main() -> int:
     ap = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     ap.add_argument("--solo-bm25", action="store_true", help="no calcula embeddings ni index.faiss")
     ap.add_argument("--batch", type=int, default=16, help="batch del encoder (subir en GPU)")
+    ap.add_argument("--particion", metavar="I/N", help="solo codifica el trozo I de N (1<=I<=N); sin index.faiss ni manifest")
     ap.add_argument("--no-manifest", action="store_true", help="no tocar corpus_manifest.json")
     args = ap.parse_args()
 
+    particion = None
+    if args.particion:
+        try:
+            i, n = (int(x) for x in args.particion.split("/"))
+        except ValueError:
+            ap.error("--particion debe ser I/N, p. ej. 2/3")
+        if not 1 <= i <= n:
+            ap.error("--particion: se exige 1 <= I <= N")
+        if args.solo_bm25:
+            ap.error("--particion no se combina con --solo-bm25")
+        particion = (i, n)
+
     chunks = cargar_chunks()
+    if particion:  # solo shards: no se toca bm25/, index.faiss, indice_info.json ni el manifest
+        construir_denso(chunks, args.batch, particion)
+        return 0
     config.INDICE_DIR.mkdir(parents=True, exist_ok=True)
     info = {
         "fecha": datetime.now(timezone.utc).isoformat(timespec="seconds"),
