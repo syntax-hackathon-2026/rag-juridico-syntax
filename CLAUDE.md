@@ -10,7 +10,9 @@ Hackathon LATAM AI Week 2026 (Uniandes): **RAG de derecho colombiano** con un de
 
 Plazos: **vie 17:00** reporte de avance (PDF de 1 página por correo) · **sáb 09:00** se entregan las 992 preguntas · **sáb 15:00** cierre (repo + enlace público al corpus/índice) y verificación en vivo. Las 992 preguntas deben correr en ~6 h ⇒ objetivo **< 10 s/pregunta** (límite teórico 21,8 s).
 
-**Estado (2026-09-29):** fase de corpus. Hecho: descarga (167 documentos con original en `data/raw/`), parseo a texto limpio (`data_corpus/corpus/<doc_id>.txt`) y `corpus_manifest.json` v1 (167 documentos, `n_fragmentos=0`). Falta, en este orden: (1) cerrar las 30 fuentes pendientes (`data/fuentes_pendientes.md`), (2) segmentar por artículo y generar `chunks.jsonl`, (3) BM25 → v0 → primer `evaluate.py`, (4) empaquetar y publicar el corpus. No existe todavía código de segmentación, indexación, retrieval ni generación (`src/indexacion/`, `src/retrieval/`, `src/generacion/` están vacíos).
+**Estado (2026-09-30):** RAG v0 de punta a punta.
+- **Hecho**: corpus de 167 documentos → 35.105 fragmentos (seg-v1) → índice híbrido BM25 + bge-m3 + RRF (`docs/INDEXACION.md`) → generación con Qwen3-8B servido en local por llama.cpp, citas validadas contra el top-10, schema y `evaluate.py` (`docs/GENERACION.md`, corrida `e02_v0`).
+- **Falta**: (1) elegir y medir la máquina final (en un Mac M1 de 16 GB el 8B tarda ~145 s por pregunta; para las 992 hay que bajar de ~20 s); (2) iterar según `evaluation/generacion/<exp>/errores.csv`; (3) cerrar las 30 fuentes pendientes (`data/fuentes_pendientes.md`); (4) comando único en contenedor limpio y empaquetado/publicación del corpus; (5) interfaz.
 
 Los archivos oficiales viven también en `../Hackathon 2026/` (`enunciado.pdf`, `entregables/`, `Ejemplo de entrega/`). **El código oficial y el schema mandan sobre cualquier documento, incluido este.**
 
@@ -71,7 +73,26 @@ Segmentación (`src/indexacion/segmentar.py`, versión `seg-v1`):
 - Invariantes que se comprueban al segmentar (exit 1 si fallan): `texto` = cabecera + literal, fragmentos de una norma sin solaparse, `chunk_id` únicos. Los artículos detectados (números base: `38A` y `12-1` cuentan con 38 y 12, sin transitorios) se comparan con `n_articulos` del manifest. Ojo: en normas modificatorias el manifest a veces cuenta los artículos transcritos (Ley 50/1990: 171; Ley 80/1993: 86, cuando tiene 81).
 - **Determinismo**: los vectores del corpus se calculan una vez (caché en `data_corpus/cache_emb/`, por sha256 del `retrieval_text`) y la consulta se codifica siempre en fp32. Los empates se desempatan por `chunk_id`. `ENCODER_REVISION` fija el commit de `BAAI/bge-m3` en Hugging Face.
 
-Todavía no existen `run.sh`, `src/main.py` ni tests. Contrato de entrega: `bash run.sh` o `python src/main.py --split sample` debe reconstruir el índice y generar la entrega con un solo comando.
+```bash
+# Decoder local (llama.cpp): brew install llama.cpp | binario de GitHub releases (CUDA/CPU)
+python src/generacion/modelo.py descargar       # GGUF a modelos/ (revision + sha256 de config.LLM_MODELOS)
+python src/generacion/modelo.py servir          # otra terminal: llama-server en 127.0.0.1:8080 (-np 1, sin mmap, temp 0)
+# Generar (se reanuda si se cae) y evaluar
+bash run.sh                                     # = python src/main.py --split sample
+python src/main.py --split sample --experimento <exp> [--limite N | --ids ...]
+python src/main.py --split test                 # sabado: data/test_992.jsonl -> submissions.jsonl
+python src/evaluacion/evaluar_entrega.py --entrega salidas/sample_<exp>.jsonl --experimento <exp> [--ragas]
+python src/evaluacion/comparar_entregas.py a.jsonl b.jsonl    # determinismo / verificacion en vivo
+```
+
+Estado, decisiones, latencias medidas y trampas de la generación: **`docs/GENERACION.md`** (leerlo antes de tocar `src/generacion/` o `src/main.py`). Claves:
+
+- `responder(item, retriever, decoder)` (`src/generacion/responder.py`) deja pasar solo `id, formato, pregunta, opciones` (guarda contra el ground truth), recupera el top-10 híbrido, manda los `GENERATION_K=5` primeros al decoder y valida **todo** el texto de la respuesta con `scripts/citations.py` contra los 10 pasajes. Si hay citas sin respaldo, regenera 1 vez, luego quita esas oraciones y, si queda un campo vacío, se abstiene. Después agrega las cabeceras de la evidencia a los campos citables (`CITAR_EVIDENCIA`).
+- **Determinismo**: `temperature=0`, `seed=0`, `-np 1`, `cache_prompt=false` y `enable_thinking=false`. Comprobado: dos corridas dan salidas idénticas. La salida del decoder se restringe por JSON Schema (gramática de llama.cpp).
+- `SYNTAX_LLM` elige el GGUF (`qwen3-8b-q4` | `qwen3-4b-2507-q4`), `SYNTAX_LLM_URL` el endpoint, `SYNTAX_GENERATION_K` y `SYNTAX_CITAR_EVIDENCIA` los hiperparámetros. Cambiar un texto de `prompts.py` = subir `PROMPT_VERSION`.
+- Cada corrida deja `salidas/trazas/<exp>.jsonl` (+ `.meta.json` con GGUF, build de llama.cpp, prompt y sha del índice); `evaluar_entrega.py` las copia, junto con el reporte oficial y `errores.csv` (diagnóstico por pregunta), a `evaluation/generacion/<exp>/` (versionado) y agrega la fila en `experiments.csv`.
+
+Pendiente del contrato de entrega: en un contenedor limpio, `run.sh` aún asume el índice presente y el servidor levantado (ver `docs/GENERACION.md`, sección 7).
 
 ## Entorno y dependencias (`src/reproducibilidad/`)
 
@@ -190,7 +211,7 @@ data_corpus/                   (en .gitignore)
 
 Las fuentes originales **no** viven aquí sino en `data/raw/` (`html/<doc_id>/`, `pdf/`, `rtf/`; en `.gitignore`, fuera de `data_corpus/`). `src/config.py` exporta `RAW_DIR`, `RAW_HTML_DIR`, `raw_html_dir(doc_id)`, `docs_en_raw()` (doc_id con algún original ya en `data/raw/`), `MAPA_ARCHIVOS_PATH` y `PARSEO_PATH`.
 
-- **`src/config.py` es el único lugar donde se definen rutas**: exporta `ROOT`, `MANIFEST_PATH`, `CORPUS_DIR` (= `ROOT / "data_corpus"`), `CORPUS_TEXTOS`, `INDICE_DIR`, `RAW_DIR`, `RAW_HTML_DIR`, `FUENTES_PATH`, `CHUNKS_PATH`, `FAISS_PATH`, `BM25_DIR`, `INDICE_INFO_PATH`, `RESUMEN_INDICE_PATH`, `EMB_CACHE_DIR`, `EXPERIMENTS_CSV`, los parámetros del encoder (`ENCODER_MODEL`, `ENCODER_REVISION`, `ENCODER_MAX_SEQ`), `DEVICE` (variable de entorno `SYNTAX_DEVICE`: `cuda|mps|cpu|auto`) con `resolver_device()`, más `verificar_indice()` (comprueba que `chunks.jsonl` e `index.faiss` existan y tengan el mismo número de fragmentos; llamarla al arrancar cualquier proceso que use el índice). Los scripts hacen `sys.path.insert(0, str(ROOT / "src")); import config` (como `src/validaciones/*.py`). Nunca escribir rutas a mano ni usar `os.getcwd()`.
+- **`src/config.py` es el único lugar donde se definen rutas**: exporta `ROOT`, `MANIFEST_PATH`, `CORPUS_DIR` (= `ROOT / "data_corpus"`), `CORPUS_TEXTOS`, `INDICE_DIR`, `RAW_DIR`, `RAW_HTML_DIR`, `FUENTES_PATH`, `CHUNKS_PATH`, `FAISS_PATH`, `BM25_DIR`, `INDICE_INFO_PATH`, `RESUMEN_INDICE_PATH`, `EMB_CACHE_DIR`, `EXPERIMENTS_CSV`, los parámetros del encoder (`ENCODER_MODEL`, `ENCODER_REVISION`, `ENCODER_MAX_SEQ`), los del decoder y el pipeline (`LLM_MODELOS`/`llm_config()`, `MODELOS_DIR`, `LLM_URL`, `LLM_CTX`, `LLM_SEED`, `MODO_RECUPERACION`, `RETRIEVAL_K`, `GENERATION_K`, `CITAR_EVIDENCIA`, `SALIDAS_DIR`, `TRAZAS_DIR`, `SCHEMA_PATH`, `SAMPLE_PATH`, `TEST_PATH`, `SUBMISSION_PATH`), `DEVICE` (variable de entorno `SYNTAX_DEVICE`: `cuda|mps|cpu|auto`) con `resolver_device()`, más `verificar_indice()` (comprueba que `chunks.jsonl` e `index.faiss` existan y tengan el mismo número de fragmentos; llamarla al arrancar cualquier proceso que use el índice). Los scripts hacen `sys.path.insert(0, str(ROOT / "src")); import config` (como `src/validaciones/*.py`). Nunca escribir rutas a mano ni usar `os.getcwd()`.
 - **Un archivo por `doc_id` en `corpus/`**: cada uno ingiere documentos distintos sin pisarse. El `sha256` del manifest es el de ese archivo.
 - **Validar antes de subir cambios y antes de entregar**: `python src/validaciones/manifest.py` (formato, `sha256` contra `corpus/`, `n_fragmentos` contra `chunks.jsonl`, `doc_id` de los chunks ⊆ manifest). Con `--strict` (entrega final) los placeholders y archivos ausentes son error.
 - **Empaquetado final** (aún por hacer, `package_corpus.py`): `corpus/` + `indice/` + `LICENSE` + copia de `corpus_manifest.json` → comprimido `Syntax-corpus...` subido a OneDrive con enlace público (el enunciado exige lectura pública para cualquiera con el vínculo e índice congelado); anotar el hash del comprimido en `CORPUS.md`.
