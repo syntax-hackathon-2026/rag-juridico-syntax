@@ -119,8 +119,8 @@ _RETRIEVER: Retriever | None = None
 def cargar(cargar_denso: bool = True) -> Retriever:
     """Retriever unico por proceso (cargar el indice cuesta segundos)."""
     global _RETRIEVER
-    if _RETRIEVER is None:
-        _RETRIEVER = Retriever(cargar_denso=cargar_denso)
+    if _RETRIEVER is None or (cargar_denso and _RETRIEVER.faiss is None and config.FAISS_PATH.is_file()):
+        _RETRIEVER = Retriever(cargar_denso=cargar_denso)  # un retriever creado solo con BM25 no sirve para denso
     return _RETRIEVER
 
 

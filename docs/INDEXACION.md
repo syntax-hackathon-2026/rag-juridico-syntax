@@ -4,7 +4,7 @@ Contexto para agentes y personas que continúen el trabajo de recuperación. Res
 
 ## 1. Estado en una línea
 
-`corpus/*.txt` (167 documentos) → **31.127 fragmentos** (`chunks.jsonl`) → **BM25 construido y medido**. **Índice denso bge-m3: código listo, embeddings sin calcular.** En CPU de portátil tarda horas, así que hay que correrlo en una máquina con GPU. El generador (Qwen), `src/main.py` y `run.sh` todavía no existen.
+`corpus/*.txt` (167 documentos) → **31.127 fragmentos** (`chunks.jsonl`) → **BM25 construido y medido**. **Índice denso bge-m3 construido** (2026-09-30, 35.105 fragmentos; vectores fp32 calculados en Colab T4 y `index.faiss` armado en local desde la caché). Resultados en `e01_bge_m3` (sección 6). `construir_indice.py --particion I/N` permite repartir la codificación entre varias máquinas; ver `notebooks/indice_denso_colab.ipynb`. El generador (Qwen), `src/main.py` y `run.sh` todavía no existen.
 
 ## 2. Pipeline y comandos
 
@@ -148,3 +148,18 @@ Una ley que reforma otra transcribe artículos ajenos: "ARTÍCULO 10. Modifíque
 - Salida de Python redirigida a archivo: usar `python -u` o `PYTHONUNBUFFERED=1`, o el log queda vacío hasta el final.
 - `citations.extract` es lento en volumen (~10 min sobre 31k textos): no llamarlo por fragmento en caliente; `cabeceras.cabecera` está cacheada con `lru_cache`.
 - Al insertar lógica dentro de un `if/elif/else` con Edit, verificar que no quede entre el `elif` y el `else`: así ocurrió un bug que duplicó todo el CGP en el preámbulo. La comprobación de "sin solapamiento" ahora lo detecta.
+
+## 9. Índice denso: resultados `e01_bge_m3` (2026-09-30)
+
+Corpus de 35.105 fragmentos (seg-v1), mismo `sample_50` y consulta = pregunta + opciones. Denso: bge-m3 fp32 (Colab T4) + `IndexFlatIP`; híbrido: RRF k=60 sobre 40 candidatos por rama.
+
+| modo | doc_hit@1 | doc_hit@10 | MRR | respaldo@10 | art_hit@1 | art_hit@10 | latencia |
+|---|---:|---:|---:|---:|---:|---:|---:|
+| bm25 | 0,439 | 0,780 | 0,563 | 0,833 | 0,158 | 0,421 | 1 ms |
+| denso | 0,585 | 0,854 | 0,672 | 0,870 | 0,211 | 0,526 | 395 ms |
+| hibrido | 0,512 | 0,854 | 0,643 | 0,907 | 0,263 | 0,526 | 76 ms |
+
+- El híbrido da el mejor `respaldo@10` (0,907), que es el techo de los 20 pts de citación; el denso, el mejor MRR y doc_hit@1. Diferencias de 1–2 preguntas de 41: no son concluyentes.
+- Sin el cuerpo en el top-10 en híbrido: #60, #748, #247, #679, #563, #661 (#563 es de CORPUS). BM25 fallaba además en #600, #647 y #239, que el híbrido resuelve; el resto sigue pendiente de diagnóstico.
+- Bug corregido: `retriever.cargar()` reutilizaba un retriever creado solo con BM25 y fallaba en `denso`.
+- La latencia del denso incluye cargar el encoder en la primera consulta.
