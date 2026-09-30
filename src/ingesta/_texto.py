@@ -22,7 +22,7 @@ ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT / "src"))
 import config  # noqa: E402
 
-FUENTES_PATH = config.ROOT / "data" / "fuentes_descargadas.json"
+FUENTES_PATH = config.FUENTES_PATH
 
 # --- deteccion de formato -------------------------------------------------
 
