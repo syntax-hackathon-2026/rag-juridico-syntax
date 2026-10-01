@@ -57,7 +57,12 @@ def main() -> int:
     ap.add_argument("--limite", type=int, help="solo los N primeros items")
     ap.add_argument("--particion", help="I/N: solo los items de indice i con i %% N == I-1")
     ap.add_argument("--sin-reanudar", action="store_true", help="borrar la salida previa y empezar de cero")
+    ap.add_argument("--generation-k", type=int, choices=(3, 5, 7, 10),
+                    help="pasajes al decoder (alternativa a SYNTAX_GENERATION_K)")
     args = ap.parse_args()
+
+    if args.generation_k is not None:
+        config.GENERATION_K = args.generation_k
 
     entrada = args.entrada or (config.SAMPLE_PATH if args.split == "sample" else config.TEST_PATH)
     items = read_jsonl(entrada)

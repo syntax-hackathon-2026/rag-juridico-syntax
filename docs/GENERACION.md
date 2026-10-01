@@ -19,6 +19,7 @@ python src/generacion/modelo.py verificar               # responde y sirve el GG
 python src/main.py --split sample --limite 5            # humo
 python src/main.py --split sample --experimento e02_v0  # sample_50 -> salidas/sample_e02_v0.jsonl (+ trazas)
 python src/main.py --split sample --ids 51 60           # regenerar ítems concretos
+python src/main.py --split sample --generation-k 7 --experimento e04_k7 --ids ...  # barrido plan 03
 python src/main.py --split test                         # sábado: data/test_992.jsonl -> submissions.jsonl
 
 # evaluar y registrar (legal_basis solo aquí)
