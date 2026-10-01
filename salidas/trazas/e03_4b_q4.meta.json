@@ -1,0 +1,30 @@
+{
+  "experimento": "e03_4b_q4",
+  "fecha": "2026-10-01T01:47:14+00:00",
+  "commit": "12e1aab",
+  "entrada": "sample_50.jsonl",
+  "n_items": 50,
+  "decoder": {
+    "llm": "qwen3-4b-2507-q4",
+    "gguf": "Qwen3-4B-Instruct-2507-Q4_K_M.gguf",
+    "sha256": "3605803b982cb64aead44f6c1b2ae36e3acdb41d8e46c8a94c6533bc4c67e597",
+    "cuantizacion": "Q4_K_M",
+    "llama_cpp": "0.5.0 (build 11146, commit 7fe450e19)",
+    "url": "http://127.0.0.1:8080/v1"
+  },
+  "prompt_version": "p-v0",
+  "retrieval": {
+    "modo": "hibrido",
+    "retrieval_k": 10,
+    "generation_k": 5,
+    "citar_evidencia": "generacion"
+  },
+  "indice": {
+    "n_fragmentos": 35105,
+    "sha256_chunks": "d133b9906b0ea50e2bdaee938914fc60bb24322022aa6fb67961bd74bb2d27ab",
+    "version_segmentador": "seg-v1",
+    "encoder": "BAAI/bge-m3",
+    "encoder_revision": "5617a9f61b028005a4858fdac845db406aefb181"
+  },
+  "device_encoder": "mps"
+}
