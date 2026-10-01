@@ -109,10 +109,10 @@ Re-ejecutar `evaluar_entrega.py` sobre las mismas respuestas con la regla activa
 
 ## 10. Tareas
 
-- [ ] Instalar y fijar `pytest` (ver arriba).
-- [ ] Fase A: `analisis_abstencion.py` y tabla de señales por formato.
+- [x] Instalar y fijar `pytest` (ver arriba).
+- [x] Fase A: `analisis_abstencion.py` y tabla de señales por formato.
 - [ ] Decidir con el equipo qué señales entran (máximo 3) a partir de la tabla.
-- [ ] Fase B: `decidir_por_senales`, dataclass y config; `SYNTAX_ABSTENCION`.
-- [ ] Pruebas unitarias.
+- [x] Fase B: `decidir_por_senales`, dataclass y config; `SYNTAX_ABSTENCION`.
+- [x] Pruebas unitarias (`tests/test_abstencion.py`).
 - [ ] Fase C: A/B reaplicando la regla a las trazas; análisis de sensibilidad.
 - [ ] Corrida real con la regla y registro en `experiments.csv`; actualizar `docs/GENERACION.md` sección de abstención.

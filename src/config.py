@@ -26,10 +26,18 @@ Todo el codigo debe importar las rutas de aqui; nadie escribe rutas a mano.
 """
 from __future__ import annotations
 
+import hashlib
 import os
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
+ABSTENCION_MODO = os.environ.get("SYNTAX_ABSTENCION", "off")
+if ABSTENCION_MODO not in {"off", "reglas"}:
+    raise ValueError(
+        "SYNTAX_ABSTENCION debe ser 'off' o 'reglas', "
+        f"no {ABSTENCION_MODO!r}"
+    )
+ABSTENCION_CONFIG_PATH = ROOT / "config" / "abstencion.json"
 MANIFEST_PATH = ROOT / "corpus_manifest.json"
 CORPUS_DIR = ROOT / "data_corpus"
 CORPUS_TEXTOS = CORPUS_DIR / "corpus"
@@ -101,6 +109,14 @@ SCHEMA_PATH = ROOT / "schema" / "submission.schema.json"
 SAMPLE_PATH = ROOT / "data" / "sample_50.jsonl"
 TEST_PATH = ROOT / "data" / "test_992.jsonl"  # se entrega el sabado 09:00
 SUBMISSION_PATH = ROOT / "submissions.jsonl"
+
+
+def abstencion_metadata() -> dict:
+    """Modo de abstencion y hash del archivo versionado para la meta de corrida."""
+    return {
+        "modo": ABSTENCION_MODO,
+        "config_sha256": hashlib.sha256(ABSTENCION_CONFIG_PATH.read_bytes()).hexdigest(),
+    }
 
 
 def llm_config() -> dict:

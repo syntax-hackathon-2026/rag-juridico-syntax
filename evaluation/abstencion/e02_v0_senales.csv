@@ -1,51 +1,51 @@
-id,formato,trace_exists,error_exists,diagnostico,correcta,abstencion,frac_en_ambas_ramas,margen_top1_top2,n_cuerpos_top10,n_pasajes,n_sentencias_top10,normas_en_pregunta,normas_pregunta_en_evidencia,score_top1,top1_rank_bm25,top1_rank_denso
-24,semi_open,True,True,OK,,False,1.0,0.001289,8,10,4,[],0,0.032787,1,1
-51,multiple_choice,True,True,OK,1,False,1.0,0.00024,3,10,6,[],0,0.032258,2,2
-58,multiple_choice,True,True,GENERATION,0,False,0.2,0.000321,6,10,2,"[[""codigo_general_proceso"", null, null], [""codigo_procedimiento_penal"", null, null], [""ley"", ""270"", ""1996""], [""ley"", ""472"", ""1998""]]",4,0.026137,5,33
-60,multiple_choice,True,True,DOCUMENT_RETRIEVAL,1,False,1.0,0.000504,4,10,9,[],0,0.032522,2,1
-79,semi_open,True,True,OK,,False,1.0,0.002381,3,10,6,[],0,0.032258,2,2
-128,multiple_choice,True,True,GENERATION,0,False,0.3,0.002484,3,10,0,[],0,0.032787,1,1
-140,semi_open,True,True,OK,,False,1.0,0.000753,1,10,10,"[[""jurisprudencia"", ""C-145"", ""2018""]]",1,0.032266,1,3
-142,semi_open,True,True,OK,,False,1.0,0.002102,3,10,1,[],0,0.031514,2,5
-168,semi_open,True,True,OK,,False,1.0,0.000529,1,10,0,[],0,0.032787,1,1
-190,semi_open,True,True,OK,,False,0.3,0.003059,7,10,9,"[[""jurisprudencia"", ""T-256"", ""2025""]]",0,0.02605,10,25
-218,semi_open,True,True,OK,,False,0.4,0.00197,3,10,0,"[[""constitucion"", null, null], [""ley"", ""2294"", ""2023""]]",2,0.029857,6,8
-239,semi_open,True,True,CITATION,,False,0.1,0.005101,5,10,9,[],0,0.021494,27,40
-247,open_ended,True,True,DOCUMENT_RETRIEVAL,,False,0.0,0.0,5,10,4,[],0,0.016393,,1
-253,open_ended,True,True,ARTICLE_RETRIEVAL,,False,0.9,0.00455,4,10,3,[],0,0.032522,1,2
-272,open_ended,True,True,OK,,False,1.0,1.6e-05,6,10,1,"[[""ley"", ""1116"", ""2006""]]",1,0.032018,1,4
-280,semi_open,True,True,OK,,False,0.4,0.002165,4,10,2,"[[""codigo_penal"", null, null]]",1,0.032787,1,1
-290,multiple_choice,True,True,OK,1,False,0.9,0.001242,6,10,0,[],0,0.032522,2,1
-308,multiple_choice,True,True,OK,1,False,1.0,0.000529,9,10,1,[],0,0.032787,1,1
-352,multiple_choice,True,True,OK,1,False,0.8,0.001653,4,10,6,[],0,0.032018,1,4
-358,multiple_choice,True,True,ARTICLE_RETRIEVAL,1,False,0.9,0.000715,3,10,0,[],0,0.031514,5,2
-442,semi_open,True,True,OK,,False,0.4,0.004122,2,10,0,"[[""codigo_sustantivo_trabajo"", null, null]]",1,0.032787,1,1
-453,semi_open,True,True,OK,,False,1.0,0.001423,2,10,10,[],0,0.032002,3,2
-472,semi_open,True,True,OK,,False,0.8,0.0,3,10,0,[],0,0.032522,1,2
-487,multiple_choice,True,True,OK,1,False,0.9,0.000504,2,10,0,[],0,0.032522,1,2
-490,semi_open,True,True,OK,,False,0.8,0.000213,2,10,0,[],0,0.027364,19,8
-513,open_ended,True,True,OK,,False,0.6,0.005978,6,10,1,[],0,0.032258,2,2
-528,multiple_choice,True,True,OK,1,False,1.0,0.001041,6,10,0,[],0,0.032787,1,1
-563,semi_open,True,True,CORPUS,,False,0.7,0.000545,2,10,10,"[[""jurisprudencia"", ""T-760"", ""2008""]]",1,0.030622,2,9
-589,semi_open,True,True,OK,,False,0.5,0.001867,3,10,0,[],0,0.031498,4,3
-600,multiple_choice,True,True,OK,1,False,0.5,0.001907,4,10,1,"[[""codigo_penal"", null, null]]",1,0.029877,5,9
-617,multiple_choice,True,True,OK,1,False,0.9,0.000248,4,10,6,[],0,0.032002,3,2
-647,multiple_choice,True,True,GENERATION,0,False,0.4,0.002818,8,10,9,[],0,0.028958,4,15
-661,semi_open,True,True,DOCUMENT_RETRIEVAL,,False,1.0,0.001016,2,10,10,[],0,0.032266,1,3
-671,multiple_choice,True,True,GENERATION,0,False,0.2,0.003588,8,10,1,[],0,0.026847,14,15
-674,semi_open,True,True,CITATION,,False,0.4,0.000916,6,10,1,[],0,0.028283,4,19
-679,open_ended,True,True,DOCUMENT_RETRIEVAL,,False,0.7,0.002827,4,10,10,[],0,0.031545,6,1
-697,semi_open,True,True,OK,,False,0.0,0.0,6,10,8,[],0,0.016393,,1
-748,multiple_choice,True,True,DOCUMENT_RETRIEVAL,1,False,0.0,0.0,7,10,2,"[[""resolucion"", ""368"", ""2014""]]",0,0.016393,,1
-857,semi_open,True,True,OK,,False,0.2,0.001861,9,10,8,[],0,0.024877,14,28
-865,semi_open,True,True,OK,,False,0.9,0.000986,5,10,8,"[[""codigo_civil"", null, null]]",1,0.032266,3,1
-879,semi_open,True,True,OK,,False,0.0,0.0,4,10,0,[],0,0.016393,,1
-919,semi_open,True,True,OK,,False,1.0,0.000233,1,10,10,"[[""jurisprudencia"", ""SU-455"", ""2020""]]",1,0.031778,1,5
-946,semi_open,True,True,OK,,False,0.9,0.000991,4,10,10,"[[""jurisprudencia"", ""C-39"", ""2025""]]",1,0.02879,8,11
-960,semi_open,True,True,ARTICLE_RETRIEVAL,,False,0.7,0.000529,7,10,2,[],0,0.032787,1,1
-991,semi_open,True,True,OK,,False,1.0,0.002212,1,10,10,"[[""jurisprudencia"", ""C-891"", ""2012""]]",1,0.032522,1,2
-1005,semi_open,True,True,OK,,False,1.0,0.000319,6,10,1,[],0,0.030478,11,1
-1015,semi_open,True,True,OK,,False,0.7,0.000992,2,10,10,"[[""jurisprudencia"", ""C-355"", ""2006""]]",1,0.028665,6,14
-1065,semi_open,True,True,ARTICLE_RETRIEVAL,,False,0.5,0.001167,3,10,2,[],0,0.032266,1,3
-1073,semi_open,True,True,ARTICLE_RETRIEVAL,,False,0.0,0.0,5,10,2,[],0,0.016393,1,
-1089,semi_open,True,True,OK,,False,1.0,0.000768,3,10,0,[],0,0.032522,2,1
+id,formato,estado_componente_abstencion,acierto_segun_componente_abstencion,abstencion,exactitud_cerrada_evaluable,referencias_extraibles,traza_disponible,errores_csv_disponible,entrega_disponible,diagnostico,correcta_csv_cerradas,rank_doc,rank_art,aciertos_cita,sin_respaldo,latencia_s,ragas_individual,frac_en_ambas_ramas,margen_top1_top2,n_cuerpos_top10,n_pasajes,n_sentencias_top10,normas_en_pregunta,normas_pregunta_en_evidencia,score_top1,top1_rank_bm25,top1_rank_denso
+24,semi_open,excluido_sin_cita_extraible,,0,0,0,1,1,1,OK,,,,,,80.3,no_disponible,1.0,0.001289,8,10,4,[],0,0.032787,1,1
+51,multiple_choice,acierto,1,0,1,3,1,1,1,OK,1,1,1,1,0,214.5,no_aplica,1.0,0.00024,3,10,6,[],0,0.032258,2,2
+58,multiple_choice,error,0,0,1,2,1,1,1,GENERATION,0,2,,1,0,141.3,no_aplica,0.2,0.000321,6,10,2,"[['codigo_general_proceso', None, None], ['codigo_procedimiento_penal', None, None], ['ley', '270', '1996'], ['ley', '472', '1998']]",4,0.026137,5,33
+60,multiple_choice,acierto,1,0,1,3,1,1,1,DOCUMENT_RETRIEVAL,1,,,1,0,173.4,no_aplica,1.0,0.000504,4,10,9,[],0,0.032522,2,1
+79,semi_open,acierto,1,0,0,1,1,1,1,OK,,2,,1,0,119.9,no_disponible,1.0,0.002381,3,10,6,[],0,0.032258,2,2
+128,multiple_choice,error,0,0,1,1,1,1,1,GENERATION,0,1,,1,0,152.3,no_aplica,0.3,0.002484,3,10,0,[],0,0.032787,1,1
+140,semi_open,acierto,1,0,0,1,1,1,1,OK,,1,,1,0,113.3,no_disponible,1.0,0.000753,1,10,10,"[['jurisprudencia', 'C-145', '2018']]",1,0.032266,1,3
+142,semi_open,excluido_sin_cita_extraible,,0,0,0,1,1,1,OK,,,,,,103.4,no_disponible,1.0,0.002102,3,10,1,[],0,0.031514,2,5
+168,semi_open,excluido_sin_cita_extraible,,0,0,0,1,1,1,OK,,,,,,51.7,no_disponible,1.0,0.000529,1,10,0,[],0,0.032787,1,1
+190,semi_open,excluido_sin_cita_extraible,,0,0,0,1,1,1,OK,,,,,,184.9,no_disponible,0.3,0.003059,7,10,9,"[['jurisprudencia', 'T-256', '2025']]",0,0.02605,10,25
+218,semi_open,acierto,1,0,0,2,1,1,1,OK,,2,6,1,0,113.3,no_disponible,0.4,0.00197,3,10,0,"[['constitucion', None, None], ['ley', '2294', '2023']]",2,0.029857,6,8
+239,semi_open,error,0,0,0,2,1,1,1,CITATION,,6,,0,0,143.8,no_disponible,0.1,0.005101,5,10,9,[],0,0.021494,27,40
+247,open_ended,error,0,0,0,1,1,1,1,DOCUMENT_RETRIEVAL,,,,0,0,190.9,no_disponible,0.0,0.0,5,10,4,[],0,0.016393,,1
+253,open_ended,acierto,1,0,0,5,1,1,1,ARTICLE_RETRIEVAL,,1,,3,0,191.9,no_disponible,0.9,0.00455,4,10,3,[],0,0.032522,1,2
+272,open_ended,acierto,1,0,0,1,1,1,1,OK,,2,,1,0,223.3,no_disponible,1.0,1.6e-05,6,10,1,"[['ley', '1116', '2006']]",1,0.032018,1,4
+280,semi_open,acierto,1,0,0,1,1,1,1,OK,,1,1,1,0,68.4,no_disponible,0.4,0.002165,4,10,2,"[['codigo_penal', None, None]]",1,0.032787,1,1
+290,multiple_choice,acierto,1,0,1,1,1,1,1,OK,1,1,1,1,0,110.6,no_aplica,0.9,0.001242,6,10,0,[],0,0.032522,2,1
+308,multiple_choice,acierto,1,0,1,0,1,1,1,OK,1,,,,,108.7,no_aplica,1.0,0.000529,9,10,1,[],0,0.032787,1,1
+352,multiple_choice,acierto,1,0,1,1,1,1,1,OK,1,4,4,1,0,136.4,no_aplica,0.8,0.001653,4,10,6,[],0,0.032018,1,4
+358,multiple_choice,acierto,1,0,1,1,1,1,1,ARTICLE_RETRIEVAL,1,1,,1,0,89.8,no_aplica,0.9,0.000715,3,10,0,[],0,0.031514,5,2
+442,semi_open,acierto,1,0,0,1,1,1,1,OK,,1,,1,0,75.1,no_disponible,0.4,0.004122,2,10,0,"[['codigo_sustantivo_trabajo', None, None]]",1,0.032787,1,1
+453,semi_open,acierto,1,0,0,3,1,1,1,OK,,1,,1,0,117.0,no_disponible,1.0,0.001423,2,10,10,[],0,0.032002,3,2
+472,semi_open,acierto,1,0,0,1,1,1,1,OK,,1,,1,0,98.4,no_disponible,0.8,0.0,3,10,0,[],0,0.032522,1,2
+487,multiple_choice,acierto,1,0,1,1,1,1,1,OK,1,1,,1,0,89.4,no_aplica,0.9,0.000504,2,10,0,[],0,0.032522,1,2
+490,semi_open,acierto,1,0,0,1,1,1,1,OK,,1,,1,0,63.9,no_disponible,0.8,0.000213,2,10,0,[],0,0.027364,19,8
+513,open_ended,excluido_sin_cita_extraible,,0,0,0,1,1,1,OK,,,,,,155.1,no_disponible,0.6,0.005978,6,10,1,[],0,0.032258,2,2
+528,multiple_choice,acierto,1,0,1,1,1,1,1,OK,1,1,1,1,0,117.8,no_aplica,1.0,0.001041,6,10,0,[],0,0.032787,1,1
+563,semi_open,error,0,0,0,1,1,1,1,CORPUS,,,,0,0,103.3,no_disponible,0.7,0.000545,2,10,10,"[['jurisprudencia', 'T-760', '2008']]",1,0.030622,2,9
+589,semi_open,acierto,1,0,0,1,1,1,1,OK,,2,8,1,0,76.9,no_disponible,0.5,0.001867,3,10,0,[],0,0.031498,4,3
+600,multiple_choice,acierto,1,0,1,1,1,1,1,OK,1,2,2,1,0,112.2,no_aplica,0.5,0.001907,4,10,1,"[['codigo_penal', None, None]]",1,0.029877,5,9
+617,multiple_choice,acierto,1,0,1,1,1,1,1,OK,1,2,,1,0,143.5,no_aplica,0.9,0.000248,4,10,6,[],0,0.032002,3,2
+647,multiple_choice,error,0,0,1,1,1,1,1,GENERATION,0,5,,1,0,127.4,no_aplica,0.4,0.002818,8,10,9,[],0,0.028958,4,15
+661,semi_open,acierto,1,0,0,2,1,1,1,DOCUMENT_RETRIEVAL,,,,1,0,129.5,no_disponible,1.0,0.001016,2,10,10,[],0,0.032266,1,3
+671,multiple_choice,error,0,0,1,0,1,1,1,GENERATION,0,,,,,124.3,no_aplica,0.2,0.003588,8,10,1,[],0,0.026847,14,15
+674,semi_open,error,0,0,0,3,1,1,1,CITATION,,6,,0,0,101.3,no_disponible,0.4,0.000916,6,10,1,[],0,0.028283,4,19
+679,open_ended,error,0,0,0,1,1,1,1,DOCUMENT_RETRIEVAL,,,,0,0,534.9,no_disponible,0.7,0.002827,4,10,10,[],0,0.031545,6,1
+697,semi_open,excluido_sin_cita_extraible,,0,0,0,1,1,1,OK,,,,,,105.7,no_disponible,0.0,0.0,6,10,8,[],0,0.016393,,1
+748,multiple_choice,acierto,1,0,1,1,1,1,1,DOCUMENT_RETRIEVAL,1,,,0,0,116.1,no_aplica,0.0,0.0,7,10,2,"[['resolucion', '368', '2014']]",0,0.016393,,1
+857,semi_open,excluido_sin_cita_extraible,,0,0,0,1,1,1,OK,,,,,,244.8,no_disponible,0.2,0.001861,9,10,8,[],0,0.024877,14,28
+865,semi_open,acierto,1,0,0,1,1,1,1,OK,,1,1,1,0,103.5,no_disponible,0.9,0.000986,5,10,8,"[['codigo_civil', None, None]]",1,0.032266,3,1
+879,semi_open,acierto,1,0,0,1,1,1,1,OK,,4,,1,0,76.1,no_disponible,0.0,0.0,4,10,0,[],0,0.016393,,1
+919,semi_open,acierto,1,0,0,1,1,1,1,OK,,1,,1,0,190.1,no_disponible,1.0,0.000233,1,10,10,"[['jurisprudencia', 'SU-455', '2020']]",1,0.031778,1,5
+946,semi_open,acierto,1,0,0,1,1,1,1,OK,,1,,1,0,44.1,no_disponible,0.9,0.000991,4,10,10,"[['jurisprudencia', 'C-39', '2025']]",1,0.02879,8,11
+960,semi_open,acierto,1,0,0,1,1,1,1,ARTICLE_RETRIEVAL,,3,,1,0,38.7,no_disponible,0.7,0.000529,7,10,2,[],0,0.032787,1,1
+991,semi_open,acierto,1,0,0,1,1,1,1,OK,,1,,1,0,51.5,no_disponible,1.0,0.002212,1,10,10,"[['jurisprudencia', 'C-891', '2012']]",1,0.032522,1,2
+1005,semi_open,acierto,1,0,0,1,1,1,1,OK,,1,,1,0,37.6,no_disponible,1.0,0.000319,6,10,1,[],0,0.030478,11,1
+1015,semi_open,acierto,1,0,0,1,1,1,1,OK,,2,,1,0,59.7,no_disponible,0.7,0.000992,2,10,10,"[['jurisprudencia', 'C-355', '2006']]",1,0.028665,6,14
+1065,semi_open,acierto,1,0,0,1,1,1,1,ARTICLE_RETRIEVAL,,1,,1,0,40.1,no_disponible,0.5,0.001167,3,10,2,[],0,0.032266,1,3
+1073,semi_open,acierto,1,0,0,5,1,1,1,ARTICLE_RETRIEVAL,,1,,1,0,33.0,no_disponible,0.0,0.0,5,10,2,[],0,0.016393,1,
+1089,semi_open,acierto,1,0,0,1,1,1,1,OK,,1,5,1,0,53.3,no_disponible,1.0,0.000768,3,10,0,[],0,0.032522,2,1

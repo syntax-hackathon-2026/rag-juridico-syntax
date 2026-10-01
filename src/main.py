@@ -43,7 +43,7 @@ def git_commit() -> str:
 
 
 def main() -> int:
-    from generacion import modelo, postproceso, prompts
+    from generacion import abstencion, modelo, postproceso, prompts
     from generacion.llm import Decoder
     from generacion.responder import responder
     from recuperacion.retriever import cargar
@@ -76,6 +76,10 @@ def main() -> int:
 
     llm = config.llm_config()
     experimento = args.experimento or f"{llm['nombre']}_{prompts.PROMPT_VERSION}_k{config.GENERATION_K}"
+    regla_abstencion = (
+        abstencion.cargar_regla(config.ABSTENCION_CONFIG_PATH)
+        if config.ABSTENCION_MODO == "reglas" else None
+    )
     if args.salida:
         salida = args.salida
     elif args.split == "test" and not (args.ids or args.limite or args.particion):
@@ -102,6 +106,7 @@ def main() -> int:
                   | {"encoder": (info_indice.get("denso") or {}).get("modelo"),
                      "encoder_revision": (info_indice.get("denso") or {}).get("revision")},
         "device_encoder": config.resolver_device(),
+        "abstencion": config.abstencion_metadata(),
     }
     (config.TRAZAS_DIR / f"{experimento}.meta.json").write_text(
         json.dumps(meta, ensure_ascii=False, indent=2) + "\n", encoding="utf-8", newline="\n")
@@ -116,7 +121,9 @@ def main() -> int:
     t0 = time.perf_counter()
     with salida.open("a", encoding="utf-8", newline="\n") as fs, trazas.open("a", encoding="utf-8", newline="\n") as ft:
         for n, it in enumerate(pendientes, 1):
-            reg, traza = responder(it, retriever, decoder)
+            reg, traza = responder(
+                it, retriever, decoder, regla_abstencion=regla_abstencion
+            )
             fs.write(json.dumps(reg, ensure_ascii=False) + "\n")
             ft.write(json.dumps(traza, ensure_ascii=False) + "\n")
             fs.flush()
