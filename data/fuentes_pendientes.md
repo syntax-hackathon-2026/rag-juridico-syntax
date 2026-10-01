@@ -84,6 +84,61 @@ Servidas por `data/fuentes_faltantes_sample50.md`. Los ítems A.1 a A.5 de ese d
 
 ---
 
+## D. Ampliación propuesta desde `scripts/citations.py` (cobertura del test)
+
+Origen: cruce de los cuerpos que reconocen `CODES`, `_ALIAS_NUM` y `NORM_TYPES` contra el corpus (2026-10-01). La semilla ya cubre las citas del banco; esto es una apuesta de cobertura para preguntas del test (992) que la semilla no vio, **no** una corrección de errores medidos. Los `doc_id` son propuestos (estables una vez indexados). Ingerir en el orden de prioridad.
+
+### D.1 Prioridad alta (códigos que `citations.py` reconoce y no están en el corpus)
+
+- [ ] `ley_906_2004` — Ley 906 de 2004, Código de Procedimiento Penal (alias `codigo_procedimiento_penal`, `cpp`). Hoy solo está `ley_600_2000` (procedimiento penal anterior). Derecho penal. Senado.
+- [ ] `decreto_2158_1948` — Decreto-ley 2158 de 1948, Código Procesal del Trabajo y de la Seguridad Social (alias `codigo_procesal_trabajo`, `cpts`). Complemento procesal del CST (37 ítems). Derecho laboral. Compilación Avance Jurídico (Senado). Revisar que `citations.py` y la cabecera (`cabeceras.py`) usen el cuerpo `codigo_procesal_trabajo`.
+
+### D.2 Decretos únicos reglamentarios (`NORM_TYPES["decreto"]`; archivos grandes, segmentar por artículo)
+
+- [ ] `decreto_1072_2015` — DUR del Sector Trabajo (laboral).
+- [ ] `decreto_1625_2016` — DUR en materia tributaria (acompaña al ET).
+- [ ] `decreto_1074_2015` — DUR del Sector Comercio, Industria y Turismo (comercial y mercados).
+- [ ] `decreto_1083_2015` — DUR del Sector de Función Pública (administrativo).
+
+### D.3 Actos legislativos (`NORM_TYPES["acto_legislativo"]`; ninguno en el corpus, textos cortos)
+
+- [ ] `acto_legislativo_1_2003` — reforma política.
+- [ ] `acto_legislativo_2_2015` — equilibrio de poderes.
+- [ ] `acto_legislativo_1_2005` — pensiones.
+
+Verificar primero que el extractor de `citations.py` y el `doc_id`/cabecera (`cabeceras.py`) soporten el cuerpo `acto_legislativo`.
+
+### D.4 Sentencias de salas no representadas (`_SENT_RE`: `stc|stl|ac|au`)
+
+- [ ] Decidir si entran tutelas de la Corte Suprema (`STC`, `STL`) y autos de unificación (`AU`); hoy solo hay SL y Corte Constitucional. Sin candidatos concretos: salen de las preguntas del test (sábado) o de `items_del_banco`.
+
+### D.5 Resoluciones y circulares (`NORM_TYPES["resolucion"|"circular"]`; decidir granularidad antes de ingerir)
+
+- [ ] Circular Básica Jurídica de la SIC (consumidor y competencia).
+- [ ] Circular Básica Jurídica de la Superintendencia Financiera.
+- [ ] Resoluciones DIAN de alto uso (identificar cuáles).
+
+### D.6 Códigos que `citations.py` no reconoce con alias propio (hoy se leen como `("ley", número, año, …)`; si se ingieren, agregarlos a `CODES`/`_ALIAS_NUM`)
+
+- [ ] `ley_100_1993` — sistema de seguridad social (laboral).
+- [ ] `ley_222_1995` — sociedades (comercial).
+- [ ] `ley_1676_2013` — garantías mobiliarias (comercial).
+- [ ] `decreto_19_2012` — antitrámites.
+- [ ] `decreto_01_1984` — CCA anterior al CPACA (transición, administrativo).
+
+Sin evidencia en el banco de que aparezcan; baja prioridad hasta tener las preguntas del test.
+
+---
+
+## Orden de ataque sugerido
+
+1. Sección C, Corte Constitucional: C-468/2024, SU-016/2020, SU-277/2025 (faltan en `sample_50`, URL directa).
+2. D.1: Ley 906/2004 y Decreto-ley 2158/1948.
+3. D.2: Decretos 1072/2015 y 1625/2016.
+4. A: SL-648/2018, SP-1680/2022, SP-1945/2019 (2 ítems cada una).
+5. D.3: actos legislativos.
+6. Resto.
+
 ## Sin acción (referencia)
 
 - **Erratas de la semilla ya cubiertas** (no hay nada que descargar): `ley_11500_2007` y `ley_1150_2005` → `ley_1150_2007`; `ley_116_2006` → `ley_1116_2006`.
@@ -96,4 +151,5 @@ Servidas por `data/fuentes_faltantes_sample50.md`. Los ítems A.1 a A.5 de ese d
 | A. Corte Suprema y acuerdo sin URL | 15 |
 | B. No encontrados | 6 |
 | C. Fuera de la semilla (sample_50) | 9 |
-| **Total** | **30** |
+| D. Ampliación propuesta desde `citations.py` | 18 |
+| **Total** | **48** |
