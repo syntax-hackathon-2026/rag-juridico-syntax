@@ -163,3 +163,7 @@ Corpus de 35.105 fragmentos (seg-v1), mismo `sample_50` y consulta = pregunta + 
 - Sin el cuerpo en el top-10 en híbrido: #60, #748, #247, #679, #563, #661 (#563 es de CORPUS). BM25 fallaba además en #600, #647 y #239, que el híbrido resuelve; el resto sigue pendiente de diagnóstico.
 - Bug corregido: `retriever.cargar()` reutilizaba un retriever creado solo con BM25 y fallaba en `denso`.
 - La latencia del denso incluye cargar el encoder en la primera consulta.
+
+## 10. Plan 05: medicion previa del reranker (2026-10-01)
+
+Disponible `retrieval_eval.py --modo hibrido --techo-reranker --experimento e05_techo`: mide top-40 RRF, art_hit@20/@40, doc_hit@40 y distribucion del articulo correcto. Conserva MRR/top-10 del baseline; el resumen adicional va en `.meta.json` y notas del CSV. No modifica el runtime ni activa un reranker. La medicion real esta bloqueada por falta del indice local; fases del modelo condicionadas al techo y presupuesto del plan. Ver [resultados y comandos del plan 05](mejoras/resultados_05.md).
