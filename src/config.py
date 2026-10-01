@@ -8,14 +8,25 @@ Estructura de CORPUS_DIR:
 
     corpus/   un archivo por doc_id: corpus/<doc_id>.<ext>
     indice/   index.faiss + chunks.jsonl
-    raw/      descargas originales (opcional)
 
 `corpus_manifest.json` NO esta en CORPUS_DIR: vive versionado en la raiz del repo.
+
+Las fuentes originales (sin procesar) viven en `<repo>/data/raw/` (ignorada por
+git, regenerable con src/ingesta/descargar_fuentes.py), por formato:
+
+    raw/html/<doc_id>/<archivo original>   descargas automaticas (Senado en partes
+                                           <base>.html, <base>_pr001.html, ...)
+    raw/pdf/<archivo original>             PDF manuales o descargados
+    raw/rtf/<archivo original>             RTF/DOCX manuales
+
+Los PDF/RTF se asocian a su doc_id en data/mapa_archivos.json; las carpetas de
+raw/html/ ya se llaman como el doc_id.
 
 Todo el codigo debe importar las rutas de aqui; nadie escribe rutas a mano.
 """
 from __future__ import annotations
 
+import os
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -23,9 +34,112 @@ MANIFEST_PATH = ROOT / "corpus_manifest.json"
 CORPUS_DIR = ROOT / "data_corpus"
 CORPUS_TEXTOS = CORPUS_DIR / "corpus"
 INDICE_DIR = CORPUS_DIR / "indice"
-RAW_DIR = CORPUS_DIR / "raw"
+RAW_DIR = ROOT / "data" / "raw"  # originales por formato (html/, pdf/, rtf/); leen los parsers de src/ingesta/parsear_*.py
+RAW_HTML_DIR = RAW_DIR / "html"
+PARSEO_PATH = CORPUS_DIR / "parseo.json"  # inventario del parseo, fuera de corpus/ (que se publica tal cual)
+MAPA_ARCHIVOS_PATH = ROOT / "data" / "mapa_archivos.json"  # archivo original -> doc_id (versionado)
+FUENTES_PATH = ROOT / "data" / "fuentes_descargadas.json"  # url/fuente/canonico por doc_id (versionado)
 CHUNKS_PATH = INDICE_DIR / "chunks.jsonl"
 FAISS_PATH = INDICE_DIR / "index.faiss"
+BM25_DIR = INDICE_DIR / "bm25"
+INDICE_INFO_PATH = INDICE_DIR / "indice_info.json"  # encoder, revision, n, sha256 de chunks.jsonl
+RESUMEN_INDICE_PATH = INDICE_DIR / "resumen_indice.json"  # por doc_id: fragmentos, articulos, avisos
+EMB_CACHE_DIR = CORPUS_DIR / "cache_emb"  # fuera de indice/ (no se publica): vectores por hash de texto
+EVALUATION_DIR = ROOT / "evaluation"
+EXPERIMENTS_CSV = EVALUATION_DIR / "experiments.csv"
+
+# Encoder denso (enunciado 3.1). bge-m3: MIT, 1024 dim, 8192 tokens, sin prefijos.
+# La revision fija el commit del modelo en Hugging Face: el indice publicado y las
+# consultas en vivo deben usar exactamente los mismos pesos.
+ENCODER_MODEL = "BAAI/bge-m3"
+ENCODER_REVISION = "5617a9f61b028005a4858fdac845db406aefb181"
+ENCODER_MAX_SEQ = 1024
+
+# cuda | mps | cpu | auto (cuda > mps > cpu). Por configuracion, nunca por plataforma.
+DEVICE = os.environ.get("SYNTAX_DEVICE", "auto")
+
+# Decoder (enunciado 3.1): GGUF servido en local por llama.cpp (llama-server, API
+# compatible con OpenAI en localhost). Cada entrada fija repo, revision (commit de
+# Hugging Face) y sha256 del archivo: la corrida final y la verificacion en vivo
+# deben usar exactamente el mismo archivo. SYNTAX_LLM elige la entrada.
+MODELOS_DIR = ROOT / "modelos"  # GGUF descargados (en .gitignore)
+LLM_MODELOS = {
+    "qwen3-8b-q4": {
+        "repo": "Qwen/Qwen3-8B-GGUF",
+        "revision": "7c41481f57cb95916b40956ab2f0b139b296d974",
+        "archivo": "Qwen3-8B-Q4_K_M.gguf",
+        "sha256": "d98cdcbd03e17ce47681435b5150e34c1417f50b5c0019dd560e4882c5745785",
+        "cuantizacion": "Q4_K_M",
+        "thinking": True,  # Qwen3 hibrido: se apaga con enable_thinking=false
+    },
+    "qwen3-4b-2507-q4": {  # plan B si el 8B no cabe en el tiempo (no hay GGUF oficial de Qwen)
+        "repo": "unsloth/Qwen3-4B-Instruct-2507-GGUF",
+        "revision": "a06e946bb6b655725eafa393f4a9745d460374c9",
+        "archivo": "Qwen3-4B-Instruct-2507-Q4_K_M.gguf",
+        "sha256": "3605803b982cb64aead44f6c1b2ae36e3acdb41d8e46c8a94c6533bc4c67e597",
+        "cuantizacion": "Q4_K_M",
+        "thinking": False,
+    },
+}
+LLM = os.environ.get("SYNTAX_LLM", "qwen3-8b-q4")
+LLM_URL = os.environ.get("SYNTAX_LLM_URL", "http://127.0.0.1:8080/v1")
+LLM_CTX = 8192
+LLM_SEED = 0
+LLM_TIMEOUT_S = 600
+
+# Pipeline de respuesta. retrieval_k fijo en 10 (el evaluador mira los 10 primeros
+# pasajes); generation_k es el hiperparametro de cuantos ve el decoder.
+MODO_RECUPERACION = "hibrido"
+RETRIEVAL_K = 10
+GENERATION_K = int(os.environ.get("SYNTAX_GENERATION_K", "5"))
+# Cabeceras de la evidencia agregadas a los campos citables: no | generacion (los
+# pasajes que vio el decoder) | top10. Ver generacion/responder.py.
+CITAR_EVIDENCIA = os.environ.get("SYNTAX_CITAR_EVIDENCIA", "generacion")
+SALIDAS_DIR = ROOT / "salidas"  # entregas de desarrollo (en .gitignore)
+TRAZAS_DIR = SALIDAS_DIR / "trazas"
+SCHEMA_PATH = ROOT / "schema" / "submission.schema.json"
+SAMPLE_PATH = ROOT / "data" / "sample_50.jsonl"
+TEST_PATH = ROOT / "data" / "test_992.jsonl"  # se entrega el sabado 09:00
+SUBMISSION_PATH = ROOT / "submissions.jsonl"
+
+
+def llm_config() -> dict:
+    """Entrada de LLM_MODELOS elegida por SYNTAX_LLM, con su ruta local."""
+    if LLM not in LLM_MODELOS:
+        raise SystemExit(f"SYNTAX_LLM={LLM!r} no existe; opciones: {sorted(LLM_MODELOS)}")
+    return {**LLM_MODELOS[LLM], "nombre": LLM, "ruta": MODELOS_DIR / LLM_MODELOS[LLM]["archivo"]}
+
+
+def resolver_device() -> str:
+    """Device efectivo segun DEVICE; 'auto' elige el mejor disponible."""
+    if DEVICE != "auto":
+        return DEVICE
+    import torch
+
+    if torch.cuda.is_available():
+        return "cuda"
+    if torch.backends.mps.is_available():
+        return "mps"
+    return "cpu"
+
+
+def raw_html_dir(doc_id: str) -> Path:
+    """Carpeta con las paginas HTML originales de un doc_id."""
+    return RAW_HTML_DIR / doc_id
+
+
+def docs_en_raw() -> set[str]:
+    """doc_id que ya tienen algun original en data/raw/ (HTML o PDF/RTF mapeado)."""
+    import json
+    import unicodedata
+
+    nfc = lambda s: unicodedata.normalize("NFC", s)  # macOS entrega nombres en NFD
+    docs = {d.name for d in RAW_HTML_DIR.glob("*") if d.is_dir() and any(d.iterdir())}
+    if MAPA_ARCHIVOS_PATH.is_file():
+        mapa = json.loads(MAPA_ARCHIVOS_PATH.read_text(encoding="utf-8"))
+        presentes = {nfc(f.name) for sub in ("pdf", "rtf") for f in (RAW_DIR / sub).glob("*")}
+        docs |= {doc for nombre, doc in mapa.items() if nfc(nombre) in presentes}
+    return docs
 
 
 def contar_chunks() -> int:

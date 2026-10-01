@@ -1,0 +1,162 @@
+{
+  "_comentario": "doc_id de la semilla -> correccion. Manda sobre las reglas de src/ingesta/descargar_fuentes.py. Campos: doc_id (si la semilla trae una errata), titulo, fuente, url, estado (errata | no_encontrado | sin_resolver), nota. Solo URLs verificadas; nada inventado.",
+  "decreto_1563_2012": {
+    "doc_id": "ley_1563_2012",
+    "titulo": "Ley 1563 de 2012 (Estatuto de Arbitraje Nacional e Internacional)",
+    "fuente": "Secretaria del Senado",
+    "url": "http://www.secretariasenado.gov.co/senado/basedoc/ley_1563_2012.html",
+    "nota": "errata de la semilla: 'Decreto 1563 de 2012' (area procesal) es la Ley 1563 de 2012"
+  },
+  "decreto_663_1993": {
+    "titulo": "Estatuto Organico del Sistema Financiero (Decreto 663 de 1993)",
+    "fuente": "Secretaria del Senado",
+    "url": "http://www.secretariasenado.gov.co/senado/basedoc/estatuto_organico_sistema_financiero.html",
+    "nota": "el Senado lo publica con el nombre del estatuto"
+  },
+  "ley_2737_1989": {
+    "doc_id": "decreto_2737_1989",
+    "titulo": "Codigo del Menor (Decreto 2737 de 1989)",
+    "fuente": "Normograma de Colpensiones (compilacion Avance Juridico)",
+    "url": "https://normativa.colpensiones.gov.co/colpens/docs/codigo_menor.htm",
+    "nota": "errata de la semilla: es el Decreto 2737 de 1989 (derogado casi por completo por la Ley 1098 de 2006)"
+  },
+  "ley_964_2006": {
+    "doc_id": "ley_964_2005",
+    "titulo": "Ley 964 de 2005 (Mercado de Valores)",
+    "fuente": "Secretaria del Senado",
+    "url": "http://www.secretariasenado.gov.co/senado/basedoc/ley_0964_2005.html",
+    "nota": "errata de la semilla: la Ley 964 es de 2005"
+  },
+  "ley_11500_2007": {
+    "estado": "errata",
+    "nota": "errata de la semilla: es la Ley 1150 de 2007, ya en el corpus como ley_1150_2007"
+  },
+  "ley_1150_2005": {
+    "estado": "errata",
+    "nota": "errata de la semilla: la Ley 1150 es de 2007, ya en el corpus como ley_1150_2007"
+  },
+  "ley_116_2006": {
+    "estado": "errata",
+    "nota": "errata de la semilla: probablemente la Ley 1116 de 2006 (insolvencia), ya en el corpus como ley_1116_2006"
+  },
+  "sentencia_su_6_1991": {
+    "estado": "no_encontrado",
+    "nota": "no existen sentencias SU de 1991 (la Corte empezo en 1992); referencia de la semilla probablemente erronea"
+  },
+  "constitucion_politica_1991": {
+    "fuente": "Gestor Normativo de Funcion Publica",
+    "url": "https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=4125",
+    "nota": "PDF del Gestor Normativo (referencias_normativas.md)"
+  },
+  "codigo_sustantivo_trabajo": {
+    "fuente": "Gestor Normativo de Funcion Publica",
+    "url": "https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=199983",
+    "nota": "PDF del Gestor Normativo (referencias_normativas.md)"
+  },
+  "estatuto_tributario": {
+    "fuente": "Gestor Normativo de Funcion Publica",
+    "url": "https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=6533",
+    "nota": "PDF del Gestor Normativo (referencias_normativas.md)"
+  },
+  "decreto_2153_1992": {
+    "fuente": "Gestor Normativo de Funcion Publica",
+    "url": "https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=38168",
+    "nota": "PDF del Gestor Normativo (referencias_normativas.md)"
+  },
+  "ley_80_1993": {
+    "fuente": "Gestor Normativo de Funcion Publica",
+    "url": "https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=304",
+    "nota": "PDF del Gestor Normativo (referencias_normativas.md)"
+  },
+  "ley_1116_2006": {
+    "fuente": "Gestor Normativo de Funcion Publica",
+    "url": "https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=22657",
+    "nota": "PDF del Gestor Normativo (referencias_normativas.md)"
+  },
+  "ley_1258_2008": {
+    "fuente": "Gestor Normativo de Funcion Publica",
+    "url": "https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=34130",
+    "nota": "PDF del Gestor Normativo (referencias_normativas.md)"
+  },
+  "estatuto_consumidor": {
+    "fuente": "Gestor Normativo de Funcion Publica",
+    "url": "https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=44306",
+    "nota": "PDF del Gestor Normativo (referencias_normativas.md)"
+  },
+  "codigo_general_proceso": {
+    "fuente": "Gestor Normativo de Funcion Publica",
+    "url": "https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=48425",
+    "nota": "PDF del Gestor Normativo (referencias_normativas.md)"
+  },
+  "ley_1581_2012": {
+    "fuente": "Gestor Normativo de Funcion Publica",
+    "url": "https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=49981",
+    "nota": "PDF del Gestor Normativo (referencias_normativas.md)"
+  },
+  "ley_2220_2022": {
+    "fuente": "Gestor Normativo de Funcion Publica",
+    "url": "https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=188766",
+    "nota": "PDF del Gestor Normativo (referencias_normativas.md)"
+  },
+  "codigo_infancia": {
+    "fuente": "Instituto Colombiano de Bienestar Familiar (ICBF)",
+    "url": "https://www.icbf.gov.co/sites/default/files/codigoinfancialey1098.pdf",
+    "nota": "PDF del ICBF (referencias_normativas.md)"
+  },
+  "sentencia_sl_3385_2022": {
+    "fuente": "RedJurista",
+    "url": "https://www.redjurista.com/appfolders/images/news/CSJ_SCL_SL3385_2022_2022.pdf",
+    "nota": "PDF de RedJurista (referencias_normativas.md); la Relatoria de la Corte Suprema no tiene URL predecible"
+  },
+  "_adicionales": [
+    {
+      "doc_id": "codigo_civil",
+      "titulo": "Codigo Civil (Ley 57 de 1887)",
+      "fuente": "Sistema Unico de Informacion de Tramites (SUIT)",
+      "url": "https://tramites1.suit.gov.co/registro-web/suit_descargar_archivo?A=115930",
+      "areas": [
+        "Derecho civil",
+        "Derecho de familia"
+      ]
+    },
+    {
+      "doc_id": "codigo_comercio",
+      "titulo": "Codigo de Comercio (Decreto 410 de 1971)",
+      "fuente": "Gestor Normativo de Funcion Publica",
+      "url": "https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=41102",
+      "areas": [
+        "Derecho comercial y sociedades"
+      ]
+    },
+    {
+      "doc_id": "codigo_penal",
+      "titulo": "Codigo Penal (Ley 599 de 2000)",
+      "fuente": "Gestor Normativo de Funcion Publica",
+      "url": "https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=6388",
+      "areas": [
+        "Derecho penal"
+      ]
+    },
+    {
+      "doc_id": "cpaca",
+      "titulo": "Codigo de Procedimiento Administrativo y de lo Contencioso Administrativo (Ley 1437 de 2011)",
+      "fuente": "Gestor Normativo de Funcion Publica",
+      "url": "https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=41249",
+      "areas": [
+        "Derecho administrativo",
+        "Derecho procesal"
+      ]
+    },
+    {
+      "doc_id": "ley_472_1998",
+      "titulo": "Ley 472 de 1998, acciones populares y de grupo",
+      "fuente": "Gestor Normativo de Funcion Publica",
+      "url": "https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=188",
+      "areas": [
+        "Derecho constitucional",
+        "Derecho administrativo"
+      ]
+    }
+  ],
+  "_comentario_adicionales": "Documentos fuera de seed_targets.json (fuentes del legal_basis de sample_50, ver data/fuentes_faltantes_sample50.md). Su original ya esta en data/raw/ y se registra con esta fuente/URL (data/referencias_normativas.md); items_del_banco=0."
+}

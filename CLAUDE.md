@@ -10,6 +10,10 @@ Hackathon LATAM AI Week 2026 (Uniandes): **RAG de derecho colombiano** con un de
 
 Plazos: **vie 17:00** reporte de avance (PDF de 1 página por correo) · **sáb 09:00** se entregan las 992 preguntas · **sáb 15:00** cierre (repo + enlace público al corpus/índice) y verificación en vivo. Las 992 preguntas deben correr en ~6 h ⇒ objetivo **< 10 s/pregunta** (límite teórico 21,8 s).
 
+**Estado (2026-09-30):** RAG v0 de punta a punta.
+- **Hecho**: corpus de 167 documentos → 35.105 fragmentos (seg-v1) → índice híbrido BM25 + bge-m3 + RRF (`docs/INDEXACION.md`) → generación con Qwen3-8B servido en local por llama.cpp, citas validadas contra el top-10, schema y `evaluate.py` (`docs/GENERACION.md`, corrida `e02_v0`).
+- **Falta**: (1) elegir y medir la máquina final (en un Mac M1 de 16 GB el 8B tarda ~145 s por pregunta; para las 992 hay que bajar de ~20 s); (2) iterar según `evaluation/generacion/<exp>/errores.csv`; (3) cerrar las 30 fuentes pendientes (`data/fuentes_pendientes.md`); (4) comando único en contenedor limpio y empaquetado/publicación del corpus; (5) interfaz.
+
 Los archivos oficiales viven también en `../Hackathon 2026/` (`enunciado.pdf`, `entregables/`, `Ejemplo de entrega/`). **El código oficial y el schema mandan sobre cualquier documento, incluido este.**
 
 ## Comandos
@@ -28,18 +32,79 @@ python scripts/evaluate.py --submission entrega.jsonl --split sample --ragas
 python src/validaciones/manifest.py
 ```
 
-Todavía no existen `run.sh`, `src/main.py` ni tests, y `requirements.txt` está vacío (se llena a medida que se introducen imports; ver "Entorno y dependencias"). Contrato de entrega: `bash run.sh` o `python src/main.py --split sample` debe reconstruir el índice y generar la entrega con un solo comando. Cuando se cree el código, documentar aquí los comandos reales (ingesta, retrieval_eval, main).
+```bash
+# Descargar las fuentes de data/seed_targets.json a data/raw/ (solo stdlib, idempotente: salta lo que ya está en data/raw/)
+python src/ingesta/descargar_fuentes.py                  # --solo <doc_id>... | --limite N | --forzar
+python src/ingesta/descargar_fuentes.py --corpus-md      # regenera el inventario de CORPUS.md desde data/fuentes_descargadas.json
+```
+
+`data/fuentes_descargadas.json` (versionado) registra por `doc_id` la URL real, fuente, fecha de consulta, estado (`descargado | no_encontrado | sin_resolver | errata | error`) y sha256 de lo descargado. Los originales van en `data/raw/` (**versionada en git**, ~87 MB: es la evidencia de la fuente y evita depender de que los sitios sigan respondiendo; no está en `.gitignore`): HTML en `data/raw/html/<doc_id>/` (todas las partes de la norma), PDF en `data/raw/pdf/` con su entrada en `data/mapa_archivos.json` (el script la agrega), RTF/DOCX manuales en `data/raw/rtf/`. Lo que ya está en `data/raw/` (p. ej. los PDF/RTF bajados a mano de la Constitución, el CGP y las demás normas de alto impacto) no se vuelve a descargar: solo se registra. Resolución de URLs (las de la semilla son de búsqueda): Senado (normas, con sus partes `_prNNN`); si el Senado da 404 (leyes anteriores a 1992, decretos), el mismo nombre de archivo en los espejos de la compilación de Avance Jurídico (`normas.cra.gov.co`, `normativa.colpensiones.gov.co`, `cancilleria.gov.co`); relatoría de la Corte Constitucional (C/T/SU); PDF de la CAN (Decisión 486). **`data/fuentes_override.json`** (versionado, a mano) manda sobre las reglas: corrige erratas de la semilla (p. ej. `decreto_1563_2012` → `ley_1563_2012`, `ley_11500_2007` es `ley_1150_2007`) y da URLs que no siguen patrón; solo URLs verificadas. SUIN-Juriscol ya no se puede raspar (aplicación Angular sin HTML) y la relatoría de la Corte Suprema (SL/SP/SC) no tiene URLs predecibles: esos objetivos quedan `sin_resolver` para descarga manual a `data/raw/pdf/` + `mapa_archivos.json`.
+
+```bash
+# Parsear los originales de data/raw/{pdf,rtf,html}/ a texto limpio en data_corpus/corpus/<doc_id>.txt
+python src/ingesta/parsear_pdf.py      # PDF con capa de texto (PyMuPDF, sin OCR)
+python src/ingesta/parsear_rtf.py      # RTF y DOCX (pandoc: brew install pandoc); --solo <doc_id>... | --forzar
+python src/ingesta/parsear_html.py     # data/raw/html/<doc_id>/ (BeautifulSoup + lxml); salta los doc_id que ya tienen .txt (fuente manual PDF/RTF)
+```
+
+Los parsers detectan el formato **por contenido, no por extensión** (en `data/raw/rtf/` hay `.rtf` que en realidad son DOCX; algunos PDF traen bytes antes de `%PDF`). El `doc_id` sale de `data/mapa_archivos.json` (archivo original → `doc_id`; agregar ahí cada archivo nuevo, un archivo sin entrada es error y no detiene el lote). Si un `doc_id` tiene fuente nativa (RTF/DOCX) y PDF, se usa la nativa. La limpieza (`src/ingesta/_texto.py`) es solo estructural: NFKC (ligaduras), encabezados/pies repetidos, guiones blandos, saltos de línea dentro de párrafo y tablas de pandoc; el contenido normativo no se reescribe. Salida: párrafos separados por línea en blanco, más `data_corpus/parseo.json` (fuera de `corpus/`, que se publica tal cual) con `archivo_original`, `formato_real`, `metodo_ingesta` y `sha256` del `.txt`, base para generar `corpus_manifest.json`. Un PDF con < 200 caracteres/página se marca como posible escaneado (mandar a OCR, aún no implementado).
+
+`parsear_html.py` tiene un extractor por fuente, elegido por contenido. **Compilación de Avance Jurídico** (Senado y espejos): une las partes en orden (`<base>.html` y luego `_pr001`, `_pr002`…), toma solo el cuerpo de la norma (`div#aj_data` interno o `div.panel-documento`) y quita el índice de navegación, las cajas "Jurisprudencia Vigencia" (vacías, las llena JavaScript), el pie de Avance Jurídico y la sentencia de control que a veces viene pegada al final tras `<NOTA DEL EDITOR ...>` (Ley 1581/2012: 822k → 33k caracteres). Conserva las notas cortas en línea (`<Artículo modificado por …>`, `<Aparte tachado INEXEQUIBLE>`) y el texto tachado: son hechos de vigencia y así lo publica la fuente. **Relatoría de la Corte Constitucional** (HTML de Word): todo el cuerpo con sus notas al pie. En HTML solo `<br>` es salto de línea (Word parte las líneas del código fuente). Registra en `parseo.json` `extractor`, `n_partes` y `n_articulos_detectados`, y avisa si hay saltos en la numeración de artículos (falta una parte `_prNNN`).
+
+```bash
+# Segmentar corpus/*.txt -> data_corpus/indice/chunks.jsonl + resumen_indice.json (sin deps de ML, ~1 min)
+python src/indexacion/segmentar.py                          # --solo <doc_id>... (solo tabla) | --mostrar <doc_id> [<art>|w0001]
+# Indice: bm25/ + index.faiss (bge-m3, fp32) + indice_info.json; actualiza n_fragmentos/sha256 del manifest
+python src/indexacion/construir_indice.py                   # --solo-bm25 (sin encoder) | --batch 64 | --no-manifest
+SYNTAX_DEVICE=cuda python src/indexacion/construir_indice.py --batch 64    # campus; cuda|mps|cpu|auto
+# Probar y medir la recuperacion (legal_basis solo como evaluacion)
+python src/recuperacion/retriever.py "consulta" --modo bm25|denso|hibrido -k 10
+python src/evaluacion/retrieval_eval.py --modo bm25 denso hibrido --experimento <nombre>   # --no-csv para no registrar
+```
+
+Estado, resultados medidos, problemas conocidos y trampas de la indexación: **`docs/INDEXACION.md`** (leerlo antes de tocar `src/indexacion/` o `src/recuperacion/`).
+
+Segmentación (`src/indexacion/segmentar.py`, versión `seg-v1`):
+
+- **Normas**: un artículo = un fragmento; si pasa de 350 palabras se parte por párrafos (y un párrafo enorme por oraciones) en `#p1..#pN` sin solapamiento. El texto previo al primer artículo va como `#pre#pN` con `articulo=null`. Los encabezados LIBRO/TÍTULO/CAPÍTULO no entran al fragmento: se guardan en `seccion`. **Normas modificatorias**: tras un "…quedará así:" (o un encabezado entre comillas) se entra en modo cita, y los "ARTÍCULO N" transcritos quedan dentro del artículo propio hasta que la numeración vuelve a la de la norma (Ley 1819/2016 art. 10 contiene el art. 247 del ET, no es un "art. 247 de la Ley 1819").
+- **Sentencias**: ventanas de ~350 palabras con párrafos enteros, 1 párrafo de solapamiento si es corto, sin cruzar secciones (`sintesis | antecedentes | consideraciones | resuelve | salvamento | aclaracion`).
+- **`texto` de cada fragmento = cabecera citable + `"\n"` + `corpus[inicio:fin]` literal**, y va tal cual a `pasajes_recuperados.texto`. Motivo: el evaluador da por respaldada una cita solo si `citations.extract()` la encuentra en el texto del pasaje (`evaluate.citas_respaldadas`), y un artículo suelto no extrae ninguna norma. La cabecera tiene la forma "Artículo 42 del Código General del Proceso." / "Corte Constitucional, Sentencia C-355 de 2006." (`src/indexacion/cabeceras.py`) y se valida con `bodies(extract(cabecera)) == {canonico}`. Otras formas fallan: "Constitución Política de Colombia, artículo 29" pierde el artículo, y "Código Civil (Ley 57 de 1887)" agrega un cuerpo espurio. `retrieval_text` (lo que ven BM25 y el encoder) agrega título, siglas y sección.
+- **Cuerpo canónico**: clave de `citations.CODES` → regex del `doc_id` → `canonico` de `fuentes_descargadas.json`. El `doc_id` manda porque la semilla arrastra erratas del banco (`ley_1563_2012` figura como "Decreto 1563 de 2012", `decreto_2737_1989` como "Ley 2737 de 1989", `ley_964_2005` como "Ley 964 de 2006"): la cabecera usa la norma correcta aunque esos ~4 ítems citen la forma errónea.
+- Invariantes que se comprueban al segmentar (exit 1 si fallan): `texto` = cabecera + literal, fragmentos de una norma sin solaparse, `chunk_id` únicos. Los artículos detectados (números base: `38A` y `12-1` cuentan con 38 y 12, sin transitorios) se comparan con `n_articulos` del manifest. Ojo: en normas modificatorias el manifest a veces cuenta los artículos transcritos (Ley 50/1990: 171; Ley 80/1993: 86, cuando tiene 81).
+- **Determinismo**: los vectores del corpus se calculan una vez (caché en `data_corpus/cache_emb/`, por sha256 del `retrieval_text`) y la consulta se codifica siempre en fp32. Los empates se desempatan por `chunk_id`. `ENCODER_REVISION` fija el commit de `BAAI/bge-m3` en Hugging Face.
+
+```bash
+# Decoder local (llama.cpp): brew install llama.cpp | binario de GitHub releases (CUDA/CPU)
+python src/generacion/modelo.py descargar       # GGUF a modelos/ (revision + sha256 de config.LLM_MODELOS)
+python src/generacion/modelo.py servir          # otra terminal: llama-server en 127.0.0.1:8080 (-np 1, sin mmap, temp 0)
+# Generar (se reanuda si se cae) y evaluar
+bash run.sh                                     # = python src/main.py --split sample
+python src/main.py --split sample --experimento <exp> [--limite N | --ids ...]
+python src/main.py --split test                 # sabado: data/test_992.jsonl -> submissions.jsonl
+python src/evaluacion/evaluar_entrega.py --entrega salidas/sample_<exp>.jsonl --experimento <exp> [--ragas]
+python src/evaluacion/comparar_entregas.py a.jsonl b.jsonl    # determinismo / verificacion en vivo
+```
+
+Estado, decisiones, latencias medidas y trampas de la generación: **`docs/GENERACION.md`** (leerlo antes de tocar `src/generacion/` o `src/main.py`). Claves:
+
+- `responder(item, retriever, decoder)` (`src/generacion/responder.py`) deja pasar solo `id, formato, pregunta, opciones` (guarda contra el ground truth), recupera el top-10 híbrido, manda los `GENERATION_K=5` primeros al decoder y valida **todo** el texto de la respuesta con `scripts/citations.py` contra los 10 pasajes. Si hay citas sin respaldo, regenera 1 vez, luego quita esas oraciones y, si queda un campo vacío, se abstiene. Después agrega las cabeceras de la evidencia a los campos citables (`CITAR_EVIDENCIA`).
+- **Determinismo**: `temperature=0`, `seed=0`, `-np 1`, `cache_prompt=false` y `enable_thinking=false`. Comprobado: dos corridas dan salidas idénticas. La salida del decoder se restringe por JSON Schema (gramática de llama.cpp).
+- `SYNTAX_LLM` elige el GGUF (`qwen3-8b-q4` | `qwen3-4b-2507-q4`), `SYNTAX_LLM_URL` el endpoint, `SYNTAX_GENERATION_K` y `SYNTAX_CITAR_EVIDENCIA` los hiperparámetros. Cambiar un texto de `prompts.py` = subir `PROMPT_VERSION`.
+- Cada corrida deja `salidas/trazas/<exp>.jsonl` (+ `.meta.json` con GGUF, build de llama.cpp, prompt y sha del índice); `evaluar_entrega.py` las copia, junto con el reporte oficial y `errores.csv` (diagnóstico por pregunta), a `evaluation/generacion/<exp>/` (versionado) y agrega la fila en `experiments.csv`.
+
+Pendiente del contrato de entrega: en un contenedor limpio, `run.sh` aún asume el índice presente y el servidor levantado (ver `docs/GENERACION.md`, sección 7).
 
 ## Entorno y dependencias (`src/reproducibilidad/`)
 
-Tres scripts, solo stdlib (corren sin instalar nada, en Windows y Mac):
+Cuatro scripts, solo stdlib (corren sin instalar nada, en Windows y Mac):
 
 ```bash
-python3.11 src/reproducibilidad/preparar_entorno.py      # crea .venv, instala requirements.txt y verifica deps
-python3.11 src/reproducibilidad/preparar_entorno.py --evaluador --recrear   # + deps del juez; .venv de cero
+python3.13 src/reproducibilidad/preparar_entorno.py      # crea .venv, instala requirements.txt y verifica deps
+python3.13 src/reproducibilidad/preparar_entorno.py --evaluador --recrear   # + deps del juez; .venv de cero
 python src/reproducibilidad/verificar_deps.py            # exit 1 si un import de src/ no está en requirements.txt o no está fijado
 python src/reproducibilidad/verificar_deps.py --fix      # agrega los faltantes ya instalados como paquete==version
 python src/reproducibilidad/registrar_entorno.py --salida evaluation/entornos/<experimento>.json   # commit, python, SO, device, paquetes
+python src/reproducibilidad/verificar_corpus.py   # exit 1 si corpus/ o chunks.jsonl locales difieren de los congelados (--actualizar solo en la máquina de referencia)
 ```
 
 **Regla para todos los agentes: `requirements.txt` crece junto con los imports, nunca después.** Al introducir un import de un paquete de terceros en `src/`:
@@ -93,6 +158,19 @@ Fuentes por orden de ataque: **Secretaría del Senado** (HTML limpio, artículo 
 
 Modelo de chunk: **un artículo = una unidad** (inciso/parágrafo solo si el artículo es largo), con metadata `chunk_id, doc_id, document_type, document_number, year, article, section, validity, source_url, start_offset, end_offset`. Separar `retrieval_text` (puede llevar encabezado "Ley X de Y, art. N" para mejorar la búsqueda, estilo contextual retrieval con reglas) de `source_text` (literal; es lo que va en `pasajes_recuperados.texto`).
 
+### Estado de las fuentes y listas de trabajo
+
+De los 186 objetivos de la semilla: **162 descargados**, 3 erratas de la semilla (estado `errata`; apuntan a un `doc_id` ya cubierto, p. ej. `ley_116_2006` → `ley_1116_2006`, `ley_11500_2007` → `ley_1150_2007`), 6 no encontrados y 15 sentencias de la Corte Suprema sin URL predecible. A esos 162 se suman **5 documentos fuera de la semilla** (`codigo_civil`, `codigo_comercio`, `codigo_penal`, `cpaca`, `ley_472_1998`) que aparecen en el `legal_basis` de `sample_50` y que la semilla no cubría (sección `_adicionales` de `fuentes_override.json`, con `doc_id` canónicos de `scripts/citations.py`) ⇒ 167 en el corpus. Dieciocho documentos de alto impacto (Constitución, CGP, CST, ET, Estatuto del Consumidor, los 5 adicionales…) se bajaron a mano en PDF (Gestor Normativo, ICBF, SUIT, RedJurista) para controlar la calidad; el script solo los registra. Sus enlaces están en `data/referencias_normativas.md`.
+
+Archivos de trabajo versionados en `data/` (léelos antes de tocar el corpus):
+
+- **`fuentes_pendientes.md`**: checklist de las **30 fuentes que faltan** (15 sentencias CSJ SL/SP/SC + `acuerdo_2_2015`, 6 no encontrados, 9 del `legal_basis` de `sample_50` fuera de la semilla). Cada ítem lleva el procedimiento de incorporación de 5 pasos; marcar `[x]` al terminar.
+- **`fuentes_faltantes_sample50.md`**: comparación del `legal_basis` de `sample_50` contra la semilla (`legal_basis` = solo para planear ingesta, nunca runtime).
+- **`areas_por_asignar.md`**: las `areas` de los 5 documentos adicionales las propuso un agente y **falta que una persona las confirme**; al decidir, actualizar `_adicionales` de `fuentes_override.json` y `corpus_manifest.json` y correr el validador.
+- **`fuentes_descargadas.json`** (URL/estado/sha256), **`fuentes_override.json`**, **`mapa_archivos.json`**: ver comandos de arriba.
+
+Pendiente decidir: si entran los no normativos (ponencia WIPO, laudo Dow Chemical) y qué hacer con `sentencia_su_6_1991` (probable errata; la Corte no emitió SU en 1991).
+
 Entregables del corpus: `corpus_manifest.json`, `corpus/`, `indice/` (`index.faiss` + `chunks.jsonl`), `LICENSE`, y la bitácora `CORPUS.md` (plantilla en la raíz, con tabla de evolución del puntaje).
 
 ### Licencia del corpus (decidida)
@@ -118,6 +196,7 @@ Referencia: `../Hackathon 2026/entregables/sabado/corpus_manifest.ejemplo.json`.
 - **Texto**: los valores del ejemplo van en ASCII sin tildes (`Codigo`, `Secretaria`, `indice`). Seguir esa convención en `titulo`, `fuente` y `metodo_ingesta`; solo las URLs y los nombres propios se dejan tal cual. JSON con indentación de 2 espacios, UTF-8, `\n`.
 - **Placeholders del ejemplo** (`<URL>`, `2026-XX-XX`, `<hash...>`) son solo de plantilla: ninguno puede quedar en la entrega final.
 - **Rutas**: nunca absolutas ni dependientes de la máquina (`/Users/...`, `C:\...`); si se registra una ruta, es relativa a la raíz del corpus.
+- **Estado actual (v1, 2026-09-29)**: 167 documentos con `n_articulos` (normas) y `metodo_ingesta` reales, `sha256` de `data_corpus/corpus/<doc_id>.txt`, `n_fragmentos=0` hasta segmentar y `enlace_nube: "<URL>"` (único aviso del validador: 0 errores, 2 avisos). Se generó desde `data/fuentes_descargadas.json` (título, fuente, URL, fecha, áreas) + `data_corpus/parseo.json` (método, sha256); **todavía no hay script versionado que lo regenere**: al segmentar, crearlo (y que recalcule `n_fragmentos` desde `chunks.jsonl`) en vez de editar a mano. Las `areas` de los 5 documentos adicionales son provisionales (ver `data/areas_por_asignar.md`).
 - **Edición**: idealmente lo genera un script a partir de `corpus/` para no editarlo a mano; si se edita a mano, una persona a la vez (es un JSON en git y los conflictos de merge son dolorosos).
 
 ### Carpeta local del corpus y rutas
@@ -128,10 +207,11 @@ El corpus procesado y el índice se generan en `data_corpus/` dentro del repo: u
 data_corpus/                   (en .gitignore)
 ├── corpus/   un archivo por doc_id: corpus/<doc_id>.<ext>
 ├── indice/   index.faiss + chunks.jsonl
-└── raw/      descargas originales (opcional, regenerable)
 ```
 
-- **`src/config.py` es el único lugar donde se definen rutas**: exporta `ROOT`, `MANIFEST_PATH`, `CORPUS_DIR` (= `ROOT / "data_corpus"`), `CORPUS_TEXTOS`, `INDICE_DIR`, `RAW_DIR`, `CHUNKS_PATH`, `FAISS_PATH`, más `verificar_indice()` (comprueba que `chunks.jsonl` e `index.faiss` existan y tengan el mismo número de fragmentos; llamarla al arrancar cualquier proceso que use el índice). Los scripts hacen `sys.path.insert(0, str(ROOT / "src")); import config` (como `src/validaciones/*.py`). Nunca escribir rutas a mano ni usar `os.getcwd()`.
+Las fuentes originales **no** viven aquí sino en `data/raw/` (`html/<doc_id>/`, `pdf/`, `rtf/`; en `.gitignore`, fuera de `data_corpus/`). `src/config.py` exporta `RAW_DIR`, `RAW_HTML_DIR`, `raw_html_dir(doc_id)`, `docs_en_raw()` (doc_id con algún original ya en `data/raw/`), `MAPA_ARCHIVOS_PATH` y `PARSEO_PATH`.
+
+- **`src/config.py` es el único lugar donde se definen rutas**: exporta `ROOT`, `MANIFEST_PATH`, `CORPUS_DIR` (= `ROOT / "data_corpus"`), `CORPUS_TEXTOS`, `INDICE_DIR`, `RAW_DIR`, `RAW_HTML_DIR`, `FUENTES_PATH`, `CHUNKS_PATH`, `FAISS_PATH`, `BM25_DIR`, `INDICE_INFO_PATH`, `RESUMEN_INDICE_PATH`, `EMB_CACHE_DIR`, `EXPERIMENTS_CSV`, los parámetros del encoder (`ENCODER_MODEL`, `ENCODER_REVISION`, `ENCODER_MAX_SEQ`), los del decoder y el pipeline (`LLM_MODELOS`/`llm_config()`, `MODELOS_DIR`, `LLM_URL`, `LLM_CTX`, `LLM_SEED`, `MODO_RECUPERACION`, `RETRIEVAL_K`, `GENERATION_K`, `CITAR_EVIDENCIA`, `SALIDAS_DIR`, `TRAZAS_DIR`, `SCHEMA_PATH`, `SAMPLE_PATH`, `TEST_PATH`, `SUBMISSION_PATH`), `DEVICE` (variable de entorno `SYNTAX_DEVICE`: `cuda|mps|cpu|auto`) con `resolver_device()`, más `verificar_indice()` (comprueba que `chunks.jsonl` e `index.faiss` existan y tengan el mismo número de fragmentos; llamarla al arrancar cualquier proceso que use el índice). Los scripts hacen `sys.path.insert(0, str(ROOT / "src")); import config` (como `src/validaciones/*.py`). Nunca escribir rutas a mano ni usar `os.getcwd()`.
 - **Un archivo por `doc_id` en `corpus/`**: cada uno ingiere documentos distintos sin pisarse. El `sha256` del manifest es el de ese archivo.
 - **Validar antes de subir cambios y antes de entregar**: `python src/validaciones/manifest.py` (formato, `sha256` contra `corpus/`, `n_fragmentos` contra `chunks.jsonl`, `doc_id` de los chunks ⊆ manifest). Con `--strict` (entrega final) los placeholders y archivos ausentes son error.
 - **Empaquetado final** (aún por hacer, `package_corpus.py`): `corpus/` + `indice/` + `LICENSE` + copia de `corpus_manifest.json` → comprimido `Syntax-corpus...` subido a OneDrive con enlace público (el enunciado exige lectura pública para cualquiera con el vínculo e índice congelado); anotar el hash del comprimido en `CORPUS.md`.
@@ -175,7 +255,7 @@ Antes de añadir una técnica: qué error observado corrige, qué métrica debe 
 
 ## Equipo, plataformas y cómputo
 
-- **Windows + Mac**: escribir código portable. `pathlib`, sin rutas con `\`, abrir/escribir archivos con `encoding="utf-8"` y `newline="\n"`, sin dependencias de bash en `src/` (el `run.sh` es un envoltorio fino de `python src/main.py`). Fijar versiones en `requirements.txt` (Python 3.11 objetivo; el repo trae `.pyc` de 3.14 de los scripts oficiales, que corren en ambas).
+- **Windows + Mac**: escribir código portable. `pathlib`, sin rutas con `\`, abrir/escribir archivos con `encoding="utf-8"` y `newline="\n"`, sin dependencias de bash en `src/` (el `run.sh` es un envoltorio fino de `python src/main.py`). Fijar versiones en `requirements.txt` (Python 3.13, declarado en la línea `# python: 3.13` de `requirements.txt`; `verificar_deps.py` y `preparar_entorno.py` fallan con otra versión. Para cambiarla, editar esa línea y recrear el entorno).
 - **Un solo contrato de dispositivo**: `device = cuda | mps | cpu` por configuración, no por `if platform`. Mac: llama.cpp con Metal (`-DGGML_METAL=ON`, GGUF Q4_K_M). Campus/CUDA: mismo modelo servido por llama.cpp o vLLM. Exponer el decoder siempre tras una interfaz `generate(prompt) -> str` (idealmente endpoint OpenAI-compatible) para que el resto del código no cambie.
 - **Las máquinas del campus sirven para lo pesado y paralelizable**: embeddings del corpus completo, construcción de índices, sweeps de retrieval y las corridas largas de las 992. Los Mac sirven para iterar.
 - **Cuidado de reproducibilidad entre plataformas**: un GGUF Q4 en Mac y otra cuantización en CUDA no dan la misma salida. Los números de `experiments.csv` deben anotar plataforma y cuantización; **la corrida final de las 992 y la verificación en vivo usan una sola configuración congelada**.
@@ -184,7 +264,8 @@ Antes de añadir una técnica: qué error observado corrige, qué métrica debe 
 
 ## Convenciones de repo
 
-- Trabajar en ramas por persona/tarea y PR a `main`; no hacer push directo a `main` ni force-push.
+- Una **rama personal por integrante** (`santiago`, `sofi`), no una rama por tarea; traer `main` antes de trabajar (`git merge origin/main`) y merge a `main` por PR/cuando se pida. No hacer push directo a `main` ni force-push. Los worktrees de agentes viven en `.claude/worktrees/` y deben tener checked out la rama personal.
+- Mensajes de commit en español, sin tildes, con un resumen de una línea y el detalle de decisiones en viñetas (así se ha hecho hasta ahora).
 - No versionar `scripts/.env`, modelos, índices ni `__pycache__` (ver `.gitignore`).
 - Completar `README.md` (arquitectura, reproducción, resultados, limitaciones) y `CORPUS.md` a medida que avanza el trabajo, no al final; hay que quitar las notas en cursiva de las plantillas.
 

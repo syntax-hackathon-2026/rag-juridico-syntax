@@ -6,9 +6,10 @@ scripts/.env
 venv/
 .DS_Store
 models/
+modelos/
+salidas/
 indice/
 corpus/
-raw/
 data_corpus/
 *.gguf
 *.faiss

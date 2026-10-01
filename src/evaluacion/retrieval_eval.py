@@ -1,0 +1,182 @@
+"""Mide la recuperacion sobre data/sample_50.jsonl antes de generar nada.
+
+    python src/evaluacion/retrieval_eval.py --modo bm25
+    python src/evaluacion/retrieval_eval.py --modo bm25 denso hibrido --experimento e01_bge_m3
+
+El fundamento de referencia sale de `citations.extract(legal_basis)`: legal_basis es
+ground truth y SOLO se usa aqui, para evaluar (nunca en runtime). Preguntas sin citas
+extraibles (~16 % del banco) no entran.
+
+Metricas por modo (promedio sobre las preguntas con fundamento):
+  - doc_hit@k: algun fragmento del top-k es del cuerpo normativo de referencia
+    (canonico del fragmento). MRR sobre el mismo criterio.
+  - respaldo@10: fraccion de los cuerpos de referencia que el evaluador daria por
+    respaldados con estos 10 pasajes (citations.extract sobre su texto, igual que
+    evaluate.citas_respaldadas). Es el techo de los 20 pts de citacion.
+  - art_hit@k: el top-k trae el articulo exacto (cuerpo + numero) de la referencia,
+    sobre las preguntas cuyo fundamento llega a nivel de articulo.
+  - latencia media por consulta.
+
+Guarda el detalle por pregunta en evaluation/retrieval/<experimento>_<modo>.jsonl, una
+fila por modo en evaluation/experiments.csv y el entorno en evaluation/entornos/.
+"""
+from __future__ import annotations
+
+import argparse
+import csv
+import json
+import re
+import subprocess
+import sys
+import time
+from datetime import datetime, timezone
+from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+import config  # noqa: E402
+from recuperacion.consulta import consulta_de  # noqa: E402
+from recuperacion.retriever import MODOS, cargar  # noqa: E402
+
+sys.path.insert(0, str(config.ROOT / "scripts"))
+import citations  # noqa: E402
+from common import read_jsonl  # noqa: E402
+
+KS = (1, 3, 5, 10)
+COLUMNAS = [
+    "fecha", "experimento", "commit", "n_documentos", "n_fragmentos", "version_segmentador",
+    "retriever", "encoder", "fusion", "reranker", "retrieval_k", "generation_k", "decoder",
+    "cuantizacion", "prompt_version", "consulta", "n_preguntas",
+    "doc_hit@1", "doc_hit@3", "doc_hit@5", "doc_hit@10", "mrr", "respaldo@10",
+    "art_hit@1", "art_hit@10", "n_con_articulo",
+    "exactitud_cerradas", "citacion_pts", "abstencion_pts", "ragas", "latencia_ret_ms",
+    "latencia_total_ms", "plataforma", "entorno_json", "notas",
+]
+
+
+def _art(a: str | None) -> str | None:
+    """Numero de articulo comparable: '1o'/'1°' -> '1', '5 A' -> '5a'."""
+    if a is None:
+        return None
+    a = re.sub(r"[°º]", "", a.lower()).replace(" ", "")
+    return re.sub(r"^(\d+)o$", r"\1", a)
+
+
+def evaluar(modo: str, items: list[dict], tipo_consulta: str) -> tuple[dict, list[dict]]:
+    ret = cargar(cargar_denso=modo != "bm25")
+    filas = []
+    for it in items:
+        ref = citations.extract(it.get("legal_basis") or "")
+        ref_b = citations.bodies(ref)
+        if not ref_b:
+            continue
+        ref_art = {(c[0], c[1], c[2], _art(c[3])) for c in citations.article_level(ref)}
+        t0 = time.perf_counter()
+        top = ret.retrieve(consulta_de(it, tipo_consulta), k=max(KS), modo=modo)
+        ms = (time.perf_counter() - t0) * 1000
+        cuerpos = [tuple(p.meta["canonico"]) for p in top]
+        arts = [(*p.meta["canonico"], _art(p.meta["articulo"])) for p in top]
+        rank_doc = next((r for r, c in enumerate(cuerpos, 1) if c in ref_b), None)
+        rank_art = next((r for r, a in enumerate(arts, 1) if a in ref_art), None)
+        respaldadas = set()
+        for p in top[:10]:
+            respaldadas |= citations.bodies(citations.extract(p.texto))
+        filas.append({
+            "id": it["id"], "formato": it["formato"], "area": it.get("area"),
+            "referencia": sorted(map(list, ref_b)), "referencia_articulos": sorted(map(list, ref_art)),
+            "rank_doc": rank_doc, "rank_art": rank_art,
+            "respaldo": len(ref_b & respaldadas) / len(ref_b),
+            "latencia_ms": round(ms, 1),
+            "top": [[p.chunk_id, round(p.score, 5)] for p in top],
+        })
+    n = len(filas)
+    con_art = [f for f in filas if f["referencia_articulos"]]
+    met = {f"doc_hit@{k}": sum(bool(f["rank_doc"] and f["rank_doc"] <= k) for f in filas) / n for k in KS}
+    met["mrr"] = sum(1 / f["rank_doc"] for f in filas if f["rank_doc"]) / n
+    met["respaldo@10"] = sum(f["respaldo"] for f in filas) / n
+    for k in (1, 10):
+        met[f"art_hit@{k}"] = (sum(bool(f["rank_art"] and f["rank_art"] <= k) for f in con_art) / len(con_art)
+                               if con_art else None)
+    met["n_con_articulo"] = len(con_art)
+    met["n_preguntas"] = n
+    met["latencia_ret_ms"] = sum(f["latencia_ms"] for f in filas) / n
+    return met, filas
+
+
+def git_commit() -> str:
+    try:
+        out = subprocess.run(["git", "rev-parse", "--short", "HEAD"], cwd=config.ROOT,
+                             capture_output=True, text=True, check=True).stdout.strip()
+        sucio = subprocess.run(["git", "status", "--porcelain"], cwd=config.ROOT,
+                               capture_output=True, text=True).stdout.strip()
+        return out + ("+cambios" if sucio else "")
+    except (OSError, subprocess.CalledProcessError):
+        return ""
+
+
+def main() -> int:
+    ap = argparse.ArgumentParser(description=__doc__.splitlines()[0])
+    ap.add_argument("--modo", nargs="+", choices=MODOS, default=["bm25"])
+    ap.add_argument("--split", default="sample", choices=["sample"])
+    ap.add_argument("--consulta", choices=["pregunta", "pregunta+opciones"], default="pregunta+opciones")
+    ap.add_argument("--experimento", default=None, help="nombre de la fila en experiments.csv")
+    ap.add_argument("--notas", default="")
+    ap.add_argument("--no-csv", action="store_true", help="solo imprimir, sin escribir en evaluation/")
+    args = ap.parse_args()
+
+    items = read_jsonl(config.ROOT / "data" / "sample_50.jsonl")
+    info = json.loads(config.INDICE_INFO_PATH.read_text(encoding="utf-8")) if config.INDICE_INFO_PATH.is_file() else {}
+    experimento = args.experimento or datetime.now().strftime("ret_%Y%m%d_%H%M")
+    entorno = ""
+    if not args.no_csv:
+        entorno_path = config.EVALUATION_DIR / "entornos" / f"{experimento}.json"
+        entorno_path.parent.mkdir(parents=True, exist_ok=True)
+        subprocess.run([sys.executable, str(config.ROOT / "src/reproducibilidad/registrar_entorno.py"),
+                        "--salida", str(entorno_path)], cwd=config.ROOT, capture_output=True)
+        entorno = entorno_path.relative_to(config.ROOT).as_posix()
+
+    for modo in args.modo:
+        met, filas = evaluar(modo, items, args.consulta)
+        print(f"\n== {modo}  ({met['n_preguntas']} preguntas con fundamento, {met['n_con_articulo']} a nivel de articulo)")
+        for k in ("doc_hit@1", "doc_hit@3", "doc_hit@5", "doc_hit@10", "mrr", "respaldo@10", "art_hit@1", "art_hit@10"):
+            v = met[k]
+            print(f"   {k:<12} {v:.3f}" if v is not None else f"   {k:<12} -")
+        print(f"   latencia     {met['latencia_ret_ms']:.0f} ms/consulta")
+        fallos = [f["id"] for f in filas if not f["rank_doc"]]
+        print(f"   sin el cuerpo de referencia en el top-10: {fallos}")
+        if args.no_csv:
+            continue
+        det = config.EVALUATION_DIR / "retrieval" / f"{experimento}_{modo}.jsonl"
+        det.parent.mkdir(parents=True, exist_ok=True)
+        with det.open("w", encoding="utf-8", newline="\n") as f:
+            for fila in filas:
+                f.write(json.dumps(fila, ensure_ascii=False) + "\n")
+        denso = info.get("denso") or {}
+        fila_csv = {
+            "fecha": datetime.now(timezone.utc).isoformat(timespec="seconds"),
+            "experimento": f"{experimento}_{modo}", "commit": git_commit(),
+            "n_documentos": len({c["doc_id"] for c in cargar(cargar_denso=False).chunks}),
+            "n_fragmentos": info.get("n_fragmentos"), "version_segmentador": info.get("version_segmentador"),
+            "retriever": modo, "encoder": denso.get("modelo", "") if modo != "bm25" else "",
+            "fusion": "rrf60" if modo == "hibrido" else "", "reranker": "", "retrieval_k": 10,
+            "consulta": args.consulta, "latencia_ret_ms": round(met["latencia_ret_ms"], 1),
+            "plataforma": denso.get("device", "") if modo != "bm25" else "cpu",
+            "entorno_json": entorno, "notas": args.notas,
+            **{k: (round(met[k], 4) if isinstance(met[k], float) else met[k])
+               for k in COLUMNAS if k in met},
+        }
+        nuevo = not config.EXPERIMENTS_CSV.is_file()
+        with config.EXPERIMENTS_CSV.open("a", encoding="utf-8", newline="") as f:
+            w = csv.DictWriter(f, fieldnames=COLUMNAS, lineterminator="\n")
+            if nuevo:
+                w.writeheader()
+            w.writerow({k: fila_csv.get(k, "") for k in COLUMNAS})
+        print(f"   -> {det.relative_to(config.ROOT).as_posix()} y fila en {config.EXPERIMENTS_CSV.name}")
+    return 0
+
+
+if __name__ == "__main__":
+    try:
+        sys.stdout.reconfigure(encoding="utf-8")
+    except AttributeError:
+        pass
+    raise SystemExit(main())
