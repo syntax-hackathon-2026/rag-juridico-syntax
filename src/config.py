@@ -54,6 +54,21 @@ INDICE_INFO_PATH = INDICE_DIR / "indice_info.json"  # encoder, revision, n, sha2
 RESUMEN_INDICE_PATH = INDICE_DIR / "resumen_indice.json"  # por doc_id: fragmentos, articulos, avisos
 EMB_CACHE_DIR = CORPUS_DIR / "cache_emb"  # fuera de indice/ (no se publica): vectores por hash de texto
 EVALUATION_DIR = ROOT / "evaluation"
+REFERENCIAS_BASELINE_PATH = EVALUATION_DIR / "retrieval" / "e01_bge_m3_hibrido.jsonl"
+# Plan 06: experimental, apagado hasta superar keep/revert.
+LOOKUP_MODO = os.environ.get("SYNTAX_LOOKUP", "off")
+LOOKUP_VARIANTE = os.environ.get("SYNTAX_LOOKUP_VARIANTE", "a")
+LOOKUP_FUENTE = os.environ.get("SYNTAX_LOOKUP_FUENTE", "consulta")
+LOOKUP_BONUS = float(os.environ.get("SYNTAX_LOOKUP_BONUS", "0.005"))
+LOOKUP_M = int(os.environ.get("SYNTAX_LOOKUP_M", "2"))
+if LOOKUP_MODO not in {"off", "on"}:
+    raise ValueError("SYNTAX_LOOKUP debe ser off|on")
+if LOOKUP_VARIANTE not in {"a", "b", "c"}:
+    raise ValueError("SYNTAX_LOOKUP_VARIANTE debe ser a|b|c")
+if LOOKUP_FUENTE not in {"consulta", "pregunta"}:
+    raise ValueError("SYNTAX_LOOKUP_FUENTE debe ser consulta|pregunta")
+if not 0 <= LOOKUP_BONUS < float("inf") or LOOKUP_M < 1:
+    raise ValueError("LOOKUP_BONUS debe ser finito no negativo y LOOKUP_M positivo")
 EXPERIMENTS_CSV = EVALUATION_DIR / "experiments.csv"
 
 # Encoder denso (enunciado 3.1). bge-m3: MIT, 1024 dim, 8192 tokens, sin prefijos.
@@ -109,6 +124,12 @@ SCHEMA_PATH = ROOT / "schema" / "submission.schema.json"
 SAMPLE_PATH = ROOT / "data" / "sample_50.jsonl"
 TEST_PATH = ROOT / "data" / "test_992.jsonl"  # se entrega el sabado 09:00
 SUBMISSION_PATH = ROOT / "submissions.jsonl"
+
+
+def lookup_metadata() -> dict:
+    return {"modo": LOOKUP_MODO, "variante": LOOKUP_VARIANTE,
+            "fuente": LOOKUP_FUENTE, "bonus": LOOKUP_BONUS, "m": LOOKUP_M,
+            "aplica_a": "hibrido", "parser": "scripts/citations.py"}
 
 
 def abstencion_metadata() -> dict:

@@ -98,13 +98,21 @@ def responder(item: dict, retriever, decoder, generation_k: int | None = None,
     formato = item["formato"]
     consulta = consulta_de(item)
 
-    top = retriever.retrieve(consulta, k=config.RETRIEVAL_K, modo=config.MODO_RECUPERACION)
+    kwargs_lookup = ({"consulta_lookup": item["pregunta"]} if config.LOOKUP_MODO == "on"
+                     and config.LOOKUP_FUENTE == "pregunta" else {})
+    top = retriever.retrieve(consulta, k=config.RETRIEVAL_K, modo=config.MODO_RECUPERACION, **kwargs_lookup)
     ms_ret = (time.perf_counter() - t0) * 1000
     perm = citas.permitidas([p.texto for p in top])
     llamadas: list[dict] = []
     traza: dict = {"id": item["id"], "formato": formato, "prompt_version": prompts.PROMPT_VERSION,
                    "generation_k": generation_k, "top": [[p.chunk_id, round(p.score, 6)] for p in top],
                    "senales": abstencion.senales(consulta, top, perm), "llamadas": llamadas}
+    if config.LOOKUP_MODO == "on":
+        traza["lookup"] = {
+            "config": config.lookup_metadata(),
+            "matches_top": [[p.chunk_id, p.meta["rank_lookup"]] for p in top
+                            if p.meta.get("rank_lookup") is not None],
+        }
     motivos: list[str] = []
     campos: dict | None = None
 
