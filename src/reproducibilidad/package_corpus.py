@@ -2,6 +2,7 @@
 
     python src/reproducibilidad/package_corpus.py                       # LICENSE en ../LICENSE
     python src/reproducibilidad/package_corpus.py --licencia <ruta> [--nombre Syntax-corpus-v4]
+    python src/reproducibilidad/package_corpus.py --sin-licencia --nombre <snapshot>   # congelado interno
 
 Contenido del zip (raiz `<nombre>/`): corpus/ (los .txt del manifest), indice/ (index.faiss,
 chunks.jsonl, bm25/, indice_info.json, resumen_indice.json), LICENSE y una copia de
@@ -36,10 +37,10 @@ def sha256_archivo(ruta: Path) -> str:
     return h.hexdigest()
 
 
-def entradas(licencia: Path) -> list[tuple[str, Path]]:
+def entradas(licencia: Path | None) -> list[tuple[str, Path]]:
     """(ruta dentro del zip sin la raiz, archivo local), en orden fijo."""
     manifest = json.loads(config.MANIFEST_PATH.read_text(encoding="utf-8"))
-    salida = [("LICENSE", licencia), ("corpus_manifest.json", config.MANIFEST_PATH)]
+    salida = ([("LICENSE", licencia)] if licencia else []) + [("corpus_manifest.json", config.MANIFEST_PATH)]
     for d in sorted(manifest["documentos"], key=lambda d: d["doc_id"]):
         salida.append((f"corpus/{d['doc_id']}.txt", config.CORPUS_TEXTOS / f"{d['doc_id']}.txt"))
     for nombre in ARCHIVOS_INDICE:
@@ -55,9 +56,13 @@ def main() -> int:
                     help="LICENSE del corpus (CC-BY-4.0); por defecto ../LICENSE")
     ap.add_argument("--nombre", default="Syntax-corpus-v4", help="nombre del zip y de su carpeta raiz")
     ap.add_argument("--sin-verificar", action="store_true", help="no correr verificar_corpus.py (solo pruebas)")
+    ap.add_argument("--sin-licencia", action="store_true",
+                    help="snapshot interno para reproducir (no publicable): el zip va sin LICENSE")
     args = ap.parse_args()
 
-    if not args.licencia.is_file():
+    if args.sin_licencia:
+        args.licencia = None
+    elif not args.licencia.is_file():
         print(f"ERROR: no esta el LICENSE en {args.licencia}; pasar --licencia <ruta>", file=sys.stderr)
         return 1
     config.verificar_indice()

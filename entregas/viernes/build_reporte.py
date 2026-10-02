@@ -65,12 +65,13 @@ LIMITACIONES = [
      "El sistema casi nunca se abstiene: {mal} respuestas incorrectas habrían valido más de haberse "
      "abstenido. Se probará una regla sencilla, sin ajustarla en exceso a solo 50 preguntas."),
     ("Corpus desbalanceado.",
-     "La mayoría de los documentos son sentencias de la Corte Constitucional, y el derecho de los mercados "
-     "tiene pocos. Esto puede restar cobertura en las áreas menos representadas; además, las áreas "
-     "asignadas a 30 documentos adicionales aún no están confirmadas."),
+     "La mayoría de los documentos son sentencias de la Corte Constitucional; casi todas se usan solo "
+     "cuando la pregunta las nombra, para que no desplacen a las normas. Comercial, procesal y mercados "
+     "siguen siendo las áreas con menos documentos, y las áreas asignadas a los documentos añadidos aún "
+     "deben confirmarse."),
     ("Entrega final.",
-     "Faltan empaquetar el corpus, comprobar que el enlace público abre sin sesión iniciada, probar la "
-     "reproducción desde cero y construir la interfaz."),
+     "El código, los textos y el índice de esta medición quedaron congelados para reproducir estas "
+     "respuestas. Falta publicar el corpus con un enlace que abra sin sesión iniciada y construir la interfaz."),
 ]
 
 
