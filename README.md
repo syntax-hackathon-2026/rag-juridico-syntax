@@ -70,12 +70,22 @@ powershell -ExecutionPolicy Bypass -File reproducir.ps1 -Corpus C:\ruta\al\corpu
 python3.13 src/reproducibilidad/reproducir.py --corpus /ruta/al/corpus                  # Linux / contenedor con Python 3.13
 ```
 
-Etapas (cada una se salta si ya está lista): `.venv` + `requirements.txt` (y torch con CUDA en lugar de la rueda CPU de PyPI) →
+Todo parte de que los `.txt` del corpus ya existen en `data_corpus/corpus/`. Las seis etapas se pueden correr por separado
+(`--solo entorno|corpus|indice|decoder|preguntas|evaluar`, varias con coma, o `--desde`/`--hasta`; `--dry-run` muestra el plan y lo que falta):
+
+```bash
+python src/reproducibilidad/reproducir.py --solo indice                                  # solo construir el índice
+python src/reproducibilidad/reproducir.py --solo preguntas --split test --ids 51 60      # solo responder (o --rango 100-200, --limite N, --particion 2/4, --entrada <jsonl>)
+python src/reproducibilidad/reproducir.py --solo evaluar --entrega submissions.jsonl --split test
+```
+
+Etapas (cada una se salta si ya está lista): `.venv` + `requirements.txt` y `scripts/requirements-evaluador.txt` (y torch con CUDA en lugar de la rueda CPU de PyPI) →
 `.txt` contra el sha256 de `corpus_manifest.json` → segmentar, comprobar que `chunks.jsonl` es idéntico al congelado,
 codificar con bge-m3 en GPU y armar BM25 + FAISS → llama.cpp b11146 (se descarga a `herramientas/`) + GGUF con sha256 →
-`llama-server` en segundo plano, `src/main.py` y `scripts/evaluate.py`, con latencia media y proyección a 992 preguntas.
-Opciones: `--hasta indice` (sin decoder), `--reindexar` (borra índice y caché de vectores), `--sin-reanudar` (latencias limpias),
-`--limite N`, `--split test`, `--device cpu`. Requiere driver NVIDIA con CUDA >= 12.6; no instala drivers.
+`llama-server` en segundo plano, `src/main.py` (con latencia media y proyección a 992 preguntas) y la evaluación: schema siempre
+y puntaje oficial con `evaluate.py` (el juez de texto libre corre solo si hay `OPENROUTER_API_KEY` en el entorno o en `scripts/.env`;
+`--ragas` lo exige, `--sin-ragas` lo apaga; con `--split test` el puntaje solo se calcula si están los archivos del jurado).
+Opciones: `--reindexar` (borra índice y caché de vectores), `--sin-reanudar` (latencias limpias), `--device cpu`. Requiere driver NVIDIA con CUDA >= 12.6; no instala drivers.
 
 El índice (`data_corpus/indice/`) se reconstruye con `src/indexacion/segmentar.py` + `src/indexacion/construir_indice.py`, o se toma del comprimido publicado (sección "Corpus e índice"). Para volver a parsear los originales de `data/raw/` hacen falta pandoc (RTF/DOCX) y Tesseract con el idioma español (5 sentencias escaneadas): `brew install pandoc tesseract tesseract-lang`. No son necesarios si se parte del `corpus/` publicado. `SYNTAX_LLM` elige el decoder (`qwen3-8b-q8` por defecto; `qwen3-8b-q4` para Macs de 16 GB y `qwen3-4b-2507-q4` como alternativas) y `SYNTAX_LLM_URL` el endpoint.
 
