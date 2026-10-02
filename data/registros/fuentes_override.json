@@ -525,6 +525,1384 @@
         "Derecho procesal"
       ],
       "nota": "ampliacion desde citations.py (seccion D.6)"
+    },
+    {
+      "doc_id": "decreto_2591_1991",
+      "titulo": "Decreto 2591 de 1991 (Reglamento de la accion de tutela)",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/decreto_2591_1991.html",
+      "areas": [
+        "Derecho constitucional",
+        "Derecho procesal"
+      ],
+      "nota": "ampliacion v3 (2026-10-02): alto impacto por area; areas propuestas por agente, falta confirmar"
+    },
+    {
+      "doc_id": "ley_270_1996",
+      "titulo": "Ley 270 de 1996 (Estatutaria de la Administracion de Justicia)",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/ley_0270_1996.html",
+      "areas": [
+        "Derecho procesal",
+        "Derecho constitucional"
+      ],
+      "nota": "ampliacion v3 (2026-10-02): alto impacto por area; areas propuestas por agente, falta confirmar"
+    },
+    {
+      "doc_id": "ley_393_1997",
+      "titulo": "Ley 393 de 1997 (Accion de cumplimiento)",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/ley_0393_1997.html",
+      "areas": [
+        "Derecho constitucional",
+        "Derecho administrativo"
+      ],
+      "nota": "ampliacion v3 (2026-10-02): alto impacto por area; areas propuestas por agente, falta confirmar"
+    },
+    {
+      "doc_id": "ley_1751_2015",
+      "titulo": "Ley 1751 de 2015 (Estatutaria de salud)",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/ley_1751_2015.html",
+      "areas": [
+        "Derecho constitucional"
+      ],
+      "nota": "ampliacion v3 (2026-10-02): alto impacto por area; areas propuestas por agente, falta confirmar"
+    },
+    {
+      "doc_id": "ley_134_1994",
+      "titulo": "Ley 134 de 1994 (Mecanismos de participacion ciudadana)",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/ley_0134_1994.html",
+      "areas": [
+        "Derecho constitucional"
+      ],
+      "nota": "ampliacion v3 (2026-10-02): alto impacto por area; areas propuestas por agente, falta confirmar"
+    },
+    {
+      "doc_id": "ley_1757_2015",
+      "titulo": "Ley 1757 de 2015 (Estatutaria de participacion democratica)",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/ley_1757_2015.html",
+      "areas": [
+        "Derecho constitucional"
+      ],
+      "nota": "ampliacion v3 (2026-10-02): alto impacto por area; areas propuestas por agente, falta confirmar"
+    },
+    {
+      "doc_id": "ley_5_1992",
+      "titulo": "Ley 5 de 1992 (Reglamento del Congreso)",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/ley_0005_1992.html",
+      "areas": [
+        "Derecho constitucional"
+      ],
+      "nota": "ampliacion v3 (2026-10-02): alto impacto por area; areas propuestas por agente, falta confirmar"
+    },
+    {
+      "doc_id": "ley_1712_2014",
+      "titulo": "Ley 1712 de 2014 (Transparencia y acceso a la informacion publica)",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/ley_1712_2014.html",
+      "areas": [
+        "Derecho constitucional",
+        "Derecho administrativo"
+      ],
+      "nota": "ampliacion v3 (2026-10-02): alto impacto por area; areas propuestas por agente, falta confirmar"
+    },
+    {
+      "doc_id": "decreto_1069_2015",
+      "titulo": "Decreto 1069 de 2015 (Decreto Unico Reglamentario del Sector Justicia y del Derecho)",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/decreto_1069_2015.html",
+      "areas": [
+        "Derecho procesal",
+        "Derecho constitucional"
+      ],
+      "nota": "ampliacion v3 (2026-10-02): alto impacto por area; areas propuestas por agente, falta confirmar"
+    },
+    {
+      "doc_id": "ley_1475_2011",
+      "titulo": "Ley 1475 de 2011 (Partidos y movimientos politicos)",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/ley_1475_2011.html",
+      "areas": [
+        "Derecho constitucional"
+      ],
+      "nota": "ampliacion v3 (2026-10-02): alto impacto por area; areas propuestas por agente, falta confirmar"
+    },
+    {
+      "doc_id": "ley_996_2005",
+      "titulo": "Ley 996 de 2005 (Ley de Garantias Electorales)",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/ley_0996_2005.html",
+      "areas": [
+        "Derecho constitucional"
+      ],
+      "nota": "ampliacion v3 (2026-10-02): alto impacto por area; areas propuestas por agente, falta confirmar"
+    },
+    {
+      "doc_id": "ley_489_1998",
+      "titulo": "Ley 489 de 1998 (Organizacion y funcionamiento de las entidades del orden nacional)",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/ley_0489_1998.html",
+      "areas": [
+        "Derecho administrativo"
+      ],
+      "nota": "ampliacion v3 (2026-10-02): alto impacto por area; areas propuestas por agente, falta confirmar"
+    },
+    {
+      "doc_id": "ley_909_2004",
+      "titulo": "Ley 909 de 2004 (Empleo publico y carrera administrativa)",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/ley_0909_2004.html",
+      "areas": [
+        "Derecho administrativo",
+        "Derecho laboral"
+      ],
+      "nota": "ampliacion v3 (2026-10-02): alto impacto por area; areas propuestas por agente, falta confirmar"
+    },
+    {
+      "doc_id": "ley_1474_2011",
+      "titulo": "Ley 1474 de 2011 (Estatuto Anticorrupcion)",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/ley_1474_2011.html",
+      "areas": [
+        "Derecho administrativo",
+        "Derecho penal"
+      ],
+      "nota": "ampliacion v3 (2026-10-02): alto impacto por area; areas propuestas por agente, falta confirmar"
+    },
+    {
+      "doc_id": "ley_610_2000",
+      "titulo": "Ley 610 de 2000 (Proceso de responsabilidad fiscal)",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/ley_0610_2000.html",
+      "areas": [
+        "Derecho administrativo"
+      ],
+      "nota": "ampliacion v3 (2026-10-02): alto impacto por area; areas propuestas por agente, falta confirmar"
+    },
+    {
+      "doc_id": "ley_2080_2021",
+      "titulo": "Ley 2080 de 2021 (Reforma del CPACA)",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/ley_2080_2021.html",
+      "areas": [
+        "Derecho administrativo",
+        "Derecho procesal"
+      ],
+      "nota": "ampliacion v3 (2026-10-02): alto impacto por area; areas propuestas por agente, falta confirmar"
+    },
+    {
+      "doc_id": "ley_1882_2018",
+      "titulo": "Ley 1882 de 2018 (Contratacion publica)",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/ley_1882_2018.html",
+      "areas": [
+        "Derecho administrativo"
+      ],
+      "nota": "ampliacion v3 (2026-10-02): alto impacto por area; areas propuestas por agente, falta confirmar"
+    },
+    {
+      "doc_id": "ley_2195_2022",
+      "titulo": "Ley 2195 de 2022 (Transparencia, prevencion y lucha contra la corrupcion)",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/ley_2195_2022.html",
+      "areas": [
+        "Derecho administrativo"
+      ],
+      "nota": "ampliacion v3 (2026-10-02): alto impacto por area; areas propuestas por agente, falta confirmar"
+    },
+    {
+      "doc_id": "ley_1508_2012",
+      "titulo": "Ley 1508 de 2012 (Asociaciones Publico Privadas)",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/ley_1508_2012.html",
+      "areas": [
+        "Derecho administrativo"
+      ],
+      "nota": "ampliacion v3 (2026-10-02): alto impacto por area; areas propuestas por agente, falta confirmar"
+    },
+    {
+      "doc_id": "ley_136_1994",
+      "titulo": "Ley 136 de 1994 (Organizacion y funcionamiento de los municipios)",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/ley_0136_1994.html",
+      "areas": [
+        "Derecho administrativo"
+      ],
+      "nota": "ampliacion v3 (2026-10-02): alto impacto por area; areas propuestas por agente, falta confirmar"
+    },
+    {
+      "doc_id": "ley_617_2000",
+      "titulo": "Ley 617 de 2000 (Racionalizacion del gasto publico territorial)",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/ley_0617_2000.html",
+      "areas": [
+        "Derecho administrativo"
+      ],
+      "nota": "ampliacion v3 (2026-10-02): alto impacto por area; areas propuestas por agente, falta confirmar"
+    },
+    {
+      "doc_id": "ley_1551_2012",
+      "titulo": "Ley 1551 de 2012 (Modernizacion de la organizacion de los municipios)",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/ley_1551_2012.html",
+      "areas": [
+        "Derecho administrativo"
+      ],
+      "nota": "ampliacion v3 (2026-10-02): alto impacto por area; areas propuestas por agente, falta confirmar"
+    },
+    {
+      "doc_id": "ley_1257_2008",
+      "titulo": "Ley 1257 de 2008 (Violencia y discriminacion contra las mujeres)",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/ley_1257_2008.html",
+      "areas": [
+        "Derecho penal",
+        "Derecho de familia"
+      ],
+      "nota": "ampliacion v3 (2026-10-02): alto impacto por area; areas propuestas por agente, falta confirmar"
+    },
+    {
+      "doc_id": "ley_1761_2015",
+      "titulo": "Ley 1761 de 2015 (Feminicidio (Ley Rosa Elvira Cely))",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/ley_1761_2015.html",
+      "areas": [
+        "Derecho penal"
+      ],
+      "nota": "ampliacion v3 (2026-10-02): alto impacto por area; areas propuestas por agente, falta confirmar"
+    },
+    {
+      "doc_id": "ley_1826_2017",
+      "titulo": "Ley 1826 de 2017 (Procedimiento penal abreviado y acusador privado)",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/ley_1826_2017.html",
+      "areas": [
+        "Derecho penal",
+        "Derecho procesal"
+      ],
+      "nota": "ampliacion v3 (2026-10-02): alto impacto por area; areas propuestas por agente, falta confirmar"
+    },
+    {
+      "doc_id": "ley_65_1993",
+      "titulo": "Ley 65 de 1993 (Codigo Penitenciario y Carcelario)",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/ley_0065_1993.html",
+      "areas": [
+        "Derecho penal"
+      ],
+      "nota": "ampliacion v3 (2026-10-02): alto impacto por area; areas propuestas por agente, falta confirmar"
+    },
+    {
+      "doc_id": "ley_1709_2014",
+      "titulo": "Ley 1709 de 2014 (Reforma al Codigo Penitenciario y Carcelario)",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/ley_1709_2014.html",
+      "areas": [
+        "Derecho penal"
+      ],
+      "nota": "ampliacion v3 (2026-10-02): alto impacto por area; areas propuestas por agente, falta confirmar"
+    },
+    {
+      "doc_id": "ley_1453_2011",
+      "titulo": "Ley 1453 de 2011 (Seguridad ciudadana)",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/ley_1453_2011.html",
+      "areas": [
+        "Derecho penal"
+      ],
+      "nota": "ampliacion v3 (2026-10-02): alto impacto por area; areas propuestas por agente, falta confirmar"
+    },
+    {
+      "doc_id": "ley_2197_2022",
+      "titulo": "Ley 2197 de 2022 (Seguridad ciudadana)",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/ley_2197_2022.html",
+      "areas": [
+        "Derecho penal"
+      ],
+      "nota": "ampliacion v3 (2026-10-02): alto impacto por area; areas propuestas por agente, falta confirmar"
+    },
+    {
+      "doc_id": "ley_975_2005",
+      "titulo": "Ley 975 de 2005 (Justicia y Paz)",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/ley_0975_2005.html",
+      "areas": [
+        "Derecho penal"
+      ],
+      "nota": "ampliacion v3 (2026-10-02): alto impacto por area; areas propuestas por agente, falta confirmar"
+    },
+    {
+      "doc_id": "ley_1957_2019",
+      "titulo": "Ley 1957 de 2019 (Estatutaria de la Administracion de Justicia en la JEP)",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/ley_1957_2019.html",
+      "areas": [
+        "Derecho penal",
+        "Derecho constitucional"
+      ],
+      "nota": "ampliacion v3 (2026-10-02): alto impacto por area; areas propuestas por agente, falta confirmar"
+    },
+    {
+      "doc_id": "ley_1922_2018",
+      "titulo": "Ley 1922 de 2018 (Reglas de procedimiento de la JEP)",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/ley_1922_2018.html",
+      "areas": [
+        "Derecho penal",
+        "Derecho procesal"
+      ],
+      "nota": "ampliacion v3 (2026-10-02): alto impacto por area; areas propuestas por agente, falta confirmar"
+    },
+    {
+      "doc_id": "ley_1774_2016",
+      "titulo": "Ley 1774 de 2016 (Animales como seres sintientes y maltrato animal)",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/ley_1774_2016.html",
+      "areas": [
+        "Derecho penal",
+        "Derecho civil"
+      ],
+      "nota": "ampliacion v3 (2026-10-02): alto impacto por area; areas propuestas por agente, falta confirmar"
+    },
+    {
+      "doc_id": "ley_1273_2009",
+      "titulo": "Ley 1273 de 2009 (Proteccion de la informacion y de los datos (delitos informaticos))",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/ley_1273_2009.html",
+      "areas": [
+        "Derecho penal",
+        "Derecho de los mercados [competencia, consumidor, datos personales y propiedad intelectual]"
+      ],
+      "nota": "ampliacion v3 (2026-10-02): alto impacto por area; areas propuestas por agente, falta confirmar"
+    },
+    {
+      "doc_id": "ley_2081_2021",
+      "titulo": "Ley 2081 de 2021 (Imprescriptibilidad de delitos sexuales contra menores)",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/ley_2081_2021.html",
+      "areas": [
+        "Derecho penal"
+      ],
+      "nota": "ampliacion v3 (2026-10-02): alto impacto por area; areas propuestas por agente, falta confirmar"
+    },
+    {
+      "doc_id": "ley_2098_2021",
+      "titulo": "Ley 2098 de 2021 (Prision perpetua revisable)",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/ley_2098_2021.html",
+      "areas": [
+        "Derecho penal"
+      ],
+      "nota": "ampliacion v3 (2026-10-02): alto impacto por area; areas propuestas por agente, falta confirmar"
+    },
+    {
+      "doc_id": "ley_2213_2022",
+      "titulo": "Ley 2213 de 2022 (Tecnologias de la informacion en las actuaciones judiciales)",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/ley_2213_2022.html",
+      "areas": [
+        "Derecho procesal"
+      ],
+      "nota": "ampliacion v3 (2026-10-02): alto impacto por area; areas propuestas por agente, falta confirmar"
+    },
+    {
+      "doc_id": "ley_1285_2009",
+      "titulo": "Ley 1285 de 2009 (Reforma a la Ley Estatutaria de la Administracion de Justicia)",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/ley_1285_2009.html",
+      "areas": [
+        "Derecho procesal"
+      ],
+      "nota": "ampliacion v3 (2026-10-02): alto impacto por area; areas propuestas por agente, falta confirmar"
+    },
+    {
+      "doc_id": "ley_446_1998",
+      "titulo": "Ley 446 de 1998 (Descongestion, eficiencia y acceso a la justicia)",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/ley_0446_1998.html",
+      "areas": [
+        "Derecho procesal"
+      ],
+      "nota": "ampliacion v3 (2026-10-02): alto impacto por area; areas propuestas por agente, falta confirmar"
+    },
+    {
+      "doc_id": "ley_1395_2010",
+      "titulo": "Ley 1395 de 2010 (Descongestion judicial)",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/ley_1395_2010.html",
+      "areas": [
+        "Derecho procesal"
+      ],
+      "nota": "ampliacion v3 (2026-10-02): alto impacto por area; areas propuestas por agente, falta confirmar"
+    },
+    {
+      "doc_id": "ley_1996_2019",
+      "titulo": "Ley 1996 de 2019 (Ejercicio de la capacidad legal de las personas con discapacidad)",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/ley_1996_2019.html",
+      "areas": [
+        "Derecho civil",
+        "Derecho de familia"
+      ],
+      "nota": "ampliacion v3 (2026-10-02): alto impacto por area; areas propuestas por agente, falta confirmar"
+    },
+    {
+      "doc_id": "ley_675_2001",
+      "titulo": "Ley 675 de 2001 (Regimen de propiedad horizontal)",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/ley_0675_2001.html",
+      "areas": [
+        "Derecho civil"
+      ],
+      "nota": "ampliacion v3 (2026-10-02): alto impacto por area; areas propuestas por agente, falta confirmar"
+    },
+    {
+      "doc_id": "ley_1579_2012",
+      "titulo": "Ley 1579 de 2012 (Estatuto de registro de instrumentos publicos)",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/ley_1579_2012.html",
+      "areas": [
+        "Derecho civil"
+      ],
+      "nota": "ampliacion v3 (2026-10-02): alto impacto por area; areas propuestas por agente, falta confirmar"
+    },
+    {
+      "doc_id": "ley_791_2002",
+      "titulo": "Ley 791 de 2002 (Reduccion de terminos de prescripcion)",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/ley_0791_2002.html",
+      "areas": [
+        "Derecho civil"
+      ],
+      "nota": "ampliacion v3 (2026-10-02): alto impacto por area; areas propuestas por agente, falta confirmar"
+    },
+    {
+      "doc_id": "ley_258_1996",
+      "titulo": "Ley 258 de 1996 (Afectacion a vivienda familiar)",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/ley_0258_1996.html",
+      "areas": [
+        "Derecho civil",
+        "Derecho de familia"
+      ],
+      "nota": "ampliacion v3 (2026-10-02): alto impacto por area; areas propuestas por agente, falta confirmar"
+    },
+    {
+      "doc_id": "ley_1561_2012",
+      "titulo": "Ley 1561 de 2012 (Proceso verbal especial de titulacion de la posesion)",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/ley_1561_2012.html",
+      "areas": [
+        "Derecho civil",
+        "Derecho procesal"
+      ],
+      "nota": "ampliacion v3 (2026-10-02): alto impacto por area; areas propuestas por agente, falta confirmar"
+    },
+    {
+      "doc_id": "ley_1306_2009",
+      "titulo": "Ley 1306 de 2009 (Proteccion de personas con discapacidad mental)",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/ley_1306_2009.html",
+      "areas": [
+        "Derecho civil",
+        "Derecho de familia"
+      ],
+      "nota": "ampliacion v3 (2026-10-02): alto impacto por area; areas propuestas por agente, falta confirmar"
+    },
+    {
+      "doc_id": "ley_1060_2006",
+      "titulo": "Ley 1060 de 2006 (Impugnacion de la paternidad y la maternidad)",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/ley_1060_2006.html",
+      "areas": [
+        "Derecho de familia"
+      ],
+      "nota": "ampliacion v3 (2026-10-02): alto impacto por area; areas propuestas por agente, falta confirmar"
+    },
+    {
+      "doc_id": "ley_294_1996",
+      "titulo": "Ley 294 de 1996 (Violencia intrafamiliar)",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/ley_0294_1996.html",
+      "areas": [
+        "Derecho de familia",
+        "Derecho penal"
+      ],
+      "nota": "ampliacion v3 (2026-10-02): alto impacto por area; areas propuestas por agente, falta confirmar"
+    },
+    {
+      "doc_id": "ley_2126_2021",
+      "titulo": "Ley 2126 de 2021 (Comisarias de familia)",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/ley_2126_2021.html",
+      "areas": [
+        "Derecho de familia"
+      ],
+      "nota": "ampliacion v3 (2026-10-02): alto impacto por area; areas propuestas por agente, falta confirmar"
+    },
+    {
+      "doc_id": "ley_2447_2025",
+      "titulo": "Ley 2447 de 2025 (Prohibicion del matrimonio infantil y las uniones tempranas)",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/ley_2447_2025.html",
+      "areas": [
+        "Derecho de familia"
+      ],
+      "nota": "ampliacion v3 (2026-10-02): alto impacto por area; areas propuestas por agente, falta confirmar"
+    },
+    {
+      "doc_id": "ley_1878_2018",
+      "titulo": "Ley 1878 de 2018 (Proceso administrativo de restablecimiento de derechos)",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/ley_1878_2018.html",
+      "areas": [
+        "Derecho de familia"
+      ],
+      "nota": "ampliacion v3 (2026-10-02): alto impacto por area; areas propuestas por agente, falta confirmar"
+    },
+    {
+      "doc_id": "ley_2089_2021",
+      "titulo": "Ley 2089 de 2021 (Prohibicion del castigo fisico a ninos, ninas y adolescentes)",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/ley_2089_2021.html",
+      "areas": [
+        "Derecho de familia"
+      ],
+      "nota": "ampliacion v3 (2026-10-02): alto impacto por area; areas propuestas por agente, falta confirmar"
+    },
+    {
+      "doc_id": "ley_1_1976",
+      "titulo": "Ley 1 de 1976 (Divorcio en el matrimonio civil)",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/ley_0001_1976.html",
+      "areas": [
+        "Derecho de familia"
+      ],
+      "nota": "ampliacion v3 (2026-10-02): alto impacto por area; areas propuestas por agente, falta confirmar"
+    },
+    {
+      "doc_id": "ley_25_1992",
+      "titulo": "Ley 25 de 1992 (Divorcio y efectos civiles del matrimonio religioso)",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/ley_0025_1992.html",
+      "areas": [
+        "Derecho de familia"
+      ],
+      "nota": "ampliacion v3 (2026-10-02): alto impacto por area; areas propuestas por agente, falta confirmar"
+    },
+    {
+      "doc_id": "ley_2097_2021",
+      "titulo": "Ley 2097 de 2021 (Registro de Deudores Alimentarios Morosos (REDAM))",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/ley_2097_2021.html",
+      "areas": [
+        "Derecho de familia"
+      ],
+      "nota": "ampliacion v3 (2026-10-02): alto impacto por area; areas propuestas por agente, falta confirmar"
+    },
+    {
+      "doc_id": "ley_1361_2009",
+      "titulo": "Ley 1361 de 2009 (Proteccion integral a la familia)",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/ley_1361_2009.html",
+      "areas": [
+        "Derecho de familia"
+      ],
+      "nota": "ampliacion v3 (2026-10-02): alto impacto por area; areas propuestas por agente, falta confirmar"
+    },
+    {
+      "doc_id": "ley_2381_2024",
+      "titulo": "Ley 2381 de 2024 (Reforma pensional (Sistema de Proteccion Social Integral para la Vejez))",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/ley_2381_2024.html",
+      "areas": [
+        "Derecho laboral"
+      ],
+      "nota": "ampliacion v3 (2026-10-02): alto impacto por area; areas propuestas por agente, falta confirmar"
+    },
+    {
+      "doc_id": "ley_789_2002",
+      "titulo": "Ley 789 de 2002 (Reforma laboral de 2002)",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/ley_0789_2002.html",
+      "areas": [
+        "Derecho laboral"
+      ],
+      "nota": "ampliacion v3 (2026-10-02): alto impacto por area; areas propuestas por agente, falta confirmar"
+    },
+    {
+      "doc_id": "ley_361_1997",
+      "titulo": "Ley 361 de 1997 (Integracion social de las personas con limitacion (estabilidad reforzada))",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/ley_0361_1997.html",
+      "areas": [
+        "Derecho laboral"
+      ],
+      "nota": "ampliacion v3 (2026-10-02): alto impacto por area; areas propuestas por agente, falta confirmar"
+    },
+    {
+      "doc_id": "ley_2101_2021",
+      "titulo": "Ley 2101 de 2021 (Reduccion de la jornada laboral)",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/ley_2101_2021.html",
+      "areas": [
+        "Derecho laboral"
+      ],
+      "nota": "ampliacion v3 (2026-10-02): alto impacto por area; areas propuestas por agente, falta confirmar"
+    },
+    {
+      "doc_id": "ley_797_2003",
+      "titulo": "Ley 797 de 2003 (Reforma del Sistema General de Pensiones)",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/ley_0797_2003.html",
+      "areas": [
+        "Derecho laboral"
+      ],
+      "nota": "ampliacion v3 (2026-10-02): alto impacto por area; areas propuestas por agente, falta confirmar"
+    },
+    {
+      "doc_id": "ley_776_2002",
+      "titulo": "Ley 776 de 2002 (Prestaciones del Sistema General de Riesgos Profesionales)",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/ley_0776_2002.html",
+      "areas": [
+        "Derecho laboral"
+      ],
+      "nota": "ampliacion v3 (2026-10-02): alto impacto por area; areas propuestas por agente, falta confirmar"
+    },
+    {
+      "doc_id": "decreto_1295_1994",
+      "titulo": "Decreto 1295 de 1994 (Sistema General de Riesgos Profesionales)",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/decreto_1295_1994.html",
+      "areas": [
+        "Derecho laboral"
+      ],
+      "nota": "ampliacion v3 (2026-10-02): alto impacto por area; areas propuestas por agente, falta confirmar"
+    },
+    {
+      "doc_id": "ley_1822_2017",
+      "titulo": "Ley 1822 de 2017 (Licencia de maternidad)",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/ley_1822_2017.html",
+      "areas": [
+        "Derecho laboral"
+      ],
+      "nota": "ampliacion v3 (2026-10-02): alto impacto por area; areas propuestas por agente, falta confirmar"
+    },
+    {
+      "doc_id": "ley_1221_2008",
+      "titulo": "Ley 1221 de 2008 (Teletrabajo)",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/ley_1221_2008.html",
+      "areas": [
+        "Derecho laboral"
+      ],
+      "nota": "ampliacion v3 (2026-10-02): alto impacto por area; areas propuestas por agente, falta confirmar"
+    },
+    {
+      "doc_id": "ley_2088_2021",
+      "titulo": "Ley 2088 de 2021 (Trabajo en casa)",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/ley_2088_2021.html",
+      "areas": [
+        "Derecho laboral"
+      ],
+      "nota": "ampliacion v3 (2026-10-02): alto impacto por area; areas propuestas por agente, falta confirmar"
+    },
+    {
+      "doc_id": "ley_2121_2021",
+      "titulo": "Ley 2121 de 2021 (Trabajo remoto)",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/ley_2121_2021.html",
+      "areas": [
+        "Derecho laboral"
+      ],
+      "nota": "ampliacion v3 (2026-10-02): alto impacto por area; areas propuestas por agente, falta confirmar"
+    },
+    {
+      "doc_id": "ley_2191_2022",
+      "titulo": "Ley 2191 de 2022 (Desconexion laboral)",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/ley_2191_2022.html",
+      "areas": [
+        "Derecho laboral"
+      ],
+      "nota": "ampliacion v3 (2026-10-02): alto impacto por area; areas propuestas por agente, falta confirmar"
+    },
+    {
+      "doc_id": "ley_2365_2024",
+      "titulo": "Ley 2365 de 2024 (Acoso sexual en el ambito laboral)",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/ley_2365_2024.html",
+      "areas": [
+        "Derecho laboral"
+      ],
+      "nota": "ampliacion v3 (2026-10-02): alto impacto por area; areas propuestas por agente, falta confirmar"
+    },
+    {
+      "doc_id": "ley_1496_2011",
+      "titulo": "Ley 1496 de 2011 (Igualdad salarial entre mujeres y hombres)",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/ley_1496_2011.html",
+      "areas": [
+        "Derecho laboral"
+      ],
+      "nota": "ampliacion v3 (2026-10-02): alto impacto por area; areas propuestas por agente, falta confirmar"
+    },
+    {
+      "doc_id": "ley_1846_2017",
+      "titulo": "Ley 1846 de 2017 (Jornada nocturna)",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/ley_1846_2017.html",
+      "areas": [
+        "Derecho laboral"
+      ],
+      "nota": "ampliacion v3 (2026-10-02): alto impacto por area; areas propuestas por agente, falta confirmar"
+    },
+    {
+      "doc_id": "ley_2069_2020",
+      "titulo": "Ley 2069 de 2020 (Ley de Emprendimiento)",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/ley_2069_2020.html",
+      "areas": [
+        "Derecho comercial y sociedades"
+      ],
+      "nota": "ampliacion v3 (2026-10-02): alto impacto por area; areas propuestas por agente, falta confirmar"
+    },
+    {
+      "doc_id": "ley_1901_2018",
+      "titulo": "Ley 1901 de 2018 (Sociedades Comerciales de Beneficio e Interes Colectivo (BIC))",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/ley_1901_2018.html",
+      "areas": [
+        "Derecho comercial y sociedades"
+      ],
+      "nota": "ampliacion v3 (2026-10-02): alto impacto por area; areas propuestas por agente, falta confirmar"
+    },
+    {
+      "doc_id": "ley_1314_2009",
+      "titulo": "Ley 1314 de 2009 (Normas de contabilidad e informacion financiera)",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/ley_1314_2009.html",
+      "areas": [
+        "Derecho comercial y sociedades"
+      ],
+      "nota": "ampliacion v3 (2026-10-02): alto impacto por area; areas propuestas por agente, falta confirmar"
+    },
+    {
+      "doc_id": "ley_43_1990",
+      "titulo": "Ley 43 de 1990 (Profesion de contador publico)",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/ley_0043_1990.html",
+      "areas": [
+        "Derecho comercial y sociedades"
+      ],
+      "nota": "ampliacion v3 (2026-10-02): alto impacto por area; areas propuestas por agente, falta confirmar"
+    },
+    {
+      "doc_id": "ley_590_2000",
+      "titulo": "Ley 590 de 2000 (Micro, pequenas y medianas empresas)",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/ley_0590_2000.html",
+      "areas": [
+        "Derecho comercial y sociedades"
+      ],
+      "nota": "ampliacion v3 (2026-10-02): alto impacto por area; areas propuestas por agente, falta confirmar"
+    },
+    {
+      "doc_id": "ley_1429_2010",
+      "titulo": "Ley 1429 de 2010 (Formalizacion y generacion de empleo)",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/ley_1429_2010.html",
+      "areas": [
+        "Derecho comercial y sociedades",
+        "Derecho laboral"
+      ],
+      "nota": "ampliacion v3 (2026-10-02): alto impacto por area; areas propuestas por agente, falta confirmar"
+    },
+    {
+      "doc_id": "ley_1735_2014",
+      "titulo": "Ley 1735 de 2014 (Inclusion financiera)",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/ley_1735_2014.html",
+      "areas": [
+        "Derecho comercial y sociedades"
+      ],
+      "nota": "ampliacion v3 (2026-10-02): alto impacto por area; areas propuestas por agente, falta confirmar"
+    },
+    {
+      "doc_id": "ley_2277_2022",
+      "titulo": "Ley 2277 de 2022 (Reforma tributaria para la igualdad y la justicia social)",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/ley_2277_2022.html",
+      "areas": [
+        "Derecho tributario"
+      ],
+      "nota": "ampliacion v3 (2026-10-02): alto impacto por area; areas propuestas por agente, falta confirmar"
+    },
+    {
+      "doc_id": "ley_2010_2019",
+      "titulo": "Ley 2010 de 2019 (Ley de Crecimiento Economico)",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/ley_2010_2019.html",
+      "areas": [
+        "Derecho tributario"
+      ],
+      "nota": "ampliacion v3 (2026-10-02): alto impacto por area; areas propuestas por agente, falta confirmar"
+    },
+    {
+      "doc_id": "ley_2155_2021",
+      "titulo": "Ley 2155 de 2021 (Ley de Inversion Social)",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/ley_2155_2021.html",
+      "areas": [
+        "Derecho tributario"
+      ],
+      "nota": "ampliacion v3 (2026-10-02): alto impacto por area; areas propuestas por agente, falta confirmar"
+    },
+    {
+      "doc_id": "ley_1066_2006",
+      "titulo": "Ley 1066 de 2006 (Normalizacion de la cartera publica (cobro coactivo))",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/ley_1066_2006.html",
+      "areas": [
+        "Derecho tributario",
+        "Derecho administrativo"
+      ],
+      "nota": "ampliacion v3 (2026-10-02): alto impacto por area; areas propuestas por agente, falta confirmar"
+    },
+    {
+      "doc_id": "decreto_1333_1986",
+      "titulo": "Decreto 1333 de 1986 (Codigo de Regimen Municipal)",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/decreto_1333_1986.html",
+      "areas": [
+        "Derecho tributario",
+        "Derecho administrativo"
+      ],
+      "nota": "ampliacion v3 (2026-10-02): alto impacto por area; areas propuestas por agente, falta confirmar"
+    },
+    {
+      "doc_id": "ley_14_1983",
+      "titulo": "Ley 14 de 1983 (Fortalecimiento de los fiscos de las entidades territoriales)",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/ley_0014_1983.html",
+      "areas": [
+        "Derecho tributario"
+      ],
+      "nota": "ampliacion v3 (2026-10-02): alto impacto por area; areas propuestas por agente, falta confirmar"
+    },
+    {
+      "doc_id": "ley_1430_2010",
+      "titulo": "Ley 1430 de 2010 (Control tributario y competitividad)",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/ley_1430_2010.html",
+      "areas": [
+        "Derecho tributario"
+      ],
+      "nota": "ampliacion v3 (2026-10-02): alto impacto por area; areas propuestas por agente, falta confirmar"
+    },
+    {
+      "doc_id": "ley_44_1990",
+      "titulo": "Ley 44 de 1990 (Impuesto predial unificado)",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/ley_0044_1990.html",
+      "areas": [
+        "Derecho tributario"
+      ],
+      "nota": "ampliacion v3 (2026-10-02): alto impacto por area; areas propuestas por agente, falta confirmar"
+    },
+    {
+      "doc_id": "ley_788_2002",
+      "titulo": "Ley 788 de 2002 (Reforma tributaria de 2002)",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/ley_0788_2002.html",
+      "areas": [
+        "Derecho tributario"
+      ],
+      "nota": "ampliacion v3 (2026-10-02): alto impacto por area; areas propuestas por agente, falta confirmar"
+    },
+    {
+      "doc_id": "ley_1266_2008",
+      "titulo": "Ley 1266 de 2008 (Habeas data financiero)",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/ley_1266_2008.html",
+      "areas": [
+        "Derecho de los mercados [competencia, consumidor, datos personales y propiedad intelectual]"
+      ],
+      "nota": "ampliacion v3 (2026-10-02): alto impacto por area; areas propuestas por agente, falta confirmar"
+    },
+    {
+      "doc_id": "ley_1328_2009",
+      "titulo": "Ley 1328 de 2009 (Regimen de proteccion al consumidor financiero)",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/ley_1328_2009.html",
+      "areas": [
+        "Derecho de los mercados [competencia, consumidor, datos personales y propiedad intelectual]",
+        "Derecho comercial y sociedades"
+      ],
+      "nota": "ampliacion v3 (2026-10-02): alto impacto por area; areas propuestas por agente, falta confirmar"
+    },
+    {
+      "doc_id": "ley_23_1982",
+      "titulo": "Ley 23 de 1982 (Derechos de autor)",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/ley_0023_1982.html",
+      "areas": [
+        "Derecho de los mercados [competencia, consumidor, datos personales y propiedad intelectual]"
+      ],
+      "nota": "ampliacion v3 (2026-10-02): alto impacto por area; areas propuestas por agente, falta confirmar"
+    },
+    {
+      "doc_id": "ley_2300_2023",
+      "titulo": "Ley 2300 de 2023 (Ley Dejen de Fregar (contacto de cobranza))",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/ley_2300_2023.html",
+      "areas": [
+        "Derecho de los mercados [competencia, consumidor, datos personales y propiedad intelectual]"
+      ],
+      "nota": "ampliacion v3 (2026-10-02): alto impacto por area; areas propuestas por agente, falta confirmar"
+    },
+    {
+      "doc_id": "ley_44_1993",
+      "titulo": "Ley 44 de 1993 (Derechos de autor (modificacion de la Ley 23 de 1982))",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/ley_0044_1993.html",
+      "areas": [
+        "Derecho de los mercados [competencia, consumidor, datos personales y propiedad intelectual]"
+      ],
+      "nota": "ampliacion v3 (2026-10-02): alto impacto por area; areas propuestas por agente, falta confirmar"
+    },
+    {
+      "doc_id": "ley_1915_2018",
+      "titulo": "Ley 1915 de 2018 (Derecho de autor y derechos conexos)",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/ley_1915_2018.html",
+      "areas": [
+        "Derecho de los mercados [competencia, consumidor, datos personales y propiedad intelectual]"
+      ],
+      "nota": "ampliacion v3 (2026-10-02): alto impacto por area; areas propuestas por agente, falta confirmar"
+    },
+    {
+      "doc_id": "ley_1341_2009",
+      "titulo": "Ley 1341 de 2009 (Tecnologias de la informacion y las comunicaciones)",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/ley_1341_2009.html",
+      "areas": [
+        "Derecho de los mercados [competencia, consumidor, datos personales y propiedad intelectual]"
+      ],
+      "nota": "ampliacion v3 (2026-10-02): alto impacto por area; areas propuestas por agente, falta confirmar"
+    },
+    {
+      "doc_id": "sentencia_t_406_1992",
+      "titulo": "Sentencia T-406 de 1992",
+      "fuente": "Relatoria de la Corte Constitucional",
+      "url": "https://www.corteconstitucional.gov.co/relatoria/1992/T-406-92.htm",
+      "areas": [
+        "Derecho constitucional"
+      ],
+      "nota": "ampliacion v3 (2026-10-02): sentencia hito; areas propuestas por agente, falta confirmar"
+    },
+    {
+      "doc_id": "sentencia_t_2_1992",
+      "titulo": "Sentencia T-002 de 1992",
+      "fuente": "Relatoria de la Corte Constitucional",
+      "url": "https://www.corteconstitucional.gov.co/relatoria/1992/T-002-92.htm",
+      "areas": [
+        "Derecho constitucional"
+      ],
+      "nota": "ampliacion v3 (2026-10-02): sentencia hito; areas propuestas por agente, falta confirmar"
+    },
+    {
+      "doc_id": "sentencia_c_543_1992",
+      "titulo": "Sentencia C-543 de 1992",
+      "fuente": "Relatoria de la Corte Constitucional",
+      "url": "https://www.corteconstitucional.gov.co/relatoria/1992/C-543-92.htm",
+      "areas": [
+        "Derecho constitucional",
+        "Derecho procesal"
+      ],
+      "nota": "ampliacion v3 (2026-10-02): sentencia hito; areas propuestas por agente, falta confirmar"
+    },
+    {
+      "doc_id": "sentencia_c_221_1994",
+      "titulo": "Sentencia C-221 de 1994",
+      "fuente": "Relatoria de la Corte Constitucional",
+      "url": "https://www.corteconstitucional.gov.co/relatoria/1994/C-221-94.htm",
+      "areas": [
+        "Derecho constitucional",
+        "Derecho penal"
+      ],
+      "nota": "ampliacion v3 (2026-10-02): sentencia hito; areas propuestas por agente, falta confirmar"
+    },
+    {
+      "doc_id": "sentencia_su_39_1997",
+      "titulo": "Sentencia SU-039 de 1997",
+      "fuente": "Relatoria de la Corte Constitucional",
+      "url": "https://www.corteconstitucional.gov.co/relatoria/1997/SU039-97.htm",
+      "areas": [
+        "Derecho constitucional"
+      ],
+      "nota": "ampliacion v3 (2026-10-02): sentencia hito; areas propuestas por agente, falta confirmar"
+    },
+    {
+      "doc_id": "sentencia_t_153_1998",
+      "titulo": "Sentencia T-153 de 1998",
+      "fuente": "Relatoria de la Corte Constitucional",
+      "url": "https://www.corteconstitucional.gov.co/relatoria/1998/T-153-98.htm",
+      "areas": [
+        "Derecho constitucional",
+        "Derecho penal"
+      ],
+      "nota": "ampliacion v3 (2026-10-02): sentencia hito; areas propuestas por agente, falta confirmar"
+    },
+    {
+      "doc_id": "sentencia_c_836_2001",
+      "titulo": "Sentencia C-836 de 2001",
+      "fuente": "Relatoria de la Corte Constitucional",
+      "url": "https://www.corteconstitucional.gov.co/relatoria/2001/C-836-01.htm",
+      "areas": [
+        "Derecho constitucional",
+        "Derecho procesal"
+      ],
+      "nota": "ampliacion v3 (2026-10-02): sentencia hito; areas propuestas por agente, falta confirmar"
+    },
+    {
+      "doc_id": "sentencia_c_1064_2001",
+      "titulo": "Sentencia C-1064 de 2001",
+      "fuente": "Relatoria de la Corte Constitucional",
+      "url": "https://www.corteconstitucional.gov.co/relatoria/2001/C-1064-01.htm",
+      "areas": [
+        "Derecho constitucional"
+      ],
+      "nota": "ampliacion v3 (2026-10-02): sentencia hito; areas propuestas por agente, falta confirmar"
+    },
+    {
+      "doc_id": "sentencia_t_881_2002",
+      "titulo": "Sentencia T-881 de 2002",
+      "fuente": "Relatoria de la Corte Constitucional",
+      "url": "https://www.corteconstitucional.gov.co/relatoria/2002/T-881-02.htm",
+      "areas": [
+        "Derecho constitucional"
+      ],
+      "nota": "ampliacion v3 (2026-10-02): sentencia hito; areas propuestas por agente, falta confirmar"
+    },
+    {
+      "doc_id": "sentencia_c_551_2003",
+      "titulo": "Sentencia C-551 de 2003",
+      "fuente": "Relatoria de la Corte Constitucional",
+      "url": "https://www.corteconstitucional.gov.co/relatoria/2003/C-551-03.htm",
+      "areas": [
+        "Derecho constitucional"
+      ],
+      "nota": "ampliacion v3 (2026-10-02): sentencia hito; areas propuestas por agente, falta confirmar"
+    },
+    {
+      "doc_id": "sentencia_t_25_2004",
+      "titulo": "Sentencia T-025 de 2004",
+      "fuente": "Relatoria de la Corte Constitucional",
+      "url": "https://www.corteconstitucional.gov.co/relatoria/2004/T-025-04.htm",
+      "areas": [
+        "Derecho constitucional"
+      ],
+      "nota": "ampliacion v3 (2026-10-02): sentencia hito; areas propuestas por agente, falta confirmar"
+    },
+    {
+      "doc_id": "sentencia_c_590_2005",
+      "titulo": "Sentencia C-590 de 2005",
+      "fuente": "Relatoria de la Corte Constitucional",
+      "url": "https://www.corteconstitucional.gov.co/relatoria/2005/C-590-05.htm",
+      "areas": [
+        "Derecho constitucional",
+        "Derecho procesal"
+      ],
+      "nota": "ampliacion v3 (2026-10-02): sentencia hito; areas propuestas por agente, falta confirmar"
+    },
+    {
+      "doc_id": "sentencia_c_1040_2005",
+      "titulo": "Sentencia C-1040 de 2005",
+      "fuente": "Relatoria de la Corte Constitucional",
+      "url": "https://www.corteconstitucional.gov.co/relatoria/2005/C-1040-05.htm",
+      "areas": [
+        "Derecho constitucional"
+      ],
+      "nota": "ampliacion v3 (2026-10-02): sentencia hito; areas propuestas por agente, falta confirmar"
+    },
+    {
+      "doc_id": "sentencia_c_370_2006",
+      "titulo": "Sentencia C-370 de 2006",
+      "fuente": "Relatoria de la Corte Constitucional",
+      "url": "https://www.corteconstitucional.gov.co/relatoria/2006/C-370-06.htm",
+      "areas": [
+        "Derecho constitucional",
+        "Derecho penal"
+      ],
+      "nota": "ampliacion v3 (2026-10-02): sentencia hito; areas propuestas por agente, falta confirmar"
+    },
+    {
+      "doc_id": "sentencia_c_75_2007",
+      "titulo": "Sentencia C-075 de 2007",
+      "fuente": "Relatoria de la Corte Constitucional",
+      "url": "https://www.corteconstitucional.gov.co/relatoria/2007/C-075-07.htm",
+      "areas": [
+        "Derecho constitucional",
+        "Derecho de familia"
+      ],
+      "nota": "ampliacion v3 (2026-10-02): sentencia hito; areas propuestas por agente, falta confirmar"
+    },
+    {
+      "doc_id": "sentencia_c_29_2009",
+      "titulo": "Sentencia C-029 de 2009",
+      "fuente": "Relatoria de la Corte Constitucional",
+      "url": "https://www.corteconstitucional.gov.co/relatoria/2009/C-029-09.htm",
+      "areas": [
+        "Derecho constitucional",
+        "Derecho de familia"
+      ],
+      "nota": "ampliacion v3 (2026-10-02): sentencia hito; areas propuestas por agente, falta confirmar"
+    },
+    {
+      "doc_id": "sentencia_c_141_2010",
+      "titulo": "Sentencia C-141 de 2010",
+      "fuente": "Relatoria de la Corte Constitucional",
+      "url": "https://www.corteconstitucional.gov.co/relatoria/2010/C-141-10.htm",
+      "areas": [
+        "Derecho constitucional"
+      ],
+      "nota": "ampliacion v3 (2026-10-02): sentencia hito; areas propuestas por agente, falta confirmar"
+    },
+    {
+      "doc_id": "sentencia_c_577_2011",
+      "titulo": "Sentencia C-577 de 2011",
+      "fuente": "Relatoria de la Corte Constitucional",
+      "url": "https://www.corteconstitucional.gov.co/relatoria/2011/C-577-11.htm",
+      "areas": [
+        "Derecho constitucional",
+        "Derecho de familia"
+      ],
+      "nota": "ampliacion v3 (2026-10-02): sentencia hito; areas propuestas por agente, falta confirmar"
+    },
+    {
+      "doc_id": "sentencia_c_634_2011",
+      "titulo": "Sentencia C-634 de 2011",
+      "fuente": "Relatoria de la Corte Constitucional",
+      "url": "https://www.corteconstitucional.gov.co/relatoria/2011/C-634-11.htm",
+      "areas": [
+        "Derecho constitucional",
+        "Derecho administrativo"
+      ],
+      "nota": "ampliacion v3 (2026-10-02): sentencia hito; areas propuestas por agente, falta confirmar"
+    },
+    {
+      "doc_id": "sentencia_c_539_2011",
+      "titulo": "Sentencia C-539 de 2011",
+      "fuente": "Relatoria de la Corte Constitucional",
+      "url": "https://www.corteconstitucional.gov.co/relatoria/2011/C-539-11.htm",
+      "areas": [
+        "Derecho constitucional",
+        "Derecho administrativo"
+      ],
+      "nota": "ampliacion v3 (2026-10-02): sentencia hito; areas propuestas por agente, falta confirmar"
+    },
+    {
+      "doc_id": "sentencia_t_129_2011",
+      "titulo": "Sentencia T-129 de 2011",
+      "fuente": "Relatoria de la Corte Constitucional",
+      "url": "https://www.corteconstitucional.gov.co/relatoria/2011/T-129-11.htm",
+      "areas": [
+        "Derecho constitucional"
+      ],
+      "nota": "ampliacion v3 (2026-10-02): sentencia hito; areas propuestas por agente, falta confirmar"
+    },
+    {
+      "doc_id": "sentencia_c_579_2013",
+      "titulo": "Sentencia C-579 de 2013",
+      "fuente": "Relatoria de la Corte Constitucional",
+      "url": "https://www.corteconstitucional.gov.co/relatoria/2013/C-579-13.htm",
+      "areas": [
+        "Derecho constitucional",
+        "Derecho penal"
+      ],
+      "nota": "ampliacion v3 (2026-10-02): sentencia hito; areas propuestas por agente, falta confirmar"
+    },
+    {
+      "doc_id": "sentencia_t_388_2013",
+      "titulo": "Sentencia T-388 de 2013",
+      "fuente": "Relatoria de la Corte Constitucional",
+      "url": "https://www.corteconstitucional.gov.co/relatoria/2013/T-388-13.htm",
+      "areas": [
+        "Derecho constitucional",
+        "Derecho penal"
+      ],
+      "nota": "ampliacion v3 (2026-10-02): sentencia hito; areas propuestas por agente, falta confirmar"
+    },
+    {
+      "doc_id": "sentencia_c_313_2014",
+      "titulo": "Sentencia C-313 de 2014",
+      "fuente": "Relatoria de la Corte Constitucional",
+      "url": "https://www.corteconstitucional.gov.co/relatoria/2014/C-313-14.htm",
+      "areas": [
+        "Derecho constitucional"
+      ],
+      "nota": "ampliacion v3 (2026-10-02): sentencia hito; areas propuestas por agente, falta confirmar"
+    },
+    {
+      "doc_id": "sentencia_su_617_2014",
+      "titulo": "Sentencia SU-617 de 2014",
+      "fuente": "Relatoria de la Corte Constitucional",
+      "url": "https://www.corteconstitucional.gov.co/relatoria/2014/SU617-14.htm",
+      "areas": [
+        "Derecho constitucional",
+        "Derecho de familia"
+      ],
+      "nota": "ampliacion v3 (2026-10-02): sentencia hito; areas propuestas por agente, falta confirmar"
+    },
+    {
+      "doc_id": "sentencia_c_71_2015",
+      "titulo": "Sentencia C-071 de 2015",
+      "fuente": "Relatoria de la Corte Constitucional",
+      "url": "https://www.corteconstitucional.gov.co/relatoria/2015/C-071-15.htm",
+      "areas": [
+        "Derecho constitucional",
+        "Derecho de familia"
+      ],
+      "nota": "ampliacion v3 (2026-10-02): sentencia hito; areas propuestas por agente, falta confirmar"
+    },
+    {
+      "doc_id": "sentencia_t_762_2015",
+      "titulo": "Sentencia T-762 de 2015",
+      "fuente": "Relatoria de la Corte Constitucional",
+      "url": "https://www.corteconstitucional.gov.co/relatoria/2015/T-762-15.htm",
+      "areas": [
+        "Derecho constitucional",
+        "Derecho penal"
+      ],
+      "nota": "ampliacion v3 (2026-10-02): sentencia hito; areas propuestas por agente, falta confirmar"
+    },
+    {
+      "doc_id": "sentencia_su_49_2017",
+      "titulo": "Sentencia SU-049 de 2017",
+      "fuente": "Relatoria de la Corte Constitucional",
+      "url": "https://www.corteconstitucional.gov.co/relatoria/2017/SU049-17.htm",
+      "areas": [
+        "Derecho constitucional",
+        "Derecho laboral"
+      ],
+      "nota": "ampliacion v3 (2026-10-02): sentencia hito; areas propuestas por agente, falta confirmar"
+    },
+    {
+      "doc_id": "sentencia_c_5_2017",
+      "titulo": "Sentencia C-005 de 2017",
+      "fuente": "Relatoria de la Corte Constitucional",
+      "url": "https://www.corteconstitucional.gov.co/relatoria/2017/C-005-17.htm",
+      "areas": [
+        "Derecho constitucional",
+        "Derecho laboral"
+      ],
+      "nota": "ampliacion v3 (2026-10-02): sentencia hito; areas propuestas por agente, falta confirmar"
+    },
+    {
+      "doc_id": "sentencia_c_674_2017",
+      "titulo": "Sentencia C-674 de 2017",
+      "fuente": "Relatoria de la Corte Constitucional",
+      "url": "https://www.corteconstitucional.gov.co/relatoria/2017/C-674-17.htm",
+      "areas": [
+        "Derecho constitucional",
+        "Derecho penal"
+      ],
+      "nota": "ampliacion v3 (2026-10-02): sentencia hito; areas propuestas por agente, falta confirmar"
+    },
+    {
+      "doc_id": "sentencia_c_80_2018",
+      "titulo": "Sentencia C-080 de 2018",
+      "fuente": "Relatoria de la Corte Constitucional",
+      "url": "https://www.corteconstitucional.gov.co/relatoria/2018/C-080-18.htm",
+      "areas": [
+        "Derecho constitucional",
+        "Derecho penal"
+      ],
+      "nota": "ampliacion v3 (2026-10-02): sentencia hito; areas propuestas por agente, falta confirmar"
+    },
+    {
+      "doc_id": "sentencia_su_123_2018",
+      "titulo": "Sentencia SU-123 de 2018",
+      "fuente": "Relatoria de la Corte Constitucional",
+      "url": "https://www.corteconstitucional.gov.co/relatoria/2018/SU123-18.htm",
+      "areas": [
+        "Derecho constitucional"
+      ],
+      "nota": "ampliacion v3 (2026-10-02): sentencia hito; areas propuestas por agente, falta confirmar"
+    },
+    {
+      "doc_id": "sentencia_su_75_2018",
+      "titulo": "Sentencia SU-075 de 2018",
+      "fuente": "Relatoria de la Corte Constitucional",
+      "url": "https://www.corteconstitucional.gov.co/relatoria/2018/SU075-18.htm",
+      "areas": [
+        "Derecho constitucional",
+        "Derecho laboral"
+      ],
+      "nota": "ampliacion v3 (2026-10-02): sentencia hito; areas propuestas por agente, falta confirmar"
+    },
+    {
+      "doc_id": "sentencia_c_481_2019",
+      "titulo": "Sentencia C-481 de 2019",
+      "fuente": "Relatoria de la Corte Constitucional",
+      "url": "https://www.corteconstitucional.gov.co/relatoria/2019/C-481-19.htm",
+      "areas": [
+        "Derecho constitucional",
+        "Derecho tributario"
+      ],
+      "nota": "ampliacion v3 (2026-10-02): sentencia hito; areas propuestas por agente, falta confirmar"
+    },
+    {
+      "doc_id": "sentencia_c_294_2021",
+      "titulo": "Sentencia C-294 de 2021",
+      "fuente": "Relatoria de la Corte Constitucional",
+      "url": "https://www.corteconstitucional.gov.co/relatoria/2021/C-294-21.htm",
+      "areas": [
+        "Derecho constitucional",
+        "Derecho penal"
+      ],
+      "nota": "ampliacion v3 (2026-10-02): sentencia hito; areas propuestas por agente, falta confirmar"
+    },
+    {
+      "doc_id": "sentencia_su_87_2022",
+      "titulo": "Sentencia SU-087 de 2022",
+      "fuente": "Relatoria de la Corte Constitucional",
+      "url": "https://www.corteconstitucional.gov.co/relatoria/2022/SU087-22.htm",
+      "areas": [
+        "Derecho constitucional",
+        "Derecho laboral"
+      ],
+      "nota": "ampliacion v3 (2026-10-02): sentencia hito; areas propuestas por agente, falta confirmar"
+    },
+    {
+      "doc_id": "sentencia_c_264_2026",
+      "titulo": "Sentencia C-264 de 2026",
+      "fuente": "Relatoria de la Corte Constitucional",
+      "url": "https://www.corteconstitucional.gov.co/relatoria/2026/C-264-26.htm",
+      "areas": [
+        "Derecho constitucional",
+        "Derecho laboral"
+      ],
+      "nota": "ampliacion v3 (2026-10-02): sentencia hito; areas propuestas por agente, falta confirmar"
+    },
+    {
+      "doc_id": "decision_andina_351",
+      "titulo": "Decision 351 de 1993 de la Comunidad Andina, Regimen Comun sobre Derecho de Autor y Derechos Conexos",
+      "fuente": "Comunidad Andina",
+      "url": "https://www.comunidadandina.org/StaticFiles/DocOf/DEC351.pdf",
+      "areas": [
+        "Derecho de los mercados [competencia, consumidor, datos personales y propiedad intelectual]"
+      ],
+      "nota": "ampliacion v3 (2026-10-02): alto impacto por area; areas propuestas por agente, falta confirmar"
     }
   ],
   "_comentario_adicionales": "Documentos fuera de seed_targets.json (fuentes del legal_basis de sample_50, ver data/fuentes_faltantes_sample50.md). Su original ya esta en data/raw/ y se registra con esta fuente/URL (docs/ingesta/referencias_normativas.md); items_del_banco=0."

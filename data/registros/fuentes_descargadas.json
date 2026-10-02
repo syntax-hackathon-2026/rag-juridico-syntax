@@ -4792,6 +4792,47 @@
       "nota": "ya estaba en data/raw/ (usar --forzar para repetir)"
     },
     {
+      "doc_id": "decision_andina_351",
+      "titulo": "Decision 351 de 1993 de la Comunidad Andina, Regimen Comun sobre Derecho de Autor y Derechos Conexos",
+      "fuente": "Comunidad Andina",
+      "url": "https://www.comunidadandina.org/StaticFiles/DocOf/DEC351.pdf",
+      "areas": [
+        "Derecho de los mercados [competencia, consumidor, datos personales y propiedad intelectual]"
+      ],
+      "items_del_banco": 0,
+      "canonico": [],
+      "estado": "descargado",
+      "tipo_fuente": "pdf",
+      "fecha_consulta": "2026-10-02",
+      "archivos": [
+        "DEC351.pdf"
+      ],
+      "bytes": 163612,
+      "sha256": "3e4965bd0f129eb28b627b6018e26732c88918f3cc2930fece02aec3c8779e90",
+      "nota": "ampliacion v3 (2026-10-02): alto impacto por area; areas propuestas por agente, falta confirmar"
+    },
+    {
+      "doc_id": "decreto_1069_2015",
+      "titulo": "Decreto 1069 de 2015 (Decreto Unico Reglamentario del Sector Justicia y del Derecho)",
+      "fuente": "Normograma de la CRA (compilacion Avance Juridico)",
+      "url": "https://normas.cra.gov.co/gestor/docs/decreto_1069_2015.htm",
+      "areas": [
+        "Derecho procesal",
+        "Derecho constitucional"
+      ],
+      "items_del_banco": 0,
+      "canonico": [],
+      "estado": "descargado",
+      "tipo_fuente": "html",
+      "fecha_consulta": "2026-10-02",
+      "archivos": [
+        "decreto_1069_2015.htm"
+      ],
+      "bytes": 283809,
+      "sha256": "b4b664d605dd03d32254cb3c7ef502c9032f36c0c6e5fcc9e3d0541ea8808fe0",
+      "nota": "ampliacion v3 (2026-10-02): alto impacto por area; areas propuestas por agente, falta confirmar"
+    },
+    {
       "doc_id": "decreto_1072_2015",
       "titulo": "Decreto 1072 de 2015 (Decreto Unico Reglamentario del Sector Trabajo)",
       "fuente": "Gestor Normativo de Funcion Publica",
@@ -4914,6 +4955,28 @@
       "nota": "ampliacion desde citations.py (seccion D.6)"
     },
     {
+      "doc_id": "decreto_2591_1991",
+      "titulo": "Decreto 2591 de 1991 (Reglamento de la accion de tutela)",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/decreto_2591_1991.html",
+      "areas": [
+        "Derecho constitucional",
+        "Derecho procesal"
+      ],
+      "items_del_banco": 0,
+      "canonico": [],
+      "estado": "descargado",
+      "tipo_fuente": "html",
+      "fecha_consulta": "2026-10-02",
+      "archivos": [
+        "decreto_2591_1991.html",
+        "decreto_2591_1991_pr001.html"
+      ],
+      "bytes": 93870,
+      "sha256": "5811bf29c836bba838e3202da52d42adb9550f13f7e2e06c4d06ebaa2af9e5c6",
+      "nota": "ampliacion v3 (2026-10-02): alto impacto por area; areas propuestas por agente, falta confirmar"
+    },
+    {
       "doc_id": "doctrina_arbanza_grupo_sociedades_2024",
       "titulo": "Arbanza, Analisis comparativo de la extension del convenio arbitral a partes no signatarias: Pakistan, Francia y Colombia (2024)",
       "fuente": "Arbanza (doctrina)",
@@ -4974,6 +5037,28 @@
       "nota": "ampliacion desde citations.py (seccion D.6)"
     },
     {
+      "doc_id": "ley_134_1994",
+      "titulo": "Ley 134 de 1994 (Mecanismos de participacion ciudadana)",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/ley_0134_1994.html",
+      "areas": [
+        "Derecho constitucional"
+      ],
+      "items_del_banco": 0,
+      "canonico": [],
+      "estado": "descargado",
+      "tipo_fuente": "html",
+      "fecha_consulta": "2026-10-02",
+      "archivos": [
+        "ley_0134_1994.html",
+        "ley_0134_1994_pr001.html",
+        "ley_0134_1994_pr002.html"
+      ],
+      "bytes": 208239,
+      "sha256": "5fabbbf4d1168b1ed8a690822327f7263484be49e7855847d6653b667be42276",
+      "nota": "ampliacion v3 (2026-10-02): alto impacto por area; areas propuestas por agente, falta confirmar"
+    },
+    {
       "doc_id": "ley_1676_2013",
       "titulo": "Ley 1676 de 2013 (garantias mobiliarias)",
       "fuente": "Gestor Normativo de Funcion Publica",
@@ -4993,6 +5078,151 @@
       "bytes": 148024,
       "sha256": "96081a90f0f2d0e49b1b9b842ad395690e8b7422e7a084acd820ec6ea0341108",
       "nota": "ampliacion desde citations.py (seccion D.6)"
+    },
+    {
+      "doc_id": "ley_1712_2014",
+      "titulo": "Ley 1712 de 2014 (Transparencia y acceso a la informacion publica)",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/ley_1712_2014.html",
+      "areas": [
+        "Derecho constitucional",
+        "Derecho administrativo"
+      ],
+      "items_del_banco": 0,
+      "canonico": [],
+      "estado": "descargado",
+      "tipo_fuente": "html",
+      "fecha_consulta": "2026-10-02",
+      "archivos": [
+        "ley_1712_2014.html"
+      ],
+      "bytes": 972981,
+      "sha256": "48c54e2e2dbd49e248e15362302690adff7ecd638e544a5bf324ab1cfcafaa68",
+      "nota": "ampliacion v3 (2026-10-02): alto impacto por area; areas propuestas por agente, falta confirmar"
+    },
+    {
+      "doc_id": "ley_1751_2015",
+      "titulo": "Ley 1751 de 2015 (Estatutaria de salud)",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/ley_1751_2015.html",
+      "areas": [
+        "Derecho constitucional"
+      ],
+      "items_del_banco": 0,
+      "canonico": [],
+      "estado": "descargado",
+      "tipo_fuente": "html",
+      "fecha_consulta": "2026-10-02",
+      "archivos": [
+        "ley_1751_2015.html"
+      ],
+      "bytes": 69428,
+      "sha256": "8e2a120a8696bd78bfd2e583b1988a47c206603ddde7c392bfaddf3b335c27e7",
+      "nota": "ampliacion v3 (2026-10-02): alto impacto por area; areas propuestas por agente, falta confirmar"
+    },
+    {
+      "doc_id": "ley_1757_2015",
+      "titulo": "Ley 1757 de 2015 (Estatutaria de participacion democratica)",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/ley_1757_2015.html",
+      "areas": [
+        "Derecho constitucional"
+      ],
+      "items_del_banco": 0,
+      "canonico": [],
+      "estado": "descargado",
+      "tipo_fuente": "html",
+      "fecha_consulta": "2026-10-02",
+      "archivos": [
+        "ley_1757_2015.html",
+        "ley_1757_2015_pr001.html",
+        "ley_1757_2015_pr002.html"
+      ],
+      "bytes": 253385,
+      "sha256": "975f05c70b8725c0e1ed4a2549b4149c01d1d20d2cf8c8763d365d2479d2afcb",
+      "nota": "ampliacion v3 (2026-10-02): alto impacto por area; areas propuestas por agente, falta confirmar"
+    },
+    {
+      "doc_id": "ley_1761_2015",
+      "titulo": "Ley 1761 de 2015 (Feminicidio (Ley Rosa Elvira Cely))",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/ley_1761_2015.html",
+      "areas": [
+        "Derecho penal"
+      ],
+      "items_del_banco": 0,
+      "canonico": [],
+      "estado": "descargado",
+      "tipo_fuente": "html",
+      "fecha_consulta": "2026-10-02",
+      "archivos": [
+        "ley_1761_2015.html"
+      ],
+      "bytes": 39886,
+      "sha256": "e0d23371a2427f6dd56620d3c0f83e0824a152f8a88ef9823ed1697368d5e035",
+      "nota": "ampliacion v3 (2026-10-02): alto impacto por area; areas propuestas por agente, falta confirmar"
+    },
+    {
+      "doc_id": "ley_1774_2016",
+      "titulo": "Ley 1774 de 2016 (Animales como seres sintientes y maltrato animal)",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/ley_1774_2016.html",
+      "areas": [
+        "Derecho penal",
+        "Derecho civil"
+      ],
+      "items_del_banco": 0,
+      "canonico": [],
+      "estado": "descargado",
+      "tipo_fuente": "html",
+      "fecha_consulta": "2026-10-02",
+      "archivos": [
+        "ley_1774_2016.html"
+      ],
+      "bytes": 34443,
+      "sha256": "05e8999a3d68588bb89af8f5c15baff741fda16e14ad4314c3673ecb32e4596e",
+      "nota": "ampliacion v3 (2026-10-02): alto impacto por area; areas propuestas por agente, falta confirmar"
+    },
+    {
+      "doc_id": "ley_1826_2017",
+      "titulo": "Ley 1826 de 2017 (Procedimiento penal abreviado y acusador privado)",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/ley_1826_2017.html",
+      "areas": [
+        "Derecho penal",
+        "Derecho procesal"
+      ],
+      "items_del_banco": 0,
+      "canonico": [],
+      "estado": "descargado",
+      "tipo_fuente": "html",
+      "fecha_consulta": "2026-10-02",
+      "archivos": [
+        "ley_1826_2017.html"
+      ],
+      "bytes": 90109,
+      "sha256": "d2b289bedeaf7c3154aec8308f72d18e6b309bd905251e355c9f64eb01e0de89",
+      "nota": "ampliacion v3 (2026-10-02): alto impacto por area; areas propuestas por agente, falta confirmar"
+    },
+    {
+      "doc_id": "ley_1882_2018",
+      "titulo": "Ley 1882 de 2018 (Contratacion publica)",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/ley_1882_2018.html",
+      "areas": [
+        "Derecho administrativo"
+      ],
+      "items_del_banco": 0,
+      "canonico": [],
+      "estado": "descargado",
+      "tipo_fuente": "html",
+      "fecha_consulta": "2026-10-02",
+      "archivos": [
+        "ley_1882_2018.html"
+      ],
+      "bytes": 70299,
+      "sha256": "fc66096689cb56b796d48b9d81e529f7f35d7fd739cbf30bf435e19a58d09aaf",
+      "nota": "ampliacion v3 (2026-10-02): alto impacto por area; areas propuestas por agente, falta confirmar"
     },
     {
       "doc_id": "ley_222_1995",
@@ -5015,6 +5245,27 @@
       "nota": "ampliacion desde citations.py (seccion D.6)"
     },
     {
+      "doc_id": "ley_393_1997",
+      "titulo": "Ley 393 de 1997 (Accion de cumplimiento)",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/ley_0393_1997.html",
+      "areas": [
+        "Derecho constitucional",
+        "Derecho administrativo"
+      ],
+      "items_del_banco": 0,
+      "canonico": [],
+      "estado": "descargado",
+      "tipo_fuente": "html",
+      "fecha_consulta": "2026-10-02",
+      "archivos": [
+        "ley_0393_1997.html"
+      ],
+      "bytes": 54368,
+      "sha256": "718fe44bba26eae680190a638f3d74af7d71818192c00074027b56c7a8aaadee",
+      "nota": "ampliacion v3 (2026-10-02): alto impacto por area; areas propuestas por agente, falta confirmar"
+    },
+    {
       "doc_id": "ley_472_1998",
       "titulo": "Ley 472 de 1998, acciones populares y de grupo",
       "fuente": "Gestor Normativo de Funcion Publica",
@@ -5034,6 +5285,71 @@
       "bytes": 141101,
       "sha256": "89c93e61ed072ad8f4b17651bd922bb3d4bc3caa56510b04a748ccc60d0df14c",
       "nota": "ya estaba en data/raw/ (usar --forzar para repetir)"
+    },
+    {
+      "doc_id": "ley_489_1998",
+      "titulo": "Ley 489 de 1998 (Organizacion y funcionamiento de las entidades del orden nacional)",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/ley_0489_1998.html",
+      "areas": [
+        "Derecho administrativo"
+      ],
+      "items_del_banco": 0,
+      "canonico": [],
+      "estado": "descargado",
+      "tipo_fuente": "html",
+      "fecha_consulta": "2026-10-02",
+      "archivos": [
+        "ley_0489_1998.html",
+        "ley_0489_1998_pr001.html",
+        "ley_0489_1998_pr002.html"
+      ],
+      "bytes": 225217,
+      "sha256": "102cd0ef449223120810fbbe91051614ed1dd9fe7aa3a43da4242f3ce2ec6670",
+      "nota": "ampliacion v3 (2026-10-02): alto impacto por area; areas propuestas por agente, falta confirmar"
+    },
+    {
+      "doc_id": "ley_610_2000",
+      "titulo": "Ley 610 de 2000 (Proceso de responsabilidad fiscal)",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/ley_0610_2000.html",
+      "areas": [
+        "Derecho administrativo"
+      ],
+      "items_del_banco": 0,
+      "canonico": [],
+      "estado": "descargado",
+      "tipo_fuente": "html",
+      "fecha_consulta": "2026-10-02",
+      "archivos": [
+        "ley_0610_2000.html",
+        "ley_0610_2000_pr001.html"
+      ],
+      "bytes": 116287,
+      "sha256": "988833d6502d1b6f986baf47ca6e97c88c0836c75a1e69a2bf2302e02912ad6a",
+      "nota": "ampliacion v3 (2026-10-02): alto impacto por area; areas propuestas por agente, falta confirmar"
+    },
+    {
+      "doc_id": "ley_909_2004",
+      "titulo": "Ley 909 de 2004 (Empleo publico y carrera administrativa)",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/ley_0909_2004.html",
+      "areas": [
+        "Derecho administrativo",
+        "Derecho laboral"
+      ],
+      "items_del_banco": 0,
+      "canonico": [],
+      "estado": "descargado",
+      "tipo_fuente": "html",
+      "fecha_consulta": "2026-10-02",
+      "archivos": [
+        "ley_0909_2004.html",
+        "ley_0909_2004_pr001.html"
+      ],
+      "bytes": 195849,
+      "sha256": "449afa3d94a90a7ce633657e8e758c2b3862579037fb386dc3908cd55a80ebba",
+      "nota": "ampliacion v3 (2026-10-02): alto impacto por area; areas propuestas por agente, falta confirmar"
     },
     {
       "doc_id": "sentencia_c_468_2024",
