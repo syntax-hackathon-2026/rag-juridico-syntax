@@ -44,6 +44,8 @@ from cabeceras import config, citations  # noqa: E402
 VERSION = "seg-v1"
 MAX_PALABRAS = 350  # objetivo por fragmento
 MAX_DURO = 450  # un parrafo mas largo que esto se parte por oraciones
+# sentencias y documentos no normativos (doctrina, autos): ventanas de parrafos, sin articulos
+EN_VENTANAS = {"sentencia", "documento"}
 SOLAPE_MAX = 120  # palabras maximas del parrafo que se repite entre ventanas de sentencia
 TOLERANCIA_ARTICULOS = 0.05
 
@@ -61,6 +63,12 @@ _ARTICULO = re.compile(
     (?=\s*(?:[.\-–:,;]|$)|\s+[A-ZÁÉÍÓÚÑ<])""",
     re.X,
 )
+# "ARTICULO 19-4 DEL ESTATUTO TRIBUTARIO. <...>": el DUR tributario (Decreto 1625/2016)
+# transcribe articulos de otra norma con su nombre pegado al numero; no es un articulo propio
+# (tambien "ARTICULO 428 LITERAL F) DEL ESTATUTO TRIBUTARIO.")
+_DE_OTRA_NORMA = re.compile(
+    r"(?:\s+(?:LITERAL|NUMERAL|INCISO|PAR[AÁ]GRAFO)\s+[\w)]+)?"
+    r"\s+(?:DEL|DE\s+LA)\s+(?:ESTATUTO|C[OÓ]DIGO|CODIGO|LEY|DECRETO|CONSTITUCI[OÓ]N)\b")
 _ENCABEZADO_SECCION = re.compile(
     r"^(LIBRO|PARTE|T[IÍ]TULO|CAP[IÍ]TULO|SECCI[OÓ]N|Libro|Parte|T[ií]tulo|Cap[ií]tulo|Secci[oó]n)"
     r"(\s+([IVXLCDM]+|\d+|[A-ZÁÉÍÓÚ][a-záéíóúA-ZÁÉÍÓÚ]+))?\.?\s*[.:\-–]?"
@@ -221,7 +229,7 @@ def _retoma_numeracion(art_id: str, ultimo: str | None) -> bool:
     (Ley 1819/2016 art. 1 -> arts. 329-340 del ET). Se sale del modo cita cuando la
     numeracion vuelve a la propia: mismo numero base o hasta 2 mas (letras y -N
     comparten base) en articulos simples, o un numero mayor al mismo nivel en los
-    decretos unicos (2.2.1.4 -> 2.2.1.5).
+    decretos unicos (2.2.1.4 -> 2.2.1.5, o 1.2.1.9.1.3 -> 1.2.1.10.1 al cambiar de seccion).
     """
     clave, previa = _clave(art_id), (_clave(ultimo) if ultimo else None)
     if clave is None or previa is None:
@@ -230,7 +238,7 @@ def _retoma_numeracion(art_id: str, ultimo: str | None) -> bool:
         return True  # la norma reinicia su numeracion (disposiciones transitorias, decreto que adopta un codigo)
     if len(clave) == 1 and len(previa) == 1:
         return previa[0] <= clave[0] <= previa[0] + 2
-    return len(clave) == len(previa) and clave > previa
+    return len(clave) > 1 and len(previa) > 1 and clave > previa
 
 
 # --- metadatos ---------------------------------------------------------------------
@@ -246,7 +254,7 @@ def meta_de(doc_id: str, manifest: dict[str, dict]) -> Meta:
     t = cabeceras.tipo(canon)
     m = manifest.get(doc_id, {})
     titulo = m.get("titulo") or doc_id
-    numero, anio = canon[1], canon[2]
+    numero, anio = (None, None) if t == "documento" else (canon[1], canon[2])
     if t in ("codigo", "constitucion", "decision"):
         # el numero de la norma que adopta el codigo, del titulo "Codigo Civil (Ley 57 de 1887)"
         if mt := re.search(r"(?i)\b(?:ley|decreto(?: ley)?)\s+(\d+)\s+de\s+(\d{4})", titulo):
@@ -310,6 +318,8 @@ def segmentar_norma(texto: str, meta: Meta) -> tuple[list[Chunk], dict]:
             ultimo_encabezado = None
             continue
         ultimo_encabezado = None
+        if m and _DE_OTRA_NORMA.match(t, m.end()):
+            m = None
         if m and m["comilla"]:
             # un encabezado entre comillas es siempre transcrito, tambien antes del primer articulo
             m = None
@@ -394,7 +404,7 @@ def segmentar_documento(doc_id: str, manifest: dict[str, dict]) -> tuple[list[Ch
     ruta = config.CORPUS_TEXTOS / f"{doc_id}.txt"
     texto = ruta.read_text(encoding="utf-8")
     meta = meta_de(doc_id, manifest)
-    if meta.tipo == "sentencia":
+    if meta.tipo in EN_VENTANAS:
         chunks, info = segmentar_sentencia(texto, meta)
     else:
         chunks, info = segmentar_norma(texto, meta)
@@ -411,14 +421,14 @@ def segmentar_documento(doc_id: str, manifest: dict[str, dict]) -> tuple[list[Ch
         if c.texto != f"{c.cabecera}\n{texto[c.inicio:c.fin]}" or c.fin <= c.inicio:
             raise AssertionError(f"{c.chunk_id}: texto no coincide con corpus[{c.inicio}:{c.fin}]")
     # en normas cada caracter pertenece a lo sumo a un fragmento (en sentencias se solapan a proposito)
-    if meta.tipo != "sentencia":
+    if meta.tipo not in EN_VENTANAS:
         orden = sorted(chunks, key=lambda c: c.inicio)
         for a, b in zip(orden, orden[1:]):
             if b.inicio < a.fin:
                 raise AssertionError(f"{a.chunk_id} y {b.chunk_id} se solapan ({b.inicio} < {a.fin})")
     avisos = []
     esperado = manifest.get(doc_id, {}).get("n_articulos")
-    if meta.tipo != "sentencia" and isinstance(esperado, int) and esperado:
+    if meta.tipo not in EN_VENTANAS and isinstance(esperado, int) and esperado:
         det = info["articulos_base"]
         if abs(det - esperado) / esperado > TOLERANCIA_ARTICULOS:
             avisos.append(f"articulos base detectados {det} vs manifest {esperado}")
