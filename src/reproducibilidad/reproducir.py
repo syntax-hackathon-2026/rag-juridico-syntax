@@ -164,22 +164,33 @@ def etapa_entorno(args, gpu) -> None:
 # --- 2. corpus ----------------------------------------------------------------------------
 
 def copiar_corpus(origen: Path) -> None:
+    """Copia solo los .txt cuyo nombre es un doc_id del manifest (ignora requirements.txt, notas, etc.)."""
+    validos = {d["doc_id"] for d in json.loads(config.MANIFEST_PATH.read_text(encoding="utf-8"))["documentos"]}
     config.CORPUS_TEXTOS.mkdir(parents=True, exist_ok=True)
-    n = 0
+    n, ignorados = 0, []
+
+    def copiar(nombre: str, datos: bytes) -> None:
+        nonlocal n
+        if nombre.endswith(".txt") and Path(nombre).stem in validos:
+            (config.CORPUS_TEXTOS / Path(nombre).name).write_bytes(datos)  # binario: no toca los saltos de linea
+            n += 1
+        elif nombre.endswith(".txt"):
+            ignorados.append(Path(nombre).name)
+
     if origen.is_file() and origen.suffix == ".zip":
         with zipfile.ZipFile(origen) as z:
             for info in z.infolist():
-                if info.filename.endswith(".txt") and not info.is_dir():
-                    (config.CORPUS_TEXTOS / Path(info.filename).name).write_bytes(z.read(info))
-                    n += 1
+                if not info.is_dir():
+                    copiar(info.filename, z.read(info))
     elif origen.is_dir():
         raiz = origen / "corpus" if (origen / "corpus").is_dir() else origen
         for f in raiz.glob("*.txt"):
-            shutil.copyfile(f, config.CORPUS_TEXTOS / f.name)  # copia binaria: no toca los saltos de linea
-            n += 1
+            copiar(f.name, f.read_bytes())
     else:
         raise SystemExit(f"--corpus {origen}: no es una carpeta ni un .zip")
     print(f"copiados {n} .txt a {config.CORPUS_TEXTOS.relative_to(ROOT).as_posix()}/")
+    if ignorados:
+        print(f"ignorados {len(ignorados)} .txt que no son doc_id del manifest: {', '.join(ignorados[:8])}")
 
 
 def etapa_corpus(args) -> None:
@@ -195,6 +206,10 @@ def etapa_corpus(args) -> None:
         elif sha256_archivo(ruta) != d["sha256"]:
             difieren.append(d["doc_id"])
     print(f"{len(docs) - len(faltan) - len(difieren)}/{len(docs)} documentos identicos al manifest")
+    extra = sorted(p.name for p in config.CORPUS_TEXTOS.glob("*.txt") if p.stem not in {d["doc_id"] for d in docs})
+    if extra:
+        raise SystemExit(f"Sobran .txt en {config.CORPUS_TEXTOS} que no son doc_id del manifest (segmentar.py los rechaza): "
+                         f"{', '.join(extra[:8])}. Borrarlos y repetir.")
     if faltan or difieren:
         if faltan:
             print(f"  faltan {len(faltan)}: {', '.join(faltan[:8])}{' ...' if len(faltan) > 8 else ''}")
