@@ -80,13 +80,15 @@ def main() -> int:
         abstencion.cargar_regla(config.ABSTENCION_CONFIG_PATH)
         if config.ABSTENCION_MODO == "reglas" else None
     )
+    # Cada particion (una por maquina) escribe sus propios archivos; unir_entregas.py las junta.
+    sufijo = "_p{}de{}".format(*args.particion.split("/")) if args.particion else ""
     if args.salida:
         salida = args.salida
     elif args.split == "test" and not (args.ids or args.limite or args.particion):
         salida = config.SUBMISSION_PATH
     else:
-        salida = config.SALIDAS_DIR / f"{args.split}_{experimento}.jsonl"
-    trazas = config.TRAZAS_DIR / f"{experimento}.jsonl"
+        salida = config.SALIDAS_DIR / f"{args.split}_{experimento}{sufijo}.jsonl"
+    trazas = config.TRAZAS_DIR / f"{experimento}{sufijo}.jsonl"
     salida.parent.mkdir(parents=True, exist_ok=True)
     trazas.parent.mkdir(parents=True, exist_ok=True)
     if args.sin_reanudar:
@@ -110,8 +112,9 @@ def main() -> int:
                      "encoder_revision": (info_indice.get("denso") or {}).get("revision")},
         "device_encoder": config.resolver_device(),
         "abstencion": config.abstencion_metadata(),
+        "llm_cache": config.LLM_CACHE,
     }
-    (config.TRAZAS_DIR / f"{experimento}.meta.json").write_text(
+    (config.TRAZAS_DIR / f"{experimento}{sufijo}.meta.json").write_text(
         json.dumps(meta, ensure_ascii=False, indent=2) + "\n", encoding="utf-8", newline="\n")
 
     hechos = {r["id"] for r in read_jsonl(salida)} if salida.is_file() else set()
@@ -133,6 +136,8 @@ def main() -> int:
             ft.flush()
             media = (time.perf_counter() - t0) / n
             estado = "ABSTIENE " + ",".join(traza["abstencion"]["motivos"]) if reg["abstencion"] else "ok"
+            if traza["latencia"]["n_cache"]:
+                estado += " (cache)"
             if traza["errores_schema"]:
                 estado += f" SCHEMA {traza['errores_schema']}"
             print(f"[{n}/{len(pendientes)}] id={it['id']} {it['formato']:<15} {reg['latencia_ms'] / 1000:5.1f} s  "
