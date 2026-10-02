@@ -27,7 +27,7 @@ python src/evaluacion/evaluar_entrega.py --entrega salidas/sample_e02_v0.jsonl -
 python src/evaluacion/comparar_entregas.py a.jsonl b.jsonl [--ids ...]   # determinismo / verificación en vivo
 ```
 
-Variables: `SYNTAX_LLM` (`qwen3-8b-q4` | `qwen3-4b-2507-q4`), `SYNTAX_LLM_URL`, `SYNTAX_GENERATION_K` (5), `SYNTAX_CITAR_EVIDENCIA` (`no` | `generacion` | `top10`), `SYNTAX_DEVICE` (encoder de la consulta).
+Variables: `SYNTAX_LLM` (`qwen3-8b-q8` por defecto | `qwen3-8b-q4` | `qwen3-4b-2507-q4`), `SYNTAX_LLM_URL`, `SYNTAX_GENERATION_K` (5), `SYNTAX_CITAR_EVIDENCIA` (`no` | `generacion` | `top10`), `SYNTAX_DEVICE` (encoder de la consulta).
 
 `main.py` escribe línea a línea y **se reanuda**: si una corrida se cae, se relanza el mismo comando y salta los ids ya escritos (`--sin-reanudar` empieza de cero). Al final reordena, valida todo contra el schema y sale con 1 si hay errores.
 
