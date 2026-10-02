@@ -128,52 +128,56 @@ class Retriever:
         pares = [(int(i), float(s)) for i, s in zip(idx[0], scores[0]) if i >= 0]
         return sorted(pares, key=lambda p: (-p[1], self.chunks[p[0]]["chunk_id"]))
 
-    # --- API ----------------------------------------------------------------------
+    # --- fusion -------------------------------------------------------------------
 
-    def retrieve(self, consulta: str, k: int = 10, modo: str = "hibrido",
-                 n_candidatos: int = N_CANDIDATOS,
-                 consulta_lookup: str | None = None, area: str | None = None) -> list[RetrievedChunk]:
-        """`area` = area de la pregunta (campo del banco); con SYNTAX_AREA_BOOST > 1 prioriza
-        en el hibrido los fragmentos de documentos de esa area, sin descartar los demas."""
+    def _ranking(self, consulta: str, k: int, modo: str, n_candidatos: int,
+                 consulta_lookup: str | None, area: str | None) -> tuple[list[tuple[int, float]], dict]:
+        """Ranking completo de una consulta (todos los candidatos fusionados) y ranks por rama."""
         if modo not in MODOS:
             raise ValueError(f"modo {modo!r}; opciones: {MODOS}")
         ranks_rama: dict[str, dict[int, int]] = {}
         if modo == "bm25":
-            ranking = self._filtrar(self.buscar_bm25, consulta, k)
-        elif modo == "denso":
-            ranking = self._filtrar(self.buscar_denso, consulta, k)
-        else:
-            fusion: dict[int, float] = {}
-            for nombre, rama in (("bm25", self._filtrar(self.buscar_bm25, consulta, n_candidatos)),
-                                 ("denso", self._filtrar(self.buscar_denso, consulta, n_candidatos))):
-                ranks_rama[nombre] = {i: r for r, (i, _) in enumerate(rama, 1)}
-                for r, (i, _) in enumerate(rama, 1):
+            return self._filtrar(self.buscar_bm25, consulta, k), ranks_rama
+        if modo == "denso":
+            return self._filtrar(self.buscar_denso, consulta, k), ranks_rama
+        fusion: dict[int, float] = {}
+        for nombre, rama in (("bm25", self._filtrar(self.buscar_bm25, consulta, n_candidatos)),
+                             ("denso", self._filtrar(self.buscar_denso, consulta, n_candidatos))):
+            ranks_rama[nombre] = {i: r for r, (i, _) in enumerate(rama, 1)}
+            for r, (i, _) in enumerate(rama, 1):
+                fusion[i] = fusion.get(i, 0.0) + 1.0 / (RRF_K + r)
+        # Lookup es una rama adicional, nunca un filtro de las ramas originales.
+        indices_lookup = []
+        if config.LOOKUP_MODO == "on":
+            texto_lookup = consulta if consulta_lookup is None else consulta_lookup
+            if config.LOOKUP_FUENTE == "pregunta" and consulta_lookup is None:
+                raise ValueError("LOOKUP_FUENTE=pregunta requiere consulta_lookup explicita")
+            indices_lookup = self.indice_referencias.buscar(referencias_de(texto_lookup))
+            if indices_lookup:
+                ranks_rama["lookup"] = {i: r for r, i in enumerate(indices_lookup, 1)}
+            for r, i in enumerate(indices_lookup, 1):
+                if config.LOOKUP_VARIANTE == "a":
                     fusion[i] = fusion.get(i, 0.0) + 1.0 / (RRF_K + r)
-            # Lookup es una rama adicional, nunca un filtro de las ramas originales.
-            indices_lookup = []
-            if config.LOOKUP_MODO == "on":
-                texto_lookup = consulta if consulta_lookup is None else consulta_lookup
-                if config.LOOKUP_FUENTE == "pregunta" and consulta_lookup is None:
-                    raise ValueError("LOOKUP_FUENTE=pregunta requiere consulta_lookup explicita")
-                indices_lookup = self.indice_referencias.buscar(referencias_de(texto_lookup))
-                if indices_lookup:
-                    ranks_rama["lookup"] = {i: r for r, i in enumerate(indices_lookup, 1)}
-                for r, i in enumerate(indices_lookup, 1):
-                    if config.LOOKUP_VARIANTE == "a":
-                        fusion[i] = fusion.get(i, 0.0) + 1.0 / (RRF_K + r)
-                    elif config.LOOKUP_VARIANTE == "b":
-                        bonus = config.LOOKUP_BONUS if self.indice_referencias.preferible(i) else 0.0
-                        fusion[i] = fusion.get(i, 0.0) + bonus
-                    else:
-                        fusion.setdefault(i, 0.0)
-            if area and config.AREA_BOOST != 1.0:  # prioridad por area: reordena, no filtra
-                for i in fusion:
-                    if area in self.areas_doc.get(self.chunks[i]["doc_id"], ()):
-                        fusion[i] *= config.AREA_BOOST
-            ranking = sorted(fusion.items(), key=lambda p: (-p[1], self.chunks[p[0]]["chunk_id"]))
-            if indices_lookup and config.LOOKUP_VARIANTE == "c":
-                insertar = indices_lookup[:min(config.LOOKUP_M, k)]
-                ranking = [(i, fusion[i]) for i in insertar] + [(i, s) for i, s in ranking if i not in insertar]
+                elif config.LOOKUP_VARIANTE == "b":
+                    bonus = config.LOOKUP_BONUS if self.indice_referencias.preferible(i) else 0.0
+                    fusion[i] = fusion.get(i, 0.0) + bonus
+                else:
+                    fusion.setdefault(i, 0.0)
+        self._boost_area(fusion, area)
+        ranking = sorted(fusion.items(), key=lambda p: (-p[1], self.chunks[p[0]]["chunk_id"]))
+        if indices_lookup and config.LOOKUP_VARIANTE == "c":
+            insertar = indices_lookup[:min(config.LOOKUP_M, k)]
+            ranking = [(i, fusion[i]) for i in insertar] + [(i, s) for i, s in ranking if i not in insertar]
+        return ranking, ranks_rama
+
+    def _boost_area(self, fusion: dict[int, float], area: str | None) -> None:
+        if area and config.AREA_BOOST != 1.0:  # prioridad por area: reordena, no filtra
+            for i in fusion:
+                if area in self.areas_doc.get(self.chunks[i]["doc_id"], ()):
+                    fusion[i] *= config.AREA_BOOST
+
+    def _salida(self, ranking: list[tuple[int, float]], k: int, ranks_rama: dict,
+                area: str | None) -> list[RetrievedChunk]:
         salida = []
         for r, (i, s) in enumerate(ranking[:k], 1):
             c = self.chunks[i]
@@ -185,6 +189,55 @@ class Retriever:
             salida.append(RetrievedChunk(chunk_id=c["chunk_id"], doc_id=c["doc_id"], texto=c["texto"],
                                          inicio=c["inicio"], fin=c["fin"], score=s, rank=r, meta=meta))
         return salida
+
+    # --- API ----------------------------------------------------------------------
+
+    def retrieve(self, consulta: str, k: int = 10, modo: str = "hibrido",
+                 n_candidatos: int = N_CANDIDATOS,
+                 consulta_lookup: str | None = None, area: str | None = None) -> list[RetrievedChunk]:
+        """`area` = area de la pregunta (campo del banco); con SYNTAX_AREA_BOOST > 1 prioriza
+        en el hibrido los fragmentos de documentos de esa area, sin descartar los demas."""
+        ranking, ranks_rama = self._ranking(consulta, k, modo, n_candidatos, consulta_lookup, area)
+        return self._salida(ranking, k, ranks_rama, area)
+
+    def retrieve_multi(self, consultas: list[tuple[str, float]], k: int = 10, modo: str = "hibrido",
+                       n_candidatos: int = N_CANDIDATOS, normas: list[str] | None = None,
+                       consulta_lookup: str | None = None, area: str | None = None,
+                       peso_normas: float = 1.0) -> list[RetrievedChunk]:
+        """Fusion RRF de varias consultas (multi-query) y de una rama de lookup guiada.
+
+        `consultas`: [(texto, peso)]; la primera es la principal (pregunta + opciones) y la
+        unica que usa `consulta_lookup`. Cada una pasa por `_ranking` completo (BM25 + denso
+        + lookup + area) y aporta peso / (RRF_K + rank) a cada candidato de su top-n.
+        `normas`: referencias en texto ("articulo 176 del Codigo Civil") que se resuelven con
+        el parser oficial y entran como otra lista (el planificador; generacion/planificador.py).
+        Solo suma candidatos: nunca filtra lo que trae la consulta principal.
+        """
+        fusion: dict[int, float] = {}
+        ranks_rama: dict[str, dict[int, int]] = {}
+        for j, (texto, peso) in enumerate(consultas):
+            ranking, ramas = self._ranking(texto, k, modo, n_candidatos,
+                                           consulta_lookup if j == 0 else None, area)
+            if j == 0:
+                ranks_rama.update(ramas)
+            ranks_rama[f"q{j}"] = {}
+            for r, (i, _) in enumerate(ranking[:n_candidatos], 1):
+                ranks_rama[f"q{j}"][i] = r
+                fusion[i] = fusion.get(i, 0.0) + peso / (RRF_K + r)
+        if normas:
+            guiados: list[int] = []
+            for texto in normas:  # en orden: la primera norma del plan es la mas probable
+                for i in self.indice_referencias.buscar(referencias_de(texto)):
+                    if i not in guiados:
+                        guiados.append(i)
+            if guiados:
+                ranks_rama["plan"] = {i: r for r, i in enumerate(guiados, 1)}
+                plan: dict[int, float] = {i: peso_normas / (RRF_K + r) for r, i in enumerate(guiados, 1)}
+                self._boost_area(plan, area)
+                for i, s in plan.items():
+                    fusion[i] = fusion.get(i, 0.0) + s
+        ranking = sorted(fusion.items(), key=lambda p: (-p[1], self.chunks[p[0]]["chunk_id"]))
+        return self._salida(ranking, k, ranks_rama, area)
 
 
 _RETRIEVER: Retriever | None = None

@@ -22,8 +22,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 import config  # noqa: E402
-from generacion import abstencion, citas, postproceso, prompts  # noqa: E402
-from recuperacion.consulta import consulta_de  # noqa: E402
+from generacion import abstencion, citas, planificador, postproceso, prompts  # noqa: E402
 
 sys.path.insert(0, str(config.ROOT / "scripts"))
 from evaluate import answer_text  # noqa: E402
@@ -101,18 +100,16 @@ def responder(item: dict, retriever, decoder, generation_k: int | None = None,
     item = entrada_runtime(item)
     formato = item["formato"]
     pensar = formato in config.PENSAR_FORMATOS
-    consulta = consulta_de(item)
-
-    kwargs_lookup = ({"consulta_lookup": item["pregunta"]} if config.LOOKUP_MODO == "on"
-                     and config.LOOKUP_FUENTE == "pregunta" else {})
-    top = retriever.retrieve(consulta, k=config.RETRIEVAL_K, modo=config.MODO_RECUPERACION,
-                             area=item.get("area"), **kwargs_lookup)
-    ms_ret = (time.perf_counter() - t0) * 1000
+    top, info_ret = planificador.recuperar(item, retriever, decoder)
+    consulta = info_ret["consulta"]
+    ms_ret = (time.perf_counter() - t0) * 1000  # incluye el planificador (info_ret["plan_ms"])
     perm = citas.permitidas([p.texto for p in top])
     llamadas: list[dict] = []
     traza: dict = {"id": item["id"], "formato": formato, "prompt_version": prompts.PROMPT_VERSION,
                    "generation_k": generation_k, "pensar": pensar, "top": [[p.chunk_id, round(p.score, 6)] for p in top],
                    "senales": abstencion.senales(consulta, top, perm), "llamadas": llamadas}
+    if info_ret["n_consultas"] > 1 or "plan" in info_ret:
+        traza["recuperacion"] = {kk: v for kk, v in info_ret.items() if kk != "consulta"}
     if config.LOOKUP_MODO == "on":
         traza["lookup"] = {
             "config": config.lookup_metadata(),
@@ -128,7 +125,8 @@ def responder(item: dict, retriever, decoder, generation_k: int | None = None,
         gen = top[:generation_k]
         letras = prompts.letras_de(item)
         esquema = prompts.schema(formato, letras)
-        msgs = prompts.mensajes(item, [p.texto for p in gen])
+        msgs = prompts.mensajes(item, [p.texto for p in gen],
+                                [p.meta for p in gen] if config.GLOSARIO == "on" else None)
         salida = _generar_json(decoder, msgs, esquema, prompts.MAX_TOKENS[formato], llamadas, pensar)
         if salida is None:
             motivos.append("salida_invalida")
@@ -176,7 +174,8 @@ def responder(item: dict, retriever, decoder, generation_k: int | None = None,
     ms_total = (time.perf_counter() - t0) * 1000
     reg = postproceso.registro(item["id"], formato, campos, abst, [p.pasaje() for p in top], int(round(ms_total)))
     traza["citas_respuesta"] = sorted(map(list, citas.cuerpos(answer_text(reg))), key=str)
-    traza["latencia"] = {"ret_ms": round(ms_ret, 1), "gen_ms": round(sum(l["ms"] for l in llamadas), 1),
+    traza["latencia"] = {"ret_ms": round(ms_ret, 1), "plan_ms": round(info_ret["plan_ms"], 1),
+                         "gen_ms": round(sum(l["ms"] for l in llamadas), 1),
                          "total_ms": round(ms_total, 1), "n_llamadas": len(llamadas)}
     traza["errores_schema"] = postproceso.validar(reg)
     return reg, traza

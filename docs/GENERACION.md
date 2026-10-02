@@ -123,6 +123,38 @@ Experimentos solo de cerradas (`--ids` de las 15; REVERT):
 - **`CITAR_EVIDENCIA=top10`**: recupera las citas de #674, #879 y #1073 (cuerpo en ranks 7–9 que el decoder no veía) y, con ellas, su acierto en abstención. Sin costo en RAGAS.
 - Latencia media 4,3 s/pregunta (recuperación ~0,1 s en caliente): ~1,2 h para 992.
 
+Corridas del 2026-10-02 (noche, corpus v4, rama `santiago-agentico`; sección 9):
+
+| corrida | cambio | cerradas | RAGAS | citación | abstención | total |
+|---|---|---:|---:|---:|---:|---:|
+| `e21_base` | e20 rehecha (0 diferencias) | 11/15 | — | 17,55 | 8,37 | 40,59/50 |
+| `e22_glosario` | glosario de normas en el prompt | **12/15** | — | 17,55 | 8,60 | **42,15/50** |
+| `e23_prompt_mc` | + reglas de decisión p-v2 (REVERT) | 12/15 (mismas letras) | — | 17,55 | 8,60 | 42,15/50 |
+| `e24_final` | defaults (glosario on), idéntica a e22 | 12/15 | 0,440 | 17,55 | 8,60 | **55,35/80** |
+
+## 9. Cerradas y recuperación agéntica (2026-10-02)
+
+**Diagnóstico.** Las cerradas estaban fijas en 11/15 desde `e05`, aunque la recuperación mejoró. En las cerradas la recuperación ya es casi perfecta (`r21_base`: doc_hit@10 = 1,0 y art_hit@10 = 0,86 en las 13 con `legal_basis`), así que los fallos están en la generación. Fallaban siempre las mismas cuatro:
+- **#58**: la opción correcta es «Ley 1564 de 2002», errata del CGP. El CGP estaba en el top-1, pero su cabecera no dice «Ley 1564» y el decoder descartaba la opción por «no mencionada en los pasajes».
+- **#128** (fintech) y **#671** (regla de desempate de los CDI): doctrina que no está en el corpus.
+- **#647**: definición doctrinal de «ayuda» (C.C. art. 176, que sí está en el corpus pero no llega al top-10).
+
+**Glosario (KEEP, `SYNTAX_GLOSARIO=on` por defecto, `generacion/glosario.py`).**
+- Debajo de la cabecera de cada pasaje va la línea `(Norma: <titulo del manifest>)`. Las normas que nombran la pregunta y las opciones llevan `[nota: ...]`: la equivalencia nombre ↔ número o, si el número existe con otro año, el aviso «probablemente se refiere a …».
+- Solo se usan títulos que aportan algo (paréntesis o coma) y que, si el decoder los copia, no extraen otra norma: «Codigo Civil (Ley 57 de 1887)» queda fuera porque daría una cita espuria.
+- `pasajes_recuperados.texto` no cambia.
+- Arregla #58 sin regresiones; `prompt_version` pasa a `p-v0+glosario`.
+
+**Probado y descartado (REVERT, flags apagados):**
+- **Reglas de decisión p-v2** (`SYNTAX_PROMPT_MC=p-v2`): «ausencia en los pasajes ≠ falsedad», opciones meta, cálculo explícito. Mismas 15 letras.
+- **Una consulta por opción** (`SYNTAX_CONSULTA_OPCIONES=on`, `recuperacion/consulta.py` + `Retriever.retrieve_multi`): doc_hit@10 baja de 0,902 a 0,878 (pierde #748), con peso 1 y con 0,5. No gana ningún artículo.
+- **Planificador** (`SYNTAX_PLANIFICADOR=on`, `generacion/planificador.py`): una llamada corta al 8B que reformula la consulta y propone normas con artículo para el lookup.
+  - Con ejemplos reales en el prompt (plan-v1), el 8B los copia en casi todas las preguntas: «artículo 25 del CGP» en 16 de 41. Sin ejemplos (plan-v2), acierta el artículo en solo 3 de 39 planes, y los artículos inventados arrastran documentos equivocados (doc_hit@10 0,805, respaldo@10 0,866).
+  - Solo con las reformulaciones (`SYNTAX_PLAN_NORMAS=off`), doc_hit@10 queda en 0,805–0,829, peor que la línea base (0,902).
+  - El aparente +3,6 puntos de respaldo de plan-v1 era un artefacto: los artículos copiados meten cuerpos populares (CGP, Constitución) en el top-10.
+  - **Conclusión: Qwen3-8B sin thinking no recuerda números de artículo con fiabilidad, y la multi-consulta diluye el RRF.** No volver a intentarlo sin otra señal, como un reranker o el thinking solo en el planificador.
+- Lo que queda en cerradas es para la revisión del corpus: doctrina sobre leasing y fintech, modelo de convenio OCDE (regla de desempate), el decreto anual del SMLMV (cuantías, #528) y el art. 176 del C.C. para #647.
+
 ## 7. Pendientes
 
 1. **Máquina final**: medir la latencia en las candidatas (GPU NVIDIA del equipo o del campus). La corrida de las 992 y la verificación en vivo del sábado deben usar la misma máquina y la misma configuración (sección 4.2).

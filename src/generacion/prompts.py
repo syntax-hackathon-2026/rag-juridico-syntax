@@ -14,7 +14,15 @@ de elegir la letra.
 """
 from __future__ import annotations
 
-PROMPT_VERSION = "p-v0"
+import sys
+from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+import config  # noqa: E402
+
+# p-v0: base. p-v2: reglas de decision en cerradas (SYNTAX_PROMPT_MC; docs/GENERACION.md 9).
+# "+glosario": fichas y notas de equivalencia de normas (SYNTAX_GLOSARIO, generacion/glosario.py).
+PROMPT_VERSION = config.PROMPT_MC + ("+glosario" if config.GLOSARIO == "on" else "")
 
 MAX_TOKENS = {"multiple_choice": 700, "semi_open": 450, "open_ended": 1100}
 
@@ -30,7 +38,11 @@ INSTRUCCIONES = {
     "multiple_choice": """Formato: pregunta de selección múltiple con una sola opción correcta.
 - "justificacion": de 2 a 4 oraciones que expliquen por qué la opción correcta lo es, citando la norma aplicable de los pasajes.
 - "respuesta_correcta": la letra de la opción correcta.
-- "descarte_opciones": para cada letra, una oración breve; para las opciones incorrectas, por qué lo son; para la elegida, «Es la opción correcta.».""",
+- "descarte_opciones": para cada letra, una oración breve; para las opciones incorrectas, por qué lo son; para la elegida, «Es la opción correcta.».""" + ("" if config.PROMPT_MC == "p-v0" else """
+Para elegir:
+- Que una opción no aparezca en los pasajes no la hace incorrecta. Si los pasajes no resuelven la pregunta, elige con tu conocimiento del derecho colombiano la opción más exacta.
+- «Todas las anteriores», «Ninguna de las anteriores» u opciones que combinan otras («(a) y (b)») solo son correctas si lo es cada opción que abarcan (o ninguna, en el caso de «Ninguna»).
+- Si la pregunta exige un cálculo o comparar cifras o plazos, hazlo explícitamente en la justificación antes de elegir."""),
     "semi_open": """Formato: pregunta de respuesta corta.
 - "respuesta": de 3 a 5 oraciones y como máximo 120 palabras. La primera oración responde directamente la pregunta. Incluye los requisitos, plazos, autoridades o conceptos concretos que se piden y menciona la norma que lo establece.
 - "palabras_clave": de 3 a 6 términos jurídicos clave de la respuesta.
@@ -81,14 +93,38 @@ def letras_de(item: dict) -> list[str]:
     return [l for l in letras if l in ("A", "B", "C", "D")] or ["A", "B", "C", "D"]
 
 
-def mensajes(item: dict, pasajes: list[str]) -> list[dict]:
-    """Mensajes de chat para el decoder. `pasajes`: texto literal de cada fragmento."""
+def _con_ficha(texto: str, ficha: str | None) -> str:
+    """Inserta la ficha del glosario tras la cabecera (primera linea) del pasaje."""
+    if not ficha:
+        return texto
+    cabecera, _, resto = texto.partition("\n")
+    return f"{cabecera}\n(Norma: {ficha})\n{resto}"
+
+
+def _nota(texto: str) -> str:
+    from generacion import glosario
+
+    ns = glosario.notas(texto)
+    return f" [nota: {'; '.join(ns)}]" if ns else ""
+
+
+def mensajes(item: dict, pasajes: list[str], metas: list[dict] | None = None) -> list[dict]:
+    """Mensajes de chat para el decoder. `pasajes`: texto literal de cada fragmento.
+
+    Con `metas` (SYNTAX_GLOSARIO=on) cada pasaje lleva la ficha de su norma, y la pregunta
+    y las opciones, notas de equivalencia nombre <-> numero (generacion/glosario.py).
+    """
+    if metas is not None:
+        from generacion import glosario
+
+        pasajes = [_con_ficha(t.strip(), glosario.ficha_pasaje(m)) for t, m in zip(pasajes, metas)]
+    nota = _nota if metas is not None else (lambda _t: "")
     bloques = "\n\n".join(f"[P{i}] {t.strip()}" for i, t in enumerate(pasajes, 1))
-    usuario = f"Pasajes:\n\n{bloques}\n\nPregunta: {item['pregunta'].strip()}"
+    usuario = f"Pasajes:\n\n{bloques}\n\nPregunta: {item['pregunta'].strip()}{nota(item['pregunta'])}"
     ops = item.get("opciones")
     if ops:
         pares = ops.items() if isinstance(ops, dict) else zip("ABCD", ops)
-        usuario += "\n\nOpciones:\n" + "\n".join(f"{l}. {str(t).strip()}" for l, t in pares)
+        usuario += "\n\nOpciones:\n" + "\n".join(f"{l}. {str(t).strip()}{nota(str(t))}" for l, t in pares)
     return [{"role": "system", "content": REGLAS + "\n\n" + INSTRUCCIONES[item["formato"]]},
             {"role": "user", "content": usuario}]
 
