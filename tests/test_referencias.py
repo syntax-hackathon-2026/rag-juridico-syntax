@@ -189,7 +189,8 @@ def test_responder_no_filtra_ground_truth(monkeypatch):
     assert llamadas[0][1]["consulta_lookup"] == item["pregunta"]
     assert "Constitucion" in llamadas[0][0]
     assert "SECRETO" not in llamadas[0][0]
-    assert set(llamadas[0][1]) == {"k", "modo", "consulta_lookup"}
+    assert set(llamadas[0][1]) == {"k", "modo", "area", "consulta_lookup"}
+    assert llamadas[0][1]["area"] is None  # el item no trae area: no se inventa
 
 
 def test_evaluacion_fuente_y_guardia_runtime(ret, monkeypatch):
