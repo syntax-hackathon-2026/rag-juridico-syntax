@@ -33,9 +33,13 @@ def sha256_archivo(ruta: Path) -> str:
 
 
 def version_segmentador() -> str | None:
-    if not config.INDICE_INFO_PATH.is_file():
-        return None
-    return json.loads(config.INDICE_INFO_PATH.read_text(encoding="utf-8")).get("version_segmentador")
+    """Version escrita por segmentar.py (existe antes de indexar); indice_info.json como respaldo."""
+    for ruta in (config.RESUMEN_INDICE_PATH, config.INDICE_INFO_PATH):
+        if ruta.is_file():
+            version = json.loads(ruta.read_text(encoding="utf-8")).get("version_segmentador")
+            if version:
+                return version
+    return None
 
 
 def actuales() -> dict:

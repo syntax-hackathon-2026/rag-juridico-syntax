@@ -58,6 +58,25 @@ bash run.sh                                              # o: python src/main.py
 bash run.sh --split test                                 # 992 preguntas -> submissions.jsonl
 ```
 
+### Máquina limpia (Windows con GPU NVIDIA, Linux)
+
+Con el repo descargado y los `.txt` del corpus a mano, un solo comando prepara todo y corre las preguntas:
+
+```powershell
+# Windows (instala Python 3.13 con winget si falta)
+powershell -ExecutionPolicy Bypass -File reproducir.ps1 -Corpus C:\ruta\al\corpus     # carpeta o .zip con los .txt
+```
+```bash
+python3.13 src/reproducibilidad/reproducir.py --corpus /ruta/al/corpus                  # Linux / contenedor con Python 3.13
+```
+
+Etapas (cada una se salta si ya está lista): `.venv` + `requirements.txt` (y torch con CUDA en lugar de la rueda CPU de PyPI) →
+`.txt` contra el sha256 de `corpus_manifest.json` → segmentar, comprobar que `chunks.jsonl` es idéntico al congelado,
+codificar con bge-m3 en GPU y armar BM25 + FAISS → llama.cpp b11146 (se descarga a `herramientas/`) + GGUF con sha256 →
+`llama-server` en segundo plano, `src/main.py` y `scripts/evaluate.py`, con latencia media y proyección a 992 preguntas.
+Opciones: `--hasta indice` (sin decoder), `--reindexar` (borra índice y caché de vectores), `--sin-reanudar` (latencias limpias),
+`--limite N`, `--split test`, `--device cpu`. Requiere driver NVIDIA con CUDA >= 12.6; no instala drivers.
+
 El índice (`data_corpus/indice/`) se reconstruye con `src/indexacion/segmentar.py` + `src/indexacion/construir_indice.py`, o se toma del comprimido publicado (sección "Corpus e índice"). Para volver a parsear los originales de `data/raw/` hacen falta pandoc (RTF/DOCX) y Tesseract con el idioma español (5 sentencias escaneadas): `brew install pandoc tesseract tesseract-lang`. No son necesarios si se parte del `corpus/` publicado. `SYNTAX_LLM` elige el decoder (`qwen3-8b-q4` por defecto; `qwen3-4b-2507-q4` como alternativa) y `SYNTAX_LLM_URL` el endpoint.
 
 Requisitos de hardware: ~6 GB de memoria para el decoder (8B Q4) más ~4 GB para el encoder y el índice. Con GPU (Metal/CUDA) y memoria libre suficiente.
