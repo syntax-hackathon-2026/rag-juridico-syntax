@@ -38,6 +38,7 @@ INTEGRANTES = "Sofía Morato, Joel David Niño y Santiago Muñoz"
 ACENTO = RGBColor(0x1E, 0x5B, 0x3A)
 GRIS = "E4F0E7"
 FUENTE = "Times New Roman"
+LINEA = 1.05  # interlineado
 TZ_LOCAL = timezone(timedelta(hours=-5))
 
 AREAS_BANCO = [
@@ -136,7 +137,7 @@ def parrafo(doc_or_cell, texto="", size=10, bold=False, color=None, before=0, af
             align=None, italic=False):
     p = doc_or_cell.add_paragraph()
     pf = p.paragraph_format
-    pf.space_before, pf.space_after, pf.line_spacing = Pt(before), Pt(after), 1.0
+    pf.space_before, pf.space_after, pf.line_spacing = Pt(before), Pt(after), LINEA
     if align:
         p.alignment = align
     if texto:
@@ -194,7 +195,7 @@ def tabla(doc, filas, anchos, encabezado=True, alinear_der=(), negrita_ultima=Fa
             p = c.paragraphs[0]
             p.paragraph_format.space_before = Pt(1)
             p.paragraph_format.space_after = Pt(1)
-            p.paragraph_format.line_spacing = 1.0
+            p.paragraph_format.line_spacing = LINEA
             if j in alinear_der:
                 p.alignment = WD_ALIGN_PARAGRAPH.RIGHT
             es_enc = encabezado and i == 0
@@ -239,7 +240,7 @@ def construir(rep, fila, exp, manifest, salida: Path, commit: str | None = None,
     s = doc.sections[0]
     s.page_width, s.page_height = Cm(21.0), Cm(29.7)
     s.left_margin = s.right_margin = Cm(1.7)
-    s.top_margin, s.bottom_margin = Cm(1.4), Cm(1.4)
+    s.top_margin, s.bottom_margin = Cm(1.1), Cm(1.1)
     doc.styles["Normal"].font.name = FUENTE
     doc.styles["Normal"].font.size = Pt(10)
 
@@ -247,11 +248,12 @@ def construir(rep, fila, exp, manifest, salida: Path, commit: str | None = None,
     p = parrafo(doc, after=0)
     mixto(p, [("Equipo: ", True), (EQUIPO, False), ("    Integrantes: ", True), (INTEGRANTES, False)])
     p = parrafo(doc, after=0)
-    mixto(p, [("Fecha de la medición: ", True), (fecha, False),
-              (f"    Corrida: {exp} (commit {commit or fila['commit'].split('+')[0]})", False)], size=9)
+    mixto(p, [("Fecha de la medición: ", True), (fecha, False)])
 
     # 1. Puntaje
     titulo_seccion(doc, "1. Puntaje sobre las preguntas de muestra")
+    parrafo(doc, "Resultado de python scripts/evaluate.py --submission <archivo> --split sample.",
+            size=8.5, italic=True, after=2)
     tabla(doc, [
         ["Componente", "Puntos obtenidos", "Puntos posibles"],
         ["Exactitud en cerradas", num(pts[0]), "20"],
@@ -361,5 +363,11 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+
+
+
+
+
 
 
