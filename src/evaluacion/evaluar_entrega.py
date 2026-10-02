@@ -210,7 +210,8 @@ def main() -> int:
                       f"encoder {meta.get('device_encoder', '')}",
         "entorno_json": entorno_path.relative_to(config.ROOT).as_posix(),
         "notas": (f"citar_evidencia={ret.get('citar_evidencia')}; "
-                  f"filtro_cita={(ret.get('filtro_cita') or {}).get('modo', 'off')}; prompt={meta.get('prompt_version', '')}; "
+                  f"filtro_cita={(ret.get('filtro_cita') or {}).get('modo', 'off')}; "
+                  f"area_boost={(ret.get('area') or {}).get('boost', 1.0)}; prompt={meta.get('prompt_version', '')}; "
                   f"pensar={json.dumps(meta.get('pensar') or {}, sort_keys=True)}; "
                   + "lookup=" + json.dumps(ret.get("lookup", {"modo": "off"}), sort_keys=True) + "; " + args.notas).strip(),
     }

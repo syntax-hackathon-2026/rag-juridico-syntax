@@ -73,9 +73,15 @@ if not 0 <= LOOKUP_BONUS < float("inf") or LOOKUP_M < 1:
 # quitan de las ramas BM25/densa salvo que la consulta nombre su cuerpo canonico.
 # off | sentencias (las 279 sentencias nuevas de v3) | todo (+ las normas nuevas).
 SOLO_POR_CITA_PATH = ROOT / "data" / "registros" / "solo_por_cita.json"
-FILTRO_CITA = os.environ.get("SYNTAX_FILTRO_CITA", "todo")
+FILTRO_CITA = os.environ.get("SYNTAX_FILTRO_CITA", "sentencias")
 if FILTRO_CITA not in {"off", "sentencias", "todo"}:
     raise ValueError("SYNTAX_FILTRO_CITA debe ser off|sentencias|todo")
+# Prioridad por area (docs/INDEXACION.md 15): en el hibrido, el score RRF de los fragmentos
+# cuyo documento lleva el `area` de la pregunta (areas de corpus_manifest.json) se multiplica
+# por este factor. Solo reordena los candidatos de las ramas, nunca descarta. 1.0 = apagado.
+AREA_BOOST = float(os.environ.get("SYNTAX_AREA_BOOST", "2.0"))
+if not 1.0 <= AREA_BOOST < float("inf"):
+    raise ValueError("SYNTAX_AREA_BOOST debe ser un factor finito >= 1")
 EXPERIMENTS_CSV = EVALUATION_DIR / "experiments.csv"
 
 # Encoder denso (enunciado 3.1). bge-m3: MIT, 1024 dim, 8192 tokens, sin prefijos.
@@ -156,6 +162,10 @@ def lookup_metadata() -> dict:
 
 def filtro_metadata() -> dict:
     return {"modo": FILTRO_CITA, "registro": str(SOLO_POR_CITA_PATH.relative_to(ROOT)).replace("\\", "/")}
+
+
+def area_metadata() -> dict:
+    return {"boost": AREA_BOOST, "fuente": "corpus_manifest.json", "aplica_a": "hibrido"}
 
 
 def abstencion_metadata() -> dict:

@@ -78,7 +78,7 @@ def evaluar(modo: str, items: list[dict], tipo_consulta: str, techo: bool = Fals
         kwargs = ({"consulta_lookup": it["pregunta"]} if config.LOOKUP_MODO == "on"
                   and config.LOOKUP_FUENTE == "pregunta" else {})
         t0 = time.perf_counter()
-        top = ret.retrieve(consulta, k=40 if techo else max(KS), modo=modo, **kwargs)
+        top = ret.retrieve(consulta, k=40 if techo else max(KS), modo=modo, area=it.get("area"), **kwargs)
         ms = (time.perf_counter() - t0) * 1000
         cuerpos = [tuple(p.meta["canonico"]) for p in top]
         arts = [(*p.meta["canonico"], _art(p.meta["articulo"])) for p in top]
@@ -194,7 +194,7 @@ def main() -> int:
         resumen = {"experimento": experimento, "modo": modo, "reranker": "off",
                    "fusion": "rrf60" if modo == "hibrido" else "",
                    "n_candidatos_por_rama": 40, "lookup": config.lookup_metadata(),
-                   "filtro_cita": config.filtro_metadata(),
+                   "filtro_cita": config.filtro_metadata(), "area": config.area_metadata(),
                    "consulta": args.consulta, "metricas": met}
         with det.with_suffix(".meta.json").open("w", encoding="utf-8", newline="\n") as f:
             f.write(json.dumps(resumen, ensure_ascii=False, indent=2) + "\n")
@@ -211,7 +211,7 @@ def main() -> int:
             "entorno_json": entorno, "notas": args.notas + (
                 "; fase0_reranker=" + json.dumps(metricas_techo(filas), ensure_ascii=False, sort_keys=True)
                 if args.techo_reranker else "") + "; lookup=" + json.dumps(config.lookup_metadata(), sort_keys=True)
-                + "; filtro_cita=" + config.FILTRO_CITA
+                + "; filtro_cita=" + config.FILTRO_CITA + f"; area_boost={config.AREA_BOOST}"
                 + "; subconjuntos=" + json.dumps(met["subconjuntos_referencias"], sort_keys=True),
             **{k: (round(met[k], 4) if isinstance(met[k], float) else met[k])
                for k in COLUMNAS if k in met},

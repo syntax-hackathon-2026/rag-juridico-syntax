@@ -246,7 +246,7 @@ BM25 en sample_50 (41 preguntas con fundamento), variantes armadas filtrando `ch
 Los 375 documentos nuevos de v3 (279 sentencias = 242 SU + 37 hitos, y 96 normas) quedan en el corpus y en el manifest, pero **solo se recuperan si la consulta los nombra**: `retriever._filtrar` los quita de las ramas BM25 y densa salvo que `citations.extract` de la consulta (pregunta + opciones) encuentre su cuerpo canónico (`referencias.cuerpos_de`, la misma tupla que `canonico` en `chunks.jsonl`). Se filtra en cada rama antes del RRF, pidiendo candidatos de más (x4 cada vez) hasta completar 40; el orden de la rama no cambia y el resultado es determinista. El índice no se reconstruye.
 
 - Registro versionado `data/registros/solo_por_cita.json` (grupos `sentencias` y `normas`), generado por `python src/indexacion/solo_por_cita.py` a partir del manifest de `e8e7e58` (corpus v2). No editar a mano; si se agregan documentos que deban recuperarse siempre (p. ej. un código), regenerar con otra `--base` o sacarlos del registro con el script.
-- `SYNTAX_FILTRO_CITA=off|sentencias|todo` (por defecto `todo`).
+- `SYNTAX_FILTRO_CITA=off|sentencias|todo`. Por defecto `todo` hasta `e15`; desde la sección 15 es `sentencias` (las normas nuevas vuelven a recuperarse sin nombrarlas, compensadas por la prioridad por área).
 
 | híbrido (41 preguntas) | doc_hit@1 | doc_hit@3 | doc_hit@10 | MRR | respaldo@10 | art_hit@10 |
 |---|---:|---:|---:|---:|---:|---:|
@@ -260,3 +260,25 @@ Los 375 documentos nuevos de v3 (279 sentencias = 242 SU + 37 hitos, y 96 normas
 - Latencia: el filtro hace una búsqueda densa extra con la consulta ya codificada (caché de la última consulta en `_codificar`); ~110 ms/consulta en caliente en la 4090. El promedio de `retrieval_eval` (~650 ms) incluye la carga del encoder.
 - **Lookup por metadata (plan 06, variante a) activado por defecto** (`e12_lookup_filtro`, con filtro): doc_hit@1 0,488 → 0,537, MRR 0,613 → 0,638, art_hit@1 0,263 → 0,368; doc_hit@10 y respaldo@10 sin cambio. En generación (`e13_lookup`) cambia solo #600 (sigue correcta, norma al rank 1) y #218.
 - Pendientes sin cambio: #60, #748, #247, #679, #239 y #661 siguen sin su cuerpo en el top-10 (ninguna nombra la norma; el lookup no las alcanza).
+
+## 15. Prioridad por área de la pregunta (`e15`, `e16`, 2026-10-02)
+
+El banco trae `area` en cada pregunta (las 992 tienen la estructura de sample_50) y la oferta del corpus está desbalanceada: constitucional tiene 340 documentos (315 sentencias) y mercados 25, procesal 28, tributario 31 y civil 35, con una demanda de ~99 preguntas por área. `area` no es ground truth (es metadata del enunciado), así que entra en `responder.CAMPOS_RUNTIME` y llega al retriever.
+
+- `retriever.retrieve(..., area=...)`: en el híbrido, después del RRF y del lookup, el score de los fragmentos cuyo documento lleva esa área en `corpus_manifest.json` se multiplica por `SYNTAX_AREA_BOOST`. Solo reordena los candidatos de las ramas; nunca descarta (las preguntas cuyo fundamento es de otra área, p. ej. #679 constitucional → Ley 1581, siguen igual). `area=None` o factor 1.0 = sin cambio (comprobado: con 1.0 reproduce `e12` pregunta por pregunta). `meta["area_match"]` queda en la traza.
+- Consecuencia: **las `areas` del manifest ahora afectan la recuperación**, no solo la nota del corpus. Propuestas para los documentos de v3/v4 en `docs/ingesta/areas_propuestas_v3.csv` (léxico por área; falta revisión humana).
+
+| híbrido (41 preguntas) | filtro | boost | doc_hit@1 | doc_hit@10 | MRR | respaldo@10 | art_hit@10 |
+|---|---|---:|---:|---:|---:|---:|---:|
+| `e12_lookup_filtro` (base) | todo | 1,0 | 0,537 | 0,854 | 0,638 | 0,927 | 0,526 |
+| `e15_area115` / `130` / `150` | todo | 1,15–1,5 | 0,585 | 0,878 | 0,690–0,697 | 0,927 | 0,526 |
+| `e15_normasv3_area100` | sentencias | 1,0 | 0,537 | 0,854 | 0,630 | 0,927 | 0,526 |
+| `e15_normasv3_area150` | sentencias | 1,5 | 0,610 | 0,878 | 0,706 | 0,927 | 0,526 |
+| **`e15_normasv3_area200`** | **sentencias** | **2,0** | **0,610** | **0,902** | **0,718** | **0,939** | **0,579** |
+| `e15_normasv3_area250` / `300` | sentencias | 2,5–3,0 | 0,610 | 0,902 | 0,727 | 0,939 | 0,579 |
+| `e15_sinfiltro_area150` | off | 1,5 | 0,537 | 0,829 | 0,643 | 0,927 | 0,474 |
+
+- **Por defecto: `SYNTAX_FILTRO_CITA=sentencias` y `SYNTAX_AREA_BOOST=2.0`.** Arregla #748 (CPACA, rank 5) y #60 (CGP, rank 7); #58, #79, #674, #879, #960 suben. Solo #647 baja (4 → 5). Fallan #247, #679, #239 y #661. 2,0 es el punto donde se estancan los aciertos; 2,5–3,0 solo suben el MRR y arriesgan las preguntas de otra área.
+- Con la prioridad por área, las 96 normas de v3 pueden recuperarse sin nombrarlas sin perder nada (era la condición para ampliar las áreas delgadas). Las sentencias siguen filtradas: sin filtro, ni con boost 1,5 se recupera v2 (`e15_sinfiltro_area150`).
+- Generación (`e16_area200`, sin juez): cerradas 0,733 (= `e13`), **citación 16,33 → 17,55**, abstención 8,37 (=). La latencia medida (11,8 s/pregunta) no es comparable: otra sesión codificaba el corpus completo en la misma 4090 durante la corrida.
+

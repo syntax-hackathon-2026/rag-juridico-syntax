@@ -28,7 +28,7 @@ from recuperacion.consulta import consulta_de  # noqa: E402
 sys.path.insert(0, str(config.ROOT / "scripts"))
 from evaluate import answer_text  # noqa: E402
 
-CAMPOS_RUNTIME = ("id", "formato", "pregunta", "opciones")
+CAMPOS_RUNTIME = ("id", "formato", "area", "pregunta", "opciones")  # area: metadata de la pregunta, no ground truth
 ETIQUETA_EVIDENCIA = "Fuentes consultadas:"
 
 
@@ -105,7 +105,8 @@ def responder(item: dict, retriever, decoder, generation_k: int | None = None,
 
     kwargs_lookup = ({"consulta_lookup": item["pregunta"]} if config.LOOKUP_MODO == "on"
                      and config.LOOKUP_FUENTE == "pregunta" else {})
-    top = retriever.retrieve(consulta, k=config.RETRIEVAL_K, modo=config.MODO_RECUPERACION, **kwargs_lookup)
+    top = retriever.retrieve(consulta, k=config.RETRIEVAL_K, modo=config.MODO_RECUPERACION,
+                             area=item.get("area"), **kwargs_lookup)
     ms_ret = (time.perf_counter() - t0) * 1000
     perm = citas.permitidas([p.texto for p in top])
     llamadas: list[dict] = []

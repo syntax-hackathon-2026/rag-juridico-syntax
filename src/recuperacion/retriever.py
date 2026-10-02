@@ -54,6 +54,8 @@ class Retriever:
             c.pop("retrieval_text", None)
         self.indice_referencias = IndiceReferencias(self.chunks)
         self.excluidos = self._cargar_filtro()
+        manifest = json.loads(config.MANIFEST_PATH.read_text(encoding="utf-8"))
+        self.areas_doc = {d["doc_id"]: frozenset(d.get("areas") or ()) for d in manifest["documentos"]}
         import bm25s
 
         self.bm25 = bm25s.BM25.load(str(config.BM25_DIR))
@@ -130,7 +132,9 @@ class Retriever:
 
     def retrieve(self, consulta: str, k: int = 10, modo: str = "hibrido",
                  n_candidatos: int = N_CANDIDATOS,
-                 consulta_lookup: str | None = None) -> list[RetrievedChunk]:
+                 consulta_lookup: str | None = None, area: str | None = None) -> list[RetrievedChunk]:
+        """`area` = area de la pregunta (campo del banco); con SYNTAX_AREA_BOOST > 1 prioriza
+        en el hibrido los fragmentos de documentos de esa area, sin descartar los demas."""
         if modo not in MODOS:
             raise ValueError(f"modo {modo!r}; opciones: {MODOS}")
         ranks_rama: dict[str, dict[int, int]] = {}
@@ -162,6 +166,10 @@ class Retriever:
                         fusion[i] = fusion.get(i, 0.0) + bonus
                     else:
                         fusion.setdefault(i, 0.0)
+            if area and config.AREA_BOOST != 1.0:  # prioridad por area: reordena, no filtra
+                for i in fusion:
+                    if area in self.areas_doc.get(self.chunks[i]["doc_id"], ()):
+                        fusion[i] *= config.AREA_BOOST
             ranking = sorted(fusion.items(), key=lambda p: (-p[1], self.chunks[p[0]]["chunk_id"]))
             if indices_lookup and config.LOOKUP_VARIANTE == "c":
                 insertar = indices_lookup[:min(config.LOOKUP_M, k)]
@@ -173,6 +181,7 @@ class Retriever:
                                         "canonico", "cabecera", "url")}
             for nombre, ranks in ranks_rama.items():  # senal de acuerdo BM25/denso (None = fuera de los candidatos)
                 meta[f"rank_{nombre}"] = ranks.get(i)
+            meta["area_match"] = (area in self.areas_doc.get(c["doc_id"], ())) if area else None
             salida.append(RetrievedChunk(chunk_id=c["chunk_id"], doc_id=c["doc_id"], texto=c["texto"],
                                          inicio=c["inicio"], fin=c["fin"], score=s, rank=r, meta=meta))
         return salida
@@ -189,8 +198,8 @@ def cargar(cargar_denso: bool = True) -> Retriever:
     return _RETRIEVER
 
 
-def retrieve(consulta: str, k: int = 10, modo: str = "hibrido") -> list[RetrievedChunk]:
-    return cargar(cargar_denso=modo != "bm25").retrieve(consulta, k=k, modo=modo)
+def retrieve(consulta: str, k: int = 10, modo: str = "hibrido", area: str | None = None) -> list[RetrievedChunk]:
+    return cargar(cargar_denso=modo != "bm25").retrieve(consulta, k=k, modo=modo, area=area)
 
 
 if __name__ == "__main__":
@@ -204,7 +213,8 @@ if __name__ == "__main__":
     ap.add_argument("consulta")
     ap.add_argument("--modo", choices=MODOS, default="hibrido")
     ap.add_argument("-k", type=int, default=10)
+    ap.add_argument("--area", default=None, help='area de la pregunta, p. ej. "Derecho civil" (SYNTAX_AREA_BOOST)')
     args = ap.parse_args()
-    for p in retrieve(args.consulta, k=args.k, modo=args.modo):
+    for p in retrieve(args.consulta, k=args.k, modo=args.modo, area=args.area):
         print(f"{p.rank:>2}. {p.score:.4f}  {p.chunk_id}")
         print(f"    {p.texto[:160]!r}")
