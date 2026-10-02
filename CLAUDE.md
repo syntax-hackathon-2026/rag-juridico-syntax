@@ -86,12 +86,17 @@ python src/evaluacion/comparar_entregas.py a.jsonl b.jsonl    # determinismo / v
 ```
 
 ```bash
-# Reproduccion completa en maquina limpia (Windows+NVIDIA / Linux): entorno -> corpus -> indice -> decoder -> preguntas
+# Reproduccion en maquina limpia (Windows+NVIDIA / Linux): entorno -> corpus -> indice -> decoder -> preguntas -> evaluar
 powershell -ExecutionPolicy Bypass -File reproducir.ps1 -Corpus C:\ruta\corpus   # Windows; instala Python 3.13 si falta
-python src/reproducibilidad/reproducir.py --corpus <carpeta|zip> [--hasta indice] [--reindexar] [--sin-reanudar] [--limite N] [--split test]
+python src/reproducibilidad/reproducir.py --corpus <carpeta|zip>                  # las 6 etapas sobre sample_50
+# Modular: una o varias etapas, y que preguntas responder
+python src/reproducibilidad/reproducir.py --solo indice [--reindexar]
+python src/reproducibilidad/reproducir.py --solo preguntas --split test --rango 100-200   # o --ids 51 60 | --limite N | --particion 2/4 | --entrada <jsonl>
+python src/reproducibilidad/reproducir.py --solo evaluar --entrega submissions.jsonl --split test
+python src/reproducibilidad/reproducir.py --dry-run --desde preguntas --split test         # plan + prerrequisitos que faltan, sin ejecutar
 ```
 
-`reproducir.py` (solo stdlib) es el contrato de "contenedor vacio": crea `.venv`, cambia torch por la rueda CUDA (cu126/cu130 segun el driver; la de PyPI en Windows es CPU), exige los `.txt` identicos al sha256 del manifest, segmenta, comprueba `chunks.jsonl` contra `hashes_esperados.json`, codifica en GPU (`--batch 64`), baja llama.cpp `b11146` a `herramientas/` (en `.gitignore`) y el GGUF verificado, levanta `llama-server`, corre `main.py` + `evaluate.py` y reporta latencia media y horas proyectadas para 992. En Mac no baja llama.cpp (`brew install llama.cpp`). **Todo cambio de dependencias o pasos del pipeline debe seguir funcionando con este script desde cero.**
+`reproducir.py` (solo stdlib) es el contrato de "contenedor vacio" y **parte de que `data_corpus/corpus/*.txt` ya existe** (reconstruir el corpus con `src/ingesta/` es aparte). Seis etapas modulares (`--solo a,b` | `--desde` | `--hasta` | `--dry-run`): `entorno`, `corpus`, `indice`, `decoder`, `preguntas`, `evaluar`. Una etapa aislada no re-ejecuta las anteriores: comprueba sus prerrequisitos (`.venv`, `.txt`, indice vigente, entrega) y falla diciendo que comando los resuelve; `preguntas` levanta el servidor por su cuenta si no hay uno. Entorno: instala `requirements.txt` **y** `scripts/requirements-evaluador.txt` y comprueba el conjunto (`pip check`, `verificar_deps.py --evaluador`: instalado, en rango e importable). `evaluar` valida el schema siempre (`validar_entrega.py`) y puntua: sample completo con `evaluar_entrega.py`, test con `evaluate.py` solo si estan los archivos del jurado (`answer_key_992.jsonl`, `scoring_subset.json`); el juez de texto libre corre si hay `OPENROUTER_API_KEY` (entorno o `scripts/.env`), con `--ragas` se exige y con `--sin-ragas` se apaga. Crea `.venv`, cambia torch por la rueda CUDA (cu126/cu130 segun el driver; la de PyPI en Windows es CPU), exige los `.txt` identicos al sha256 del manifest, segmenta, comprueba `chunks.jsonl` contra `hashes_esperados.json`, codifica en GPU (`--batch 64`), baja llama.cpp `b11146` a `herramientas/` (en `.gitignore`) y el GGUF verificado, levanta `llama-server`, corre `main.py`, evalua y reporta latencia media y horas proyectadas para 992. En Mac no baja llama.cpp (`brew install llama.cpp`). **Todo cambio de dependencias o pasos del pipeline debe seguir funcionando con este script desde cero.**
 
 Estado, decisiones, latencias medidas y trampas de la generación: **`docs/GENERACION.md`** (leerlo antes de tocar `src/generacion/` o `src/main.py`). Claves:
 
