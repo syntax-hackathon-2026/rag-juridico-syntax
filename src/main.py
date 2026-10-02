@@ -100,6 +100,7 @@ def main() -> int:
         "experimento": experimento, "fecha": datetime.now(timezone.utc).isoformat(timespec="seconds"),
         "commit": git_commit(), "entrada": entrada.name, "n_items": len(items),
         "decoder": info_llm, "prompt_version": prompts.PROMPT_VERSION,
+        "pensar": {"formatos": sorted(config.PENSAR_FORMATOS), "tokens": config.PENSAR_TOKENS},
         "retrieval": {"modo": config.MODO_RECUPERACION, "retrieval_k": config.RETRIEVAL_K,
                       "generation_k": config.GENERATION_K, "citar_evidencia": config.CITAR_EVIDENCIA,
                       "lookup": config.lookup_metadata(),

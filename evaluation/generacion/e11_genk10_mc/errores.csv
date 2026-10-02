@@ -1,0 +1,51 @@
+id,formato,area,diagnostico,abstencion,respuesta,esperada,correcta,rank_doc,rank_art,referencia,citadas,aciertos_cita,sin_respaldo,regenerado,motivos_abstencion,latencia_s,detalle
+51,multiple_choice,Derecho constitucional,OK,False,C,C,1,1,1,constitucion; ley/472/1998,cpaca; jurisprudencia/SU-429/2024; ley/472/1998,1,0,0,,46.3,
+58,multiple_choice,"Derecho de los mercados [competencia, consumidor, datos personales y propiedad intelectual]",GENERATION,False,B,A,0,3,,codigo_general_proceso; estatuto_consumidor,codigo_general_proceso; constitucion; jurisprudencia/SU-429/2024; ley/270/1996; ley/600/2000,1,0,0,,4.1,
+60,multiple_choice,Derecho procesal,DOCUMENT_RETRIEVAL,False,A,A,1,,,codigo_general_proceso; constitucion,codigo_procedimiento_penal; constitucion; jurisprudencia/SU-315/2025; jurisprudencia/SU-500/2015; jurisprudencia/T-323/2024; ley/600/2000,1,0,0,,4.5,
+128,multiple_choice,Derecho comercial y sociedades,GENERATION,False,B,D,0,1,,decreto/663/1993,decreto/1074/2015; decreto/1625/2016; decreto/663/1993,1,0,0,,4.6,
+290,multiple_choice,Derecho administrativo,OK,False,C,C,1,1,1,ley/1150/2007,codigo_sustantivo_trabajo; cpaca; decreto/01/1984; decreto/1/1984; decreto/1082/2015; decreto/1083/2015; decreto/780/2016; ley/1150/2007,1,0,0,,3.0,
+308,multiple_choice,Derecho administrativo,OK,False,A,A,1,,,,codigo_civil; codigo_sustantivo_trabajo; cpaca; decreto/01/1984; decreto/1/1984; decreto/1083/2015; decreto/780/2016; jurisprudencia/C-207/2019; ley/1150/2007,,,0,,4.7,
+352,multiple_choice,Derecho constitucional,OK,False,B,B,1,4,4,decreto/2067/1991,codigo_general_proceso; codigo_procedimiento_penal; cpaca; decreto/2067/1991; jurisprudencia/C-239/1997; jurisprudencia/C-748/2011,1,0,0,,4.3,
+358,multiple_choice,Derecho civil,ARTICLE_RETRIEVAL,False,D,D,1,1,,codigo_civil,codigo_civil; codigo_comercio; codigo_penal,1,0,0,,3.8,
+487,multiple_choice,Derecho de familia,OK,False,A,A,1,1,,codigo_civil,codigo_civil; codigo_general_proceso; jurisprudencia/SC-3085/2024,1,0,0,,3.3,
+528,multiple_choice,Derecho procesal,OK,False,C,C,1,1,1,codigo_general_proceso,codigo_comercio; codigo_general_proceso; cpaca; decreto/01/1984; decreto/1/1984; decreto/1074/2015; decreto/1082/2015; decreto/1625/2016; estatuto_tributario; ley/2452/2025,1,0,0,,4.1,
+600,multiple_choice,Derecho penal,OK,False,C,C,1,2,2,codigo_penal,codigo_civil; codigo_penal; jurisprudencia/C-355/2006,1,0,0,,3.9,
+617,multiple_choice,Derecho laboral,OK,False,B,B,1,2,,codigo_sustantivo_trabajo,codigo_sustantivo_trabajo; jurisprudencia/C-201/2002; ley/50/1990,1,0,0,,3.9,
+647,multiple_choice,Derecho de familia,GENERATION,False,D,B,0,4,,codigo_civil,codigo_civil; jurisprudencia/C-1033/2002; jurisprudencia/C-131/2018; jurisprudencia/C-394/2017; jurisprudencia/C-533/2000; jurisprudencia/C-746/2011; jurisprudencia/SU-214/2016; jurisprudencia/T-1096/2008; jurisprudencia/T-445/2024,1,0,0,,4.5,
+671,multiple_choice,Derecho tributario,GENERATION,False,B,C,0,,,,codigo_nacional_policia; decreto/1072/2015; decreto/1082/2015; decreto/1625/2016; decreto/780/2016; estatuto_tributario; ley/1692/2013; ley/2220/2022,,,0,,3.8,
+748,multiple_choice,Derecho administrativo,DOCUMENT_RETRIEVAL,False,A,A,1,,,cpaca,codigo_disciplinario; cpaca; decreto/19/2012; decreto/780/2016; jurisprudencia/SU-277/2025; jurisprudencia/SU-425/2025; ley/1340/2009; ley/678/2001,1,0,0,,4.5,
+247,open_ended,Derecho administrativo,SCHEMA,,,,,,,ley/472/1998,,,,,,,sin registro en la entrega
+253,open_ended,Derecho laboral,SCHEMA,,,,,,,codigo_sustantivo_trabajo; jurisprudencia/SL-3385/2022; ley/1562/2012,,,,,,,sin registro en la entrega
+272,open_ended,Derecho comercial y sociedades,SCHEMA,,,,,,,ley/1116/2006,,,,,,,sin registro en la entrega
+513,open_ended,"Derecho de los mercados [competencia, consumidor, datos personales y propiedad intelectual]",SCHEMA,,,,,,,,,,,,,,sin registro en la entrega
+679,open_ended,Derecho constitucional,SCHEMA,,,,,,,ley/1581/2012,,,,,,,sin registro en la entrega
+24,semi_open,Derecho civil,SCHEMA,,,,,,,,,,,,,,sin registro en la entrega
+79,semi_open,Derecho laboral,SCHEMA,,,,,,,ley/1010/2006,,,,,,,sin registro en la entrega
+140,semi_open,Derecho comercial y sociedades,SCHEMA,,,,,,,jurisprudencia/C-145/2018,,,,,,,sin registro en la entrega
+142,semi_open,Derecho tributario,SCHEMA,,,,,,,,,,,,,,sin registro en la entrega
+168,semi_open,Derecho civil,SCHEMA,,,,,,,,,,,,,,sin registro en la entrega
+190,semi_open,Derecho constitucional,SCHEMA,,,,,,,,,,,,,,sin registro en la entrega
+218,semi_open,Derecho administrativo,SCHEMA,,,,,,,constitucion,,,,,,,sin registro en la entrega
+239,semi_open,Derecho comercial y sociedades,SCHEMA,,,,,,,codigo_comercio,,,,,,,sin registro en la entrega
+280,semi_open,Derecho penal,SCHEMA,,,,,,,codigo_penal,,,,,,,sin registro en la entrega
+442,semi_open,Derecho laboral,SCHEMA,,,,,,,codigo_sustantivo_trabajo,,,,,,,sin registro en la entrega
+453,semi_open,Derecho constitucional,SCHEMA,,,,,,,jurisprudencia/C-332/2025; jurisprudencia/C-468/2024; jurisprudencia/SU-16/2020,,,,,,,sin registro en la entrega
+472,semi_open,"Derecho de los mercados [competencia, consumidor, datos personales y propiedad intelectual]",SCHEMA,,,,,,,ley/1340/2009,,,,,,,sin registro en la entrega
+490,semi_open,Derecho de familia,SCHEMA,,,,,,,codigo_civil,,,,,,,sin registro en la entrega
+563,semi_open,Derecho administrativo,SCHEMA,,,,,,,jurisprudencia/SU-277/2025,,,,,,,sin registro en la entrega
+589,semi_open,Derecho procesal,SCHEMA,,,,,,,codigo_general_proceso,,,,,,,sin registro en la entrega
+661,semi_open,Derecho tributario,SCHEMA,,,,,,,constitucion,,,,,,,sin registro en la entrega
+674,semi_open,"Derecho de los mercados [competencia, consumidor, datos personales y propiedad intelectual]",SCHEMA,,,,,,,estatuto_consumidor,,,,,,,sin registro en la entrega
+697,semi_open,Derecho comercial y sociedades,SCHEMA,,,,,,,,,,,,,,sin registro en la entrega
+857,semi_open,Derecho administrativo,SCHEMA,,,,,,,,,,,,,,sin registro en la entrega
+865,semi_open,Derecho de familia,SCHEMA,,,,,,,codigo_civil,,,,,,,sin registro en la entrega
+879,semi_open,Derecho procesal,SCHEMA,,,,,,,codigo_general_proceso,,,,,,,sin registro en la entrega
+919,semi_open,Derecho civil,SCHEMA,,,,,,,jurisprudencia/SU-455/2020,,,,,,,sin registro en la entrega
+946,semi_open,Derecho de familia,SCHEMA,,,,,,,jurisprudencia/C-39/2025,,,,,,,sin registro en la entrega
+960,semi_open,"Derecho de los mercados [competencia, consumidor, datos personales y propiedad intelectual]",SCHEMA,,,,,,,decreto/2153/1992,,,,,,,sin registro en la entrega
+991,semi_open,Derecho tributario,SCHEMA,,,,,,,jurisprudencia/C-891/2012,,,,,,,sin registro en la entrega
+1005,semi_open,Derecho constitucional,SCHEMA,,,,,,,constitucion,,,,,,,sin registro en la entrega
+1015,semi_open,Derecho penal,SCHEMA,,,,,,,jurisprudencia/C-355/2006,,,,,,,sin registro en la entrega
+1065,semi_open,Derecho penal,SCHEMA,,,,,,,codigo_penal,,,,,,,sin registro en la entrega
+1073,semi_open,Derecho laboral,SCHEMA,,,,,,,codigo_sustantivo_trabajo; constitucion,,,,,,,sin registro en la entrega
+1089,semi_open,Derecho procesal,SCHEMA,,,,,,,cpaca,,,,,,,sin registro en la entrega

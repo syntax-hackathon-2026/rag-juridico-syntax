@@ -258,4 +258,5 @@ Los 375 documentos nuevos de v3 (279 sentencias = 242 SU + 37 hitos, y 96 normas
 - `todo` recupera las métricas de v2 y conserva las sentencias nombradas (919, 946, 563, 453, 140, 991 y 1015 en rank 1–2). Las normas nuevas también desplazaban (solo `sentencias` se queda en 0,829). Cerradas: #51 y #290 vuelven al rank 1, #352 al 4 y #58 pasa del 9 al 3.
 - Consulta solo `pregunta` (`e07_consulta_pregunta`, con filtro): peor en cerradas (MRR 0,603 → 0,456; #51 al 7, #128 al 8, #352 fuera). Se mantiene `pregunta+opciones`.
 - Latencia: el filtro hace una búsqueda densa extra con la consulta ya codificada (caché de la última consulta en `_codificar`); ~110 ms/consulta en caliente en la 4090. El promedio de `retrieval_eval` (~650 ms) incluye la carga del encoder.
-- Pendientes sin cambio: #60, #748, #247, #679, #239 y #661 siguen sin su cuerpo en el top-10.
+- **Lookup por metadata (plan 06, variante a) activado por defecto** (`e12_lookup_filtro`, con filtro): doc_hit@1 0,488 → 0,537, MRR 0,613 → 0,638, art_hit@1 0,263 → 0,368; doc_hit@10 y respaldo@10 sin cambio. En generación (`e13_lookup`) cambia solo #600 (sigue correcta, norma al rank 1) y #218.
+- Pendientes sin cambio: #60, #748, #247, #679, #239 y #661 siguen sin su cuerpo en el top-10 (ninguna nombra la norma; el lookup no las alcanza).

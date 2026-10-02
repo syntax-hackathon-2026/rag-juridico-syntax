@@ -55,8 +55,8 @@ RESUMEN_INDICE_PATH = INDICE_DIR / "resumen_indice.json"  # por doc_id: fragment
 EMB_CACHE_DIR = CORPUS_DIR / "cache_emb"  # fuera de indice/ (no se publica): vectores por hash de texto
 EVALUATION_DIR = ROOT / "evaluation"
 REFERENCIAS_BASELINE_PATH = EVALUATION_DIR / "retrieval" / "e01_bge_m3_hibrido.jsonl"
-# Plan 06: experimental, apagado hasta superar keep/revert.
-LOOKUP_MODO = os.environ.get("SYNTAX_LOOKUP", "off")
+# Plan 06: lookup por metadata; KEEP en e13_lookup (mejora doc_hit@1 y MRR sin regresiones, INDEXACION.md 14).
+LOOKUP_MODO = os.environ.get("SYNTAX_LOOKUP", "on")
 LOOKUP_VARIANTE = os.environ.get("SYNTAX_LOOKUP_VARIANTE", "a")
 LOOKUP_FUENTE = os.environ.get("SYNTAX_LOOKUP_FUENTE", "consulta")
 LOOKUP_BONUS = float(os.environ.get("SYNTAX_LOOKUP_BONUS", "0.005"))
@@ -133,6 +133,13 @@ GENERATION_K = int(os.environ.get("SYNTAX_GENERATION_K", "5"))
 # Cabeceras de la evidencia agregadas a los campos citables: no | generacion (los
 # pasajes que vio el decoder) | top10. Ver generacion/responder.py.
 CITAR_EVIDENCIA = os.environ.get("SYNTAX_CITAR_EVIDENCIA", "top10")
+# Thinking de Qwen3 por formato (docs/GENERACION.md): formatos separados por coma
+# (p. ej. "multiple_choice") y tope de tokens de razonamiento por llamada
+# (thinking_budget_tokens de llama-server). El razonamiento va solo a la traza.
+PENSAR_FORMATOS = frozenset(f for f in os.environ.get("SYNTAX_PENSAR_FORMATOS", "").split(",") if f.strip())
+PENSAR_TOKENS = int(os.environ.get("SYNTAX_PENSAR_TOKENS", "768"))
+if not PENSAR_FORMATOS <= {"multiple_choice", "semi_open", "open_ended"} or PENSAR_TOKENS < 1:
+    raise ValueError("SYNTAX_PENSAR_FORMATOS: multiple_choice,semi_open,open_ended; SYNTAX_PENSAR_TOKENS > 0")
 SALIDAS_DIR = ROOT / "salidas"  # entregas de desarrollo (en .gitignore)
 TRAZAS_DIR = SALIDAS_DIR / "trazas"
 SCHEMA_PATH = ROOT / "schema" / "submission.schema.json"

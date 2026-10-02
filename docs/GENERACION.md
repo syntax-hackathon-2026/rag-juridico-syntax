@@ -27,7 +27,7 @@ python src/evaluacion/evaluar_entrega.py --entrega salidas/sample_e02_v0.jsonl -
 python src/evaluacion/comparar_entregas.py a.jsonl b.jsonl [--ids ...]   # determinismo / verificación en vivo
 ```
 
-Variables: `SYNTAX_LLM` (`qwen3-8b-q8` por defecto | `qwen3-8b-q4` | `qwen3-4b-2507-q4`), `SYNTAX_LLM_URL`, `SYNTAX_GENERATION_K` (5), `SYNTAX_CITAR_EVIDENCIA` (`no` | `generacion` | `top10`), `SYNTAX_DEVICE` (encoder de la consulta).
+Variables: `SYNTAX_LLM` (`qwen3-8b-q8` por defecto | `qwen3-8b-q4` | `qwen3-4b-2507-q4`), `SYNTAX_LLM_URL`, `SYNTAX_GENERATION_K` (5), `SYNTAX_CITAR_EVIDENCIA` (`no` | `generacion` | `top10`, por defecto `top10`), `SYNTAX_PENSAR_FORMATOS` (vacío; p. ej. `multiple_choice`) y `SYNTAX_PENSAR_TOKENS` (768), `SYNTAX_FILTRO_CITA` (`todo`) y `SYNTAX_LOOKUP` (`on`) de la recuperación, `SYNTAX_DEVICE` (encoder de la consulta).
 
 `main.py` escribe línea a línea y **se reanuda**: si una corrida se cae, se relanza el mismo comando y salta los ids ya escritos (`--sin-reanudar` empieza de cero). Al final reordena, valida todo contra el schema y sale con 1 si hay errores.
 
@@ -58,7 +58,7 @@ Variables: `SYNTAX_LLM` (`qwen3-8b-q8` por defecto | `qwen3-8b-q4` | `qwen3-4b-2
 ### 4.2 Determinismo (temperatura 0 y verificación en vivo)
 
 - `temperature=0` (greedy), `seed=0`, un solo slot (`-np 1`: el batching entre peticiones cambia la numérica) y **`cache_prompt=false`**, porque la documentación de llama-server advierte que reutilizar la caché KV puede dar logits distintos según el tamaño de lote. Cuesta reprocesar el prefijo en cada pregunta.
-- `enable_thinking=false` por plantilla (`--jinja`): el thinking multiplica los tokens y la latencia.
+- `enable_thinking=false` por plantilla (`--jinja`): el thinking multiplica los tokens y la latencia, y en las cerradas no mejoró (sección 6, `e10`). Se puede activar por formato con `SYNTAX_PENSAR_FORMATOS`: llama-server separa el razonamiento en `reasoning_content` (va solo a la traza), aplica la gramática del schema después y respeta el tope `thinking_budget_tokens` por petición (`reasoning_budget` lo ignora).
 - **Medido**: dos corridas de los mismos 3 ítems (una con mmap y otra sin mmap) dan **salidas idénticas** en redacción, citas y pasajes (`comparar_entregas.py`: 0 diferencias).
 - Congelar para la entrega: GGUF + sha256, build de llama.cpp (hoy `0.5.0, build 11146`; se registra en `meta.json` de cada corrida), `PROMPT_VERSION`, `GENERATION_K`, `CITAR_EVIDENCIA` y el índice (`sha256_chunks`).
 
@@ -97,9 +97,31 @@ Los mismos 3 ítems (51 cerrada, 24 semiabierta, 247 abierta) y `generation_k=5`
 - El 4B no resuelve el problema en esta máquina: es solo ~1,3 veces más rápido y escribe más tokens.
 - **Para las 992 hay que llegar a menos de ~20 s por pregunta**: hace falta una GPU dedicada (NVIDIA con ≥ 8 GB, o un Mac con más memoria libre). Medir allí con `main.py --limite 10` antes del sábado. Palancas sin cambiar de modelo: `generation_k=3` (reduce el prefill ~35 %), descartes más cortos en cerradas (la generación domina en las abiertas) y cerrar las demás aplicaciones.
 
-## 6. Resultados `e02_v0` (sample_50)
+## 6. Resultados (sample_50, RTX 4090, Qwen3-8B)
 
-_Se completa al terminar la corrida._
+| corrida | cambio | cerradas | RAGAS | citación | abstención | total /80 |
+|---|---|---:|---:|---:|---:|---:|
+| `e02_v0` | corpus v1, Q4, Mac | 11/15 | — | 15,10 | 7,91 | — |
+| `e04_v3_rtx4090` | corpus v3, Q4 | 10/15 | — | 14,69 | 7,44 | — |
+| `e05_q8_rtx4090` | Q8_0 | 11/15 | 0,472 | 14,69 | 7,67 | 51,19 |
+| `e08_filtro` | filtro solo por cita (`todo`) | 11/15 | 0,462 | 14,69 | 7,67 | 50,90 |
+| `e08b_top10` | + `CITAR_EVIDENCIA=top10` | 11/15 | 0,466 | **16,33** | **8,37** | 53,34 |
+| `e13_lookup` | + lookup variante a | 11/15 | 0,502 | 16,33 | 8,37 | **54,43** |
+| `e14_final` | defaults, sin variables | idéntica a `e13` (determinismo) | | | | |
+
+Experimentos solo de cerradas (`--ids` de las 15; REVERT):
+
+| corrida | cambio | cerradas | efecto |
+|---|---|---:|---|
+| `e09_prompt_mc` | prompt p-v1: elegir con conocimiento propio, analizar cada opción antes de la letra | 10/15 | arregla 647; rompe 308 y 528 |
+| `e10_thinking_mc` | thinking, tope 768 | 10/15 | arregla 647; rompe 528 y 748; ~10 s/cerrada |
+| `e10b_thinking_mc_1536` | thinking, tope 1536 | 9/15 | rompe 528 y 748; ~15 s/cerrada |
+| `e11_genk10_mc` | generation_k=10 | 11/15 | mismas 15 letras |
+
+- **Cerradas**: lo que se podía arreglar era recuperación. Con v3, las sentencias nuevas copaban el top-10 (#748 pasaba de A a D); con el filtro, #748 vuelve a A y #51, #290 y #352 recuperan su norma arriba. El neto en el sample es 0 porque #671 (doctrina pura, sin norma en el corpus) cambia de C a B con otros pasajes. Fallos que quedan: #58 (el banco da por correcta «Ley 1564 de 2002», errata del CGP), #128 (fintech: opinión, no norma), #647 (definición doctrinal de «ayuda» del C.C. art. 176) y #671. Prompt, thinking y k no los resuelven sin romper otras: con 15 cerradas, 1 pregunta = 6,7 puntos y las variaciones están en el ruido.
+- **RAGAS no es reproducible entre corridas**: `e08b` y `e13` difieren en solo 2 respuestas (#600, cerrada, y #218), pero RAGAS pasa de 0,466 a 0,502. El juez (OpenRouter) agrega ruido de ±0,02–0,04 en 35 ítems: no ajustar prompts de texto libre con una sola corrida del juez.
+- **`CITAR_EVIDENCIA=top10`**: recupera las citas de #674, #879 y #1073 (cuerpo en ranks 7–9 que el decoder no veía) y, con ellas, su acierto en abstención. Sin costo en RAGAS.
+- Latencia media 4,3 s/pregunta (recuperación ~0,1 s en caliente): ~1,2 h para 992.
 
 ## 7. Pendientes
 

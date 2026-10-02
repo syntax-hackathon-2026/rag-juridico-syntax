@@ -211,6 +211,7 @@ def main() -> int:
         "entorno_json": entorno_path.relative_to(config.ROOT).as_posix(),
         "notas": (f"citar_evidencia={ret.get('citar_evidencia')}; "
                   f"filtro_cita={(ret.get('filtro_cita') or {}).get('modo', 'off')}; prompt={meta.get('prompt_version', '')}; "
+                  f"pensar={json.dumps(meta.get('pensar') or {}, sort_keys=True)}; "
                   + "lookup=" + json.dumps(ret.get("lookup", {"modo": "off"}), sort_keys=True) + "; " + args.notas).strip(),
     }
     nuevo = not config.EXPERIMENTS_CSV.is_file()
