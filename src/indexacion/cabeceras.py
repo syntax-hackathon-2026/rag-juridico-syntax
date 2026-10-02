@@ -81,6 +81,12 @@ DOCUMENTOS: dict[str, str] = {
                                               "Francia y Colombia (2024)",
     "decision_andina_351": "Decisión 351 de 1993 de la Comisión del Acuerdo de Cartagena, Régimen Común "
                            "sobre Derecho de Autor y Derechos Conexos",
+    "decision_andina_345": "Decisión 345 de 1993 de la Comisión del Acuerdo de Cartagena, Régimen Común "
+                           "de Protección de los Derechos de los Obtentores de Variedades Vegetales",
+    "decision_andina_391": "Decisión 391 de 1996 de la Comisión del Acuerdo de Cartagena, Régimen Común "
+                           "sobre Acceso a los Recursos Genéticos",
+    "decision_andina_608": "Decisión 608 de 2005 de la Comisión de la Comunidad Andina, Normas para la "
+                           "Protección y Promoción de la Libre Competencia en la Comunidad Andina",
 }
 CORTES = {
     "C": "Corte Constitucional", "T": "Corte Constitucional", "SU": "Corte Constitucional",

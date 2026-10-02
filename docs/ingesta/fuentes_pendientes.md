@@ -221,3 +221,36 @@ Plan: `docs/INDEXACION.md` sección 13. Todo va en `_adicionales` de `fuentes_ov
 - **Lote SU 2020–2026 (242 nuevas)**: se sondeó `relatoria/<año>/SU<nnn>-<aa>.htm` para nnn = 1..620 (la página genérica de la relatoría no carga `encabezado.js`). Se encontraron 258 (34, 41, 43, 40, 47, 37 y 16 por año); las otras 16 ya estaban. La SU-163/2023 fue anulada (Auto 823/2024) y la relatoría solo publica la nota de nulidad.
 
 Fuentes: el Senado tardaba ~20 s por página y cortaba conexiones en paralelo, así que 68 normas se bajaron de los espejos de Avance Jurídico (CRA, Colpensiones y DIAN, que se agregó a `ESPEJOS_AJ`) y 27 del Senado. Parseo: nueva regla en `parsear_html.py` que corta el oficio de remisión de la Corte ("Corte Constitucional" / "Secretaría General") pegado tras las leyes estatutarias (Ley 1712/2014 traía la C-274/13 entera: 720k → 36k caracteres); no cambia ningún `.txt` de v2.
+
+## Ampliación v4 (2026-10-02): áreas delgadas, de forma automática
+
+Motivo: la demanda del banco es de ~99 preguntas por área, pero mercados (25 documentos), procesal (28), tributario (31) y civil (35) tenían pocos documentos frente a constitucional (340). Desde `e15` el retriever prioriza los documentos del área de la pregunta (`docs/INDEXACION.md` 15), así que las normas nuevas de esas áreas pueden recuperarse sin nombrarlas sin diluir las demás. **Regla del equipo: nada se busca a mano.** Lo que no se resuelve con reglas automáticas se descarta y queda en la lista de abajo.
+
+Procedimiento (scripts auxiliares en el directorio temporal de la sesión, no versionados; el criterio queda aquí):
+
+1. **Normas**: para cada candidato `tipo_N_AAAA` se prueba `<tipo>_<NNNN>_<AAAA>.htm` en los espejos de Avance Jurídico (`ESPEJOS_AJ`: CRA, Colpensiones, Cancillería, DIAN) y luego en el Senado. Se acepta solo si la página dice "<tipo> <N> de <AAAA>" en el encabezado y trae artículos. Entradas en `_adicionales` con la nota "ampliacion v4" y luego `descargar_fuentes.py --solo` (bajas también las partes `_prNNN`).
+2. **Decisiones Andinas** 345/1993, 391/1996 y 608/2005: PDF de la CAN con el mismo patrón que la 486 (`DocOf/DEC<N>.pdf`). Tipo `documento` en `cabeceras.DOCUMENTOS` (no puntúan en citación: `citations.py` no reconoce "Decisión N").
+3. **Sentencias C- de control**: las notas de vigencia de la compilación no traen el número de la sentencia (las cajas las llena JavaScript), así que se toman las C- **co-citadas** en el mismo párrafo con cada ley de v3/v4 dentro de las sentencias del corpus (≥ 3 menciones, hasta 3 por ley, tope 40, sin las que ya estaban) y se bajan de `relatoria/<año>/C-<nnn>-<aa>.htm` (el descargador valida `encabezado.js`). Entran al registro `solo_por_cita.json` (solo se recuperan si la pregunta las nombra).
+4. Parseo, `generar_manifest.py`, `segmentar.py`, `generar_manifest.py`, `solo_por_cita.py`, `construir_indice.py`.
+
+Entraron **65 documentos** (corpus de 653 documentos y 124.302 fragmentos; los 113.519 fragmentos de v3 no cambian):
+
+- **Mercados (10)**: Decretos 1377/2013, 886/2014 y 735/2013; Leyes 178/1994, 463/1998, 565/2000, 1032/2006, 1403/2010, 1648/2013 y 1978/2019; Decisiones Andinas 345, 391 y 608.
+- **Tributario (10)**: Leyes 1943/2018, 1739/2014, 1111/2006, 863/2003, 633/2000, 223/1995, 383/1997, 49/1990, 1004/2005 y 1609/2013.
+- **Procesal (6)**: Ley 794/2003, Decretos 306/1992, 333/2021 y 1818/1998, Leyes 1123/2007 y 2094/2021.
+- **Civil (8)**: Decreto 1260/1970, Leyes 1183/2008, 2044/2020, 9/1989, 388/1997, 57/1887, 95/1890 y 45/1936.
+- **C- de control (28)**: C-030/23 y C-146/21 (Ley 2094/2021), C-037/96 y C-328/15 (Ley 270/1996), C-490/11 (Ley 1475/2011), C-1011/08 (Ley 1266/2008), C-180/94 y C-150/15 (Ley 134/1994), C-1153/05 (Ley 996/2005), C-300/12 (Ley 1508/2012), C-1024/04, C-1094/03 y C-1035/08 (Ley 797/2003), C-531/00, C-458/15 y C-824/11 (Ley 361/1997), C-319/06, C-575/06 y C-694/15 (Ley 975/2005), C-044/15 (Ley 5/1992), C-821/05 y C-660/00 (Ley 25/1992), C-348/04 y C-540/01 (Ley 617/2000), C-467/16 (Ley 1774/2016), C-957/99 (Ley 489/1998), C-886/10 (Ley 294/1996), C-251/96 (Ley 9/1989).
+
+**No resueltos (descartados, sin búsqueda manual)**:
+
+- Decreto 920/2023 (régimen sancionatorio aduanero): la página del Senado existe pero el encabezado no valida como "Decreto 920 de 2023".
+- Decreto 1400/1970 (CPC): no está en el Senado ni en los espejos.
+- Decreto 1165/2019 (régimen de aduanas): resuelto, pero descartado por tamaño (la primera página sola pesa 1,9 MB, ~800 artículos).
+- C- de las Leyes 1957/2019, 2213/2022 y 2277/2022 (prioritarias en el plan): ninguna co-citada con esas leyes en el corpus (≥ 3 menciones).
+
+Parseo: 10 sentencias C- salían truncadas en Windows (lxml/libxml2, `docs/INDEXACION.md` 8.2: completitud 15–60 %). `parsear_html.py` ahora reintenta con `html.parser` (stdlib) **solo** cuando la completitud baja de 0,85 y se queda con el texto más completo (0,975–0,984 en las 10; `parser_html` en `parseo.json`). Ningún `.txt` previo cambia. `data_corpus/parseo.json` de esta máquina venía del zip (solo `.txt`), así que las 588 entradas previas se reconstruyeron desde el manifest, verificando el sha256 de cada `.txt` (0 diferencias).
+
+Áreas: las de las normas son las del plan; las de las C- son constitucional + las de la ley controlada. Propuestas de revisión para v3 y v4 en `docs/ingesta/areas_propuestas_v3.csv` (léxico por área; columna `aprobado` para la revisión humana).
+
+**Lote T 2025–2026 (Fase 4, 533 sentencias)**: sondeo de `relatoria/<año>/T-<nnn>-<aa>.htm` (válida si carga `/relatoria/encabezado.js`; se para tras 80 números seguidos sin sentencia): 352 de 2025 y 181 de 2026 (hasta la T-304/26), más las 9 que ya estaban por la semilla. El HTML se guardó directo en `data/raw/html/sentencia_t_<n>_<año>/` (238 MB) y `descargar_fuentes.py --solo` solo lo registró. Todas van como `Derecho constitucional` (área por defecto, propuesta de revisión en `areas_propuestas_v3.csv`) y **solo se recuperan si la pregunta las nombra** (`solo_por_cita.json`). Medición en `docs/INDEXACION.md` 16.
+
