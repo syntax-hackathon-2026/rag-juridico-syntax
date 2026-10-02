@@ -252,7 +252,7 @@ def construir(rep, fila, exp, manifest, salida: Path, commit: str | None = None,
 
     # 1. Puntaje
     titulo_seccion(doc, "1. Puntaje sobre las preguntas de muestra")
-    parrafo(doc, "Resultado de python scripts/evaluate.py --submission <archivo> --split sample.",
+    parrafo(doc, f"Resultado de python scripts/evaluate.py --submission salidas/sample_{exp}.jsonl --split sample.",
             size=8.5, italic=True, after=2)
     tabla(doc, [
         ["Componente", "Puntos obtenidos", "Puntos posibles"],
@@ -363,6 +363,7 @@ def main():
 
 if __name__ == "__main__":
     main()
+
 
 
 
