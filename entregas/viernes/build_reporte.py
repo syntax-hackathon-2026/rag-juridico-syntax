@@ -54,11 +54,11 @@ ABSTENCION = (
 )
 RIESGOS = [
     ("Tiempo de las 992 preguntas (≈6 h).",
-     "{lat} s/pregunta en la RTX 4090 cumple el objetivo (<10 s), pero un Mac M1 tarda ~145 s: "
-     "se congela una sola máquina y configuración para la corrida final y la verificación en vivo."),
-    ("Recuperación a nivel de artículo y exactitud en cerradas.",
-     "En muestra, art_hit@10 ≈ 0,4–0,5 y cerradas {acc} frente a la referencia 0,905. "
-     "Se prueban reranker, ajuste de la búsqueda por referencia explícita y generation_k, un cambio por experimento."),
+     "{lat_txt} Se congela una sola máquina y configuración para la corrida final y la verificación "
+     "en vivo; un Mac M1 tarda ~145 s por pregunta."),
+    ("Recuperación a nivel de artículo, cerradas y dependencia del campo área.",
+     "En muestra, art_hit@10 ≈ 0,4–0,6 y cerradas {acc} frente a la referencia 0,905. "
+     "{area_txt}Se prueban reranker y generation_k, un cambio por experimento."),
     ("Abstención sin calibrar.",
      "{mal} respuestas incorrectas que valdrían 0,5 si se abstuviera; se evalúa una regla simple por "
      "formato, sin sobreajustar a 50 preguntas."),
@@ -203,7 +203,8 @@ def tabla(doc, filas, anchos, encabezado=True, alinear_der=(), negrita_ultima=Fa
 
 # ---------------------------------------------------------------- documento
 
-def construir(rep, fila, exp, manifest, salida: Path, commit: str | None = None):
+def construir(rep, fila, exp, manifest, salida: Path, commit: str | None = None,
+              lat_sin_carga: float | None = None):
     cer, cit, abst = rep["cerradas"], rep["citas"], rep["abstencion"]
     pts = (cer["puntos"], cit["puntos"], abst["puntos"])
     total = round(sum(pts), 2)
@@ -214,6 +215,20 @@ def construir(rep, fila, exp, manifest, salida: Path, commit: str | None = None)
     cobertas = [a for a in AREAS_BANCO if any(a in d["areas"] for d in docs)]
     sin = [a for a in AREAS_BANCO if a not in cobertas]
     lat = float(fila["latencia_total_ms"]) / 1000
+    import re
+    m_area = re.search(r"area_boost=([0-9.]+)", fila["notas"])
+    boost = float(m_area.group(1)) if m_area else 1.0
+    if lat <= 10:
+        lat_txt = f"{num(lat, 1)} s/pregunta en la RTX 4090 cumplen el objetivo (<10 s)."
+    elif lat_sin_carga:
+        lat_txt = (f"{num(lat, 1)} s/pregunta con la GPU compartida con otros experimentos "
+                   f"({num(lat_sin_carga, 1)} s sin carga, e14); el objetivo es <10 s y falta medirlo en máquina dedicada.")
+    else:
+        lat_txt = f"{num(lat, 1)} s/pregunta en la RTX 4090; el objetivo es <10 s."
+    area_txt = ("La prioridad por área usa el campo «area» de la pregunta (presente en la muestra); "
+                "si las 992 no lo traen, el puntaje será el de la recuperación sin ese refuerzo. "
+                if boost > 1 else "")
+
 
     doc = Document()
     s = doc.sections[0]
@@ -286,6 +301,7 @@ def construir(rep, fila, exp, manifest, salida: Path, commit: str | None = None)
          f"Híbrida: BM25 (bm25s) + denso, fusión RRF (k=60)"
          + (", más búsqueda por referencia explícita (norma/artículo detectados con citations.py) como candidato extra"
             if '"modo": "on"' in fila["notas"] else "")
+         + (f"; prioridad por área del banco (factor {num(boost, 1)}, reordena sin filtrar)" if boost > 1 else "")
          + f"; top-{fila['retrieval_k']} como evidencia, {fila['generation_k']} pasajes al decoder; "
          f"citas validadas contra el top-{fila['retrieval_k']}"],
         ["Segmentación del corpus", f"{fila['version_segmentador']}: un artículo = un fragmento (≤350 palabras, "
@@ -298,7 +314,8 @@ def construir(rep, fila, exp, manifest, salida: Path, commit: str | None = None)
     for i, (titulo, cuerpo) in enumerate(RIESGOS, 1):
         p = parrafo(doc, after=1)
         mixto(p, [(f"{i}. {titulo} ", True),
-                  (cuerpo.format(lat=num(lat, 1), acc=num(cer["accuracy"], 3), mal=abst["respondio_mal"]), False)])
+                  (cuerpo.format(lat_txt=lat_txt, area_txt=area_txt, acc=num(cer["accuracy"], 3),
+                                 mal=abst["respondio_mal"]), False)])
 
     salida.parent.mkdir(parents=True, exist_ok=True)
     doc.save(salida)
@@ -326,10 +343,11 @@ def main():
     ap.add_argument("--experiments-csv", required=True, type=Path)
     ap.add_argument("--salida", type=Path, default=HERE / "REPORTE_AVANCE.docx")
     ap.add_argument("--commit", help="commit a mostrar (por defecto el de experiments.csv)")
+    ap.add_argument("--lat-sin-carga", type=float, help="latencia (s) medida sin otros procesos en la GPU")
     ap.add_argument("--pdf", action="store_true", help="exportar a PDF con Word y comprobar 1 pagina")
     a = ap.parse_args()
     rep, fila, exp, manifest = cargar(a.reporte, a.experiments_csv)
-    construir(rep, fila, exp, manifest, a.salida, a.commit)
+    construir(rep, fila, exp, manifest, a.salida, a.commit, a.lat_sin_carga)
     if a.pdf:
         exportar_pdf(a.salida, a.salida.with_suffix(".pdf"))
 
