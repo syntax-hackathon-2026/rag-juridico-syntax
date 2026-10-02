@@ -4,7 +4,7 @@ Contexto para agentes y personas que continúen el trabajo de recuperación. Res
 
 ## 1. Estado en una línea
 
-**Corpus v2 (2026-10-01): 213 documentos → 47.966 fragmentos, BM25 construido y medido (`e03_corpus_v2_bm25`, sección 10). El índice denso de v2 está pendiente**: `index.faiss` corresponde todavía a v1 (167 documentos, 35.105 fragmentos, `e01_bge_m3`) y `construir_indice.py --solo-bm25` lo borró en local, así que `verificar_indice()` falla y el modo híbrido no corre hasta reconstruirlo (comando en la sección 10). Los 35.105 fragmentos de v1 no cambiaron (mismo sha256), y la caché solo codifica los 12.861 nuevos. Antes: `corpus/*.txt` (167 documentos) → 35.105 fragmentos, con BM25 + bge-m3 (vectores fp32 de Colab T4 e `index.faiss` armado en local desde la caché). `construir_indice.py --particion I/N` permite repartir la codificación entre varias máquinas; ver `notebooks/indice_denso_colab.ipynb`. El generador (Qwen), `src/main.py` y `run.sh` todavía no existen.
+**Corpus v2 (2026-10-02): 213 documentos → 47.966 fragmentos, con BM25 + bge-m3 + RRF construidos y medidos (`e03_corpus_v2`, sección 10).** `index.faiss` (IndexFlatIP, fp32) se codificó en una T4 de Kaggle (CUDA) y se armó en local desde la caché con `SYNTAX_DEVICE=cpu`; es idéntico byte a byte al de Kaggle. Mejor `respaldo@10` en híbrido: 0,927 (v1: 0,907). Antes (v1): 167 documentos → 35.105 fragmentos (`e01_bge_m3`, Colab T4). `construir_indice.py --particion I/N` permite repartir la codificación entre varias máquinas; ver `notebooks/indice_denso_colab.ipynb` y `notebooks/indice_denso_kaggle.ipynb`. El generador (Qwen), `src/main.py` y `run.sh` están descritos en `docs/GENERACION.md`.
 
 ## 2. Pipeline y comandos
 
@@ -144,7 +144,7 @@ Una ley que reforma otra transcribe artículos ajenos: "ARTÍCULO 10. Modifíque
 
 ## 7. Problemas conocidos y pendientes
 
-1. **Índice denso sin calcular.** En CPU de portátil (Windows, torch CPU) el primer bloque de 512 fragmentos tarda más de 10 minutos, así que el corpus completo llevaría muchas horas. Hay que correrlo en GPU (`SYNTAX_DEVICE=cuda … --batch 64`) y copiar `data_corpus/cache_emb/`, o todo `data_corpus/indice/`. Después: `retrieval_eval.py --modo bm25 denso hibrido`.
+1. **Índice denso: resuelto para v2 (2026-10-02, sección 10).** En CPU de portátil el corpus completo llevaría muchas horas (más de 10 minutos por 512 fragmentos); se codifica en GPU (`SYNTAX_DEVICE=cuda`) y se trae `cache_emb/` + `index.faiss`. Cada cambio de corpus obliga a repetirlo, aunque la caché (por sha256 del `retrieval_text`) limita la codificación a los fragmentos nuevos.
 2. **Los parsers no dan el mismo texto en todas las máquinas (causa probable, sin confirmar: `lxml`/libxml2 con HTML de Word muy anidado).** Diagnosticado el 2026-09-30: 33 documentos (31 sentencias HTML de la relatoría y 2 vía pandoc) daban un texto distinto en Windows. Comparado con el HTML original, el `corpus/` de Mac es completo (`sentencia_c_55_2022`: 242.776 palabras contra 240.988 del HTML) y el de Windows estaba truncado (159 fragmentos, ~25 % del texto). El manifest se regeneró con el corpus de Mac (35.105 fragmentos). Medidas para que sea replicable:
    - `parsear_html.py` mide la **completitud** de cada sentencia (palabras extraídas / palabras del HTML crudo contadas por regex, sin `lxml`) y avisa por debajo de 0,85 (medido: 0,945–0,995). Un parseo truncado ya no pasa en silencio.
    - `python src/reproducibilidad/verificar_corpus.py` compara el `sha256` de cada `corpus/*.txt` con el manifest y el de `chunks.jsonl` con `data/registros/hashes_esperados.json`. exit 1 = esa máquina no reproduce el corpus congelado.
@@ -191,6 +191,15 @@ OCR: SL648-2018 y SP1945-2019 (escaneados) y SC10291-2017, SC18392-2017 y SC8453
 
 - Gana el respaldo@10 (+4 preguntas): #453 (SU-016, C-468), #563 (SU-277), #60, #748 y #239.
 - Baja la precisión arriba del ranking, por desplazamiento léxico: el DUR 1625 adelanta al EOSF en #128 y el DUR 1074 al Estatuto del Consumidor en #674; SC435-2024 y SC3085-2024 pasan por delante del CGP y el Código Civil en #589 y #490; el art. 101 del Acuerdo 02/2015 ("8:00 a.m. a 5:00 p.m.") pasa delante del CST en #1073. Son diferencias de 1–2 preguntas de 41, sin cambio en el código del retriever. Hay que medirlo de nuevo en híbrido cuando esté el denso.
-- **Pendiente: índice denso v2.** En una GPU (Colab o campus), con `data_corpus/` sincronizado:
-  `SYNTAX_DEVICE=cuda python src/indexacion/construir_indice.py --batch 64` (solo codifica los fragmentos nuevos si está la caché de v1 en `data_corpus/cache_emb/`), y luego
-  `python src/evaluacion/retrieval_eval.py --modo bm25 denso hibrido --experimento e03_corpus_v2`.
+- **Índice denso v2 (2026-10-02).** Codificado en una T4 de Kaggle (`notebooks/indice_denso_kaggle.ipynb`; la caché de v1, también CUDA, se reutilizó y solo se codificaron los fragmentos nuevos). Integrado en local con `SYNTAX_DEVICE=cpu python src/indexacion/construir_indice.py` (todo desde caché, ~20 s para BM25). Comprobado: sha256 de `chunks.jsonl` igual al de `indice_info.json` del zip, `index.faiss` con 47.966 vectores de dimensión 1024 (idéntico byte a byte al de Kaggle), la caché cubre todos los fragmentos (47.947 claves únicas por textos repetidos) y `manifest.py` da 0 errores. `indice_info.json` registra `device: cpu` (la máquina que armó el índice); los vectores son de CUDA.
+
+| modo (sample_50, 41 con fundamento, v2) | doc_hit@1 | doc_hit@3 | doc_hit@10 | MRR | respaldo@10 | art_hit@1 | art_hit@10 | latencia |
+|---|---:|---:|---:|---:|---:|---:|---:|---:|
+| bm25 | 0,390 | 0,634 | 0,805 | 0,530 | 0,927 | 0,158 | 0,368 | 2 ms |
+| denso | 0,488 | 0,707 | 0,829 | 0,614 | 0,878 | 0,158 | 0,526 | 500 ms |
+| **hibrido** (RRF k=60) | 0,488 | 0,732 | 0,854 | 0,619 | **0,927** | 0,263 | 0,526 | 100 ms |
+
+- **Frente a v1 (`e01`)**: el híbrido sube de 0,907 a 0,927 en respaldo@10 y se mantiene en doc_hit@10 (0,854); baja doc_hit@1 (0,512 → 0,488) y MRR (0,643 → 0,619) por el desplazamiento léxico descrito arriba. El denso también baja (doc_hit@1 0,585 → 0,488; MRR 0,672 → 0,614). Todo son diferencias de 1–3 preguntas de 41: no concluyentes.
+- **Sin el cuerpo de referencia en el top-10 (híbrido)**: #60, #748, #247, #679, #239, #661. Respecto a v1 se resuelve #563 (SU-277/2025, ahora en el corpus) y reaparece #239, que el híbrido de v1 resolvía (regresión por el desplazamiento de las sentencias nuevas). El denso falla en #58 y #1073 (y no en #60).
+- Resultados por pregunta en `evaluation/retrieval/e03_corpus_v2_{bm25,denso,hibrido}.jsonl`; entorno en `evaluation/entornos/e03_corpus_v2.json`.
+- Siguiente: diagnosticar los 6 fallos del híbrido (DOCUMENT_RETRIEVAL por ventanas de sentencias) antes de añadir un reranker o una cuota por tipo de documento.
