@@ -213,7 +213,7 @@ Disponible `retrieval_eval.py --modo hibrido --techo-reranker --experimento e05_
 
 Fase 0 sobre sample_50 y e01_bge_m3_hibrido: 14 preguntas con cuerpo explicito (15 incluyendo opciones), cuatro con articulo explicito y cero fallos art_hit@10 entre los cuatro casos con cuerpo explicito y GT de articulo evaluable. Se conserva como prueba de concepto, sin activar ni seleccionar variante por calidad. A/B real pendiente por falta de indice local. `analisis_referencias.py` reproduce el conteo; retrieval_eval informa subconjuntos y registra lookup en meta/notas del CSV. Ver [resultados, pruebas y comandos del plan 06](mejoras/resultados_06.md).
 
-## 13. Corpus v3: `e04_corpus_v3_bm25` (2026-10-02, denso pendiente)
+## 13. Corpus v3: `e04_corpus_v3` (2026-10-02)
 
 +375 documentos (ver `docs/ingesta/fuentes_pendientes.md`, sección "Ampliación v3"): 95 leyes/decretos de alto impacto por área, la Decisión Andina 351, 37 sentencias hito de la Corte Constitucional y el **lote de las 242 SU de 2020–2026** que faltaban (258 encontradas sondeando la relatoría, `SU<nnn>-<aa>.htm`). Total: 588 documentos y **113.519 fragmentos** (v2: 47.966). Nuevos: lote SU 42.430, hitos 15.391 (C-080/18, C-674/17 y T-388/13 superan los 2 M de caracteres por los salvamentos) y normas 7.732.
 
@@ -230,5 +230,13 @@ BM25 en sample_50 (41 preguntas con fundamento), variantes armadas filtrando `ch
 
 - **La medición está sesgada en contra de ampliar**: todo el `legal_basis` de sample_50 ya está en v2, así que aquí solo se ve el desplazamiento léxico y nunca la ganancia. Cada escalón son 1–3 preguntas de 41. Sin el cuerpo en el top-10 (v3): #60, #290, #352, #600, #647, #748, #247, #679, #218, #239, #661, #1005; frente a v2 entran #290, #352, #600, #647, #218 y #1005, sobre todo códigos (Penal, Civil, Constitución) desplazados por las leyes nuevas.
 - **Lado de la ganancia** (preguntas sintéticas, BM25 v3): 15/15 SU del lote nombradas en la pregunta ("¿problema jurídico de la sentencia SU-nnn de aaaa?", "¿antecedentes fácticos…?") traen su documento al top-10; 10/12 preguntas sobre normas/hitos nuevos lo traen (la mayoría en el rank 1; fallan Ley 361/1997 y C-590/2005 sin nombrarlas).
-- **Pendiente para decidir KEEP/REVERT**: codificar en la 4090 los ~65.500 fragmentos nuevos (la caché `cache_emb/` cubre los 47.966 de v2) y medir el **híbrido**: `SYNTAX_DEVICE=cuda python src/indexacion/construir_indice.py --batch 64` y luego `python src/evaluacion/retrieval_eval.py --modo bm25 denso hibrido --experimento e04_corpus_v3`. El índice denso v2 quedó respaldado en `data_corpus/respaldo_indice_v2/` (local) y en `data_corpus/resultado_indice.zip`.
+- **Híbrido medido en la RTX 4090** (`e04_corpus_v3`, denso codificado con `construir_indice.py --batch 64`; índice denso v2 respaldado en `data_corpus/respaldo_indice_v2/`):
+
+| modo (41 preguntas) | doc_hit@1 | doc_hit@10 | MRR | respaldo@10 | art_hit@10 |
+|---|---:|---:|---:|---:|---:|
+| híbrido v2 (`e03`) | 0,488 | 0,854 | 0,619 | 0,927 | 0,526 |
+| denso v3 | 0,415 | 0,780 | 0,536 | 0,866 | 0,474 |
+| **híbrido v3** | 0,390 | 0,780 | 0,515 | 0,890 | 0,421 |
+
+  El híbrido también diluye: −0,07 en doc_hit@10 y −0,10 en MRR frente a v2. En generación (`e05_q8_rtx4090`) las sentencias nuevas copan el top-10 de las cerradas (8 de 10 en #51, 9 de 10 en #748, que pasa de A a D) aunque ninguna cerrada del sample nombra una sentencia. Decisión: **no revertir; filtrar** (sección 14).
 - Mitigación posible si el híbrido también diluye: dejar el lote de SU recuperable **solo cuando la pregunta lo nombra** (filtrar sus fragmentos de las ramas BM25/denso salvo cita explícita de esa sentencia con `citations.extract`). En sample_50 daría las métricas de "v2 + normas + hitos" y conservaría los 15/15 de sentencias nombradas.
