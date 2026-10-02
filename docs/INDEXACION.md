@@ -212,3 +212,23 @@ Disponible `retrieval_eval.py --modo hibrido --techo-reranker --experimento e05_
 `SYNTAX_LOOKUP=off` por defecto. La prueba de concepto usa `citations.extract` y un indice canonico/articulo desde chunks.jsonl; anade candidatos sin filtrar BM25/denso. Variantes `SYNTAX_LOOKUP_VARIANTE=a|b|c`: rama RRF, bonus fijo e insercion de hasta m articulos; fuente `SYNTAX_LOOKUP_FUENTE=consulta|pregunta`. No se aplica a BM25/denso por separado ni a menciones de cuerpo sin articulo. Los textos y offsets siguen intactos.
 
 Fase 0 sobre sample_50 y e01_bge_m3_hibrido: 14 preguntas con cuerpo explicito (15 incluyendo opciones), cuatro con articulo explicito y cero fallos art_hit@10 entre los cuatro casos con cuerpo explicito y GT de articulo evaluable. Se conserva como prueba de concepto, sin activar ni seleccionar variante por calidad. A/B real pendiente por falta de indice local. `analisis_referencias.py` reproduce el conteo; retrieval_eval informa subconjuntos y registra lookup en meta/notas del CSV. Ver [resultados, pruebas y comandos del plan 06](mejoras/resultados_06.md).
+
+## 13. Corpus v3: `e04_corpus_v3_bm25` (2026-10-02, denso pendiente)
+
++375 documentos (ver `docs/ingesta/fuentes_pendientes.md`, sección "Ampliación v3"): 95 leyes/decretos de alto impacto por área, la Decisión Andina 351, 37 sentencias hito de la Corte Constitucional y el **lote de las 242 SU de 2020–2026** que faltaban (258 encontradas sondeando la relatoría, `SU<nnn>-<aa>.htm`). Total: 588 documentos y **113.519 fragmentos** (v2: 47.966). Nuevos: lote SU 42.430, hitos 15.391 (C-080/18, C-674/17 y T-388/13 superan los 2 M de caracteres por los salvamentos) y normas 7.732.
+
+Motivo (análisis del `legal_basis` de sample_50 contra la semilla): 16 de 49 menciones no estaban en la semilla, 13 eran códigos (ya en v2) y 3 eran sentencias (SU-016/2020, C-468/2024, SU-277/2025, dos de ellas SU recientes). Extrapolado a las 992, faltan unas 60 preguntas cuya fuente es una sentencia que no estaba en el corpus, y cerca de 9 de 30 semiabiertas nombran la sentencia en la pregunta. Las SU están sobrerrepresentadas en el banco (18 % de las sentencias de la semilla).
+
+BM25 en sample_50 (41 preguntas con fundamento), variantes armadas filtrando `chunks.jsonl`:
+
+| variante | fragmentos | doc_hit@1 | doc_hit@10 | MRR | respaldo@10 |
+|---|---:|---:|---:|---:|---:|
+| v2 (`e03`) | 47.966 | 0,390 | 0,805 | 0,530 | 0,927 |
+| v2 + normas | 55.698 | 0,366 | 0,732 | 0,485 | 0,902 |
+| v2 + normas + hitos | 71.089 | 0,366 | 0,732 | 0,478 | 0,890 |
+| **v3 completo** (`e04`) | 113.519 | 0,317 | 0,707 | 0,427 | 0,866 |
+
+- **La medición está sesgada en contra de ampliar**: todo el `legal_basis` de sample_50 ya está en v2, así que aquí solo se ve el desplazamiento léxico y nunca la ganancia. Cada escalón son 1–3 preguntas de 41. Sin el cuerpo en el top-10 (v3): #60, #290, #352, #600, #647, #748, #247, #679, #218, #239, #661, #1005; frente a v2 entran #290, #352, #600, #647, #218 y #1005, sobre todo códigos (Penal, Civil, Constitución) desplazados por las leyes nuevas.
+- **Lado de la ganancia** (preguntas sintéticas, BM25 v3): 15/15 SU del lote nombradas en la pregunta ("¿problema jurídico de la sentencia SU-nnn de aaaa?", "¿antecedentes fácticos…?") traen su documento al top-10; 10/12 preguntas sobre normas/hitos nuevos lo traen (la mayoría en el rank 1; fallan Ley 361/1997 y C-590/2005 sin nombrarlas).
+- **Pendiente para decidir KEEP/REVERT**: codificar en la 4090 los ~65.500 fragmentos nuevos (la caché `cache_emb/` cubre los 47.966 de v2) y medir el **híbrido**: `SYNTAX_DEVICE=cuda python src/indexacion/construir_indice.py --batch 64` y luego `python src/evaluacion/retrieval_eval.py --modo bm25 denso hibrido --experimento e04_corpus_v3`. El índice denso v2 quedó respaldado en `data_corpus/respaldo_indice_v2/` (local) y en `data_corpus/resultado_indice.zip`.
+- Mitigación posible si el híbrido también diluye: dejar el lote de SU recuperable **solo cuando la pregunta lo nombra** (filtrar sus fragmentos de las ramas BM25/denso salvo cita explícita de esa sentencia con `citations.extract`). En sample_50 daría las métricas de "v2 + normas + hitos" y conservaría los 15/15 de sentencias nombradas.

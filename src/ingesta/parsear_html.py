@@ -48,6 +48,8 @@ _CORTE_SENADO = re.compile(
 _NAV_SENADO = re.compile(r"^(Anterior\s*\|?\s*Siguiente|Anterior|Siguiente|Inicio|Artículo)$", re.I)
 _OPCION_INDICE = re.compile(r'<option value="(?:ç[^"]*?ç\.htmlç)?([^"]*)">([^<]*)', re.I)
 _SENTENCIA_PEGADA = re.compile(r"^SENTENCIA\s+[CTSU]{1,2}\s*-\s*\d", re.I)
+_OFICIO_CORTE = re.compile(r"^Corte Constitucional$", re.I)
+_OFICIO_SECRETARIA = re.compile(r"^Secretar[ií]a General$", re.I)
 
 
 # --- lectura ------------------------------------------------------------------
@@ -137,8 +139,12 @@ def extraer_avance_juridico(html: str) -> list[str]:
     _quitar(raiz, "script", "style", "#selector_aj", "#imprimir", "#logo_aj", "#update_date",
             "a.hlk_inicio", "a.caja_vja_encabezado", "table[class^=caja_vja]", "select")
     bloques = []
-    for p in parrafos(raiz):
-        if _CORTE_SENADO.match(p):
+    lista = parrafos(raiz)
+    for i, p in enumerate(lista):
+        if _CORTE_SENADO.match(p) or (_OFICIO_CORTE.match(p) and i + 1 < len(lista)
+                                      and _OFICIO_SECRETARIA.match(lista[i + 1])):
+            # leyes estatutarias: el oficio de remision de la Corte y la sentencia de control
+            # (Ley 1712/2014 + C-274/13) vienen pegados sin <NOTA DEL EDITOR>
             # la sentencia de control pegada empieza con "SENTENCIA C-748-11." justo antes
             while bloques and _SENTENCIA_PEGADA.match(bloques[-1]):
                 bloques.pop()
