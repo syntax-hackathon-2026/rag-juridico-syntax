@@ -282,3 +282,33 @@ El banco trae `area` en cada pregunta (las 992 tienen la estructura de sample_50
 - Con la prioridad por área, las 96 normas de v3 pueden recuperarse sin nombrarlas sin perder nada (era la condición para ampliar las áreas delgadas). Las sentencias siguen filtradas: sin filtro, ni con boost 1,5 se recupera v2 (`e15_sinfiltro_area150`).
 - Generación (`e16_area200`, sin juez): cerradas 0,733 (= `e13`), **citación 16,33 → 17,55**, abstención 8,37 (=). La latencia medida (11,8 s/pregunta) no es comparable: otra sesión codificaba el corpus completo en la misma 4090 durante la corrida.
 
+## 16. Corpus v4: áreas delgadas, C- de control y lote T 2025–2026 (`e17`, `e18`, 2026-10-02)
+
+Ampliación automática (procedimiento y lista de descartes en `docs/ingesta/fuentes_pendientes.md`, "Ampliación v4"): **+65 documentos** (34 normas de mercados, tributario, procesal y civil; Decisiones Andinas 345, 391 y 608; 28 sentencias C- de control) y **+533 tutelas de 2025–2026** (lote sondeado en la relatoría). Total: **1.186 documentos y 173.393 fragmentos**. Los 113.519 fragmentos de v3 no cambian (comprobado byte a byte). Las sentencias nuevas (C- y T-) entran a `solo_por_cita.json` (840 sentencias y 133 normas en el registro); las normas nuevas se recuperan sin nombrarlas (filtro `sentencias`, sección 15).
+
+Documentos por área (un documento cuenta en cada una de sus áreas; "recuperables" = sin las sentencias solo por cita):
+
+| Área | v3 | v4 | v4 recuperables sin nombrar | fragmentos recuperables |
+|---|---:|---:|---:|---:|
+| Constitucional | 340 | 901 | 61 | 11.402 |
+| Laboral | 56 | 62 | 51 | 6.635 |
+| Familia | 49 | 54 | 46 | 7.933 |
+| Administrativo | 40 | 52 | 43 | 8.614 |
+| Civil | 35 | 45 | 43 | 10.127 |
+| Tributario | 31 | 41 | 40 | 11.467 |
+| Mercados | 25 | 39 | 38 | 6.537 |
+| Penal | 45 | 51 | 37 | 10.438 |
+| Comercial | 36 | 36 | 36 | 8.693 |
+| Procesal | 28 | 38 | 31 | 5.587 |
+
+| híbrido (41 preguntas, filtro `sentencias`, área ×2,0) | fragmentos | doc_hit@1 | doc_hit@10 | MRR | respaldo@10 | art_hit@10 | ms/consulta |
+|---|---:|---:|---:|---:|---:|---:|---:|
+| v3 (`e15_normasv3_area200`) | 113.519 | 0,610 | 0,902 | 0,718 | 0,939 | 0,579 | — |
+| **v4 (`e17_corpus_v4`)** | 124.302 | 0,610 | 0,902 | 0,718 | 0,939 | 0,579 | 729 |
+| **v4 + T (`e18_corpus_v4_t`)** | 173.393 | 0,610 | 0,902 | 0,717 | 0,927 | 0,579 | 1.153 |
+
+- **v4 no diluye nada** en sample_50 (idéntico a v3 pregunta por pregunta). Sondeo de ganancia sobre las 37 normas/decisiones nuevas: 34/34 artículos nombrados ("¿Qué establece el artículo N de la Ley X de Y?") en el top-3 (todos en el rank 1) y 37/37 documentos en el top-10 consultando solo el tema con su área (optimista: el tema sale del título).
+- **Lote T**: 25/25 tutelas nombradas (muestra fija, semilla 0) en el top-10. Costo: aunque las T no entran al top-10 sin nombrarlas, **cambian las estadísticas de BM25** (IDF y longitud media se calculan con todo el índice), y eso reordena un poco el top-10 de varias preguntas: #51 pierde medio punto de respaldo (sale un pasaje de la T-262/2025 que traía su cita) y #748 pasa del rank 5 al 6. Es −1/2 pregunta de 41, dentro de la regla KEEP fijada antes de medir (≤ 1 pregunta). Latencia de recuperación +0,4 s/consulta (más candidatos filtrados en `_filtrar`). **KEEP**. Si hiciera falta recortar, la alternativa es construir BM25 sin las sentencias solo por cita (quedarían recuperables por la rama densa y el lookup).
+- Parseo: `parsear_html.py` reintenta con `html.parser` cuando lxml trunca una sentencia (10 C- en Windows). Ningún `.txt` previo cambia.
+- **Generación con el corpus final** (`e19_corpus_v4_t`, Qwen3-8B Q8_0 en la 4090, GPU sin otra carga): cerradas 0,733 (= `e13`), citación **17,55** (`e13`: 16,33), abstención 8,37 (=), 0 errores de schema, **4,0 s/pregunta** (recuperación 610 ms). Única corrida con juez de la ola (`e19_corpus_v4_t_ragas`, presupuesto de API): RAGAS 0,4314 y total **53,53/80**, pero el juez **no devolvió veredicto en 4 de 35 ítems** (cuentan como cero). Los 31 juzgados promedian 0,487 frente a 0,5019 de `e13`, dentro del ruido del juez (±0,03, `docs/GENERACION.md` 6). Cambiaron 21 de las 35 respuestas de texto libre (otra evidencia). No se gastó una segunda corrida con juez: no hay reversión que confirmar.
+

@@ -14,6 +14,7 @@ comentario `# dep: opcional` en la misma linea.
 Uso:
     python src/reproducibilidad/verificar_deps.py
     python src/reproducibilidad/verificar_deps.py --fix
+    python src/reproducibilidad/verificar_deps.py --evaluador   # ademas: deps del juez (scripts/requirements-evaluador.txt)
 """
 from __future__ import annotations
 
@@ -28,6 +29,10 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[2]
 SRC = ROOT / "src"
 REQUIREMENTS = ROOT / "requirements.txt"
+REQUIREMENTS_EVALUADOR = ROOT / "scripts" / "requirements-evaluador.txt"  # oficial del jurado: solo se lee
+# Imports que el evaluador necesita de verdad (ragas 0.4 falla al importar si langchain-community >= 0.4).
+IMPORTS_EVALUADOR = ["ragas", "datasets", "langchain_openai", "langchain_huggingface", "langchain_community",
+                     "sentence_transformers"]
 OPCIONAL = "# dep: opcional"
 
 # import -> paquete de pip, solo cuando no coinciden tras normalizar (_ -> -).
@@ -112,10 +117,45 @@ def python_requerido() -> tuple[int, int] | None:
     return (int(m[1]), int(m[2])) if m else None
 
 
+def verificar_evaluador() -> list[str]:
+    """Problemas de scripts/requirements-evaluador.txt en el entorno activo (lista vacia = todo bien).
+
+    Cada linea debe estar instalada y dentro de su rango, y los imports del juez deben funcionar
+    (un import roto es justo lo que rompe `evaluate.py --ragas` tarde, con la llave ya gastada).
+    """
+    import subprocess
+
+    problemas: list[str] = []
+    try:
+        from packaging.requirements import Requirement  # dep: opcional
+    except ImportError:  # no deberia pasar en el venv (lo trae transformers); se degrada a "instalado"
+        Requirement = None
+    for raw in REQUIREMENTS_EVALUADOR.read_text(encoding="utf-8").splitlines():
+        linea = raw.split("#", 1)[0].strip()
+        if not linea:
+            continue
+        nombre = Requirement(linea).name if Requirement else re.match(r"[A-Za-z0-9][A-Za-z0-9._-]*", linea)[0]
+        try:
+            version = metadata.version(nombre)
+        except metadata.PackageNotFoundError:
+            problemas.append(f"evaluador: falta {linea}")
+            continue
+        if Requirement and not Requirement(linea).specifier.contains(version, prereleases=True):
+            problemas.append(f"evaluador: {nombre}=={version} no cumple {linea}")
+    codigo = "import importlib, sys; [importlib.import_module(m) for m in sys.argv[1:]]"
+    r = subprocess.run([sys.executable, "-c", codigo, *IMPORTS_EVALUADOR], capture_output=True, text=True)
+    if r.returncode:
+        ultima = (r.stderr.strip().splitlines() or ["?"])[-1]
+        problemas.append(f"evaluador: falla el import de {', '.join(IMPORTS_EVALUADOR)}: {ultima}")
+    return problemas
+
+
 def main() -> int:
     ap = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     ap.add_argument("--fix", action="store_true",
                     help="agrega a requirements.txt los faltantes que esten instalados, fijados a su version")
+    ap.add_argument("--evaluador", action="store_true",
+                    help="comprueba tambien scripts/requirements-evaluador.txt (instalado, en rango, importable)")
     args = ap.parse_args()
 
     requerido = python_requerido()
@@ -171,9 +211,13 @@ def main() -> int:
     for line in unused:
         print(f"aviso: declarado pero sin import directo en src/ (ok si es dependencia de runtime): {line}")
 
-    if missing or unpinned:
+    problemas_evaluador = verificar_evaluador() if args.evaluador else []
+    for problema in problemas_evaluador:
+        print(problema)
+    if missing or unpinned or problemas_evaluador:
         return 1
-    print(f"ok: {len(used)} paquetes de terceros usados en src/, todos declarados y fijados")
+    print(f"ok: {len(used)} paquetes de terceros usados en src/, todos declarados y fijados"
+          + ("; deps del evaluador instaladas e importables" if args.evaluador else ""))
     return 0
 
 
