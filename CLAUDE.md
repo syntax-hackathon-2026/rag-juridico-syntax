@@ -85,6 +85,14 @@ python src/evaluacion/evaluar_entrega.py --entrega salidas/sample_<exp>.jsonl --
 python src/evaluacion/comparar_entregas.py a.jsonl b.jsonl    # determinismo / verificacion en vivo
 ```
 
+```bash
+# Reproduccion completa en maquina limpia (Windows+NVIDIA / Linux): entorno -> corpus -> indice -> decoder -> preguntas
+powershell -ExecutionPolicy Bypass -File reproducir.ps1 -Corpus C:\ruta\corpus   # Windows; instala Python 3.13 si falta
+python src/reproducibilidad/reproducir.py --corpus <carpeta|zip> [--hasta indice] [--reindexar] [--sin-reanudar] [--limite N] [--split test]
+```
+
+`reproducir.py` (solo stdlib) es el contrato de "contenedor vacio": crea `.venv`, cambia torch por la rueda CUDA (cu126/cu130 segun el driver; la de PyPI en Windows es CPU), exige los `.txt` identicos al sha256 del manifest, segmenta, comprueba `chunks.jsonl` contra `hashes_esperados.json`, codifica en GPU (`--batch 64`), baja llama.cpp `b11146` a `herramientas/` (en `.gitignore`) y el GGUF verificado, levanta `llama-server`, corre `main.py` + `evaluate.py` y reporta latencia media y horas proyectadas para 992. En Mac no baja llama.cpp (`brew install llama.cpp`). **Todo cambio de dependencias o pasos del pipeline debe seguir funcionando con este script desde cero.**
+
 Estado, decisiones, latencias medidas y trampas de la generación: **`docs/GENERACION.md`** (leerlo antes de tocar `src/generacion/` o `src/main.py`). Claves:
 
 - `responder(item, retriever, decoder)` (`src/generacion/responder.py`) deja pasar solo `id, formato, pregunta, opciones` (guarda contra el ground truth), recupera el top-10 híbrido, manda los `GENERATION_K=5` primeros al decoder y valida **todo** el texto de la respuesta con `scripts/citations.py` contra los 10 pasajes. Si hay citas sin respaldo, regenera 1 vez, luego quita esas oraciones y, si queda un campo vacío, se abstiene. Después agrega las cabeceras de la evidencia a los campos citables (`CITAR_EVIDENCIA`).
