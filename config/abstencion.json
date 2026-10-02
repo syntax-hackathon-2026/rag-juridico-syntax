@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "formatos": {
+    "multiple_choice": {},
+    "semi_open": {
+      "top1_rank_denso_mayor_que": 18.5
+    },
+    "open_ended": {
+      "frac_en_ambas_ramas_menor_que": 0.74
+    }
+  }
+}

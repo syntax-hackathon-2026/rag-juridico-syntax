@@ -209,7 +209,8 @@ def main() -> int:
         "plataforma": f"{platform.system()} {platform.machine()}, llama.cpp {dec.get('llama_cpp', '')}, "
                       f"encoder {meta.get('device_encoder', '')}",
         "entorno_json": entorno_path.relative_to(config.ROOT).as_posix(),
-        "notas": (f"citar_evidencia={ret.get('citar_evidencia')}; " + args.notas).strip(),
+        "notas": (f"citar_evidencia={ret.get('citar_evidencia')}; "
+                  + "lookup=" + json.dumps(ret.get("lookup", {"modo": "off"}), sort_keys=True) + "; " + args.notas).strip(),
     }
     nuevo = not config.EXPERIMENTS_CSV.is_file()
     with config.EXPERIMENTS_CSV.open("a", encoding="utf-8", newline="") as f:

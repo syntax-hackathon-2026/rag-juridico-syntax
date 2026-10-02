@@ -22,6 +22,7 @@ import numpy as np
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 import config  # noqa: E402
 from recuperacion import lexico  # noqa: E402
+from recuperacion.referencias import IndiceReferencias, referencias_de  # noqa: E402
 
 MODOS = ("bm25", "denso", "hibrido")
 RRF_K = 60
@@ -51,6 +52,7 @@ class Retriever:
             self.chunks = [json.loads(l) for l in f if l.strip()]
         for c in self.chunks:  # solo sirve para construir el indice; ahorra memoria junto al decoder
             c.pop("retrieval_text", None)
+        self.indice_referencias = IndiceReferencias(self.chunks)
         import bm25s
 
         self.bm25 = bm25s.BM25.load(str(config.BM25_DIR))
@@ -92,7 +94,8 @@ class Retriever:
     # --- API ----------------------------------------------------------------------
 
     def retrieve(self, consulta: str, k: int = 10, modo: str = "hibrido",
-                 n_candidatos: int = N_CANDIDATOS) -> list[RetrievedChunk]:
+                 n_candidatos: int = N_CANDIDATOS,
+                 consulta_lookup: str | None = None) -> list[RetrievedChunk]:
         if modo not in MODOS:
             raise ValueError(f"modo {modo!r}; opciones: {MODOS}")
         ranks_rama: dict[str, dict[int, int]] = {}
@@ -107,7 +110,27 @@ class Retriever:
                 ranks_rama[nombre] = {i: r for r, (i, _) in enumerate(rama, 1)}
                 for r, (i, _) in enumerate(rama, 1):
                     fusion[i] = fusion.get(i, 0.0) + 1.0 / (RRF_K + r)
+            # Lookup es una rama adicional, nunca un filtro de las ramas originales.
+            indices_lookup = []
+            if config.LOOKUP_MODO == "on":
+                texto_lookup = consulta if consulta_lookup is None else consulta_lookup
+                if config.LOOKUP_FUENTE == "pregunta" and consulta_lookup is None:
+                    raise ValueError("LOOKUP_FUENTE=pregunta requiere consulta_lookup explicita")
+                indices_lookup = self.indice_referencias.buscar(referencias_de(texto_lookup))
+                if indices_lookup:
+                    ranks_rama["lookup"] = {i: r for r, i in enumerate(indices_lookup, 1)}
+                for r, i in enumerate(indices_lookup, 1):
+                    if config.LOOKUP_VARIANTE == "a":
+                        fusion[i] = fusion.get(i, 0.0) + 1.0 / (RRF_K + r)
+                    elif config.LOOKUP_VARIANTE == "b":
+                        bonus = config.LOOKUP_BONUS if self.indice_referencias.preferible(i) else 0.0
+                        fusion[i] = fusion.get(i, 0.0) + bonus
+                    else:
+                        fusion.setdefault(i, 0.0)
             ranking = sorted(fusion.items(), key=lambda p: (-p[1], self.chunks[p[0]]["chunk_id"]))
+            if indices_lookup and config.LOOKUP_VARIANTE == "c":
+                insertar = indices_lookup[:min(config.LOOKUP_M, k)]
+                ranking = [(i, fusion[i]) for i in insertar] + [(i, s) for i, s in ranking if i not in insertar]
         salida = []
         for r, (i, s) in enumerate(ranking[:k], 1):
             c = self.chunks[i]
