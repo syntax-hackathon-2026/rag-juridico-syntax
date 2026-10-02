@@ -10,7 +10,7 @@ Hackathon LATAM AI Week 2026 (Uniandes): **RAG de derecho colombiano** con un de
 
 Plazos: **vie 17:00** reporte de avance (PDF de 1 página por correo) · **sáb 09:00** se entregan las 992 preguntas · **sáb 15:00** cierre (repo + enlace público al corpus/índice) y verificación en vivo. Las 992 preguntas deben correr en ~6 h ⇒ objetivo **< 10 s/pregunta** (límite teórico 21,8 s).
 
-**Estado (2026-10-01):** RAG v0 de punta a punta; corpus v2 con 213 documentos e índice híbrido v2 medido.
+**Estado (2026-10-02):** RAG v0 de punta a punta; corpus v3 con 588 documentos (113.519 fragmentos: +95 normas, Decisión 351, 37 hitos y las SU 2020–2026) segmentado y medido solo en BM25; falta el denso en la 4090 y decidir KEEP/REVERT (`docs/INDEXACION.md` sección 13).
 - **Hecho**: corpus v2 de 213 documentos → 47.966 fragmentos (seg-v1; índice híbrido BM25 + bge-m3 + RRF v2 medido en `e03_corpus_v2`: respaldo@10 0,927, doc_hit@10 0,854; el denso se codificó en GPU de Kaggle y se armó en local, ver `docs/INDEXACION.md` sección 10). Antes: 167 documentos → 35.105 fragmentos → índice híbrido BM25 + bge-m3 + RRF (`docs/INDEXACION.md`) → generación con Qwen3-8B servido en local por llama.cpp, citas validadas contra el top-10, schema y `evaluate.py` (`docs/GENERACION.md`, corrida `e02_v0`).
 - **Falta**: (1) elegir y medir la máquina final (en un Mac M1 de 16 GB el 8B tarda ~145 s por pregunta; para las 992 hay que bajar de ~20 s); (2) iterar según `evaluation/generacion/<exp>/errores.csv`; (3) diagnosticar los 6 fallos de recuperación del híbrido v2 (#60, #748, #247, #679, #239, #661); confirmar las áreas de `docs/ingesta/areas_por_asignar.md`; (4) comando único en contenedor limpio y empaquetado/publicación del corpus; (5) interfaz.
 
