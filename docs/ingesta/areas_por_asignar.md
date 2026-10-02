@@ -1,6 +1,6 @@
 # Áreas por asignar en `corpus_manifest.json`
 
-Los 183 documentos de la semilla traen sus `areas` de `data/seed_targets.json` (áreas de las preguntas del banco que los citan). Los 30 documentos de abajo **no están en la semilla** (5 del 2026-09-29 y 25 incorporados el 2026-10-01) (`items_del_banco = 0`; sección `_adicionales` de `data/fuentes_override.json`): sus áreas las propuso un agente, a partir del `area` de la pregunta de `sample_50` que los cita o de la sección de `fuentes_pendientes.md` y hay que confirmarlas.
+Los 183 documentos de la semilla traen sus `areas` de `data/registros/seed_targets.json` (áreas de las preguntas del banco que los citan). Los 30 documentos de abajo **no están en la semilla** (5 del 2026-09-29 y 25 incorporados el 2026-10-01) (`items_del_banco = 0`; sección `_adicionales` de `data/registros/fuentes_override.json`): sus áreas las propuso un agente, a partir del `area` de la pregunta de `sample_50` que los cita o de la sección de `fuentes_pendientes.md` y hay que confirmarlas.
 
 Mientras tanto, `corpus_manifest.json` los lleva con la propuesta actual (el validador exige `areas` no vacía).
 
@@ -41,4 +41,4 @@ La columna "Áreas en sample_50" es solo evidencia para decidir: el `area` de la
 
 Nombres válidos (exactos, como en el banco): `Derecho constitucional`, `Derecho administrativo`, `Derecho penal`, `Derecho procesal`, `Derecho comercial y sociedades`, `Derecho civil`, `Derecho de familia`, `Derecho tributario`, `Derecho laboral`, `Derecho de los mercados [competencia, consumidor, datos personales y propiedad intelectual]`.
 
-**Cómo aplicar la decisión.** Llenar "Área asignada" y actualizar `areas` del documento en dos sitios: `_adicionales` de `data/fuentes_override.json` (para que `descargar_fuentes.py` lo conserve) y `corpus_manifest.json`. Luego `python src/validaciones/manifest.py`.
+**Cómo aplicar la decisión.** Llenar "Área asignada" y actualizar `areas` del documento en dos sitios: `_adicionales` de `data/registros/fuentes_override.json` (para que `descargar_fuentes.py` lo conserve) y `corpus_manifest.json`. Luego `python src/validaciones/manifest.py`.

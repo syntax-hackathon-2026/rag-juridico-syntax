@@ -1,4 +1,4 @@
-"""Descarga el contenido original de las fuentes de data/seed_targets.json.
+"""Descarga el contenido original de las fuentes de data/registros/seed_targets.json.
 
 Los `donde_buscar` de la semilla son URLs de busqueda (`?q=...`), no del
 documento. Este script resuelve cada objetivo a la URL real del documento con
@@ -15,19 +15,19 @@ limpieza es de src/ingesta/parsear_html.py):
   - Sentencias C-, T-, SU- -> Relatoria de la Corte Constitucional
     (`relatoria/2006/C-355-06.htm`; las SU van sin guion: `SU214-16.htm`). La relatoria responde 200 con una pagina
     generica cuando la sentencia no existe; se detecta por contenido.
-  - data/fuentes_override.json (versionado, editado a mano) manda sobre las reglas:
+  - data/registros/fuentes_override.json (versionado, editado a mano) manda sobre las reglas:
     corrige erratas de la semilla y da la URL real de lo que no sigue un patron
     (normas que no estan en el Senado, sentencias de la Corte Suprema, etc.).
   - Lo que ya esta en data/raw/ (descargas manuales en pdf/ o rtf/ mapeadas en
-    data/mapa_archivos.json, o una carpeta html/<doc_id>/) no se vuelve a bajar:
+    data/registros/mapa_archivos.json, o una carpeta html/<doc_id>/) no se vuelve a bajar:
     solo se registra.
   - Lo que no tiene regla ni override queda `sin_resolver` con la URL de busqueda
     de la semilla.
 
 Salidas:
   - data/raw/html/<doc_id>/<archivo original>   paginas HTML (todas las partes)
-  - data/raw/pdf/<archivo original>             PDF, con su entrada en data/mapa_archivos.json
-  - data/fuentes_descargadas.json               (versionado: doc_id, url, fecha de
+  - data/raw/pdf/<archivo original>             PDF, con su entrada en data/registros/mapa_archivos.json
+  - data/registros/fuentes_descargadas.json               (versionado: doc_id, url, fecha de
     consulta, estado, sha256 de lo descargado); es la fuente para CORPUS.md y
     corpus_manifest.json.
 
@@ -59,9 +59,9 @@ ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT / "src"))
 import config  # noqa: E402
 
-SEED_PATH = ROOT / "data" / "seed_targets.json"
-REGISTRO_PATH = ROOT / "data" / "fuentes_descargadas.json"
-OVERRIDE_PATH = ROOT / "data" / "fuentes_override.json"
+SEED_PATH = ROOT / "data" / "registros" / "seed_targets.json"
+REGISTRO_PATH = ROOT / "data" / "registros" / "fuentes_descargadas.json"
+OVERRIDE_PATH = ROOT / "data" / "registros" / "fuentes_override.json"
 CORPUS_MD_PATH = ROOT / "CORPUS.md"
 
 SENADO = "http://www.secretariasenado.gov.co/senado/basedoc/"
@@ -188,10 +188,10 @@ def _resolver_por_regla(entrada: dict) -> Objetivo:
             return Objetivo(doc_id, titulo, FUENTE_CC, url, **base)
         fuente = FUENTE_CSJ if prefijo in PREFIJOS_CSJ else entrada["donde_buscar"]
         return Objetivo(doc_id, titulo, fuente, entrada["donde_buscar"], estado="sin_resolver",
-                        nota="Corte Suprema: sin URL predecible; agregar a data/fuentes_override.json", **base)
+                        nota="Corte Suprema: sin URL predecible; agregar a data/registros/fuentes_override.json", **base)
     doc_id = f"{tipo}_{int(numero)}_{anio}"
     return Objetivo(doc_id, entrada["norma"], FUENTE_SUIN, entrada["donde_buscar"], estado="sin_resolver",
-                    nota=f"tipo '{tipo}' sin regla de resolucion; agregar a data/fuentes_override.json", **base)
+                    nota=f"tipo '{tipo}' sin regla de resolucion; agregar a data/registros/fuentes_override.json", **base)
 
 
 def descargar(url: str) -> bytes | None:
@@ -418,7 +418,7 @@ def tabla_inventario(registro: dict[str, dict]) -> str:
         lineas += [f"**Objetivos de la semilla sin documento propio ({len(pendientes)}, "
                    f"{erratas} erratas).** Las erratas son referencias mal escritas del banco que "
                    "apuntan a un documento ya incorporado; el resto quedó sin descargar. El detalle "
-                   "está en `data/fuentes_descargadas.json`.", "",
+                   "está en `data/registros/fuentes_descargadas.json`.", "",
                    "| doc_id | Estado | Motivo |", "|---|---|---|"]
         for d in sorted(pendientes, key=lambda d: (d["estado"], -d["items_del_banco"], d["doc_id"])):
             lineas.append(f"| `{d['doc_id']}` | {d['estado']} | {d['nota']} |")

@@ -4,7 +4,7 @@
     python src/ingesta/generar_manifest.py --revisar  # solo muestra que cambiaria
 
 Fuentes de cada campo:
-  - titulo, fuente, url, fecha_consulta, areas: data/fuentes_descargadas.json (estado
+  - titulo, fuente, url, fecha_consulta, areas: data/registros/fuentes_descargadas.json (estado
     `descargado`, en su orden: semilla por items_del_banco y luego _adicionales);
   - metodo_ingesta, sha256: data_corpus/parseo.json (sha256 de corpus/<doc_id>.txt);
   - n_fragmentos: data_corpus/indice/chunks.jsonl (0 si aun no se segmento);

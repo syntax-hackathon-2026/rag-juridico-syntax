@@ -1,14 +1,14 @@
 # Fuentes pendientes del corpus
 
-Lista de verificación de lo que falta por conseguir. Marcar `[x]` cuando el original esté en `data/raw/`, mapeado en `data/mapa_archivos.json` (si es PDF/RTF), parseado a `data_corpus/corpus/<doc_id>.txt` y registrado en `CORPUS.md`.
+Lista de verificación de lo que falta por conseguir. Marcar `[x]` cuando el original esté en `data/raw/`, mapeado en `data/registros/mapa_archivos.json` (si es PDF/RTF), parseado a `data_corpus/corpus/<doc_id>.txt` y registrado en `CORPUS.md`.
 
-Estado a 2026-10-01: **213 documentos en el corpus** (167 + 46 de esta lista; ver "Resultado de la incorporación" al final). Estado a 2026-09-29: 167 documentos. Origen de la lista: `data/fuentes_descargadas.json` (semilla) y `data/fuentes_faltantes_sample50.md` (`legal_basis` de `sample_50`).
+Estado a 2026-10-01: **213 documentos en el corpus** (167 + 46 de esta lista; ver "Resultado de la incorporación" al final). Estado a 2026-09-29: 167 documentos. Origen de la lista: `data/registros/fuentes_descargadas.json` (semilla) y `data/fuentes_faltantes_sample50.md` (`legal_basis` de `sample_50`).
 
 **Cómo incorporar cada uno** (ver `CLAUDE.md` y `CORPUS.md`, sección 3):
 
 1. Guardar el original en `data/raw/pdf/` o `data/raw/rtf/`.
-2. Agregar `"archivo": "doc_id"` en `data/mapa_archivos.json`.
-3. Semilla: poner `url` y `fuente` en `data/fuentes_override.json` (clave = `doc_id`). Fuera de la semilla: agregarlo a `_adicionales`.
+2. Agregar `"archivo": "doc_id"` en `data/registros/mapa_archivos.json`.
+3. Semilla: poner `url` y `fuente` en `data/registros/fuentes_override.json` (clave = `doc_id`). Fuera de la semilla: agregarlo a `_adicionales`.
 4. `python src/ingesta/descargar_fuentes.py --solo <doc_id>` y luego `python src/ingesta/parsear_pdf.py --solo <doc_id>` (o `parsear_rtf.py`).
 5. `python src/ingesta/descargar_fuentes.py --corpus-md`.
 
@@ -209,4 +209,4 @@ Los 46 documentos nuevos están en `data/raw/`, mapeados en `mapa_archivos.json`
 | Dow Chemical | `doctrina_arbanza_grupo_sociedades_2024` + `sentencia_sc_5288_2021` | Arbanza = tipo `documento` |
 | Decreto 046/2024, Acuerdo 02/2015, actos legislativos, Decreto 01/1984 | `decreto_46_2024`, `acuerdo_2_2015`, `acto_legislativo_*`, `decreto_1_1984` | la cabecera nombra ambas formas del número ("Decreto 046 de 2024 (Decreto 46 de 2024)") para respaldar la cita escrita de cualquiera de las dos |
 
-Las áreas de los 25 documentos nuevos fuera de la semilla son provisionales: ver `data/areas_por_asignar.md`.
+Las áreas de los 25 documentos nuevos fuera de la semilla son provisionales: ver `docs/ingesta/areas_por_asignar.md`.

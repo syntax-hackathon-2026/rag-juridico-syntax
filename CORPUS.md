@@ -232,7 +232,7 @@ fuente cambia. "Áreas" son las áreas del banco de preguntas (enunciado, secci�
 | `sentencia_su_277_2025` | Sentencia SU-277 de 2025 | Relatoria de la Corte Constitucional | [enlace](https://www.corteconstitucional.gov.co/relatoria/2025/su277-25.htm) | 2026-10-01 | — | 173 | Administrativo |
 | `sentencia_t_256_2025` | Sentencia T-256 de 2025 | Relatoria de la Corte Constitucional | [enlace](https://www.corteconstitucional.gov.co/relatoria/2025/t-256-25.htm) | 2026-10-01 | — | 256 | Constitucional |
 
-**Objetivos de la semilla sin documento propio (3, 3 erratas).** Las erratas son referencias mal escritas del banco que apuntan a un documento ya incorporado; el resto quedó sin descargar. El detalle está en `data/fuentes_descargadas.json`.
+**Objetivos de la semilla sin documento propio (3, 3 erratas).** Las erratas son referencias mal escritas del banco que apuntan a un documento ya incorporado; el resto quedó sin descargar. El detalle está en `data/registros/fuentes_descargadas.json`.
 
 | doc_id | Estado | Motivo |
 |---|---|---|
@@ -284,7 +284,7 @@ prioridad de tiempo frente al banco, etc.).*
 paso (ver el ejemplo para el nivel de detalle esperado por el jurado).*
 
 1. **Descarga.** `src/ingesta/descargar_fuentes.py` (solo biblioteca estándar de
-   Python) recorre los 186 objetivos de `data/seed_targets.json` en orden de ítems
+   Python) recorre los 186 objetivos de `data/registros/seed_targets.json` en orden de ítems
    del banco. Como la semilla solo trae URLs de búsqueda, cada objetivo se resuelve
    con reglas deterministas a la URL del documento: normas en la Secretaría del
    Senado (`basedoc/ley_NNNN_AAAA.html` más todas sus partes `_prNNN.html`),
@@ -295,8 +295,8 @@ paso (ver el ejemplo para el nivel de detalle esperado por el jurado).*
    `pdf`, `pdf_escaneado`, `otros`), con pausa de 1 s entre peticiones. Dieciocho
    documentos de mayor impacto no se descargan con el script: sus PDF se obtienen a
    mano del Gestor Normativo de Función Pública, del ICBF, de la SUIT o de RedJurista
-   (enlaces en `data/referencias_normativas.md`) para controlar la calidad del dato, y
-   el script solo los registra con esa fuente (`data/fuentes_override.json`). Trece son
+   (enlaces en `docs/ingesta/referencias_normativas.md`) para controlar la calidad del dato, y
+   el script solo los registra con esa fuente (`data/registros/fuentes_override.json`). Trece son
    objetivos de la semilla (Constitución, CGP, CST, ET, Estatuto del Consumidor, Código
    de la Infancia, Leyes 80/1993, 1116/2006, 1258/2008, 1581/2012 y 2220/2022, Decreto
    2153/1992 y sentencia SL3385 de 2022). Cinco son adicionales a la semilla, tomados de
@@ -304,7 +304,7 @@ paso (ver el ejemplo para el nivel de detalle esperado por el jurado).*
    Código de Comercio, Código Penal, CPACA y Ley 472 de 1998; sección `_adicionales` del
    mismo archivo, con `doc_id` canónicos de `scripts/citations.py`). La URL real, la
    fecha de consulta, el estado y el sha256 de cada descarga quedan en
-   `data/fuentes_descargadas.json`, a partir del cual se genera el inventario de la
+   `data/registros/fuentes_descargadas.json`, a partir del cual se genera el inventario de la
    sección 1.
 2. **Extracción de texto.**
 3. **Normalización.**

@@ -2,7 +2,7 @@
 
   1. sha256 de cada data_corpus/corpus/<doc_id>.txt contra corpus_manifest.json.
   2. sha256 de data_corpus/indice/chunks.jsonl y version del segmentador contra
-     data/hashes_esperados.json (el segmentador es determinista: mismo corpus -> mismos fragmentos).
+     data/registros/hashes_esperados.json (el segmentador es determinista: mismo corpus -> mismos fragmentos).
 
 exit 1 si algo difiere: NO reconstruir con otro corpus, traer el corpus congelado (enlace publico) o
 corregir el parseo. Ejecutar despues de segmentar/indexar y antes de evaluar o entregar.
@@ -21,7 +21,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 import config  # noqa: E402
 
-HASHES_PATH = config.ROOT / "data" / "hashes_esperados.json"
+HASHES_PATH = config.ROOT / "data" / "registros" / "hashes_esperados.json"
 
 
 def sha256_archivo(ruta: Path) -> str:
@@ -46,7 +46,7 @@ def actuales() -> dict:
 
 def main() -> int:
     ap = argparse.ArgumentParser(description=__doc__.splitlines()[0])
-    ap.add_argument("--actualizar", action="store_true", help="escribir data/hashes_esperados.json con lo local")
+    ap.add_argument("--actualizar", action="store_true", help="escribir data/registros/hashes_esperados.json con lo local")
     args = ap.parse_args()
 
     manifest = json.loads(config.MANIFEST_PATH.read_text(encoding="utf-8"))
@@ -73,7 +73,7 @@ def main() -> int:
             print(f"Congelado en {HASHES_PATH.relative_to(config.ROOT)}: {hoy['sha256_chunks'][:16]}...")
             return 0
         if not HASHES_PATH.is_file():
-            errores.append("falta data/hashes_esperados.json (correr con --actualizar en la maquina de referencia)")
+            errores.append("falta data/registros/hashes_esperados.json (correr con --actualizar en la maquina de referencia)")
         else:
             esperado = json.loads(HASHES_PATH.read_text(encoding="utf-8"))
             for k, v in hoy.items():

@@ -14,7 +14,7 @@ Forma elegida "Articulo N de/del <nombre>." porque:
 
 Canonico de un doc_id, en orden: documento no normativo de DOCUMENTOS -> doc_id que es
 clave de citations.CODES -> regex sobre el doc_id (ley_N_AAAA, decreto_N_AAAA,
-sentencia_<sala>_N_AAAA) -> `canonico` de data/fuentes_descargadas.json (p. ej.
+sentencia_<sala>_N_AAAA) -> `canonico` de data/registros/fuentes_descargadas.json (p. ej.
 constitucion_politica_1991). El doc_id va
 primero porque es la identidad ya verificada: el `canonico` de la semilla arrastra
 erratas del banco que fuentes_override.json corrigio en el doc_id (ley_1563_2012

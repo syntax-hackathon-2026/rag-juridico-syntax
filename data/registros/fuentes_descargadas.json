@@ -1,5 +1,5 @@
 {
-  "semilla": "data/seed_targets.json",
+  "semilla": "data/registros/seed_targets.json",
   "documentos": [
     {
       "doc_id": "constitucion_politica_1991",

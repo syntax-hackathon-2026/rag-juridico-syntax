@@ -19,7 +19,7 @@ git, regenerable con src/ingesta/descargar_fuentes.py), por formato:
     raw/pdf/<archivo original>             PDF manuales o descargados
     raw/rtf/<archivo original>             RTF/DOCX manuales
 
-Los PDF/RTF se asocian a su doc_id en data/mapa_archivos.json; las carpetas de
+Los PDF/RTF se asocian a su doc_id en data/registros/mapa_archivos.json; las carpetas de
 raw/html/ ya se llaman como el doc_id.
 
 Todo el codigo debe importar las rutas de aqui; nadie escribe rutas a mano.
@@ -37,8 +37,8 @@ INDICE_DIR = CORPUS_DIR / "indice"
 RAW_DIR = ROOT / "data" / "raw"  # originales por formato (html/, pdf/, rtf/); leen los parsers de src/ingesta/parsear_*.py
 RAW_HTML_DIR = RAW_DIR / "html"
 PARSEO_PATH = CORPUS_DIR / "parseo.json"  # inventario del parseo, fuera de corpus/ (que se publica tal cual)
-MAPA_ARCHIVOS_PATH = ROOT / "data" / "mapa_archivos.json"  # archivo original -> doc_id (versionado)
-FUENTES_PATH = ROOT / "data" / "fuentes_descargadas.json"  # url/fuente/canonico por doc_id (versionado)
+MAPA_ARCHIVOS_PATH = ROOT / "data" / "registros" / "mapa_archivos.json"  # archivo original -> doc_id (versionado)
+FUENTES_PATH = ROOT / "data" / "registros" / "fuentes_descargadas.json"  # url/fuente/canonico por doc_id (versionado)
 CHUNKS_PATH = INDICE_DIR / "chunks.jsonl"
 FAISS_PATH = INDICE_DIR / "index.faiss"
 BM25_DIR = INDICE_DIR / "bm25"

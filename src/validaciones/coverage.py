@@ -56,7 +56,7 @@ def corpus_cites(chunks: list[dict]) -> set[tuple]:
 def main() -> None:
     ap = argparse.ArgumentParser(description=__doc__.split("\n")[0])
     ap.add_argument("--questions", default=str(ROOT / "data/sample_50.jsonl"))
-    ap.add_argument("--seed", default=str(ROOT / "data/seed_targets.json"))
+    ap.add_argument("--seed", default=str(ROOT / "data/registros/seed_targets.json"))
     ap.add_argument("--chunks", default=str(config.CHUNKS_PATH),
                     help="chunks.jsonl (por defecto el de config); si no existe, solo se compara con el seed")
     ap.add_argument("--verbose", action="store_true", help="lista articulos faltantes e items no cubiertos")
