@@ -12,13 +12,24 @@ Forma elegida "Articulo N de/del <nombre>." porque:
     Politica de Colombia, articulo 29": la ventana de _articles_near se rompe);
   - "Codigo Civil (Ley 57 de 1887)" agrega un cuerpo espurio ("ley","57","1887").
 
-Canonico de un doc_id, en orden: doc_id que es clave de citations.CODES -> regex sobre
-el doc_id (ley_N_AAAA, decreto_N_AAAA, sentencia_<sala>_N_AAAA) -> `canonico` de
-data/fuentes_descargadas.json (p. ej. constitucion_politica_1991). El doc_id va
+Canonico de un doc_id, en orden: documento no normativo de DOCUMENTOS -> doc_id que es
+clave de citations.CODES -> regex sobre el doc_id (ley_N_AAAA, decreto_N_AAAA,
+sentencia_<sala>_N_AAAA) -> `canonico` de data/registros/fuentes_descargadas.json (p. ej.
+constitucion_politica_1991). El doc_id va
 primero porque es la identidad ya verificada: el `canonico` de la semilla arrastra
 erratas del banco que fuentes_override.json corrigio en el doc_id (ley_1563_2012
 figura como "Decreto 1563 de 2012", decreto_2737_1989 como "Ley 2737 de 1989",
 ley_964_2005 como "Ley 964 de 2006").
+
+Ceros a la izquierda: citations compara el numero como texto ("Decreto 046 de 2024" da
+("decreto","046","2024") y no ("decreto","46",...)). El canonico toma la forma de la
+semilla si solo difiere en ceros (decreto_46_2024 -> "046", como lo cita el banco) y la
+cabecera nombra tambien las otras formas usuales ("Acto Legislativo 01 de 2005 (Acto
+Legislativo 1 de 2005)"), asi respalda la cita en cualquiera de ellas (`variantes`).
+
+Documentos no normativos (doctrina, autos, sentencias del Consejo de Estado): citations
+no extrae ninguna cita de ellos. Su cabecera es su nombre legible (DOCUMENTOS) y se
+comprueba que no extraiga nada; se segmentan en ventanas, como las sentencias.
 """
 from __future__ import annotations
 
@@ -56,7 +67,19 @@ NOMBRES: dict[str, tuple[str, str]] = {
     "decision_andina_486": ("Decisión 486 de la Comisión de la Comunidad Andina", "la"),
 }
 TIPOS_NORMA = {"ley": ("Ley", "la"), "decreto": ("Decreto", "el"),
-               "acto_legislativo": ("Acto Legislativo", "el"), "resolucion": ("Resolución", "la")}
+               "acto_legislativo": ("Acto Legislativo", "el"), "resolucion": ("Resolución", "la"),
+               "acuerdo": ("Acuerdo", "el")}
+# Nombre citable de los documentos sin cuerpo que citations reconozca.
+DOCUMENTOS: dict[str, str] = {
+    "sentencia_ce_suj_4_005_2020": "Consejo de Estado, Sección Cuarta, Sentencia de unificación "
+                                   "2020CE-SUJ-4-005 del 26 de noviembre de 2020 (expediente 21329)",
+    "auto_supersociedades_2025_01_730337": "Superintendencia de Sociedades, Auto 2025-01-730337",
+    "doctrina_ompi_agotamiento_patentes_2012": "OMPI, Seminario Regional de Bogotá (febrero de 2012), "
+                                               "Tema 14: El agotamiento del derecho de patente",
+    "doctrina_arbanza_grupo_sociedades_2024": "Arbanza, Análisis comparativo de la extensión del convenio "
+                                              "arbitral a partes no signatarias: el caso de Pakistán, "
+                                              "Francia y Colombia (2024)",
+}
 CORTES = {
     "C": "Corte Constitucional", "T": "Corte Constitucional", "SU": "Corte Constitucional",
     "SL": "Corte Suprema de Justicia, Sala de Casación Laboral",
@@ -66,7 +89,7 @@ CORTES = {
     "STL": "Corte Suprema de Justicia, Sala de Casación Laboral",
 }
 
-_RE_NORMA = re.compile(r"^(ley|decreto|acto_legislativo|resolucion)_(\d+)_(\d{4})$")
+_RE_NORMA = re.compile(r"^(ley|decreto|acto_legislativo|resolucion|acuerdo)_(\d+)_(\d{4})$")
 _RE_SENTENCIA = re.compile(r"^sentencia_([a-z]{1,3})_(\d+)_(\d{4})$")
 
 
@@ -80,12 +103,20 @@ def _fuentes() -> dict[str, dict]:
 
 def canonico(doc_id: str) -> Canonico:
     """Tupla canonica (formato de citations) del cuerpo normativo de un documento."""
+    if doc_id in DOCUMENTOS:
+        return ("documento", doc_id, None)
     if doc_id in citations.CODES:
         return (doc_id, None, None)
     if m := _RE_NORMA.match(doc_id):
         # una ley que citations trata como codigo (ley_1564_2012 -> codigo_general_proceso)
         alias = citations._ALIAS_NUM.get((m[1], m[2]))
-        return (alias, None, None) if alias else (m[1], m[2], m[3])
+        if alias:
+            return (alias, None, None)
+        semilla = _fuentes().get(doc_id, {}).get("canonico") or []
+        if (len(semilla) == 3 and semilla[0] == m[1] and semilla[2] == m[3]
+                and str(semilla[1]).isdigit() and int(semilla[1]) == int(m[2])):
+            return (m[1], semilla[1], m[3])  # misma norma; conserva los ceros del banco ("046")
+        return (m[1], m[2], m[3])
     if m := _RE_SENTENCIA.match(doc_id):
         return ("jurisprudencia", f"{m[1].upper()}-{int(m[2])}", m[3])
     c = _fuentes().get(doc_id, {}).get("canonico")
@@ -99,6 +130,8 @@ def tipo(canon: Canonico) -> str:
     cuerpo = canon[0]
     if cuerpo == "jurisprudencia":
         return "sentencia"
+    if cuerpo == "documento":
+        return "documento"
     if cuerpo == "constitucion":
         return "constitucion"
     if cuerpo == "decision_andina_486":
@@ -123,15 +156,32 @@ def _con_articulo(art: str, nom: str) -> str:
     return f"del {nom}" if art == "el" else f"de la {nom}"
 
 
+def variantes(canon: Canonico) -> set[Canonico]:
+    """Formas del numero que el banco usa para la misma norma: "046"/"46", "01"/"1"."""
+    cuerpo, numero, anio = canon
+    if cuerpo not in TIPOS_NORMA or not str(numero or "").isdigit():
+        return {tuple(canon)}
+    n = int(numero)
+    formas = {numero, str(n)} | ({f"{n:02d}"} if n < 10 else set())
+    return {(cuerpo, f, anio) for f in formas}
+
+
 @lru_cache(maxsize=None)
 def cabecera(canon: Canonico, articulo: str | None = None) -> str:
     """Encabezado citable de un fragmento; falla si no extrae exactamente `canon`."""
-    if canon[0] == "jurisprudencia":
+    esperado = variantes(canon)
+    if canon[0] == "documento":
+        texto, esperado = f"{DOCUMENTOS[canon[1]]}.", set()
+    elif canon[0] == "jurisprudencia":
         sala, anio = canon[1].split("-")[0], canon[2]
         corte = CORTES.get(sala, "Corte")
         texto = f"{corte}, Sentencia {canon[1]} de {anio}."
     else:
         nom, art = nombre(canon)
+        otras = sorted(f for _, f, _ in esperado if f != canon[1])
+        if otras:  # "Decreto 046 de 2024 (Decreto 46 de 2024)"
+            t = TIPOS_NORMA[canon[0]][0]
+            nom += " (" + ", ".join(f"{t} {f} de {canon[2]}" for f in otras) + ")"
         if articulo is None:
             texto = f"{nom}, encabezado y disposiciones iniciales."
         elif articulo.upper().startswith("TRANSITORIO"):
@@ -139,8 +189,8 @@ def cabecera(canon: Canonico, articulo: str | None = None) -> str:
         else:
             texto = f"Artículo {articulo} {_con_articulo(art, nom)}."
     extraidos = citations.bodies(citations.extract(texto))
-    if extraidos != {tuple(canon)}:
-        raise AssertionError(f"la cabecera {texto!r} extrae {extraidos}, se esperaba {{{canon}}}")
+    if extraidos != esperado:
+        raise AssertionError(f"la cabecera {texto!r} extrae {extraidos}, se esperaba {esperado}")
     return texto
 
 

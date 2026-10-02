@@ -13,3 +13,4 @@ corpus/
 data_corpus/
 *.gguf
 *.faiss
+.claude/worktrees/

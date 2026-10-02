@@ -3,8 +3,8 @@
 Primera evaluación completa del RAG v0 sobre `sample_50`, incluyendo el juez de texto libre (`--ragas`).
 
 - **Fecha:** 2026-10-01
-- **Corrida evaluada:** `salidas/sample_e02_v0.jsonl` (50 respuestas; diagnóstico por pregunta en `evaluation/generacion/e02_v0/errores.csv`)
-- **Comando:** `python scripts/evaluate.py --submission salidas/sample_e02_v0.jsonl --split sample --ragas`
+- **Corrida evaluada:** `evaluation/generacion/e02_v0/entrega.jsonl` (50 respuestas; diagnóstico por pregunta en `evaluation/generacion/e02_v0/errores.csv`)
+- **Comando:** `python scripts/evaluate.py --submission evaluation/generacion/e02_v0/entrega.jsonl --split sample --ragas`
 - **Juez:** `z-ai/glm-5.3-flash` (OpenRouter) + encoder local `multilingual-e5-large`
 
 ## Configuración de la corrida
@@ -60,7 +60,7 @@ Lecturas:
 - **Cerradas:** 4 de las 7 falladas son `GENERATION`. La recuperación trajo evidencia útil y el modelo eligió mal (ids 58, 128, 647, 671). Es la mayor brecha frente al baseline (0,733 contra 0,905). El tamaño de `generation_k`, el prompt y el modelo son las palancas.
 - **Abiertas:** las 3 falladas son de recuperación (2 de documento, 1 de artículo). Son solo 5 preguntas, así que es una señal débil.
 - **Recuperación en general:** 10 de 17 preguntas con error son de recuperación (documento o artículo), contra 4 de generación. Las métricas de recuperación por separado están en `evaluation/experiments.csv` (fila `e01_bge_m3_hibrido`).
-- **CORPUS:** 1 caso, probablemente una de las 30 fuentes pendientes (`data/fuentes_pendientes.md`).
+- **CORPUS:** 1 caso, probablemente una de las 30 fuentes pendientes (`docs/ingesta/fuentes_pendientes.md`).
 
 ## Latencia (el problema más grande para el sábado)
 

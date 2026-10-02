@@ -6,12 +6,12 @@ extractor de citas que el evaluador (citations.extract) para que "cubierto"
 signifique "respaldable".
 
 Sin indice, reporta que normas hay que descargar (necesarias vs seed).
-Con indice (indice/chunks.jsonl, una linea JSON por fragmento con campo
+Con indice (data_corpus/indice/chunks.jsonl, una linea JSON por fragmento con campo
 "texto"), reporta ademas que cuerpos y articulos faltan.
 
 Uso:
     python src/validaciones/coverage.py
-    python src/validaciones/coverage.py --chunks indice/chunks.jsonl --verbose
+    python src/validaciones/coverage.py --chunks data_corpus/indice/chunks.jsonl --verbose
 """
 from __future__ import annotations
 
@@ -23,7 +23,9 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT / "scripts"))
+sys.path.insert(0, str(ROOT / "src"))
 import citations  # noqa: E402
+import config  # noqa: E402
 
 
 def load_jsonl(path: Path) -> list[dict]:
@@ -54,8 +56,9 @@ def corpus_cites(chunks: list[dict]) -> set[tuple]:
 def main() -> None:
     ap = argparse.ArgumentParser(description=__doc__.split("\n")[0])
     ap.add_argument("--questions", default=str(ROOT / "data/sample_50.jsonl"))
-    ap.add_argument("--seed", default=str(ROOT / "data/seed_targets.json"))
-    ap.add_argument("--chunks", help="indice/chunks.jsonl; sin el, solo se compara con el seed")
+    ap.add_argument("--seed", default=str(ROOT / "data/registros/seed_targets.json"))
+    ap.add_argument("--chunks", default=str(config.CHUNKS_PATH),
+                    help="chunks.jsonl (por defecto el de config); si no existe, solo se compara con el seed")
     ap.add_argument("--verbose", action="store_true", help="lista articulos faltantes e items no cubiertos")
     args = ap.parse_args()
 
@@ -77,7 +80,7 @@ def main() -> None:
                 arts_by_body[b].add(c[3])
 
     have: set[tuple] | None = None
-    if args.chunks:
+    if Path(args.chunks).exists():
         have = corpus_cites(load_jsonl(Path(args.chunks)))
     have_bodies = {c[:3] for c in have} if have is not None else set()
 

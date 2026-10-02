@@ -1,0 +1,5199 @@
+{
+  "semilla": "data/registros/seed_targets.json",
+  "documentos": [
+    {
+      "doc_id": "constitucion_politica_1991",
+      "titulo": "Constitucion Politica de Colombia de 1991",
+      "fuente": "Gestor Normativo de Funcion Publica",
+      "url": "https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=4125",
+      "areas": [
+        "Derecho administrativo",
+        "Derecho comercial y sociedades",
+        "Derecho constitucional",
+        "Derecho de familia",
+        "Derecho de los mercados [competencia, consumidor, datos personales y propiedad intelectual]",
+        "Derecho laboral",
+        "Derecho penal",
+        "Derecho procesal",
+        "Derecho tributario"
+      ],
+      "items_del_banco": 90,
+      "canonico": [
+        "constitucion",
+        null,
+        null
+      ],
+      "estado": "descargado",
+      "tipo_fuente": "pdf",
+      "fecha_consulta": "2026-09-29",
+      "archivos": [
+        "Constitución_Política_1_de_1991_Asamblea_Nacional_Constituyente.pdf"
+      ],
+      "bytes": 2730167,
+      "sha256": "9094dc31fec3d2d609fc4a1f02a61a0bff3661b536766575939cc6efbf68f9a7",
+      "nota": "PDF del Gestor Normativo (referencias_normativas.md)"
+    },
+    {
+      "doc_id": "codigo_general_proceso",
+      "titulo": "Codigo General del Proceso (Ley 1564 de 2012)",
+      "fuente": "Gestor Normativo de Funcion Publica",
+      "url": "https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=48425",
+      "areas": [
+        "Derecho civil",
+        "Derecho comercial y sociedades",
+        "Derecho de familia",
+        "Derecho de los mercados [competencia, consumidor, datos personales y propiedad intelectual]",
+        "Derecho penal",
+        "Derecho procesal",
+        "Derecho tributario"
+      ],
+      "items_del_banco": 65,
+      "canonico": [
+        "codigo_general_proceso",
+        null,
+        null
+      ],
+      "estado": "descargado",
+      "tipo_fuente": "pdf",
+      "fecha_consulta": "2026-09-29",
+      "archivos": [
+        "Ley_1564_de_2012.pdf"
+      ],
+      "bytes": 669474,
+      "sha256": "640a513938c9f8257d4554db736adcef6f353cd6c8b14b10a7c7d500af4bdd5e",
+      "nota": "PDF del Gestor Normativo (referencias_normativas.md)"
+    },
+    {
+      "doc_id": "codigo_sustantivo_trabajo",
+      "titulo": "Codigo Sustantivo del Trabajo",
+      "fuente": "Gestor Normativo de Funcion Publica",
+      "url": "https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=199983",
+      "areas": [
+        "Derecho laboral"
+      ],
+      "items_del_banco": 37,
+      "canonico": [
+        "codigo_sustantivo_trabajo",
+        null,
+        null
+      ],
+      "estado": "descargado",
+      "tipo_fuente": "pdf",
+      "fecha_consulta": "2026-09-29",
+      "archivos": [
+        "Decreto_2663_de_1950.pdf"
+      ],
+      "bytes": 535739,
+      "sha256": "0b9787f08ff0d5b1f311788f63756c3b61eac4d2fc8056c020f6a793b19f3920",
+      "nota": "PDF del Gestor Normativo (referencias_normativas.md)"
+    },
+    {
+      "doc_id": "estatuto_tributario",
+      "titulo": "Estatuto Tributario (Decreto 624 de 1989)",
+      "fuente": "Gestor Normativo de Funcion Publica",
+      "url": "https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=6533",
+      "areas": [
+        "Derecho civil",
+        "Derecho constitucional",
+        "Derecho tributario"
+      ],
+      "items_del_banco": 35,
+      "canonico": [
+        "estatuto_tributario",
+        null,
+        null
+      ],
+      "estado": "descargado",
+      "tipo_fuente": "pdf",
+      "fecha_consulta": "2026-09-29",
+      "archivos": [
+        "Decreto_Ley_624_de_1989.pdf"
+      ],
+      "bytes": 2721945,
+      "sha256": "3263a045dbf31e581d5102d0d9632fc2d68a52059ab18a22ef1968129ce90daf",
+      "nota": "PDF del Gestor Normativo (referencias_normativas.md)"
+    },
+    {
+      "doc_id": "decision_andina_486",
+      "titulo": "Decision 486 de 2000 de la Comunidad Andina, Regimen Comun sobre Propiedad Industrial",
+      "fuente": "Comunidad Andina",
+      "url": "https://www.comunidadandina.org/StaticFiles/DocOf/DEC486.pdf",
+      "areas": [
+        "Derecho comercial y sociedades",
+        "Derecho de los mercados [competencia, consumidor, datos personales y propiedad intelectual]"
+      ],
+      "items_del_banco": 23,
+      "canonico": [
+        "decision_andina_486",
+        null,
+        null
+      ],
+      "estado": "descargado",
+      "tipo_fuente": "pdf",
+      "fecha_consulta": "2026-09-28",
+      "archivos": [
+        "DEC486.pdf"
+      ],
+      "bytes": 489444,
+      "sha256": "3a5f24e3c3e24ab9cb0a9f8d825b8fd190315b2d821f3507e68f78fdab25a9bc",
+      "nota": "ya estaba en data/raw/ (usar --forzar para repetir)"
+    },
+    {
+      "doc_id": "estatuto_consumidor",
+      "titulo": "Estatuto del Consumidor (Ley 1480 de 2011)",
+      "fuente": "Gestor Normativo de Funcion Publica",
+      "url": "https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=44306",
+      "areas": [
+        "Derecho civil",
+        "Derecho de los mercados [competencia, consumidor, datos personales y propiedad intelectual]"
+      ],
+      "items_del_banco": 13,
+      "canonico": [
+        "estatuto_consumidor",
+        null,
+        null
+      ],
+      "estado": "descargado",
+      "tipo_fuente": "pdf",
+      "fecha_consulta": "2026-09-29",
+      "archivos": [
+        "Ley_1480_de_2011.pdf"
+      ],
+      "bytes": 165371,
+      "sha256": "abc87704f34ff0f02cfc02e3e82c1b18bb72ce50e3e21b6be12d749d07101859",
+      "nota": "PDF del Gestor Normativo (referencias_normativas.md)"
+    },
+    {
+      "doc_id": "ley_80_1993",
+      "titulo": "Ley 80 de 1993",
+      "fuente": "Gestor Normativo de Funcion Publica",
+      "url": "https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=304",
+      "areas": [
+        "Derecho administrativo",
+        "Derecho laboral"
+      ],
+      "items_del_banco": 12,
+      "canonico": [
+        "ley",
+        "80",
+        "1993"
+      ],
+      "estado": "descargado",
+      "tipo_fuente": "pdf",
+      "fecha_consulta": "2026-09-29",
+      "archivos": [
+        "Ley_80_de_1993.pdf"
+      ],
+      "bytes": 261216,
+      "sha256": "e06d406f5a75268056621edb2c5606172cc6b0658b70d7be3bf0010238f48258",
+      "nota": "PDF del Gestor Normativo (referencias_normativas.md)"
+    },
+    {
+      "doc_id": "ley_2220_2022",
+      "titulo": "Ley 2220 de 2022",
+      "fuente": "Gestor Normativo de Funcion Publica",
+      "url": "https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=188766",
+      "areas": [
+        "Derecho civil",
+        "Derecho procesal"
+      ],
+      "items_del_banco": 11,
+      "canonico": [
+        "ley",
+        "2220",
+        "2022"
+      ],
+      "estado": "descargado",
+      "tipo_fuente": "pdf",
+      "fecha_consulta": "2026-09-29",
+      "archivos": [
+        "Ley_2220_de_2022.pdf"
+      ],
+      "bytes": 234424,
+      "sha256": "922023de500482ddffb5c6a8308e31fc5e2f1f98983737b528960ba143515ee5",
+      "nota": "PDF del Gestor Normativo (referencias_normativas.md)"
+    },
+    {
+      "doc_id": "decreto_2153_1992",
+      "titulo": "Decreto 2153 de 1992",
+      "fuente": "Gestor Normativo de Funcion Publica",
+      "url": "https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=38168",
+      "areas": [
+        "Derecho de los mercados [competencia, consumidor, datos personales y propiedad intelectual]"
+      ],
+      "items_del_banco": 10,
+      "canonico": [
+        "decreto",
+        "2153",
+        "1992"
+      ],
+      "estado": "descargado",
+      "tipo_fuente": "pdf",
+      "fecha_consulta": "2026-09-29",
+      "archivos": [
+        "Decreto_2153_de_1992.pdf"
+      ],
+      "bytes": 162362,
+      "sha256": "e34591d8dd3bad043bbe903aff65d47a1951b17b0192ddb6e51eeeb6b0fc4c1e",
+      "nota": "PDF del Gestor Normativo (referencias_normativas.md)"
+    },
+    {
+      "doc_id": "ley_1116_2006",
+      "titulo": "Ley 1116 de 2006",
+      "fuente": "Gestor Normativo de Funcion Publica",
+      "url": "https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=22657",
+      "areas": [
+        "Derecho comercial y sociedades",
+        "Derecho procesal"
+      ],
+      "items_del_banco": 7,
+      "canonico": [
+        "ley",
+        "1116",
+        "2006"
+      ],
+      "estado": "descargado",
+      "tipo_fuente": "pdf",
+      "fecha_consulta": "2026-09-29",
+      "archivos": [
+        "Ley_1116_de_2006.pdf"
+      ],
+      "bytes": 214978,
+      "sha256": "fecd12cf01eada50387d44a90a0cb6fdbf948ce01cd7ce24176c39919a0fca03",
+      "nota": "PDF del Gestor Normativo (referencias_normativas.md)"
+    },
+    {
+      "doc_id": "sentencia_c_355_2006",
+      "titulo": "Sentencia C-355 de 2006",
+      "fuente": "Relatoria de la Corte Constitucional",
+      "url": "https://www.corteconstitucional.gov.co/relatoria/2006/C-355-06.htm",
+      "areas": [
+        "Derecho constitucional",
+        "Derecho penal"
+      ],
+      "items_del_banco": 7,
+      "canonico": [
+        "jurisprudencia",
+        "C-355",
+        "2006"
+      ],
+      "estado": "descargado",
+      "tipo_fuente": "pdf",
+      "fecha_consulta": "2026-09-29",
+      "archivos": [
+        "sentencia-c-355-de-2006.pdf",
+        "c-355-06.rtf"
+      ],
+      "bytes": 6540983,
+      "sha256": "e0c9f42ffb9139f8309cd1a70f70f0473518ea327117a0e0cbf0bef95e7e8c6d",
+      "nota": "ya estaba en data/raw/ (usar --forzar para repetir)"
+    },
+    {
+      "doc_id": "ley_1581_2012",
+      "titulo": "Ley 1581 de 2012",
+      "fuente": "Gestor Normativo de Funcion Publica",
+      "url": "https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=49981",
+      "areas": [
+        "Derecho administrativo",
+        "Derecho constitucional",
+        "Derecho de los mercados [competencia, consumidor, datos personales y propiedad intelectual]"
+      ],
+      "items_del_banco": 6,
+      "canonico": [
+        "ley",
+        "1581",
+        "2012"
+      ],
+      "estado": "descargado",
+      "tipo_fuente": "pdf",
+      "fecha_consulta": "2026-09-29",
+      "archivos": [
+        "Ley_1581_de_2012.pdf"
+      ],
+      "bytes": 99131,
+      "sha256": "bb5607a2b117928c46c808b4161bd4f72660603be4ad0fc9e56b8fb9a4d873c7",
+      "nota": "PDF del Gestor Normativo (referencias_normativas.md)"
+    },
+    {
+      "doc_id": "codigo_infancia",
+      "titulo": "Codigo de la Infancia y la Adolescencia (Ley 1098 de 2006)",
+      "fuente": "Instituto Colombiano de Bienestar Familiar (ICBF)",
+      "url": "https://www.icbf.gov.co/sites/default/files/codigoinfancialey1098.pdf",
+      "areas": [
+        "Derecho de familia"
+      ],
+      "items_del_banco": 5,
+      "canonico": [
+        "codigo_infancia",
+        null,
+        null
+      ],
+      "estado": "descargado",
+      "tipo_fuente": "pdf",
+      "fecha_consulta": "2026-09-29",
+      "archivos": [
+        "codigoinfancialey1098.pdf"
+      ],
+      "bytes": 871885,
+      "sha256": "a78fa5a33067dcaa2fd7eda9d7b17344cde5d460be69a7c2ce4ff50a7b6ac659",
+      "nota": "PDF del ICBF (referencias_normativas.md)"
+    },
+    {
+      "doc_id": "ley_1258_2008",
+      "titulo": "Ley 1258 de 2008",
+      "fuente": "Gestor Normativo de Funcion Publica",
+      "url": "https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=34130",
+      "areas": [
+        "Derecho comercial y sociedades"
+      ],
+      "items_del_banco": 4,
+      "canonico": [
+        "ley",
+        "1258",
+        "2008"
+      ],
+      "estado": "descargado",
+      "tipo_fuente": "pdf",
+      "fecha_consulta": "2026-09-29",
+      "archivos": [
+        "Ley_1258_de_2008.pdf"
+      ],
+      "bytes": 95086,
+      "sha256": "5e71f5c50f3a37bfe296f48b5955d6877a86aefd0340265966ba424185ce2a8a",
+      "nota": "PDF del Gestor Normativo (referencias_normativas.md)"
+    },
+    {
+      "doc_id": "sentencia_c_207_2019",
+      "titulo": "Sentencia C-207 de 2019",
+      "fuente": "Relatoria de la Corte Constitucional",
+      "url": "https://www.corteconstitucional.gov.co/relatoria/2019/C-207-19.htm",
+      "areas": [
+        "Derecho administrativo"
+      ],
+      "items_del_banco": 4,
+      "canonico": [
+        "jurisprudencia",
+        "C-207",
+        "2019"
+      ],
+      "estado": "descargado",
+      "tipo_fuente": "rtf",
+      "fecha_consulta": "2026-09-29",
+      "archivos": [
+        "c-207-19.rtf"
+      ],
+      "bytes": 243855,
+      "sha256": "a10454eb7ca918966deb479d76ab9ca93eb1d4b2f5677b415125bf7bcc262193",
+      "nota": "ya estaba en data/raw/ (usar --forzar para repetir)"
+    },
+    {
+      "doc_id": "sentencia_sl_3385_2022",
+      "titulo": "Sentencia SL-3385 de 2022",
+      "fuente": "RedJurista",
+      "url": "https://www.redjurista.com/appfolders/images/news/CSJ_SCL_SL3385_2022_2022.pdf",
+      "areas": [
+        "Derecho laboral"
+      ],
+      "items_del_banco": 4,
+      "canonico": [
+        "jurisprudencia",
+        "SL-3385",
+        "2022"
+      ],
+      "estado": "descargado",
+      "tipo_fuente": "pdf",
+      "fecha_consulta": "2026-09-29",
+      "archivos": [
+        "CSJ_SCL_SL3385_2022_2022.pdf"
+      ],
+      "bytes": 148445,
+      "sha256": "dbfaa33006356eaae8fc1a640213e728eaeeafd6349f269bdce57488c75b4b3c",
+      "nota": "PDF de RedJurista (referencias_normativas.md); la Relatoria de la Corte Suprema no tiene URL predecible"
+    },
+    {
+      "doc_id": "sentencia_t_323_2024",
+      "titulo": "Sentencia T-323 de 2024",
+      "fuente": "Relatoria de la Corte Constitucional",
+      "url": "https://www.corteconstitucional.gov.co/relatoria/2024/T-323-24.htm",
+      "areas": [
+        "Derecho constitucional"
+      ],
+      "items_del_banco": 4,
+      "canonico": [
+        "jurisprudencia",
+        "T-323",
+        "2024"
+      ],
+      "estado": "descargado",
+      "tipo_fuente": "rtf",
+      "fecha_consulta": "2026-09-29",
+      "archivos": [
+        "t-323-24.rtf"
+      ],
+      "bytes": 775988,
+      "sha256": "34f599517f1f701d01e8d0ecf6bf162f550f91d3f5707c33e3fee1dc0336127b",
+      "nota": "ya estaba en data/raw/ (usar --forzar para repetir)"
+    },
+    {
+      "doc_id": "ley_1010_2006",
+      "titulo": "Ley 1010 de 2006",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/ley_1010_2006.html",
+      "areas": [
+        "Derecho laboral"
+      ],
+      "items_del_banco": 3,
+      "canonico": [
+        "ley",
+        "1010",
+        "2006"
+      ],
+      "estado": "descargado",
+      "tipo_fuente": "html",
+      "fecha_consulta": "2026-09-29",
+      "archivos": [
+        "ley_1010_2006.html"
+      ],
+      "bytes": 54478,
+      "sha256": "fc942a1eb260a1612a540d11a4d1fdc0f1e51a2e493c5830350689d0777c44f7",
+      "nota": "ya estaba en data/raw/ (usar --forzar para repetir)"
+    },
+    {
+      "doc_id": "ley_1150_2007",
+      "titulo": "Ley 1150 de 2007",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/ley_1150_2007.html",
+      "areas": [
+        "Derecho administrativo"
+      ],
+      "items_del_banco": 3,
+      "canonico": [
+        "ley",
+        "1150",
+        "2007"
+      ],
+      "estado": "descargado",
+      "tipo_fuente": "html",
+      "fecha_consulta": "2026-09-29",
+      "archivos": [
+        "ley_1150_2007.html"
+      ],
+      "bytes": 131771,
+      "sha256": "3922de814f75e22d9a0e4e2239591c483671f5317c6a36a0ea8f7cac70479985",
+      "nota": "ya estaba en data/raw/ (usar --forzar para repetir)"
+    },
+    {
+      "doc_id": "ley_1340_2009",
+      "titulo": "Ley 1340 de 2009",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/ley_1340_2009.html",
+      "areas": [
+        "Derecho de los mercados [competencia, consumidor, datos personales y propiedad intelectual]"
+      ],
+      "items_del_banco": 3,
+      "canonico": [
+        "ley",
+        "1340",
+        "2009"
+      ],
+      "estado": "descargado",
+      "tipo_fuente": "html",
+      "fecha_consulta": "2026-09-29",
+      "archivos": [
+        "ley_1340_2009.html"
+      ],
+      "bytes": 78942,
+      "sha256": "fee04b5457c057635640fbaac888e7b48a90eb58c74004eae037a06b660b68d5",
+      "nota": "ya estaba en data/raw/ (usar --forzar para repetir)"
+    },
+    {
+      "doc_id": "ley_153_1887",
+      "titulo": "Ley 153 de 1887",
+      "fuente": "Normograma de la CRA (compilacion Avance Juridico)",
+      "url": "https://normas.cra.gov.co/gestor/docs/ley_0153_1887.htm",
+      "areas": [
+        "Derecho civil",
+        "Derecho tributario"
+      ],
+      "items_del_banco": 3,
+      "canonico": [
+        "ley",
+        "153",
+        "1887"
+      ],
+      "estado": "descargado",
+      "tipo_fuente": "html",
+      "fecha_consulta": "2026-09-29",
+      "archivos": [
+        "ley_0153_1887.htm"
+      ],
+      "bytes": 270772,
+      "sha256": "255d6536bd52874935dfaadc04c1a106464a47a62bdd7f77aa15bdcdc635a358",
+      "nota": ""
+    },
+    {
+      "doc_id": "ley_2437_2024",
+      "titulo": "Ley 2437 de 2024",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/ley_2437_2024.html",
+      "areas": [
+        "Derecho civil",
+        "Derecho procesal"
+      ],
+      "items_del_banco": 3,
+      "canonico": [
+        "ley",
+        "2437",
+        "2024"
+      ],
+      "estado": "descargado",
+      "tipo_fuente": "html",
+      "fecha_consulta": "2026-09-29",
+      "archivos": [
+        "ley_2437_2024.html"
+      ],
+      "bytes": 84405,
+      "sha256": "8e3f3b4c893d997afc99944ac8a3494c7b14db7c58dc21e91f333ee81c2185dd",
+      "nota": "ya estaba en data/raw/ (usar --forzar para repetir)"
+    },
+    {
+      "doc_id": "ley_54_1990",
+      "titulo": "Ley 54 de 1990",
+      "fuente": "Normograma de la CRA (compilacion Avance Juridico)",
+      "url": "https://normas.cra.gov.co/gestor/docs/ley_0054_1990.htm",
+      "areas": [
+        "Derecho de familia"
+      ],
+      "items_del_banco": 3,
+      "canonico": [
+        "ley",
+        "54",
+        "1990"
+      ],
+      "estado": "descargado",
+      "tipo_fuente": "html",
+      "fecha_consulta": "2026-09-29",
+      "archivos": [
+        "ley_0054_1990.htm"
+      ],
+      "bytes": 55428,
+      "sha256": "dd748dc73d840a26005afb89f4f21d18ef173828a239af53c5e5a80d5f17fad0",
+      "nota": ""
+    },
+    {
+      "doc_id": "ley_979_2005",
+      "titulo": "Ley 979 de 2005",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/ley_0979_2005.html",
+      "areas": [
+        "Derecho de familia"
+      ],
+      "items_del_banco": 3,
+      "canonico": [
+        "ley",
+        "979",
+        "2005"
+      ],
+      "estado": "descargado",
+      "tipo_fuente": "html",
+      "fecha_consulta": "2026-09-29",
+      "archivos": [
+        "ley_0979_2005.html"
+      ],
+      "bytes": 24348,
+      "sha256": "75820d6519f357a50b5fb36fc2b43ef9d43b0d21ee019597088863bf0b215fa7",
+      "nota": "ya estaba en data/raw/ (usar --forzar para repetir)"
+    },
+    {
+      "doc_id": "sentencia_c_394_2017",
+      "titulo": "Sentencia C-394 de 2017",
+      "fuente": "Relatoria de la Corte Constitucional",
+      "url": "https://www.corteconstitucional.gov.co/relatoria/2017/C-394-17.htm",
+      "areas": [
+        "Derecho constitucional",
+        "Derecho de familia"
+      ],
+      "items_del_banco": 3,
+      "canonico": [
+        "jurisprudencia",
+        "C-394",
+        "2017"
+      ],
+      "estado": "descargado",
+      "tipo_fuente": "html",
+      "fecha_consulta": "2026-09-28",
+      "archivos": [
+        "C-394-17.htm"
+      ],
+      "bytes": 531593,
+      "sha256": "bc476dda2fab8bb87f3a244f76fc65155ab5ddc6545521a072d8ff83e1eddcdd",
+      "nota": "ya estaba en data/raw/ (usar --forzar para repetir)"
+    },
+    {
+      "doc_id": "sentencia_c_55_2022",
+      "titulo": "Sentencia C-55 de 2022",
+      "fuente": "Relatoria de la Corte Constitucional",
+      "url": "https://www.corteconstitucional.gov.co/relatoria/2022/C-055-22.htm",
+      "areas": [
+        "Derecho constitucional",
+        "Derecho penal"
+      ],
+      "items_del_banco": 3,
+      "canonico": [
+        "jurisprudencia",
+        "C-55",
+        "2022"
+      ],
+      "estado": "descargado",
+      "tipo_fuente": "html",
+      "fecha_consulta": "2026-09-28",
+      "archivos": [
+        "C-055-22.htm"
+      ],
+      "bytes": 4815493,
+      "sha256": "80ca65f0df0c73936e7705f2f28cbcfa37331b95997c283ea6f8c0ef84b1bb6c",
+      "nota": "ya estaba en data/raw/ (usar --forzar para repetir)"
+    },
+    {
+      "doc_id": "sentencia_su_315_2025",
+      "titulo": "Sentencia SU-315 de 2025",
+      "fuente": "Relatoria de la Corte Constitucional",
+      "url": "https://www.corteconstitucional.gov.co/relatoria/2025/SU315-25.htm",
+      "areas": [
+        "Derecho civil"
+      ],
+      "items_del_banco": 3,
+      "canonico": [
+        "jurisprudencia",
+        "SU-315",
+        "2025"
+      ],
+      "estado": "descargado",
+      "tipo_fuente": "html",
+      "fecha_consulta": "2026-09-28",
+      "archivos": [
+        "SU315-25.htm"
+      ],
+      "bytes": 867802,
+      "sha256": "47c75d45c0a47734851bdf18422e71309c3bc611259d312e90996203a362a72b",
+      "nota": "ya estaba en data/raw/ (usar --forzar para repetir)"
+    },
+    {
+      "doc_id": "sentencia_t_243_2018",
+      "titulo": "Sentencia T-243 de 2018",
+      "fuente": "Relatoria de la Corte Constitucional",
+      "url": "https://www.corteconstitucional.gov.co/relatoria/2018/T-243-18.htm",
+      "areas": [
+        "Derecho laboral"
+      ],
+      "items_del_banco": 3,
+      "canonico": [
+        "jurisprudencia",
+        "T-243",
+        "2018"
+      ],
+      "estado": "descargado",
+      "tipo_fuente": "html",
+      "fecha_consulta": "2026-09-28",
+      "archivos": [
+        "T-243-18.htm"
+      ],
+      "bytes": 247381,
+      "sha256": "86dba79e505bf0f5f17879f088588af9bd438cea814304f3228c53a43574e2c8",
+      "nota": "ya estaba en data/raw/ (usar --forzar para repetir)"
+    },
+    {
+      "doc_id": "sentencia_t_760_2008",
+      "titulo": "Sentencia T-760 de 2008",
+      "fuente": "Relatoria de la Corte Constitucional",
+      "url": "https://www.corteconstitucional.gov.co/relatoria/2008/T-760-08.htm",
+      "areas": [
+        "Derecho administrativo",
+        "Derecho constitucional"
+      ],
+      "items_del_banco": 3,
+      "canonico": [
+        "jurisprudencia",
+        "T-760",
+        "2008"
+      ],
+      "estado": "descargado",
+      "tipo_fuente": "html",
+      "fecha_consulta": "2026-09-28",
+      "archivos": [
+        "T-760-08.htm"
+      ],
+      "bytes": 2099989,
+      "sha256": "68777ec244b2effd2b188c6bc8c35149c3722aa802fdacbb99ff3ab8a4ab63e6",
+      "nota": "ya estaba en data/raw/ (usar --forzar para repetir)"
+    },
+    {
+      "doc_id": "ley_1095_2006",
+      "titulo": "Ley 1095 de 2006",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/ley_1095_2006.html",
+      "areas": [
+        "Derecho constitucional",
+        "Derecho penal"
+      ],
+      "items_del_banco": 2,
+      "canonico": [
+        "ley",
+        "1095",
+        "2006"
+      ],
+      "estado": "descargado",
+      "tipo_fuente": "html",
+      "fecha_consulta": "2026-09-29",
+      "archivos": [
+        "ley_1095_2006.html"
+      ],
+      "bytes": 31426,
+      "sha256": "d2295ac73d60990ac755d2e02633e069d75991a551e0e3d4bdc35fb96a99f743",
+      "nota": "ya estaba en data/raw/ (usar --forzar para repetir)"
+    },
+    {
+      "doc_id": "ley_1563_2012",
+      "titulo": "Ley 1563 de 2012 (Estatuto de Arbitraje Nacional e Internacional)",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/ley_1563_2012.html",
+      "areas": [
+        "Derecho procesal"
+      ],
+      "items_del_banco": 2,
+      "canonico": [
+        "decreto",
+        "1563",
+        "2012"
+      ],
+      "estado": "descargado",
+      "tipo_fuente": "html",
+      "fecha_consulta": "2026-09-29",
+      "archivos": [
+        "ley_1563_2012.html",
+        "ley_1563_2012_pr001.html",
+        "ley_1563_2012_pr002.html"
+      ],
+      "bytes": 233907,
+      "sha256": "db9ac5ab544d22ed9dad19600440e77a3e761de4fbee51b2cc3c1193ad3043ba",
+      "nota": "errata de la semilla: 'Decreto 1563 de 2012' (area procesal) es la Ley 1563 de 2012"
+    },
+    {
+      "doc_id": "ley_2141_2021",
+      "titulo": "Ley 2141 de 2021",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/ley_2141_2021.html",
+      "areas": [
+        "Derecho constitucional",
+        "Derecho laboral"
+      ],
+      "items_del_banco": 2,
+      "canonico": [
+        "ley",
+        "2141",
+        "2021"
+      ],
+      "estado": "descargado",
+      "tipo_fuente": "html",
+      "fecha_consulta": "2026-09-29",
+      "archivos": [
+        "ley_2141_2021.html"
+      ],
+      "bytes": 23484,
+      "sha256": "eb81835ff39110946d414594447a652a452775b0a2e470ded507e3a095d8ec11",
+      "nota": "ya estaba en data/raw/ (usar --forzar para repetir)"
+    },
+    {
+      "doc_id": "ley_2452_2025",
+      "titulo": "Ley 2452 de 2025",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/ley_2452_2025.html",
+      "areas": [
+        "Derecho laboral"
+      ],
+      "items_del_banco": 2,
+      "canonico": [
+        "ley",
+        "2452",
+        "2025"
+      ],
+      "estado": "descargado",
+      "tipo_fuente": "html",
+      "fecha_consulta": "2026-09-29",
+      "archivos": [
+        "ley_2452_2025.html",
+        "ley_2452_2025_pr001.html",
+        "ley_2452_2025_pr002.html",
+        "ley_2452_2025_pr003.html",
+        "ley_2452_2025_pr004.html",
+        "ley_2452_2025_pr005.html",
+        "ley_2452_2025_pr006.html",
+        "ley_2452_2025_pr007.html",
+        "ley_2452_2025_pr008.html"
+      ],
+      "bytes": 861608,
+      "sha256": "d44671681f1f4c9b7563fee50890165705e8309fa0aa5fddccb976c5806ae8bb",
+      "nota": "ya estaba en data/raw/ (usar --forzar para repetir)"
+    },
+    {
+      "doc_id": "ley_2466_2025",
+      "titulo": "Ley 2466 de 2025",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/ley_2466_2025.html",
+      "areas": [
+        "Derecho laboral"
+      ],
+      "items_del_banco": 2,
+      "canonico": [
+        "ley",
+        "2466",
+        "2025"
+      ],
+      "estado": "descargado",
+      "tipo_fuente": "html",
+      "fecha_consulta": "2026-09-29",
+      "archivos": [
+        "ley_2466_2025.html"
+      ],
+      "bytes": 166652,
+      "sha256": "cf30892fac5654580af00cc12dc05789875edf5d0e55d7a4d937e99acaa548e7",
+      "nota": "ya estaba en data/raw/ (usar --forzar para repetir)"
+    },
+    {
+      "doc_id": "ley_256_1996",
+      "titulo": "Ley 256 de 1996",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/ley_0256_1996.html",
+      "areas": [
+        "Derecho de los mercados [competencia, consumidor, datos personales y propiedad intelectual]"
+      ],
+      "items_del_banco": 2,
+      "canonico": [
+        "ley",
+        "256",
+        "1996"
+      ],
+      "estado": "descargado",
+      "tipo_fuente": "html",
+      "fecha_consulta": "2026-09-29",
+      "archivos": [
+        "ley_0256_1996.html"
+      ],
+      "bytes": 50280,
+      "sha256": "7473318ff5debc79bdd8fe0a1f4294da1830466a6f4d2cdb800d63a7241ed7aa",
+      "nota": "ya estaba en data/raw/ (usar --forzar para repetir)"
+    },
+    {
+      "doc_id": "ley_50_1990",
+      "titulo": "Ley 50 de 1990",
+      "fuente": "Normograma de la CRA (compilacion Avance Juridico)",
+      "url": "https://normas.cra.gov.co/gestor/docs/ley_0050_1990.htm",
+      "areas": [
+        "Derecho laboral"
+      ],
+      "items_del_banco": 2,
+      "canonico": [
+        "ley",
+        "50",
+        "1990"
+      ],
+      "estado": "descargado",
+      "tipo_fuente": "html",
+      "fecha_consulta": "2026-09-29",
+      "archivos": [
+        "ley_0050_1990.htm"
+      ],
+      "bytes": 248729,
+      "sha256": "baad1b15f1461dbcefed13dd2a6daf6547a51796d62b8a661ea04b884b3a23ec",
+      "nota": ""
+    },
+    {
+      "doc_id": "sentencia_c_117_2018",
+      "titulo": "Sentencia C-117 de 2018",
+      "fuente": "Relatoria de la Corte Constitucional",
+      "url": "https://www.corteconstitucional.gov.co/relatoria/2018/C-117-18.htm",
+      "areas": [
+        "Derecho tributario"
+      ],
+      "items_del_banco": 2,
+      "canonico": [
+        "jurisprudencia",
+        "C-117",
+        "2018"
+      ],
+      "estado": "descargado",
+      "tipo_fuente": "html",
+      "fecha_consulta": "2026-09-28",
+      "archivos": [
+        "C-117-18.htm"
+      ],
+      "bytes": 741234,
+      "sha256": "d93fd01310b9eaa91499390c874a245861ce6986cdb31571076ca49335a5cf00",
+      "nota": "ya estaba en data/raw/ (usar --forzar para repetir)"
+    },
+    {
+      "doc_id": "sentencia_c_127_2011",
+      "titulo": "Sentencia C-127 de 2011",
+      "fuente": "Relatoria de la Corte Constitucional",
+      "url": "https://www.corteconstitucional.gov.co/relatoria/2011/C-127-11.htm",
+      "areas": [
+        "Derecho constitucional"
+      ],
+      "items_del_banco": 2,
+      "canonico": [
+        "jurisprudencia",
+        "C-127",
+        "2011"
+      ],
+      "estado": "descargado",
+      "tipo_fuente": "html",
+      "fecha_consulta": "2026-09-28",
+      "archivos": [
+        "C-127-11.htm"
+      ],
+      "bytes": 204608,
+      "sha256": "8df9fcc2d481f5ed8ced101459da2703a7d93f6e634e298df445035ffb03d1b1",
+      "nota": "ya estaba en data/raw/ (usar --forzar para repetir)"
+    },
+    {
+      "doc_id": "sentencia_c_134_2019",
+      "titulo": "Sentencia C-134 de 2019",
+      "fuente": "Relatoria de la Corte Constitucional",
+      "url": "https://www.corteconstitucional.gov.co/relatoria/2019/C-134-19.htm",
+      "areas": [
+        "Derecho constitucional",
+        "Derecho de familia"
+      ],
+      "items_del_banco": 2,
+      "canonico": [
+        "jurisprudencia",
+        "C-134",
+        "2019"
+      ],
+      "estado": "descargado",
+      "tipo_fuente": "html",
+      "fecha_consulta": "2026-09-28",
+      "archivos": [
+        "C-134-19.htm"
+      ],
+      "bytes": 152882,
+      "sha256": "dd518e04dc3d6ef48c223b1efe75fb047192aeb71052ff6701ca8401c54b3ec1",
+      "nota": "ya estaba en data/raw/ (usar --forzar para repetir)"
+    },
+    {
+      "doc_id": "sentencia_c_15_2018",
+      "titulo": "Sentencia C-15 de 2018",
+      "fuente": "Relatoria de la Corte Constitucional",
+      "url": "https://www.corteconstitucional.gov.co/relatoria/2018/C-015-18.htm",
+      "areas": [
+        "Derecho constitucional",
+        "Derecho penal"
+      ],
+      "items_del_banco": 2,
+      "canonico": [
+        "jurisprudencia",
+        "C-15",
+        "2018"
+      ],
+      "estado": "descargado",
+      "tipo_fuente": "html",
+      "fecha_consulta": "2026-09-28",
+      "archivos": [
+        "C-015-18.htm"
+      ],
+      "bytes": 421635,
+      "sha256": "38b8759ef21de0b4fa68e7d00926c4f547382429089d6e25e1bbfd6a9c5a81e5",
+      "nota": "ya estaba en data/raw/ (usar --forzar para repetir)"
+    },
+    {
+      "doc_id": "sentencia_c_164_2022",
+      "titulo": "Sentencia C-164 de 2022",
+      "fuente": "Relatoria de la Corte Constitucional",
+      "url": "https://www.corteconstitucional.gov.co/relatoria/2022/C-164-22.htm",
+      "areas": [
+        "Derecho constitucional",
+        "Derecho penal"
+      ],
+      "items_del_banco": 2,
+      "canonico": [
+        "jurisprudencia",
+        "C-164",
+        "2022"
+      ],
+      "estado": "descargado",
+      "tipo_fuente": "html",
+      "fecha_consulta": "2026-09-28",
+      "archivos": [
+        "C-164-22.htm"
+      ],
+      "bytes": 621684,
+      "sha256": "8358177e15dda6d5d8122e4548643e9e4e8294b39f15e4bf7c3afa4a54ba9b96",
+      "nota": "ya estaba en data/raw/ (usar --forzar para repetir)"
+    },
+    {
+      "doc_id": "sentencia_c_259_2015",
+      "titulo": "Sentencia C-259 de 2015",
+      "fuente": "Relatoria de la Corte Constitucional",
+      "url": "https://www.corteconstitucional.gov.co/relatoria/2015/C-259-15.htm",
+      "areas": [
+        "Derecho administrativo",
+        "Derecho procesal"
+      ],
+      "items_del_banco": 2,
+      "canonico": [
+        "jurisprudencia",
+        "C-259",
+        "2015"
+      ],
+      "estado": "descargado",
+      "tipo_fuente": "html",
+      "fecha_consulta": "2026-09-28",
+      "archivos": [
+        "C-259-15.htm"
+      ],
+      "bytes": 451890,
+      "sha256": "cd4f645a5215cfb291e5a8f3fbd09492f1d39ee59029cb37b760e70d3266c775",
+      "nota": "ya estaba en data/raw/ (usar --forzar para repetir)"
+    },
+    {
+      "doc_id": "sentencia_c_35_2009",
+      "titulo": "Sentencia C-35 de 2009",
+      "fuente": "Relatoria de la Corte Constitucional",
+      "url": "https://www.corteconstitucional.gov.co/relatoria/2009/C-035-09.htm",
+      "areas": [
+        "Derecho tributario"
+      ],
+      "items_del_banco": 2,
+      "canonico": [
+        "jurisprudencia",
+        "C-35",
+        "2009"
+      ],
+      "estado": "descargado",
+      "tipo_fuente": "html",
+      "fecha_consulta": "2026-09-28",
+      "archivos": [
+        "C-035-09.htm"
+      ],
+      "bytes": 220182,
+      "sha256": "bae27d90b33946bbc5b113a181726205144e3808220a0358383541f38d7faeb0",
+      "nota": "ya estaba en data/raw/ (usar --forzar para repetir)"
+    },
+    {
+      "doc_id": "sentencia_c_431_2001",
+      "titulo": "Sentencia C-431 de 2001",
+      "fuente": "Relatoria de la Corte Constitucional",
+      "url": "https://www.corteconstitucional.gov.co/relatoria/2001/C-431-01.htm",
+      "areas": [
+        "Derecho constitucional",
+        "Derecho penal"
+      ],
+      "items_del_banco": 2,
+      "canonico": [
+        "jurisprudencia",
+        "C-431",
+        "2001"
+      ],
+      "estado": "descargado",
+      "tipo_fuente": "html",
+      "fecha_consulta": "2026-09-28",
+      "archivos": [
+        "C-431-01.htm"
+      ],
+      "bytes": 44800,
+      "sha256": "f1e744879c1a8170d3cd8263cbf28108a5f31fa2ec5f263f9871ab7fe753326e",
+      "nota": "ya estaba en data/raw/ (usar --forzar para repetir)"
+    },
+    {
+      "doc_id": "sentencia_c_500_2024",
+      "titulo": "Sentencia C-500 de 2024",
+      "fuente": "Relatoria de la Corte Constitucional",
+      "url": "https://www.corteconstitucional.gov.co/relatoria/2024/C-500-24.htm",
+      "areas": [
+        "Derecho procesal",
+        "Derecho tributario"
+      ],
+      "items_del_banco": 2,
+      "canonico": [
+        "jurisprudencia",
+        "C-500",
+        "2024"
+      ],
+      "estado": "descargado",
+      "tipo_fuente": "html",
+      "fecha_consulta": "2026-09-28",
+      "archivos": [
+        "C-500-24.htm"
+      ],
+      "bytes": 362869,
+      "sha256": "211dd6cbc4fe45ac6281323a6b84ee6936737457c63b90def3187c53b6caeae7",
+      "nota": "ya estaba en data/raw/ (usar --forzar para repetir)"
+    },
+    {
+      "doc_id": "sentencia_c_507_2004",
+      "titulo": "Sentencia C-507 de 2004",
+      "fuente": "Relatoria de la Corte Constitucional",
+      "url": "https://www.corteconstitucional.gov.co/relatoria/2004/C-507-04.htm",
+      "areas": [
+        "Derecho de familia"
+      ],
+      "items_del_banco": 2,
+      "canonico": [
+        "jurisprudencia",
+        "C-507",
+        "2004"
+      ],
+      "estado": "descargado",
+      "tipo_fuente": "html",
+      "fecha_consulta": "2026-09-28",
+      "archivos": [
+        "C-507-04.htm"
+      ],
+      "bytes": 730334,
+      "sha256": "57f8136d8b6ee6e030d352bfbd59678779025ab6f8c226b605101dad409b2f51",
+      "nota": "ya estaba en data/raw/ (usar --forzar para repetir)"
+    },
+    {
+      "doc_id": "sentencia_c_540_2023",
+      "titulo": "Sentencia C-540 de 2023",
+      "fuente": "Relatoria de la Corte Constitucional",
+      "url": "https://www.corteconstitucional.gov.co/relatoria/2023/C-540-23.htm",
+      "areas": [
+        "Derecho tributario"
+      ],
+      "items_del_banco": 2,
+      "canonico": [
+        "jurisprudencia",
+        "C-540",
+        "2023"
+      ],
+      "estado": "descargado",
+      "tipo_fuente": "html",
+      "fecha_consulta": "2026-09-28",
+      "archivos": [
+        "C-540-23.htm"
+      ],
+      "bytes": 492402,
+      "sha256": "21f5d01519d39c804c0719224aa04c1903586308dd646e54d2c3d7c28fa09956",
+      "nota": "ya estaba en data/raw/ (usar --forzar para repetir)"
+    },
+    {
+      "doc_id": "sentencia_c_582_1999",
+      "titulo": "Sentencia C-582 de 1999",
+      "fuente": "Relatoria de la Corte Constitucional",
+      "url": "https://www.corteconstitucional.gov.co/relatoria/1999/C-582-99.htm",
+      "areas": [
+        "Derecho constitucional"
+      ],
+      "items_del_banco": 2,
+      "canonico": [
+        "jurisprudencia",
+        "C-582",
+        "1999"
+      ],
+      "estado": "descargado",
+      "tipo_fuente": "html",
+      "fecha_consulta": "2026-09-28",
+      "archivos": [
+        "C-582-99.htm"
+      ],
+      "bytes": 92608,
+      "sha256": "ccf16fe0fee60cb72d960db64d89ddb84e571d24fc431b47371901f245e45438",
+      "nota": "ya estaba en data/raw/ (usar --forzar para repetir)"
+    },
+    {
+      "doc_id": "sentencia_c_746_2011",
+      "titulo": "Sentencia C-746 de 2011",
+      "fuente": "Relatoria de la Corte Constitucional",
+      "url": "https://www.corteconstitucional.gov.co/relatoria/2011/C-746-11.htm",
+      "areas": [
+        "Derecho constitucional",
+        "Derecho de familia"
+      ],
+      "items_del_banco": 2,
+      "canonico": [
+        "jurisprudencia",
+        "C-746",
+        "2011"
+      ],
+      "estado": "descargado",
+      "tipo_fuente": "html",
+      "fecha_consulta": "2026-09-28",
+      "archivos": [
+        "C-746-11.htm"
+      ],
+      "bytes": 111266,
+      "sha256": "edc6faafd105d7532ba96c023b7db83da82441e24b82fb2641389ee60afc0529",
+      "nota": "ya estaba en data/raw/ (usar --forzar para repetir)"
+    },
+    {
+      "doc_id": "sentencia_c_748_2011",
+      "titulo": "Sentencia C-748 de 2011",
+      "fuente": "Relatoria de la Corte Constitucional",
+      "url": "https://www.corteconstitucional.gov.co/relatoria/2011/C-748-11.htm",
+      "areas": [
+        "Derecho civil",
+        "Derecho de los mercados [competencia, consumidor, datos personales y propiedad intelectual]"
+      ],
+      "items_del_banco": 2,
+      "canonico": [
+        "jurisprudencia",
+        "C-748",
+        "2011"
+      ],
+      "estado": "descargado",
+      "tipo_fuente": "html",
+      "fecha_consulta": "2026-09-28",
+      "archivos": [
+        "C-748-11.htm"
+      ],
+      "bytes": 1903545,
+      "sha256": "1ee572344bd0db5e0496baea73f373271c8d84a79ef44d2a1a74f5e495e3a997",
+      "nota": "ya estaba en data/raw/ (usar --forzar para repetir)"
+    },
+    {
+      "doc_id": "sentencia_c_94_2021",
+      "titulo": "Sentencia C-94 de 2021",
+      "fuente": "Relatoria de la Corte Constitucional",
+      "url": "https://www.corteconstitucional.gov.co/relatoria/2021/C-094-21.htm",
+      "areas": [
+        "Derecho constitucional"
+      ],
+      "items_del_banco": 2,
+      "canonico": [
+        "jurisprudencia",
+        "C-94",
+        "2021"
+      ],
+      "estado": "descargado",
+      "tipo_fuente": "html",
+      "fecha_consulta": "2026-09-28",
+      "archivos": [
+        "C-094-21.htm"
+      ],
+      "bytes": 670954,
+      "sha256": "1eb9c37e01277fe831099848bfcbab90734fc13b6b07581a996adde607bef08f",
+      "nota": "ya estaba en data/raw/ (usar --forzar para repetir)"
+    },
+    {
+      "doc_id": "sentencia_c_96_2024",
+      "titulo": "Sentencia C-96 de 2024",
+      "fuente": "Relatoria de la Corte Constitucional",
+      "url": "https://www.corteconstitucional.gov.co/relatoria/2024/C-096-24.htm",
+      "areas": [
+        "Derecho de familia"
+      ],
+      "items_del_banco": 2,
+      "canonico": [
+        "jurisprudencia",
+        "C-96",
+        "2024"
+      ],
+      "estado": "descargado",
+      "tipo_fuente": "html",
+      "fecha_consulta": "2026-09-28",
+      "archivos": [
+        "C-096-24.htm"
+      ],
+      "bytes": 671144,
+      "sha256": "741ed59919b4e39a5e83780ea336cde9d29de51e86644c1261d271e3bffbc230",
+      "nota": "ya estaba en data/raw/ (usar --forzar para repetir)"
+    },
+    {
+      "doc_id": "sentencia_sl_648_2018",
+      "titulo": "Sentencia SL-648 de 2018",
+      "fuente": "Relatoria de la Corte Suprema de Justicia",
+      "url": "https://consultajurisprudencial.ramajudicial.gov.co/WebRelatoria/csj/index.xhtml",
+      "areas": [
+        "Derecho laboral"
+      ],
+      "items_del_banco": 2,
+      "canonico": [
+        "jurisprudencia",
+        "SL-648",
+        "2018"
+      ],
+      "estado": "descargado",
+      "tipo_fuente": "pdf",
+      "fecha_consulta": "2026-10-01",
+      "archivos": [
+        "SL648-2018.pdf"
+      ],
+      "bytes": 1635772,
+      "sha256": "458fdc9c10fc725139263ec2b32f70fc039a14e60653fb48aaf49089630cc5ac",
+      "nota": "descarga manual desde la consulta de jurisprudencia de la Relatoria (sin URL directa por documento); archivo SL648-2018.pdf"
+    },
+    {
+      "doc_id": "sentencia_sp_1680_2022",
+      "titulo": "Sentencia SP-1680 de 2022",
+      "fuente": "Relatoria de la Corte Suprema de Justicia",
+      "url": "https://consultajurisprudencial.ramajudicial.gov.co/WebRelatoria/csj/index.xhtml",
+      "areas": [
+        "Derecho penal"
+      ],
+      "items_del_banco": 2,
+      "canonico": [
+        "jurisprudencia",
+        "SP-1680",
+        "2022"
+      ],
+      "estado": "descargado",
+      "tipo_fuente": "pdf",
+      "fecha_consulta": "2026-10-01",
+      "archivos": [
+        "SP1680-2022(60875).pdf"
+      ],
+      "bytes": 439879,
+      "sha256": "cfd220418dcd5f5a208f8d01b56f9235db55f291c71bf4716ae81fcad5cc6d88",
+      "nota": "descarga manual desde la consulta de jurisprudencia de la Relatoria (sin URL directa por documento); archivo SP1680-2022(60875).pdf"
+    },
+    {
+      "doc_id": "sentencia_sp_1945_2019",
+      "titulo": "Sentencia SP-1945 de 2019",
+      "fuente": "Relatoria de la Corte Suprema de Justicia",
+      "url": "https://consultajurisprudencial.ramajudicial.gov.co/WebRelatoria/csj/index.xhtml",
+      "areas": [
+        "Derecho penal"
+      ],
+      "items_del_banco": 2,
+      "canonico": [
+        "jurisprudencia",
+        "SP-1945",
+        "2019"
+      ],
+      "estado": "descargado",
+      "tipo_fuente": "pdf",
+      "fecha_consulta": "2026-10-01",
+      "archivos": [
+        "SP1945-2019(50523).pdf"
+      ],
+      "bytes": 283139,
+      "sha256": "e51ee1e2b68827d8597888525683ac2a3729594abcc154c3a80aa77e9ead1f85",
+      "nota": "descarga manual desde la consulta de jurisprudencia de la Relatoria (sin URL directa por documento); archivo SP1945-2019(50523).pdf"
+    },
+    {
+      "doc_id": "sentencia_su_111_2025",
+      "titulo": "Sentencia SU-111 de 2025",
+      "fuente": "Relatoria de la Corte Constitucional",
+      "url": "https://www.corteconstitucional.gov.co/relatoria/2025/SU111-25.htm",
+      "areas": [
+        "Derecho laboral"
+      ],
+      "items_del_banco": 2,
+      "canonico": [
+        "jurisprudencia",
+        "SU-111",
+        "2025"
+      ],
+      "estado": "descargado",
+      "tipo_fuente": "html",
+      "fecha_consulta": "2026-09-28",
+      "archivos": [
+        "SU111-25.htm"
+      ],
+      "bytes": 758383,
+      "sha256": "1c7be1d69feed8299099ebabf41c38f21ce97bcbe7f4e9eead85c08787bd2c87",
+      "nota": "ya estaba en data/raw/ (usar --forzar para repetir)"
+    },
+    {
+      "doc_id": "sentencia_su_214_2016",
+      "titulo": "Sentencia SU-214 de 2016",
+      "fuente": "Relatoria de la Corte Constitucional",
+      "url": "https://www.corteconstitucional.gov.co/relatoria/2016/SU214-16.htm",
+      "areas": [
+        "Derecho de familia"
+      ],
+      "items_del_banco": 2,
+      "canonico": [
+        "jurisprudencia",
+        "SU-214",
+        "2016"
+      ],
+      "estado": "descargado",
+      "tipo_fuente": "html",
+      "fecha_consulta": "2026-09-28",
+      "archivos": [
+        "SU214-16.htm"
+      ],
+      "bytes": 2557156,
+      "sha256": "1644d3af32b02571b2f8ba0305170c3282b6849def6197df16c2c8ad38b1a85b",
+      "nota": "ya estaba en data/raw/ (usar --forzar para repetir)"
+    },
+    {
+      "doc_id": "sentencia_t_547_2017",
+      "titulo": "Sentencia T-547 de 2017",
+      "fuente": "Relatoria de la Corte Constitucional",
+      "url": "https://www.corteconstitucional.gov.co/relatoria/2017/T-547-17.htm",
+      "areas": [
+        "Derecho constitucional",
+        "Derecho laboral"
+      ],
+      "items_del_banco": 2,
+      "canonico": [
+        "jurisprudencia",
+        "T-547",
+        "2017"
+      ],
+      "estado": "descargado",
+      "tipo_fuente": "html",
+      "fecha_consulta": "2026-09-28",
+      "archivos": [
+        "T-547-17.htm"
+      ],
+      "bytes": 289939,
+      "sha256": "25b215b219a3954e6fe6aa7856aeb17482746fe786199021b24646f579805349",
+      "nota": "ya estaba en data/raw/ (usar --forzar para repetir)"
+    },
+    {
+      "doc_id": "acuerdo_2_2015",
+      "titulo": "Acuerdo 02 de 2015 de la Corte Constitucional (Reglamento de la Corte Constitucional)",
+      "fuente": "Regimen Legal de Bogota (Secretaria Juridica Distrital)",
+      "url": "https://www.alcaldiabogota.gov.co/sisjur/normas/Norma1.jsp?i=154021",
+      "areas": [
+        "Derecho constitucional"
+      ],
+      "items_del_banco": 1,
+      "canonico": [
+        "acuerdo",
+        "02",
+        "2015"
+      ],
+      "estado": "descargado",
+      "tipo_fuente": "pdf",
+      "fecha_consulta": "2026-10-01",
+      "archivos": [
+        "Acuerdo 02 de 2015 Corte Constitucional de Colombia.pdf"
+      ],
+      "bytes": 680345,
+      "sha256": "d5d6b40eac83f1f80d404b1deeaa531674dfd08e8c2db96ed1c793b7dcaf7ea0",
+      "nota": "Acuerdo 02 de 2015 de la Sala Plena de la Corte Constitucional; PDF impreso desde Sisjur"
+    },
+    {
+      "doc_id": "codigo_disciplinario",
+      "titulo": "Codigo General Disciplinario (Ley 1952 de 2019)",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/ley_1952_2019.html",
+      "areas": [
+        "Derecho administrativo"
+      ],
+      "items_del_banco": 1,
+      "canonico": [
+        "codigo_disciplinario",
+        null,
+        null
+      ],
+      "estado": "descargado",
+      "tipo_fuente": "html",
+      "fecha_consulta": "2026-09-29",
+      "archivos": [
+        "ley_1952_2019.html",
+        "ley_1952_2019_pr001.html",
+        "ley_1952_2019_pr002.html",
+        "ley_1952_2019_pr003.html",
+        "ley_1952_2019_pr004.html",
+        "ley_1952_2019_pr005.html",
+        "ley_1952_2019_pr006.html"
+      ],
+      "bytes": 632706,
+      "sha256": "5de66b4696f4982a0c65de14d2bd91b0296e6d2ddba108693e9912e038ce8b64",
+      "nota": "ya estaba en data/raw/ (usar --forzar para repetir)"
+    },
+    {
+      "doc_id": "codigo_nacional_policia",
+      "titulo": "Codigo Nacional de Seguridad y Convivencia Ciudadana (Ley 1801 de 2016)",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/ley_1801_2016.html",
+      "areas": [
+        "Derecho procesal"
+      ],
+      "items_del_banco": 1,
+      "canonico": [
+        "codigo_nacional_policia",
+        null,
+        null
+      ],
+      "estado": "descargado",
+      "tipo_fuente": "html",
+      "fecha_consulta": "2026-09-29",
+      "archivos": [
+        "ley_1801_2016.html",
+        "ley_1801_2016_pr001.html",
+        "ley_1801_2016_pr002.html",
+        "ley_1801_2016_pr003.html",
+        "ley_1801_2016_pr004.html",
+        "ley_1801_2016_pr005.html"
+      ],
+      "bytes": 801057,
+      "sha256": "01a2a3024eb872dbd5579563874187992f1f5e0686337d825cfc1ec94b6f2ae7",
+      "nota": "ya estaba en data/raw/ (usar --forzar para repetir)"
+    },
+    {
+      "doc_id": "decreto_1082_2015",
+      "titulo": "Decreto 1082 de 2015",
+      "fuente": "Normograma de la CRA (compilacion Avance Juridico)",
+      "url": "https://normas.cra.gov.co/gestor/docs/decreto_1082_2015.htm",
+      "areas": [
+        "Derecho administrativo"
+      ],
+      "items_del_banco": 1,
+      "canonico": [
+        "decreto",
+        "1082",
+        "2015"
+      ],
+      "estado": "descargado",
+      "tipo_fuente": "html",
+      "fecha_consulta": "2026-09-29",
+      "archivos": [
+        "decreto_1082_2015.htm"
+      ],
+      "bytes": 1566829,
+      "sha256": "fdda2e8282abebb8ce932122c1652e4f5114ab6f8c3dec07722e3c7d5b58541d",
+      "nota": ""
+    },
+    {
+      "doc_id": "decreto_1742_2020",
+      "titulo": "Decreto 1742 de 2020",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/decreto_1742_2020.html",
+      "areas": [
+        "Derecho tributario"
+      ],
+      "items_del_banco": 1,
+      "canonico": [
+        "decreto",
+        "1742",
+        "2020"
+      ],
+      "estado": "descargado",
+      "tipo_fuente": "html",
+      "fecha_consulta": "2026-09-29",
+      "archivos": [
+        "decreto_1742_2020.html",
+        "decreto_1742_2020_pr001.html"
+      ],
+      "bytes": 347181,
+      "sha256": "5062825223485198cac0e5e2a85d28ddc3e0e6d7d62bad75319f9f782fc93596",
+      "nota": "ya estaba en data/raw/ (usar --forzar para repetir)"
+    },
+    {
+      "doc_id": "decreto_175_2025",
+      "titulo": "Decreto 175 de 2025",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/decreto_0175_2025.html",
+      "areas": [
+        "Derecho tributario"
+      ],
+      "items_del_banco": 1,
+      "canonico": [
+        "decreto",
+        "175",
+        "2025"
+      ],
+      "estado": "descargado",
+      "tipo_fuente": "html",
+      "fecha_consulta": "2026-09-29",
+      "archivos": [
+        "decreto_0175_2025.html"
+      ],
+      "bytes": 74397,
+      "sha256": "0cbce421cae422dc07c7c1b36bba5d11e0cb3810317df7324a9d6410e7b9a70d",
+      "nota": "ya estaba en data/raw/ (usar --forzar para repetir)"
+    },
+    {
+      "doc_id": "decreto_2067_1991",
+      "titulo": "Decreto 2067 de 1991",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/decreto_2067_1991.html",
+      "areas": [
+        "Derecho constitucional"
+      ],
+      "items_del_banco": 1,
+      "canonico": [
+        "decreto",
+        "2067",
+        "1991"
+      ],
+      "estado": "descargado",
+      "tipo_fuente": "html",
+      "fecha_consulta": "2026-09-29",
+      "archivos": [
+        "decreto_2067_1991.html",
+        "decreto_2067_1991_pr001.html"
+      ],
+      "bytes": 94392,
+      "sha256": "606b73a1430c50aa0d5d8c93c2dba341a7f3b411a13b918f0572ef0dfaad938a",
+      "nota": "ya estaba en data/raw/ (usar --forzar para repetir)"
+    },
+    {
+      "doc_id": "decreto_24_2016",
+      "titulo": "Decreto 24 de 2016",
+      "fuente": "Normograma de Colpensiones (compilacion Avance Juridico)",
+      "url": "https://normativa.colpensiones.gov.co/colpens/docs/decreto_0024_2016.htm",
+      "areas": [
+        "Derecho comercial y sociedades"
+      ],
+      "items_del_banco": 1,
+      "canonico": [
+        "decreto",
+        "24",
+        "2016"
+      ],
+      "estado": "descargado",
+      "tipo_fuente": "html",
+      "fecha_consulta": "2026-09-29",
+      "archivos": [
+        "decreto_0024_2016.htm"
+      ],
+      "bytes": 25897,
+      "sha256": "9f43980b98121454fc94cada92bd2dd2e0d96762361efd26ff17fc7488bd96c9",
+      "nota": ""
+    },
+    {
+      "doc_id": "decreto_2737_1989",
+      "titulo": "Codigo del Menor (Decreto 2737 de 1989)",
+      "fuente": "Normograma de Colpensiones (compilacion Avance Juridico)",
+      "url": "https://normativa.colpensiones.gov.co/colpens/docs/codigo_menor.htm",
+      "areas": [
+        "Derecho laboral"
+      ],
+      "items_del_banco": 1,
+      "canonico": [
+        "ley",
+        "2737",
+        "1989"
+      ],
+      "estado": "descargado",
+      "tipo_fuente": "html",
+      "fecha_consulta": "2026-09-29",
+      "archivos": [
+        "codigo_menor.htm",
+        "codigo_menor_pr001.htm",
+        "codigo_menor_pr002.htm",
+        "codigo_menor_pr003.htm",
+        "codigo_menor_pr004.htm",
+        "codigo_menor_pr005.htm",
+        "codigo_menor_pr006.htm",
+        "codigo_menor_pr007.htm"
+      ],
+      "bytes": 638552,
+      "sha256": "74ab10b706e88a66910e4002d5d9ee3e1d56375c43658fc8001bec68a469c421",
+      "nota": "errata de la semilla: es el Decreto 2737 de 1989 (derogado casi por completo por la Ley 1098 de 2006)"
+    },
+    {
+      "doc_id": "decreto_405_2025",
+      "titulo": "Decreto 405 de 2025",
+      "fuente": "Normograma de Colpensiones (compilacion Avance Juridico)",
+      "url": "https://normativa.colpensiones.gov.co/compilacion/docs/decreto_0405_2025.htm",
+      "areas": [
+        "Derecho laboral"
+      ],
+      "items_del_banco": 1,
+      "canonico": [
+        "decreto",
+        "405",
+        "2025"
+      ],
+      "estado": "descargado",
+      "tipo_fuente": "html",
+      "fecha_consulta": "2026-09-29",
+      "archivos": [
+        "decreto_0405_2025.htm"
+      ],
+      "bytes": 56498,
+      "sha256": "f4d95a085fd8039aa15dfdbc08e23404eeddf1ffc6394823759c21ae3ae1a783",
+      "nota": ""
+    },
+    {
+      "doc_id": "decreto_4334_2008",
+      "titulo": "Decreto 4334 de 2008",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/decreto_4334_2008.html",
+      "areas": [
+        "Derecho comercial y sociedades"
+      ],
+      "items_del_banco": 1,
+      "canonico": [
+        "decreto",
+        "4334",
+        "2008"
+      ],
+      "estado": "descargado",
+      "tipo_fuente": "html",
+      "fecha_consulta": "2026-09-29",
+      "archivos": [
+        "decreto_4334_2008.html"
+      ],
+      "bytes": 57409,
+      "sha256": "2dc0f7c8a5ec46e25c9b08e84898b13f668706df8cbc63ded2d4594ab6b84408",
+      "nota": "ya estaba en data/raw/ (usar --forzar para repetir)"
+    },
+    {
+      "doc_id": "decreto_4436_2005",
+      "titulo": "Decreto 4436 de 2005",
+      "fuente": "Normograma de Colpensiones (compilacion Avance Juridico)",
+      "url": "https://normativa.colpensiones.gov.co/colpens/docs/decreto_4436_2005.htm",
+      "areas": [
+        "Derecho de familia"
+      ],
+      "items_del_banco": 1,
+      "canonico": [
+        "decreto",
+        "4436",
+        "2005"
+      ],
+      "estado": "descargado",
+      "tipo_fuente": "html",
+      "fecha_consulta": "2026-09-29",
+      "archivos": [
+        "decreto_4436_2005.htm"
+      ],
+      "bytes": 27207,
+      "sha256": "9c7eab8575a271a65e2393ef905ae74f35a42bd4b247f971060e5e40b43deee0",
+      "nota": ""
+    },
+    {
+      "doc_id": "decreto_46_2024",
+      "titulo": "Decreto 046 de 2024",
+      "fuente": "Gestor Normativo de Funcion Publica",
+      "url": "https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=228530",
+      "areas": [
+        "Derecho comercial y sociedades"
+      ],
+      "items_del_banco": 1,
+      "canonico": [
+        "decreto",
+        "046",
+        "2024"
+      ],
+      "estado": "descargado",
+      "tipo_fuente": "pdf",
+      "fecha_consulta": "2026-10-01",
+      "archivos": [
+        "Decreto_46_de_2024.pdf"
+      ],
+      "bytes": 124059,
+      "sha256": "e9a2697651c95d91ce1bb134a2aa33762f674049db85e3db2fad612ce752d605",
+      "nota": "no esta en el Senado; PDF del Gestor Normativo"
+    },
+    {
+      "doc_id": "decreto_4886_2011",
+      "titulo": "Decreto 4886 de 2011",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/decreto_4886_2011.html",
+      "areas": [
+        "Derecho de los mercados [competencia, consumidor, datos personales y propiedad intelectual]"
+      ],
+      "items_del_banco": 1,
+      "canonico": [
+        "decreto",
+        "4886",
+        "2011"
+      ],
+      "estado": "descargado",
+      "tipo_fuente": "html",
+      "fecha_consulta": "2026-09-29",
+      "archivos": [
+        "decreto_4886_2011.html"
+      ],
+      "bytes": 148578,
+      "sha256": "fef7568aea25f173723fada396d1e1dccb5da2ad11c3131ad9ffe414c5208638",
+      "nota": "ya estaba en data/raw/ (usar --forzar para repetir)"
+    },
+    {
+      "doc_id": "decreto_663_1993",
+      "titulo": "Estatuto Organico del Sistema Financiero (Decreto 663 de 1993)",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/estatuto_organico_sistema_financiero.html",
+      "areas": [
+        "Derecho comercial y sociedades"
+      ],
+      "items_del_banco": 1,
+      "canonico": [
+        "decreto",
+        "663",
+        "1993"
+      ],
+      "estado": "descargado",
+      "tipo_fuente": "html",
+      "fecha_consulta": "2026-09-29",
+      "archivos": [
+        "estatuto_organico_sistema_financiero.html",
+        "estatuto_organico_sistema_financiero_pr001.html",
+        "estatuto_organico_sistema_financiero_pr002.html",
+        "estatuto_organico_sistema_financiero_pr003.html",
+        "estatuto_organico_sistema_financiero_pr004.html",
+        "estatuto_organico_sistema_financiero_pr005.html",
+        "estatuto_organico_sistema_financiero_pr006.html",
+        "estatuto_organico_sistema_financiero_pr007.html",
+        "estatuto_organico_sistema_financiero_pr008.html",
+        "estatuto_organico_sistema_financiero_pr009.html",
+        "estatuto_organico_sistema_financiero_pr010.html",
+        "estatuto_organico_sistema_financiero_pr011.html",
+        "estatuto_organico_sistema_financiero_pr012.html"
+      ],
+      "bytes": 1817324,
+      "sha256": "491fc1e602877215cdcc84a24ab4075e2358caebb5c71f8cd3700cb9839b11f8",
+      "nota": "el Senado lo publica con el nombre del estatuto"
+    },
+    {
+      "doc_id": "decreto_780_2016",
+      "titulo": "Decreto 780 de 2016",
+      "fuente": "Normograma de la CRA (compilacion Avance Juridico)",
+      "url": "https://normas.cra.gov.co/gestor/docs/decreto_0780_2016.htm",
+      "areas": [
+        "Derecho penal"
+      ],
+      "items_del_banco": 1,
+      "canonico": [
+        "decreto",
+        "780",
+        "2016"
+      ],
+      "estado": "descargado",
+      "tipo_fuente": "html",
+      "fecha_consulta": "2026-09-29",
+      "archivos": [
+        "decreto_0780_2016.htm"
+      ],
+      "bytes": 5242783,
+      "sha256": "e82d2576931b0b3ff47ce4742de4c560cf33f90c1b887d1e4177bd0faab10cf0",
+      "nota": ""
+    },
+    {
+      "doc_id": "decreto_875_2008",
+      "titulo": "Decreto 875 de 2008",
+      "fuente": "Normograma de la CRA (compilacion Avance Juridico)",
+      "url": "https://normas.cra.gov.co/gestor/docs/decreto_0875_2008.htm",
+      "areas": [
+        "Derecho laboral"
+      ],
+      "items_del_banco": 1,
+      "canonico": [
+        "decreto",
+        "875",
+        "2008"
+      ],
+      "estado": "descargado",
+      "tipo_fuente": "html",
+      "fecha_consulta": "2026-09-29",
+      "archivos": [
+        "decreto_0875_2008.htm"
+      ],
+      "bytes": 42683,
+      "sha256": "25c0ba303aaaa5a75de7c9315c63ee7dd315b74ab238632f8ec46c95e76daf27",
+      "nota": ""
+    },
+    {
+      "doc_id": "decreto_960_1970",
+      "titulo": "Decreto 960 de 1970",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/decreto_0960_1970.html",
+      "areas": [
+        "Derecho civil"
+      ],
+      "items_del_banco": 1,
+      "canonico": [
+        "decreto",
+        "960",
+        "1970"
+      ],
+      "estado": "descargado",
+      "tipo_fuente": "html",
+      "fecha_consulta": "2026-09-29",
+      "archivos": [
+        "decreto_0960_1970.html",
+        "decreto_0960_1970_pr001.html",
+        "decreto_0960_1970_pr002.html",
+        "decreto_0960_1970_pr003.html",
+        "decreto_0960_1970_pr004.html",
+        "decreto_0960_1970_pr005.html"
+      ],
+      "bytes": 374961,
+      "sha256": "6e1710dcd3a81b97f59abe8de7ce267c34dcbf65e51831aa0173b8ace5e1ed6b",
+      "nota": "ya estaba en data/raw/ (usar --forzar para repetir)"
+    },
+    {
+      "doc_id": "ley_11500_2007",
+      "titulo": "Ley 11500 de 2007",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/ley_11500_2007.html",
+      "areas": [
+        "Derecho constitucional"
+      ],
+      "items_del_banco": 1,
+      "canonico": [
+        "ley",
+        "11500",
+        "2007"
+      ],
+      "estado": "errata",
+      "tipo_fuente": null,
+      "fecha_consulta": null,
+      "archivos": [],
+      "bytes": 0,
+      "sha256": null,
+      "nota": "errata de la semilla: es la Ley 1150 de 2007, ya en el corpus como ley_1150_2007"
+    },
+    {
+      "doc_id": "ley_1150_2005",
+      "titulo": "Ley 1150 de 2005",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/ley_1150_2005.html",
+      "areas": [
+        "Derecho administrativo"
+      ],
+      "items_del_banco": 1,
+      "canonico": [
+        "ley",
+        "1150",
+        "2005"
+      ],
+      "estado": "errata",
+      "tipo_fuente": null,
+      "fecha_consulta": null,
+      "archivos": [],
+      "bytes": 0,
+      "sha256": null,
+      "nota": "errata de la semilla: la Ley 1150 es de 2007, ya en el corpus como ley_1150_2007"
+    },
+    {
+      "doc_id": "ley_1151_2007",
+      "titulo": "Ley 1151 de 2007",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/ley_1151_2007.html",
+      "areas": [
+        "Derecho administrativo"
+      ],
+      "items_del_banco": 1,
+      "canonico": [
+        "ley",
+        "1151",
+        "2007"
+      ],
+      "estado": "descargado",
+      "tipo_fuente": "html",
+      "fecha_consulta": "2026-09-29",
+      "archivos": [
+        "ley_1151_2007.html",
+        "ley_1151_2007_pr001.html",
+        "ley_1151_2007_pr002.html",
+        "ley_1151_2007_pr003.html"
+      ],
+      "bytes": 690473,
+      "sha256": "0ae8806ad65676ccf7e004a548f01abe01e112f073d38d8ae6cd35a1e2e5ce8c",
+      "nota": "ya estaba en data/raw/ (usar --forzar para repetir)"
+    },
+    {
+      "doc_id": "ley_116_2006",
+      "titulo": "Ley 116 de 2006",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/ley_0116_2006.html",
+      "areas": [
+        "Derecho de los mercados [competencia, consumidor, datos personales y propiedad intelectual]"
+      ],
+      "items_del_banco": 1,
+      "canonico": [
+        "ley",
+        "116",
+        "2006"
+      ],
+      "estado": "errata",
+      "tipo_fuente": null,
+      "fecha_consulta": null,
+      "archivos": [],
+      "bytes": 0,
+      "sha256": null,
+      "nota": "errata de la semilla: probablemente la Ley 1116 de 2006 (insolvencia), ya en el corpus como ley_1116_2006"
+    },
+    {
+      "doc_id": "ley_137_1994",
+      "titulo": "Ley 137 de 1994",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/ley_0137_1994.html",
+      "areas": [
+        "Derecho tributario"
+      ],
+      "items_del_banco": 1,
+      "canonico": [
+        "ley",
+        "137",
+        "1994"
+      ],
+      "estado": "descargado",
+      "tipo_fuente": "html",
+      "fecha_consulta": "2026-09-29",
+      "archivos": [
+        "ley_0137_1994.html",
+        "ley_0137_1994_pr001.html"
+      ],
+      "bytes": 111125,
+      "sha256": "938d1dbe408d079fbd2b46442b6c244905bdb0bfd3ce5ffeaf0495639902fc20",
+      "nota": "ya estaba en data/raw/ (usar --forzar para repetir)"
+    },
+    {
+      "doc_id": "ley_1473_2011",
+      "titulo": "Ley 1473 de 2011",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/ley_1473_2011.html",
+      "areas": [
+        "Derecho tributario"
+      ],
+      "items_del_banco": 1,
+      "canonico": [
+        "ley",
+        "1473",
+        "2011"
+      ],
+      "estado": "descargado",
+      "tipo_fuente": "html",
+      "fecha_consulta": "2026-09-29",
+      "archivos": [
+        "ley_1473_2011.html"
+      ],
+      "bytes": 48488,
+      "sha256": "938915a901cb7adbce24f48ce6fd0018a26177d168c781d07ee495a65e0cff23",
+      "nota": "ya estaba en data/raw/ (usar --forzar para repetir)"
+    },
+    {
+      "doc_id": "ley_155_1959",
+      "titulo": "Ley 155 de 1959",
+      "fuente": "Normograma de la CRA (compilacion Avance Juridico)",
+      "url": "https://normas.cra.gov.co/gestor/docs/ley_0155_1959.htm",
+      "areas": [
+        "Derecho de los mercados [competencia, consumidor, datos personales y propiedad intelectual]"
+      ],
+      "items_del_banco": 1,
+      "canonico": [
+        "ley",
+        "155",
+        "1959"
+      ],
+      "estado": "descargado",
+      "tipo_fuente": "html",
+      "fecha_consulta": "2026-09-29",
+      "archivos": [
+        "ley_0155_1959.htm"
+      ],
+      "bytes": 63909,
+      "sha256": "73dd2748e5c294819107ab3d4635931bfebf2a23d82958c274b75c1ae212e4a9",
+      "nota": ""
+    },
+    {
+      "doc_id": "ley_1562_2012",
+      "titulo": "Ley 1562 de 2012",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/ley_1562_2012.html",
+      "areas": [
+        "Derecho laboral"
+      ],
+      "items_del_banco": 1,
+      "canonico": [
+        "ley",
+        "1562",
+        "2012"
+      ],
+      "estado": "descargado",
+      "tipo_fuente": "html",
+      "fecha_consulta": "2026-09-29",
+      "archivos": [
+        "ley_1562_2012.html"
+      ],
+      "bytes": 101697,
+      "sha256": "1bd03739670805e05f0c0db4e84e2ffdaae416996be0f9471a15188ef4800ddd",
+      "nota": "ya estaba en data/raw/ (usar --forzar para repetir)"
+    },
+    {
+      "doc_id": "ley_1607_2012",
+      "titulo": "Ley 1607 de 2012",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/ley_1607_2012.html",
+      "areas": [
+        "Derecho tributario"
+      ],
+      "items_del_banco": 1,
+      "canonico": [
+        "ley",
+        "1607",
+        "2012"
+      ],
+      "estado": "descargado",
+      "tipo_fuente": "html",
+      "fecha_consulta": "2026-09-29",
+      "archivos": [
+        "ley_1607_2012.html",
+        "ley_1607_2012_pr001.html",
+        "ley_1607_2012_pr002.html",
+        "ley_1607_2012_pr003.html",
+        "ley_1607_2012_pr004.html"
+      ],
+      "bytes": 791099,
+      "sha256": "f83cae80d611195ec646db695f77cd4fcd3cc849299196e53077b55fa52c7896",
+      "nota": "ya estaba en data/raw/ (usar --forzar para repetir)"
+    },
+    {
+      "doc_id": "ley_160_1994",
+      "titulo": "Ley 160 de 1994",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/ley_0160_1994.html",
+      "areas": [
+        "Derecho civil"
+      ],
+      "items_del_banco": 1,
+      "canonico": [
+        "ley",
+        "160",
+        "1994"
+      ],
+      "estado": "descargado",
+      "tipo_fuente": "html",
+      "fecha_consulta": "2026-09-29",
+      "archivos": [
+        "ley_0160_1994.html",
+        "ley_0160_1994_pr001.html",
+        "ley_0160_1994_pr002.html"
+      ],
+      "bytes": 289902,
+      "sha256": "5789b9cef16a7decdfb82ef0b498ac7d3bb080d6782782323cdee76ccd1d0add",
+      "nota": "ya estaba en data/raw/ (usar --forzar para repetir)"
+    },
+    {
+      "doc_id": "ley_1692_2013",
+      "titulo": "Ley 1692 de 2013 (Convenio Colombia-Portugal para evitar la doble imposicion)",
+      "fuente": "Normograma de la DIAN",
+      "url": "https://www.dian.gov.co/normatividad/convenios/ConveniosTributacionInternacional/B149.pdf",
+      "areas": [
+        "Derecho tributario"
+      ],
+      "items_del_banco": 1,
+      "canonico": [
+        "ley",
+        "1692",
+        "2017"
+      ],
+      "estado": "descargado",
+      "tipo_fuente": "pdf",
+      "fecha_consulta": "2026-10-01",
+      "archivos": [
+        "ley1692_2013.pdf"
+      ],
+      "bytes": 600687,
+      "sha256": "4a265a2652d741f41a1ef1b96aef546f1b4ddd6b8b86f432f16106eee28dc13e",
+      "nota": "errata de la semilla: la Ley 1692 es de 2013 (aprueba el convenio con Portugal)"
+    },
+    {
+      "doc_id": "ley_1700_2013",
+      "titulo": "Ley 1700 de 2013",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/ley_1700_2013.html",
+      "areas": [
+        "Derecho comercial y sociedades"
+      ],
+      "items_del_banco": 1,
+      "canonico": [
+        "ley",
+        "1700",
+        "2013"
+      ],
+      "estado": "descargado",
+      "tipo_fuente": "html",
+      "fecha_consulta": "2026-09-29",
+      "archivos": [
+        "ley_1700_2013.html"
+      ],
+      "bytes": 39093,
+      "sha256": "78e7588e1a2dee37098c5f3d24e14757eff9bed04d3bde5755fd424e758c7f3f",
+      "nota": "ya estaba en data/raw/ (usar --forzar para repetir)"
+    },
+    {
+      "doc_id": "ley_1755_2015",
+      "titulo": "Ley 1755 de 2015",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/ley_1755_2015.html",
+      "areas": [
+        "Derecho administrativo"
+      ],
+      "items_del_banco": 1,
+      "canonico": [
+        "ley",
+        "1755",
+        "2015"
+      ],
+      "estado": "descargado",
+      "tipo_fuente": "html",
+      "fecha_consulta": "2026-09-29",
+      "archivos": [
+        "ley_1755_2015.html"
+      ],
+      "bytes": 49843,
+      "sha256": "40bc6067aeb3345dc14f1e729a03564a617c9545f8a1783a788bf456899e542b",
+      "nota": "ya estaba en data/raw/ (usar --forzar para repetir)"
+    },
+    {
+      "doc_id": "ley_1819_2016",
+      "titulo": "Ley 1819 de 2016",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/ley_1819_2016.html",
+      "areas": [
+        "Derecho tributario"
+      ],
+      "items_del_banco": 1,
+      "canonico": [
+        "ley",
+        "1819",
+        "2016"
+      ],
+      "estado": "descargado",
+      "tipo_fuente": "html",
+      "fecha_consulta": "2026-09-29",
+      "archivos": [
+        "ley_1819_2016.html",
+        "ley_1819_2016_pr001.html",
+        "ley_1819_2016_pr002.html",
+        "ley_1819_2016_pr003.html",
+        "ley_1819_2016_pr004.html",
+        "ley_1819_2016_pr005.html",
+        "ley_1819_2016_pr006.html",
+        "ley_1819_2016_pr007.html"
+      ],
+      "bytes": 1319226,
+      "sha256": "a92ba8842d2ee35dae2937d6e114bf5e281009611eba6b01ee4da0a1200fd8be",
+      "nota": "ya estaba en data/raw/ (usar --forzar para repetir)"
+    },
+    {
+      "doc_id": "ley_1909_2018",
+      "titulo": "Ley 1909 de 2018",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/ley_1909_2018.html",
+      "areas": [
+        "Derecho constitucional"
+      ],
+      "items_del_banco": 1,
+      "canonico": [
+        "ley",
+        "1909",
+        "2018"
+      ],
+      "estado": "descargado",
+      "tipo_fuente": "html",
+      "fecha_consulta": "2026-09-29",
+      "archivos": [
+        "ley_1909_2018.html"
+      ],
+      "bytes": 75527,
+      "sha256": "4564fe3d4500870746e3f2477ea8b3d1120708651b1548c93e52ab000fb5d2b7",
+      "nota": "ya estaba en data/raw/ (usar --forzar para repetir)"
+    },
+    {
+      "doc_id": "ley_2114_2021",
+      "titulo": "Ley 2114 de 2021",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/ley_2114_2021.html",
+      "areas": [
+        "Derecho laboral"
+      ],
+      "items_del_banco": 1,
+      "canonico": [
+        "ley",
+        "2114",
+        "2021"
+      ],
+      "estado": "descargado",
+      "tipo_fuente": "html",
+      "fecha_consulta": "2026-09-29",
+      "archivos": [
+        "ley_2114_2021.html"
+      ],
+      "bytes": 42293,
+      "sha256": "d5381731016de445c2fa1b050d9827aa5e64e2188be5cbdb88008a55c1e77038",
+      "nota": "ya estaba en data/raw/ (usar --forzar para repetir)"
+    },
+    {
+      "doc_id": "ley_2157_2021",
+      "titulo": "Ley 2157 de 2021",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/ley_2157_2021.html",
+      "areas": [
+        "Derecho de los mercados [competencia, consumidor, datos personales y propiedad intelectual]"
+      ],
+      "items_del_banco": 1,
+      "canonico": [
+        "ley",
+        "2157",
+        "2021"
+      ],
+      "estado": "descargado",
+      "tipo_fuente": "html",
+      "fecha_consulta": "2026-09-29",
+      "archivos": [
+        "ley_2157_2021.html"
+      ],
+      "bytes": 44872,
+      "sha256": "fea33e9e2871e34086bcecb4692138f0614087f2a432f2f3d47387c5458c5412",
+      "nota": "ya estaba en data/raw/ (usar --forzar para repetir)"
+    },
+    {
+      "doc_id": "ley_2160_2021",
+      "titulo": "Ley 2160 de 2021",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/ley_2160_2021.html",
+      "areas": [
+        "Derecho administrativo"
+      ],
+      "items_del_banco": 1,
+      "canonico": [
+        "ley",
+        "2160",
+        "2021"
+      ],
+      "estado": "descargado",
+      "tipo_fuente": "html",
+      "fecha_consulta": "2026-09-29",
+      "archivos": [
+        "ley_2160_2021.html"
+      ],
+      "bytes": 33759,
+      "sha256": "2400b648e1dc2d65ee25129342be9b4a4fd24eacd33fc9a3954f747c6f8b00fd",
+      "nota": "ya estaba en data/raw/ (usar --forzar para repetir)"
+    },
+    {
+      "doc_id": "ley_2251_2022",
+      "titulo": "Ley 2251 de 2022",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/ley_2251_2022.html",
+      "areas": [
+        "Derecho civil"
+      ],
+      "items_del_banco": 1,
+      "canonico": [
+        "ley",
+        "2251",
+        "2022"
+      ],
+      "estado": "descargado",
+      "tipo_fuente": "html",
+      "fecha_consulta": "2026-09-29",
+      "archivos": [
+        "ley_2251_2022.html"
+      ],
+      "bytes": 65374,
+      "sha256": "f70b293a6fa14013d2383604b85053deae191e57ce27721ae034cce3fe83d837",
+      "nota": "ya estaba en data/raw/ (usar --forzar para repetir)"
+    },
+    {
+      "doc_id": "ley_23_1991",
+      "titulo": "Ley 23 de 1991 (descongestion de despachos judiciales)",
+      "fuente": "Gestor Normativo de Funcion Publica",
+      "url": "https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=6546",
+      "areas": [
+        "Derecho constitucional"
+      ],
+      "items_del_banco": 1,
+      "canonico": [
+        "ley",
+        "23",
+        "1961"
+      ],
+      "estado": "descargado",
+      "tipo_fuente": "pdf",
+      "fecha_consulta": "2026-10-01",
+      "archivos": [
+        "Ley_23_de_1991.pdf"
+      ],
+      "bytes": 148187,
+      "sha256": "6ceef7176934f4a90091a91a6dbfa90923921af40a60f55e79a14273fa929c9e",
+      "nota": "errata de la semilla: 'Ley 23 de 1961' (area constitucional) es la Ley 23 de 1991"
+    },
+    {
+      "doc_id": "ley_29_1982",
+      "titulo": "Ley 29 de 1982",
+      "fuente": "Normograma de Colpensiones (compilacion Avance Juridico)",
+      "url": "https://normativa.colpensiones.gov.co/colpens/docs/ley_0029_1982.htm",
+      "areas": [
+        "Derecho de familia"
+      ],
+      "items_del_banco": 1,
+      "canonico": [
+        "ley",
+        "29",
+        "1982"
+      ],
+      "estado": "descargado",
+      "tipo_fuente": "html",
+      "fecha_consulta": "2026-09-29",
+      "archivos": [
+        "ley_0029_1982.htm"
+      ],
+      "bytes": 25323,
+      "sha256": "dc77872080609189d7a0171178055c0471e68b1f96b05f808ebff69f08112e74",
+      "nota": ""
+    },
+    {
+      "doc_id": "ley_527_1999",
+      "titulo": "Ley 527 de 1999",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/ley_0527_1999.html",
+      "areas": [
+        "Derecho comercial y sociedades"
+      ],
+      "items_del_banco": 1,
+      "canonico": [
+        "ley",
+        "527",
+        "1999"
+      ],
+      "estado": "descargado",
+      "tipo_fuente": "html",
+      "fecha_consulta": "2026-09-29",
+      "archivos": [
+        "ley_0527_1999.html",
+        "ley_0527_1999_pr001.html"
+      ],
+      "bytes": 96538,
+      "sha256": "c292485222ce7c2a6f092b1d6006fdaed5d4cde710e22889f21d36bee864160e",
+      "nota": "ya estaba en data/raw/ (usar --forzar para repetir)"
+    },
+    {
+      "doc_id": "ley_600_2000",
+      "titulo": "Ley 600 de 2000",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/ley_0600_2000.html",
+      "areas": [
+        "Derecho penal"
+      ],
+      "items_del_banco": 1,
+      "canonico": [
+        "ley",
+        "600",
+        "2000"
+      ],
+      "estado": "descargado",
+      "tipo_fuente": "html",
+      "fecha_consulta": "2026-09-29",
+      "archivos": [
+        "ley_0600_2000.html",
+        "ley_0600_2000_pr001.html",
+        "ley_0600_2000_pr002.html",
+        "ley_0600_2000_pr003.html",
+        "ley_0600_2000_pr004.html",
+        "ley_0600_2000_pr005.html",
+        "ley_0600_2000_pr006.html",
+        "ley_0600_2000_pr007.html",
+        "ley_0600_2000_pr008.html",
+        "ley_0600_2000_pr009.html",
+        "ley_0600_2000_pr010.html",
+        "ley_0600_2000_pr011.html",
+        "ley_0600_2000_pr012.html"
+      ],
+      "bytes": 1359954,
+      "sha256": "b4da3560fe1910e42331514427bfadea12f79248d037ddc131d7b2803c2d33b6",
+      "nota": "ya estaba en data/raw/ (usar --forzar para repetir)"
+    },
+    {
+      "doc_id": "ley_640_2001",
+      "titulo": "Ley 640 de 2001",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/ley_0640_2001.html",
+      "areas": [
+        "Derecho de los mercados [competencia, consumidor, datos personales y propiedad intelectual]"
+      ],
+      "items_del_banco": 1,
+      "canonico": [
+        "ley",
+        "640",
+        "2001"
+      ],
+      "estado": "descargado",
+      "tipo_fuente": "html",
+      "fecha_consulta": "2026-09-29",
+      "archivos": [
+        "ley_0640_2001.html",
+        "ley_0640_2001_pr001.html"
+      ],
+      "bytes": 114813,
+      "sha256": "17256f4f5bfbd9ef370e2cd7fa3ff243cc25dd64f7bfaf2d8a4799bfc1ceb431",
+      "nota": "ya estaba en data/raw/ (usar --forzar para repetir)"
+    },
+    {
+      "doc_id": "ley_678_2001",
+      "titulo": "Ley 678 de 2001",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/ley_0678_2001.html",
+      "areas": [
+        "Derecho procesal"
+      ],
+      "items_del_banco": 1,
+      "canonico": [
+        "ley",
+        "678",
+        "2001"
+      ],
+      "estado": "descargado",
+      "tipo_fuente": "html",
+      "fecha_consulta": "2026-09-29",
+      "archivos": [
+        "ley_0678_2001.html"
+      ],
+      "bytes": 66265,
+      "sha256": "e5cb026999e8f7c52672ff1ffe54fe930d0b61f22ffc25d4e9761999326d6b46",
+      "nota": "ya estaba en data/raw/ (usar --forzar para repetir)"
+    },
+    {
+      "doc_id": "ley_721_2001",
+      "titulo": "Ley 721 de 2001",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/ley_0721_2001.html",
+      "areas": [
+        "Derecho de familia"
+      ],
+      "items_del_banco": 1,
+      "canonico": [
+        "ley",
+        "721",
+        "2001"
+      ],
+      "estado": "descargado",
+      "tipo_fuente": "html",
+      "fecha_consulta": "2026-09-29",
+      "archivos": [
+        "ley_0721_2001.html"
+      ],
+      "bytes": 32944,
+      "sha256": "3832206d70c8a37f285c45fd17d9e17fc44e811608e95620fd7160c29719c4d8",
+      "nota": "ya estaba en data/raw/ (usar --forzar para repetir)"
+    },
+    {
+      "doc_id": "ley_75_1968",
+      "titulo": "Ley 75 de 1968",
+      "fuente": "Normograma de Colpensiones (compilacion Avance Juridico)",
+      "url": "https://normativa.colpensiones.gov.co/colpens/docs/ley_0075_1968.htm",
+      "areas": [
+        "Derecho de familia"
+      ],
+      "items_del_banco": 1,
+      "canonico": [
+        "ley",
+        "75",
+        "1968"
+      ],
+      "estado": "descargado",
+      "tipo_fuente": "html",
+      "fecha_consulta": "2026-09-29",
+      "archivos": [
+        "ley_0075_1968.htm",
+        "ley_0075_1968_pr001.htm"
+      ],
+      "bytes": 109085,
+      "sha256": "b00419f3fcfe0246c02cd56100c2caf7f8eec03067406b23b7f81d35c62cd95d",
+      "nota": ""
+    },
+    {
+      "doc_id": "ley_769_2002",
+      "titulo": "Ley 769 de 2002",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/ley_0769_2002.html",
+      "areas": [
+        "Derecho civil"
+      ],
+      "items_del_banco": 1,
+      "canonico": [
+        "ley",
+        "769",
+        "2002"
+      ],
+      "estado": "descargado",
+      "tipo_fuente": "html",
+      "fecha_consulta": "2026-09-29",
+      "archivos": [
+        "ley_0769_2002.html",
+        "ley_0769_2002_pr001.html",
+        "ley_0769_2002_pr002.html",
+        "ley_0769_2002_pr003.html",
+        "ley_0769_2002_pr004.html"
+      ],
+      "bytes": 523138,
+      "sha256": "6d34c708b5da5bdf19b62100c38997a8f56fd9ad59f4bd867aa910cdd4945652",
+      "nota": "ya estaba en data/raw/ (usar --forzar para repetir)"
+    },
+    {
+      "doc_id": "ley_820_2003",
+      "titulo": "Ley 820 de 2003",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/ley_0820_2003.html",
+      "areas": [
+        "Derecho comercial y sociedades"
+      ],
+      "items_del_banco": 1,
+      "canonico": [
+        "ley",
+        "820",
+        "2003"
+      ],
+      "estado": "descargado",
+      "tipo_fuente": "html",
+      "fecha_consulta": "2026-09-29",
+      "archivos": [
+        "ley_0820_2003.html",
+        "ley_0820_2003_pr001.html"
+      ],
+      "bytes": 111123,
+      "sha256": "94bc295b5972f8f9f57792aa862b2a97171fbea43ed9e2e6347c61acae2c60b5",
+      "nota": "ya estaba en data/raw/ (usar --forzar para repetir)"
+    },
+    {
+      "doc_id": "ley_964_2005",
+      "titulo": "Ley 964 de 2005 (Mercado de Valores)",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/ley_0964_2005.html",
+      "areas": [
+        "Derecho comercial y sociedades"
+      ],
+      "items_del_banco": 1,
+      "canonico": [
+        "ley",
+        "964",
+        "2006"
+      ],
+      "estado": "descargado",
+      "tipo_fuente": "html",
+      "fecha_consulta": "2026-09-29",
+      "archivos": [
+        "ley_0964_2005.html",
+        "ley_0964_2005_pr001.html",
+        "ley_0964_2005_pr002.html"
+      ],
+      "bytes": 259358,
+      "sha256": "285e4518596a6927066ddf729be93709868170a68b66e5558c7a8a23085bdd1e",
+      "nota": "errata de la semilla: la Ley 964 es de 2005"
+    },
+    {
+      "doc_id": "sentencia_c_1033_2002",
+      "titulo": "Sentencia C-1033 de 2002",
+      "fuente": "Relatoria de la Corte Constitucional",
+      "url": "https://www.corteconstitucional.gov.co/relatoria/2002/C-1033-02.htm",
+      "areas": [
+        "Derecho de familia"
+      ],
+      "items_del_banco": 1,
+      "canonico": [
+        "jurisprudencia",
+        "C-1033",
+        "2002"
+      ],
+      "estado": "descargado",
+      "tipo_fuente": "html",
+      "fecha_consulta": "2026-09-28",
+      "archivos": [
+        "C-1033-02.htm"
+      ],
+      "bytes": 179430,
+      "sha256": "a0ceefb750be4f20cda5707757d8cb6bf45d468c230c738ac3b1c3cf68b54297",
+      "nota": "ya estaba en data/raw/ (usar --forzar para repetir)"
+    },
+    {
+      "doc_id": "sentencia_c_106_2018",
+      "titulo": "Sentencia C-106 de 2018",
+      "fuente": "Relatoria de la Corte Constitucional",
+      "url": "https://www.corteconstitucional.gov.co/relatoria/2018/C-106-18.htm",
+      "areas": [
+        "Derecho constitucional"
+      ],
+      "items_del_banco": 1,
+      "canonico": [
+        "jurisprudencia",
+        "C-106",
+        "2018"
+      ],
+      "estado": "descargado",
+      "tipo_fuente": "html",
+      "fecha_consulta": "2026-09-28",
+      "archivos": [
+        "C-106-18.htm"
+      ],
+      "bytes": 451460,
+      "sha256": "124bee261f05366abea9d0fd6ba8a6513ae2a56077f0b84cfc92b14c8677f425",
+      "nota": "ya estaba en data/raw/ (usar --forzar para repetir)"
+    },
+    {
+      "doc_id": "sentencia_c_1189_2000",
+      "titulo": "Sentencia C-1189 de 2000",
+      "fuente": "Relatoria de la Corte Constitucional",
+      "url": "https://www.corteconstitucional.gov.co/relatoria/2000/C-1189-00.htm",
+      "areas": [
+        "Derecho penal"
+      ],
+      "items_del_banco": 1,
+      "canonico": [
+        "jurisprudencia",
+        "C-1189",
+        "2000"
+      ],
+      "estado": "descargado",
+      "tipo_fuente": "html",
+      "fecha_consulta": "2026-09-28",
+      "archivos": [
+        "C-1189-00.htm"
+      ],
+      "bytes": 230291,
+      "sha256": "9c823139b126fd986a282db8091a72de732dc305fab2a67114451971314c2bcc",
+      "nota": "ya estaba en data/raw/ (usar --forzar para repetir)"
+    },
+    {
+      "doc_id": "sentencia_c_131_2018",
+      "titulo": "Sentencia C-131 de 2018",
+      "fuente": "Relatoria de la Corte Constitucional",
+      "url": "https://www.corteconstitucional.gov.co/relatoria/2018/C-131-18.htm",
+      "areas": [
+        "Derecho de familia"
+      ],
+      "items_del_banco": 1,
+      "canonico": [
+        "jurisprudencia",
+        "C-131",
+        "2018"
+      ],
+      "estado": "descargado",
+      "tipo_fuente": "html",
+      "fecha_consulta": "2026-09-28",
+      "archivos": [
+        "C-131-18.htm"
+      ],
+      "bytes": 271683,
+      "sha256": "953cb175ea738297a05aa220b71831f05b14fdb33c5a0c84e739793daa5902af",
+      "nota": "ya estaba en data/raw/ (usar --forzar para repetir)"
+    },
+    {
+      "doc_id": "sentencia_c_145_2018",
+      "titulo": "Sentencia C-145 de 2018",
+      "fuente": "Relatoria de la Corte Constitucional",
+      "url": "https://www.corteconstitucional.gov.co/relatoria/2018/C-145-18.htm",
+      "areas": [
+        "Derecho comercial y sociedades"
+      ],
+      "items_del_banco": 1,
+      "canonico": [
+        "jurisprudencia",
+        "C-145",
+        "2018"
+      ],
+      "estado": "descargado",
+      "tipo_fuente": "html",
+      "fecha_consulta": "2026-09-28",
+      "archivos": [
+        "C-145-18.htm"
+      ],
+      "bytes": 319178,
+      "sha256": "2bbe08cc9c23f2df1b89610e4bf6782e718e0089a095d68e73e04e14409f0351",
+      "nota": "ya estaba en data/raw/ (usar --forzar para repetir)"
+    },
+    {
+      "doc_id": "sentencia_c_145_2020",
+      "titulo": "Sentencia C-145 de 2020",
+      "fuente": "Relatoria de la Corte Constitucional",
+      "url": "https://www.corteconstitucional.gov.co/relatoria/2020/C-145-20.htm",
+      "areas": [
+        "Derecho constitucional"
+      ],
+      "items_del_banco": 1,
+      "canonico": [
+        "jurisprudencia",
+        "C-145",
+        "2020"
+      ],
+      "estado": "descargado",
+      "tipo_fuente": "html",
+      "fecha_consulta": "2026-09-28",
+      "archivos": [
+        "C-145-20.htm"
+      ],
+      "bytes": 1603416,
+      "sha256": "dc9c093a03d4ff889d4a37eeeed2c88f8d089dde30ec6d7789002002a06018f4",
+      "nota": "ya estaba en data/raw/ (usar --forzar para repetir)"
+    },
+    {
+      "doc_id": "sentencia_c_149_1993",
+      "titulo": "Sentencia C-149 de 1993",
+      "fuente": "Relatoria de la Corte Constitucional",
+      "url": "https://www.corteconstitucional.gov.co/relatoria/1993/C-149-93.htm",
+      "areas": [
+        "Derecho constitucional"
+      ],
+      "items_del_banco": 1,
+      "canonico": [
+        "jurisprudencia",
+        "C-149",
+        "1993"
+      ],
+      "estado": "descargado",
+      "tipo_fuente": "html",
+      "fecha_consulta": "2026-09-28",
+      "archivos": [
+        "C-149-93.htm"
+      ],
+      "bytes": 132088,
+      "sha256": "3f59473f8165a9d7eac46f436af6fb3ea38fb6df0b54a3bab8fcd3efe93c6878",
+      "nota": "ya estaba en data/raw/ (usar --forzar para repetir)"
+    },
+    {
+      "doc_id": "sentencia_c_170_2004",
+      "titulo": "Sentencia C-170 de 2004",
+      "fuente": "Relatoria de la Corte Constitucional",
+      "url": "https://www.corteconstitucional.gov.co/relatoria/2004/C-170-04.htm",
+      "areas": [
+        "Derecho laboral"
+      ],
+      "items_del_banco": 1,
+      "canonico": [
+        "jurisprudencia",
+        "C-170",
+        "2004"
+      ],
+      "estado": "descargado",
+      "tipo_fuente": "html",
+      "fecha_consulta": "2026-09-28",
+      "archivos": [
+        "C-170-04.htm"
+      ],
+      "bytes": 350188,
+      "sha256": "0f6fb3dac71a156778e9b6a499fca505406622cbf4ae6a67cb1a4d9449008db1",
+      "nota": "ya estaba en data/raw/ (usar --forzar para repetir)"
+    },
+    {
+      "doc_id": "sentencia_c_183_2025",
+      "titulo": "Sentencia C-183 de 2025",
+      "fuente": "Relatoria de la Corte Constitucional",
+      "url": "https://www.corteconstitucional.gov.co/relatoria/2025/C-183-25.htm",
+      "areas": [
+        "Derecho civil"
+      ],
+      "items_del_banco": 1,
+      "canonico": [
+        "jurisprudencia",
+        "C-183",
+        "2025"
+      ],
+      "estado": "descargado",
+      "tipo_fuente": "html",
+      "fecha_consulta": "2026-09-28",
+      "archivos": [
+        "C-183-25.htm"
+      ],
+      "bytes": 561539,
+      "sha256": "3e2eaff8289e97e7360a596de8f77d588478f135129950ac22023928e0e0b0cb",
+      "nota": "ya estaba en data/raw/ (usar --forzar para repetir)"
+    },
+    {
+      "doc_id": "sentencia_c_201_2002",
+      "titulo": "Sentencia C-201 de 2002",
+      "fuente": "Relatoria de la Corte Constitucional",
+      "url": "https://www.corteconstitucional.gov.co/relatoria/2002/C-201-02.htm",
+      "areas": [
+        "Derecho laboral"
+      ],
+      "items_del_banco": 1,
+      "canonico": [
+        "jurisprudencia",
+        "C-201",
+        "2002"
+      ],
+      "estado": "descargado",
+      "tipo_fuente": "html",
+      "fecha_consulta": "2026-09-28",
+      "archivos": [
+        "C-201-02.htm"
+      ],
+      "bytes": 310721,
+      "sha256": "f89f974b1c951a882eccc1935cad7684ab595070d330651da192d91ae95c3a17",
+      "nota": "ya estaba en data/raw/ (usar --forzar para repetir)"
+    },
+    {
+      "doc_id": "sentencia_c_225_1995",
+      "titulo": "Sentencia C-225 de 1995",
+      "fuente": "Relatoria de la Corte Constitucional",
+      "url": "https://www.corteconstitucional.gov.co/relatoria/1995/C-225-95.htm",
+      "areas": [
+        "Derecho constitucional"
+      ],
+      "items_del_banco": 1,
+      "canonico": [
+        "jurisprudencia",
+        "C-225",
+        "1995"
+      ],
+      "estado": "descargado",
+      "tipo_fuente": "html",
+      "fecha_consulta": "2026-09-28",
+      "archivos": [
+        "C-225-95.htm"
+      ],
+      "bytes": 432338,
+      "sha256": "98566f5351d767a89ebb566ee5ee4c5b253d7116aeabc9ffc6a4c76dd4a01427",
+      "nota": "ya estaba en data/raw/ (usar --forzar para repetir)"
+    },
+    {
+      "doc_id": "sentencia_c_22_1996",
+      "titulo": "Sentencia C-22 de 1996",
+      "fuente": "Relatoria de la Corte Constitucional",
+      "url": "https://www.corteconstitucional.gov.co/relatoria/1996/C-022-96.htm",
+      "areas": [
+        "Derecho constitucional"
+      ],
+      "items_del_banco": 1,
+      "canonico": [
+        "jurisprudencia",
+        "C-22",
+        "1996"
+      ],
+      "estado": "descargado",
+      "tipo_fuente": "html",
+      "fecha_consulta": "2026-09-28",
+      "archivos": [
+        "C-022-96.htm"
+      ],
+      "bytes": 86973,
+      "sha256": "57b566b51cbe4272e01ac2e3a7ef34ad758f0555fa3cc3a3dc25c5afb1560967",
+      "nota": "ya estaba en data/raw/ (usar --forzar para repetir)"
+    },
+    {
+      "doc_id": "sentencia_c_233_2021",
+      "titulo": "Sentencia C-233 de 2021",
+      "fuente": "Relatoria de la Corte Constitucional",
+      "url": "https://www.corteconstitucional.gov.co/relatoria/2021/C-233-21.htm",
+      "areas": [
+        "Derecho constitucional"
+      ],
+      "items_del_banco": 1,
+      "canonico": [
+        "jurisprudencia",
+        "C-233",
+        "2021"
+      ],
+      "estado": "descargado",
+      "tipo_fuente": "html",
+      "fecha_consulta": "2026-09-28",
+      "archivos": [
+        "C-233-21.htm"
+      ],
+      "bytes": 1444241,
+      "sha256": "271d8061be5da5bc2d7ed61c5425496c5fd2b50946cc2d38a6e93ed2045602d5",
+      "nota": "ya estaba en data/raw/ (usar --forzar para repetir)"
+    },
+    {
+      "doc_id": "sentencia_c_239_1997",
+      "titulo": "Sentencia C-239 de 1997",
+      "fuente": "Relatoria de la Corte Constitucional",
+      "url": "https://www.corteconstitucional.gov.co/relatoria/1997/C-239-97.htm",
+      "areas": [
+        "Derecho constitucional"
+      ],
+      "items_del_banco": 1,
+      "canonico": [
+        "jurisprudencia",
+        "C-239",
+        "1997"
+      ],
+      "estado": "descargado",
+      "tipo_fuente": "html",
+      "fecha_consulta": "2026-09-28",
+      "archivos": [
+        "C-239-97.htm"
+      ],
+      "bytes": 632225,
+      "sha256": "37603f2bd9a27638eceb81d53477edabbd7d55428e47d665c894f1b19f0dc9a1",
+      "nota": "ya estaba en data/raw/ (usar --forzar para repetir)"
+    },
+    {
+      "doc_id": "sentencia_c_276_2025",
+      "titulo": "Sentencia C-276 de 2025",
+      "fuente": "Relatoria de la Corte Constitucional",
+      "url": "https://www.corteconstitucional.gov.co/relatoria/2025/C-276-25.htm",
+      "areas": [
+        "Derecho comercial y sociedades"
+      ],
+      "items_del_banco": 1,
+      "canonico": [
+        "jurisprudencia",
+        "C-276",
+        "2025"
+      ],
+      "estado": "descargado",
+      "tipo_fuente": "html",
+      "fecha_consulta": "2026-09-28",
+      "archivos": [
+        "C-276-25.htm"
+      ],
+      "bytes": 551726,
+      "sha256": "9020134aecca9b400cdb6c600c2809efef33dbc5413396bb6ca8f797b92b196a",
+      "nota": "ya estaba en data/raw/ (usar --forzar para repetir)"
+    },
+    {
+      "doc_id": "sentencia_c_332_2025",
+      "titulo": "Sentencia C-332 de 2025",
+      "fuente": "Relatoria de la Corte Constitucional",
+      "url": "https://www.corteconstitucional.gov.co/relatoria/2025/C-332-25.htm",
+      "areas": [
+        "Derecho constitucional"
+      ],
+      "items_del_banco": 1,
+      "canonico": [
+        "jurisprudencia",
+        "C-332",
+        "2025"
+      ],
+      "estado": "descargado",
+      "tipo_fuente": "html",
+      "fecha_consulta": "2026-09-28",
+      "archivos": [
+        "C-332-25.htm"
+      ],
+      "bytes": 521799,
+      "sha256": "9d3f3d1103d3ec847fa27a70857d80e510043ae5aafddb559a73cc21da40f530",
+      "nota": "ya estaba en data/raw/ (usar --forzar para repetir)"
+    },
+    {
+      "doc_id": "sentencia_c_335_2008",
+      "titulo": "Sentencia C-335 de 2008",
+      "fuente": "Relatoria de la Corte Constitucional",
+      "url": "https://www.corteconstitucional.gov.co/relatoria/2008/C-335-08.htm",
+      "areas": [
+        "Derecho penal"
+      ],
+      "items_del_banco": 1,
+      "canonico": [
+        "jurisprudencia",
+        "C-335",
+        "2008"
+      ],
+      "estado": "descargado",
+      "tipo_fuente": "html",
+      "fecha_consulta": "2026-09-28",
+      "archivos": [
+        "C-335-08.htm"
+      ],
+      "bytes": 253488,
+      "sha256": "d59511b7e6187ed631e97935bf687c2b420afcdd9edf3fdfdfbc0528027c89b7",
+      "nota": "ya estaba en data/raw/ (usar --forzar para repetir)"
+    },
+    {
+      "doc_id": "sentencia_c_345_2017",
+      "titulo": "Sentencia C-345 de 2017",
+      "fuente": "Relatoria de la Corte Constitucional",
+      "url": "https://www.corteconstitucional.gov.co/relatoria/2017/C-345-17.htm",
+      "areas": [
+        "Derecho civil"
+      ],
+      "items_del_banco": 1,
+      "canonico": [
+        "jurisprudencia",
+        "C-345",
+        "2017"
+      ],
+      "estado": "descargado",
+      "tipo_fuente": "html",
+      "fecha_consulta": "2026-09-28",
+      "archivos": [
+        "C-345-17.htm"
+      ],
+      "bytes": 412179,
+      "sha256": "bcf04cccbe41a0e79c3228fd5b5120002ef2e7791e79a140494062fba1437f5e",
+      "nota": "ya estaba en data/raw/ (usar --forzar para repetir)"
+    },
+    {
+      "doc_id": "sentencia_c_389_2023",
+      "titulo": "Sentencia C-389 de 2023",
+      "fuente": "Relatoria de la Corte Constitucional",
+      "url": "https://www.corteconstitucional.gov.co/relatoria/2023/C-389-23.htm",
+      "areas": [
+        "Derecho tributario"
+      ],
+      "items_del_banco": 1,
+      "canonico": [
+        "jurisprudencia",
+        "C-389",
+        "2023"
+      ],
+      "estado": "descargado",
+      "tipo_fuente": "html",
+      "fecha_consulta": "2026-09-28",
+      "archivos": [
+        "C-389-23.htm"
+      ],
+      "bytes": 384097,
+      "sha256": "ae91a42204d9a118f76b1b30c3164dfa9b8083e8aa3d35ce3e5bd9cd015d8def",
+      "nota": "ya estaba en data/raw/ (usar --forzar para repetir)"
+    },
+    {
+      "doc_id": "sentencia_c_39_2025",
+      "titulo": "Sentencia C-39 de 2025",
+      "fuente": "Relatoria de la Corte Constitucional",
+      "url": "https://www.corteconstitucional.gov.co/relatoria/2025/C-039-25.htm",
+      "areas": [
+        "Derecho de familia"
+      ],
+      "items_del_banco": 1,
+      "canonico": [
+        "jurisprudencia",
+        "C-39",
+        "2025"
+      ],
+      "estado": "descargado",
+      "tipo_fuente": "html",
+      "fecha_consulta": "2026-09-28",
+      "archivos": [
+        "C-039-25.htm"
+      ],
+      "bytes": 815985,
+      "sha256": "78cde64e8438105d8731c98e743ef919f3d7c602a6e0cc88644496b0104b8b5a",
+      "nota": "ya estaba en data/raw/ (usar --forzar para repetir)"
+    },
+    {
+      "doc_id": "sentencia_c_413_1996",
+      "titulo": "Sentencia C-413 de 1996",
+      "fuente": "Relatoria de la Corte Constitucional",
+      "url": "https://www.corteconstitucional.gov.co/relatoria/1996/C-413-96.htm",
+      "areas": [
+        "Derecho tributario"
+      ],
+      "items_del_banco": 1,
+      "canonico": [
+        "jurisprudencia",
+        "C-413",
+        "1996"
+      ],
+      "estado": "descargado",
+      "tipo_fuente": "html",
+      "fecha_consulta": "2026-09-28",
+      "archivos": [
+        "C-413-96.htm"
+      ],
+      "bytes": 64733,
+      "sha256": "dcd04d7e80e327be8e11c2b2e7047ab8f0408fc191bbc7b62f94c91e62e45b7d",
+      "nota": "ya estaba en data/raw/ (usar --forzar para repetir)"
+    },
+    {
+      "doc_id": "sentencia_c_459_2023",
+      "titulo": "Sentencia C-459 de 2023",
+      "fuente": "Relatoria de la Corte Constitucional",
+      "url": "https://www.corteconstitucional.gov.co/relatoria/2023/C-459-23.htm",
+      "areas": [
+        "Derecho constitucional"
+      ],
+      "items_del_banco": 1,
+      "canonico": [
+        "jurisprudencia",
+        "C-459",
+        "2023"
+      ],
+      "estado": "descargado",
+      "tipo_fuente": "html",
+      "fecha_consulta": "2026-09-28",
+      "archivos": [
+        "C-459-23.htm"
+      ],
+      "bytes": 377065,
+      "sha256": "2f09f2c6f6b57ac1890a6efcde57ebcb1f8d6d5a5fa9a125c3e2c276014d6f21",
+      "nota": "ya estaba en data/raw/ (usar --forzar para repetir)"
+    },
+    {
+      "doc_id": "sentencia_c_486_1993",
+      "titulo": "Sentencia C-486 de 1993",
+      "fuente": "Relatoria de la Corte Constitucional",
+      "url": "https://www.corteconstitucional.gov.co/relatoria/1993/C-486-93.htm",
+      "areas": [
+        "Derecho comercial y sociedades"
+      ],
+      "items_del_banco": 1,
+      "canonico": [
+        "jurisprudencia",
+        "C-486",
+        "1993"
+      ],
+      "estado": "descargado",
+      "tipo_fuente": "html",
+      "fecha_consulta": "2026-09-28",
+      "archivos": [
+        "C-486-93.htm"
+      ],
+      "bytes": 219836,
+      "sha256": "4d6e2995af939e689f134138fc6c696741474ad5723f33cd6fd121acd345b25e",
+      "nota": "ya estaba en data/raw/ (usar --forzar para repetir)"
+    },
+    {
+      "doc_id": "sentencia_c_4_1998",
+      "titulo": "Sentencia C-4 de 1998",
+      "fuente": "Relatoria de la Corte Constitucional",
+      "url": "https://www.corteconstitucional.gov.co/relatoria/1998/C-004-98.htm",
+      "areas": [
+        "Derecho de familia"
+      ],
+      "items_del_banco": 1,
+      "canonico": [
+        "jurisprudencia",
+        "C-4",
+        "1998"
+      ],
+      "estado": "descargado",
+      "tipo_fuente": "html",
+      "fecha_consulta": "2026-09-28",
+      "archivos": [
+        "C-004-98.htm"
+      ],
+      "bytes": 100329,
+      "sha256": "1dab7b63d30f4c9d6e4485304e9271bf1367a725e2d3a45d90dd0d2f0159e2f6",
+      "nota": "ya estaba en data/raw/ (usar --forzar para repetir)"
+    },
+    {
+      "doc_id": "sentencia_c_533_2000",
+      "titulo": "Sentencia C-533 de 2000",
+      "fuente": "Relatoria de la Corte Constitucional",
+      "url": "https://www.corteconstitucional.gov.co/relatoria/2000/C-533-00.htm",
+      "areas": [
+        "Derecho de familia"
+      ],
+      "items_del_banco": 1,
+      "canonico": [
+        "jurisprudencia",
+        "C-533",
+        "2000"
+      ],
+      "estado": "descargado",
+      "tipo_fuente": "html",
+      "fecha_consulta": "2026-09-28",
+      "archivos": [
+        "C-533-00.htm"
+      ],
+      "bytes": 102688,
+      "sha256": "b005182ed94a2002e45f0a4e6bbf3649ab2b3d6465562ef9da2ef8d089619b1c",
+      "nota": "ya estaba en data/raw/ (usar --forzar para repetir)"
+    },
+    {
+      "doc_id": "sentencia_c_535_2002",
+      "titulo": "Sentencia C-535 de 2002",
+      "fuente": "Relatoria de la Corte Constitucional",
+      "url": "https://www.corteconstitucional.gov.co/relatoria/2002/C-535-02.htm",
+      "areas": [
+        "Derecho laboral"
+      ],
+      "items_del_banco": 1,
+      "canonico": [
+        "jurisprudencia",
+        "C-535",
+        "2002"
+      ],
+      "estado": "descargado",
+      "tipo_fuente": "html",
+      "fecha_consulta": "2026-09-28",
+      "archivos": [
+        "C-535-02.htm"
+      ],
+      "bytes": 95244,
+      "sha256": "58d5553496cca9108a8c2bfc2604865132207a12f6ba22a71bd402ba8c80de27",
+      "nota": "ya estaba en data/raw/ (usar --forzar para repetir)"
+    },
+    {
+      "doc_id": "sentencia_c_537_1995",
+      "titulo": "Sentencia C-537 de 1995",
+      "fuente": "Relatoria de la Corte Constitucional",
+      "url": "https://www.corteconstitucional.gov.co/relatoria/1995/C-537-95.htm",
+      "areas": [
+        "Derecho tributario"
+      ],
+      "items_del_banco": 1,
+      "canonico": [
+        "jurisprudencia",
+        "C-537",
+        "1995"
+      ],
+      "estado": "descargado",
+      "tipo_fuente": "html",
+      "fecha_consulta": "2026-09-28",
+      "archivos": [
+        "C-537-95.htm"
+      ],
+      "bytes": 205133,
+      "sha256": "d27312e04e51ca36903ef9bc75b3dec8c6370440298e291e5d6cae697fa88124",
+      "nota": "ya estaba en data/raw/ (usar --forzar para repetir)"
+    },
+    {
+      "doc_id": "sentencia_c_683_2015",
+      "titulo": "Sentencia C-683 de 2015",
+      "fuente": "Relatoria de la Corte Constitucional",
+      "url": "https://www.corteconstitucional.gov.co/relatoria/2015/C-683-15.htm",
+      "areas": [
+        "Derecho de familia"
+      ],
+      "items_del_banco": 1,
+      "canonico": [
+        "jurisprudencia",
+        "C-683",
+        "2015"
+      ],
+      "estado": "descargado",
+      "tipo_fuente": "html",
+      "fecha_consulta": "2026-09-28",
+      "archivos": [
+        "C-683-15.htm"
+      ],
+      "bytes": 1160536,
+      "sha256": "a3c5d3b13473aee3b5ddd0066519d5e36f709bcc8f0dc0550272e13e87195c5c",
+      "nota": "ya estaba en data/raw/ (usar --forzar para repetir)"
+    },
+    {
+      "doc_id": "sentencia_c_700_1999",
+      "titulo": "Sentencia C-700 de 1999",
+      "fuente": "Relatoria de la Corte Constitucional",
+      "url": "https://www.corteconstitucional.gov.co/relatoria/1999/C-700-99.htm",
+      "areas": [
+        "Derecho constitucional"
+      ],
+      "items_del_banco": 1,
+      "canonico": [
+        "jurisprudencia",
+        "C-700",
+        "1999"
+      ],
+      "estado": "descargado",
+      "tipo_fuente": "html",
+      "fecha_consulta": "2026-09-28",
+      "archivos": [
+        "C-700-99.htm"
+      ],
+      "bytes": 726098,
+      "sha256": "82aa49bb94e6b392d2cd346f1b110d7329c923b5a3fb8baeb8b92e903d702643",
+      "nota": "ya estaba en data/raw/ (usar --forzar para repetir)"
+    },
+    {
+      "doc_id": "sentencia_c_80_2025",
+      "titulo": "Sentencia C-80 de 2025",
+      "fuente": "Relatoria de la Corte Constitucional",
+      "url": "https://www.corteconstitucional.gov.co/relatoria/2025/C-080-25.htm",
+      "areas": [
+        "Derecho de los mercados [competencia, consumidor, datos personales y propiedad intelectual]"
+      ],
+      "items_del_banco": 1,
+      "canonico": [
+        "jurisprudencia",
+        "C-80",
+        "2025"
+      ],
+      "estado": "descargado",
+      "tipo_fuente": "html",
+      "fecha_consulta": "2026-09-28",
+      "archivos": [
+        "C-080-25.htm"
+      ],
+      "bytes": 485709,
+      "sha256": "e5b5b073e757b6ca3d0d747c39dd9b8ecd33e9461ee82bd125d4887acdc52425",
+      "nota": "ya estaba en data/raw/ (usar --forzar para repetir)"
+    },
+    {
+      "doc_id": "sentencia_c_891_2012",
+      "titulo": "Sentencia C-891 de 2012",
+      "fuente": "Relatoria de la Corte Constitucional",
+      "url": "https://www.corteconstitucional.gov.co/relatoria/2012/C-891-12.htm",
+      "areas": [
+        "Derecho tributario"
+      ],
+      "items_del_banco": 1,
+      "canonico": [
+        "jurisprudencia",
+        "C-891",
+        "2012"
+      ],
+      "estado": "descargado",
+      "tipo_fuente": "html",
+      "fecha_consulta": "2026-09-28",
+      "archivos": [
+        "C-891-12.htm"
+      ],
+      "bytes": 252154,
+      "sha256": "5a98d1151dd831eb38b6845a4ee538bd23a26edcd0fce794aed778e47ccc06d5",
+      "nota": "ya estaba en data/raw/ (usar --forzar para repetir)"
+    },
+    {
+      "doc_id": "sentencia_c_964_2003",
+      "titulo": "Sentencia C-964 de 2003",
+      "fuente": "Relatoria de la Corte Constitucional",
+      "url": "https://www.corteconstitucional.gov.co/relatoria/2003/C-964-03.htm",
+      "areas": [
+        "Derecho de familia"
+      ],
+      "items_del_banco": 1,
+      "canonico": [
+        "jurisprudencia",
+        "C-964",
+        "2003"
+      ],
+      "estado": "descargado",
+      "tipo_fuente": "html",
+      "fecha_consulta": "2026-09-28",
+      "archivos": [
+        "C-964-03.htm"
+      ],
+      "bytes": 228818,
+      "sha256": "96bf9a9aadd0a4e8c304a72bef70bdf45ef8943dd1754c2f65422b6550008dea",
+      "nota": "ya estaba en data/raw/ (usar --forzar para repetir)"
+    },
+    {
+      "doc_id": "sentencia_c_985_2010",
+      "titulo": "Sentencia C-985 de 2010",
+      "fuente": "Relatoria de la Corte Constitucional",
+      "url": "https://www.corteconstitucional.gov.co/relatoria/2010/C-985-10.htm",
+      "areas": [
+        "Derecho de familia"
+      ],
+      "items_del_banco": 1,
+      "canonico": [
+        "jurisprudencia",
+        "C-985",
+        "2010"
+      ],
+      "estado": "descargado",
+      "tipo_fuente": "html",
+      "fecha_consulta": "2026-09-28",
+      "archivos": [
+        "C-985-10.htm"
+      ],
+      "bytes": 244407,
+      "sha256": "cd51a96c316a4fc6d3512cfb7dd3b169f2db3b9a819dd72ef482d5f6a2c2056c",
+      "nota": "ya estaba en data/raw/ (usar --forzar para repetir)"
+    },
+    {
+      "doc_id": "sentencia_sc_1121_2018",
+      "titulo": "Sentencia SC-1121 de 2018",
+      "fuente": "Relatoria de la Corte Suprema de Justicia",
+      "url": "https://consultajurisprudencial.ramajudicial.gov.co/WebRelatoria/csj/index.xhtml",
+      "areas": [
+        "Derecho civil"
+      ],
+      "items_del_banco": 1,
+      "canonico": [
+        "jurisprudencia",
+        "SC-1121",
+        "2018"
+      ],
+      "estado": "descargado",
+      "tipo_fuente": "rtf",
+      "fecha_consulta": "2026-10-01",
+      "archivos": [
+        "SC1121-2018 (2007-00128-01).docx"
+      ],
+      "bytes": 207870,
+      "sha256": "bd03dd9be16bfa5dda97cbcfe82086df2b565179eb7a1b49fdd191382c477cf0",
+      "nota": "descarga manual desde la consulta de jurisprudencia de la Relatoria (sin URL directa por documento); archivo SC1121-2018 (2007-00128-01).docx"
+    },
+    {
+      "doc_id": "sentencia_sc_18392_2017",
+      "titulo": "Sentencia SC-18392 de 2017",
+      "fuente": "Relatoria de la Corte Suprema de Justicia",
+      "url": "https://consultajurisprudencial.ramajudicial.gov.co/WebRelatoria/csj/index.xhtml",
+      "areas": [
+        "Derecho comercial y sociedades"
+      ],
+      "items_del_banco": 1,
+      "canonico": [
+        "jurisprudencia",
+        "SC-18392",
+        "2017"
+      ],
+      "estado": "descargado",
+      "tipo_fuente": "pdf",
+      "fecha_consulta": "2026-10-01",
+      "archivos": [
+        "SC18392-2017 (2011-00081-01)_2.pdf"
+      ],
+      "bytes": 2269867,
+      "sha256": "40ead9bd3439da474f34c9ac5a5caadabf4c7503eed4d32f222c2b0a72c7093d",
+      "nota": "descarga manual desde la consulta de jurisprudencia de la Relatoria (sin URL directa por documento); archivo SC18392-2017 (2011-00081-01)_2.pdf"
+    },
+    {
+      "doc_id": "sentencia_sc_3085_2024",
+      "titulo": "Sentencia SC-3085 de 2024",
+      "fuente": "Relatoria de la Corte Suprema de Justicia",
+      "url": "https://consultajurisprudencial.ramajudicial.gov.co/WebRelatoria/csj/index.xhtml",
+      "areas": [
+        "Derecho de familia"
+      ],
+      "items_del_banco": 1,
+      "canonico": [
+        "jurisprudencia",
+        "SC-3085",
+        "2024"
+      ],
+      "estado": "descargado",
+      "tipo_fuente": "pdf",
+      "fecha_consulta": "2026-10-01",
+      "archivos": [
+        "SC3085-2024 (2021-00107-01).pdf"
+      ],
+      "bytes": 672506,
+      "sha256": "44b83212dbcd948bce4551c2d068633d7a85f892f2e56c78f60761efc35566c9",
+      "nota": "descarga manual desde la consulta de jurisprudencia de la Relatoria (sin URL directa por documento); archivo SC3085-2024 (2021-00107-01).pdf"
+    },
+    {
+      "doc_id": "sentencia_sc_3674_2021",
+      "titulo": "Sentencia SC-3674 de 2021",
+      "fuente": "Relatoria de la Corte Suprema de Justicia",
+      "url": "https://consultajurisprudencial.ramajudicial.gov.co/WebRelatoria/csj/index.xhtml",
+      "areas": [
+        "Derecho comercial y sociedades"
+      ],
+      "items_del_banco": 1,
+      "canonico": [
+        "jurisprudencia",
+        "SC-3674",
+        "2021"
+      ],
+      "estado": "descargado",
+      "tipo_fuente": "pdf",
+      "fecha_consulta": "2026-10-01",
+      "archivos": [
+        "SC3674-2021 (2015-00017-01).pdf"
+      ],
+      "bytes": 1950418,
+      "sha256": "d6a16d706490f4bcdaaf31ca0e8b62af668f861f53b500e33924ea6caf16798d",
+      "nota": "descarga manual desde la consulta de jurisprudencia de la Relatoria (sin URL directa por documento); archivo SC3674-2021 (2015-00017-01).pdf"
+    },
+    {
+      "doc_id": "sentencia_sc_425_2024",
+      "titulo": "Sentencia SC-425 de 2024",
+      "fuente": "Relatoria de la Corte Suprema de Justicia",
+      "url": "https://consultajurisprudencial.ramajudicial.gov.co/WebRelatoria/csj/index.xhtml",
+      "areas": [
+        "Derecho comercial y sociedades"
+      ],
+      "items_del_banco": 1,
+      "canonico": [
+        "jurisprudencia",
+        "SC-425",
+        "2024"
+      ],
+      "estado": "descargado",
+      "tipo_fuente": "pdf",
+      "fecha_consulta": "2026-10-01",
+      "archivos": [
+        "SC425-2024 (2019-00063-01).pdf"
+      ],
+      "bytes": 537280,
+      "sha256": "64e8e673aa04c26b4570761f206ee52e64b56c578bfe95c7e634e3dc3b9d1dbd",
+      "nota": "descarga manual desde la consulta de jurisprudencia de la Relatoria (sin URL directa por documento); archivo SC425-2024 (2019-00063-01).pdf"
+    },
+    {
+      "doc_id": "sentencia_sc_8453_2016",
+      "titulo": "Sentencia SC-8453 de 2016",
+      "fuente": "Relatoria de la Corte Suprema de Justicia",
+      "url": "https://consultajurisprudencial.ramajudicial.gov.co/WebRelatoria/csj/index.xhtml",
+      "areas": [
+        "Derecho comercial y sociedades"
+      ],
+      "items_del_banco": 1,
+      "canonico": [
+        "jurisprudencia",
+        "SC-8453",
+        "2016"
+      ],
+      "estado": "descargado",
+      "tipo_fuente": "pdf",
+      "fecha_consulta": "2026-10-01",
+      "archivos": [
+        "SC8453-2016 (2014-02243-00).pdf"
+      ],
+      "bytes": 2671674,
+      "sha256": "ce4759aa367ef220e905749ab3f52579876ffd18008c1bd4f3d161f04b4722ef",
+      "nota": "descarga manual desde la consulta de jurisprudencia de la Relatoria (sin URL directa por documento); archivo SC8453-2016 (2014-02243-00).pdf"
+    },
+    {
+      "doc_id": "sentencia_sl_1050_2023",
+      "titulo": "Sentencia SL-1050 de 2023",
+      "fuente": "Relatoria de la Corte Suprema de Justicia",
+      "url": "https://consultajurisprudencial.ramajudicial.gov.co/WebRelatoria/csj/index.xhtml",
+      "areas": [
+        "Derecho laboral"
+      ],
+      "items_del_banco": 1,
+      "canonico": [
+        "jurisprudencia",
+        "SL-1050",
+        "2023"
+      ],
+      "estado": "descargado",
+      "tipo_fuente": "pdf",
+      "fecha_consulta": "2026-10-01",
+      "archivos": [
+        "SL1050-2023.pdf"
+      ],
+      "bytes": 529207,
+      "sha256": "0e5ec3434234af6876e048cf6ce80bdde9ccf70104f8ac966e155b8ef841c9d9",
+      "nota": "descarga manual desde la consulta de jurisprudencia de la Relatoria (sin URL directa por documento); archivo SL1050-2023.pdf"
+    },
+    {
+      "doc_id": "sentencia_sl_1730_2020",
+      "titulo": "Sentencia SL-1730 de 2020",
+      "fuente": "Relatoria de la Corte Suprema de Justicia",
+      "url": "https://consultajurisprudencial.ramajudicial.gov.co/WebRelatoria/csj/index.xhtml",
+      "areas": [
+        "Derecho laboral"
+      ],
+      "items_del_banco": 1,
+      "canonico": [
+        "jurisprudencia",
+        "SL-1730",
+        "2020"
+      ],
+      "estado": "descargado",
+      "tipo_fuente": "pdf",
+      "fecha_consulta": "2026-10-01",
+      "archivos": [
+        "SL1730-2020.pdf"
+      ],
+      "bytes": 1114019,
+      "sha256": "3462e5035bd46e8379dc4737dc026a194468e9bb61a91f8c0bc902dd9780ae80",
+      "nota": "descarga manual desde la consulta de jurisprudencia de la Relatoria (sin URL directa por documento); archivo SL1730-2020.pdf"
+    },
+    {
+      "doc_id": "sentencia_sl_1972_2025",
+      "titulo": "Sentencia SL-1972 de 2025",
+      "fuente": "Relatoria de la Corte Suprema de Justicia",
+      "url": "https://consultajurisprudencial.ramajudicial.gov.co/WebRelatoria/csj/index.xhtml",
+      "areas": [
+        "Derecho laboral"
+      ],
+      "items_del_banco": 1,
+      "canonico": [
+        "jurisprudencia",
+        "SL-1972",
+        "2025"
+      ],
+      "estado": "descargado",
+      "tipo_fuente": "pdf",
+      "fecha_consulta": "2026-10-01",
+      "archivos": [
+        "SL1972-2025.pdf"
+      ],
+      "bytes": 1008091,
+      "sha256": "b5b3cca9da5ac89cc95ffa3398f416e159e0652a81d300fbf3df0874155efd84",
+      "nota": "descarga manual desde la consulta de jurisprudencia de la Relatoria (sin URL directa por documento); archivo SL1972-2025.pdf"
+    },
+    {
+      "doc_id": "sentencia_sp_1167_2022",
+      "titulo": "Sentencia SP-1167 de 2022",
+      "fuente": "Relatoria de la Corte Suprema de Justicia",
+      "url": "https://consultajurisprudencial.ramajudicial.gov.co/WebRelatoria/csj/index.xhtml",
+      "areas": [
+        "Derecho penal"
+      ],
+      "items_del_banco": 1,
+      "canonico": [
+        "jurisprudencia",
+        "SP-1167",
+        "2022"
+      ],
+      "estado": "descargado",
+      "tipo_fuente": "pdf",
+      "fecha_consulta": "2026-10-01",
+      "archivos": [
+        "SP1167-2022(57957).pdf"
+      ],
+      "bytes": 545364,
+      "sha256": "9f48c7ad623395fbac34866b1877f90f52a9d099c37a7cb9ae7eaab9dc93bf48",
+      "nota": "descarga manual desde la consulta de jurisprudencia de la Relatoria (sin URL directa por documento); archivo SP1167-2022(57957).pdf"
+    },
+    {
+      "doc_id": "sentencia_sp_248_2025",
+      "titulo": "Sentencia SP-248 de 2025",
+      "fuente": "Relatoria de la Corte Suprema de Justicia",
+      "url": "https://consultajurisprudencial.ramajudicial.gov.co/WebRelatoria/csj/index.xhtml",
+      "areas": [
+        "Derecho penal"
+      ],
+      "items_del_banco": 1,
+      "canonico": [
+        "jurisprudencia",
+        "T-248",
+        "2025"
+      ],
+      "estado": "descargado",
+      "tipo_fuente": "pdf",
+      "fecha_consulta": "2026-10-01",
+      "archivos": [
+        "SP248-2025(58275).pdf"
+      ],
+      "bytes": 6786758,
+      "sha256": "40d2f64ca8738b3c0bdd67395e073b1166d84db116bfc144a80ce308c8869987",
+      "nota": "errata de la semilla: 'T-248 de 2025' (area penal) es la SP248-2025 de la Sala Penal de la Corte Suprema; descarga manual desde la consulta de jurisprudencia de la Relatoria (sin URL directa por documento); archivo SP248-2025(58275).pdf"
+    },
+    {
+      "doc_id": "sentencia_sp_3218_2021",
+      "titulo": "Sentencia SP-3218 de 2021",
+      "fuente": "Relatoria de la Corte Suprema de Justicia",
+      "url": "https://consultajurisprudencial.ramajudicial.gov.co/WebRelatoria/csj/index.xhtml",
+      "areas": [
+        "Derecho penal"
+      ],
+      "items_del_banco": 1,
+      "canonico": [
+        "jurisprudencia",
+        "SP-3218",
+        "2021"
+      ],
+      "estado": "descargado",
+      "tipo_fuente": "pdf",
+      "fecha_consulta": "2026-10-01",
+      "archivos": [
+        "SP3218-2021(47063).pdf"
+      ],
+      "bytes": 637818,
+      "sha256": "2d3e69ead2493f299fa219ab4aa6bd25fe9d4bc8d1e42b281712b058bae7ad3c",
+      "nota": "descarga manual desde la consulta de jurisprudencia de la Relatoria (sin URL directa por documento); archivo SP3218-2021(47063).pdf"
+    },
+    {
+      "doc_id": "sentencia_su_11_2020",
+      "titulo": "Sentencia SU-11 de 2020",
+      "fuente": "Relatoria de la Corte Constitucional",
+      "url": "https://www.corteconstitucional.gov.co/relatoria/2020/SU011-20.htm",
+      "areas": [
+        "Derecho administrativo"
+      ],
+      "items_del_banco": 1,
+      "canonico": [
+        "jurisprudencia",
+        "SU-11",
+        "2020"
+      ],
+      "estado": "descargado",
+      "tipo_fuente": "html",
+      "fecha_consulta": "2026-09-28",
+      "archivos": [
+        "SU011-20.htm"
+      ],
+      "bytes": 498619,
+      "sha256": "0d47af1e91035f96ac69ef0b6de0dcf8f09c6f9231edbc9b67a38910a850ac68",
+      "nota": "ya estaba en data/raw/ (usar --forzar para repetir)"
+    },
+    {
+      "doc_id": "sentencia_su_138_2024",
+      "titulo": "Sentencia SU-138 de 2024",
+      "fuente": "Relatoria de la Corte Constitucional",
+      "url": "https://www.corteconstitucional.gov.co/relatoria/2024/SU138-24.htm",
+      "areas": [
+        "Derecho civil"
+      ],
+      "items_del_banco": 1,
+      "canonico": [
+        "jurisprudencia",
+        "SU-138",
+        "2024"
+      ],
+      "estado": "descargado",
+      "tipo_fuente": "html",
+      "fecha_consulta": "2026-09-28",
+      "archivos": [
+        "SU138-24.htm"
+      ],
+      "bytes": 984265,
+      "sha256": "9b7fc38b3907bd6de402846365929ec434d94123a25676c9bc7576fb0347c28f",
+      "nota": "ya estaba en data/raw/ (usar --forzar para repetir)"
+    },
+    {
+      "doc_id": "sentencia_su_149_2021",
+      "titulo": "Sentencia SU-149 de 2021",
+      "fuente": "Relatoria de la Corte Constitucional",
+      "url": "https://www.corteconstitucional.gov.co/relatoria/2021/SU149-21.htm",
+      "areas": [
+        "Derecho laboral"
+      ],
+      "items_del_banco": 1,
+      "canonico": [
+        "jurisprudencia",
+        "SU-149",
+        "2021"
+      ],
+      "estado": "descargado",
+      "tipo_fuente": "html",
+      "fecha_consulta": "2026-09-28",
+      "archivos": [
+        "SU149-21.htm"
+      ],
+      "bytes": 520097,
+      "sha256": "7ae08dd75f005f2b24840b46e1a1e2b9e47cc773dd59183cb921ce277b1eee56",
+      "nota": "ya estaba en data/raw/ (usar --forzar para repetir)"
+    },
+    {
+      "doc_id": "sentencia_su_207_2022",
+      "titulo": "Sentencia SU-207 de 2022",
+      "fuente": "Relatoria de la Corte Constitucional",
+      "url": "https://www.corteconstitucional.gov.co/relatoria/2022/SU207-22.htm",
+      "areas": [
+        "Derecho civil"
+      ],
+      "items_del_banco": 1,
+      "canonico": [
+        "jurisprudencia",
+        "SU-207",
+        "2022"
+      ],
+      "estado": "descargado",
+      "tipo_fuente": "html",
+      "fecha_consulta": "2026-09-28",
+      "archivos": [
+        "SU207-22.htm"
+      ],
+      "bytes": 625696,
+      "sha256": "271c68df12abfad74f37d9c5d7420e9c8336b14f902036519a16b6868d597a2f",
+      "nota": "ya estaba en data/raw/ (usar --forzar para repetir)"
+    },
+    {
+      "doc_id": "sentencia_su_240_2015",
+      "titulo": "Sentencia SU-240 de 2015",
+      "fuente": "Relatoria de la Corte Constitucional",
+      "url": "https://www.corteconstitucional.gov.co/relatoria/2015/SU240-15.htm",
+      "areas": [
+        "Derecho administrativo"
+      ],
+      "items_del_banco": 1,
+      "canonico": [
+        "jurisprudencia",
+        "SU-240",
+        "2015"
+      ],
+      "estado": "descargado",
+      "tipo_fuente": "html",
+      "fecha_consulta": "2026-09-28",
+      "archivos": [
+        "SU240-15.htm"
+      ],
+      "bytes": 314215,
+      "sha256": "ef6f7fac16974ca189d2d1c5b04d226e376902f1d4c7dd481f50eb68f1344b1f",
+      "nota": "ya estaba en data/raw/ (usar --forzar para repetir)"
+    },
+    {
+      "doc_id": "sentencia_su_27_2021",
+      "titulo": "Sentencia SU-27 de 2021",
+      "fuente": "Relatoria de la Corte Constitucional",
+      "url": "https://www.corteconstitucional.gov.co/relatoria/2021/SU027-21.htm",
+      "areas": [
+        "Derecho laboral"
+      ],
+      "items_del_banco": 1,
+      "canonico": [
+        "jurisprudencia",
+        "SU-27",
+        "2021"
+      ],
+      "estado": "descargado",
+      "tipo_fuente": "html",
+      "fecha_consulta": "2026-09-28",
+      "archivos": [
+        "SU027-21.htm"
+      ],
+      "bytes": 502719,
+      "sha256": "8a5b2921134462354912939a47b8bd9046d2262e689eba0833c97c63db7c215e",
+      "nota": "ya estaba en data/raw/ (usar --forzar para repetir)"
+    },
+    {
+      "doc_id": "sentencia_su_296_2023",
+      "titulo": "Sentencia SU-296 de 2023",
+      "fuente": "Relatoria de la Corte Constitucional",
+      "url": "https://www.corteconstitucional.gov.co/relatoria/2023/SU296-23.htm",
+      "areas": [
+        "Derecho laboral"
+      ],
+      "items_del_banco": 1,
+      "canonico": [
+        "jurisprudencia",
+        "SU-296",
+        "2023"
+      ],
+      "estado": "descargado",
+      "tipo_fuente": "html",
+      "fecha_consulta": "2026-09-28",
+      "archivos": [
+        "SU296-23.htm"
+      ],
+      "bytes": 536028,
+      "sha256": "d79c7f4983a4282cd1c494e737d11bd9b6e1c5bdcac8782c9197717493e45784",
+      "nota": "ya estaba en data/raw/ (usar --forzar para repetir)"
+    },
+    {
+      "doc_id": "sentencia_su_380_2021",
+      "titulo": "Sentencia SU-380 de 2021",
+      "fuente": "Relatoria de la Corte Constitucional",
+      "url": "https://www.corteconstitucional.gov.co/relatoria/2021/SU380-21.htm",
+      "areas": [
+        "Derecho civil"
+      ],
+      "items_del_banco": 1,
+      "canonico": [
+        "jurisprudencia",
+        "SU-380",
+        "2021"
+      ],
+      "estado": "descargado",
+      "tipo_fuente": "html",
+      "fecha_consulta": "2026-09-28",
+      "archivos": [
+        "SU380-21.htm"
+      ],
+      "bytes": 464185,
+      "sha256": "be2883c5b4697827293688add85ba96ee49bfc672345835ab1d6e66c5c269364",
+      "nota": "ya estaba en data/raw/ (usar --forzar para repetir)"
+    },
+    {
+      "doc_id": "sentencia_su_396_2024",
+      "titulo": "Sentencia SU-396 de 2024",
+      "fuente": "Relatoria de la Corte Constitucional",
+      "url": "https://www.corteconstitucional.gov.co/relatoria/2024/SU396-24.htm",
+      "areas": [
+        "Derecho laboral"
+      ],
+      "items_del_banco": 1,
+      "canonico": [
+        "jurisprudencia",
+        "SU-396",
+        "2024"
+      ],
+      "estado": "descargado",
+      "tipo_fuente": "html",
+      "fecha_consulta": "2026-09-28",
+      "archivos": [
+        "SU396-24.htm"
+      ],
+      "bytes": 963812,
+      "sha256": "20914fd055d5ee0b3e80c67b99ca533104c4ae71083e681b569260c057833c7a",
+      "nota": "ya estaba en data/raw/ (usar --forzar para repetir)"
+    },
+    {
+      "doc_id": "sentencia_su_425_2025",
+      "titulo": "Sentencia SU-425 de 2025",
+      "fuente": "Relatoria de la Corte Constitucional",
+      "url": "https://www.corteconstitucional.gov.co/relatoria/2025/SU425-25.htm",
+      "areas": [
+        "Derecho civil"
+      ],
+      "items_del_banco": 1,
+      "canonico": [
+        "jurisprudencia",
+        "SU-425",
+        "2025"
+      ],
+      "estado": "descargado",
+      "tipo_fuente": "html",
+      "fecha_consulta": "2026-09-28",
+      "archivos": [
+        "SU425-25.htm"
+      ],
+      "bytes": 415635,
+      "sha256": "a5e684b7ef14ac051681775cdb78264d08974dcf127312011011c97976428527",
+      "nota": "ya estaba en data/raw/ (usar --forzar para repetir)"
+    },
+    {
+      "doc_id": "sentencia_su_429_2024",
+      "titulo": "Sentencia SU-429 de 2024",
+      "fuente": "Relatoria de la Corte Constitucional",
+      "url": "https://www.corteconstitucional.gov.co/relatoria/2024/SU429-24.htm",
+      "areas": [
+        "Derecho penal"
+      ],
+      "items_del_banco": 1,
+      "canonico": [
+        "jurisprudencia",
+        "SU-429",
+        "2024"
+      ],
+      "estado": "descargado",
+      "tipo_fuente": "html",
+      "fecha_consulta": "2026-09-28",
+      "archivos": [
+        "SU429-24.htm"
+      ],
+      "bytes": 1030480,
+      "sha256": "e924fe8a00d0a76c0dfd3604e7bd9fe6e51f5f3ed420bc8e2fff740ecbee08b7",
+      "nota": "ya estaba en data/raw/ (usar --forzar para repetir)"
+    },
+    {
+      "doc_id": "sentencia_su_431_2015",
+      "titulo": "Sentencia SU-431 de 2015",
+      "fuente": "Relatoria de la Corte Constitucional",
+      "url": "https://www.corteconstitucional.gov.co/relatoria/2015/SU431-15.htm",
+      "areas": [
+        "Derecho civil"
+      ],
+      "items_del_banco": 1,
+      "canonico": [
+        "jurisprudencia",
+        "SU-431",
+        "2015"
+      ],
+      "estado": "descargado",
+      "tipo_fuente": "html",
+      "fecha_consulta": "2026-09-28",
+      "archivos": [
+        "SU431-15.htm"
+      ],
+      "bytes": 584684,
+      "sha256": "605dae2f0ad6a8dabb91d6a48a7819d9f2e7a47f6e3f0ee7337b0b475e1ebb60",
+      "nota": "ya estaba en data/raw/ (usar --forzar para repetir)"
+    },
+    {
+      "doc_id": "sentencia_su_455_2020",
+      "titulo": "Sentencia SU-455 de 2020",
+      "fuente": "Relatoria de la Corte Constitucional",
+      "url": "https://www.corteconstitucional.gov.co/relatoria/2020/SU455-20.htm",
+      "areas": [
+        "Derecho civil"
+      ],
+      "items_del_banco": 1,
+      "canonico": [
+        "jurisprudencia",
+        "SU-455",
+        "2020"
+      ],
+      "estado": "descargado",
+      "tipo_fuente": "html",
+      "fecha_consulta": "2026-09-28",
+      "archivos": [
+        "SU455-20.htm"
+      ],
+      "bytes": 338478,
+      "sha256": "aad464b754cf34f67df4410effb4b2d84b190494df3b1f5cfd08fabba79b8c97",
+      "nota": "ya estaba en data/raw/ (usar --forzar para repetir)"
+    },
+    {
+      "doc_id": "sentencia_su_500_2015",
+      "titulo": "Sentencia SU-500 de 2015",
+      "fuente": "Relatoria de la Corte Constitucional",
+      "url": "https://www.corteconstitucional.gov.co/relatoria/2015/SU500-15.htm",
+      "areas": [
+        "Derecho civil"
+      ],
+      "items_del_banco": 1,
+      "canonico": [
+        "jurisprudencia",
+        "SU-500",
+        "2015"
+      ],
+      "estado": "descargado",
+      "tipo_fuente": "html",
+      "fecha_consulta": "2026-09-28",
+      "archivos": [
+        "SU500-15.htm"
+      ],
+      "bytes": 705126,
+      "sha256": "e2151941545bfbbd0d61e8f6246c9855f49b58a2197d846322a11bf58203c91d",
+      "nota": "ya estaba en data/raw/ (usar --forzar para repetir)"
+    },
+    {
+      "doc_id": "sentencia_su_566_2015",
+      "titulo": "Sentencia SU-566 de 2015",
+      "fuente": "Relatoria de la Corte Constitucional",
+      "url": "https://www.corteconstitucional.gov.co/relatoria/2015/SU566-15.htm",
+      "areas": [
+        "Derecho administrativo"
+      ],
+      "items_del_banco": 1,
+      "canonico": [
+        "jurisprudencia",
+        "SU-566",
+        "2015"
+      ],
+      "estado": "descargado",
+      "tipo_fuente": "html",
+      "fecha_consulta": "2026-09-28",
+      "archivos": [
+        "SU566-15.htm"
+      ],
+      "bytes": 511192,
+      "sha256": "e55335252851b27819c888562f1b8088d3b6e016ce5cd91e8922529f414257c7",
+      "nota": "ya estaba en data/raw/ (usar --forzar para repetir)"
+    },
+    {
+      "doc_id": "sentencia_t_1001_2001",
+      "titulo": "Sentencia T-1001 de 2001",
+      "fuente": "Relatoria de la Corte Constitucional",
+      "url": "https://www.corteconstitucional.gov.co/relatoria/2001/T-1001-01.htm",
+      "areas": [
+        "Derecho constitucional"
+      ],
+      "items_del_banco": 1,
+      "canonico": [
+        "jurisprudencia",
+        "T-1001",
+        "2001"
+      ],
+      "estado": "descargado",
+      "tipo_fuente": "html",
+      "fecha_consulta": "2026-09-28",
+      "archivos": [
+        "T-1001-01.htm"
+      ],
+      "bytes": 199019,
+      "sha256": "2be6b4f46aebdd9e81dd5fcac806fa80a5b116694620e7baee4d6c2eb44749f8",
+      "nota": "ya estaba en data/raw/ (usar --forzar para repetir)"
+    },
+    {
+      "doc_id": "sentencia_t_1059_2001",
+      "titulo": "Sentencia T-1059 de 2001",
+      "fuente": "Relatoria de la Corte Constitucional",
+      "url": "https://www.corteconstitucional.gov.co/relatoria/2001/T-1059-01.htm",
+      "areas": [
+        "Derecho laboral"
+      ],
+      "items_del_banco": 1,
+      "canonico": [
+        "jurisprudencia",
+        "T-1059",
+        "2001"
+      ],
+      "estado": "descargado",
+      "tipo_fuente": "html",
+      "fecha_consulta": "2026-09-28",
+      "archivos": [
+        "T-1059-01.htm"
+      ],
+      "bytes": 137904,
+      "sha256": "4432b43fedf3152cebfe9a8488a58577309bd656fb7bb4534dc9b42e128e818a",
+      "nota": "ya estaba en data/raw/ (usar --forzar para repetir)"
+    },
+    {
+      "doc_id": "sentencia_t_1096_2008",
+      "titulo": "Sentencia T-1096 de 2008",
+      "fuente": "Relatoria de la Corte Constitucional",
+      "url": "https://www.corteconstitucional.gov.co/relatoria/2008/T-1096-08.htm",
+      "areas": [
+        "Derecho de familia"
+      ],
+      "items_del_banco": 1,
+      "canonico": [
+        "jurisprudencia",
+        "T-1096",
+        "2008"
+      ],
+      "estado": "descargado",
+      "tipo_fuente": "html",
+      "fecha_consulta": "2026-09-28",
+      "archivos": [
+        "T-1096-08.htm"
+      ],
+      "bytes": 186459,
+      "sha256": "aacc867382c01f37911196ade9b30297a0b117edf803b85e5ae01d99ca25c85e",
+      "nota": "ya estaba en data/raw/ (usar --forzar para repetir)"
+    },
+    {
+      "doc_id": "sentencia_t_145_2016",
+      "titulo": "Sentencia T-145 de 2016",
+      "fuente": "Relatoria de la Corte Constitucional",
+      "url": "https://www.corteconstitucional.gov.co/relatoria/2016/T-145-16.htm",
+      "areas": [
+        "Derecho laboral"
+      ],
+      "items_del_banco": 1,
+      "canonico": [
+        "jurisprudencia",
+        "T-145",
+        "2016"
+      ],
+      "estado": "descargado",
+      "tipo_fuente": "html",
+      "fecha_consulta": "2026-09-28",
+      "archivos": [
+        "T-145-16.htm"
+      ],
+      "bytes": 310166,
+      "sha256": "2a1f3a348a6650bc6118333a7cbff2e74a4b11a1dbf86cda2019ea9b59db1874",
+      "nota": "ya estaba en data/raw/ (usar --forzar para repetir)"
+    },
+    {
+      "doc_id": "sentencia_t_230_2023",
+      "titulo": "Sentencia T-230 de 2023",
+      "fuente": "Relatoria de la Corte Constitucional",
+      "url": "https://www.corteconstitucional.gov.co/relatoria/2023/T-230-23.htm",
+      "areas": [
+        "Derecho constitucional"
+      ],
+      "items_del_banco": 1,
+      "canonico": [
+        "jurisprudencia",
+        "T-230",
+        "2023"
+      ],
+      "estado": "descargado",
+      "tipo_fuente": "html",
+      "fecha_consulta": "2026-09-28",
+      "archivos": [
+        "T-230-23.htm"
+      ],
+      "bytes": 151878,
+      "sha256": "f619c4845eafbf0d0f3718df656cf1e3e1a1f311b17fb3f78e87b8f19263e7b8",
+      "nota": "ya estaba en data/raw/ (usar --forzar para repetir)"
+    },
+    {
+      "doc_id": "sentencia_t_232_2025",
+      "titulo": "Sentencia T-232 de 2025",
+      "fuente": "Relatoria de la Corte Constitucional",
+      "url": "https://www.corteconstitucional.gov.co/relatoria/2025/T-232-25.htm",
+      "areas": [
+        "Derecho de familia"
+      ],
+      "items_del_banco": 1,
+      "canonico": [
+        "jurisprudencia",
+        "T-232",
+        "2025"
+      ],
+      "estado": "descargado",
+      "tipo_fuente": "html",
+      "fecha_consulta": "2026-09-28",
+      "archivos": [
+        "T-232-25.htm"
+      ],
+      "bytes": 475602,
+      "sha256": "c3997d63641f64748135ea2957eb12d80a2c7187cf2325a85077b64ca640060a",
+      "nota": "ya estaba en data/raw/ (usar --forzar para repetir)"
+    },
+    {
+      "doc_id": "sentencia_t_262_2025",
+      "titulo": "Sentencia T-262 de 2025",
+      "fuente": "Relatoria de la Corte Constitucional",
+      "url": "https://www.corteconstitucional.gov.co/relatoria/2025/T-262-25.htm",
+      "areas": [
+        "Derecho constitucional"
+      ],
+      "items_del_banco": 1,
+      "canonico": [
+        "jurisprudencia",
+        "T-262",
+        "2025"
+      ],
+      "estado": "descargado",
+      "tipo_fuente": "html",
+      "fecha_consulta": "2026-09-28",
+      "archivos": [
+        "T-262-25.htm"
+      ],
+      "bytes": 555227,
+      "sha256": "0d943ccc4f905d573c9810ee499290d967d3abc9607f0ad619328ecc6d39c306",
+      "nota": "ya estaba en data/raw/ (usar --forzar para repetir)"
+    },
+    {
+      "doc_id": "sentencia_t_26_2025",
+      "titulo": "Sentencia T-26 de 2025",
+      "fuente": "Relatoria de la Corte Constitucional",
+      "url": "https://www.corteconstitucional.gov.co/relatoria/2025/T-026-25.htm",
+      "areas": [
+        "Derecho civil"
+      ],
+      "items_del_banco": 1,
+      "canonico": [
+        "jurisprudencia",
+        "T-26",
+        "2025"
+      ],
+      "estado": "descargado",
+      "tipo_fuente": "html",
+      "fecha_consulta": "2026-09-28",
+      "archivos": [
+        "T-026-25.htm"
+      ],
+      "bytes": 743860,
+      "sha256": "6ff3d7754553690f871f7ac1f26f80dee9f5fd0b1871bb0f3eb9e2d8cd7cd52a",
+      "nota": "ya estaba en data/raw/ (usar --forzar para repetir)"
+    },
+    {
+      "doc_id": "sentencia_t_325_2025",
+      "titulo": "Sentencia T-325 de 2025",
+      "fuente": "Relatoria de la Corte Constitucional",
+      "url": "https://www.corteconstitucional.gov.co/relatoria/2025/T-325-25.htm",
+      "areas": [
+        "Derecho constitucional"
+      ],
+      "items_del_banco": 1,
+      "canonico": [
+        "jurisprudencia",
+        "T-325",
+        "2025"
+      ],
+      "estado": "descargado",
+      "tipo_fuente": "html",
+      "fecha_consulta": "2026-09-28",
+      "archivos": [
+        "T-325-25.htm"
+      ],
+      "bytes": 307935,
+      "sha256": "ccdb7c892595e16c0b3cd80d88677acd28b12c1903d4aad9ccf03b664756dcab",
+      "nota": "ya estaba en data/raw/ (usar --forzar para repetir)"
+    },
+    {
+      "doc_id": "sentencia_t_350_2025",
+      "titulo": "Sentencia T-350 de 2025",
+      "fuente": "Relatoria de la Corte Constitucional",
+      "url": "https://www.corteconstitucional.gov.co/relatoria/2025/T-350-25.htm",
+      "areas": [
+        "Derecho de familia"
+      ],
+      "items_del_banco": 1,
+      "canonico": [
+        "jurisprudencia",
+        "T-350",
+        "2025"
+      ],
+      "estado": "descargado",
+      "tipo_fuente": "html",
+      "fecha_consulta": "2026-09-28",
+      "archivos": [
+        "T-350-25.htm"
+      ],
+      "bytes": 460136,
+      "sha256": "38a16a1a32ffcebb55d3811768c3d2e8447d2dbc47c9c546375811ac1a20a350",
+      "nota": "ya estaba en data/raw/ (usar --forzar para repetir)"
+    },
+    {
+      "doc_id": "sentencia_t_429_2011",
+      "titulo": "Sentencia T-429 de 2011",
+      "fuente": "Relatoria de la Corte Constitucional",
+      "url": "https://www.corteconstitucional.gov.co/relatoria/2011/T-429-11.htm",
+      "areas": [
+        "Derecho constitucional"
+      ],
+      "items_del_banco": 1,
+      "canonico": [
+        "jurisprudencia",
+        "T-429",
+        "2011"
+      ],
+      "estado": "descargado",
+      "tipo_fuente": "html",
+      "fecha_consulta": "2026-09-28",
+      "archivos": [
+        "T-429-11.htm"
+      ],
+      "bytes": 150044,
+      "sha256": "eb8c65396d9bc7f6577983af27ebf13ac8ac64dea50349f2933c4f83fcfbf47d",
+      "nota": "ya estaba en data/raw/ (usar --forzar para repetir)"
+    },
+    {
+      "doc_id": "sentencia_t_445_2024",
+      "titulo": "Sentencia T-445 de 2024",
+      "fuente": "Relatoria de la Corte Constitucional",
+      "url": "https://www.corteconstitucional.gov.co/relatoria/2024/T-445-24.htm",
+      "areas": [
+        "Derecho constitucional"
+      ],
+      "items_del_banco": 1,
+      "canonico": [
+        "jurisprudencia",
+        "T-445",
+        "2024"
+      ],
+      "estado": "descargado",
+      "tipo_fuente": "html",
+      "fecha_consulta": "2026-09-28",
+      "archivos": [
+        "T-445-24.htm"
+      ],
+      "bytes": 595008,
+      "sha256": "67f45d53928f97b0f103dd290b4973105e1a46747321724ad424848e1106ed35",
+      "nota": "ya estaba en data/raw/ (usar --forzar para repetir)"
+    },
+    {
+      "doc_id": "sentencia_t_488_2011",
+      "titulo": "Sentencia T-488 de 2011",
+      "fuente": "Relatoria de la Corte Constitucional",
+      "url": "https://www.corteconstitucional.gov.co/relatoria/2011/T-488-11.htm",
+      "areas": [
+        "Derecho administrativo"
+      ],
+      "items_del_banco": 1,
+      "canonico": [
+        "jurisprudencia",
+        "SU-488",
+        "2011"
+      ],
+      "estado": "descargado",
+      "tipo_fuente": "rtf",
+      "fecha_consulta": "2026-10-01",
+      "archivos": [
+        "t-488-11.rtf"
+      ],
+      "bytes": 515242,
+      "sha256": "1dca6a4fcde2ca2046be7d1c0df042d4b0fde866e665837f0d8030b1214888df",
+      "nota": "errata de la semilla: no existe la SU-488 de 2011; es la T-488 de 2011"
+    },
+    {
+      "doc_id": "sentencia_t_4_2026",
+      "titulo": "Sentencia T-4 de 2026",
+      "fuente": "Relatoria de la Corte Constitucional",
+      "url": "https://www.corteconstitucional.gov.co/relatoria/2026/T-004-26.htm",
+      "areas": [
+        "Derecho civil"
+      ],
+      "items_del_banco": 1,
+      "canonico": [
+        "jurisprudencia",
+        "T-4",
+        "2026"
+      ],
+      "estado": "descargado",
+      "tipo_fuente": "html",
+      "fecha_consulta": "2026-09-28",
+      "archivos": [
+        "T-004-26.htm"
+      ],
+      "bytes": 447581,
+      "sha256": "800cb76086d02803680c390e350c1712b7683484579a3af9763e3c9361db3d20",
+      "nota": "ya estaba en data/raw/ (usar --forzar para repetir)"
+    },
+    {
+      "doc_id": "sentencia_t_67_2025",
+      "titulo": "Sentencia T-67 de 2025",
+      "fuente": "Relatoria de la Corte Constitucional",
+      "url": "https://www.corteconstitucional.gov.co/relatoria/2025/T-067-25.htm",
+      "areas": [
+        "Derecho constitucional"
+      ],
+      "items_del_banco": 1,
+      "canonico": [
+        "jurisprudencia",
+        "T-67",
+        "2025"
+      ],
+      "estado": "descargado",
+      "tipo_fuente": "html",
+      "fecha_consulta": "2026-09-28",
+      "archivos": [
+        "T-067-25.htm"
+      ],
+      "bytes": 822267,
+      "sha256": "c5ad44cb4a496538f18ca6787acb0fadae313146bf871fd97c7d676efdf68a05",
+      "nota": "ya estaba en data/raw/ (usar --forzar para repetir)"
+    },
+    {
+      "doc_id": "sentencia_t_6_1992",
+      "titulo": "Sentencia T-006 de 1992",
+      "fuente": "Relatoria de la Corte Constitucional",
+      "url": "https://www.corteconstitucional.gov.co/relatoria/1992/t-006-92.htm",
+      "areas": [
+        "Derecho administrativo"
+      ],
+      "items_del_banco": 1,
+      "canonico": [
+        "jurisprudencia",
+        "SU-6",
+        "1991"
+      ],
+      "estado": "descargado",
+      "tipo_fuente": "rtf",
+      "fecha_consulta": "2026-10-01",
+      "archivos": [
+        "t-006-92.rtf"
+      ],
+      "bytes": 241037,
+      "sha256": "6efa574586002716307bddcc773fc7326f8075daf96199aba1fe60905d7282f5",
+      "nota": "errata de la semilla: no hubo sentencias SU en 1991 (la Corte empezo en 1992); respaldo elegido a mano: T-006 de 1992"
+    },
+    {
+      "doc_id": "sentencia_t_71_2016",
+      "titulo": "Sentencia T-71 de 2016",
+      "fuente": "Relatoria de la Corte Constitucional",
+      "url": "https://www.corteconstitucional.gov.co/relatoria/2016/T-071-16.htm",
+      "areas": [
+        "Derecho de familia"
+      ],
+      "items_del_banco": 1,
+      "canonico": [
+        "jurisprudencia",
+        "T-71",
+        "2016"
+      ],
+      "estado": "descargado",
+      "tipo_fuente": "html",
+      "fecha_consulta": "2026-09-28",
+      "archivos": [
+        "T-071-16.htm"
+      ],
+      "bytes": 315576,
+      "sha256": "2443af277a00875dff51f8407c76f8e6c121170a65abce67a0bd1b1bbf259704",
+      "nota": "ya estaba en data/raw/ (usar --forzar para repetir)"
+    },
+    {
+      "doc_id": "sentencia_t_77_2025",
+      "titulo": "Sentencia T-77 de 2025",
+      "fuente": "Relatoria de la Corte Constitucional",
+      "url": "https://www.corteconstitucional.gov.co/relatoria/2025/T-077-25.htm",
+      "areas": [
+        "Derecho de familia"
+      ],
+      "items_del_banco": 1,
+      "canonico": [
+        "jurisprudencia",
+        "T-77",
+        "2025"
+      ],
+      "estado": "descargado",
+      "tipo_fuente": "html",
+      "fecha_consulta": "2026-09-28",
+      "archivos": [
+        "T-077-25.htm"
+      ],
+      "bytes": 371801,
+      "sha256": "4ff50c5021f40cbf8e7c1e3fba39390dd4f3dfb45e736f2462c5e82cf26bc155",
+      "nota": "ya estaba en data/raw/ (usar --forzar para repetir)"
+    },
+    {
+      "doc_id": "sentencia_t_925_2014",
+      "titulo": "Sentencia T-925 de 2014",
+      "fuente": "Relatoria de la Corte Constitucional",
+      "url": "https://www.corteconstitucional.gov.co/relatoria/2014/T-925-14.htm",
+      "areas": [
+        "Derecho constitucional"
+      ],
+      "items_del_banco": 1,
+      "canonico": [
+        "jurisprudencia",
+        "T-925",
+        "2014"
+      ],
+      "estado": "descargado",
+      "tipo_fuente": "html",
+      "fecha_consulta": "2026-09-28",
+      "archivos": [
+        "T-925-14.htm"
+      ],
+      "bytes": 177323,
+      "sha256": "4c2317cdc43ddef9165adebd5ad8bab990555e1a487fd82e7b96f19a58ce89e8",
+      "nota": "ya estaba en data/raw/ (usar --forzar para repetir)"
+    },
+    {
+      "doc_id": "sentencia_t_970_2014",
+      "titulo": "Sentencia T-970 de 2014",
+      "fuente": "Relatoria de la Corte Constitucional",
+      "url": "https://www.corteconstitucional.gov.co/relatoria/2014/T-970-14.htm",
+      "areas": [
+        "Derecho constitucional"
+      ],
+      "items_del_banco": 1,
+      "canonico": [
+        "jurisprudencia",
+        "T-970",
+        "2014"
+      ],
+      "estado": "descargado",
+      "tipo_fuente": "html",
+      "fecha_consulta": "2026-09-28",
+      "archivos": [
+        "T-970-14.htm"
+      ],
+      "bytes": 384345,
+      "sha256": "8a4eff0c2231c2dba18ee71ec768b964d7e4a6c6b0104b816ff3b5b948e50f78",
+      "nota": "ya estaba en data/raw/ (usar --forzar para repetir)"
+    },
+    {
+      "doc_id": "acto_legislativo_1_2003",
+      "titulo": "Acto Legislativo 01 de 2003 (reforma politica)",
+      "fuente": "Gestor Normativo de Funcion Publica",
+      "url": "https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=8620",
+      "areas": [
+        "Derecho constitucional"
+      ],
+      "items_del_banco": 0,
+      "canonico": [],
+      "estado": "descargado",
+      "tipo_fuente": "pdf",
+      "fecha_consulta": "2026-10-01",
+      "archivos": [
+        "Acto_Legislativo_1_de_2003_Congreso_de_la_República.pdf"
+      ],
+      "bytes": 87175,
+      "sha256": "3f9e31156b48767ea43e14567c99973f7e477be7d27fb97f7a482629832ffca1",
+      "nota": "ampliacion desde citations.py (seccion D.3)"
+    },
+    {
+      "doc_id": "acto_legislativo_1_2005",
+      "titulo": "Acto Legislativo 01 de 2005 (adiciona el articulo 48 de la Constitucion, pensiones)",
+      "fuente": "Gestor Normativo de Funcion Publica",
+      "url": "https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=17236",
+      "areas": [
+        "Derecho constitucional",
+        "Derecho laboral"
+      ],
+      "items_del_banco": 0,
+      "canonico": [],
+      "estado": "descargado",
+      "tipo_fuente": "pdf",
+      "fecha_consulta": "2026-10-01",
+      "archivos": [
+        "Acto_Legislativo_1_de_2005_Congreso_de_la_República.pdf"
+      ],
+      "bytes": 75407,
+      "sha256": "d54415c2ee9d664732565d4d906bc5dbc026878ddfb6a7b6ed920da5d312df64",
+      "nota": "ampliacion desde citations.py (seccion D.3)"
+    },
+    {
+      "doc_id": "acto_legislativo_2_2015",
+      "titulo": "Acto Legislativo 02 de 2015 (equilibrio de poderes)",
+      "fuente": "Gestor Normativo de Funcion Publica",
+      "url": "https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=66596",
+      "areas": [
+        "Derecho constitucional"
+      ],
+      "items_del_banco": 0,
+      "canonico": [],
+      "estado": "descargado",
+      "tipo_fuente": "pdf",
+      "fecha_consulta": "2026-10-01",
+      "archivos": [
+        "Acto_Legislativo_02_de_2015_Congreso_de_la_República.pdf"
+      ],
+      "bytes": 94903,
+      "sha256": "b5acdabde0322e91eb285c18da4bd9571dba167c374874f298cb658e7ed0f8d4",
+      "nota": "ampliacion desde citations.py (seccion D.3)"
+    },
+    {
+      "doc_id": "auto_supersociedades_2025_01_730337",
+      "titulo": "Auto 2025-01-730337 de la Superintendencia de Sociedades",
+      "fuente": "Superintendencia de Sociedades (Baranda Virtual)",
+      "url": "https://servicios.supersociedades.gov.co/barandaVirtual/#!/app/radicaciones#verpdf",
+      "areas": [
+        "Derecho comercial y sociedades"
+      ],
+      "items_del_banco": 0,
+      "canonico": [],
+      "estado": "descargado",
+      "tipo_fuente": "pdf",
+      "fecha_consulta": "2026-10-01",
+      "archivos": [
+        "2025-01-730337.PDF"
+      ],
+      "bytes": 245382,
+      "sha256": "9e1e9e60845c634148aa427b4347bb93dfc94754b2489a42a2e4e2f33120b562",
+      "nota": "pregunta 272 de sample_50; la Baranda Virtual no da URL directa por documento"
+    },
+    {
+      "doc_id": "codigo_civil",
+      "titulo": "Codigo Civil (Ley 57 de 1887)",
+      "fuente": "Sistema Unico de Informacion de Tramites (SUIT)",
+      "url": "https://tramites1.suit.gov.co/registro-web/suit_descargar_archivo?A=115930",
+      "areas": [
+        "Derecho civil",
+        "Derecho de familia"
+      ],
+      "items_del_banco": 0,
+      "canonico": [],
+      "estado": "descargado",
+      "tipo_fuente": "pdf",
+      "fecha_consulta": "2026-09-29",
+      "archivos": [
+        "Ley_57_de_1887.pdf"
+      ],
+      "bytes": 1070425,
+      "sha256": "6384aa267c263a95d65b7ffcfd7862339ebd2a49bb517249ca84a4f51438343b",
+      "nota": "ya estaba en data/raw/ (usar --forzar para repetir)"
+    },
+    {
+      "doc_id": "codigo_comercio",
+      "titulo": "Codigo de Comercio (Decreto 410 de 1971)",
+      "fuente": "Gestor Normativo de Funcion Publica",
+      "url": "https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=41102",
+      "areas": [
+        "Derecho comercial y sociedades"
+      ],
+      "items_del_banco": 0,
+      "canonico": [],
+      "estado": "descargado",
+      "tipo_fuente": "pdf",
+      "fecha_consulta": "2026-09-29",
+      "archivos": [
+        "Decreto_410_de_1971.pdf"
+      ],
+      "bytes": 984940,
+      "sha256": "b3a1734b87501ded8e01240a416f7f1ef6ee504c20c6bccc091f793e8fff8842",
+      "nota": "ya estaba en data/raw/ (usar --forzar para repetir)"
+    },
+    {
+      "doc_id": "codigo_penal",
+      "titulo": "Codigo Penal (Ley 599 de 2000)",
+      "fuente": "Gestor Normativo de Funcion Publica",
+      "url": "https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=6388",
+      "areas": [
+        "Derecho penal"
+      ],
+      "items_del_banco": 0,
+      "canonico": [],
+      "estado": "descargado",
+      "tipo_fuente": "pdf",
+      "fecha_consulta": "2026-09-29",
+      "archivos": [
+        "Ley_599_de_2000.pdf"
+      ],
+      "bytes": 525583,
+      "sha256": "eb448bed33c3d5a33735f23c2954844c57d7457ed0bb752d10b3aeac1188a71b",
+      "nota": "ya estaba en data/raw/ (usar --forzar para repetir)"
+    },
+    {
+      "doc_id": "codigo_procedimiento_penal",
+      "titulo": "Codigo de Procedimiento Penal (Ley 906 de 2004)",
+      "fuente": "Gestor Normativo de Funcion Publica",
+      "url": "https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=14787",
+      "areas": [
+        "Derecho penal",
+        "Derecho procesal"
+      ],
+      "items_del_banco": 0,
+      "canonico": [],
+      "estado": "descargado",
+      "tipo_fuente": "pdf",
+      "fecha_consulta": "2026-10-01",
+      "archivos": [
+        "Ley_906_de_2004.pdf"
+      ],
+      "bytes": 552780,
+      "sha256": "661e25fef29effffe1ca39fe2db702f58e10b89b1433908e736d057610ea3e40",
+      "nota": "ampliacion desde citations.py (seccion D.1)"
+    },
+    {
+      "doc_id": "codigo_procesal_trabajo",
+      "titulo": "Codigo Procesal del Trabajo y de la Seguridad Social (Decreto 2158 de 1948)",
+      "fuente": "Gestor Normativo de Funcion Publica",
+      "url": "https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=5259",
+      "areas": [
+        "Derecho laboral",
+        "Derecho procesal"
+      ],
+      "items_del_banco": 0,
+      "canonico": [],
+      "estado": "descargado",
+      "tipo_fuente": "pdf",
+      "fecha_consulta": "2026-10-01",
+      "archivos": [
+        "Decreto_2158_de_1948.pdf"
+      ],
+      "bytes": 171684,
+      "sha256": "e50431f8fea4dc8cdc3f5d25b956091cdac73ad2072ba70ae22462211a2639e3",
+      "nota": "ampliacion desde citations.py (seccion D.1)"
+    },
+    {
+      "doc_id": "cpaca",
+      "titulo": "Codigo de Procedimiento Administrativo y de lo Contencioso Administrativo (Ley 1437 de 2011)",
+      "fuente": "Gestor Normativo de Funcion Publica",
+      "url": "https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=41249",
+      "areas": [
+        "Derecho administrativo",
+        "Derecho procesal"
+      ],
+      "items_del_banco": 0,
+      "canonico": [],
+      "estado": "descargado",
+      "tipo_fuente": "pdf",
+      "fecha_consulta": "2026-09-29",
+      "archivos": [
+        "Ley_1437_de_2011.pdf"
+      ],
+      "bytes": 504740,
+      "sha256": "2d58635c1dd9f5cabecfc2adf724e1dad39db6c61df75a5d9b285ee1ab3375d9",
+      "nota": "ya estaba en data/raw/ (usar --forzar para repetir)"
+    },
+    {
+      "doc_id": "decreto_1072_2015",
+      "titulo": "Decreto 1072 de 2015 (Decreto Unico Reglamentario del Sector Trabajo)",
+      "fuente": "Gestor Normativo de Funcion Publica",
+      "url": "https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=72173",
+      "areas": [
+        "Derecho laboral"
+      ],
+      "items_del_banco": 0,
+      "canonico": [],
+      "estado": "descargado",
+      "tipo_fuente": "pdf",
+      "fecha_consulta": "2026-10-01",
+      "archivos": [
+        "Decreto_1072_de_2015_Sector_Trabajo.pdf"
+      ],
+      "bytes": 1565630,
+      "sha256": "293d3d28c82f80bcff8b2af294916c6809cf0e43dc112f135562fd71ef8a0676",
+      "nota": "ampliacion desde citations.py (seccion D.2)"
+    },
+    {
+      "doc_id": "decreto_1074_2015",
+      "titulo": "Decreto 1074 de 2015 (Decreto Unico Reglamentario del Sector Comercio, Industria y Turismo)",
+      "fuente": "Gestor Normativo de Funcion Publica",
+      "url": "https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=76608",
+      "areas": [
+        "Derecho comercial y sociedades",
+        "Derecho de los mercados [competencia, consumidor, datos personales y propiedad intelectual]"
+      ],
+      "items_del_banco": 0,
+      "canonico": [],
+      "estado": "descargado",
+      "tipo_fuente": "pdf",
+      "fecha_consulta": "2026-10-01",
+      "archivos": [
+        "Decreto_1074_de_2015_Sector_Comercio,_Industria_y_Turismo.pdf"
+      ],
+      "bytes": 2019817,
+      "sha256": "377e09905ac438bc08cf5366077bcae8f3c5b6e6e84d449f4d1aa73deb3762e7",
+      "nota": "ampliacion desde citations.py (seccion D.2)"
+    },
+    {
+      "doc_id": "decreto_1083_2015",
+      "titulo": "Decreto 1083 de 2015 (Decreto Unico Reglamentario del Sector de Funcion Publica)",
+      "fuente": "Gestor Normativo de Funcion Publica",
+      "url": "https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=62866",
+      "areas": [
+        "Derecho administrativo"
+      ],
+      "items_del_banco": 0,
+      "canonico": [],
+      "estado": "descargado",
+      "tipo_fuente": "pdf",
+      "fecha_consulta": "2026-10-01",
+      "archivos": [
+        "Decreto_1083_de_2015_Sector_de_Función_Pública.pdf"
+      ],
+      "bytes": 1140715,
+      "sha256": "c213010deb29388a9d313004323bba7cb15d46fa5a68fd3e5a3db7bfa0460557",
+      "nota": "ampliacion desde citations.py (seccion D.2)"
+    },
+    {
+      "doc_id": "decreto_1625_2016",
+      "titulo": "Decreto 1625 de 2016 (Decreto Unico Reglamentario en materia tributaria)",
+      "fuente": "Normograma de la DIAN",
+      "url": "https://normograma.dian.gov.co/dian/compilacion/docs/pdf/decreto_1625_2016.pdf",
+      "areas": [
+        "Derecho tributario"
+      ],
+      "items_del_banco": 0,
+      "canonico": [],
+      "estado": "descargado",
+      "tipo_fuente": "pdf",
+      "fecha_consulta": "2026-10-01",
+      "archivos": [
+        "decreto_1625_2016.pdf"
+      ],
+      "bytes": 11614383,
+      "sha256": "f4682477de41355fcd18767277d921e7f5db591f65bc6f8c4c1a3a2165b909df",
+      "nota": "ampliacion desde citations.py (seccion D.2)"
+    },
+    {
+      "doc_id": "decreto_19_2012",
+      "titulo": "Decreto 19 de 2012 (antitramites)",
+      "fuente": "Gestor Normativo de Funcion Publica",
+      "url": "https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=45322",
+      "areas": [
+        "Derecho administrativo"
+      ],
+      "items_del_banco": 0,
+      "canonico": [],
+      "estado": "descargado",
+      "tipo_fuente": "pdf",
+      "fecha_consulta": "2026-10-01",
+      "archivos": [
+        "Decreto_19_de_2012.pdf"
+      ],
+      "bytes": 314653,
+      "sha256": "46ac78f993c29f96f33a4061deb491e9f63f3c542496c8db81bbeefd2950da6c",
+      "nota": "ampliacion desde citations.py (seccion D.6)"
+    },
+    {
+      "doc_id": "decreto_1_1984",
+      "titulo": "Decreto 01 de 1984 (Codigo Contencioso Administrativo anterior al CPACA)",
+      "fuente": "Gestor Normativo de Funcion Publica",
+      "url": "https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=6543",
+      "areas": [
+        "Derecho administrativo",
+        "Derecho procesal"
+      ],
+      "items_del_banco": 0,
+      "canonico": [],
+      "estado": "descargado",
+      "tipo_fuente": "pdf",
+      "fecha_consulta": "2026-10-01",
+      "archivos": [
+        "Decreto_1_de_1984.pdf"
+      ],
+      "bytes": 404568,
+      "sha256": "dc1ff6cc7b69045ea8087c37aaf1d03574e13d9dcda69a5d4066de7cb277cce1",
+      "nota": "ampliacion desde citations.py (seccion D.6)"
+    },
+    {
+      "doc_id": "doctrina_arbanza_grupo_sociedades_2024",
+      "titulo": "Arbanza, Analisis comparativo de la extension del convenio arbitral a partes no signatarias: Pakistan, Francia y Colombia (2024)",
+      "fuente": "Arbanza (doctrina)",
+      "url": "https://arbanza.com/analisis-comparativo-de-la-extension-del-convenio-arbitral-a-partes-no-signatarias-el-caso-de-pakistan-francia-y-colombia/",
+      "areas": [
+        "Derecho comercial y sociedades"
+      ],
+      "items_del_banco": 0,
+      "canonico": [],
+      "estado": "descargado",
+      "tipo_fuente": "pdf",
+      "fecha_consulta": "2026-10-01",
+      "archivos": [
+        "Arbanza_extension_convenio_arbitral_no_signatarios_2024.pdf"
+      ],
+      "bytes": 566208,
+      "sha256": "f843091a88d9441829193e6c959e48b2798a11f1296bc08e9d3fe4efc62f548f",
+      "nota": "pregunta 697 de sample_50 (caso Dow Chemical); doctrina, no norma"
+    },
+    {
+      "doc_id": "doctrina_ompi_agotamiento_patentes_2012",
+      "titulo": "OMPI, Seminario Regional (Bogota, 2012), Tema 14: El agotamiento del derecho de patente",
+      "fuente": "Organizacion Mundial de la Propiedad Intelectual (OMPI)",
+      "url": "https://www.wipo.int/edocs/mdocs/mdocs/en/wipo_ip_bog_12/wipo_ip_bog_12_ref_u14b_aleman.pdf",
+      "areas": [
+        "Derecho de los mercados [competencia, consumidor, datos personales y propiedad intelectual]"
+      ],
+      "items_del_banco": 0,
+      "canonico": [],
+      "estado": "descargado",
+      "tipo_fuente": "pdf",
+      "fecha_consulta": "2026-10-01",
+      "archivos": [
+        "wipo_ip_bog_12_ref_u14b_aleman.pdf"
+      ],
+      "bytes": 146782,
+      "sha256": "50af1eebb5de22a2fd1e2a1f528792be9086ee2b21ab8dfd83d12c7d5544a044",
+      "nota": "pregunta 513 de sample_50; ponencia, no norma"
+    },
+    {
+      "doc_id": "ley_100_1993",
+      "titulo": "Ley 100 de 1993 (Sistema de Seguridad Social Integral)",
+      "fuente": "Gestor Normativo de Funcion Publica",
+      "url": "https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=5248",
+      "areas": [
+        "Derecho laboral"
+      ],
+      "items_del_banco": 0,
+      "canonico": [],
+      "estado": "descargado",
+      "tipo_fuente": "pdf",
+      "fecha_consulta": "2026-10-01",
+      "archivos": [
+        "Ley_100_de_1993.pdf"
+      ],
+      "bytes": 337233,
+      "sha256": "0ba9a04fc7040dce282c068a404825a926aeede8084b5ee397c082e64266dd1c",
+      "nota": "ampliacion desde citations.py (seccion D.6)"
+    },
+    {
+      "doc_id": "ley_1676_2013",
+      "titulo": "Ley 1676 de 2013 (garantias mobiliarias)",
+      "fuente": "Gestor Normativo de Funcion Publica",
+      "url": "https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=54297",
+      "areas": [
+        "Derecho comercial y sociedades",
+        "Derecho civil"
+      ],
+      "items_del_banco": 0,
+      "canonico": [],
+      "estado": "descargado",
+      "tipo_fuente": "pdf",
+      "fecha_consulta": "2026-10-01",
+      "archivos": [
+        "Ley_1676_de_2013.pdf"
+      ],
+      "bytes": 148024,
+      "sha256": "96081a90f0f2d0e49b1b9b842ad395690e8b7422e7a084acd820ec6ea0341108",
+      "nota": "ampliacion desde citations.py (seccion D.6)"
+    },
+    {
+      "doc_id": "ley_222_1995",
+      "titulo": "Ley 222 de 1995 (regimen de sociedades)",
+      "fuente": "Gestor Normativo de Funcion Publica",
+      "url": "https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=6739",
+      "areas": [
+        "Derecho comercial y sociedades"
+      ],
+      "items_del_banco": 0,
+      "canonico": [],
+      "estado": "descargado",
+      "tipo_fuente": "pdf",
+      "fecha_consulta": "2026-10-01",
+      "archivos": [
+        "Ley_222_de_1995.pdf"
+      ],
+      "bytes": 360011,
+      "sha256": "921236f51629b380299ca1fcac9b93df1f618cecc6dff559926ed53aef16d826",
+      "nota": "ampliacion desde citations.py (seccion D.6)"
+    },
+    {
+      "doc_id": "ley_472_1998",
+      "titulo": "Ley 472 de 1998, acciones populares y de grupo",
+      "fuente": "Gestor Normativo de Funcion Publica",
+      "url": "https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=188",
+      "areas": [
+        "Derecho constitucional",
+        "Derecho administrativo"
+      ],
+      "items_del_banco": 0,
+      "canonico": [],
+      "estado": "descargado",
+      "tipo_fuente": "pdf",
+      "fecha_consulta": "2026-09-29",
+      "archivos": [
+        "Ley_472_de_1998.pdf"
+      ],
+      "bytes": 141101,
+      "sha256": "89c93e61ed072ad8f4b17651bd922bb3d4bc3caa56510b04a748ccc60d0df14c",
+      "nota": "ya estaba en data/raw/ (usar --forzar para repetir)"
+    },
+    {
+      "doc_id": "sentencia_c_468_2024",
+      "titulo": "Sentencia C-468 de 2024",
+      "fuente": "Regimen Legal de Bogota (Secretaria Juridica Distrital)",
+      "url": "https://www.alcaldiabogota.gov.co/sisjur/normas/Norma1.jsp?i=172537",
+      "areas": [
+        "Derecho constitucional"
+      ],
+      "items_del_banco": 0,
+      "canonico": [],
+      "estado": "descargado",
+      "tipo_fuente": "pdf",
+      "fecha_consulta": "2026-10-01",
+      "archivos": [
+        "Sentencia C-468 de 2024 Corte Constitucional de Colombia.pdf"
+      ],
+      "bytes": 871531,
+      "sha256": "a27f7b242dbb214e28730c70d0395f948a2042a9dfddae3fa4026383c5f656c6",
+      "nota": "pregunta 453 de sample_50"
+    },
+    {
+      "doc_id": "sentencia_ce_suj_4_005_2020",
+      "titulo": "Consejo de Estado, Seccion Cuarta, Sentencia de unificacion 2020CE-SUJ-4-005 de 2020 (exp. 21329)",
+      "fuente": "Normograma de la DIAN",
+      "url": "https://normograma.dian.gov.co/dian/compilacion/docs/pdf/25000-23-37-000-2013-00443-01(21329)ce-suj-4-005.pdf",
+      "areas": [
+        "Derecho tributario"
+      ],
+      "items_del_banco": 0,
+      "canonico": [],
+      "estado": "descargado",
+      "tipo_fuente": "pdf",
+      "fecha_consulta": "2026-10-01",
+      "archivos": [
+        "25000-23-37-000-2013-00443-01(21329)ce-suj-4-005.pdf"
+      ],
+      "bytes": 236589,
+      "sha256": "1799f968ab17883c85cf59de7fb332a910cabb6756d18ee08f7b988af427b247",
+      "nota": "pregunta 142 de sample_50"
+    },
+    {
+      "doc_id": "sentencia_sc_10291_2017",
+      "titulo": "Sentencia SC-10291 de 2017",
+      "fuente": "Relatoria de la Corte Suprema de Justicia",
+      "url": "https://consultajurisprudencial.ramajudicial.gov.co/WebRelatoria/csj/index.xhtml",
+      "areas": [
+        "Derecho civil"
+      ],
+      "items_del_banco": 0,
+      "canonico": [],
+      "estado": "descargado",
+      "tipo_fuente": "pdf",
+      "fecha_consulta": "2026-10-01",
+      "archivos": [
+        "SC10291-2017 (2008-00374-01)_1.pdf"
+      ],
+      "bytes": 1506321,
+      "sha256": "97691997debb04bcf57333334ec445adbd81d5b718862e42f125fe4adc052082",
+      "nota": "pregunta 168 de sample_50; descarga manual desde la consulta de jurisprudencia de la Relatoria (sin URL directa por documento); archivo SC10291-2017 (2008-00374-01)_1.pdf"
+    },
+    {
+      "doc_id": "sentencia_sc_435_2024",
+      "titulo": "Sentencia SC-435 de 2024",
+      "fuente": "Relatoria de la Corte Suprema de Justicia",
+      "url": "https://consultajurisprudencial.ramajudicial.gov.co/WebRelatoria/csj/index.xhtml",
+      "areas": [
+        "Derecho comercial y sociedades"
+      ],
+      "items_del_banco": 0,
+      "canonico": [],
+      "estado": "descargado",
+      "tipo_fuente": "pdf",
+      "fecha_consulta": "2026-10-01",
+      "archivos": [
+        "SC435-2024 (2021-00160-01).pdf"
+      ],
+      "bytes": 464004,
+      "sha256": "b4b69d64a2cadd632e0123b9103e86d4f9b047957649eee07950cac2bede750f",
+      "nota": "descargada junto a la SC-425 de 2024 (objetivo de la semilla); descarga manual desde la consulta de jurisprudencia de la Relatoria (sin URL directa por documento); archivo SC435-2024 (2021-00160-01).pdf"
+    },
+    {
+      "doc_id": "sentencia_sc_5288_2021",
+      "titulo": "Sentencia SC-5288 de 2021",
+      "fuente": "Corte Suprema de Justicia",
+      "url": "https://www.cortesuprema.gov.co/corte/wp-content/uploads/not/civil21/prov/11001-02-03-000-2021-00766-00.pdf",
+      "areas": [
+        "Derecho comercial y sociedades"
+      ],
+      "items_del_banco": 0,
+      "canonico": [],
+      "estado": "descargado",
+      "tipo_fuente": "pdf",
+      "fecha_consulta": "2026-10-01",
+      "archivos": [
+        "SC5288-2021 (2021-00766-00).pdf"
+      ],
+      "bytes": 586124,
+      "sha256": "0db72402b64a9a8d5c4311c2489a17956379b88f67193ab96b9a388a9946191a",
+      "nota": "pregunta 697 de sample_50 (caso Dow Chemical)"
+    },
+    {
+      "doc_id": "sentencia_su_16_2020",
+      "titulo": "Sentencia SU-016 de 2020",
+      "fuente": "Relatoria de la Corte Constitucional",
+      "url": "https://www.corteconstitucional.gov.co/relatoria/2020/su016-20.htm",
+      "areas": [
+        "Derecho constitucional"
+      ],
+      "items_del_banco": 0,
+      "canonico": [],
+      "estado": "descargado",
+      "tipo_fuente": "rtf",
+      "fecha_consulta": "2026-10-01",
+      "archivos": [
+        "su016-20.rtf"
+      ],
+      "bytes": 1894776,
+      "sha256": "73b454aded6af2831902e32d5ff36bbf5ec4e9eb0aa8ac1b5dc7523a06c20103",
+      "nota": "pregunta 453 de sample_50"
+    },
+    {
+      "doc_id": "sentencia_su_277_2025",
+      "titulo": "Sentencia SU-277 de 2025",
+      "fuente": "Relatoria de la Corte Constitucional",
+      "url": "https://www.corteconstitucional.gov.co/relatoria/2025/su277-25.htm",
+      "areas": [
+        "Derecho administrativo"
+      ],
+      "items_del_banco": 0,
+      "canonico": [],
+      "estado": "descargado",
+      "tipo_fuente": "rtf",
+      "fecha_consulta": "2026-10-01",
+      "archivos": [
+        "su277-25.rtf"
+      ],
+      "bytes": 1308644,
+      "sha256": "f284575802ee598deaa6abeb19e1bcb86df28ccd37f325dec4684e3fa97e958e",
+      "nota": "pregunta 563 de sample_50"
+    },
+    {
+      "doc_id": "sentencia_t_256_2025",
+      "titulo": "Sentencia T-256 de 2025",
+      "fuente": "Relatoria de la Corte Constitucional",
+      "url": "https://www.corteconstitucional.gov.co/relatoria/2025/t-256-25.htm",
+      "areas": [
+        "Derecho constitucional"
+      ],
+      "items_del_banco": 0,
+      "canonico": [],
+      "estado": "descargado",
+      "tipo_fuente": "rtf",
+      "fecha_consulta": "2026-10-01",
+      "archivos": [
+        "t-256-25.rtf"
+      ],
+      "bytes": 335895,
+      "sha256": "58757841e7ecafb43eab866f93763c9900b08d716033e271d371097c574bf724",
+      "nota": "pregunta 190 de sample_50"
+    }
+  ]
+}

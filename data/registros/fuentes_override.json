@@ -1,0 +1,531 @@
+{
+  "_comentario": "doc_id de la semilla -> correccion. Manda sobre las reglas de src/ingesta/descargar_fuentes.py. Campos: doc_id (si la semilla trae una errata), titulo, fuente, url, estado (errata | no_encontrado | sin_resolver), nota. Solo URLs verificadas; nada inventado.",
+  "decreto_1563_2012": {
+    "doc_id": "ley_1563_2012",
+    "titulo": "Ley 1563 de 2012 (Estatuto de Arbitraje Nacional e Internacional)",
+    "fuente": "Secretaria del Senado",
+    "url": "http://www.secretariasenado.gov.co/senado/basedoc/ley_1563_2012.html",
+    "nota": "errata de la semilla: 'Decreto 1563 de 2012' (area procesal) es la Ley 1563 de 2012"
+  },
+  "decreto_663_1993": {
+    "titulo": "Estatuto Organico del Sistema Financiero (Decreto 663 de 1993)",
+    "fuente": "Secretaria del Senado",
+    "url": "http://www.secretariasenado.gov.co/senado/basedoc/estatuto_organico_sistema_financiero.html",
+    "nota": "el Senado lo publica con el nombre del estatuto"
+  },
+  "ley_2737_1989": {
+    "doc_id": "decreto_2737_1989",
+    "titulo": "Codigo del Menor (Decreto 2737 de 1989)",
+    "fuente": "Normograma de Colpensiones (compilacion Avance Juridico)",
+    "url": "https://normativa.colpensiones.gov.co/colpens/docs/codigo_menor.htm",
+    "nota": "errata de la semilla: es el Decreto 2737 de 1989 (derogado casi por completo por la Ley 1098 de 2006)"
+  },
+  "ley_964_2006": {
+    "doc_id": "ley_964_2005",
+    "titulo": "Ley 964 de 2005 (Mercado de Valores)",
+    "fuente": "Secretaria del Senado",
+    "url": "http://www.secretariasenado.gov.co/senado/basedoc/ley_0964_2005.html",
+    "nota": "errata de la semilla: la Ley 964 es de 2005"
+  },
+  "ley_11500_2007": {
+    "estado": "errata",
+    "nota": "errata de la semilla: es la Ley 1150 de 2007, ya en el corpus como ley_1150_2007"
+  },
+  "ley_1150_2005": {
+    "estado": "errata",
+    "nota": "errata de la semilla: la Ley 1150 es de 2007, ya en el corpus como ley_1150_2007"
+  },
+  "ley_116_2006": {
+    "estado": "errata",
+    "nota": "errata de la semilla: probablemente la Ley 1116 de 2006 (insolvencia), ya en el corpus como ley_1116_2006"
+  },
+  "sentencia_su_6_1991": {
+    "doc_id": "sentencia_t_6_1992",
+    "titulo": "Sentencia T-006 de 1992",
+    "fuente": "Relatoria de la Corte Constitucional",
+    "url": "https://www.corteconstitucional.gov.co/relatoria/1992/t-006-92.htm",
+    "nota": "errata de la semilla: no hubo sentencias SU en 1991 (la Corte empezo en 1992); respaldo elegido a mano: T-006 de 1992"
+  },
+  "constitucion_politica_1991": {
+    "fuente": "Gestor Normativo de Funcion Publica",
+    "url": "https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=4125",
+    "nota": "PDF del Gestor Normativo (referencias_normativas.md)"
+  },
+  "codigo_sustantivo_trabajo": {
+    "fuente": "Gestor Normativo de Funcion Publica",
+    "url": "https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=199983",
+    "nota": "PDF del Gestor Normativo (referencias_normativas.md)"
+  },
+  "estatuto_tributario": {
+    "fuente": "Gestor Normativo de Funcion Publica",
+    "url": "https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=6533",
+    "nota": "PDF del Gestor Normativo (referencias_normativas.md)"
+  },
+  "decreto_2153_1992": {
+    "fuente": "Gestor Normativo de Funcion Publica",
+    "url": "https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=38168",
+    "nota": "PDF del Gestor Normativo (referencias_normativas.md)"
+  },
+  "ley_80_1993": {
+    "fuente": "Gestor Normativo de Funcion Publica",
+    "url": "https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=304",
+    "nota": "PDF del Gestor Normativo (referencias_normativas.md)"
+  },
+  "ley_1116_2006": {
+    "fuente": "Gestor Normativo de Funcion Publica",
+    "url": "https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=22657",
+    "nota": "PDF del Gestor Normativo (referencias_normativas.md)"
+  },
+  "ley_1258_2008": {
+    "fuente": "Gestor Normativo de Funcion Publica",
+    "url": "https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=34130",
+    "nota": "PDF del Gestor Normativo (referencias_normativas.md)"
+  },
+  "estatuto_consumidor": {
+    "fuente": "Gestor Normativo de Funcion Publica",
+    "url": "https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=44306",
+    "nota": "PDF del Gestor Normativo (referencias_normativas.md)"
+  },
+  "codigo_general_proceso": {
+    "fuente": "Gestor Normativo de Funcion Publica",
+    "url": "https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=48425",
+    "nota": "PDF del Gestor Normativo (referencias_normativas.md)"
+  },
+  "ley_1581_2012": {
+    "fuente": "Gestor Normativo de Funcion Publica",
+    "url": "https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=49981",
+    "nota": "PDF del Gestor Normativo (referencias_normativas.md)"
+  },
+  "ley_2220_2022": {
+    "fuente": "Gestor Normativo de Funcion Publica",
+    "url": "https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=188766",
+    "nota": "PDF del Gestor Normativo (referencias_normativas.md)"
+  },
+  "codigo_infancia": {
+    "fuente": "Instituto Colombiano de Bienestar Familiar (ICBF)",
+    "url": "https://www.icbf.gov.co/sites/default/files/codigoinfancialey1098.pdf",
+    "nota": "PDF del ICBF (referencias_normativas.md)"
+  },
+  "sentencia_sl_3385_2022": {
+    "fuente": "RedJurista",
+    "url": "https://www.redjurista.com/appfolders/images/news/CSJ_SCL_SL3385_2022_2022.pdf",
+    "nota": "PDF de RedJurista (referencias_normativas.md); la Relatoria de la Corte Suprema no tiene URL predecible"
+  },
+  "sentencia_sl_648_2018": {
+    "fuente": "Relatoria de la Corte Suprema de Justicia",
+    "url": "https://consultajurisprudencial.ramajudicial.gov.co/WebRelatoria/csj/index.xhtml",
+    "nota": "descarga manual desde la consulta de jurisprudencia de la Relatoria (sin URL directa por documento); archivo SL648-2018.pdf"
+  },
+  "sentencia_sl_1050_2023": {
+    "fuente": "Relatoria de la Corte Suprema de Justicia",
+    "url": "https://consultajurisprudencial.ramajudicial.gov.co/WebRelatoria/csj/index.xhtml",
+    "nota": "descarga manual desde la consulta de jurisprudencia de la Relatoria (sin URL directa por documento); archivo SL1050-2023.pdf"
+  },
+  "sentencia_sl_1730_2020": {
+    "fuente": "Relatoria de la Corte Suprema de Justicia",
+    "url": "https://consultajurisprudencial.ramajudicial.gov.co/WebRelatoria/csj/index.xhtml",
+    "nota": "descarga manual desde la consulta de jurisprudencia de la Relatoria (sin URL directa por documento); archivo SL1730-2020.pdf"
+  },
+  "sentencia_sl_1972_2025": {
+    "fuente": "Relatoria de la Corte Suprema de Justicia",
+    "url": "https://consultajurisprudencial.ramajudicial.gov.co/WebRelatoria/csj/index.xhtml",
+    "nota": "descarga manual desde la consulta de jurisprudencia de la Relatoria (sin URL directa por documento); archivo SL1972-2025.pdf"
+  },
+  "sentencia_sp_1680_2022": {
+    "fuente": "Relatoria de la Corte Suprema de Justicia",
+    "url": "https://consultajurisprudencial.ramajudicial.gov.co/WebRelatoria/csj/index.xhtml",
+    "nota": "descarga manual desde la consulta de jurisprudencia de la Relatoria (sin URL directa por documento); archivo SP1680-2022(60875).pdf"
+  },
+  "sentencia_sp_1945_2019": {
+    "fuente": "Relatoria de la Corte Suprema de Justicia",
+    "url": "https://consultajurisprudencial.ramajudicial.gov.co/WebRelatoria/csj/index.xhtml",
+    "nota": "descarga manual desde la consulta de jurisprudencia de la Relatoria (sin URL directa por documento); archivo SP1945-2019(50523).pdf"
+  },
+  "sentencia_sp_1167_2022": {
+    "fuente": "Relatoria de la Corte Suprema de Justicia",
+    "url": "https://consultajurisprudencial.ramajudicial.gov.co/WebRelatoria/csj/index.xhtml",
+    "nota": "descarga manual desde la consulta de jurisprudencia de la Relatoria (sin URL directa por documento); archivo SP1167-2022(57957).pdf"
+  },
+  "sentencia_sp_3218_2021": {
+    "fuente": "Relatoria de la Corte Suprema de Justicia",
+    "url": "https://consultajurisprudencial.ramajudicial.gov.co/WebRelatoria/csj/index.xhtml",
+    "nota": "descarga manual desde la consulta de jurisprudencia de la Relatoria (sin URL directa por documento); archivo SP3218-2021(47063).pdf"
+  },
+  "sentencia_sc_1121_2018": {
+    "fuente": "Relatoria de la Corte Suprema de Justicia",
+    "url": "https://consultajurisprudencial.ramajudicial.gov.co/WebRelatoria/csj/index.xhtml",
+    "nota": "descarga manual desde la consulta de jurisprudencia de la Relatoria (sin URL directa por documento); archivo SC1121-2018 (2007-00128-01).docx"
+  },
+  "sentencia_sc_18392_2017": {
+    "fuente": "Relatoria de la Corte Suprema de Justicia",
+    "url": "https://consultajurisprudencial.ramajudicial.gov.co/WebRelatoria/csj/index.xhtml",
+    "nota": "descarga manual desde la consulta de jurisprudencia de la Relatoria (sin URL directa por documento); archivo SC18392-2017 (2011-00081-01)_2.pdf"
+  },
+  "sentencia_sc_3674_2021": {
+    "fuente": "Relatoria de la Corte Suprema de Justicia",
+    "url": "https://consultajurisprudencial.ramajudicial.gov.co/WebRelatoria/csj/index.xhtml",
+    "nota": "descarga manual desde la consulta de jurisprudencia de la Relatoria (sin URL directa por documento); archivo SC3674-2021 (2015-00017-01).pdf"
+  },
+  "sentencia_sc_425_2024": {
+    "fuente": "Relatoria de la Corte Suprema de Justicia",
+    "url": "https://consultajurisprudencial.ramajudicial.gov.co/WebRelatoria/csj/index.xhtml",
+    "nota": "descarga manual desde la consulta de jurisprudencia de la Relatoria (sin URL directa por documento); archivo SC425-2024 (2019-00063-01).pdf"
+  },
+  "sentencia_sc_8453_2016": {
+    "fuente": "Relatoria de la Corte Suprema de Justicia",
+    "url": "https://consultajurisprudencial.ramajudicial.gov.co/WebRelatoria/csj/index.xhtml",
+    "nota": "descarga manual desde la consulta de jurisprudencia de la Relatoria (sin URL directa por documento); archivo SC8453-2016 (2014-02243-00).pdf"
+  },
+  "sentencia_sc_3085_2024": {
+    "fuente": "Relatoria de la Corte Suprema de Justicia",
+    "url": "https://consultajurisprudencial.ramajudicial.gov.co/WebRelatoria/csj/index.xhtml",
+    "nota": "descarga manual desde la consulta de jurisprudencia de la Relatoria (sin URL directa por documento); archivo SC3085-2024 (2021-00107-01).pdf"
+  },
+  "acuerdo_2_2015": {
+    "titulo": "Acuerdo 02 de 2015 de la Corte Constitucional (Reglamento de la Corte Constitucional)",
+    "fuente": "Regimen Legal de Bogota (Secretaria Juridica Distrital)",
+    "url": "https://www.alcaldiabogota.gov.co/sisjur/normas/Norma1.jsp?i=154021",
+    "nota": "Acuerdo 02 de 2015 de la Sala Plena de la Corte Constitucional; PDF impreso desde Sisjur"
+  },
+  "decreto_46_2024": {
+    "titulo": "Decreto 046 de 2024",
+    "fuente": "Gestor Normativo de Funcion Publica",
+    "url": "https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=228530",
+    "nota": "no esta en el Senado; PDF del Gestor Normativo"
+  },
+  "ley_1692_2017": {
+    "doc_id": "ley_1692_2013",
+    "titulo": "Ley 1692 de 2013 (Convenio Colombia-Portugal para evitar la doble imposicion)",
+    "fuente": "Normograma de la DIAN",
+    "url": "https://www.dian.gov.co/normatividad/convenios/ConveniosTributacionInternacional/B149.pdf",
+    "nota": "errata de la semilla: la Ley 1692 es de 2013 (aprueba el convenio con Portugal)"
+  },
+  "ley_23_1961": {
+    "doc_id": "ley_23_1991",
+    "titulo": "Ley 23 de 1991 (descongestion de despachos judiciales)",
+    "fuente": "Gestor Normativo de Funcion Publica",
+    "url": "https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=6546",
+    "nota": "errata de la semilla: 'Ley 23 de 1961' (area constitucional) es la Ley 23 de 1991"
+  },
+  "sentencia_su_488_2011": {
+    "doc_id": "sentencia_t_488_2011",
+    "titulo": "Sentencia T-488 de 2011",
+    "fuente": "Relatoria de la Corte Constitucional",
+    "url": "https://www.corteconstitucional.gov.co/relatoria/2011/T-488-11.htm",
+    "nota": "errata de la semilla: no existe la SU-488 de 2011; es la T-488 de 2011"
+  },
+  "sentencia_t_248_2025": {
+    "doc_id": "sentencia_sp_248_2025",
+    "titulo": "Sentencia SP-248 de 2025",
+    "fuente": "Relatoria de la Corte Suprema de Justicia",
+    "url": "https://consultajurisprudencial.ramajudicial.gov.co/WebRelatoria/csj/index.xhtml",
+    "nota": "errata de la semilla: 'T-248 de 2025' (area penal) es la SP248-2025 de la Sala Penal de la Corte Suprema; descarga manual desde la consulta de jurisprudencia de la Relatoria (sin URL directa por documento); archivo SP248-2025(58275).pdf"
+  },
+  "_adicionales": [
+    {
+      "doc_id": "codigo_civil",
+      "titulo": "Codigo Civil (Ley 57 de 1887)",
+      "fuente": "Sistema Unico de Informacion de Tramites (SUIT)",
+      "url": "https://tramites1.suit.gov.co/registro-web/suit_descargar_archivo?A=115930",
+      "areas": [
+        "Derecho civil",
+        "Derecho de familia"
+      ]
+    },
+    {
+      "doc_id": "codigo_comercio",
+      "titulo": "Codigo de Comercio (Decreto 410 de 1971)",
+      "fuente": "Gestor Normativo de Funcion Publica",
+      "url": "https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=41102",
+      "areas": [
+        "Derecho comercial y sociedades"
+      ]
+    },
+    {
+      "doc_id": "codigo_penal",
+      "titulo": "Codigo Penal (Ley 599 de 2000)",
+      "fuente": "Gestor Normativo de Funcion Publica",
+      "url": "https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=6388",
+      "areas": [
+        "Derecho penal"
+      ]
+    },
+    {
+      "doc_id": "cpaca",
+      "titulo": "Codigo de Procedimiento Administrativo y de lo Contencioso Administrativo (Ley 1437 de 2011)",
+      "fuente": "Gestor Normativo de Funcion Publica",
+      "url": "https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=41249",
+      "areas": [
+        "Derecho administrativo",
+        "Derecho procesal"
+      ]
+    },
+    {
+      "doc_id": "ley_472_1998",
+      "titulo": "Ley 472 de 1998, acciones populares y de grupo",
+      "fuente": "Gestor Normativo de Funcion Publica",
+      "url": "https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=188",
+      "areas": [
+        "Derecho constitucional",
+        "Derecho administrativo"
+      ]
+    },
+    {
+      "doc_id": "sentencia_c_468_2024",
+      "titulo": "Sentencia C-468 de 2024",
+      "fuente": "Regimen Legal de Bogota (Secretaria Juridica Distrital)",
+      "url": "https://www.alcaldiabogota.gov.co/sisjur/normas/Norma1.jsp?i=172537",
+      "areas": [
+        "Derecho constitucional"
+      ],
+      "nota": "pregunta 453 de sample_50"
+    },
+    {
+      "doc_id": "sentencia_su_16_2020",
+      "titulo": "Sentencia SU-016 de 2020",
+      "fuente": "Relatoria de la Corte Constitucional",
+      "url": "https://www.corteconstitucional.gov.co/relatoria/2020/su016-20.htm",
+      "areas": [
+        "Derecho constitucional"
+      ],
+      "nota": "pregunta 453 de sample_50"
+    },
+    {
+      "doc_id": "sentencia_su_277_2025",
+      "titulo": "Sentencia SU-277 de 2025",
+      "fuente": "Relatoria de la Corte Constitucional",
+      "url": "https://www.corteconstitucional.gov.co/relatoria/2025/su277-25.htm",
+      "areas": [
+        "Derecho administrativo"
+      ],
+      "nota": "pregunta 563 de sample_50"
+    },
+    {
+      "doc_id": "sentencia_t_256_2025",
+      "titulo": "Sentencia T-256 de 2025",
+      "fuente": "Relatoria de la Corte Constitucional",
+      "url": "https://www.corteconstitucional.gov.co/relatoria/2025/t-256-25.htm",
+      "areas": [
+        "Derecho constitucional"
+      ],
+      "nota": "pregunta 190 de sample_50"
+    },
+    {
+      "doc_id": "sentencia_ce_suj_4_005_2020",
+      "titulo": "Consejo de Estado, Seccion Cuarta, Sentencia de unificacion 2020CE-SUJ-4-005 de 2020 (exp. 21329)",
+      "fuente": "Normograma de la DIAN",
+      "url": "https://normograma.dian.gov.co/dian/compilacion/docs/pdf/25000-23-37-000-2013-00443-01(21329)ce-suj-4-005.pdf",
+      "areas": [
+        "Derecho tributario"
+      ],
+      "nota": "pregunta 142 de sample_50"
+    },
+    {
+      "doc_id": "auto_supersociedades_2025_01_730337",
+      "titulo": "Auto 2025-01-730337 de la Superintendencia de Sociedades",
+      "fuente": "Superintendencia de Sociedades (Baranda Virtual)",
+      "url": "https://servicios.supersociedades.gov.co/barandaVirtual/#!/app/radicaciones#verpdf",
+      "areas": [
+        "Derecho comercial y sociedades"
+      ],
+      "nota": "pregunta 272 de sample_50; la Baranda Virtual no da URL directa por documento"
+    },
+    {
+      "doc_id": "sentencia_sc_10291_2017",
+      "titulo": "Sentencia SC-10291 de 2017",
+      "fuente": "Relatoria de la Corte Suprema de Justicia",
+      "url": "https://consultajurisprudencial.ramajudicial.gov.co/WebRelatoria/csj/index.xhtml",
+      "areas": [
+        "Derecho civil"
+      ],
+      "nota": "pregunta 168 de sample_50; descarga manual desde la consulta de jurisprudencia de la Relatoria (sin URL directa por documento); archivo SC10291-2017 (2008-00374-01)_1.pdf"
+    },
+    {
+      "doc_id": "sentencia_sc_435_2024",
+      "titulo": "Sentencia SC-435 de 2024",
+      "fuente": "Relatoria de la Corte Suprema de Justicia",
+      "url": "https://consultajurisprudencial.ramajudicial.gov.co/WebRelatoria/csj/index.xhtml",
+      "areas": [
+        "Derecho comercial y sociedades"
+      ],
+      "nota": "descargada junto a la SC-425 de 2024 (objetivo de la semilla); descarga manual desde la consulta de jurisprudencia de la Relatoria (sin URL directa por documento); archivo SC435-2024 (2021-00160-01).pdf"
+    },
+    {
+      "doc_id": "sentencia_sc_5288_2021",
+      "titulo": "Sentencia SC-5288 de 2021",
+      "fuente": "Corte Suprema de Justicia",
+      "url": "https://www.cortesuprema.gov.co/corte/wp-content/uploads/not/civil21/prov/11001-02-03-000-2021-00766-00.pdf",
+      "areas": [
+        "Derecho comercial y sociedades"
+      ],
+      "nota": "pregunta 697 de sample_50 (caso Dow Chemical)"
+    },
+    {
+      "doc_id": "doctrina_arbanza_grupo_sociedades_2024",
+      "titulo": "Arbanza, Analisis comparativo de la extension del convenio arbitral a partes no signatarias: Pakistan, Francia y Colombia (2024)",
+      "fuente": "Arbanza (doctrina)",
+      "url": "https://arbanza.com/analisis-comparativo-de-la-extension-del-convenio-arbitral-a-partes-no-signatarias-el-caso-de-pakistan-francia-y-colombia/",
+      "areas": [
+        "Derecho comercial y sociedades"
+      ],
+      "nota": "pregunta 697 de sample_50 (caso Dow Chemical); doctrina, no norma"
+    },
+    {
+      "doc_id": "doctrina_ompi_agotamiento_patentes_2012",
+      "titulo": "OMPI, Seminario Regional (Bogota, 2012), Tema 14: El agotamiento del derecho de patente",
+      "fuente": "Organizacion Mundial de la Propiedad Intelectual (OMPI)",
+      "url": "https://www.wipo.int/edocs/mdocs/mdocs/en/wipo_ip_bog_12/wipo_ip_bog_12_ref_u14b_aleman.pdf",
+      "areas": [
+        "Derecho de los mercados [competencia, consumidor, datos personales y propiedad intelectual]"
+      ],
+      "nota": "pregunta 513 de sample_50; ponencia, no norma"
+    },
+    {
+      "doc_id": "codigo_procedimiento_penal",
+      "titulo": "Codigo de Procedimiento Penal (Ley 906 de 2004)",
+      "fuente": "Gestor Normativo de Funcion Publica",
+      "url": "https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=14787",
+      "areas": [
+        "Derecho penal",
+        "Derecho procesal"
+      ],
+      "nota": "ampliacion desde citations.py (seccion D.1)"
+    },
+    {
+      "doc_id": "codigo_procesal_trabajo",
+      "titulo": "Codigo Procesal del Trabajo y de la Seguridad Social (Decreto 2158 de 1948)",
+      "fuente": "Gestor Normativo de Funcion Publica",
+      "url": "https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=5259",
+      "areas": [
+        "Derecho laboral",
+        "Derecho procesal"
+      ],
+      "nota": "ampliacion desde citations.py (seccion D.1)"
+    },
+    {
+      "doc_id": "decreto_1072_2015",
+      "titulo": "Decreto 1072 de 2015 (Decreto Unico Reglamentario del Sector Trabajo)",
+      "fuente": "Gestor Normativo de Funcion Publica",
+      "url": "https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=72173",
+      "areas": [
+        "Derecho laboral"
+      ],
+      "nota": "ampliacion desde citations.py (seccion D.2)"
+    },
+    {
+      "doc_id": "decreto_1625_2016",
+      "titulo": "Decreto 1625 de 2016 (Decreto Unico Reglamentario en materia tributaria)",
+      "fuente": "Normograma de la DIAN",
+      "url": "https://normograma.dian.gov.co/dian/compilacion/docs/pdf/decreto_1625_2016.pdf",
+      "areas": [
+        "Derecho tributario"
+      ],
+      "nota": "ampliacion desde citations.py (seccion D.2)"
+    },
+    {
+      "doc_id": "decreto_1074_2015",
+      "titulo": "Decreto 1074 de 2015 (Decreto Unico Reglamentario del Sector Comercio, Industria y Turismo)",
+      "fuente": "Gestor Normativo de Funcion Publica",
+      "url": "https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=76608",
+      "areas": [
+        "Derecho comercial y sociedades",
+        "Derecho de los mercados [competencia, consumidor, datos personales y propiedad intelectual]"
+      ],
+      "nota": "ampliacion desde citations.py (seccion D.2)"
+    },
+    {
+      "doc_id": "decreto_1083_2015",
+      "titulo": "Decreto 1083 de 2015 (Decreto Unico Reglamentario del Sector de Funcion Publica)",
+      "fuente": "Gestor Normativo de Funcion Publica",
+      "url": "https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=62866",
+      "areas": [
+        "Derecho administrativo"
+      ],
+      "nota": "ampliacion desde citations.py (seccion D.2)"
+    },
+    {
+      "doc_id": "acto_legislativo_1_2003",
+      "titulo": "Acto Legislativo 01 de 2003 (reforma politica)",
+      "fuente": "Gestor Normativo de Funcion Publica",
+      "url": "https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=8620",
+      "areas": [
+        "Derecho constitucional"
+      ],
+      "nota": "ampliacion desde citations.py (seccion D.3)"
+    },
+    {
+      "doc_id": "acto_legislativo_2_2015",
+      "titulo": "Acto Legislativo 02 de 2015 (equilibrio de poderes)",
+      "fuente": "Gestor Normativo de Funcion Publica",
+      "url": "https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=66596",
+      "areas": [
+        "Derecho constitucional"
+      ],
+      "nota": "ampliacion desde citations.py (seccion D.3)"
+    },
+    {
+      "doc_id": "acto_legislativo_1_2005",
+      "titulo": "Acto Legislativo 01 de 2005 (adiciona el articulo 48 de la Constitucion, pensiones)",
+      "fuente": "Gestor Normativo de Funcion Publica",
+      "url": "https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=17236",
+      "areas": [
+        "Derecho constitucional",
+        "Derecho laboral"
+      ],
+      "nota": "ampliacion desde citations.py (seccion D.3)"
+    },
+    {
+      "doc_id": "ley_100_1993",
+      "titulo": "Ley 100 de 1993 (Sistema de Seguridad Social Integral)",
+      "fuente": "Gestor Normativo de Funcion Publica",
+      "url": "https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=5248",
+      "areas": [
+        "Derecho laboral"
+      ],
+      "nota": "ampliacion desde citations.py (seccion D.6)"
+    },
+    {
+      "doc_id": "ley_222_1995",
+      "titulo": "Ley 222 de 1995 (regimen de sociedades)",
+      "fuente": "Gestor Normativo de Funcion Publica",
+      "url": "https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=6739",
+      "areas": [
+        "Derecho comercial y sociedades"
+      ],
+      "nota": "ampliacion desde citations.py (seccion D.6)"
+    },
+    {
+      "doc_id": "ley_1676_2013",
+      "titulo": "Ley 1676 de 2013 (garantias mobiliarias)",
+      "fuente": "Gestor Normativo de Funcion Publica",
+      "url": "https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=54297",
+      "areas": [
+        "Derecho comercial y sociedades",
+        "Derecho civil"
+      ],
+      "nota": "ampliacion desde citations.py (seccion D.6)"
+    },
+    {
+      "doc_id": "decreto_19_2012",
+      "titulo": "Decreto 19 de 2012 (antitramites)",
+      "fuente": "Gestor Normativo de Funcion Publica",
+      "url": "https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=45322",
+      "areas": [
+        "Derecho administrativo"
+      ],
+      "nota": "ampliacion desde citations.py (seccion D.6)"
+    },
+    {
+      "doc_id": "decreto_1_1984",
+      "titulo": "Decreto 01 de 1984 (Codigo Contencioso Administrativo anterior al CPACA)",
+      "fuente": "Gestor Normativo de Funcion Publica",
+      "url": "https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=6543",
+      "areas": [
+        "Derecho administrativo",
+        "Derecho procesal"
+      ],
+      "nota": "ampliacion desde citations.py (seccion D.6)"
+    }
+  ],
+  "_comentario_adicionales": "Documentos fuera de seed_targets.json (fuentes del legal_basis de sample_50, ver data/fuentes_faltantes_sample50.md). Su original ya esta en data/raw/ y se registra con esta fuente/URL (docs/ingesta/referencias_normativas.md); items_del_banco=0."
+}

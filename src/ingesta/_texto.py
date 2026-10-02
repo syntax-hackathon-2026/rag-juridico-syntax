@@ -1,7 +1,7 @@
 """Utilidades compartidas por los parsers de src/ingesta/parsear_*.py.
 
 - detectar_formato: tipo real de un archivo por sus primeros bytes (no por extension).
-- resolver_doc_id: nombre de archivo original -> doc_id (data/mapa_archivos.json).
+- resolver_doc_id: nombre de archivo original -> doc_id (data/registros/mapa_archivos.json).
 - limpiar_paginas / limpiar_texto: limpieza estructural del texto extraido.
 - guardar_documento: escribe corpus/<doc_id>.txt y actualiza data_corpus/parseo.json.
 
