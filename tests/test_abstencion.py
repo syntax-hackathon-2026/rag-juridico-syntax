@@ -71,7 +71,7 @@ def test_metadata_registra_modo_y_hash_de_configuracion(monkeypatch):
 
 
 class RetrieverSinPasajes:
-    def retrieve(self, query, *, k, modo):
+    def retrieve(self, query, *, k, modo, area=None):
         return []
 
 
@@ -91,7 +91,7 @@ class ChunkPrueba:
 
 
 class RetrieverConPasaje:
-    def retrieve(self, query, *, k, modo):
+    def retrieve(self, query, *, k, modo, area=None):
         return [ChunkPrueba()]
 
 

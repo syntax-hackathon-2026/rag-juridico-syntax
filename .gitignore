@@ -15,3 +15,6 @@ data_corpus/
 *.faiss
 .claude/worktrees/
 herramientas/
+
+# logs locales (salidas del llama-server, etc.)
+*.log

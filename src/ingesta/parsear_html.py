@@ -155,8 +155,8 @@ def extraer_avance_juridico(html: str) -> list[str]:
     return bloques
 
 
-def extraer_relatoria_cc(html: str) -> list[str]:
-    sopa = BeautifulSoup(html, "lxml")
+def extraer_relatoria_cc(html: str, parser: str = "lxml") -> list[str]:
+    sopa = BeautifulSoup(html, parser)
     raiz = sopa.find("div", class_="amplia") or sopa.body or sopa
     _quitar(raiz, "script", "style")
     return parrafos(raiz)
@@ -221,6 +221,16 @@ def extraer_documento(carpeta: Path) -> tuple[str, dict]:
         # parser se corto (libxml2 y HTML de Word muy anidado: distinto segun version/plataforma)
         crudas = sum(palabras_crudas(h) for h in paginas)
         info["completitud"] = round(len(texto.split()) / crudas, 3) if crudas else 0.0
+        if info["completitud"] < UMBRAL_COMPLETITUD:
+            # respaldo: html.parser (stdlib, sin libxml2) solo para el documento truncado; los
+            # demas .txt no cambian. Se queda si conserva mas texto.
+            bloques_hp = [b for html in paginas for b in extraer_relatoria_cc(html, "html.parser")]
+            texto_hp = _texto.limpiar_texto("\n\n".join(bloques_hp))
+            completitud_hp = round(len(texto_hp.split()) / crudas, 3) if crudas else 0.0
+            if completitud_hp > info["completitud"]:
+                texto, bloques = texto_hp, bloques_hp
+                info.update(parser_html="html.parser", completitud=completitud_hp,
+                            n_articulos_detectados=len(articulos_detectados(bloques_hp)))
         if info["completitud"] < UMBRAL_COMPLETITUD:
             avisos.append(f"texto truncado: {info['completitud']:.0%} de las palabras del HTML "
                           f"(minimo {UMBRAL_COMPLETITUD:.0%}); revisar version de lxml/libxml2")

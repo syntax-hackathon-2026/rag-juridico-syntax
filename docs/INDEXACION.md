@@ -213,7 +213,7 @@ Disponible `retrieval_eval.py --modo hibrido --techo-reranker --experimento e05_
 
 Fase 0 sobre sample_50 y e01_bge_m3_hibrido: 14 preguntas con cuerpo explicito (15 incluyendo opciones), cuatro con articulo explicito y cero fallos art_hit@10 entre los cuatro casos con cuerpo explicito y GT de articulo evaluable. Se conserva como prueba de concepto, sin activar ni seleccionar variante por calidad. A/B real pendiente por falta de indice local. `analisis_referencias.py` reproduce el conteo; retrieval_eval informa subconjuntos y registra lookup en meta/notas del CSV. Ver [resultados, pruebas y comandos del plan 06](mejoras/resultados_06.md).
 
-## 13. Corpus v3: `e04_corpus_v3_bm25` (2026-10-02, denso pendiente)
+## 13. Corpus v3: `e04_corpus_v3` (2026-10-02)
 
 +375 documentos (ver `docs/ingesta/fuentes_pendientes.md`, sección "Ampliación v3"): 95 leyes/decretos de alto impacto por área, la Decisión Andina 351, 37 sentencias hito de la Corte Constitucional y el **lote de las 242 SU de 2020–2026** que faltaban (258 encontradas sondeando la relatoría, `SU<nnn>-<aa>.htm`). Total: 588 documentos y **113.519 fragmentos** (v2: 47.966). Nuevos: lote SU 42.430, hitos 15.391 (C-080/18, C-674/17 y T-388/13 superan los 2 M de caracteres por los salvamentos) y normas 7.732.
 
@@ -230,5 +230,85 @@ BM25 en sample_50 (41 preguntas con fundamento), variantes armadas filtrando `ch
 
 - **La medición está sesgada en contra de ampliar**: todo el `legal_basis` de sample_50 ya está en v2, así que aquí solo se ve el desplazamiento léxico y nunca la ganancia. Cada escalón son 1–3 preguntas de 41. Sin el cuerpo en el top-10 (v3): #60, #290, #352, #600, #647, #748, #247, #679, #218, #239, #661, #1005; frente a v2 entran #290, #352, #600, #647, #218 y #1005, sobre todo códigos (Penal, Civil, Constitución) desplazados por las leyes nuevas.
 - **Lado de la ganancia** (preguntas sintéticas, BM25 v3): 15/15 SU del lote nombradas en la pregunta ("¿problema jurídico de la sentencia SU-nnn de aaaa?", "¿antecedentes fácticos…?") traen su documento al top-10; 10/12 preguntas sobre normas/hitos nuevos lo traen (la mayoría en el rank 1; fallan Ley 361/1997 y C-590/2005 sin nombrarlas).
-- **Pendiente para decidir KEEP/REVERT**: codificar en la 4090 los ~65.500 fragmentos nuevos (la caché `cache_emb/` cubre los 47.966 de v2) y medir el **híbrido**: `SYNTAX_DEVICE=cuda python src/indexacion/construir_indice.py --batch 64` y luego `python src/evaluacion/retrieval_eval.py --modo bm25 denso hibrido --experimento e04_corpus_v3`. El índice denso v2 quedó respaldado en `data_corpus/respaldo_indice_v2/` (local) y en `data_corpus/resultado_indice.zip`.
+- **Híbrido medido en la RTX 4090** (`e04_corpus_v3`, denso codificado con `construir_indice.py --batch 64`; índice denso v2 respaldado en `data_corpus/respaldo_indice_v2/`):
+
+| modo (41 preguntas) | doc_hit@1 | doc_hit@10 | MRR | respaldo@10 | art_hit@10 |
+|---|---:|---:|---:|---:|---:|
+| híbrido v2 (`e03`) | 0,488 | 0,854 | 0,619 | 0,927 | 0,526 |
+| denso v3 | 0,415 | 0,780 | 0,536 | 0,866 | 0,474 |
+| **híbrido v3** | 0,390 | 0,780 | 0,515 | 0,890 | 0,421 |
+
+  El híbrido también diluye: −0,07 en doc_hit@10 y −0,10 en MRR frente a v2. En generación (`e05_q8_rtx4090`) las sentencias nuevas copan el top-10 de las cerradas (8 de 10 en #51, 9 de 10 en #748, que pasa de A a D) aunque ninguna cerrada del sample nombra una sentencia. Decisión: **no revertir; filtrar** (sección 14).
 - Mitigación posible si el híbrido también diluye: dejar el lote de SU recuperable **solo cuando la pregunta lo nombra** (filtrar sus fragmentos de las ramas BM25/denso salvo cita explícita de esa sentencia con `citations.extract`). En sample_50 daría las métricas de "v2 + normas + hitos" y conservaría los 15/15 de sentencias nombradas.
+
+## 14. Filtro "solo por cita" (`e06`, 2026-10-02)
+
+Los 375 documentos nuevos de v3 (279 sentencias = 242 SU + 37 hitos, y 96 normas) quedan en el corpus y en el manifest, pero **solo se recuperan si la consulta los nombra**: `retriever._filtrar` los quita de las ramas BM25 y densa salvo que `citations.extract` de la consulta (pregunta + opciones) encuentre su cuerpo canónico (`referencias.cuerpos_de`, la misma tupla que `canonico` en `chunks.jsonl`). Se filtra en cada rama antes del RRF, pidiendo candidatos de más (x4 cada vez) hasta completar 40; el orden de la rama no cambia y el resultado es determinista. El índice no se reconstruye.
+
+- Registro versionado `data/registros/solo_por_cita.json` (grupos `sentencias` y `normas`), generado por `python src/indexacion/solo_por_cita.py` a partir del manifest de `e8e7e58` (corpus v2). No editar a mano; si se agregan documentos que deban recuperarse siempre (p. ej. un código), regenerar con otra `--base` o sacarlos del registro con el script.
+- `SYNTAX_FILTRO_CITA=off|sentencias|todo`. Por defecto `todo` hasta `e15`; desde la sección 15 es `sentencias` (las normas nuevas vuelven a recuperarse sin nombrarlas, compensadas por la prioridad por área).
+
+| híbrido (41 preguntas) | doc_hit@1 | doc_hit@3 | doc_hit@10 | MRR | respaldo@10 | art_hit@10 |
+|---|---:|---:|---:|---:|---:|---:|
+| v2 (`e03`) | 0,488 | 0,732 | 0,854 | 0,619 | 0,927 | 0,526 |
+| v3 sin filtro (`e04`) | 0,390 | 0,585 | 0,780 | 0,515 | 0,890 | 0,421 |
+| v3 filtro `sentencias` (`e06`) | 0,488 | 0,659 | 0,829 | 0,593 | 0,927 | 0,474 |
+| **v3 filtro `todo` (`e06b`)** | 0,488 | 0,707 | 0,854 | 0,613 | 0,927 | 0,526 |
+
+- `todo` recupera las métricas de v2 y conserva las sentencias nombradas (919, 946, 563, 453, 140, 991 y 1015 en rank 1–2). Las normas nuevas también desplazaban (solo `sentencias` se queda en 0,829). Cerradas: #51 y #290 vuelven al rank 1, #352 al 4 y #58 pasa del 9 al 3.
+- Consulta solo `pregunta` (`e07_consulta_pregunta`, con filtro): peor en cerradas (MRR 0,603 → 0,456; #51 al 7, #128 al 8, #352 fuera). Se mantiene `pregunta+opciones`.
+- Latencia: el filtro hace una búsqueda densa extra con la consulta ya codificada (caché de la última consulta en `_codificar`); ~110 ms/consulta en caliente en la 4090. El promedio de `retrieval_eval` (~650 ms) incluye la carga del encoder.
+- **Lookup por metadata (plan 06, variante a) activado por defecto** (`e12_lookup_filtro`, con filtro): doc_hit@1 0,488 → 0,537, MRR 0,613 → 0,638, art_hit@1 0,263 → 0,368; doc_hit@10 y respaldo@10 sin cambio. En generación (`e13_lookup`) cambia solo #600 (sigue correcta, norma al rank 1) y #218.
+- Pendientes sin cambio: #60, #748, #247, #679, #239 y #661 siguen sin su cuerpo en el top-10 (ninguna nombra la norma; el lookup no las alcanza).
+
+## 15. Prioridad por área de la pregunta (`e15`, `e16`, 2026-10-02)
+
+El banco trae `area` en cada pregunta (las 992 tienen la estructura de sample_50) y la oferta del corpus está desbalanceada: constitucional tiene 340 documentos (315 sentencias) y mercados 25, procesal 28, tributario 31 y civil 35, con una demanda de ~99 preguntas por área. `area` no es ground truth (es metadata del enunciado), así que entra en `responder.CAMPOS_RUNTIME` y llega al retriever.
+
+- `retriever.retrieve(..., area=...)`: en el híbrido, después del RRF y del lookup, el score de los fragmentos cuyo documento lleva esa área en `corpus_manifest.json` se multiplica por `SYNTAX_AREA_BOOST`. Solo reordena los candidatos de las ramas; nunca descarta (las preguntas cuyo fundamento es de otra área, p. ej. #679 constitucional → Ley 1581, siguen igual). `area=None` o factor 1.0 = sin cambio (comprobado: con 1.0 reproduce `e12` pregunta por pregunta). `meta["area_match"]` queda en la traza.
+- Consecuencia: **las `areas` del manifest ahora afectan la recuperación**, no solo la nota del corpus. Propuestas para los documentos de v3/v4 en `docs/ingesta/areas_propuestas_v3.csv` (léxico por área; falta revisión humana).
+
+| híbrido (41 preguntas) | filtro | boost | doc_hit@1 | doc_hit@10 | MRR | respaldo@10 | art_hit@10 |
+|---|---|---:|---:|---:|---:|---:|---:|
+| `e12_lookup_filtro` (base) | todo | 1,0 | 0,537 | 0,854 | 0,638 | 0,927 | 0,526 |
+| `e15_area115` / `130` / `150` | todo | 1,15–1,5 | 0,585 | 0,878 | 0,690–0,697 | 0,927 | 0,526 |
+| `e15_normasv3_area100` | sentencias | 1,0 | 0,537 | 0,854 | 0,630 | 0,927 | 0,526 |
+| `e15_normasv3_area150` | sentencias | 1,5 | 0,610 | 0,878 | 0,706 | 0,927 | 0,526 |
+| **`e15_normasv3_area200`** | **sentencias** | **2,0** | **0,610** | **0,902** | **0,718** | **0,939** | **0,579** |
+| `e15_normasv3_area250` / `300` | sentencias | 2,5–3,0 | 0,610 | 0,902 | 0,727 | 0,939 | 0,579 |
+| `e15_sinfiltro_area150` | off | 1,5 | 0,537 | 0,829 | 0,643 | 0,927 | 0,474 |
+
+- **Por defecto: `SYNTAX_FILTRO_CITA=sentencias` y `SYNTAX_AREA_BOOST=2.0`.** Arregla #748 (CPACA, rank 5) y #60 (CGP, rank 7); #58, #79, #674, #879, #960 suben. Solo #647 baja (4 → 5). Fallan #247, #679, #239 y #661. 2,0 es el punto donde se estancan los aciertos; 2,5–3,0 solo suben el MRR y arriesgan las preguntas de otra área.
+- Con la prioridad por área, las 96 normas de v3 pueden recuperarse sin nombrarlas sin perder nada (era la condición para ampliar las áreas delgadas). Las sentencias siguen filtradas: sin filtro, ni con boost 1,5 se recupera v2 (`e15_sinfiltro_area150`).
+- Generación (`e16_area200`, sin juez): cerradas 0,733 (= `e13`), **citación 16,33 → 17,55**, abstención 8,37 (=). La latencia medida (11,8 s/pregunta) no es comparable: otra sesión codificaba el corpus completo en la misma 4090 durante la corrida.
+
+## 16. Corpus v4: áreas delgadas, C- de control y lote T 2025–2026 (`e17`, `e18`, 2026-10-02)
+
+Ampliación automática (procedimiento y lista de descartes en `docs/ingesta/fuentes_pendientes.md`, "Ampliación v4"): **+65 documentos** (34 normas de mercados, tributario, procesal y civil; Decisiones Andinas 345, 391 y 608; 28 sentencias C- de control) y **+533 tutelas de 2025–2026** (lote sondeado en la relatoría). Total: **1.186 documentos y 173.393 fragmentos**. Los 113.519 fragmentos de v3 no cambian (comprobado byte a byte). Las sentencias nuevas (C- y T-) entran a `solo_por_cita.json` (840 sentencias y 133 normas en el registro); las normas nuevas se recuperan sin nombrarlas (filtro `sentencias`, sección 15).
+
+Documentos por área (un documento cuenta en cada una de sus áreas; "recuperables" = sin las sentencias solo por cita):
+
+| Área | v3 | v4 | v4 recuperables sin nombrar | fragmentos recuperables |
+|---|---:|---:|---:|---:|
+| Constitucional | 340 | 901 | 61 | 11.402 |
+| Laboral | 56 | 62 | 51 | 6.635 |
+| Familia | 49 | 54 | 46 | 7.933 |
+| Administrativo | 40 | 52 | 43 | 8.614 |
+| Civil | 35 | 45 | 43 | 10.127 |
+| Tributario | 31 | 41 | 40 | 11.467 |
+| Mercados | 25 | 39 | 38 | 6.537 |
+| Penal | 45 | 51 | 37 | 10.438 |
+| Comercial | 36 | 36 | 36 | 8.693 |
+| Procesal | 28 | 38 | 31 | 5.587 |
+
+| híbrido (41 preguntas, filtro `sentencias`, área ×2,0) | fragmentos | doc_hit@1 | doc_hit@10 | MRR | respaldo@10 | art_hit@10 | ms/consulta |
+|---|---:|---:|---:|---:|---:|---:|---:|
+| v3 (`e15_normasv3_area200`) | 113.519 | 0,610 | 0,902 | 0,718 | 0,939 | 0,579 | — |
+| **v4 (`e17_corpus_v4`)** | 124.302 | 0,610 | 0,902 | 0,718 | 0,939 | 0,579 | 729 |
+| **v4 + T (`e18_corpus_v4_t`)** | 173.393 | 0,610 | 0,902 | 0,717 | 0,927 | 0,579 | 1.153 |
+
+- **v4 no diluye nada** en sample_50 (idéntico a v3 pregunta por pregunta). Sondeo de ganancia sobre las 37 normas/decisiones nuevas: 34/34 artículos nombrados ("¿Qué establece el artículo N de la Ley X de Y?") en el top-3 (todos en el rank 1) y 37/37 documentos en el top-10 consultando solo el tema con su área (optimista: el tema sale del título).
+- **Lote T**: 25/25 tutelas nombradas (muestra fija, semilla 0) en el top-10. Costo: aunque las T no entran al top-10 sin nombrarlas, **cambian las estadísticas de BM25** (IDF y longitud media se calculan con todo el índice), y eso reordena un poco el top-10 de varias preguntas: #51 pierde medio punto de respaldo (sale un pasaje de la T-262/2025 que traía su cita) y #748 pasa del rank 5 al 6. Es −1/2 pregunta de 41, dentro de la regla KEEP fijada antes de medir (≤ 1 pregunta). Latencia de recuperación +0,4 s/consulta (más candidatos filtrados en `_filtrar`). **KEEP**. Si hiciera falta recortar, la alternativa es construir BM25 sin las sentencias solo por cita (quedarían recuperables por la rama densa y el lookup).
+- Parseo: `parsear_html.py` reintenta con `html.parser` cuando lxml trunca una sentencia (10 C- en Windows). Ningún `.txt` previo cambia.
+- **Generación con el corpus final** (`e19_corpus_v4_t`, Qwen3-8B Q8_0 en la 4090, GPU sin otra carga): cerradas 0,733 (= `e13`), citación **17,55** (`e13`: 16,33), abstención 8,37 (=), 0 errores de schema, **4,0 s/pregunta** (recuperación 610 ms). Única corrida con juez de la ola (`e19_corpus_v4_t_ragas`, presupuesto de API): RAGAS 0,4314 y total **53,53/80**, pero el juez **no devolvió veredicto en 4 de 35 ítems** (cuentan como cero). Los 31 juzgados promedian 0,487 frente a 0,5019 de `e13`, dentro del ruido del juez (±0,03, `docs/GENERACION.md` 6). Cambiaron 21 de las 35 respuestas de texto libre (otra evidencia). No se gastó una segunda corrida con juez: no hay reversión que confirmar.
+

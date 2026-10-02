@@ -1,0 +1,54 @@
+{
+  "equipo": "sample_e05_q8_rtx4090",
+  "split": "sample",
+  "validacion": {
+    "errores": 0,
+    "detalle": []
+  },
+  "cerradas": {
+    "n": 15,
+    "aciertos": 11,
+    "accuracy": 0.7333333333333333,
+    "referencia": 0.905,
+    "puntos": 14.67
+  },
+  "citas": {
+    "items_evaluados": 41,
+    "n_ref": 49,
+    "n_citadas": 146,
+    "aciertos": 36,
+    "aciertos_respaldados": 36,
+    "aciertos_sin_respaldo": 0,
+    "incorrectas": 110,
+    "citas_sin_respaldo": 0,
+    "recall_citas_ponderado": 0.7347,
+    "tasa_sin_respaldo": 0.0,
+    "indice": 0.7347,
+    "puntos": 14.69
+  },
+  "abstencion": {
+    "items_evaluados": 43,
+    "abstuvo_bien": 0,
+    "abstuvo_de_mas": 0,
+    "respondio_bien": 33,
+    "respondio_mal": 10,
+    "calibracion": 0.7674,
+    "puntos": 7.67
+  },
+  "correccion_ragas": {
+    "n_juzgados": 35,
+    "n_respondidos": 35,
+    "n_fallidos": 0,
+    "correctness": 0.4719,
+    "modelo_juez": "z-ai/glm-5.3-flash",
+    "encoder": "intfloat/multilingual-e5-large",
+    "referencia": 0.451,
+    "puntos": 14.16
+  },
+  "total_automatico": {
+    "obtenidos": 51.19,
+    "posibles": 80.0,
+    "de_100_del_ranking": 80.0,
+    "nota": "los 20 pts restantes son interfaz grafica, bitacora de corpus, video y reproducibilidad"
+  }
+}

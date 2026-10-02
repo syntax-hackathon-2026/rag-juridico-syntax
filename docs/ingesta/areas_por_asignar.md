@@ -4,6 +4,8 @@ Los 183 documentos de la semilla traen sus `areas` de `data/registros/seed_targe
 
 Mientras tanto, `corpus_manifest.json` los lleva con la propuesta actual (el validador exige `areas` no vacía).
 
+**v3 y v4 (2026-10-02, 440 documentos más)**: la revisión de los 375 documentos de v3 y los 65 de v4 está en **`docs/ingesta/areas_propuestas_v3.csv`** (áreas actuales, áreas propuestas por un léxico por área sobre la síntesis, evidencia y columna `aprobado`). Desde `e15` las `areas` **afectan la recuperación** (prioridad por área de la pregunta, `docs/INDEXACION.md` 15), no solo el inventario: las 242 SU van todas como constitucional y el CSV propone sumar laboral, familia, penal, etc. Al aprobar, aplicar en `_adicionales` de `fuentes_override.json` y en `fuentes_descargadas.json`, correr `generar_manifest.py` y medir de nuevo.
+
 La columna "Áreas en sample_50" es solo evidencia para decidir: el `area` de las preguntas de `data/sample_50.jsonl` cuyo `legal_basis` cita el documento (ground truth de evaluación; no se usa en runtime).
 
 | doc_id | Norma | Áreas propuestas (actuales) | Áreas en sample_50 (preguntas) | Área asignada |

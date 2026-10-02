@@ -28,7 +28,7 @@ from recuperacion.consulta import consulta_de  # noqa: E402
 sys.path.insert(0, str(config.ROOT / "scripts"))
 from evaluate import answer_text  # noqa: E402
 
-CAMPOS_RUNTIME = ("id", "formato", "pregunta", "opciones")
+CAMPOS_RUNTIME = ("id", "formato", "area", "pregunta", "opciones")  # area: metadata de la pregunta, no ground truth
 ETIQUETA_EVIDENCIA = "Fuentes consultadas:"
 
 
@@ -75,10 +75,14 @@ def _agregar_evidencia(formato: str, campos: dict, cabeceras: list[str]) -> dict
     return {**campos, campo: f"{base} {ETIQUETA_EVIDENCIA} {' '.join(cabeceras)}".strip()}
 
 
-def _generar_json(decoder, msgs: list[dict], esquema: dict, max_tokens: int, llamadas: list) -> dict | None:
+def _generar_json(decoder, msgs: list[dict], esquema: dict, max_tokens: int, llamadas: list,
+                  pensar: bool = False) -> dict | None:
     for tokens in (max_tokens, int(max_tokens * 1.6)):
-        r = decoder.generar(msgs, schema=esquema, max_tokens=tokens)
-        llamadas.append({"ms": r.ms, "fin": r.fin, "uso": r.uso, "tiempos": r.tiempos, "texto": r.texto})
+        r = decoder.generar(msgs, schema=esquema, max_tokens=tokens, pensar=pensar)
+        llamada = {"ms": r.ms, "fin": r.fin, "uso": r.uso, "tiempos": r.tiempos, "texto": r.texto}
+        if r.razonamiento:
+            llamada["razonamiento"] = r.razonamiento
+        llamadas.append(llamada)
         try:
             salida = json.loads(r.texto)
             if isinstance(salida, dict):
@@ -96,16 +100,18 @@ def responder(item: dict, retriever, decoder, generation_k: int | None = None,
     generation_k = generation_k or config.GENERATION_K
     item = entrada_runtime(item)
     formato = item["formato"]
+    pensar = formato in config.PENSAR_FORMATOS
     consulta = consulta_de(item)
 
     kwargs_lookup = ({"consulta_lookup": item["pregunta"]} if config.LOOKUP_MODO == "on"
                      and config.LOOKUP_FUENTE == "pregunta" else {})
-    top = retriever.retrieve(consulta, k=config.RETRIEVAL_K, modo=config.MODO_RECUPERACION, **kwargs_lookup)
+    top = retriever.retrieve(consulta, k=config.RETRIEVAL_K, modo=config.MODO_RECUPERACION,
+                             area=item.get("area"), **kwargs_lookup)
     ms_ret = (time.perf_counter() - t0) * 1000
     perm = citas.permitidas([p.texto for p in top])
     llamadas: list[dict] = []
     traza: dict = {"id": item["id"], "formato": formato, "prompt_version": prompts.PROMPT_VERSION,
-                   "generation_k": generation_k, "top": [[p.chunk_id, round(p.score, 6)] for p in top],
+                   "generation_k": generation_k, "pensar": pensar, "top": [[p.chunk_id, round(p.score, 6)] for p in top],
                    "senales": abstencion.senales(consulta, top, perm), "llamadas": llamadas}
     if config.LOOKUP_MODO == "on":
         traza["lookup"] = {
@@ -123,7 +129,7 @@ def responder(item: dict, retriever, decoder, generation_k: int | None = None,
         letras = prompts.letras_de(item)
         esquema = prompts.schema(formato, letras)
         msgs = prompts.mensajes(item, [p.texto for p in gen])
-        salida = _generar_json(decoder, msgs, esquema, prompts.MAX_TOKENS[formato], llamadas)
+        salida = _generar_json(decoder, msgs, esquema, prompts.MAX_TOKENS[formato], llamadas, pensar)
         if salida is None:
             motivos.append("salida_invalida")
         else:
@@ -135,7 +141,7 @@ def responder(item: dict, retriever, decoder, generation_k: int | None = None,
                                           citas.citas_evidencia([p.meta for p in top]))
                 msgs2 = msgs + [{"role": "assistant", "content": llamadas[-1]["texto"]},
                                 {"role": "user", "content": corr}]
-                salida2 = _generar_json(decoder, msgs2, esquema, prompts.MAX_TOKENS[formato], llamadas)
+                salida2 = _generar_json(decoder, msgs2, esquema, prompts.MAX_TOKENS[formato], llamadas, pensar)
                 traza["regenerado"] = True
                 if salida2 is not None:
                     campos2 = postproceso.normalizar(formato, salida2, letras)

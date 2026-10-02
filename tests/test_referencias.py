@@ -86,7 +86,13 @@ def test_canonico_chunks_reales_si_disponibles():
             if i >= 100:
                 break
             c = json.loads(linea)
-            assert {r[:3] for r in referencias_de(c["cabecera"])} == {tuple(c["canonico"])}
+            canon = tuple(c["canonico"])
+            refs = {r[:3] for r in referencias_de(c["cabecera"])}
+            # la cabecera puede nombrar ambas formas del numero ("Acto Legislativo 01 de 2003
+            # (Acto Legislativo 1 de 2003)") para respaldar la cita escrita de cualquiera de las dos
+            assert canon in refs
+            assert all(r[0] == canon[0] and r[2] == canon[2]
+                       and (r[1] or "").lstrip("0") == (canon[1] or "").lstrip("0") for r in refs)
 
 
 def test_off_golden_y_sin_ref_identico(ret, monkeypatch):
@@ -189,7 +195,8 @@ def test_responder_no_filtra_ground_truth(monkeypatch):
     assert llamadas[0][1]["consulta_lookup"] == item["pregunta"]
     assert "Constitucion" in llamadas[0][0]
     assert "SECRETO" not in llamadas[0][0]
-    assert set(llamadas[0][1]) == {"k", "modo", "consulta_lookup"}
+    assert set(llamadas[0][1]) == {"k", "modo", "area", "consulta_lookup"}
+    assert llamadas[0][1]["area"] is None  # el item no trae area: no se inventa
 
 
 def test_evaluacion_fuente_y_guardia_runtime(ret, monkeypatch):
