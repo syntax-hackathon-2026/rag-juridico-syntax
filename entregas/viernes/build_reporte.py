@@ -203,7 +203,7 @@ def tabla(doc, filas, anchos, encabezado=True, alinear_der=(), negrita_ultima=Fa
 
 # ---------------------------------------------------------------- documento
 
-def construir(rep, fila, exp, manifest, salida: Path):
+def construir(rep, fila, exp, manifest, salida: Path, commit: str | None = None):
     cer, cit, abst = rep["cerradas"], rep["citas"], rep["abstencion"]
     pts = (cer["puntos"], cit["puntos"], abst["puntos"])
     total = round(sum(pts), 2)
@@ -228,7 +228,7 @@ def construir(rep, fila, exp, manifest, salida: Path):
     mixto(p, [("Equipo: ", True), (EQUIPO, False), ("    Integrantes: ", True), (INTEGRANTES, False)])
     p = parrafo(doc, after=0)
     mixto(p, [("Fecha de la medición: ", True), (fecha, False),
-              (f"    Corrida: {exp} (commit {fila['commit'].split('+')[0]})", False)], size=9)
+              (f"    Corrida: {exp} (commit {commit or fila['commit'].split('+')[0]})", False)], size=9)
 
     # 1. Puntaje
     titulo_seccion(doc, "1. Puntaje sobre las preguntas de muestra")
@@ -252,7 +252,8 @@ def construir(rep, fila, exp, manifest, salida: Path):
     ragas = rep.get("correccion_ragas", {})
     if ragas.get("puntos") is not None:
         parrafo(doc, f"Referencia adicional con juez RAGAS: correctness {num(ragas['correctness'], 3)} "
-                     f"({num(ragas['puntos'])}/30).", size=8.5, italic=True, after=0)
+                     f"({num(ragas['puntos'])}/30)" + (f"; medido en {ragas['origen']}" if ragas.get("origen") else "") + ".",
+                size=8.5, italic=True, after=0)
 
     # 2. Corpus
     titulo_seccion(doc, "2. Estado del corpus")
@@ -324,10 +325,11 @@ def main():
     ap.add_argument("--reporte", required=True, type=Path)
     ap.add_argument("--experiments-csv", required=True, type=Path)
     ap.add_argument("--salida", type=Path, default=HERE / "REPORTE_AVANCE.docx")
+    ap.add_argument("--commit", help="commit a mostrar (por defecto el de experiments.csv)")
     ap.add_argument("--pdf", action="store_true", help="exportar a PDF con Word y comprobar 1 pagina")
     a = ap.parse_args()
     rep, fila, exp, manifest = cargar(a.reporte, a.experiments_csv)
-    construir(rep, fila, exp, manifest, a.salida)
+    construir(rep, fila, exp, manifest, a.salida, a.commit)
     if a.pdf:
         exportar_pdf(a.salida, a.salida.with_suffix(".pdf"))
 
