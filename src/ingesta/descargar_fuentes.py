@@ -299,11 +299,14 @@ def guardar_pdf(obj: Objetivo, url: str, contenido: bytes) -> Path:
     return destino
 
 
+NOTA_YA_EN_RAW = "ya estaba en data/raw/ (usar --forzar para repetir)"
+
+
 def procesar(obj: Objetivo, forzar: bool) -> None:
     existentes = _archivos_en_raw(obj.doc_id)
     if existentes and (not forzar or obj.estado in ("sin_resolver", "no_encontrado", "errata")):
         registrar_existentes(obj, existentes)  # descarga manual o previa: solo se registra
-        obj.nota = "ya estaba en data/raw/ (usar --forzar para repetir)"
+        obj.nota = obj.nota or NOTA_YA_EN_RAW  # la nota del override (p. ej. una errata) manda
         return
     if obj.estado in ("sin_resolver", "no_encontrado", "errata"):
         return
@@ -385,7 +388,18 @@ def area_corta(area: str) -> str:
     return area.split(" [")[0].removeprefix("Derecho ").removeprefix("de los ").removeprefix("de ").capitalize()
 
 
+def _conteos_manifest() -> dict[str, tuple]:
+    """(n_articulos, n_fragmentos) por doc_id desde corpus_manifest.json ('—' si falta)."""
+    if not config.MANIFEST_PATH.is_file():
+        return {}
+    docs = json.loads(config.MANIFEST_PATH.read_text(encoding="utf-8")).get("documentos", [])
+    return {d["doc_id"]: tuple("—" if v is None else f"{v:,}".replace(",", ".")
+                               for v in (d.get("n_articulos"), d.get("n_fragmentos") or None))
+            for d in docs}
+
+
 def tabla_inventario(registro: dict[str, dict]) -> str:
+    conteos = _conteos_manifest()
     filas = [
         "| doc_id | Título | Fuente | URL | Fecha de consulta | Artículos | Fragmentos | Áreas |",
         "|---|---|---|---|---|---:|---:|---|",
@@ -394,13 +408,16 @@ def tabla_inventario(registro: dict[str, dict]) -> str:
         if d["estado"] != "descargado":
             continue
         areas = ", ".join(sorted({area_corta(a) for a in d["areas"]}))
+        n_art, n_frag = conteos.get(d["doc_id"], ("—", "—"))
         filas.append(f"| `{d['doc_id']}` | {d['titulo']} | {d['fuente']} | [enlace]({d['url']}) "
-                     f"| {d['fecha_consulta']} | — | — | {areas} |")
+                     f"| {d['fecha_consulta']} | {n_art} | {n_frag} | {areas} |")
     pendientes = [d for d in registro.values() if d["estado"] != "descargado"]
     lineas = [INICIO_INV, "", *filas, ""]
     if pendientes:
-        lineas += [f"**Pendientes de descarga ({len(pendientes)}).** Objetivos de "
-                   "`data/seed_targets.json` que el script no pudo descargar; el detalle "
+        erratas = sum(d["estado"] == "errata" for d in pendientes)
+        lineas += [f"**Objetivos de la semilla sin documento propio ({len(pendientes)}, "
+                   f"{erratas} erratas).** Las erratas son referencias mal escritas del banco que "
+                   "apuntan a un documento ya incorporado; el resto quedó sin descargar. El detalle "
                    "está en `data/fuentes_descargadas.json`.", "",
                    "| doc_id | Estado | Motivo |", "|---|---|---|"]
         for d in sorted(pendientes, key=lambda d: (d["estado"], -d["items_del_banco"], d["doc_id"])):
@@ -463,8 +480,14 @@ def main() -> int:
             procesar(obj, args.forzar)
         except Exception as e:  # noqa: BLE001 - se registra y se sigue con el resto
             obj.estado, obj.nota = "error", f"{type(e).__name__}: {e}"
-        if previo and previo.get("sha256") == obj.sha256 and previo.get("fecha_consulta"):
-            obj.fecha_consulta = previo["fecha_consulta"]  # mismo contenido: fecha real de la descarga
+        if previo and previo.get("sha256") == obj.sha256:
+            if previo.get("fecha_consulta"):
+                obj.fecha_consulta = previo["fecha_consulta"]  # mismo contenido: fecha real de la descarga
+            if obj.fuente == FUENTE_SENADO and previo.get("fuente") in {f for f, _ in ESPEJOS_AJ}:
+                # el original vino de un espejo (el Senado da 404): al solo registrarlo, se conserva
+                obj.fuente, obj.url = previo["fuente"], previo["url"]
+            if obj.nota == NOTA_YA_EN_RAW and "nota" in previo:
+                obj.nota = previo["nota"]
         registro[obj.doc_id] = asdict(obj)
         guardar_registro(registro)  # tras cada documento: una interrupcion no pierde lo hecho
         print(f"[{i}/{len(objetivos)}] {obj.estado:<13} {obj.doc_id:<32} "
