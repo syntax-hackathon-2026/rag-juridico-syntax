@@ -104,7 +104,7 @@ _Se completa al terminar la corrida._
 ## 7. Pendientes
 
 1. **Máquina final**: medir la latencia en las candidatas (GPU NVIDIA del equipo o del campus). La corrida de las 992 y la verificación en vivo del sábado deben usar la misma máquina y la misma configuración (sección 4.2).
-2. **Contenedor limpio** (2 pts de reproducibilidad): `run.sh` asume el servidor levantado y el índice presente. Falta `asegurar_indice()` (descargar el comprimido publicado o reconstruir) y decidir entre llama-cpp-python in-process o descargar el binario de llama.cpp.
+2. **Contenedor limpio** (2 pts de reproducibilidad): `reproducir.py` ya encadena entorno → corpus → índice → decoder (binario de llama.cpp b11146) → preguntas → evaluar, por etapas (`--solo/--desde/--hasta`) y con selección de preguntas (`--entrada/--ids/--rango/--limite/--particion`); `run.sh` sigue asumiendo el índice presente y el servidor levantado. Pendiente: confirmarlo en una máquina limpia con GPU y, si hace falta, descargar el índice publicado en vez de reconstruirlo.
 3. Iteraciones según el análisis de error (`evaluation/generacion/<exp>/errores.csv`): barrido de `generation_k` y de `CITAR_EVIDENCIA`, lookup por metadata cuando la pregunta nombra norma y artículo, cuota por tipo de documento (las sentencias desplazan artículos), reranker, thinking solo en cerradas, calibración de la abstención.
 4. Interfaz Streamlit sobre `responder()`.
 
