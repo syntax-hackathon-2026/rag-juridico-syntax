@@ -90,20 +90,29 @@ def _generar_json(decoder, msgs: list[dict], esquema: dict, max_tokens: int, lla
     return None
 
 
-def responder(item: dict, retriever, decoder, generation_k: int | None = None) -> tuple[dict, dict]:
+def responder(item: dict, retriever, decoder, generation_k: int | None = None,
+              regla_abstencion: abstencion.ReglaAbstencion | None = None) -> tuple[dict, dict]:
     t0 = time.perf_counter()
     generation_k = generation_k or config.GENERATION_K
     item = entrada_runtime(item)
     formato = item["formato"]
     consulta = consulta_de(item)
 
-    top = retriever.retrieve(consulta, k=config.RETRIEVAL_K, modo=config.MODO_RECUPERACION)
+    kwargs_lookup = ({"consulta_lookup": item["pregunta"]} if config.LOOKUP_MODO == "on"
+                     and config.LOOKUP_FUENTE == "pregunta" else {})
+    top = retriever.retrieve(consulta, k=config.RETRIEVAL_K, modo=config.MODO_RECUPERACION, **kwargs_lookup)
     ms_ret = (time.perf_counter() - t0) * 1000
     perm = citas.permitidas([p.texto for p in top])
     llamadas: list[dict] = []
     traza: dict = {"id": item["id"], "formato": formato, "prompt_version": prompts.PROMPT_VERSION,
                    "generation_k": generation_k, "top": [[p.chunk_id, round(p.score, 6)] for p in top],
                    "senales": abstencion.senales(consulta, top, perm), "llamadas": llamadas}
+    if config.LOOKUP_MODO == "on":
+        traza["lookup"] = {
+            "config": config.lookup_metadata(),
+            "matches_top": [[p.chunk_id, p.meta["rank_lookup"]] for p in top
+                            if p.meta.get("rank_lookup") is not None],
+        }
     motivos: list[str] = []
     campos: dict | None = None
 
@@ -148,6 +157,12 @@ def responder(item: dict, retriever, decoder, generation_k: int | None = None) -
                     campos = completos
                     traza["citas_agregadas"] = cabeceras
 
+    if config.ABSTENCION_MODO == "reglas":
+        regla = regla_abstencion or abstencion.cargar_regla(config.ABSTENCION_CONFIG_PATH)
+        _, motivos_senales = abstencion.decidir_por_senales(
+            traza["senales"], formato, regla
+        )
+        motivos.extend(motivos_senales)
     abst = abstencion.decidir(motivos)
     if abst:
         campos = postproceso.vacios(formato)

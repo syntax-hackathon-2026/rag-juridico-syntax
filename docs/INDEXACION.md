@@ -163,3 +163,13 @@ Corpus de 35.105 fragmentos (seg-v1), mismo `sample_50` y consulta = pregunta + 
 - Sin el cuerpo en el top-10 en híbrido: #60, #748, #247, #679, #563, #661 (#563 es de CORPUS). BM25 fallaba además en #600, #647 y #239, que el híbrido resuelve; el resto sigue pendiente de diagnóstico.
 - Bug corregido: `retriever.cargar()` reutilizaba un retriever creado solo con BM25 y fallaba en `denso`.
 - La latencia del denso incluye cargar el encoder en la primera consulta.
+
+## 10. Plan 05: medicion previa del reranker (2026-10-01)
+
+Disponible `retrieval_eval.py --modo hibrido --techo-reranker --experimento e05_techo`: mide top-40 RRF, art_hit@20/@40, doc_hit@40 y distribucion del articulo correcto. Conserva MRR/top-10 del baseline; el resumen adicional va en `.meta.json` y notas del CSV. No modifica el runtime ni activa un reranker. La medicion real esta bloqueada por falta del indice local; fases del modelo condicionadas al techo y presupuesto del plan. Ver [resultados y comandos del plan 05](mejoras/resultados_05.md).
+
+## 11. Plan 06: lookup experimental (2026-10-01)
+
+`SYNTAX_LOOKUP=off` por defecto. La prueba de concepto usa `citations.extract` y un indice canonico/articulo desde chunks.jsonl; anade candidatos sin filtrar BM25/denso. Variantes `SYNTAX_LOOKUP_VARIANTE=a|b|c`: rama RRF, bonus fijo e insercion de hasta m articulos; fuente `SYNTAX_LOOKUP_FUENTE=consulta|pregunta`. No se aplica a BM25/denso por separado ni a menciones de cuerpo sin articulo. Los textos y offsets siguen intactos.
+
+Fase 0 sobre sample_50 y e01_bge_m3_hibrido: 14 preguntas con cuerpo explicito (15 incluyendo opciones), cuatro con articulo explicito y cero fallos art_hit@10 entre los cuatro casos con cuerpo explicito y GT de articulo evaluable. Se conserva como prueba de concepto, sin activar ni seleccionar variante por calidad. A/B real pendiente por falta de indice local. `analisis_referencias.py` reproduce el conteo; retrieval_eval informa subconjuntos y registra lookup en meta/notas del CSV. Ver [resultados, pruebas y comandos del plan 06](mejoras/resultados_06.md).

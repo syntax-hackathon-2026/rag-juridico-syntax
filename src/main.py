@@ -43,7 +43,7 @@ def git_commit() -> str:
 
 
 def main() -> int:
-    from generacion import modelo, postproceso, prompts
+    from generacion import abstencion, modelo, postproceso, prompts
     from generacion.llm import Decoder
     from generacion.responder import responder
     from recuperacion.retriever import cargar
@@ -57,7 +57,12 @@ def main() -> int:
     ap.add_argument("--limite", type=int, help="solo los N primeros items")
     ap.add_argument("--particion", help="I/N: solo los items de indice i con i %% N == I-1")
     ap.add_argument("--sin-reanudar", action="store_true", help="borrar la salida previa y empezar de cero")
+    ap.add_argument("--generation-k", type=int, choices=(3, 5, 7, 10),
+                    help="pasajes al decoder (alternativa a SYNTAX_GENERATION_K)")
     args = ap.parse_args()
+
+    if args.generation_k is not None:
+        config.GENERATION_K = args.generation_k
 
     entrada = args.entrada or (config.SAMPLE_PATH if args.split == "sample" else config.TEST_PATH)
     items = read_jsonl(entrada)
@@ -71,6 +76,10 @@ def main() -> int:
 
     llm = config.llm_config()
     experimento = args.experimento or f"{llm['nombre']}_{prompts.PROMPT_VERSION}_k{config.GENERATION_K}"
+    regla_abstencion = (
+        abstencion.cargar_regla(config.ABSTENCION_CONFIG_PATH)
+        if config.ABSTENCION_MODO == "reglas" else None
+    )
     if args.salida:
         salida = args.salida
     elif args.split == "test" and not (args.ids or args.limite or args.particion):
@@ -92,11 +101,13 @@ def main() -> int:
         "commit": git_commit(), "entrada": entrada.name, "n_items": len(items),
         "decoder": info_llm, "prompt_version": prompts.PROMPT_VERSION,
         "retrieval": {"modo": config.MODO_RECUPERACION, "retrieval_k": config.RETRIEVAL_K,
-                      "generation_k": config.GENERATION_K, "citar_evidencia": config.CITAR_EVIDENCIA},
+                      "generation_k": config.GENERATION_K, "citar_evidencia": config.CITAR_EVIDENCIA,
+                      "lookup": config.lookup_metadata()},
         "indice": {k: info_indice.get(k) for k in ("n_fragmentos", "sha256_chunks", "version_segmentador")}
                   | {"encoder": (info_indice.get("denso") or {}).get("modelo"),
                      "encoder_revision": (info_indice.get("denso") or {}).get("revision")},
         "device_encoder": config.resolver_device(),
+        "abstencion": config.abstencion_metadata(),
     }
     (config.TRAZAS_DIR / f"{experimento}.meta.json").write_text(
         json.dumps(meta, ensure_ascii=False, indent=2) + "\n", encoding="utf-8", newline="\n")
@@ -111,7 +122,9 @@ def main() -> int:
     t0 = time.perf_counter()
     with salida.open("a", encoding="utf-8", newline="\n") as fs, trazas.open("a", encoding="utf-8", newline="\n") as ft:
         for n, it in enumerate(pendientes, 1):
-            reg, traza = responder(it, retriever, decoder)
+            reg, traza = responder(
+                it, retriever, decoder, regla_abstencion=regla_abstencion
+            )
             fs.write(json.dumps(reg, ensure_ascii=False) + "\n")
             ft.write(json.dumps(traza, ensure_ascii=False) + "\n")
             fs.flush()

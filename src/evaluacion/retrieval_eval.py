@@ -25,7 +25,6 @@ from __future__ import annotations
 import argparse
 import csv
 import json
-import re
 import subprocess
 import sys
 import time
@@ -35,7 +34,14 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 import config  # noqa: E402
 from recuperacion.consulta import consulta_de  # noqa: E402
-from recuperacion.retriever import MODOS, cargar  # noqa: E402
+from recuperacion.referencias import referencias_de, normalizar_articulo  # noqa: E402
+from evaluacion.techo_reranker import metricas_techo  # noqa: E402
+MODOS = ("bm25", "denso", "hibrido")
+
+
+def cargar(cargar_denso=True):
+    from recuperacion.retriever import cargar as cargar_retriever
+    return cargar_retriever(cargar_denso=cargar_denso)
 
 sys.path.insert(0, str(config.ROOT / "scripts"))
 import citations  # noqa: E402
@@ -53,15 +59,12 @@ COLUMNAS = [
 ]
 
 
-def _art(a: str | None) -> str | None:
-    """Numero de articulo comparable: '1o'/'1°' -> '1', '5 A' -> '5a'."""
-    if a is None:
-        return None
-    a = re.sub(r"[°º]", "", a.lower()).replace(" ", "")
-    return re.sub(r"^(\d+)o$", r"\1", a)
+_art = normalizar_articulo  # compatibilidad para evaluar_entrega y plan 05
 
 
-def evaluar(modo: str, items: list[dict], tipo_consulta: str) -> tuple[dict, list[dict]]:
+def evaluar(modo: str, items: list[dict], tipo_consulta: str, techo: bool = False) -> tuple[dict, list[dict]]:
+    if techo and modo != "hibrido":
+        raise ValueError("El techo se mide sobre RRF hibrido")
     ret = cargar(cargar_denso=modo != "bm25")
     filas = []
     for it in items:
@@ -70,8 +73,12 @@ def evaluar(modo: str, items: list[dict], tipo_consulta: str) -> tuple[dict, lis
         if not ref_b:
             continue
         ref_art = {(c[0], c[1], c[2], _art(c[3])) for c in citations.article_level(ref)}
+        consulta = consulta_de(it, tipo_consulta)
+        refs_explicitas = referencias_de(it["pregunta"] if config.LOOKUP_FUENTE == "pregunta" else consulta)
+        kwargs = ({"consulta_lookup": it["pregunta"]} if config.LOOKUP_MODO == "on"
+                  and config.LOOKUP_FUENTE == "pregunta" else {})
         t0 = time.perf_counter()
-        top = ret.retrieve(consulta_de(it, tipo_consulta), k=max(KS), modo=modo)
+        top = ret.retrieve(consulta, k=40 if techo else max(KS), modo=modo, **kwargs)
         ms = (time.perf_counter() - t0) * 1000
         cuerpos = [tuple(p.meta["canonico"]) for p in top]
         arts = [(*p.meta["canonico"], _art(p.meta["articulo"])) for p in top]
@@ -82,16 +89,19 @@ def evaluar(modo: str, items: list[dict], tipo_consulta: str) -> tuple[dict, lis
             respaldadas |= citations.bodies(citations.extract(p.texto))
         filas.append({
             "id": it["id"], "formato": it["formato"], "area": it.get("area"),
-            "referencia": sorted(map(list, ref_b)), "referencia_articulos": sorted(map(list, ref_art)),
+            "referencia": sorted(map(list, ref_b), key=str), "referencia_articulos": sorted(map(list, ref_art), key=str),
             "rank_doc": rank_doc, "rank_art": rank_art,
+            "referencias_explicitas": [list(r) for r in refs_explicitas],
             "respaldo": len(ref_b & respaldadas) / len(ref_b),
             "latencia_ms": round(ms, 1),
             "top": [[p.chunk_id, round(p.score, 5)] for p in top],
         })
     n = len(filas)
+    if not n:
+        raise ValueError("No hay preguntas evaluables")
     con_art = [f for f in filas if f["referencia_articulos"]]
     met = {f"doc_hit@{k}": sum(bool(f["rank_doc"] and f["rank_doc"] <= k) for f in filas) / n for k in KS}
-    met["mrr"] = sum(1 / f["rank_doc"] for f in filas if f["rank_doc"]) / n
+    met["mrr"] = sum(1 / f["rank_doc"] for f in filas if f["rank_doc"] and f["rank_doc"] <= 10) / n
     met["respaldo@10"] = sum(f["respaldo"] for f in filas) / n
     for k in (1, 10):
         met[f"art_hit@{k}"] = (sum(bool(f["rank_art"] and f["rank_art"] <= k) for f in con_art) / len(con_art)
@@ -99,7 +109,26 @@ def evaluar(modo: str, items: list[dict], tipo_consulta: str) -> tuple[dict, lis
     met["n_con_articulo"] = len(con_art)
     met["n_preguntas"] = n
     met["latencia_ret_ms"] = sum(f["latencia_ms"] for f in filas) / n
+    if techo:
+        met.update(metricas_techo(filas))
+    met["subconjuntos_referencias"] = metricas_subconjuntos(filas)
     return met, filas
+
+
+def metricas_subconjuntos(filas: list[dict]) -> dict:
+    salida = {}
+    for nombre, grupo in (("con_referencia", [f for f in filas if f.get("referencias_explicitas")]),
+                          ("sin_referencia", [f for f in filas if not f.get("referencias_explicitas")])):
+        n = len(grupo)
+        art = [f for f in grupo if f["referencia_articulos"]]
+        salida[nombre] = {
+            "n": n, "n_con_articulo_gt": len(art),
+            "doc_hit@10": sum(bool(f["rank_doc"] and f["rank_doc"] <= 10) for f in grupo) / n if n else None,
+            "art_hit@10": sum(bool(f["rank_art"] and f["rank_art"] <= 10) for f in art) / len(art) if art else None,
+            "mrr": sum(1 / f["rank_doc"] for f in grupo if f["rank_doc"] and f["rank_doc"] <= 10) / n if n else None,
+            "respaldo@10": sum(f["respaldo"] for f in grupo) / n if n else None,
+        }
+    return salida
 
 
 def git_commit() -> str:
@@ -121,7 +150,16 @@ def main() -> int:
     ap.add_argument("--experimento", default=None, help="nombre de la fila en experiments.csv")
     ap.add_argument("--notas", default="")
     ap.add_argument("--no-csv", action="store_true", help="solo imprimir, sin escribir en evaluation/")
+    ap.add_argument("--techo-reranker", action="store_true", help="fase 0: top-40 RRF sin modelo nuevo")
     args = ap.parse_args()
+    if args.techo_reranker and args.modo != ["hibrido"]:
+        ap.error("--techo-reranker requiere --modo hibrido")
+    if args.techo_reranker and config.LOOKUP_MODO != "off":
+        ap.error("--techo-reranker mide RRF baseline: requiere SYNTAX_LOOKUP=off")
+    if not config.CHUNKS_PATH.is_file() or not config.BM25_DIR.is_dir():
+        ap.error("Falta indice local chunks.jsonl/BM25; usar el indice congelado. No se reconstruye automaticamente.")
+    if any(m != "bm25" for m in args.modo):
+        config.verificar_indice()
 
     items = read_jsonl(config.ROOT / "data" / "sample_50.jsonl")
     info = json.loads(config.INDICE_INFO_PATH.read_text(encoding="utf-8")) if config.INDICE_INFO_PATH.is_file() else {}
@@ -135,13 +173,16 @@ def main() -> int:
         entorno = entorno_path.relative_to(config.ROOT).as_posix()
 
     for modo in args.modo:
-        met, filas = evaluar(modo, items, args.consulta)
+        met, filas = evaluar(modo, items, args.consulta, techo=args.techo_reranker)
         print(f"\n== {modo}  ({met['n_preguntas']} preguntas con fundamento, {met['n_con_articulo']} a nivel de articulo)")
         for k in ("doc_hit@1", "doc_hit@3", "doc_hit@5", "doc_hit@10", "mrr", "respaldo@10", "art_hit@1", "art_hit@10"):
             v = met[k]
             print(f"   {k:<12} {v:.3f}" if v is not None else f"   {k:<12} -")
         print(f"   latencia     {met['latencia_ret_ms']:.0f} ms/consulta")
-        fallos = [f["id"] for f in filas if not f["rank_doc"]]
+        if args.techo_reranker:
+            print(json.dumps(metricas_techo(filas), ensure_ascii=False, indent=2))
+        print(json.dumps(met["subconjuntos_referencias"], ensure_ascii=False, indent=2))
+        fallos = [f["id"] for f in filas if not f["rank_doc"] or f["rank_doc"] > 10]
         print(f"   sin el cuerpo de referencia en el top-10: {fallos}")
         if args.no_csv:
             continue
@@ -150,6 +191,12 @@ def main() -> int:
         with det.open("w", encoding="utf-8", newline="\n") as f:
             for fila in filas:
                 f.write(json.dumps(fila, ensure_ascii=False) + "\n")
+        resumen = {"experimento": experimento, "modo": modo, "reranker": "off",
+                   "fusion": "rrf60" if modo == "hibrido" else "",
+                   "n_candidatos_por_rama": 40, "lookup": config.lookup_metadata(),
+                   "consulta": args.consulta, "metricas": met}
+        with det.with_suffix(".meta.json").open("w", encoding="utf-8", newline="\n") as f:
+            f.write(json.dumps(resumen, ensure_ascii=False, indent=2) + "\n")
         denso = info.get("denso") or {}
         fila_csv = {
             "fecha": datetime.now(timezone.utc).isoformat(timespec="seconds"),
@@ -160,7 +207,10 @@ def main() -> int:
             "fusion": "rrf60" if modo == "hibrido" else "", "reranker": "", "retrieval_k": 10,
             "consulta": args.consulta, "latencia_ret_ms": round(met["latencia_ret_ms"], 1),
             "plataforma": denso.get("device", "") if modo != "bm25" else "cpu",
-            "entorno_json": entorno, "notas": args.notas,
+            "entorno_json": entorno, "notas": args.notas + (
+                "; fase0_reranker=" + json.dumps(metricas_techo(filas), ensure_ascii=False, sort_keys=True)
+                if args.techo_reranker else "") + "; lookup=" + json.dumps(config.lookup_metadata(), sort_keys=True)
+                + "; subconjuntos=" + json.dumps(met["subconjuntos_referencias"], sort_keys=True),
             **{k: (round(met[k], 4) if isinstance(met[k], float) else met[k])
                for k in COLUMNAS if k in met},
         }
