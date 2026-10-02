@@ -77,7 +77,7 @@ codificar con bge-m3 en GPU y armar BM25 + FAISS → llama.cpp b11146 (se descar
 Opciones: `--hasta indice` (sin decoder), `--reindexar` (borra índice y caché de vectores), `--sin-reanudar` (latencias limpias),
 `--limite N`, `--split test`, `--device cpu`. Requiere driver NVIDIA con CUDA >= 12.6; no instala drivers.
 
-El índice (`data_corpus/indice/`) se reconstruye con `src/indexacion/segmentar.py` + `src/indexacion/construir_indice.py`, o se toma del comprimido publicado (sección "Corpus e índice"). Para volver a parsear los originales de `data/raw/` hacen falta pandoc (RTF/DOCX) y Tesseract con el idioma español (5 sentencias escaneadas): `brew install pandoc tesseract tesseract-lang`. No son necesarios si se parte del `corpus/` publicado. `SYNTAX_LLM` elige el decoder (`qwen3-8b-q4` por defecto; `qwen3-4b-2507-q4` como alternativa) y `SYNTAX_LLM_URL` el endpoint.
+El índice (`data_corpus/indice/`) se reconstruye con `src/indexacion/segmentar.py` + `src/indexacion/construir_indice.py`, o se toma del comprimido publicado (sección "Corpus e índice"). Para volver a parsear los originales de `data/raw/` hacen falta pandoc (RTF/DOCX) y Tesseract con el idioma español (5 sentencias escaneadas): `brew install pandoc tesseract tesseract-lang`. No son necesarios si se parte del `corpus/` publicado. `SYNTAX_LLM` elige el decoder (`qwen3-8b-q8` por defecto; `qwen3-8b-q4` para Macs de 16 GB y `qwen3-4b-2507-q4` como alternativas) y `SYNTAX_LLM_URL` el endpoint.
 
 Requisitos de hardware: ~6 GB de memoria para el decoder (8B Q4) más ~4 GB para el encoder y el índice. Con GPU (Metal/CUDA) y memoria libre suficiente.
 

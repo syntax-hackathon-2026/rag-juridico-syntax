@@ -112,7 +112,7 @@ LLM_MODELOS = {
         "thinking": False,
     },
 }
-LLM = os.environ.get("SYNTAX_LLM", "qwen3-8b-q4")
+LLM = os.environ.get("SYNTAX_LLM", "qwen3-8b-q8")
 LLM_URL = os.environ.get("SYNTAX_LLM_URL", "http://127.0.0.1:8080/v1")
 LLM_CTX = 8192
 LLM_SEED = 0

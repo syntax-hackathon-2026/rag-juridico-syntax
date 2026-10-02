@@ -86,6 +86,7 @@ ESPEJOS_AJ = [
      "https://normativa.colpensiones.gov.co/compilacion/docs/"),
     ("Normograma de la Cancilleria (compilacion Avance Juridico)",
      "https://www.cancilleria.gov.co/sites/default/files/Normograma/docs/"),
+    ("Normograma de la DIAN (compilacion Avance Juridico)", "https://normograma.dian.gov.co/dian/compilacion/docs/"),
 ]
 
 # canonico de citations.py -> (doc_id, titulo, archivo en Senado o URL absoluta)
