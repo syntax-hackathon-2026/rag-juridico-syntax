@@ -74,7 +74,7 @@ La URL que construyó el script no existe. Probar otra fuente o confirmar si la 
 
 ## C. Fuentes del `legal_basis` de `sample_50` fuera de la semilla
 
-Servidas por `data/fuentes_faltantes_sample50.md`. Los ítems A.1 a A.5 de ese documento (Código Civil, Código de Comercio, Código Penal, CPACA y Ley 472 de 1998) **ya están incorporados**.
+Salen de la comparación del `legal_basis` de `sample_50` contra la semilla (antes `data/fuentes_faltantes_sample50.md`, ya eliminado; está en el historial de git). Los ítems A.1 a A.5 de esa comparación (Código Civil, Código de Comercio, Código Penal, CPACA y Ley 472 de 1998) **ya están incorporados**.
 
 ### Corte Constitucional
 

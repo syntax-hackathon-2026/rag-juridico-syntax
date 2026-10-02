@@ -165,7 +165,6 @@ Modelo de chunk: **un artículo = una unidad** (inciso/parágrafo solo si el art
 Archivos de trabajo versionados en `data/` (léelos antes de tocar el corpus):
 
 - **`fuentes_pendientes.md`**: checklist de fuentes. Todo lo que estaba pendiente al 2026-09-29 ya está incorporado (tabla "Resultado de la incorporación", con los `doc_id` definitivos); quedan abiertas solo las decisiones D.4/D.5 (tutelas y autos de la CSJ, circulares y resoluciones). Cada ítem lleva el procedimiento de incorporación; marcar `[x]` al terminar.
-- **`fuentes_faltantes_sample50.md`**: comparación del `legal_basis` de `sample_50` contra la semilla (`legal_basis` = solo para planear ingesta, nunca runtime).
 - **`areas_por_asignar.md`**: las `areas` de los 30 documentos adicionales las propuso un agente y **falta que una persona las confirme**; al decidir, actualizar `_adicionales` de `fuentes_override.json` y `corpus_manifest.json` y correr el validador.
 - **`fuentes_descargadas.json`** (URL/estado/sha256), **`fuentes_override.json`**, **`mapa_archivos.json`**: ver comandos de arriba.
 

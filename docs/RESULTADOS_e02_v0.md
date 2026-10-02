@@ -3,8 +3,8 @@
 Primera evaluación completa del RAG v0 sobre `sample_50`, incluyendo el juez de texto libre (`--ragas`).
 
 - **Fecha:** 2026-10-01
-- **Corrida evaluada:** `salidas/sample_e02_v0.jsonl` (50 respuestas; diagnóstico por pregunta en `evaluation/generacion/e02_v0/errores.csv`)
-- **Comando:** `python scripts/evaluate.py --submission salidas/sample_e02_v0.jsonl --split sample --ragas`
+- **Corrida evaluada:** `evaluation/generacion/e02_v0/entrega.jsonl` (50 respuestas; diagnóstico por pregunta en `evaluation/generacion/e02_v0/errores.csv`)
+- **Comando:** `python scripts/evaluate.py --submission evaluation/generacion/e02_v0/entrega.jsonl --split sample --ragas`
 - **Juez:** `z-ai/glm-5.3-flash` (OpenRouter) + encoder local `multilingual-e5-large`
 
 ## Configuración de la corrida
