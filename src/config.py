@@ -69,6 +69,13 @@ if LOOKUP_FUENTE not in {"consulta", "pregunta"}:
     raise ValueError("SYNTAX_LOOKUP_FUENTE debe ser consulta|pregunta")
 if not 0 <= LOOKUP_BONUS < float("inf") or LOOKUP_M < 1:
     raise ValueError("LOOKUP_BONUS debe ser finito no negativo y LOOKUP_M positivo")
+# Filtro "solo por cita" (docs/INDEXACION.md 14): los documentos del registro se
+# quitan de las ramas BM25/densa salvo que la consulta nombre su cuerpo canonico.
+# off | sentencias (las 279 sentencias nuevas de v3) | todo (+ las normas nuevas).
+SOLO_POR_CITA_PATH = ROOT / "data" / "registros" / "solo_por_cita.json"
+FILTRO_CITA = os.environ.get("SYNTAX_FILTRO_CITA", "todo")
+if FILTRO_CITA not in {"off", "sentencias", "todo"}:
+    raise ValueError("SYNTAX_FILTRO_CITA debe ser off|sentencias|todo")
 EXPERIMENTS_CSV = EVALUATION_DIR / "experiments.csv"
 
 # Encoder denso (enunciado 3.1). bge-m3: MIT, 1024 dim, 8192 tokens, sin prefijos.
@@ -125,7 +132,7 @@ RETRIEVAL_K = 10
 GENERATION_K = int(os.environ.get("SYNTAX_GENERATION_K", "5"))
 # Cabeceras de la evidencia agregadas a los campos citables: no | generacion (los
 # pasajes que vio el decoder) | top10. Ver generacion/responder.py.
-CITAR_EVIDENCIA = os.environ.get("SYNTAX_CITAR_EVIDENCIA", "generacion")
+CITAR_EVIDENCIA = os.environ.get("SYNTAX_CITAR_EVIDENCIA", "top10")
 SALIDAS_DIR = ROOT / "salidas"  # entregas de desarrollo (en .gitignore)
 TRAZAS_DIR = SALIDAS_DIR / "trazas"
 SCHEMA_PATH = ROOT / "schema" / "submission.schema.json"
@@ -138,6 +145,10 @@ def lookup_metadata() -> dict:
     return {"modo": LOOKUP_MODO, "variante": LOOKUP_VARIANTE,
             "fuente": LOOKUP_FUENTE, "bonus": LOOKUP_BONUS, "m": LOOKUP_M,
             "aplica_a": "hibrido", "parser": "scripts/citations.py"}
+
+
+def filtro_metadata() -> dict:
+    return {"modo": FILTRO_CITA, "registro": str(SOLO_POR_CITA_PATH.relative_to(ROOT)).replace("\\", "/")}
 
 
 def abstencion_metadata() -> dict:

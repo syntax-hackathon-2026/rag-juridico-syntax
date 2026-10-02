@@ -102,7 +102,8 @@ def main() -> int:
         "decoder": info_llm, "prompt_version": prompts.PROMPT_VERSION,
         "retrieval": {"modo": config.MODO_RECUPERACION, "retrieval_k": config.RETRIEVAL_K,
                       "generation_k": config.GENERATION_K, "citar_evidencia": config.CITAR_EVIDENCIA,
-                      "lookup": config.lookup_metadata()},
+                      "lookup": config.lookup_metadata(),
+                      "filtro_cita": config.filtro_metadata()},
         "indice": {k: info_indice.get(k) for k in ("n_fragmentos", "sha256_chunks", "version_segmentador")}
                   | {"encoder": (info_indice.get("denso") or {}).get("modelo"),
                      "encoder_revision": (info_indice.get("denso") or {}).get("revision")},

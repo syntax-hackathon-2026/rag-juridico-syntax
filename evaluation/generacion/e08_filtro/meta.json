@@ -1,0 +1,47 @@
+{
+  "experimento": "e08_filtro",
+  "fecha": "2026-10-02T17:58:11+00:00",
+  "commit": "64e15aa+cambios",
+  "entrada": "sample_50.jsonl",
+  "n_items": 50,
+  "decoder": {
+    "llm": "qwen3-8b-q8",
+    "gguf": "Qwen3-8B-Q8_0.gguf",
+    "sha256": "408b955510e196121c1c375201744783b5c9a43c7956d73fc78df54c66e883d6",
+    "cuantizacion": "Q8_0",
+    "llama_cpp": "",
+    "url": "http://127.0.0.1:8080/v1"
+  },
+  "prompt_version": "p-v0",
+  "retrieval": {
+    "modo": "hibrido",
+    "retrieval_k": 10,
+    "generation_k": 5,
+    "citar_evidencia": "generacion",
+    "lookup": {
+      "modo": "off",
+      "variante": "a",
+      "fuente": "consulta",
+      "bonus": 0.005,
+      "m": 2,
+      "aplica_a": "hibrido",
+      "parser": "scripts/citations.py"
+    },
+    "filtro_cita": {
+      "modo": "todo",
+      "registro": "data/registros/solo_por_cita.json"
+    }
+  },
+  "indice": {
+    "n_fragmentos": 113519,
+    "sha256_chunks": "2090aedb8f54f09a1e8e9323a572adf46408f0c43b19472cdd22f8cb1b3e9870",
+    "version_segmentador": "seg-v1",
+    "encoder": "BAAI/bge-m3",
+    "encoder_revision": "5617a9f61b028005a4858fdac845db406aefb181"
+  },
+  "device_encoder": "cuda",
+  "abstencion": {
+    "modo": "off",
+    "config_sha256": "d163a18ba87ab24f0430ef65b46db7b127c374b417e14439f4dfe52edf876232"
+  }
+}

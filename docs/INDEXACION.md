@@ -240,3 +240,22 @@ BM25 en sample_50 (41 preguntas con fundamento), variantes armadas filtrando `ch
 
   El híbrido también diluye: −0,07 en doc_hit@10 y −0,10 en MRR frente a v2. En generación (`e05_q8_rtx4090`) las sentencias nuevas copan el top-10 de las cerradas (8 de 10 en #51, 9 de 10 en #748, que pasa de A a D) aunque ninguna cerrada del sample nombra una sentencia. Decisión: **no revertir; filtrar** (sección 14).
 - Mitigación posible si el híbrido también diluye: dejar el lote de SU recuperable **solo cuando la pregunta lo nombra** (filtrar sus fragmentos de las ramas BM25/denso salvo cita explícita de esa sentencia con `citations.extract`). En sample_50 daría las métricas de "v2 + normas + hitos" y conservaría los 15/15 de sentencias nombradas.
+
+## 14. Filtro "solo por cita" (`e06`, 2026-10-02)
+
+Los 375 documentos nuevos de v3 (279 sentencias = 242 SU + 37 hitos, y 96 normas) quedan en el corpus y en el manifest, pero **solo se recuperan si la consulta los nombra**: `retriever._filtrar` los quita de las ramas BM25 y densa salvo que `citations.extract` de la consulta (pregunta + opciones) encuentre su cuerpo canónico (`referencias.cuerpos_de`, la misma tupla que `canonico` en `chunks.jsonl`). Se filtra en cada rama antes del RRF, pidiendo candidatos de más (x4 cada vez) hasta completar 40; el orden de la rama no cambia y el resultado es determinista. El índice no se reconstruye.
+
+- Registro versionado `data/registros/solo_por_cita.json` (grupos `sentencias` y `normas`), generado por `python src/indexacion/solo_por_cita.py` a partir del manifest de `e8e7e58` (corpus v2). No editar a mano; si se agregan documentos que deban recuperarse siempre (p. ej. un código), regenerar con otra `--base` o sacarlos del registro con el script.
+- `SYNTAX_FILTRO_CITA=off|sentencias|todo` (por defecto `todo`).
+
+| híbrido (41 preguntas) | doc_hit@1 | doc_hit@3 | doc_hit@10 | MRR | respaldo@10 | art_hit@10 |
+|---|---:|---:|---:|---:|---:|---:|
+| v2 (`e03`) | 0,488 | 0,732 | 0,854 | 0,619 | 0,927 | 0,526 |
+| v3 sin filtro (`e04`) | 0,390 | 0,585 | 0,780 | 0,515 | 0,890 | 0,421 |
+| v3 filtro `sentencias` (`e06`) | 0,488 | 0,659 | 0,829 | 0,593 | 0,927 | 0,474 |
+| **v3 filtro `todo` (`e06b`)** | 0,488 | 0,707 | 0,854 | 0,613 | 0,927 | 0,526 |
+
+- `todo` recupera las métricas de v2 y conserva las sentencias nombradas (919, 946, 563, 453, 140, 991 y 1015 en rank 1–2). Las normas nuevas también desplazaban (solo `sentencias` se queda en 0,829). Cerradas: #51 y #290 vuelven al rank 1, #352 al 4 y #58 pasa del 9 al 3.
+- Consulta solo `pregunta` (`e07_consulta_pregunta`, con filtro): peor en cerradas (MRR 0,603 → 0,456; #51 al 7, #128 al 8, #352 fuera). Se mantiene `pregunta+opciones`.
+- Latencia: el filtro hace una búsqueda densa extra con la consulta ya codificada (caché de la última consulta en `_codificar`); ~110 ms/consulta en caliente en la 4090. El promedio de `retrieval_eval` (~650 ms) incluye la carga del encoder.
+- Pendientes sin cambio: #60, #748, #247, #679, #239 y #661 siguen sin su cuerpo en el top-10.
