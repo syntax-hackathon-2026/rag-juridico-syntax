@@ -58,7 +58,7 @@ RIESGOS = [
      "se congela una sola máquina y configuración para la corrida final y la verificación en vivo."),
     ("Recuperación a nivel de artículo y exactitud en cerradas.",
      "En muestra, art_hit@10 ≈ 0,4–0,5 y cerradas {acc} frente a la referencia 0,905. "
-     "Se prueban reranker, búsqueda por referencia explícita y generation_k, un cambio por experimento."),
+     "Se prueban reranker, ajuste de la búsqueda por referencia explícita y generation_k, un cambio por experimento."),
     ("Abstención sin calibrar.",
      "{mal} respuestas incorrectas que valdrían 0,5 si se abstuviera; se evalúa una regla simple por "
      "formato, sin sobreajustar a 50 preguntas."),
@@ -282,8 +282,11 @@ def construir(rep, fila, exp, manifest, salida: Path):
         ["Decoder", f"Qwen3-8B, cuantización {fila['cuantizacion']} con llama.cpp; temperature=0, seed=0, "
                     "salida restringida por JSON Schema"],
         ["Estrategia de recuperación",
-         f"Híbrida: BM25 (bm25s) + denso, fusión RRF (k=60); top-{fila['retrieval_k']} como evidencia, "
-         f"{fila['generation_k']} pasajes al decoder; citas validadas contra el top-{fila['retrieval_k']}"],
+         f"Híbrida: BM25 (bm25s) + denso, fusión RRF (k=60)"
+         + (", más búsqueda por referencia explícita (norma/artículo detectados con citations.py) como candidato extra"
+            if '"modo": "on"' in fila["notas"] else "")
+         + f"; top-{fila['retrieval_k']} como evidencia, {fila['generation_k']} pasajes al decoder; "
+         f"citas validadas contra el top-{fila['retrieval_k']}"],
         ["Segmentación del corpus", f"{fila['version_segmentador']}: un artículo = un fragmento (≤350 palabras, "
                                     "partido por párrafos); sentencias en ventanas de ~350 palabras por sección"],
         ["Mecanismo de abstención", ABSTENCION],
