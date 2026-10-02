@@ -4,7 +4,7 @@ Contexto para agentes y personas que continúen el trabajo de recuperación. Res
 
 ## 1. Estado en una línea
 
-`corpus/*.txt` (167 documentos) → **31.127 fragmentos** (`chunks.jsonl`) → **BM25 construido y medido**. **Índice denso bge-m3 construido** (2026-09-30, 35.105 fragmentos; vectores fp32 calculados en Colab T4 y `index.faiss` armado en local desde la caché). Resultados en `e01_bge_m3` (sección 6). `construir_indice.py --particion I/N` permite repartir la codificación entre varias máquinas; ver `notebooks/indice_denso_colab.ipynb`. El generador (Qwen), `src/main.py` y `run.sh` todavía no existen.
+**Corpus v2 (2026-10-01): 213 documentos → 47.966 fragmentos, BM25 construido y medido (`e03_corpus_v2_bm25`, sección 10). El índice denso de v2 está pendiente**: `index.faiss` corresponde todavía a v1 (167 documentos, 35.105 fragmentos, `e01_bge_m3`) y `construir_indice.py --solo-bm25` lo borró en local, así que `verificar_indice()` falla y el modo híbrido no corre hasta reconstruirlo (comando en la sección 10). Los 35.105 fragmentos de v1 no cambiaron (mismo sha256), y la caché solo codifica los 12.861 nuevos. Antes: `corpus/*.txt` (167 documentos) → 35.105 fragmentos, con BM25 + bge-m3 (vectores fp32 de Colab T4 e `index.faiss` armado en local desde la caché). `construir_indice.py --particion I/N` permite repartir la codificación entre varias máquinas; ver `notebooks/indice_denso_colab.ipynb`. El generador (Qwen), `src/main.py` y `run.sh` todavía no existen.
 
 ## 2. Pipeline y comandos
 
@@ -71,7 +71,19 @@ Orden (`cabeceras.canonico`): `doc_id` que es clave de `citations.CODES` (`codig
 | `decreto_2737_1989` | Ley 2737 de 1989 (1 ítem) | Decreto 2737 de 1989 |
 | `ley_964_2005` | Ley 964 de 2006 (1 ítem) | Ley 964 de 2005 |
 
-Esos ~4 ítems pueden perder citación si su `legal_basis` usa la forma errónea. Se decidió no citar normas inexistentes.
+Esos ~4 ítems pueden perder citación si su `legal_basis` usa la forma errónea. Se decidió no citar normas inexistentes. En el corpus v2 se agregan cinco erratas más, resueltas a mano (`fuentes_override.json`):
+
+| doc_id | La semilla/banco dice | Documento incorporado |
+|---|---|---|
+| `ley_1692_2013` | Ley 1692 de 2017 | Ley 1692 de 2013 (convenio Colombia-Portugal, doble imposición) |
+| `ley_23_1991` | Ley 23 de 1961 | Ley 23 de 1991 (descongestión judicial) |
+| `sentencia_t_488_2011` | SU-488 de 2011 | T-488 de 2011 |
+| `sentencia_sp_248_2025` | T-248 de 2025 (área penal) | SP248-2025, Sala Penal de la Corte Suprema |
+| `sentencia_t_6_1992` | SU-6 de 1991 (no hubo SU en 1991) | T-006 de 1992, respaldo elegido a mano |
+
+**Ceros a la izquierda.** `citations` compara el número como texto: "Decreto 046 de 2024" da `("decreto","046","2024")` y no coincide con `"46"`. Si la semilla trae la misma norma con ceros, `canonico()` conserva esa forma (`decreto_46_2024` → `046`, `acuerdo_2_2015` → `02`). Además, `cabeceras.variantes()` hace que la cabecera nombre también las otras formas usuales, así respalda la cita escrita de cualquiera de ellas: "Artículo 1 del Acto Legislativo 1 de 2005 (Acto Legislativo 01 de 2005)." Solo afecta a normas de un dígito o con ceros en la semilla, y ninguna de ellas estaba en v1.
+
+**Documentos no normativos** (`cabeceras.DOCUMENTOS`): la sentencia de unificación del Consejo de Estado 2020CE-SUJ-4-005, el auto 2025-01-730337 de Supersociedades y la doctrina de la OMPI y de Arbanza. `citations` no extrae ninguna cita de ellos. Tienen `canonico = ("documento", doc_id, None)` y `tipo = "documento"`; la cabecera es su nombre legible (se comprueba que no extraiga ninguna cita) y se segmentan en ventanas, como las sentencias (`segmentar.EN_VENTANAS`).
 
 ### 4.3 Unidad de fragmento
 
@@ -84,7 +96,9 @@ Esos ~4 ítems pueden perder citación si su `legal_basis` usa la forma errónea
 Una ley que reforma otra transcribe artículos ajenos: "ARTÍCULO 10. Modifíquese el artículo 247 del Estatuto Tributario, el cual quedará así: Artículo 247. …". Sin tratamiento, el 247 quedaría como "Artículo 247 de la Ley 1819 de 2016", una cita falsa. Regla:
 
 - Se entra en modo cita si el párrafo previo termina en `:`, si algún párrafo del artículo actual termina en la fórmula de reforma (`quedará así:`, `el siguiente texto:`… aunque haya un subtítulo en medio, caso Ley 1755/2015), o si el encabezado empieza con comillas. Un encabezado entre comillas nunca abre artículo, **ni siquiera antes del primero** (la Ley 600/2000 cita "Artículo 235" de la Constitución en su preámbulo).
-- Se sale cuando la numeración vuelve a la propia: número base entre el último y +2 (letras y `-N` comparten base), reinicio en 1 (transitorios, decreto que adopta un código) o, en decretos únicos, un número mayor del mismo nivel (`2.2.1.4 → 2.2.1.5`).
+- Se sale cuando la numeración vuelve a la propia: número base entre el último y +2 (letras y `-N` comparten base), reinicio en 1 (transitorios, decreto que adopta un código) o, en decretos únicos, cualquier número decimal mayor, aunque cambie de nivel (`2.2.1.4 → 2.2.1.5`, `1.2.1.9.1.3 → 1.2.1.10.1`; antes se exigía el mismo nivel y el DUR 1625/2016 se quedaba atascado en modo cita).
+- Un encabezado "ARTÍCULO N DEL ESTATUTO TRIBUTARIO." / "ARTÍCULO 428 LITERAL F) DEL ESTATUTO…" (nombre de otra norma pegado al número, sin puntuación) es una transcripción y no abre artículo (`_DE_OTRA_NORMA`). Solo aparece en el DUR tributario de la DIAN. Antes, un "ARTÍCULO 19-4 DEL ESTATUTO TRIBUTARIO" se tomaba como artículo propio y 2.598 fragmentos del 1625 quedaban dentro de él.
+- En el DUR 1625/2016 de la DIAN, las versiones anteriores de cada artículo (plazos de años pasados, con numeración más baja) quedan dentro del artículo vigente, igual que las cajas de "legislación anterior" del Senado. Las tablas del PDF salen con el texto desordenado.
 
 ### 4.5 Encoder e índice
 
@@ -94,7 +108,7 @@ Una ley que reforma otra transcribe artículos ajenos: "ARTÍCULO 10. Modifíque
 
 ### 4.6 Manifest
 
-`construir_indice.py` (salvo `--no-manifest`) reescribe en cada build `n_fragmentos` por documento y en la raíz, y `sha256` si el `.txt` cambió. **No toca `n_articulos`** ni agrega o borra documentos. Formato: `json.dumps(indent=2, ensure_ascii=False)` + `\n`, igual que el archivo original. `python src/validaciones/manifest.py` da 0 errores; solo queda el placeholder `enlace_nube`.
+`construir_indice.py` (salvo `--no-manifest`) reescribe en cada build `n_fragmentos` por documento y en la raíz, y `sha256` si el `.txt` cambió. **No toca `n_articulos`** ni agrega o borra documentos. Para agregar o quitar documentos está `python src/ingesta/generar_manifest.py` (`--revisar` muestra el diff sin escribir). Lo regenera desde `data/fuentes_descargadas.json` (título, fuente, URL, fecha, áreas), `data_corpus/parseo.json` (método, sha256) y `chunks.jsonl` (`n_fragmentos`). Conserva el `n_articulos` ya registrado; en documentos nuevos lo toma de `articulos_base` de `resumen_indice.json`. Orden para un documento nuevo: parsear → `generar_manifest.py` (títulos para el `retrieval_text`) → `segmentar.py` → `generar_manifest.py` → `construir_indice.py`. Formato: `json.dumps(indent=2, ensure_ascii=False)` + `\n`, igual que el archivo original. `python src/validaciones/manifest.py` da 0 errores; solo queda el placeholder `enlace_nube`.
 
 ## 5. Registro de `chunks.jsonl`
 
@@ -163,3 +177,20 @@ Corpus de 35.105 fragmentos (seg-v1), mismo `sample_50` y consulta = pregunta + 
 - Sin el cuerpo en el top-10 en híbrido: #60, #748, #247, #679, #563, #661 (#563 es de CORPUS). BM25 fallaba además en #600, #647 y #239, que el híbrido resuelve; el resto sigue pendiente de diagnóstico.
 - Bug corregido: `retriever.cargar()` reutilizaba un retriever creado solo con BM25 y fallaba en `denso`.
 - La latencia del denso incluye cargar el encoder en la primera consulta.
+
+## 10. Corpus v2: `e03_corpus_v2_bm25` (2026-10-01)
+
++46 documentos (ver `data/fuentes_pendientes.md`): 14 sentencias SC/SL/SP de la semilla, más SP248-2025, SC10291-2017, SC435-2024 y SC5288-2021; las de la Corte Constitucional C-468/2024, SU-016/2020, SU-277/2025, T-256/2025, T-488/2011 y T-006/1992; Acuerdo 02/2015; Decreto 046/2024; Leyes 1692/2013, 23/1991, 100/1993, 222/1995 y 1676/2013; CPP (`codigo_procedimiento_penal`, Ley 906/2004); CPT (`codigo_procesal_trabajo`, Decreto 2158/1948); DUR 1072/2015, 1074/2015, 1083/2015 y 1625/2016; Decretos 19/2012 y 01/1984; Actos Legislativos 01/2003, 01/2005 y 02/2015; y los 4 documentos no normativos.
+
+OCR: SL648-2018 y SP1945-2019 (escaneados) y SC10291-2017, SC18392-2017 y SC8453-2016 (capa OCR ilegible) pasan por Tesseract 5.5.3 `spa` a 300 dpi (`parsear_pdf.OCR_FORZADO`). La ponencia de la OMPI se extrae sin ordenar por coordenadas (`SIN_ORDENAR`), porque son diapositivas con texto en capas.
+
+| modo (sample_50, 41 con fundamento) | doc_hit@1 | doc_hit@3 | doc_hit@10 | MRR | respaldo@10 | art_hit@10 |
+|---|---:|---:|---:|---:|---:|---:|
+| bm25 v1 (`e01`) | 0,439 | 0,683 | 0,780 | 0,563 | 0,833 | 0,421 |
+| bm25 v2 (`e03`) | 0,390 | 0,634 | 0,805 | 0,530 | **0,927** | 0,368 |
+
+- Gana el respaldo@10 (+4 preguntas): #453 (SU-016, C-468), #563 (SU-277), #60, #748 y #239.
+- Baja la precisión arriba del ranking, por desplazamiento léxico: el DUR 1625 adelanta al EOSF en #128 y el DUR 1074 al Estatuto del Consumidor en #674; SC435-2024 y SC3085-2024 pasan por delante del CGP y el Código Civil en #589 y #490; el art. 101 del Acuerdo 02/2015 ("8:00 a.m. a 5:00 p.m.") pasa delante del CST en #1073. Son diferencias de 1–2 preguntas de 41, sin cambio en el código del retriever. Hay que medirlo de nuevo en híbrido cuando esté el denso.
+- **Pendiente: índice denso v2.** En una GPU (Colab o campus), con `data_corpus/` sincronizado:
+  `SYNTAX_DEVICE=cuda python src/indexacion/construir_indice.py --batch 64` (solo codifica los fragmentos nuevos si está la caché de v1 en `data_corpus/cache_emb/`), y luego
+  `python src/evaluacion/retrieval_eval.py --modo bm25 denso hibrido --experimento e03_corpus_v2`.
