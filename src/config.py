@@ -95,6 +95,14 @@ LLM_MODELOS = {
         "cuantizacion": "Q4_K_M",
         "thinking": True,  # Qwen3 hibrido: se apaga con enable_thinking=false
     },
+    "qwen3-8b-q8": {  # mismo modelo y repo, cuantizacion mas fiel (8,7 GB): para GPUs de 24 GB (RTX 4090)
+        "repo": "Qwen/Qwen3-8B-GGUF",
+        "revision": "7c41481f57cb95916b40956ab2f0b139b296d974",
+        "archivo": "Qwen3-8B-Q8_0.gguf",
+        "sha256": "408b955510e196121c1c375201744783b5c9a43c7956d73fc78df54c66e883d6",
+        "cuantizacion": "Q8_0",
+        "thinking": True,
+    },
     "qwen3-4b-2507-q4": {  # plan B si el 8B no cabe en el tiempo (no hay GGUF oficial de Qwen)
         "repo": "unsloth/Qwen3-4B-Instruct-2507-GGUF",
         "revision": "a06e946bb6b655725eafa393f4a9745d460374c9",

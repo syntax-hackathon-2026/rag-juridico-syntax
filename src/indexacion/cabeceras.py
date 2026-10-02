@@ -79,6 +79,8 @@ DOCUMENTOS: dict[str, str] = {
     "doctrina_arbanza_grupo_sociedades_2024": "Arbanza, Análisis comparativo de la extensión del convenio "
                                               "arbitral a partes no signatarias: el caso de Pakistán, "
                                               "Francia y Colombia (2024)",
+    "decision_andina_351": "Decisión 351 de 1993 de la Comisión del Acuerdo de Cartagena, Régimen Común "
+                           "sobre Derecho de Autor y Derechos Conexos",
 }
 CORTES = {
     "C": "Corte Constitucional", "T": "Corte Constitucional", "SU": "Corte Constitucional",
