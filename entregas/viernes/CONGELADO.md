@@ -12,6 +12,7 @@ no el estado vigente de la rama.
 | Corrida | `e20_avance_v4` (`evaluation/generacion/e20_avance_v4/`, entorno en `evaluation/entornos/e20_avance_v4.json`) |
 | Respuestas enviadas | `entregas/viernes/respuestas_sample.jsonl`, sha256 `677722f06ee7ef2316df5eeca1762b12e2e835d6a0c0f1332197f8973c1f0d5e` |
 | Puntaje (evaluate.py, sin RAGAS) | 40,59/50: cerradas 14,67 (11/15), citación 17,55 (recall 0,878, 0 sin respaldo), abstención 8,37; 0 errores de schema |
+| Puntaje con juez (`--ragas`) | 53,17/80: texto libre 12,58/30 (correctness 0,4195; referencia 0,451). El juez `z-ai/glm-5.3-flash` no dio veredicto en 4 de 35 respuestas, que cuentan como cero (0,474 en las 31 juzgadas). El juez no es determinista: las mismas respuestas dieron 0,4314 en `e19_corpus_v4_t_ragas`. Se evaluó después de crear el tag, sobre el mismo `respuestas_sample.jsonl` |
 | Corpus | v4: 1.186 documentos, 173.393 fragmentos; `corpus_manifest.json` sha256 `cd1943a03e4eb5c374c9ebe36044e3d4ff7e718e8d666ab3d260b3f4eeeb77cb` |
 | `indice/chunks.jsonl` | sha256 `030d9268939055b63ee20a27d9714103e78af93e5c3e2cfa06a70352c3ad7f18` (= `data/registros/hashes_esperados.json`) |
 | `indice/index.faiss` | sha256 `4e6d922cd6635b3e99a439c48c895b87d64e5595d2ac18b672356f9235d55e3d` |

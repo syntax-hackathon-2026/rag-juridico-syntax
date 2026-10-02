@@ -36,12 +36,19 @@
     "puntos": 8.37
   },
   "correccion_ragas": {
-    "estado": "pendiente (correr con --ragas)",
-    "puntos": null
+    "n_juzgados": 35,
+    "n_respondidos": 35,
+    "n_fallidos": 4,
+    "correctness": 0.4195,
+    "modelo_juez": "z-ai/glm-5.3-flash",
+    "encoder": "intfloat/multilingual-e5-large",
+    "referencia": 0.451,
+    "puntos": 12.58,
+    "aviso": "El juez no devolvio veredicto en 4 de 35 items; computan como cero. Revise la corrida antes de publicar el puntaje."
   },
   "total_automatico": {
-    "obtenidos": 40.59,
-    "posibles": 50.0,
+    "obtenidos": 53.17,
+    "posibles": 80.0,
     "de_100_del_ranking": 80.0,
     "nota": "los 20 pts restantes son interfaz grafica, bitacora de corpus, video y reproducibilidad"
   }

@@ -56,8 +56,8 @@ ABSTENCION = (
 )
 LIMITACIONES = [
     ("Tiempo para las 992 preguntas.",
-     "Deben responderse en unas 6 horas. {lat_txt} Se fijará una sola máquina y una sola configuración "
-     "para la corrida final y la verificación en vivo."),
+     "Deben responderse en unas 6 horas. {lat_txt} La corrida final y la verificación en vivo usarán "
+     "una sola máquina y configuración."),
     ("Búsqueda del artículo exacto y preguntas cerradas.",
      "En la muestra, el sistema acierta {acc} de las preguntas cerradas, por debajo de la referencia "
      "(0,905), y no siempre encuentra el artículo preciso. {area_txt}Se probarán mejoras de una en una."),
@@ -65,13 +65,10 @@ LIMITACIONES = [
      "El sistema casi nunca se abstiene: {mal} respuestas incorrectas habrían valido más de haberse "
      "abstenido. Se probará una regla sencilla, sin ajustarla en exceso a solo 50 preguntas."),
     ("Corpus desbalanceado.",
-     "La mayoría de los documentos son sentencias de la Corte Constitucional; casi todas se usan solo "
-     "cuando la pregunta las nombra, para que no desplacen a las normas. Comercial, procesal y mercados "
-     "siguen siendo las áreas con menos documentos, y las áreas asignadas a los documentos añadidos aún "
-     "deben confirmarse."),
+     "La mayoría de los documentos son sentencias de la Corte Constitucional, casi todas usadas solo si la "
+     "pregunta las nombra. Comercial, procesal y mercados tienen menos documentos; faltan confirmar áreas."),
     ("Entrega final.",
-     "El código, los textos y el índice de esta medición quedaron congelados para reproducir estas "
-     "respuestas. Falta publicar el corpus con un enlace que abra sin sesión iniciada y construir la interfaz."),
+     "Código, corpus e índice de esta medición quedaron congelados. Falta publicar el corpus y la interfaz."),
 ]
 
 
@@ -81,6 +78,17 @@ def num(x: float, dec: int = 2) -> str:
 
 def miles(n: int) -> str:
     return f"{n:,}".replace(",", ".")
+
+
+def texto_ragas(ragas: dict, total_sin: float) -> str:
+    """Observacion del juez: corrección media, referencia y respuestas sin veredicto (cuentan como cero)."""
+    n, fallidos = ragas["n_juzgados"], ragas.get("n_fallidos") or 0
+    t = f"Texto libre: corrección {num(ragas['correctness'], 3)} (referencia {num(ragas['referencia'], 3)})"
+    if fallidos:
+        media_juzgadas = ragas["correctness"] * n / (n - fallidos)
+        t += (f"; {fallidos} de {n} respuestas quedaron sin veredicto del juez y cuentan como cero "
+              f"({num(media_juzgadas, 3)} en las {n - fallidos} juzgadas)")
+    return t + f". Sin el juez: {num(total_sin)} de 50."
 
 
 # ---------------------------------------------------------------- datos
@@ -226,7 +234,7 @@ def construir(rep, fila, exp, manifest, salida: Path, commit: str | None = None,
     m_area = re.search(r"area_boost=([0-9.]+)", fila["notas"])
     boost = float(m_area.group(1)) if m_area else 1.0
     if lat <= 10:
-        lat_txt = f"En la tarjeta gráfica RTX 4090 tarda {num(lat, 1)} s por pregunta, dentro del objetivo (menos de 10 s)."
+        lat_txt = f"En la RTX 4090 tarda {num(lat, 1)} s por pregunta, dentro del objetivo (menos de 10 s)."
     elif lat_sin_carga:
         lat_txt = (f"En la tarjeta gráfica RTX 4090 tardó {num(lat, 1)} s por pregunta mientras se "
                    f"compartía con otras pruebas, y {num(lat_sin_carga, 1)} s sin carga; el objetivo es menos de 10 s "
@@ -241,7 +249,7 @@ def construir(rep, fila, exp, manifest, salida: Path, commit: str | None = None,
     s = doc.sections[0]
     s.page_width, s.page_height = Cm(21.0), Cm(29.7)
     s.left_margin = s.right_margin = Cm(1.7)
-    s.top_margin, s.bottom_margin = Cm(1.1), Cm(1.1)
+    s.top_margin, s.bottom_margin = Cm(1.0), Cm(1.0)
     doc.styles["Normal"].font.name = FUENTE
     doc.styles["Normal"].font.size = Pt(10)
 
@@ -253,15 +261,26 @@ def construir(rep, fila, exp, manifest, salida: Path, commit: str | None = None,
 
     # 1. Puntaje
     titulo_seccion(doc, "1. Puntaje sobre las preguntas de muestra")
-    parrafo(doc, f"Resultado de python scripts/evaluate.py --submission salidas/sample_{exp}.jsonl --split sample.",
+    ragas = rep.get("correccion_ragas", {})
+    con_ragas = ragas.get("puntos") is not None
+    parrafo(doc, f"Resultado de python scripts/evaluate.py --submission salidas/sample_{exp}.jsonl --split sample"
+                 + (" --ragas" if con_ragas else "") + ".",
             size=8.5, italic=True, after=2)
-    tabla(doc, [
+    filas = [
+        ["Componente", "Puntos obtenidos", "Puntos posibles"],
+        ["Exactitud en cerradas", num(pts[0]), "20"],
+        ["Corrección de texto libre (juez RAGAS)", num(ragas["puntos"]), "30"],
+        ["Calidad de citación", num(pts[1]), "20"],
+        ["Abstención calibrada", num(pts[2]), "10"],
+        ["Total automático", num(round(total + ragas["puntos"], 2)), "80"],
+    ] if con_ragas else [
         ["Componente", "Puntos obtenidos", "Puntos posibles"],
         ["Exactitud en cerradas", num(pts[0]), "20"],
         ["Calidad de citación", num(pts[1]), "20"],
         ["Abstención calibrada", num(pts[2]), "10"],
         ["Total automático sin RAGAS", num(total), "50"],
-    ], [8.0, 4.5, 4.5], alinear_der=(1, 2), negrita_ultima=True)
+    ]
+    tabla(doc, filas, [8.0, 4.5, 4.5], alinear_der=(1, 2), negrita_ultima=True)
     p = parrafo(doc, before=3, after=0)
     mixto(p, [("Observaciones. ", True), (
         f"Preguntas cerradas: {cer['aciertos']} de {cer['n']} correctas (la referencia es {num(cer['referencia'], 3)}). "
@@ -270,12 +289,8 @@ def construir(rep, fila, exp, manifest, salida: Path, commit: str | None = None,
         f"Preguntas cerradas: {cer['aciertos']} de {cer['n']} correctas (la referencia es {num(cer['referencia'], 3)}). "
         f"Citación: {cit['citas_sin_respaldo']} de las {cit['n_citadas']} citas emitidas no tienen respaldo. ", False),
         (f"Abstención: {abst['abstuvo_bien'] + abst['abstuvo_de_mas']} abstenciones; "
-         f"{abst['respondio_bien']} de {abst['items_evaluados']} preguntas respondidas bien.", False)])
-    ragas = rep.get("correccion_ragas", {})
-    if ragas.get("puntos") is not None:
-        parrafo(doc, f"Referencia adicional con juez RAGAS: correctness {num(ragas['correctness'], 3)} "
-                     f"({num(ragas['puntos'])}/30)" + (f"; medido en {ragas['origen']}" if ragas.get("origen") else "") + ".",
-                size=8.5, italic=True, after=0)
+         f"{abst['respondio_bien']} de {abst['items_evaluados']} preguntas respondidas bien.", False)]
+        + ([(" " + texto_ragas(ragas, total), False)] if con_ragas else []))
 
     # 2. Corpus
     titulo_seccion(doc, "2. Estado del corpus")
