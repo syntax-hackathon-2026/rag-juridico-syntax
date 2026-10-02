@@ -103,11 +103,18 @@ python src/main.py --split test --experimento respaldo_v4 --particion 1/2     # 
 python src/main.py --split test --experimento respaldo_v4 --particion 2/2     # M3
 ```
 
-### 09:15 Ingesta automática (M1)
+### 09:15 Ola 1: ingesta automática (M1, ~5–10 min)
 
 ```
 python src/ingesta/ampliar_desde_citas.py evaluation/test/test_v4/nombradas_faltantes.csv --plan
-python src/ingesta/ampliar_desde_citas.py evaluation/test/test_v4/nombradas_faltantes.csv
+python src/ingesta/ampliar_desde_citas.py evaluation/test/test_v4/nombradas_faltantes.csv --indexar --batch 64
+python src/evaluacion/analizar_test.py --experimento test_v5a
+```
+
+Comparar el respaldo nombrado@10 de `test_v5a` con el de `test_v4`. **Un commit por ola**, porque revertir una ola es volver los registros a ese commit:
+
+```
+git add corpus_manifest.json data/registros data/raw evaluation/test; git commit -m "Ola 1: ingesta automatica"
 ```
 
 - Baja por regla lo que nombran las preguntas:
@@ -128,7 +135,7 @@ python src/ingesta/ampliar_desde_citas.py evaluation/test/test_v4/nombradas_falt
     Sentencia T-123 de 2024 ; Derecho constitucional
     ```
 
-  - M1 las ingiere así:
+  - M1 las ingiere así, **sin indexar todavía**: el reindexado va una sola vez, en la ola 2.
 
     ```
     python src/ingesta/ampliar_desde_citas.py lista_<persona>.txt --plan
@@ -153,7 +160,7 @@ python src/evaluacion/unir_entregas.py salidas/test_respaldo_v4_p1de2.jsonl sali
 
 **Desde aquí siempre hay una entrega válida**, con la v4 y el zip congelado como corpus.
 
-### 10:00–10:45 Reindexar y medir (M1)
+### 10:05–10:45 Ola 2: reindexar y medir (M1)
 
 ```
 python src/ingesta/ampliar_desde_citas.py --indexar --batch 64
@@ -163,9 +170,19 @@ python src/evaluacion/retrieval_eval.py --modo hibrido --experimento e30_v5_samp
 
 **KEEP de la ampliación** si se cumplen las dos condiciones:
 1. el respaldo nombrado@10 de `test_v5` sube frente a `test_v4`;
-2. en `sample_50` doc_hit@10 no pierde más de 1 pregunta frente a `e20` (0,902).
+2. en `sample_50` doc_hit@10 no pierde más de 1 pregunta frente a `e18`/`e20` (0,902).
 
-Si no se cumplen: identificar el lote culpable (IDF de BM25 o desplazamiento por área, ver INDEXACION 13), sacarlo de `_adicionales` y volver a indexar. Si no se resuelve a las 10:45, **REVERT**: se entrega la v4.
+**Revisar además el ruido** (lección 2 de la sección 6). Sobre una muestra (`--limite 100`) se compara la entrega de respaldo con una corrida con el índice nuevo: las preguntas que cambian de citas sin nombrar ningún documento nuevo apuntan a un documento ruidoso.
+
+Si no se cumplen, identificar el lote culpable (IDF de BM25 o desplazamiento por área, ver INDEXACION 13) y revertirlo:
+
+```
+git checkout <commit de la ola anterior> -- corpus_manifest.json data/registros
+del data_corpus\corpus\<doc_id>.txt
+python src/ingesta/ampliar_desde_citas.py --indexar --batch 64
+```
+
+El primer comando deja también `fuentes_descargadas.json` sin esos documentos. El último vuelve a indexar (~4 min). Si no se resuelve a las 10:45, **REVERT**: se entrega la v4.
 
 ### 10:45 Congelar el corpus del sábado (M1)
 
@@ -232,6 +249,49 @@ python src/reproducibilidad/package_corpus.py --licencia <ruta LICENSE> --nombre
   - defaults de `config.py`, sin variables `SYNTAX_*` salvo `SYNTAX_DEVICE` y `SYNTAX_LLM_CACHE`;
   - el mismo GGUF Q8_0 y llama.cpp b11146 en las tres máquinas.
 
-## 6. Tiempos medidos
+## 6. Tiempos medidos (simulacro del viernes, RTX 4090, corpus v4)
 
-Ver la sección "Simulacro" más abajo (se completa el viernes en la noche).
+### Montaje
+
+- **"Test" simulado**: los campos de runtime de `sample_50` más una pregunta sintética que nombra la Sentencia C-131 de 2004, que no está en la v4. En total, 51 preguntas.
+- **Flujo completo**:
+  1. `analizar_test.py`;
+  2. `ampliar_desde_citas.py --indexar` sobre `nombradas_faltantes.csv`;
+  3. `analizar_test.py` y `retrieval_eval.py`;
+  4. `main.py` con caché;
+  5. `validar_entrega.py`;
+  6. `verificar_corpus.py --actualizar`;
+  7. `package_corpus.py`.
+- **Resultados** en `evaluation/test/sim_v4/` y `evaluation/test/sim_v5/`.
+- **Después del simulacro** se revirtieron los registros y el corpus volvió a la v4 congelada: el simulacro no cambia el corpus.
+
+### Tiempos
+
+| Paso | Tiempo medido | Estimado para 992 |
+|---|---:|---:|
+| `analizar_test.py` (incluye ~35 s de carga del índice) | 51 s / 51 preguntas | 4–6 min |
+| Ingesta de 2 documentos (Ley 2294/2023, 500 arts.; C-131/2004): descarga 14 s + parseo 1 s | 15 s | ~10 s por documento (pausa de cortesía de 1 s por página) |
+| `generar_manifest` ×2 + `segmentar` | 69 s | fijo |
+| `construir_indice` (BM25 106 s + 518 fragmentos nuevos a ~42 fragmentos/s; el resto sale de `cache_emb`) | 161 s | fijo ~2 min + 1 min por cada ~2.500 fragmentos nuevos |
+| `validaciones/manifest.py` | 7 s | fijo |
+| **Ampliar + reindexar, total** | **251 s** | **~4 min por ola + la descarga** |
+| Generación sin caché | 4,0–4,2 s/pregunta | 69 min en 1 máquina, 35 en 2, 23 en 3 |
+| Generación con caché tras ampliar (47/51 sin cambio) | 60 s / 51 preguntas | solo se pagan las preguntas cuyo top-5 cambió |
+| `verificar_corpus.py --actualizar` | 1 s | |
+| `package_corpus.py` (zip de 903 MB) | 91 s | |
+| Subida a OneDrive | sin medir | medir el viernes con el zip v4 |
+
+### Resultados
+
+- Respaldo nombrado@10: 0,85 con la v4 y 0,95 tras ampliar. Solo queda la Resolución 368/2014: no tiene regla y va a la cola manual.
+- `sample_50` sin regresión frente a la v4 (`e18`): doc_hit@10 0,902, respaldo@10 0,927, art_hit@10 0,579.
+- El caché se reutiliza incluso entre versiones de corpus:
+  - de la v3 a la v4 (+598 documentos), 31 de 51 prompts fueron idénticos;
+  - de la v4 a la v4 con 2 documentos más, 47 de 51.
+
+### Lecciones para el sábado
+
+1. **Cada reindexado cuesta ~4 min fijos** (segmentar + BM25). Conviene **agrupar la ingesta en 2 olas como máximo**: la automática hacia las 09:20 y la de triage + manuales hacia las 10:15. No hay que reindexar por cada documento.
+2. **Las leyes ómnibus desplazan.** Con la Ley 2294/2023 (Plan Nacional de Desarrollo, 500 artículos), el #748 empezó a citarla aunque su pregunta es sobre otra cosa. Antes de KEEP hay que revisar `comparar_entregas.py` entre la corrida anterior y la nueva: las preguntas que cambian sin nombrar el documento nuevo son la señal de ruido. Si el documento ruidoso es una norma nombrada por ≥ 1 pregunta pero muy larga, se puede agregar al grupo `normas` de `solo_por_cita.json`, para que solo se recupere cuando la pregunta la nombra, y activar `SYNTAX_FILTRO_CITA=todo`. Eso es otra configuración y se mide con `retrieval_eval` antes de cambiar nada.
+3. **`package_corpus.py` se niega a empaquetar** si `chunks.jsonl` no es el congelado. El orden del paso de las 10:45 importa: `verificar_corpus.py --actualizar` → `package_corpus.py`.
+4. **Pendiente en máquina real**: el determinismo entre M1, M2 y M3 (sección 3, punto 2). Hasta comprobarlo no se reparten las 992 ni se copia `cache_llm/` entre máquinas.

@@ -1,0 +1,44 @@
+{
+  "entrada": "sim_test.jsonl",
+  "n_preguntas": 51,
+  "indice": "030d9268939055b63ee20a27d9714103e78af93e5c3e2cfa06a70352c3ad7f18",
+  "retrieval": {
+    "modo": "hibrido",
+    "filtro_cita": "sentencias",
+    "area_boost": 2.0,
+    "lookup": "on"
+  },
+  "conteos": {
+    "area": {
+      "Derecho constitucional": 7,
+      "Derecho administrativo": 7,
+      "Derecho de los mercados [competencia, consumidor, datos personales y propiedad intelectual]": 5,
+      "Derecho procesal": 5,
+      "Derecho comercial y sociedades": 5,
+      "Derecho de familia": 5,
+      "Derecho laboral": 5,
+      "Derecho civil": 4,
+      "Derecho penal": 4,
+      "Derecho tributario": 4
+    },
+    "formato": {
+      "semi_open": 31,
+      "multiple_choice": 15,
+      "open_ended": 5
+    }
+  },
+  "preguntas_con_nombrados": 16,
+  "cuerpos_nombrados": 20,
+  "respaldo_nombrado@10": 0.85,
+  "cuerpos_faltantes": 3,
+  "faltantes_resolubles_auto": 2,
+  "preguntas_afectadas_por_faltantes": 3,
+  "nombrados_sin_respaldo_en_indice": 0,
+  "articulos_sin_fragmento": 0,
+  "ms_recuperacion_por_pregunta": 735.8,
+  "horas_proyectadas": 0.06,
+  "supuesto_proyeccion": {
+    "seg_por_pregunta": 4.3,
+    "maquinas": 1
+  }
+}
