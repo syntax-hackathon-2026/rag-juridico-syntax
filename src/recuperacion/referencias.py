@@ -31,6 +31,11 @@ def referencias_de(consulta: str) -> list[Ref]:
     return sorted(salida, key=str)
 
 
+def cuerpos_de(consulta: str) -> set[tuple]:
+    """Cuerpos canonicos nombrados en la consulta (tuplas como `canonico` de los chunks)."""
+    return {tuple(b) for b in citations.bodies(citations.extract(consulta or ""))}
+
+
 class IndiceReferencias:
     """canonico propio del chunk + articulo -> todas sus partes, una vez por carga.
 

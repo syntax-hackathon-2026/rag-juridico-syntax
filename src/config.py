@@ -55,8 +55,8 @@ RESUMEN_INDICE_PATH = INDICE_DIR / "resumen_indice.json"  # por doc_id: fragment
 EMB_CACHE_DIR = CORPUS_DIR / "cache_emb"  # fuera de indice/ (no se publica): vectores por hash de texto
 EVALUATION_DIR = ROOT / "evaluation"
 REFERENCIAS_BASELINE_PATH = EVALUATION_DIR / "retrieval" / "e01_bge_m3_hibrido.jsonl"
-# Plan 06: experimental, apagado hasta superar keep/revert.
-LOOKUP_MODO = os.environ.get("SYNTAX_LOOKUP", "off")
+# Plan 06: lookup por metadata; KEEP en e13_lookup (mejora doc_hit@1 y MRR sin regresiones, INDEXACION.md 14).
+LOOKUP_MODO = os.environ.get("SYNTAX_LOOKUP", "on")
 LOOKUP_VARIANTE = os.environ.get("SYNTAX_LOOKUP_VARIANTE", "a")
 LOOKUP_FUENTE = os.environ.get("SYNTAX_LOOKUP_FUENTE", "consulta")
 LOOKUP_BONUS = float(os.environ.get("SYNTAX_LOOKUP_BONUS", "0.005"))
@@ -69,6 +69,19 @@ if LOOKUP_FUENTE not in {"consulta", "pregunta"}:
     raise ValueError("SYNTAX_LOOKUP_FUENTE debe ser consulta|pregunta")
 if not 0 <= LOOKUP_BONUS < float("inf") or LOOKUP_M < 1:
     raise ValueError("LOOKUP_BONUS debe ser finito no negativo y LOOKUP_M positivo")
+# Filtro "solo por cita" (docs/INDEXACION.md 14): los documentos del registro se
+# quitan de las ramas BM25/densa salvo que la consulta nombre su cuerpo canonico.
+# off | sentencias (las 279 sentencias nuevas de v3) | todo (+ las normas nuevas).
+SOLO_POR_CITA_PATH = ROOT / "data" / "registros" / "solo_por_cita.json"
+FILTRO_CITA = os.environ.get("SYNTAX_FILTRO_CITA", "sentencias")
+if FILTRO_CITA not in {"off", "sentencias", "todo"}:
+    raise ValueError("SYNTAX_FILTRO_CITA debe ser off|sentencias|todo")
+# Prioridad por area (docs/INDEXACION.md 15): en el hibrido, el score RRF de los fragmentos
+# cuyo documento lleva el `area` de la pregunta (areas de corpus_manifest.json) se multiplica
+# por este factor. Solo reordena los candidatos de las ramas, nunca descarta. 1.0 = apagado.
+AREA_BOOST = float(os.environ.get("SYNTAX_AREA_BOOST", "2.0"))
+if not 1.0 <= AREA_BOOST < float("inf"):
+    raise ValueError("SYNTAX_AREA_BOOST debe ser un factor finito >= 1")
 EXPERIMENTS_CSV = EVALUATION_DIR / "experiments.csv"
 
 # Encoder denso (enunciado 3.1). bge-m3: MIT, 1024 dim, 8192 tokens, sin prefijos.
@@ -125,7 +138,14 @@ RETRIEVAL_K = 10
 GENERATION_K = int(os.environ.get("SYNTAX_GENERATION_K", "5"))
 # Cabeceras de la evidencia agregadas a los campos citables: no | generacion (los
 # pasajes que vio el decoder) | top10. Ver generacion/responder.py.
-CITAR_EVIDENCIA = os.environ.get("SYNTAX_CITAR_EVIDENCIA", "generacion")
+CITAR_EVIDENCIA = os.environ.get("SYNTAX_CITAR_EVIDENCIA", "top10")
+# Thinking de Qwen3 por formato (docs/GENERACION.md): formatos separados por coma
+# (p. ej. "multiple_choice") y tope de tokens de razonamiento por llamada
+# (thinking_budget_tokens de llama-server). El razonamiento va solo a la traza.
+PENSAR_FORMATOS = frozenset(f for f in os.environ.get("SYNTAX_PENSAR_FORMATOS", "").split(",") if f.strip())
+PENSAR_TOKENS = int(os.environ.get("SYNTAX_PENSAR_TOKENS", "768"))
+if not PENSAR_FORMATOS <= {"multiple_choice", "semi_open", "open_ended"} or PENSAR_TOKENS < 1:
+    raise ValueError("SYNTAX_PENSAR_FORMATOS: multiple_choice,semi_open,open_ended; SYNTAX_PENSAR_TOKENS > 0")
 SALIDAS_DIR = ROOT / "salidas"  # entregas de desarrollo (en .gitignore)
 TRAZAS_DIR = SALIDAS_DIR / "trazas"
 SCHEMA_PATH = ROOT / "schema" / "submission.schema.json"
@@ -138,6 +158,14 @@ def lookup_metadata() -> dict:
     return {"modo": LOOKUP_MODO, "variante": LOOKUP_VARIANTE,
             "fuente": LOOKUP_FUENTE, "bonus": LOOKUP_BONUS, "m": LOOKUP_M,
             "aplica_a": "hibrido", "parser": "scripts/citations.py"}
+
+
+def filtro_metadata() -> dict:
+    return {"modo": FILTRO_CITA, "registro": str(SOLO_POR_CITA_PATH.relative_to(ROOT)).replace("\\", "/")}
+
+
+def area_metadata() -> dict:
+    return {"boost": AREA_BOOST, "fuente": "corpus_manifest.json", "aplica_a": "hibrido"}
 
 
 def abstencion_metadata() -> dict:

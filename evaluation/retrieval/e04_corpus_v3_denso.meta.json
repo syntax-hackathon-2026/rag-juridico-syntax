@@ -1,0 +1,48 @@
+{
+  "experimento": "e04_corpus_v3",
+  "modo": "denso",
+  "reranker": "off",
+  "fusion": "",
+  "n_candidatos_por_rama": 40,
+  "lookup": {
+    "modo": "off",
+    "variante": "a",
+    "fuente": "consulta",
+    "bonus": 0.005,
+    "m": 2,
+    "aplica_a": "hibrido",
+    "parser": "scripts/citations.py"
+  },
+  "consulta": "pregunta+opciones",
+  "metricas": {
+    "doc_hit@1": 0.4146341463414634,
+    "doc_hit@3": 0.6097560975609756,
+    "doc_hit@5": 0.6829268292682927,
+    "doc_hit@10": 0.7804878048780488,
+    "mrr": 0.536411149825784,
+    "respaldo@10": 0.8658536585365854,
+    "art_hit@1": 0.15789473684210525,
+    "art_hit@10": 0.47368421052631576,
+    "n_con_articulo": 19,
+    "n_preguntas": 41,
+    "latencia_ret_ms": 256.7073170731707,
+    "subconjuntos_referencias": {
+      "con_referencia": {
+        "n": 14,
+        "n_con_articulo_gt": 4,
+        "doc_hit@10": 0.8571428571428571,
+        "art_hit@10": 1.0,
+        "mrr": 0.6446428571428572,
+        "respaldo@10": 0.8571428571428571
+      },
+      "sin_referencia": {
+        "n": 27,
+        "n_con_articulo_gt": 15,
+        "doc_hit@10": 0.7407407407407407,
+        "art_hit@10": 0.3333333333333333,
+        "mrr": 0.4802910052910053,
+        "respaldo@10": 0.8703703703703703
+      }
+    }
+  }
+}

@@ -1,6 +1,8 @@
 # Reproduce el pipeline completo en Windows desde cero (repo + .txt del corpus).
 #   powershell -ExecutionPolicy Bypass -File reproducir.ps1 -Corpus C:\ruta\corpus
 #   powershell -ExecutionPolicy Bypass -File reproducir.ps1 --hasta indice
+#   powershell -ExecutionPolicy Bypass -File reproducir.ps1 --solo preguntas --split test --rango 100-200   # una etapa
+#   powershell -ExecutionPolicy Bypass -File reproducir.ps1 --dry-run --desde preguntas                      # plan, sin ejecutar
 # Todo lo que no sea un parametro propio se pasa a src\reproducibilidad\reproducir.py (ver --help).
 # Solo instala Python 3.13 (winget) si falta; el resto (venv, torch CUDA, llama.cpp, GGUF) lo hace reproducir.py.
 param([string]$Corpus, [Parameter(ValueFromRemainingArguments = $true)][string[]]$Resto)

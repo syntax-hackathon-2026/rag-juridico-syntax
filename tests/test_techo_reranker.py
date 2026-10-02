@@ -44,7 +44,7 @@ class TechoTests(unittest.TestCase):
                   meta={"canonico": canonico if i == 11 else ("ley", "999", "2000"),
                         "articulo": articulo if i == 11 else "1"}) for i in range(1, 41)]
         class Ret:
-            def retrieve(self, consulta, k, modo):
+            def retrieve(self, consulta, k, modo, area=None):
                 return chunks[:k]
         items = [{"id": 1, "formato": "semi_open", "pregunta": "consulta", "legal_basis": legal}]
         with patch.object(ev, "cargar", return_value=Ret()):

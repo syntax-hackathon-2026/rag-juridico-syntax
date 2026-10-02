@@ -37,6 +37,7 @@ class Respuesta:
     uso: dict = field(default_factory=dict)  # prompt_tokens, completion_tokens
     tiempos: dict = field(default_factory=dict)  # ms de prefill y generacion, tokens/s
     ms: float = 0.0
+    razonamiento: str = ""  # reasoning_content (solo con pensar=True)
 
 
 class Decoder:
@@ -44,18 +45,25 @@ class Decoder:
         self.url = (url or config.LLM_URL).rstrip("/") + "/chat/completions"
         self.cfg = config.llm_config()
 
-    def generar(self, mensajes: list[dict], schema: dict | None = None, max_tokens: int = 800) -> Respuesta:
+    def generar(self, mensajes: list[dict], schema: dict | None = None, max_tokens: int = 800,
+                pensar: bool = False) -> Respuesta:
+        """`pensar`: thinking de Qwen3 con tope config.PENSAR_TOKENS. max_tokens cuenta
+        razonamiento + respuesta, asi que se le suma el tope. llama-server separa el
+        razonamiento en reasoning_content y aplica la gramatica del schema despues."""
+        pensar = pensar and bool(self.cfg.get("thinking"))
         cuerpo = {
             "model": self.cfg["nombre"],
             "messages": mensajes,
             "temperature": 0.0,
             "seed": config.LLM_SEED,
-            "max_tokens": max_tokens,
+            "max_tokens": max_tokens + (config.PENSAR_TOKENS if pensar else 0),
             "cache_prompt": False,
             "stream": False,
         }
         if self.cfg.get("thinking"):
-            cuerpo["chat_template_kwargs"] = {"enable_thinking": False}
+            cuerpo["chat_template_kwargs"] = {"enable_thinking": pensar}
+        if pensar:
+            cuerpo["thinking_budget_tokens"] = config.PENSAR_TOKENS
         if schema is not None:
             cuerpo["response_format"] = {"type": "json_schema",
                                          "json_schema": {"name": "respuesta", "strict": True, "schema": schema}}
@@ -73,4 +81,5 @@ class Decoder:
         tiempos = {k: round(t[k], 1) for k in ("prompt_n", "prompt_ms", "prompt_per_second",
                                                "predicted_n", "predicted_ms", "predicted_per_second") if k in t}
         return Respuesta(texto=eleccion["message"].get("content") or "", fin=eleccion.get("finish_reason", ""),
-                         uso=datos.get("usage") or {}, tiempos=tiempos, ms=round(ms, 1))
+                         uso=datos.get("usage") or {}, tiempos=tiempos, ms=round(ms, 1),
+                         razonamiento=eleccion["message"].get("reasoning_content") or "")
