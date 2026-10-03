@@ -1360,4 +1360,4 @@ enlace sea público y esté vigente antes de la entrega (ver `enunciado.pdf`).*
 
 | Recurso | Enlace | Tamaño | Vigencia |
 |---|---|---|---|
-| | | | |
+| Corpus procesado e índice | [OneDrive](https://1drv.ms/f/c/e17f9102812dd361/IgBze-a6Cpv5RIpNVH0FIz6ZAcA7qq8byJspYt3TA7v-fG8?e=UcJhmX) | | |
