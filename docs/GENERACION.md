@@ -155,6 +155,61 @@ Corridas del 2026-10-02 (noche, corpus v4, rama `santiago-agentico`; sección 9)
   - **Conclusión: Qwen3-8B sin thinking no recuerda números de artículo con fiabilidad, y la multi-consulta diluye el RRF.** No volver a intentarlo sin otra señal, como un reranker o el thinking solo en el planificador.
 - Lo que queda en cerradas es para la revisión del corpus: doctrina sobre leasing y fintech, modelo de convenio OCDE (regla de desempate), el decreto anual del SMLMV (cuantías, #528) y el art. 176 del C.C. para #647.
 
+## 10. Texto libre (2026-10-02, noche)
+
+**Diagnóstico.** El texto libre vale 30 puntos y es el componente más lejos del máximo: RAGAS 0,42–0,46 con el corpus v4, y el prompt seguía en `p-v0`. Juez por ítem sobre `e24_final` (**J1**, `evaluation/juez/j1_e24_final.csv`): 0,4573, y esta vez **ningún ítem sin veredicto**. En la corrida anterior de la misma entrega hubo 3 (0,4401). Los ítems sin veredicto son ruido intermitente del juez, no un patrón del texto. Lo peor puntuado, por patrón:
+- casos con narrativa (#513 0,21, #247 0,22, #1073 0,22, #679 0,32), donde falta la norma decisiva o el razonamiento;
+- sentencias nombradas con la sección equivocada en el top-5 (#190 0,21, #946 0,38);
+- forma (#490 0,32, #24 0,36): enumeraciones incompletas, o anclaje a pasajes de otra figura.
+
+**Flags (todos apagados por defecto, `src/config.py`):**
+- `SYNTAX_PROMPT_TL=p-tl1` (`prompts.INSTRUCCIONES_TL1`; `prompt_version` suma `+tl1`). En semi_open:
+  - la forma depende de la pregunta: una línea si pregunta qué artículo; la enumeración completa en una oración con punto y coma si pide requisitos; «Sí»/«No» primero en las de procedencia o verdadero/falso;
+  - se ignoran los pasajes de otra figura;
+  - en `respuesta` va solo la norma principal; las demás, en `referencia_legal`, que el juez no ve.
+  - En open_ended, `analisis` empieza con la respuesta directa. Las cerradas no cambian, así que su caché del decoder sigue valiendo.
+- `SYNTAX_SECCION_SENTENCIA=on` (`generacion/seleccion.py`). Si la pregunta nombra una sentencia:
+  - sus fragmentos de la sección pedida suben dentro del top-10 (problema jurídico → síntesis/consideraciones, con preferencia por el texto que trae la frase; hechos → antecedentes; decisión → resuelve);
+  - los salvamentos y las aclaraciones de voto bajan al final, porque en #563 y #1015 ocupaban el top-5;
+  - solo cambia lo que ve el decoder: el top-10 de la entrega, la citación y la abstención no se tocan.
+- `SYNTAX_PENSAR_CASOS=40`: thinking (`PENSAR_TOKENS`) en el texto libre cuya pregunta tiene ≥ 40 palabras (10 de 35 en sample_50).
+
+**Método.** `main.py --replay-trazas evaluation/generacion/e24_final/trazas.jsonl` (`recuperacion/fijo.py`) repite el top-10 de `e24_final` con el texto y la metadata reales de `chunks.jsonl` del índice v4 (mismo `sha256_chunks`), sin cargar bge-m3 ni FAISS junto al decoder. Fidelidad comprobada: el pipeline completo en el Mac sobre #280 y #589 salió entero del caché que había llenado el replay, es decir, con peticiones idénticas. Brazos en el Mac con Q4 (`salidas/run_noche.sh`):
+
+| brazo | flags |
+|---|---|
+| A | `p-v0` |
+| B | `p-tl1` |
+| C | B + `SECCION_SENTENCIA=on` |
+| D | B + `PENSAR_CASOS=40` |
+
+El juez (J2 = A, J3 = B, C y D en una corrida) se pasa solo sobre los ítems cuyo texto difiere, y la comparación es pareada por ítem (`juez_por_item.py comparar`).
+
+Regla fijada antes de medir:
+- **KEEP** si la media pareada es ≥ +0,03 y los ítems que mejoran (> +0,02) superan en ≥ 2 a los que empeoran;
+- la citación y la abstención no bajan;
+- empate ⇒ REVERT.
+
+B se compara contra A; C y D, contra B.
+
+**Resultados (Mac, Q4, replay de `e24_final`):** _pendiente_
+
+**Confirmación en la 4090 (sábado temprano, M1).** Se activan solo los flags KEEP:
+
+```
+git pull
+$env:SYNTAX_PROMPT_TL="p-tl1"; $env:SYNTAX_SECCION_SENTENCIA="on"     # los que hayan salido KEEP
+python src/main.py --split sample --experimento e25_tl --sin-reanudar
+python src/evaluacion/evaluar_entrega.py --entrega salidas/sample_e25_tl.jsonl --experimento e25_tl
+python src/evaluacion/comparar_entregas.py evaluation/generacion/e24_final/entrega.jsonl salidas/sample_e25_tl.jsonl
+python src/evaluacion/juez_por_item.py juzgar --experimento j4_e25_tl --entrega e25=salidas/sample_e25_tl.jsonl --solo-cambiados-vs evaluation/generacion/e24_final/entrega.jsonl
+python src/evaluacion/juez_por_item.py comparar evaluation/juez/j1_e24_final.csv:e24 evaluation/juez/j4_e25_tl.csv:e25
+```
+
+- Parte determinista: cerradas 12/15, citación 17,55 y abstención 8,60 iguales a `e24_final`.
+- Juez: la misma regla de arriba.
+- Si pasa, los flags KEEP pasan a ser el valor por defecto en `config.py` **antes de la corrida final de las 11:00** (`docs/SABADO.md` §4). La entrega de respaldo de las 09:05 puede salir con los valores anteriores: es solo respaldo.
+
 ## 7. Pendientes
 
 1. **Máquina final**: medir la latencia en las candidatas (GPU NVIDIA del equipo o del campus). La corrida de las 992 y la verificación en vivo del sábado deben usar la misma máquina y la misma configuración (sección 4.2).

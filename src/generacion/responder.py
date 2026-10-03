@@ -22,7 +22,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 import config  # noqa: E402
-from generacion import abstencion, citas, planificador, postproceso, prompts  # noqa: E402
+from generacion import abstencion, citas, planificador, postproceso, prompts, seleccion  # noqa: E402
 
 sys.path.insert(0, str(config.ROOT / "scripts"))
 from evaluate import answer_text  # noqa: E402
@@ -63,6 +63,12 @@ def _quitar(campos: dict, malas: set) -> dict:
     return salida
 
 
+def pensar_caso(item: dict) -> bool:
+    """Thinking en texto libre para casos largos (SYNTAX_PENSAR_CASOS = minimo de palabras)."""
+    return (config.PENSAR_CASOS > 0 and item["formato"] != "multiple_choice"
+            and len(item["pregunta"].split()) >= config.PENSAR_CASOS)
+
+
 def _agregar_evidencia(formato: str, campos: dict, cabeceras: list[str]) -> dict:
     if not cabeceras:
         return campos
@@ -101,7 +107,7 @@ def responder(item: dict, retriever, decoder, generation_k: int | None = None,
     generation_k = generation_k or config.GENERATION_K
     item = entrada_runtime(item)
     formato = item["formato"]
-    pensar = formato in config.PENSAR_FORMATOS
+    pensar = formato in config.PENSAR_FORMATOS or pensar_caso(item)
     top, info_ret = planificador.recuperar(item, retriever, decoder)
     consulta = info_ret["consulta"]
     ms_ret = (time.perf_counter() - t0) * 1000  # incluye el planificador (info_ret["plan_ms"])
@@ -124,7 +130,13 @@ def responder(item: dict, retriever, decoder, generation_k: int | None = None,
     if not top:
         motivos.append("sin_pasajes")
     else:
-        gen = top[:generation_k]
+        orden = top
+        if config.SECCION_SENTENCIA == "on" and formato != "multiple_choice":
+            # solo cambia que pasajes ve el decoder; top (evidencia, citas) queda igual
+            orden, info_sec = seleccion.reordenar(item["pregunta"], top)
+            if info_sec:
+                traza["seccion_reordenada"] = info_sec
+        gen = orden[:generation_k]
         letras = prompts.letras_de(item)
         esquema = prompts.schema(formato, letras)
         msgs = prompts.mensajes(item, [p.texto for p in gen],

@@ -174,8 +174,19 @@ PLAN_NORMAS = os.environ.get("SYNTAX_PLAN_NORMAS", "on")  # off: solo las reform
 PROMPT_MC = os.environ.get("SYNTAX_PROMPT_MC", "p-v0")
 if PROMPT_MC not in {"p-v0", "p-v2"}:
     raise ValueError("SYNTAX_PROMPT_MC debe ser p-v0|p-v2")
+# Texto libre (docs/GENERACION.md, seccion 10).
+# PROMPT_TL: instrucciones de semi_open/open_ended: p-v0 | p-tl1 (forma segun la pregunta).
+# SECCION_SENTENCIA: si la pregunta nombra una sentencia y pide una seccion (problema
+#   juridico, hechos, decision), sus fragmentos de esa seccion suben dentro del top-10.
+# PENSAR_CASOS: thinking en texto libre cuando la pregunta tiene al menos N palabras (0 = off).
+PROMPT_TL = os.environ.get("SYNTAX_PROMPT_TL", "p-v0")
+if PROMPT_TL not in {"p-v0", "p-tl1"}:
+    raise ValueError("SYNTAX_PROMPT_TL debe ser p-v0|p-tl1")
+SECCION_SENTENCIA = os.environ.get("SYNTAX_SECCION_SENTENCIA", "off")
+PENSAR_CASOS = int(os.environ.get("SYNTAX_PENSAR_CASOS", "0"))
 for _nombre, _valor in (("SYNTAX_GLOSARIO", GLOSARIO), ("SYNTAX_CONSULTA_OPCIONES", CONSULTA_OPCIONES),
-                        ("SYNTAX_PLANIFICADOR", PLANIFICADOR), ("SYNTAX_PLAN_NORMAS", PLAN_NORMAS)):
+                        ("SYNTAX_PLANIFICADOR", PLANIFICADOR), ("SYNTAX_PLAN_NORMAS", PLAN_NORMAS),
+                        ("SYNTAX_SECCION_SENTENCIA", SECCION_SENTENCIA)):
     if _valor not in {"off", "on"}:
         raise ValueError(f"{_nombre} debe ser off|on")
 if not 0.0 <= PESO_EXTRA < float("inf"):
