@@ -107,8 +107,9 @@ ALIAS = os.environ.get("SYNTAX_ALIAS", "on")
 #   pide jurisprudencia (el 72 % de los fragmentos son sentencias y ganan el top-1 a la norma).
 # FACTOR_DEROGADA: score de los documentos derogados enteros (DOCS_DEROGADOS: CPC, CCA, Codigo
 #   del Menor), salvo que la consulta los nombre o hable de vigencia.
-FACTOR_SENTENCIA = float(os.environ.get("SYNTAX_FACTOR_SENTENCIA", "1.0"))
-FACTOR_DEROGADA = float(os.environ.get("SYNTAX_FACTOR_DEROGADA", "1.0"))
+FACTOR_SENTENCIA = float(os.environ.get("SYNTAX_FACTOR_SENTENCIA", "0.5"))
+FACTOR_DEROGADA = float(os.environ.get("SYNTAX_FACTOR_DEROGADA", "0.5"))
+# KEEP en r64/e64 (0.5 + 0.5): MRR 0,700 -> 0,742 y mismo puntaje en sample (docs/INDEXACION.md 21).
 DOCS_DEROGADOS = frozenset({"decreto_1400_1970", "decreto_1_1984", "decreto_2737_1989"})
 if not (0 < FACTOR_VOTO <= 1 and 0 < FACTOR_VIGENCIA <= 1
         and 0 < FACTOR_SENTENCIA <= 1 and 0 < FACTOR_DEROGADA <= 1):

@@ -441,7 +441,7 @@ Generación en sample (mismo índice, Qwen3-8B Q8_0, sin juez):
 
 Diagnóstico sobre el v5 congelado (`r60_base`, con reranker rrf20): de las 15 preguntas cuyo cuerpo no queda en el top-1, en 6 lo ocupa una ventana de sentencia en una pregunta conceptual que no nombra ninguna (#60 T-323/2024, #647 T-1096/2008, #661 C-389/2023, #490, #617, #352). El 72 % de los fragmentos (133.626 de 185.215) son sentencias. En otras dos (#589, #528) compite el Decreto 1400/1970 (el CPC, derogado entero por el CGP), que casi no tiene fragmentos marcados `derogado`, así que `SYNTAX_FACTOR_VIGENCIA` no lo toca.
 
-Dos factores en runtime, del mismo tipo que `FACTOR_VOTO` (multiplican el score de la fusión antes del reranker, no filtran), **apagados por defecto**:
+Dos factores en runtime, del mismo tipo que `FACTOR_VOTO` (multiplican el score de la fusión antes del reranker, no filtran), **activados por defecto en 0,5** (apagar con `=1.0`):
 
 - `SYNTAX_FACTOR_SENTENCIA`: ventanas `tipo == sentencia`, salvo que la consulta nombre una sentencia (`citations.py`/alias) o diga `sentencia|jurisprudenc|precedente|subregla|ratio decidendi|providencia|fallo`. En el test se activa en 778 de 992 preguntas. Disparo `factor_sentencia`.
 - `SYNTAX_FACTOR_DEROGADA`: documentos derogados enteros (`config.DOCS_DEROGADOS`: Decreto 1400/1970, Decreto 01/1984 y Decreto 2737/1989), salvo que la consulta los nombre o hable de vigencia.
@@ -467,4 +467,4 @@ Generación en sample (Qwen3-8B Q8_0, servidor compartido con otra sesión: las 
 
 - **Empate en lo determinista.** La pérdida de respaldo de #51 no cuesta puntos: la cita perdida es la SU-429/2024, que no está en el `legal_basis`; la Ley 472 sigue citada. #1065 deja de citar la C-015/2018 (tampoco puntuaba) y #168 agrega la Ley 57/1887.
 - Las cerradas que suben de rank (#60, #352, #617, #647) no cambian de respuesta. En #647 el diagnóstico pasa de RANKING a GENERATION: el Código Civil ya está en el puesto 2 y el modelo igual se equivoca (doctrina, sección 17).
-- Sin juez: el texto libre cambia en las preguntas reordenadas. **Decisión pendiente del equipo**: activar (`SYNTAX_FACTOR_SENTENCIA=0.5 SYNTAX_FACTOR_DEROGADA=0.5`) por el mejor ranking a igual puntaje, o pasar el juez antes (regla de la sección 20: REVERT si cae más de 0,03).
+- **KEEP, activado por defecto** (decisión del equipo, 2026-10-03): mejor ranking a igual puntaje determinista. Sin juez: el texto libre cambia en las preguntas reordenadas. `r65_defaults` reproduce `r64` (0/50 top-10 distintos).
