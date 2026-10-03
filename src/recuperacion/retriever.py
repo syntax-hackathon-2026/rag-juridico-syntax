@@ -36,6 +36,13 @@ _PIDE_VOTO = re.compile(r"salvamento|aclaracion(?:es)? de voto|disident|voto par
 _PIDE_VIGENCIA = re.compile(r"derog|vigen|antes de la reforma|texto original|subrogad")
 
 
+def _sin_ceros(cuerpo: tuple) -> tuple:
+    """("decreto", "0175", "2025") -> ("decreto", "175", "2025"); citations compara el numero como texto."""
+    if len(cuerpo) >= 2 and isinstance(cuerpo[1], str) and cuerpo[1].isdigit():
+        return (cuerpo[0], str(int(cuerpo[1])), *cuerpo[2:])
+    return tuple(cuerpo)
+
+
 @dataclass
 class RetrievedChunk:
     chunk_id: str
@@ -68,6 +75,8 @@ class Retriever:
         for i, c in enumerate(self.chunks):
             self.por_cuerpo.setdefault(tuple(c["canonico"]), []).append(i)
         self.por_cuerpo = {k: np.array(v, dtype=np.int64) for k, v in self.por_cuerpo.items()}
+        # Numero sin ceros -> forma del corpus: "Decreto 175" y "Decreto 0175" nombran el mismo documento
+        self.forma_corpus = {_sin_ceros(k): k for k in sorted(self.por_cuerpo, key=str)}
         self.es_voto = np.array([c.get("seccion") in ("salvamento", "aclaracion") for c in self.chunks])
         self.es_derogado = np.array([c.get("vigencia") == "derogado" for c in self.chunks])
         self._vectores_cuerpo: dict[tuple, np.ndarray] = {}
@@ -122,13 +131,19 @@ class Retriever:
         cuerpos = cuerpos_de(consulta)
         if config.ALIAS == "on":
             cuerpos |= alias.cuerpos_alias(consulta)
-        return cuerpos
+        return {self._forma(c) for c in cuerpos}
 
     def referencias(self, consulta: str) -> list:
         refs = referencias_de(consulta)
         if config.ALIAS == "on":
             refs = sorted(set(refs) | set(alias.referencias_alias(consulta)), key=str)
-        return refs
+        return sorted({(*self._forma(tuple(r[:3])), r[3]) for r in refs}, key=str)
+
+    def _forma(self, cuerpo: tuple) -> tuple:
+        """El cuerpo tal como esta en el corpus; si no esta, la forma que solo difiere en ceros."""
+        if cuerpo in self.por_cuerpo:
+            return cuerpo
+        return self.forma_corpus.get(_sin_ceros(cuerpo), cuerpo)
 
     def _factores_meta(self, fusion: dict[int, float], consulta: str) -> None:
         """Votos disidentes y texto derogado detras (solo reordena), salvo que la consulta los pida."""
