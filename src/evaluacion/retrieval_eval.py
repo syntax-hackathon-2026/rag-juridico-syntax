@@ -208,7 +208,7 @@ def main() -> int:
         with det.open("w", encoding="utf-8", newline="\n") as f:
             for fila in filas:
                 f.write(json.dumps(fila, ensure_ascii=False) + "\n")
-        resumen = {"experimento": experimento, "modo": modo, "reranker": "off",
+        resumen = {"experimento": experimento, "modo": modo, "reranker": config.reranker_metadata(),
                    "fusion": "rrf60" if modo == "hibrido" else "",
                    "n_candidatos_por_rama": 40, "lookup": config.lookup_metadata(),
                    "filtro_cita": config.filtro_metadata(), "area": config.area_metadata(),
@@ -223,7 +223,9 @@ def main() -> int:
             "n_documentos": len({c["doc_id"] for c in cargar(cargar_denso=False).chunks}),
             "n_fragmentos": info.get("n_fragmentos"), "version_segmentador": info.get("version_segmentador"),
             "retriever": modo, "encoder": denso.get("modelo", "") if modo != "bm25" else "",
-            "fusion": "rrf60" if modo == "hibrido" else "", "reranker": "", "retrieval_k": 10,
+            "fusion": "rrf60" if modo == "hibrido" else "",
+            "reranker": f"bge-v2-m3:{config.RERANK_MODO}{config.RERANK_N}" if config.RERANKER != "off" and modo == "hibrido" else "",
+            "retrieval_k": 10,
             "consulta": args.consulta, "latencia_ret_ms": round(met["latencia_ret_ms"], 1),
             "plataforma": denso.get("device", "") if modo != "bm25" else "cpu",
             "entorno_json": entorno, "notas": args.notas + (

@@ -197,7 +197,9 @@ def main() -> int:
         "commit": meta.get("commit", ""), "n_documentos": len({cid.split("#")[0] for cid in chunks}),
         "n_fragmentos": ind.get("n_fragmentos"), "version_segmentador": ind.get("version_segmentador"),
         "retriever": ret.get("modo"), "encoder": ind.get("encoder"),
-        "fusion": "rrf60" if ret.get("modo") == "hibrido" else "", "reranker": "",
+        "fusion": "rrf60" if ret.get("modo") == "hibrido" else "",
+        "reranker": (f"bge-v2-m3:{rr['fusion']}{rr['n']}"
+                     if (rr := ret.get("reranker") or {}).get("modo", "off") != "off" else ""),
         "retrieval_k": ret.get("retrieval_k"), "generation_k": ret.get("generation_k"),
         "decoder": dec.get("gguf"), "cuantizacion": dec.get("cuantizacion"),
         "prompt_version": meta.get("prompt_version"), "consulta": "pregunta+opciones",

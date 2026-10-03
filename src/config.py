@@ -109,6 +109,21 @@ if CUERPO not in {"off", "boost", "rama"} or ALIAS not in {"off", "on"}:
     raise ValueError("SYNTAX_CUERPO debe ser off|boost|rama y SYNTAX_ALIAS off|on")
 if CUERPO_PESO < 0 or CUERPO_BOOST < 1:
     raise ValueError("SYNTAX_CUERPO_PESO >= 0 y SYNTAX_CUERPO_BOOST >= 1")
+# Reranker cross-encoder (docs/INDEXACION.md 20), solo en el hibrido: reordena los RERANK_N
+# primeros de la fusion (tras area, metadatos y lookup) y deja el resto detras, en su orden.
+# RERANKER: off | bge. RERANK_MODO: puro (orden del cross-encoder) | rrf (RRF de los rangos
+# de la fusion y del cross-encoder, conserva la senal de area y lookup). Los fragmentos del
+# lookup (norma + articulo nombrados) no bajan de su puesto.
+# KEEP en e53_rerank_rrf20 (rrf, N=20): +0,41/50 en sample (citacion); N=40 y puro sacan
+# documentos del top-10 (#647, #1073). Juez 0,4503 -> 0,4565 (52,12 -> 52,72/80).
+RERANKER = os.environ.get("SYNTAX_RERANKER", "bge")
+RERANK_N = int(os.environ.get("SYNTAX_RERANK_N", "20"))
+RERANK_MODO = os.environ.get("SYNTAX_RERANK_MODO", "rrf")
+RERANKER_MODEL = "BAAI/bge-reranker-v2-m3"  # Apache-2.0
+RERANKER_REVISION = "953dc6f6f85a1b2dbfca4c34a2796e7dde08d41e"
+RERANKER_MAX_SEQ = 512
+if RERANKER not in {"off", "bge"} or RERANK_MODO not in {"puro", "rrf"} or RERANK_N < 1:
+    raise ValueError("SYNTAX_RERANKER off|bge, SYNTAX_RERANK_MODO puro|rrf, SYNTAX_RERANK_N >= 1")
 EXPERIMENTS_CSV = EVALUATION_DIR / "experiments.csv"
 
 # Encoder denso (enunciado 3.1). bge-m3: MIT, 1024 dim, 8192 tokens, sin prefijos.
@@ -241,6 +256,11 @@ def metadatos_metadata() -> dict:
 
 def composicion_metadata() -> dict:
     return {"cupo_normas": CUPO_NORMAS, "max_por_doc": MAX_POR_DOC, "aplica_a": "top-k"}
+
+
+def reranker_metadata() -> dict:
+    return {"modo": RERANKER, "n": RERANK_N, "fusion": RERANK_MODO, "modelo": RERANKER_MODEL,
+            "revision": RERANKER_REVISION, "max_seq": RERANKER_MAX_SEQ, "aplica_a": "hibrido"}
 
 
 def agentico_metadata() -> dict:
