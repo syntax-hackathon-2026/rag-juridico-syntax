@@ -52,12 +52,12 @@ def juzgar(filas: list[tuple[str, int, str]], key: dict[int, dict]) -> list[floa
     """filas: (variante, id, texto). Devuelve el score de cada fila (None = sin veredicto)."""
     llave = ev.api_key_juez(ev.JUEZ_BASE_URL)
     from datasets import Dataset
-    from langchain_huggingface import HuggingFaceEmbeddings
-    from langchain_openai import ChatOpenAI
-    from ragas import evaluate as ragas_evaluate
-    from ragas.embeddings import LangchainEmbeddingsWrapper
-    from ragas.llms import LangchainLLMWrapper
-    from ragas.metrics import answer_correctness
+    from langchain_huggingface import HuggingFaceEmbeddings  # dep: opcional
+    from langchain_openai import ChatOpenAI  # dep: opcional
+    from ragas import evaluate as ragas_evaluate  # dep: opcional
+    from ragas.embeddings import LangchainEmbeddingsWrapper  # dep: opcional
+    from ragas.llms import LangchainLLMWrapper  # dep: opcional
+    from ragas.metrics import answer_correctness  # dep: opcional
 
     unicos: dict[tuple[int, str], int] = {}
     for _, qid, texto in filas:
