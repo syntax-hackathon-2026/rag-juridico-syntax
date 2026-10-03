@@ -211,6 +211,7 @@ def main() -> int:
                    "fusion": "rrf60" if modo == "hibrido" else "",
                    "n_candidatos_por_rama": 40, "lookup": config.lookup_metadata(),
                    "filtro_cita": config.filtro_metadata(), "area": config.area_metadata(),
+                   "composicion": config.composicion_metadata(),
                    "agentico": config.agentico_metadata(), "consulta": args.consulta, "metricas": met}
         with det.with_suffix(".meta.json").open("w", encoding="utf-8", newline="\n") as f:
             f.write(json.dumps(resumen, ensure_ascii=False, indent=2) + "\n")
@@ -228,6 +229,7 @@ def main() -> int:
                 "; fase0_reranker=" + json.dumps(metricas_techo(filas), ensure_ascii=False, sort_keys=True)
                 if args.techo_reranker else "") + "; lookup=" + json.dumps(config.lookup_metadata(), sort_keys=True)
                 + "; filtro_cita=" + config.FILTRO_CITA + f"; area_boost={config.AREA_BOOST}"
+                + "; composicion=" + json.dumps(config.composicion_metadata(), sort_keys=True)
                 + "; agentico=" + json.dumps(config.agentico_metadata(), sort_keys=True)
                 + "; subconjuntos=" + json.dumps(met["subconjuntos_referencias"], sort_keys=True),
             **{k: (round(met[k], 4) if isinstance(met[k], float) else met[k])

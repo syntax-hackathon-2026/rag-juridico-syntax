@@ -176,8 +176,41 @@ class Retriever:
                 if area in self.areas_doc.get(self.chunks[i]["doc_id"], ()):
                     fusion[i] *= config.AREA_BOOST
 
+    def _componer(self, ranking: list[tuple[int, float]], k: int) -> list[tuple[int, float]]:
+        """Top-k con a lo sumo MAX_POR_DOC ventanas por sentencia y al menos CUPO_NORMAS normas.
+
+        Solo reordena candidatos que ya trae la fusion: lo que sale del top-k queda detras,
+        en su orden. Dentro del top-k se conserva el orden de la fusion (determinista).
+        """
+        if not config.CUPO_NORMAS and not config.MAX_POR_DOC:
+            return ranking
+        es_sentencia = [self.chunks[i]["tipo"] == "sentencia" for i, _ in ranking]
+        elegidos: list[int] = []  # posiciones en `ranking`
+        por_doc: dict[str, int] = {}
+        for pos, (i, _) in enumerate(ranking):
+            if len(elegidos) == k:
+                break
+            if es_sentencia[pos] and config.MAX_POR_DOC:
+                doc = self.chunks[i]["doc_id"]
+                if por_doc.get(doc, 0) >= config.MAX_POR_DOC:
+                    continue
+                por_doc[doc] = por_doc.get(doc, 0) + 1
+            elegidos.append(pos)
+        if config.CUPO_NORMAS:
+            faltan = min(config.CUPO_NORMAS, k) - sum(not es_sentencia[p] for p in elegidos)
+            tomados = set(elegidos)
+            normas = [p for p in range(len(ranking)) if not es_sentencia[p] and p not in tomados][:max(faltan, 0)]
+            for p in normas:  # cada norma nueva desplaza la sentencia peor ubicada
+                if len(elegidos) == k:
+                    elegidos.remove(max(q for q in elegidos if es_sentencia[q]))
+                elegidos.append(p)
+        elegidos.sort()
+        tomados = set(elegidos)
+        return [ranking[p] for p in elegidos] + [par for p, par in enumerate(ranking) if p not in tomados]
+
     def _salida(self, ranking: list[tuple[int, float]], k: int, ranks_rama: dict,
                 area: str | None) -> list[RetrievedChunk]:
+        ranking = self._componer(ranking, k)
         salida = []
         for r, (i, s) in enumerate(ranking[:k], 1):
             c = self.chunks[i]
