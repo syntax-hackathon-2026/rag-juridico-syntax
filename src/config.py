@@ -115,7 +115,7 @@ if CUERPO_PESO < 0 or CUERPO_BOOST < 1:
 # de la fusion y del cross-encoder, conserva la senal de area y lookup). Los fragmentos del
 # lookup (norma + articulo nombrados) no bajan de su puesto.
 # KEEP en e53_rerank_rrf20 (rrf, N=20): +0,41/50 en sample (citacion); N=40 y puro sacan
-# documentos del top-10 (#647, #1073). RAGAS sin medir.
+# documentos del top-10 (#647, #1073). Juez 0,4503 -> 0,4565 (52,12 -> 52,72/80).
 RERANKER = os.environ.get("SYNTAX_RERANKER", "bge")
 RERANK_N = int(os.environ.get("SYNTAX_RERANK_N", "20"))
 RERANK_MODO = os.environ.get("SYNTAX_RERANK_MODO", "rrf")

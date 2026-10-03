@@ -421,5 +421,5 @@ Generación en sample (mismo índice, Qwen3-8B Q8_0, sin juez):
 | **`e53_rerank_rrf20`** | 10/15 | **17,55** | 8,14 | **39,02** | 4,6 |
 
 - **KEEP: rrf N=20, activado por defecto.** No saca ningún cuerpo del top-10, sube respaldo@10 y citación (+0,41/50), y cuesta +0,1 s/pregunta. N=40 y `puro` dejan subir candidatos de la cola que desplazan documentos buenos.
-- Cambian los pasajes de las 50 respuestas (todo reordenamiento cuenta): **RAGAS sin medir**. El antecedente es la composición del top-10 (sección 17: neutra en lo determinista y −0,02 en el juez). Si se gasta un punto de control del juez, comparar `e50_base` con `e53_rerank_rrf20` sobre el mismo índice; REVERT si cae más de 0,03.
+- Cambian los pasajes de las 50 respuestas (todo reordenamiento cuenta). **Juez** (las dos entregas en paralelo, mismo índice; regla fijada antes: REVERT si cae más de 0,03): `e50_base_ragas` 0,4503 → `e53_rerank_rrf20_ragas` **0,4565** (+0,006, dentro del ruido ±0,03), total **52,12 → 52,72/80**. Sin ítems sin veredicto. No baja: se mantiene KEEP.
 - Medido sobre el índice de la ola 1. Tras congelar el índice del sábado hay que repetir `r50`/`r53` y el determinismo (dos corridas con `SYNTAX_LLM_CACHE=off` → `comparar_entregas.py` = 0 diferencias, también entre máquinas) antes de la corrida final. Apagar con `SYNTAX_RERANKER=off`.
