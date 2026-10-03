@@ -1,18 +1,12 @@
-# Bitácora del corpus — &lt;Nombre del equipo&gt;
+# Bitácora del corpus — Syntax
 
-> Plantilla basada en `Hackathon 2026/Ejemplo de entrega/CORPUS.md`. Completar cada
-> sección a medida que se construye el corpus. Quitar todas las notas en cursiva
-> (como esta) antes de la entrega final.
+Corpus jurídico colombiano de **Syntax** (Sofía Morato, Joel David Niño, Santiago Muñoz) para el RAG de la Hackathon LATAM AI Week 2026. Versión congelada: **v5, 1.285 documentos, 185.234 fragmentos** (generada el 2026-10-03).
 
 ---
 
 ## 1. Inventario
 
-*Una fila por documento fuente incorporado al corpus. `doc_id` debe coincidir con
-el usado en `corpus_manifest.json` y con la metadata de los fragmentos del
-índice. "Fecha de consulta" es la fecha de descarga, para trazabilidad si la
-fuente cambia. "Áreas" son las áreas del banco de preguntas (enunciado, sección
-4.2) a las que aporta el documento.*
+Una fila por documento fuente. `doc_id` coincide con `corpus_manifest.json`, con la metadata de los fragmentos y con `pasajes_recuperados.doc_id`. "Fecha de consulta" es la fecha de descarga. "Áreas" son las del banco de preguntas (enunciado, sección 4.2). La tabla se genera con `src/ingesta/descargar_fuentes.py --corpus-md` desde `data/registros/fuentes_descargadas.json`.
 
 <!-- inventario:inicio (generado por src/ingesta/descargar_fuentes.py --corpus-md) -->
 
@@ -204,6 +198,7 @@ fuente cambia. "Áreas" son las áreas del banco de preguntas (enunciado, secci�
 | `acto_legislativo_1_2003` | Acto Legislativo 01 de 2003 (reforma politica) | Gestor Normativo de Funcion Publica | [enlace](https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=8620) | 2026-10-01 | 18 | 21 | Constitucional |
 | `acto_legislativo_1_2005` | Acto Legislativo 01 de 2005 (adiciona el articulo 48 de la Constitucion, pensiones) | Gestor Normativo de Funcion Publica | [enlace](https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=17236) | 2026-10-01 | 2 | 6 | Constitucional, Laboral |
 | `acto_legislativo_2_2015` | Acto Legislativo 02 de 2015 (equilibrio de poderes) | Gestor Normativo de Funcion Publica | [enlace](https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=66596) | 2026-10-01 | 26 | 34 | Constitucional |
+| `acuerdo_1_2025` | Acuerdo 01 de 2025 de la Corte Constitucional (reparto de tutelas) | Normograma de la Cancilleria (compilacion) | [enlace](https://www.cancilleria.gov.co/normograma/compilacion/docs/acuerdo_cconstitucional_0001_2025.htm) | 2026-10-03 | 113 | 126 | Constitucional |
 | `auto_supersociedades_2025_01_730337` | Auto 2025-01-730337 de la Superintendencia de Sociedades | Superintendencia de Sociedades (Baranda Virtual) | [enlace](https://servicios.supersociedades.gov.co/barandaVirtual/#!/app/radicaciones#verpdf) | 2026-10-01 | — | 5 | Comercial y sociedades |
 | `codigo_civil` | Codigo Civil (Ley 57 de 1887) | Sistema Unico de Informacion de Tramites (SUIT) | [enlace](https://tramites1.suit.gov.co/registro-web/suit_descargar_archivo?A=115930) | 2026-09-29 | 2.680 | 2.856 | Civil, Familia |
 | `codigo_comercio` | Codigo de Comercio (Decreto 410 de 1971) | Gestor Normativo de Funcion Publica | [enlace](https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=41102) | 2026-09-29 | 2.032 | 2.072 | Comercial y sociedades |
@@ -219,45 +214,78 @@ fuente cambia. "Áreas" son las áreas del banco de preguntas (enunciado, secci�
 | `decreto_1072_2015` | Decreto 1072 de 2015 (Decreto Unico Reglamentario del Sector Trabajo) | Gestor Normativo de Funcion Publica | [enlace](https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=72173) | 2026-10-01 | 1.412 | 1.563 | Laboral |
 | `decreto_1074_2015` | Decreto 1074 de 2015 (Decreto Unico Reglamentario del Sector Comercio, Industria y Turismo) | Gestor Normativo de Funcion Publica | [enlace](https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=76608) | 2026-10-01 | 2.108 | 2.395 | Comercial y sociedades, Mercados |
 | `decreto_1083_2015` | Decreto 1083 de 2015 (Decreto Unico Reglamentario del Sector de Funcion Publica) | Gestor Normativo de Funcion Publica | [enlace](https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=62866) | 2026-10-01 | 888 | 970 | Administrativo |
+| `decreto_1165_2019` | Decreto 1165 de 2019 (regimen de aduanas) | Normograma CRC | [enlace](https://normograma.crcom.gov.co/crc/compilacion/docs/decreto_1165_2019.htm) | 2026-10-03 | 775 | 1.284 | Tributario |
 | `decreto_1260_1970` | Decreto 1260 de 1970 (Estatuto del registro del estado civil de las personas) | Normograma de la CRA (compilacion Avance Juridico) | [enlace](https://normas.cra.gov.co/gestor/docs/decreto_1260_1970.htm) | 2026-10-02 | 124 | 125 | Civil, Familia |
+| `decreto_1265_1970` | Decreto 1265 de 1970 | Normograma de Colpensiones (compilacion Avance Juridico) | [enlace](https://normativa.colpensiones.gov.co/colpens/docs/decreto_1265_1970.htm) | 2026-10-03 | 22 | 23 | Administrativo, Procesal |
 | `decreto_1295_1994` | Decreto 1295 de 1994 (Sistema General de Riesgos Profesionales) | Normograma de la CRA (compilacion Avance Juridico) | [enlace](https://normas.cra.gov.co/gestor/docs/decreto_1295_1994.htm) | 2026-10-02 | 98 | 106 | Laboral |
 | `decreto_1333_1986` | Decreto 1333 de 1986 (Codigo de Regimen Municipal) | Normograma de la CRA (compilacion Avance Juridico) | [enlace](https://normas.cra.gov.co/gestor/docs/decreto_1333_1986.htm) | 2026-10-02 | 386 | 392 | Administrativo, Tributario |
 | `decreto_1377_2013` | Decreto 1377 de 2013 (Reglamenta parcialmente la Ley 1581 de 2012 (datos personales)) | Normograma de Colpensiones (compilacion Avance Juridico) | [enlace](https://normativa.colpensiones.gov.co/colpens/docs/decreto_1377_2013.htm) | 2026-10-02 | 28 | 31 | Mercados |
+| `decreto_1382_2000` | Decreto 1382 de 2000 | Normograma de la CRA (compilacion Avance Juridico) | [enlace](https://normas.cra.gov.co/gestor/docs/decreto_1382_2000.htm) | 2026-10-03 | 6 | 8 | Constitucional |
+| `decreto_1400_1970` | Decreto 1400 de 1970 (Codigo de Procedimiento Civil) | Funcion Publica - Gestor Normativo | [enlace](https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=6923) | 2026-10-03 | 678 | 757 | Procesal |
+| `decreto_1421_1993` | Decreto 1421 de 1993 | Secretaria del Senado | [enlace](http://www.secretariasenado.gov.co/senado/basedoc/decreto_1421_1993.html) | 2026-10-03 | 180 | 196 | Administrativo, Tributario |
+| `decreto_1507_2014` | Decreto 1507 de 2014 | Normograma de Colpensiones (compilacion Avance Juridico) | [enlace](https://normativa.colpensiones.gov.co/colpens/docs/decreto_1507_2014.htm) | 2026-10-03 | 6 | 183 | Laboral |
 | `decreto_1625_2016` | Decreto 1625 de 2016 (Decreto Unico Reglamentario en materia tributaria) | Normograma de la DIAN | [enlace](https://normograma.dian.gov.co/dian/compilacion/docs/pdf/decreto_1625_2016.pdf) | 2026-10-01 | 1.545 | 3.549 | Tributario |
 | `decreto_1818_1998` | Decreto 1818 de 1998 (Estatuto de los mecanismos alternativos de solucion de conflictos) | Normograma de la CRA (compilacion Avance Juridico) | [enlace](https://normas.cra.gov.co/gestor/docs/decreto_1818_1998.htm) | 2026-10-02 | 232 | 237 | Procesal |
 | `decreto_19_2012` | Decreto 19 de 2012 (antitramites) | Gestor Normativo de Funcion Publica | [enlace](https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=45322) | 2026-10-01 | 237 | 268 | Administrativo |
 | `decreto_1_1984` | Decreto 01 de 1984 (Codigo Contencioso Administrativo anterior al CPACA) | Gestor Normativo de Funcion Publica | [enlace](https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=6543) | 2026-10-01 | 245 | 283 | Administrativo, Procesal |
+| `decreto_2106_2019` | Decreto 2106 de 2019 | Secretaria del Senado | [enlace](http://www.secretariasenado.gov.co/senado/basedoc/decreto_2106_2019.html) | 2026-10-03 | 158 | 186 | Administrativo |
+| `decreto_2150_1995` | Decreto 2150 de 1995 | Secretaria del Senado | [enlace](http://www.secretariasenado.gov.co/senado/basedoc/decreto_2150_1995.html) | 2026-10-03 | 152 | 154 | Administrativo |
+| `decreto_2158_1948` | Decreto 2158 de 1948 | Normograma de Colpensiones (compilacion Avance Juridico) | [enlace](https://normativa.colpensiones.gov.co/colpens/docs/decreto_2158_1948.htm) | 2026-10-03 | 1 | 7 | Laboral, Procesal |
+| `decreto_216_2021` | Decreto 216 de 2021 | Normograma de Colpensiones (compilacion Avance Juridico) | [enlace](https://normativa.colpensiones.gov.co/compilacion/docs/decreto_0216_2021.htm) | 2026-10-03 | 21 | 37 | Administrativo, Constitucional |
+| `decreto_2351_1965` | Decreto 2351 de 1965 | Normograma de Colpensiones (compilacion Avance Juridico) | [enlace](https://normativa.colpensiones.gov.co/colpens/docs/decreto_2351_1965.htm) | 2026-10-03 | 6 | 8 | Laboral |
 | `decreto_2591_1991` | Decreto 2591 de 1991 (Reglamento de la accion de tutela) | Secretaria del Senado | [enlace](http://www.secretariasenado.gov.co/senado/basedoc/decreto_2591_1991.html) | 2026-10-02 | 55 | 56 | Constitucional, Procesal |
+| `decreto_25_2014` | Decreto 25 de 2014 | Secretaria del Senado | [enlace](http://www.secretariasenado.gov.co/senado/basedoc/decreto_0025_2014.html) | 2026-10-03 | 28 | 46 | Administrativo, Constitucional |
+| `decreto_262_2000` | Decreto 262 de 2000 | Secretaria del Senado | [enlace](http://www.secretariasenado.gov.co/senado/basedoc/decreto_0262_2000.html) | 2026-10-02 | 262 | 301 | Administrativo |
+| `decreto_2820_1974` | Decreto 2820 de 1974 | Normograma de Colpensiones (compilacion Avance Juridico) | [enlace](https://normativa.colpensiones.gov.co/colpens/docs/decreto_2820_1974.htm) | 2026-10-03 | 71 | 72 | Civil, Familia |
 | `decreto_306_1992` | Decreto 306 de 1992 (Reglamenta el Decreto 2591 de 1991 (accion de tutela)) | Normograma de Colpensiones (compilacion Avance Juridico) | [enlace](https://normativa.colpensiones.gov.co/colpens/docs/decreto_0306_1992.htm) | 2026-10-02 | 10 | 11 | Procesal |
 | `decreto_333_2021` | Decreto 333 de 2021 (Reglas de reparto de la accion de tutela) | Normograma de la Cancilleria (compilacion Avance Juridico) | [enlace](https://www.cancilleria.gov.co/sites/default/files/Normograma/docs/decreto_0333_2021.htm) | 2026-10-02 | 4 | 13 | Procesal |
+| `decreto_4062_2011` | Decreto 4062 de 2011 | Secretaria del Senado | [enlace](http://www.secretariasenado.gov.co/senado/basedoc/decreto_4062_2011.html) | 2026-10-03 | 34 | 44 | Administrativo |
+| `decreto_4065_2011` | Decreto 4065 de 2011 | Secretaria del Senado | [enlace](http://www.secretariasenado.gov.co/senado/basedoc/decreto_4065_2011.html) | 2026-10-03 | 26 | 35 | Administrativo, Constitucional |
+| `decreto_472_2015` | Decreto 472 de 2015 | Normograma de Colpensiones (compilacion Avance Juridico) | [enlace](https://normativa.colpensiones.gov.co/compilacion/docs/decreto_0472_2015.htm) | 2026-10-03 | 15 | 19 | Laboral |
+| `decreto_678_2020` | Decreto 678 de 2020 | Secretaria del Senado | [enlace](http://www.secretariasenado.gov.co/senado/basedoc/decreto_0678_2020.html) | 2026-10-03 | 10 | 26 | Tributario |
 | `decreto_735_2013` | Decreto 735 de 2013 (Efectividad de la garantia de bienes y servicios) | Normograma de Colpensiones (compilacion Avance Juridico) | [enlace](https://normativa.colpensiones.gov.co/colpens/docs/decreto_0735_2013.htm) | 2026-10-02 | 25 | 29 | Mercados |
+| `decreto_758_1990` | Decreto 758 de 1990 | Normograma de Colpensiones (compilacion Avance Juridico) | [enlace](https://normativa.colpensiones.gov.co/colpens/docs/decreto_0758_1990.htm) | 2026-10-02 | 54 | 73 | Laboral |
+| `decreto_806_2020` | Decreto 806 de 2020 | Secretaria del Senado | [enlace](http://www.secretariasenado.gov.co/senado/basedoc/decreto_0806_2020.html) | 2026-10-03 | 16 | 51 | Procesal |
 | `decreto_886_2014` | Decreto 886 de 2014 (Registro Nacional de Bases de Datos) | Normograma de Colpensiones (compilacion Avance Juridico) | [enlace](https://normativa.colpensiones.gov.co/colpens/docs/decreto_0886_2014.htm) | 2026-10-02 | 16 | 18 | Mercados |
+| `decreto_920_2023` | Decreto Ley 920 de 2023 (regimen sancionatorio y de decomiso aduanero) | Normograma DIAN | [enlace](https://normograma.dian.gov.co/dian/compilacion/docs/decreto_0920_2023.htm) | 2026-10-03 | 155 | 301 | Tributario |
 | `doctrina_arbanza_grupo_sociedades_2024` | Arbanza, Analisis comparativo de la extension del convenio arbitral a partes no signatarias: Pakistan, Francia y Colombia (2024) | Arbanza (doctrina) | [enlace](https://arbanza.com/analisis-comparativo-de-la-extension-del-convenio-arbitral-a-partes-no-signatarias-el-caso-de-pakistan-francia-y-colombia/) | 2026-10-01 | — | 14 | Comercial y sociedades |
 | `doctrina_ompi_agotamiento_patentes_2012` | OMPI, Seminario Regional (Bogota, 2012), Tema 14: El agotamiento del derecho de patente | Organizacion Mundial de la Propiedad Intelectual (OMPI) | [enlace](https://www.wipo.int/edocs/mdocs/mdocs/en/wipo_ip_bog_12/wipo_ip_bog_12_ref_u14b_aleman.pdf) | 2026-10-01 | — | 4 | Mercados |
+| `doctrina_unbosque_agencia_comercial_cesantia_2024` | Trabajo de grado Universidad El Bosque - Contrato de agencia comercial y cesantia comercial (2024) | Repositorio Universidad El Bosque (REDCOL) | [enlace](https://redcol.minciencias.gov.co/Record/UNBOSQUE2_4d108bd5eb3d5ba57603313e68fd019b/) | 2026-10-03 | — | 19 | Comercial y sociedades |
 | `ley_1004_2005` | Ley 1004 de 2005 (Regimen especial de zonas francas) | Secretaria del Senado | [enlace](http://www.secretariasenado.gov.co/senado/basedoc/ley_1004_2005.html) | 2026-10-02 | 13 | 14 | Tributario |
 | `ley_100_1993` | Ley 100 de 1993 (Sistema de Seguridad Social Integral) | Gestor Normativo de Funcion Publica | [enlace](https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=5248) | 2026-10-01 | 289 | 331 | Laboral |
 | `ley_1032_2006` | Ley 1032 de 2006 (Delitos contra los derechos de autor y la propiedad industrial) | Normograma de la Cancilleria (compilacion Avance Juridico) | [enlace](https://www.cancilleria.gov.co/sites/default/files/Normograma/docs/ley_1032_2006.htm) | 2026-10-02 | 5 | 6 | Mercados, Penal |
 | `ley_1060_2006` | Ley 1060 de 2006 (Impugnacion de la paternidad y la maternidad) | Secretaria del Senado | [enlace](http://www.secretariasenado.gov.co/senado/basedoc/ley_1060_2006.html) | 2026-10-02 | 14 | 15 | Familia |
 | `ley_1066_2006` | Ley 1066 de 2006 (Normalizacion de la cartera publica (cobro coactivo)) | Normograma de la CRA (compilacion Avance Juridico) | [enlace](https://normas.cra.gov.co/gestor/docs/ley_1066_2006.htm) | 2026-10-02 | 21 | 27 | Administrativo, Tributario |
 | `ley_1111_2006` | Ley 1111 de 2006 (Reforma tributaria de 2006) | Normograma de Colpensiones (compilacion Avance Juridico) | [enlace](https://normativa.colpensiones.gov.co/colpens/docs/ley_1111_2006.htm) | 2026-10-02 | 78 | 140 | Tributario |
+| `ley_1122_2007` | Ley 1122 de 2007 | Secretaria del Senado | [enlace](http://www.secretariasenado.gov.co/senado/basedoc/ley_1122_2007.html) | 2026-10-02 | 46 | 63 | Administrativo, Laboral |
 | `ley_1123_2007` | Ley 1123 de 2007 (Codigo Disciplinario del Abogado) | Normograma de Colpensiones (compilacion Avance Juridico) | [enlace](https://normativa.colpensiones.gov.co/colpens/docs/ley_1123_2007.htm) | 2026-10-02 | 112 | 117 | Administrativo, Procesal |
+| `ley_1142_2007` | Ley 1142 de 2007 | Secretaria del Senado | [enlace](http://www.secretariasenado.gov.co/senado/basedoc/ley_1142_2007.html) | 2026-10-03 | 56 | 61 | Penal, Procesal |
+| `ley_115_1994` | Ley 115 de 1994 | Secretaria del Senado | [enlace](http://www.secretariasenado.gov.co/senado/basedoc/ley_0115_1994.html) | 2026-10-02 | 222 | 233 | Administrativo, Constitucional |
 | `ley_1183_2008` | Ley 1183 de 2008 (Titulacion de la posesion de inmuebles urbanos de estratos 1 y 2) | Normograma de Colpensiones (compilacion Avance Juridico) | [enlace](https://normativa.colpensiones.gov.co/colpens/docs/ley_1183_2008.htm) | 2026-10-02 | 22 | 23 | Civil |
 | `ley_1221_2008` | Ley 1221 de 2008 (Teletrabajo) | Normograma de la CRA (compilacion Avance Juridico) | [enlace](https://normas.cra.gov.co/gestor/docs/ley_1221_2008.htm) | 2026-10-02 | 9 | 14 | Laboral |
+| `ley_1251_2008` | Ley 1251 de 2008 | Secretaria del Senado | [enlace](http://www.secretariasenado.gov.co/senado/basedoc/ley_1251_2008.html) | 2026-10-02 | 35 | 48 | Constitucional, Familia |
 | `ley_1257_2008` | Ley 1257 de 2008 (Violencia y discriminacion contra las mujeres) | Normograma de Colpensiones (compilacion Avance Juridico) | [enlace](https://normativa.colpensiones.gov.co/compilacion/docs/ley_1257_2008.htm) | 2026-10-02 | 39 | 47 | Familia, Penal |
 | `ley_1266_2008` | Ley 1266 de 2008 (Habeas data financiero) | Normograma de la CRA (compilacion Avance Juridico) | [enlace](https://normas.cra.gov.co/gestor/docs/ley_1266_2008.htm) | 2026-10-02 | 22 | 37 | Mercados |
 | `ley_1273_2009` | Ley 1273 de 2009 (Proteccion de la informacion y de los datos (delitos informaticos)) | Normograma de Colpensiones (compilacion Avance Juridico) | [enlace](https://normativa.colpensiones.gov.co/compilacion/docs/ley_1273_2009.htm) | 2026-10-02 | 5 | 15 | Mercados, Penal |
+| `ley_1276_2009` | Ley 1276 de 2009 | Secretaria del Senado | [enlace](http://www.secretariasenado.gov.co/senado/basedoc/ley_1276_2009.html) | 2026-10-03 | 15 | 18 | Administrativo, Familia |
 | `ley_1285_2009` | Ley 1285 de 2009 (Reforma a la Ley Estatutaria de la Administracion de Justicia) | Normograma de la CRA (compilacion Avance Juridico) | [enlace](https://normas.cra.gov.co/gestor/docs/ley_1285_2009.htm) | 2026-10-02 | 28 | 31 | Procesal |
+| `ley_12_1991` | Ley 12 de 1991 | Normograma de la Cancilleria (compilacion Avance Juridico) | [enlace](https://www.cancilleria.gov.co/sites/default/files/Normograma/docs/ley_0012_1991.htm) | 2026-10-02 | 54 | 72 | Constitucional, Familia |
 | `ley_1306_2009` | Ley 1306 de 2009 (Proteccion de personas con discapacidad mental) | Normograma de la CRA (compilacion Avance Juridico) | [enlace](https://normas.cra.gov.co/gestor/docs/ley_1306_2009.htm) | 2026-10-02 | 120 | 124 | Civil, Familia |
+| `ley_130_1994` | Ley 130 de 1994 | Secretaria del Senado | [enlace](http://www.secretariasenado.gov.co/senado/basedoc/ley_0130_1994.html) | 2026-10-03 | 54 | 59 | Administrativo, Constitucional |
 | `ley_1314_2009` | Ley 1314 de 2009 (Normas de contabilidad e informacion financiera) | Normograma de la CRA (compilacion Avance Juridico) | [enlace](https://normas.cra.gov.co/gestor/docs/ley_1314_2009.htm) | 2026-10-02 | 17 | 22 | Comercial y sociedades |
 | `ley_1328_2009` | Ley 1328 de 2009 (Regimen de proteccion al consumidor financiero) | Normograma de la CRA (compilacion Avance Juridico) | [enlace](https://normas.cra.gov.co/gestor/docs/ley_1328_2009.htm) | 2026-10-02 | 101 | 129 | Comercial y sociedades, Mercados |
 | `ley_1341_2009` | Ley 1341 de 2009 (Tecnologias de la informacion y las comunicaciones) | Normograma de la CRA (compilacion Avance Juridico) | [enlace](https://normas.cra.gov.co/gestor/docs/ley_1341_2009.htm) | 2026-10-02 | 73 | 126 | Mercados |
+| `ley_1346_2009` | Ley 1346 de 2009 | Secretaria del Senado | [enlace](http://www.secretariasenado.gov.co/senado/basedoc/ley_1346_2009.html) | 2026-10-02 | 50 | 68 | Civil, Constitucional |
 | `ley_134_1994` | Ley 134 de 1994 (Mecanismos de participacion ciudadana) | Secretaria del Senado | [enlace](http://www.secretariasenado.gov.co/senado/basedoc/ley_0134_1994.html) | 2026-10-02 | 109 | 110 | Constitucional |
 | `ley_1361_2009` | Ley 1361 de 2009 (Proteccion integral a la familia) | Normograma de la CRA (compilacion Avance Juridico) | [enlace](https://normas.cra.gov.co/gestor/docs/ley_1361_2009.htm) | 2026-10-02 | 14 | 17 | Familia |
 | `ley_136_1994` | Ley 136 de 1994 (Organizacion y funcionamiento de los municipios) | Normograma de la CRA (compilacion Avance Juridico) | [enlace](https://normas.cra.gov.co/gestor/docs/ley_0136_1994.htm) | 2026-10-02 | 203 | 232 | Administrativo |
 | `ley_1395_2010` | Ley 1395 de 2010 (Descongestion judicial) | Normograma de la CRA (compilacion Avance Juridico) | [enlace](https://normas.cra.gov.co/gestor/docs/ley_1395_2010.htm) | 2026-10-02 | 122 | 132 | Procesal |
 | `ley_1403_2010` | Ley 1403 de 2010 (Remuneracion por comunicacion publica de obras audiovisuales (Ley Fanny Mikey)) | Normograma de la Cancilleria (compilacion Avance Juridico) | [enlace](https://www.cancilleria.gov.co/sites/default/files/Normograma/docs/ley_1403_2010.htm) | 2026-10-02 | 2 | 4 | Mercados |
 | `ley_1429_2010` | Ley 1429 de 2010 (Formalizacion y generacion de empleo) | Normograma de la CRA (compilacion Avance Juridico) | [enlace](https://normas.cra.gov.co/gestor/docs/ley_1429_2010.htm) | 2026-10-02 | 65 | 77 | Comercial y sociedades, Laboral |
+| `ley_142_1994` | Ley 142 de 1994 | Secretaria del Senado | [enlace](http://www.secretariasenado.gov.co/senado/basedoc/ley_0142_1994.html) | 2026-10-02 | 189 | 239 | Administrativo, Comercial y sociedades |
 | `ley_1430_2010` | Ley 1430 de 2010 (Control tributario y competitividad) | Normograma de la CRA (compilacion Avance Juridico) | [enlace](https://normas.cra.gov.co/gestor/docs/ley_1430_2010.htm) | 2026-10-02 | 67 | 79 | Tributario |
+| `ley_1438_2011` | Ley 1438 de 2011 | Secretaria del Senado | [enlace](http://www.secretariasenado.gov.co/senado/basedoc/ley_1438_2011.html) | 2026-10-02 | 145 | 172 | Administrativo, Laboral |
+| `ley_1448_2011` | Ley 1448 de 2011 | Secretaria del Senado | [enlace](http://www.secretariasenado.gov.co/senado/basedoc/ley_1448_2011.html) | 2026-10-02 | 208 | 280 | Administrativo, Constitucional, Penal |
 | `ley_1453_2011` | Ley 1453 de 2011 (Seguridad ciudadana) | Normograma de la CRA (compilacion Avance Juridico) | [enlace](https://normas.cra.gov.co/gestor/docs/ley_1453_2011.htm) | 2026-10-02 | 111 | 128 | Penal |
 | `ley_1474_2011` | Ley 1474 de 2011 (Estatuto Anticorrupcion) | Normograma de la CRA (compilacion Avance Juridico) | [enlace](https://normas.cra.gov.co/gestor/docs/ley_1474_2011.htm) | 2026-10-02 | 135 | 157 | Administrativo, Penal |
 | `ley_1475_2011` | Ley 1475 de 2011 (Partidos y movimientos politicos) | Normograma de la CRA (compilacion Avance Juridico) | [enlace](https://normas.cra.gov.co/gestor/docs/ley_1475_2011.htm) | 2026-10-02 | 55 | 68 | Constitucional |
@@ -268,8 +296,12 @@ fuente cambia. "Áreas" son las áreas del banco de preguntas (enunciado, secci�
 | `ley_1561_2012` | Ley 1561 de 2012 (Proceso verbal especial de titulacion de la posesion) | Secretaria del Senado | [enlace](http://www.secretariasenado.gov.co/senado/basedoc/ley_1561_2012.html) | 2026-10-02 | 27 | 33 | Civil, Procesal |
 | `ley_1579_2012` | Ley 1579 de 2012 (Estatuto de registro de instrumentos publicos) | Normograma de la CRA (compilacion Avance Juridico) | [enlace](https://normas.cra.gov.co/gestor/docs/ley_1579_2012.htm) | 2026-10-02 | 104 | 106 | Civil |
 | `ley_1609_2013` | Ley 1609 de 2013 (Ley marco de aduanas) | Normograma de Colpensiones (compilacion Avance Juridico) | [enlace](https://normativa.colpensiones.gov.co/colpens/docs/ley_1609_2013.htm) | 2026-10-02 | 7 | 8 | Tributario |
+| `ley_1616_2013` | Ley 1616 de 2013 | Secretaria del Senado | [enlace](http://www.secretariasenado.gov.co/senado/basedoc/ley_1616_2013.html) | 2026-10-03 | 44 | 55 | Administrativo, Constitucional |
+| `ley_1618_2013` | Ley 1618 de 2013 | Secretaria del Senado | [enlace](http://www.secretariasenado.gov.co/senado/basedoc/ley_1618_2013.html) | 2026-10-02 | 32 | 54 | Administrativo, Constitucional |
 | `ley_1648_2013` | Ley 1648 de 2013 (Medidas de observancia de los derechos de propiedad industrial) | Normograma de Colpensiones (compilacion Avance Juridico) | [enlace](https://normativa.colpensiones.gov.co/colpens/docs/ley_1648_2013.htm) | 2026-10-02 | 4 | 5 | Mercados |
 | `ley_1676_2013` | Ley 1676 de 2013 (garantias mobiliarias) | Gestor Normativo de Funcion Publica | [enlace](https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=54297) | 2026-10-01 | 91 | 105 | Civil, Comercial y sociedades |
+| `ley_16_1972` | Ley 16 de 1972 | Normograma de la CRA (compilacion Avance Juridico) | [enlace](https://normas.cra.gov.co/gestor/docs/ley_0016_1972.htm) | 2026-10-02 | 82 | 84 | Constitucional, Penal |
+| `ley_1708_2014` | Ley 1708 de 2014 | Secretaria del Senado | [enlace](http://www.secretariasenado.gov.co/senado/basedoc/ley_1708_2014.html) | 2026-10-03 | 217 | 253 | Penal, Procesal |
 | `ley_1709_2014` | Ley 1709 de 2014 (Reforma al Codigo Penitenciario y Carcelario) | Normograma de la CRA (compilacion Avance Juridico) | [enlace](https://normas.cra.gov.co/gestor/docs/ley_1709_2014.htm) | 2026-10-02 | 107 | 129 | Penal |
 | `ley_1712_2014` | Ley 1712 de 2014 (Transparencia y acceso a la informacion publica) | Secretaria del Senado | [enlace](http://www.secretariasenado.gov.co/senado/basedoc/ley_1712_2014.html) | 2026-10-02 | 33 | 40 | Administrativo, Constitucional |
 | `ley_1735_2014` | Ley 1735 de 2014 (Inclusion financiera) | Normograma de la CRA (compilacion Avance Juridico) | [enlace](https://normas.cra.gov.co/gestor/docs/ley_1735_2014.htm) | 2026-10-02 | 15 | 18 | Comercial y sociedades |
@@ -278,22 +310,28 @@ fuente cambia. "Áreas" son las áreas del banco de preguntas (enunciado, secci�
 | `ley_1757_2015` | Ley 1757 de 2015 (Estatutaria de participacion democratica) | Secretaria del Senado | [enlace](http://www.secretariasenado.gov.co/senado/basedoc/ley_1757_2015.html) | 2026-10-02 | 112 | 121 | Constitucional |
 | `ley_1761_2015` | Ley 1761 de 2015 (Feminicidio (Ley Rosa Elvira Cely)) | Secretaria del Senado | [enlace](http://www.secretariasenado.gov.co/senado/basedoc/ley_1761_2015.html) | 2026-10-02 | 13 | 14 | Penal |
 | `ley_1774_2016` | Ley 1774 de 2016 (Animales como seres sintientes y maltrato animal) | Secretaria del Senado | [enlace](http://www.secretariasenado.gov.co/senado/basedoc/ley_1774_2016.html) | 2026-10-02 | 14 | 17 | Civil, Penal |
+| `ley_1781_2016` | Ley 1781 de 2016 | Secretaria del Senado | [enlace](http://www.secretariasenado.gov.co/senado/basedoc/ley_1781_2016.html) | 2026-10-03 | 4 | 5 | Administrativo, Procesal |
 | `ley_178_1994` | Ley 178 de 1994 (Aprueba el Convenio de Paris para la Proteccion de la Propiedad Industrial) | Secretaria del Senado | [enlace](http://www.secretariasenado.gov.co/senado/basedoc/ley_0178_1994.html) | 2026-10-02 | 30 | 64 | Mercados |
+| `ley_181_1995` | Ley 181 de 1995 | Secretaria del Senado | [enlace](http://www.secretariasenado.gov.co/senado/basedoc/ley_0181_1995.html) | 2026-10-03 | 91 | 96 | Administrativo |
+| `ley_1820_2016` | Ley 1820 de 2016 | Secretaria del Senado | [enlace](http://www.secretariasenado.gov.co/senado/basedoc/ley_1820_2016.html) | 2026-10-03 | 61 | 72 | Penal, Procesal |
 | `ley_1822_2017` | Ley 1822 de 2017 (Licencia de maternidad) | Normograma de Colpensiones (compilacion Avance Juridico) | [enlace](https://normativa.colpensiones.gov.co/compilacion/docs/ley_1822_2017.htm) | 2026-10-02 | 3 | 6 | Laboral |
 | `ley_1826_2017` | Ley 1826 de 2017 (Procedimiento penal abreviado y acusador privado) | Secretaria del Senado | [enlace](http://www.secretariasenado.gov.co/senado/basedoc/ley_1826_2017.html) | 2026-10-02 | 44 | 49 | Penal, Procesal |
 | `ley_1846_2017` | Ley 1846 de 2017 (Jornada nocturna) | Normograma de Colpensiones (compilacion Avance Juridico) | [enlace](https://normativa.colpensiones.gov.co/compilacion/docs/ley_1846_2017.htm) | 2026-10-02 | 4 | 5 | Laboral |
 | `ley_1878_2018` | Ley 1878 de 2018 (Proceso administrativo de restablecimiento de derechos) | Secretaria del Senado | [enlace](http://www.secretariasenado.gov.co/senado/basedoc/ley_1878_2018.html) | 2026-10-02 | 13 | 22 | Familia |
 | `ley_1882_2018` | Ley 1882 de 2018 (Contratacion publica) | Secretaria del Senado | [enlace](http://www.secretariasenado.gov.co/senado/basedoc/ley_1882_2018.html) | 2026-10-02 | 21 | 29 | Administrativo |
 | `ley_1901_2018` | Ley 1901 de 2018 (Sociedades Comerciales de Beneficio e Interes Colectivo (BIC)) | Secretaria del Senado | [enlace](http://www.secretariasenado.gov.co/senado/basedoc/ley_1901_2018.html) | 2026-10-02 | 10 | 14 | Comercial y sociedades |
+| `ley_190_1995` | Ley 190 de 1995 | Secretaria del Senado | [enlace](http://www.secretariasenado.gov.co/senado/basedoc/ley_0190_1995.html) | 2026-10-03 | 85 | 86 | Administrativo, Penal |
 | `ley_1915_2018` | Ley 1915 de 2018 (Derecho de autor y derechos conexos) | Normograma de la DIAN (compilacion Avance Juridico) | [enlace](https://normograma.dian.gov.co/dian/compilacion/docs/ley_1915_2018.htm) | 2026-10-02 | 37 | 45 | Mercados |
 | `ley_1922_2018` | Ley 1922 de 2018 (Reglas de procedimiento de la JEP) | Secretaria del Senado | [enlace](http://www.secretariasenado.gov.co/senado/basedoc/ley_1922_2018.html) | 2026-10-02 | 76 | 94 | Penal, Procesal |
 | `ley_1943_2018` | Ley 1943 de 2018 (Ley de financiamiento) | Secretaria del Senado | [enlace](http://www.secretariasenado.gov.co/senado/basedoc/ley_1943_2018.html) | 2026-10-02 | 122 | 204 | Tributario |
+| `ley_1949_2019` | Ley 1949 de 2019 | Secretaria del Senado | [enlace](http://www.secretariasenado.gov.co/senado/basedoc/ley_1949_2019.html) | 2026-10-02 | 12 | 22 | Administrativo, Laboral |
 | `ley_1957_2019` | Ley 1957 de 2019 (Estatutaria de la Administracion de Justicia en la JEP) | Normograma de Colpensiones (compilacion Avance Juridico) | [enlace](https://normativa.colpensiones.gov.co/compilacion/docs/ley_1957_2019.htm) | 2026-10-02 | 159 | 206 | Constitucional, Penal |
 | `ley_1978_2019` | Ley 1978 de 2019 (Modernizacion del sector de las Tecnologias de la Informacion y las Comunicaciones) | Normograma de Colpensiones (compilacion Avance Juridico) | [enlace](https://normativa.colpensiones.gov.co/colpens/docs/ley_1978_2019.htm) | 2026-10-02 | 50 | 79 | Administrativo, Mercados |
 | `ley_1996_2019` | Ley 1996 de 2019 (Ejercicio de la capacidad legal de las personas con discapacidad) | Normograma de la CRA (compilacion Avance Juridico) | [enlace](https://normas.cra.gov.co/gestor/docs/ley_1996_2019.htm) | 2026-10-02 | 63 | 72 | Civil, Familia |
 | `ley_1_1976` | Ley 1 de 1976 (Divorcio en el matrimonio civil) | Normograma de Colpensiones (compilacion Avance Juridico) | [enlace](https://normativa.colpensiones.gov.co/colpens/docs/ley_0001_1976.htm) | 2026-10-02 | 32 | 35 | Familia |
 | `ley_2010_2019` | Ley 2010 de 2019 (Ley de Crecimiento Economico) | Normograma de la CRA (compilacion Avance Juridico) | [enlace](https://normas.cra.gov.co/gestor/docs/ley_2010_2019.htm) | 2026-10-02 | 160 | 255 | Tributario |
 | `ley_2044_2020` | Ley 2044 de 2020 (Saneamiento de predios ocupados por asentamientos humanos ilegales) | Secretaria del Senado | [enlace](http://www.secretariasenado.gov.co/senado/basedoc/ley_2044_2020.html) | 2026-10-02 | 33 | 38 | Civil |
+| `ley_2055_2020` | Ley 2055 de 2020 | Secretaria del Senado | [enlace](http://www.secretariasenado.gov.co/senado/basedoc/ley_2055_2020.html) | 2026-10-02 | 41 | 100 | Constitucional, Familia |
 | `ley_2069_2020` | Ley 2069 de 2020 (Ley de Emprendimiento) | Normograma de la CRA (compilacion Avance Juridico) | [enlace](https://normas.cra.gov.co/gestor/docs/ley_2069_2020.htm) | 2026-10-02 | 84 | 108 | Comercial y sociedades |
 | `ley_2080_2021` | Ley 2080 de 2021 (Reforma del CPACA) | Normograma de la CRA (compilacion Avance Juridico) | [enlace](https://normas.cra.gov.co/gestor/docs/ley_2080_2021.htm) | 2026-10-02 | 87 | 108 | Administrativo, Procesal |
 | `ley_2081_2021` | Ley 2081 de 2021 (Imprescriptibilidad de delitos sexuales contra menores) | Secretaria del Senado | [enlace](http://www.secretariasenado.gov.co/senado/basedoc/ley_2081_2021.html) | 2026-10-02 | 2 | 3 | Penal |
@@ -305,10 +343,13 @@ fuente cambia. "Áreas" son las áreas del banco de preguntas (enunciado, secci�
 | `ley_2101_2021` | Ley 2101 de 2021 (Reduccion de la jornada laboral) | Normograma de la CRA (compilacion Avance Juridico) | [enlace](https://normas.cra.gov.co/gestor/docs/ley_2101_2021.htm) | 2026-10-02 | 8 | 10 | Laboral |
 | `ley_2121_2021` | Ley 2121 de 2021 (Trabajo remoto) | Normograma de Colpensiones (compilacion Avance Juridico) | [enlace](https://normativa.colpensiones.gov.co/compilacion/docs/ley_2121_2021.htm) | 2026-10-02 | 27 | 31 | Laboral |
 | `ley_2126_2021` | Ley 2126 de 2021 (Comisarias de familia) | Secretaria del Senado | [enlace](http://www.secretariasenado.gov.co/senado/basedoc/ley_2126_2021.html) | 2026-10-02 | 48 | 62 | Familia |
+| `ley_2136_2021` | Ley 2136 de 2021 | Secretaria del Senado | [enlace](http://www.secretariasenado.gov.co/senado/basedoc/ley_2136_2021.html) | 2026-10-03 | 91 | 111 | Administrativo, Constitucional |
 | `ley_2155_2021` | Ley 2155 de 2021 (Ley de Inversion Social) | Normograma de la CRA (compilacion Avance Juridico) | [enlace](https://normas.cra.gov.co/gestor/docs/ley_2155_2021.htm) | 2026-10-02 | 65 | 108 | Tributario |
 | `ley_2191_2022` | Ley 2191 de 2022 (Desconexion laboral) | Normograma de la CRA (compilacion Avance Juridico) | [enlace](https://normas.cra.gov.co/gestor/docs/ley_2191_2022.htm) | 2026-10-02 | 8 | 9 | Laboral |
 | `ley_2195_2022` | Ley 2195 de 2022 (Transparencia, prevencion y lucha contra la corrupcion) | Normograma de la CRA (compilacion Avance Juridico) | [enlace](https://normas.cra.gov.co/gestor/docs/ley_2195_2022.htm) | 2026-10-02 | 69 | 81 | Administrativo |
 | `ley_2197_2022` | Ley 2197 de 2022 (Seguridad ciudadana) | Normograma de la DIAN (compilacion Avance Juridico) | [enlace](https://normograma.dian.gov.co/dian/compilacion/docs/ley_2197_2022.htm) | 2026-10-02 | 22 | 78 | Penal |
+| `ley_21_1982` | Ley 21 de 1982 | Normograma de Colpensiones (compilacion Avance Juridico) | [enlace](https://normativa.colpensiones.gov.co/colpens/docs/ley_0021_1982.htm) | 2026-10-03 | 94 | 157 | Laboral |
+| `ley_21_1991` | Ley 21 de 1991 | Normograma de Colpensiones (compilacion Avance Juridico) | [enlace](https://normativa.colpensiones.gov.co/colpens/docs/ley_0021_1991.htm) | 2026-10-03 | 44 | 50 | Constitucional |
 | `ley_2213_2022` | Ley 2213 de 2022 (Tecnologias de la informacion en las actuaciones judiciales) | Normograma de la CRA (compilacion Avance Juridico) | [enlace](https://normas.cra.gov.co/gestor/docs/ley_2213_2022.htm) | 2026-10-02 | 15 | 18 | Procesal |
 | `ley_222_1995` | Ley 222 de 1995 (regimen de sociedades) | Gestor Normativo de Funcion Publica | [enlace](https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=6739) | 2026-10-01 | 242 | 253 | Comercial y sociedades |
 | `ley_223_1995` | Ley 223 de 1995 (Racionalizacion tributaria de 1995) | Normograma de Colpensiones (compilacion Avance Juridico) | [enlace](https://normativa.colpensiones.gov.co/colpens/docs/ley_0223_1995.htm) | 2026-10-02 | 285 | 563 | Tributario |
@@ -316,16 +357,25 @@ fuente cambia. "Áreas" son las áreas del banco de preguntas (enunciado, secci�
 | `ley_2300_2023` | Ley 2300 de 2023 (Ley Dejen de Fregar (contacto de cobranza)) | Normograma de Colpensiones (compilacion Avance Juridico) | [enlace](https://normativa.colpensiones.gov.co/compilacion/docs/ley_2300_2023.htm) | 2026-10-02 | 10 | 11 | Mercados |
 | `ley_2365_2024` | Ley 2365 de 2024 (Acoso sexual en el ambito laboral) | Normograma de Colpensiones (compilacion Avance Juridico) | [enlace](https://normativa.colpensiones.gov.co/compilacion/docs/ley_2365_2024.htm) | 2026-10-02 | 24 | 27 | Laboral |
 | `ley_2381_2024` | Ley 2381 de 2024 (Reforma pensional (Sistema de Proteccion Social Integral para la Vejez)) | Normograma de Colpensiones (compilacion Avance Juridico) | [enlace](https://normativa.colpensiones.gov.co/compilacion/docs/ley_2381_2024.htm) | 2026-10-02 | 95 | 140 | Laboral |
+| `ley_23_1981` | Ley 23 de 1981 | Normograma de Colpensiones (compilacion Avance Juridico) | [enlace](https://normativa.colpensiones.gov.co/compilacion/docs/ley_0023_1981.htm) | 2026-10-03 | 94 | 96 | Civil, Penal |
 | `ley_23_1982` | Ley 23 de 1982 (Derechos de autor) | Normograma de la CRA (compilacion Avance Juridico) | [enlace](https://normas.cra.gov.co/gestor/docs/ley_0023_1982.htm) | 2026-10-02 | 260 | 266 | Mercados |
+| `ley_2445_2025` | Ley 2445 de 2025 | Secretaria del Senado | [enlace](http://www.secretariasenado.gov.co/senado/basedoc/ley_2445_2025.html) | 2026-10-03 | 45 | 78 | Procesal |
 | `ley_2447_2025` | Ley 2447 de 2025 (Prohibicion del matrimonio infantil y las uniones tempranas) | Secretaria del Senado | [enlace](http://www.secretariasenado.gov.co/senado/basedoc/ley_2447_2025.html) | 2026-10-02 | 21 | 24 | Familia |
+| `ley_248_1995` | Ley 248 de 1995 | Secretaria del Senado | [enlace](http://www.secretariasenado.gov.co/senado/basedoc/ley_0248_1995.html) | 2026-10-02 | 25 | 31 | Constitucional, Penal |
+| `ley_24_1992` | Ley 24 de 1992 | Secretaria del Senado | [enlace](http://www.secretariasenado.gov.co/senado/basedoc/ley_0024_1992.html) | 2026-10-03 | 41 | 42 | Administrativo, Constitucional |
 | `ley_258_1996` | Ley 258 de 1996 (Afectacion a vivienda familiar) | Secretaria del Senado | [enlace](http://www.secretariasenado.gov.co/senado/basedoc/ley_0258_1996.html) | 2026-10-02 | 13 | 15 | Civil, Familia |
 | `ley_25_1992` | Ley 25 de 1992 (Divorcio y efectos civiles del matrimonio religioso) | Secretaria del Senado | [enlace](http://www.secretariasenado.gov.co/senado/basedoc/ley_0025_1992.html) | 2026-10-02 | 15 | 16 | Familia |
 | `ley_270_1996` | Ley 270 de 1996 (Estatutaria de la Administracion de Justicia) | Normograma de la CRA (compilacion Avance Juridico) | [enlace](https://normas.cra.gov.co/gestor/docs/ley_0270_1996.htm) | 2026-10-02 | 210 | 264 | Constitucional, Procesal |
 | `ley_294_1996` | Ley 294 de 1996 (Violencia intrafamiliar) | Secretaria del Senado | [enlace](http://www.secretariasenado.gov.co/senado/basedoc/ley_0294_1996.html) | 2026-10-02 | 30 | 33 | Familia, Penal |
+| `ley_30_1992` | Ley 30 de 1992 | Secretaria del Senado | [enlace](http://www.secretariasenado.gov.co/senado/basedoc/ley_0030_1992.html) | 2026-10-02 | 144 | 154 | Administrativo |
+| `ley_319_1996` | Ley 319 de 1996 | Secretaria del Senado | [enlace](http://www.secretariasenado.gov.co/senado/basedoc/ley_0319_1996.html) | 2026-10-03 | 22 | 30 | Constitucional, Laboral |
 | `ley_361_1997` | Ley 361 de 1997 (Integracion social de las personas con limitacion (estabilidad reforzada)) | Normograma de la CRA (compilacion Avance Juridico) | [enlace](https://normas.cra.gov.co/gestor/docs/ley_0361_1997.htm) | 2026-10-02 | 73 | 76 | Laboral |
 | `ley_383_1997` | Ley 383 de 1997 (Normas para fortalecer la lucha contra la evasion y el contrabando) | Normograma de la CRA (compilacion Avance Juridico) | [enlace](https://normas.cra.gov.co/gestor/docs/ley_0383_1997.htm) | 2026-10-02 | 74 | 78 | Tributario |
+| `ley_387_1997` | Ley 387 de 1997 | Secretaria del Senado | [enlace](http://www.secretariasenado.gov.co/senado/basedoc/ley_0387_1997.html) | 2026-10-02 | 34 | 39 | Administrativo, Constitucional |
 | `ley_388_1997` | Ley 388 de 1997 (Ley de desarrollo territorial) | Normograma de la CRA (compilacion Avance Juridico) | [enlace](https://normas.cra.gov.co/gestor/docs/ley_0388_1997.htm) | 2026-10-02 | 138 | 179 | Administrativo, Civil |
 | `ley_393_1997` | Ley 393 de 1997 (Accion de cumplimiento) | Secretaria del Senado | [enlace](http://www.secretariasenado.gov.co/senado/basedoc/ley_0393_1997.html) | 2026-10-02 | 32 | 33 | Administrativo, Constitucional |
+| `ley_397_1997` | Ley 397 de 1997 | Secretaria del Senado | [enlace](http://www.secretariasenado.gov.co/senado/basedoc/ley_0397_1997.html) | 2026-10-03 | 83 | 110 | Administrativo, Constitucional |
+| `ley_418_1997` | Ley 418 de 1997 | Secretaria del Senado | [enlace](http://www.secretariasenado.gov.co/senado/basedoc/ley_0418_1997.html) | 2026-10-03 | 131 | 158 | Administrativo, Penal |
 | `ley_43_1990` | Ley 43 de 1990 (Profesion de contador publico) | Normograma de la CRA (compilacion Avance Juridico) | [enlace](https://normas.cra.gov.co/gestor/docs/ley_0043_1990.htm) | 2026-10-02 | 75 | 81 | Comercial y sociedades |
 | `ley_446_1998` | Ley 446 de 1998 (Descongestion, eficiencia y acceso a la justicia) | Normograma de la CRA (compilacion Avance Juridico) | [enlace](https://normas.cra.gov.co/gestor/docs/ley_0446_1998.htm) | 2026-10-02 | 167 | 187 | Procesal |
 | `ley_44_1990` | Ley 44 de 1990 (Impuesto predial unificado) | Normograma de la CRA (compilacion Avance Juridico) | [enlace](https://normas.cra.gov.co/gestor/docs/ley_0044_1990.htm) | 2026-10-02 | 30 | 32 | Tributario |
@@ -335,27 +385,44 @@ fuente cambia. "Áreas" son las áreas del banco de preguntas (enunciado, secci�
 | `ley_472_1998` | Ley 472 de 1998, acciones populares y de grupo | Gestor Normativo de Funcion Publica | [enlace](https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=188) | 2026-09-29 | 86 | 93 | Administrativo, Constitucional |
 | `ley_489_1998` | Ley 489 de 1998 (Organizacion y funcionamiento de las entidades del orden nacional) | Secretaria del Senado | [enlace](http://www.secretariasenado.gov.co/senado/basedoc/ley_0489_1998.html) | 2026-10-02 | 121 | 125 | Administrativo |
 | `ley_49_1990` | Ley 49 de 1990 (Reforma tributaria de 1990) | Normograma de Colpensiones (compilacion Avance Juridico) | [enlace](https://normativa.colpensiones.gov.co/colpens/docs/ley_0049_1990.htm) | 2026-10-02 | 83 | 95 | Tributario |
+| `ley_51_1981` | Ley 51 de 1981 | Normograma de la CRA (compilacion Avance Juridico) | [enlace](https://normas.cra.gov.co/gestor/docs/ley_0051_1981.htm) | 2026-10-02 | 25 | 32 | Constitucional |
+| `ley_550_1999` | Ley 550 de 1999 | Secretaria del Senado | [enlace](http://www.secretariasenado.gov.co/senado/basedoc/ley_0550_1999.html) | 2026-10-03 | 38 | 48 | Comercial y sociedades |
 | `ley_565_2000` | Ley 565 de 2000 (Aprueba el Tratado de la OMPI sobre Derecho de Autor (WCT)) | Normograma de la Cancilleria (compilacion Avance Juridico) | [enlace](https://www.cancilleria.gov.co/sites/default/files/Normograma/docs/ley_0565_2000.htm) | 2026-10-02 | 25 | 54 | Mercados |
+| `ley_575_2000` | Ley 575 de 2000 | Secretaria del Senado | [enlace](http://www.secretariasenado.gov.co/senado/basedoc/ley_0575_2000.html) | 2026-10-02 | 14 | 17 | Familia, Penal |
 | `ley_57_1887` | Ley 57 de 1887 (Adopta el Codigo Civil de la Nacion) | Normograma de la CRA (compilacion Avance Juridico) | [enlace](https://normas.cra.gov.co/gestor/docs/ley_0057_1887.htm) | 2026-10-02 | 337 | 338 | Civil |
 | `ley_590_2000` | Ley 590 de 2000 (Micro, pequenas y medianas empresas) | Normograma de la CRA (compilacion Avance Juridico) | [enlace](https://normas.cra.gov.co/gestor/docs/ley_0590_2000.htm) | 2026-10-02 | 47 | 49 | Comercial y sociedades |
 | `ley_5_1992` | Ley 5 de 1992 (Reglamento del Congreso) | Normograma de la CRA (compilacion Avance Juridico) | [enlace](https://normas.cra.gov.co/gestor/docs/ley_0005_1992.htm) | 2026-10-02 | 392 | 510 | Constitucional |
+| `ley_60_1993` | Ley 60 de 1993 | Secretaria del Senado | [enlace](http://www.secretariasenado.gov.co/senado/basedoc/ley_0060_1993.html) | 2026-10-03 | 43 | 75 | Administrativo, Tributario |
 | `ley_610_2000` | Ley 610 de 2000 (Proceso de responsabilidad fiscal) | Secretaria del Senado | [enlace](http://www.secretariasenado.gov.co/senado/basedoc/ley_0610_2000.html) | 2026-10-02 | 68 | 69 | Administrativo |
 | `ley_617_2000` | Ley 617 de 2000 (Racionalizacion del gasto publico territorial) | Normograma de la CRA (compilacion Avance Juridico) | [enlace](https://normas.cra.gov.co/gestor/docs/ley_0617_2000.htm) | 2026-10-02 | 96 | 110 | Administrativo |
 | `ley_633_2000` | Ley 633 de 2000 (Reforma tributaria de 2000) | Normograma de la CRA (compilacion Avance Juridico) | [enlace](https://normas.cra.gov.co/gestor/docs/ley_0633_2000.htm) | 2026-10-02 | 146 | 168 | Tributario |
 | `ley_65_1993` | Ley 65 de 1993 (Codigo Penitenciario y Carcelario) | Normograma de la CRA (compilacion Avance Juridico) | [enlace](https://normas.cra.gov.co/gestor/docs/ley_0065_1993.htm) | 2026-10-02 | 174 | 213 | Penal |
 | `ley_675_2001` | Ley 675 de 2001 (Regimen de propiedad horizontal) | Normograma de la CRA (compilacion Avance Juridico) | [enlace](https://normas.cra.gov.co/gestor/docs/ley_0675_2001.htm) | 2026-10-02 | 87 | 94 | Civil |
+| `ley_70_1993` | Ley 70 de 1993 | Secretaria del Senado | [enlace](http://www.secretariasenado.gov.co/senado/basedoc/ley_0070_1993.html) | 2026-10-03 | 68 | 71 | Administrativo, Constitucional |
+| `ley_712_2001` | Ley 712 de 2001 | Secretaria del Senado | [enlace](http://www.secretariasenado.gov.co/senado/basedoc/ley_0712_2001.html) | 2026-10-02 | 55 | 68 | Laboral, Procesal |
+| `ley_715_2001` | Ley 715 de 2001 | Secretaria del Senado | [enlace](http://www.secretariasenado.gov.co/senado/basedoc/ley_0715_2001.html) | 2026-10-02 | 113 | 157 | Administrativo, Tributario |
+| `ley_734_2002` | Ley 734 de 2002 | Secretaria del Senado | [enlace](http://www.secretariasenado.gov.co/senado/basedoc/ley_0734_2002.html) | 2026-10-02 | 221 | 246 | Administrativo |
+| `ley_74_1968` | Ley 74 de 1968 | Normograma de la Cancilleria (compilacion Avance Juridico) | [enlace](https://www.cancilleria.gov.co/sites/default/files/Normograma/docs/ley_0074_1968.htm) | 2026-10-02 | 53 | 165 | Constitucional, Penal |
 | `ley_776_2002` | Ley 776 de 2002 (Prestaciones del Sistema General de Riesgos Profesionales) | Normograma de Colpensiones (compilacion Avance Juridico) | [enlace](https://normativa.colpensiones.gov.co/compilacion/docs/ley_0776_2002.htm) | 2026-10-02 | 23 | 26 | Laboral |
 | `ley_788_2002` | Ley 788 de 2002 (Reforma tributaria de 2002) | Normograma de la CRA (compilacion Avance Juridico) | [enlace](https://normas.cra.gov.co/gestor/docs/ley_0788_2002.htm) | 2026-10-02 | 118 | 143 | Tributario |
 | `ley_789_2002` | Ley 789 de 2002 (Reforma laboral de 2002) | Normograma de la CRA (compilacion Avance Juridico) | [enlace](https://normas.cra.gov.co/gestor/docs/ley_0789_2002.htm) | 2026-10-02 | 52 | 94 | Laboral |
 | `ley_791_2002` | Ley 791 de 2002 (Reduccion de terminos de prescripcion) | Normograma de la CRA (compilacion Avance Juridico) | [enlace](https://normas.cra.gov.co/gestor/docs/ley_0791_2002.htm) | 2026-10-02 | 13 | 14 | Civil |
 | `ley_794_2003` | Ley 794 de 2003 (Reforma del Codigo de Procedimiento Civil) | Normograma de Colpensiones (compilacion Avance Juridico) | [enlace](https://normativa.colpensiones.gov.co/colpens/docs/ley_0794_2003.htm) | 2026-10-02 | 70 | 98 | Procesal |
 | `ley_797_2003` | Ley 797 de 2003 (Reforma del Sistema General de Pensiones) | Normograma de la CRA (compilacion Avance Juridico) | [enlace](https://normas.cra.gov.co/gestor/docs/ley_0797_2003.htm) | 2026-10-02 | 25 | 36 | Laboral |
+| `ley_860_2003` | Ley 860 de 2003 | Secretaria del Senado | [enlace](http://www.secretariasenado.gov.co/senado/basedoc/ley_0860_2003.html) | 2026-10-02 | 5 | 10 | Laboral |
 | `ley_863_2003` | Ley 863 de 2003 (Reforma tributaria de 2003) | Normograma de Colpensiones (compilacion Avance Juridico) | [enlace](https://normativa.colpensiones.gov.co/colpens/docs/ley_0863_2003.htm) | 2026-10-02 | 69 | 131 | Tributario |
+| `ley_890_2004` | Ley 890 de 2004 | Secretaria del Senado | [enlace](http://www.secretariasenado.gov.co/senado/basedoc/ley_0890_2004.html) | 2026-10-03 | 15 | 17 | Penal |
 | `ley_909_2004` | Ley 909 de 2004 (Empleo publico y carrera administrativa) | Secretaria del Senado | [enlace](http://www.secretariasenado.gov.co/senado/basedoc/ley_0909_2004.html) | 2026-10-02 | 58 | 79 | Administrativo, Laboral |
+| `ley_90_1946` | Ley 90 de 1946 | Normograma de Colpensiones (compilacion Avance Juridico) | [enlace](https://normativa.colpensiones.gov.co/colpens/docs/ley_0090_1946.htm) | 2026-10-03 | 84 | 125 | Laboral |
 | `ley_95_1890` | Ley 95 de 1890 (Reformas civiles) | Normograma de la CRA (compilacion Avance Juridico) | [enlace](https://normas.cra.gov.co/gestor/docs/ley_0095_1890.htm) | 2026-10-02 | 42 | 43 | Civil |
+| `ley_962_2005` | Ley 962 de 2005 | Secretaria del Senado | [enlace](http://www.secretariasenado.gov.co/senado/basedoc/ley_0962_2005.html) | 2026-10-02 | 86 | 97 | Administrativo |
 | `ley_975_2005` | Ley 975 de 2005 (Justicia y Paz) | Normograma de la CRA (compilacion Avance Juridico) | [enlace](https://normas.cra.gov.co/gestor/docs/ley_0975_2005.htm) | 2026-10-02 | 72 | 102 | Penal |
 | `ley_996_2005` | Ley 996 de 2005 (Ley de Garantias Electorales) | Normograma de la CRA (compilacion Avance Juridico) | [enlace](https://normas.cra.gov.co/gestor/docs/ley_0996_2005.htm) | 2026-10-02 | 42 | 47 | Constitucional |
+| `ley_99_1993` | Ley 99 de 1993 | Secretaria del Senado | [enlace](http://www.secretariasenado.gov.co/senado/basedoc/ley_0099_1993.html) | 2026-10-02 | 118 | 171 | Administrativo |
 | `ley_9_1989` | Ley 9 de 1989 (Ley de reforma urbana) | Normograma de la CRA (compilacion Avance Juridico) | [enlace](https://normas.cra.gov.co/gestor/docs/ley_0009_1989.htm) | 2026-10-02 | 128 | 135 | Administrativo, Civil |
+| `providencia_csj_civil_2001_00847_2011` | Corte Suprema de Justicia, Sala de Casacion Civil, sentencia sustitutiva del 19 de octubre de 2011 (exp. 11001-3103-032-2001-00847-01) | Ambito Juridico (texto de la providencia de la Corte Suprema de Justicia) | [enlace](https://ambitojuridico.com/sites/default/files/BancoMedios/Archivos/sent.%2011001310303220010084701-11.doc) | 2026-10-03 | — | 52 | Comercial y sociedades |
+| `resolucion_1036_2021` | Resolucion 1036 de 2021 (Ministerio de Ambiente; relleno sanitario El Carrasco) | Ministerio de Ambiente y Desarrollo Sostenible | [enlace](https://www.minambiente.gov.co/wp-content/uploads/2021/10/Resolucion-1036-de-2021.pdf) | 2026-10-03 | 8 | 41 | Administrativo |
+| `resolucion_368_2014` | Resolucion 368 de 2014 (Ministerio de Ambiente; relleno sanitario El Carrasco) | Ministerio de Ambiente y Desarrollo Sostenible | [enlace](https://www.minambiente.gov.co/) | 2026-10-03 | 2 | 34 | Administrativo |
 | `sentencia_c_1011_2008` | Sentencia C-1011 de 2008 | Relatoria de la Corte Constitucional | [enlace](https://www.corteconstitucional.gov.co/relatoria/2008/C-1011-08.htm) | 2026-10-02 | — | 623 | Constitucional, Mercados |
 | `sentencia_c_1024_2004` | Sentencia C-1024 de 2004 | Relatoria de la Corte Constitucional | [enlace](https://www.corteconstitucional.gov.co/relatoria/2004/C-1024-04.htm) | 2026-10-02 | — | 105 | Constitucional, Laboral |
 | `sentencia_c_1035_2008` | Sentencia C-1035 de 2008 | Relatoria de la Corte Constitucional | [enlace](https://www.corteconstitucional.gov.co/relatoria/2008/C-1035-08.htm) | 2026-10-02 | — | 83 | Constitucional, Laboral |
@@ -365,6 +432,7 @@ fuente cambia. "Áreas" son las áreas del banco de preguntas (enunciado, secci�
 | `sentencia_c_1153_2005` | Sentencia C-1153 de 2005 | Relatoria de la Corte Constitucional | [enlace](https://www.corteconstitucional.gov.co/relatoria/2005/C-1153-05.htm) | 2026-10-02 | — | 586 | Constitucional |
 | `sentencia_c_141_2010` | Sentencia C-141 de 2010 | Relatoria de la Corte Constitucional | [enlace](https://www.corteconstitucional.gov.co/relatoria/2010/C-141-10.htm) | 2026-10-02 | — | 965 | Constitucional |
 | `sentencia_c_146_2021` | Sentencia C-146 de 2021 | Relatoria de la Corte Constitucional | [enlace](https://www.corteconstitucional.gov.co/relatoria/2021/C-146-21.htm) | 2026-10-02 | — | 170 | Administrativo, Constitucional, Procesal |
+| `sentencia_c_148_2025` | Sentencia C-148 de 2025 | Relatoria de la Corte Constitucional | [enlace](https://www.corteconstitucional.gov.co/relatoria/2025/C-148-25.htm) | 2026-10-03 | — | 645 | Tributario |
 | `sentencia_c_150_2015` | Sentencia C-150 de 2015 | Relatoria de la Corte Constitucional | [enlace](https://www.corteconstitucional.gov.co/relatoria/2015/C-150-15.htm) | 2026-10-02 | — | 770 | Constitucional |
 | `sentencia_c_180_1994` | Sentencia C-180 de 1994 | Relatoria de la Corte Constitucional | [enlace](https://www.corteconstitucional.gov.co/relatoria/1994/C-180-94.htm) | 2026-10-02 | — | 223 | Constitucional |
 | `sentencia_c_221_1994` | Sentencia C-221 de 1994 | Relatoria de la Corte Constitucional | [enlace](https://www.corteconstitucional.gov.co/relatoria/1994/C-221-94.htm) | 2026-10-02 | — | 84 | Constitucional, Penal |
@@ -375,17 +443,21 @@ fuente cambia. "Áreas" son las áreas del banco de preguntas (enunciado, secci�
 | `sentencia_c_300_2012` | Sentencia C-300 de 2012 | Relatoria de la Corte Constitucional | [enlace](https://www.corteconstitucional.gov.co/relatoria/2012/C-300-12.htm) | 2026-10-02 | — | 134 | Administrativo, Constitucional |
 | `sentencia_c_30_2023` | Sentencia C-030 de 2023 | Relatoria de la Corte Constitucional | [enlace](https://www.corteconstitucional.gov.co/relatoria/2023/C-030-23.htm) | 2026-10-02 | — | 336 | Administrativo, Constitucional, Procesal |
 | `sentencia_c_313_2014` | Sentencia C-313 de 2014 | Relatoria de la Corte Constitucional | [enlace](https://www.corteconstitucional.gov.co/relatoria/2014/C-313-14.htm) | 2026-10-02 | — | 985 | Constitucional |
+| `sentencia_c_317_2025` | Sentencia C-317 de 2025 | Relatoria de la Corte Constitucional | [enlace](https://www.corteconstitucional.gov.co/relatoria/2025/C-317-25.htm) | 2026-10-03 | — | 84 | Constitucional |
 | `sentencia_c_319_2006` | Sentencia C-319 de 2006 | Relatoria de la Corte Constitucional | [enlace](https://www.corteconstitucional.gov.co/relatoria/2006/C-319-06.htm) | 2026-10-02 | — | 119 | Constitucional, Penal |
 | `sentencia_c_328_2015` | Sentencia C-328 de 2015 | Relatoria de la Corte Constitucional | [enlace](https://www.corteconstitucional.gov.co/relatoria/2015/C-328-15.htm) | 2026-10-02 | — | 67 | Constitucional, Procesal |
 | `sentencia_c_348_2004` | Sentencia C-348 de 2004 | Relatoria de la Corte Constitucional | [enlace](https://www.corteconstitucional.gov.co/relatoria/2004/C-348-04.htm) | 2026-10-02 | — | 37 | Administrativo, Constitucional |
 | `sentencia_c_370_2006` | Sentencia C-370 de 2006 | Relatoria de la Corte Constitucional | [enlace](https://www.corteconstitucional.gov.co/relatoria/2006/C-370-06.htm) | 2026-10-02 | — | 876 | Constitucional, Penal |
 | `sentencia_c_37_1996` | Sentencia C-037 de 1996 | Relatoria de la Corte Constitucional | [enlace](https://www.corteconstitucional.gov.co/relatoria/1996/C-037-96.htm) | 2026-10-02 | — | 602 | Constitucional, Procesal |
+| `sentencia_c_448_2020` | Sentencia C-448 de 2020 | Relatoria de la Corte Constitucional | [enlace](https://www.corteconstitucional.gov.co/relatoria/2020/C-448-20.htm) | 2026-10-03 | — | 152 | Tributario |
 | `sentencia_c_44_2015` | Sentencia C-044 de 2015 | Relatoria de la Corte Constitucional | [enlace](https://www.corteconstitucional.gov.co/relatoria/2015/C-044-15.htm) | 2026-10-02 | — | 163 | Constitucional |
 | `sentencia_c_458_2015` | Sentencia C-458 de 2015 | Relatoria de la Corte Constitucional | [enlace](https://www.corteconstitucional.gov.co/relatoria/2015/C-458-15.htm) | 2026-10-02 | — | 154 | Constitucional, Laboral |
+| `sentencia_c_465_2008` | Sentencia C-465 de 2008 | Relatoria de la Corte Constitucional | [enlace](https://www.corteconstitucional.gov.co/relatoria/2008/C-465-08.htm) | 2026-10-03 | — | 58 | Laboral |
 | `sentencia_c_467_2016` | Sentencia C-467 de 2016 | Relatoria de la Corte Constitucional | [enlace](https://www.corteconstitucional.gov.co/relatoria/2016/C-467-16.htm) | 2026-10-02 | — | 146 | Civil, Constitucional, Penal |
 | `sentencia_c_468_2024` | Sentencia C-468 de 2024 | Regimen Legal de Bogota (Secretaria Juridica Distrital) | [enlace](https://www.alcaldiabogota.gov.co/sisjur/normas/Norma1.jsp?i=172537) | 2026-10-01 | — | 65 | Constitucional |
 | `sentencia_c_481_2019` | Sentencia C-481 de 2019 | Relatoria de la Corte Constitucional | [enlace](https://www.corteconstitucional.gov.co/relatoria/2019/C-481-19.htm) | 2026-10-02 | — | 281 | Constitucional, Tributario |
 | `sentencia_c_490_2011` | Sentencia C-490 de 2011 | Relatoria de la Corte Constitucional | [enlace](https://www.corteconstitucional.gov.co/relatoria/2011/C-490-11.htm) | 2026-10-02 | — | 960 | Constitucional |
+| `sentencia_c_517_2024` | Sentencia C-517 de 2024 | Relatoria de la Corte Constitucional | [enlace](https://www.corteconstitucional.gov.co/relatoria/2024/C-517-24.htm) | 2026-10-03 | — | 110 | Constitucional |
 | `sentencia_c_531_2000` | Sentencia C-531 de 2000 | Relatoria de la Corte Constitucional | [enlace](https://www.corteconstitucional.gov.co/relatoria/2000/C-531-00.htm) | 2026-10-02 | — | 34 | Constitucional, Laboral |
 | `sentencia_c_539_2011` | Sentencia C-539 de 2011 | Relatoria de la Corte Constitucional | [enlace](https://www.corteconstitucional.gov.co/relatoria/2011/C-539-11.htm) | 2026-10-02 | — | 113 | Administrativo, Constitucional |
 | `sentencia_c_540_2001` | Sentencia C-540 de 2001 | Relatoria de la Corte Constitucional | [enlace](https://www.corteconstitucional.gov.co/relatoria/2001/C-540-01.htm) | 2026-10-02 | — | 259 | Administrativo, Constitucional |
@@ -394,6 +466,7 @@ fuente cambia. "Áreas" son las áreas del banco de preguntas (enunciado, secci�
 | `sentencia_c_575_2006` | Sentencia C-575 de 2006 | Relatoria de la Corte Constitucional | [enlace](https://www.corteconstitucional.gov.co/relatoria/2006/C-575-06.htm) | 2026-10-02 | — | 514 | Constitucional, Penal |
 | `sentencia_c_577_2011` | Sentencia C-577 de 2011 | Relatoria de la Corte Constitucional | [enlace](https://www.corteconstitucional.gov.co/relatoria/2011/C-577-11.htm) | 2026-10-02 | — | 545 | Constitucional, Familia |
 | `sentencia_c_579_2013` | Sentencia C-579 de 2013 | Relatoria de la Corte Constitucional | [enlace](https://www.corteconstitucional.gov.co/relatoria/2013/C-579-13.htm) | 2026-10-02 | — | 715 | Constitucional, Penal |
+| `sentencia_c_581_2001` | Sentencia C-581 de 2001 | Relatoria de la Corte Constitucional | [enlace](https://www.corteconstitucional.gov.co/relatoria/2001/C-581-01.htm) | 2026-10-03 | — | 48 | Penal |
 | `sentencia_c_590_2005` | Sentencia C-590 de 2005 | Relatoria de la Corte Constitucional | [enlace](https://www.corteconstitucional.gov.co/relatoria/2005/C-590-05.htm) | 2026-10-02 | — | 77 | Constitucional, Procesal |
 | `sentencia_c_5_2017` | Sentencia C-005 de 2017 | Relatoria de la Corte Constitucional | [enlace](https://www.corteconstitucional.gov.co/relatoria/2017/C-005-17.htm) | 2026-10-02 | — | 130 | Constitucional, Laboral |
 | `sentencia_c_634_2011` | Sentencia C-634 de 2011 | Relatoria de la Corte Constitucional | [enlace](https://www.corteconstitucional.gov.co/relatoria/2011/C-634-11.htm) | 2026-10-02 | — | 83 | Administrativo, Constitucional |
@@ -406,12 +479,14 @@ fuente cambia. "Áreas" son las áreas del banco de preguntas (enunciado, secci�
 | `sentencia_c_821_2005` | Sentencia C-821 de 2005 | Relatoria de la Corte Constitucional | [enlace](https://www.corteconstitucional.gov.co/relatoria/2005/C-821-05.htm) | 2026-10-02 | — | 66 | Constitucional, Familia |
 | `sentencia_c_824_2011` | Sentencia C-824 de 2011 | Relatoria de la Corte Constitucional | [enlace](https://www.corteconstitucional.gov.co/relatoria/2011/C-824-11.htm) | 2026-10-02 | — | 75 | Constitucional, Laboral |
 | `sentencia_c_836_2001` | Sentencia C-836 de 2001 | Relatoria de la Corte Constitucional | [enlace](https://www.corteconstitucional.gov.co/relatoria/2001/C-836-01.htm) | 2026-10-02 | — | 115 | Constitucional, Procesal |
+| `sentencia_c_878_2011` | Sentencia C-878 de 2011 | Relatoria de la Corte Constitucional | [enlace](https://www.corteconstitucional.gov.co/relatoria/2011/C-878-11.htm) | 2026-10-03 | — | 47 | Tributario |
 | `sentencia_c_886_2010` | Sentencia C-886 de 2010 | Relatoria de la Corte Constitucional | [enlace](https://www.corteconstitucional.gov.co/relatoria/2010/C-886-10.htm) | 2026-10-02 | — | 142 | Constitucional, Familia, Penal |
 | `sentencia_c_957_1999` | Sentencia C-957 de 1999 | Relatoria de la Corte Constitucional | [enlace](https://www.corteconstitucional.gov.co/relatoria/1999/C-957-99.htm) | 2026-10-02 | — | 33 | Administrativo, Constitucional |
 | `sentencia_ce_suj_4_005_2020` | Consejo de Estado, Seccion Cuarta, Sentencia de unificacion 2020CE-SUJ-4-005 de 2020 (exp. 21329) | Normograma de la DIAN | [enlace](https://normograma.dian.gov.co/dian/compilacion/docs/pdf/25000-23-37-000-2013-00443-01(21329)ce-suj-4-005.pdf) | 2026-10-01 | — | 64 | Tributario |
 | `sentencia_sc_10291_2017` | Sentencia SC-10291 de 2017 | Relatoria de la Corte Suprema de Justicia | [enlace](https://consultajurisprudencial.ramajudicial.gov.co/WebRelatoria/csj/index.xhtml) | 2026-10-01 | — | 26 | Civil |
 | `sentencia_sc_435_2024` | Sentencia SC-435 de 2024 | Relatoria de la Corte Suprema de Justicia | [enlace](https://consultajurisprudencial.ramajudicial.gov.co/WebRelatoria/csj/index.xhtml) | 2026-10-01 | — | 46 | Comercial y sociedades |
 | `sentencia_sc_5288_2021` | Sentencia SC-5288 de 2021 | Corte Suprema de Justicia | [enlace](https://www.cortesuprema.gov.co/corte/wp-content/uploads/not/civil21/prov/11001-02-03-000-2021-00766-00.pdf) | 2026-10-01 | — | 82 | Comercial y sociedades |
+| `sentencia_sl_3871_2021` | Sentencia SL3871 de 2021 | Relatoria de la Corte Suprema de Justicia - Sala de Casacion Laboral | [enlace](https://www.cortesuprema.gov.co/corte/wp-content/uploads/relatorias/la/bnov2021/SL3871-2021.pdf) | 2026-10-03 | — | 18 | Laboral |
 | `sentencia_su_103_2022` | Sentencia SU-103 de 2022 | Relatoria de la Corte Constitucional | [enlace](https://www.corteconstitucional.gov.co/relatoria/2022/SU103-22.htm) | 2026-10-02 | — | 120 | Constitucional |
 | `sentencia_su_107_2024` | Sentencia SU-107 de 2024 | Relatoria de la Corte Constitucional | [enlace](https://www.corteconstitucional.gov.co/relatoria/2024/SU107-24.htm) | 2026-10-02 | — | 683 | Constitucional |
 | `sentencia_su_108_2020` | Sentencia SU-108 de 2020 | Relatoria de la Corte Constitucional | [enlace](https://www.corteconstitucional.gov.co/relatoria/2020/SU108-20.htm) | 2026-10-02 | — | 93 | Constitucional |
@@ -432,6 +507,7 @@ fuente cambia. "Áreas" son las áreas del banco de preguntas (enunciado, secci�
 | `sentencia_su_136_2022` | Sentencia SU-136 de 2022 | Relatoria de la Corte Constitucional | [enlace](https://www.corteconstitucional.gov.co/relatoria/2022/SU136-22.htm) | 2026-10-02 | — | 68 | Constitucional |
 | `sentencia_su_138_2021` | Sentencia SU-138 de 2021 | Relatoria de la Corte Constitucional | [enlace](https://www.corteconstitucional.gov.co/relatoria/2021/SU138-21.htm) | 2026-10-02 | — | 98 | Constitucional |
 | `sentencia_su_139_2021` | Sentencia SU-139 de 2021 | Relatoria de la Corte Constitucional | [enlace](https://www.corteconstitucional.gov.co/relatoria/2021/SU139-21.htm) | 2026-10-02 | — | 111 | Constitucional |
+| `sentencia_su_140_2019` | Sentencia SU-140 de 2019 | Relatoria de la Corte Constitucional | [enlace](https://www.corteconstitucional.gov.co/relatoria/2019/SU140-19.htm) | 2026-10-03 | — | 411 | Laboral |
 | `sentencia_su_140_2026` | Sentencia SU-140 de 2026 | Relatoria de la Corte Constitucional | [enlace](https://www.corteconstitucional.gov.co/relatoria/2026/SU140-26.htm) | 2026-10-02 | — | 138 | Constitucional |
 | `sentencia_su_141_2020` | Sentencia SU-141 de 2020 | Relatoria de la Corte Constitucional | [enlace](https://www.corteconstitucional.gov.co/relatoria/2020/SU141-20.htm) | 2026-10-02 | — | 182 | Constitucional |
 | `sentencia_su_143_2020` | Sentencia SU-143 de 2020 | Relatoria de la Corte Constitucional | [enlace](https://www.corteconstitucional.gov.co/relatoria/2020/SU143-20.htm) | 2026-10-02 | — | 165 | Constitucional |
@@ -492,6 +568,7 @@ fuente cambia. "Áreas" son las áreas del banco de preguntas (enunciado, secci�
 | `sentencia_su_228_2021` | Sentencia SU-228 de 2021 | Relatoria de la Corte Constitucional | [enlace](https://www.corteconstitucional.gov.co/relatoria/2021/SU228-21.htm) | 2026-10-02 | — | 62 | Constitucional |
 | `sentencia_su_22_2023` | Sentencia SU-022 de 2023 | Relatoria de la Corte Constitucional | [enlace](https://www.corteconstitucional.gov.co/relatoria/2023/SU022-23.htm) | 2026-10-02 | — | 48 | Constitucional |
 | `sentencia_su_236_2022` | Sentencia SU-236 de 2022 | Relatoria de la Corte Constitucional | [enlace](https://www.corteconstitucional.gov.co/relatoria/2022/SU236-22.htm) | 2026-10-02 | — | 260 | Constitucional |
+| `sentencia_su_237_2019` | Sentencia SU-237 de 2019 | Relatoria de la Corte Constitucional | [enlace](https://www.corteconstitucional.gov.co/relatoria/2019/SU237-19.htm) | 2026-10-03 | — | 65 | Administrativo |
 | `sentencia_su_239_2024` | Sentencia SU-239 de 2024 | Relatoria de la Corte Constitucional | [enlace](https://www.corteconstitucional.gov.co/relatoria/2024/SU239-24.htm) | 2026-10-02 | — | 166 | Constitucional |
 | `sentencia_su_241_2024` | Sentencia SU-241 de 2024 | Relatoria de la Corte Constitucional | [enlace](https://www.corteconstitucional.gov.co/relatoria/2024/SU241-24.htm) | 2026-10-02 | — | 170 | Constitucional |
 | `sentencia_su_244_2021` | Sentencia SU-244 de 2021 | Relatoria de la Corte Constitucional | [enlace](https://www.corteconstitucional.gov.co/relatoria/2021/SU244-21.htm) | 2026-10-02 | — | 406 | Constitucional |
@@ -514,6 +591,7 @@ fuente cambia. "Áreas" son las áreas del banco de preguntas (enunciado, secci�
 | `sentencia_su_282_2023` | Sentencia SU-282 de 2023 | Relatoria de la Corte Constitucional | [enlace](https://www.corteconstitucional.gov.co/relatoria/2023/SU282-23.htm) | 2026-10-02 | — | 108 | Constitucional |
 | `sentencia_su_286_2021` | Sentencia SU-286 de 2021 | Relatoria de la Corte Constitucional | [enlace](https://www.corteconstitucional.gov.co/relatoria/2021/SU286-21.htm) | 2026-10-02 | — | 70 | Constitucional |
 | `sentencia_su_287_2024` | Sentencia SU-287 de 2024 | Relatoria de la Corte Constitucional | [enlace](https://www.corteconstitucional.gov.co/relatoria/2024/SU287-24.htm) | 2026-10-02 | — | 118 | Constitucional |
+| `sentencia_su_288_2015` | Sentencia SU-288 de 2015 | Relatoria de la Corte Constitucional | [enlace](https://www.corteconstitucional.gov.co/relatoria/2015/SU288-15.htm) | 2026-10-03 | — | 80 | Administrativo, Constitucional |
 | `sentencia_su_288_2022` | Sentencia SU-288 de 2022 | Relatoria de la Corte Constitucional | [enlace](https://www.corteconstitucional.gov.co/relatoria/2022/SU288-22.htm) | 2026-10-02 | — | 788 | Constitucional |
 | `sentencia_su_292_2025` | Sentencia SU-292 de 2025 | Relatoria de la Corte Constitucional | [enlace](https://www.corteconstitucional.gov.co/relatoria/2025/SU292-25.htm) | 2026-10-02 | — | 191 | Constitucional |
 | `sentencia_su_295_2023` | Sentencia SU-295 de 2023 | Relatoria de la Corte Constitucional | [enlace](https://www.corteconstitucional.gov.co/relatoria/2023/SU295-23.htm) | 2026-10-02 | — | 76 | Constitucional |
@@ -539,6 +617,7 @@ fuente cambia. "Áreas" son las áreas del banco de preguntas (enunciado, secci�
 | `sentencia_su_32_2022` | Sentencia SU-032 de 2022 | Relatoria de la Corte Constitucional | [enlace](https://www.corteconstitucional.gov.co/relatoria/2022/SU032-22.htm) | 2026-10-02 | — | 216 | Constitucional |
 | `sentencia_su_333_2020` | Sentencia SU-333 de 2020 | Relatoria de la Corte Constitucional | [enlace](https://www.corteconstitucional.gov.co/relatoria/2020/SU333-20.htm) | 2026-10-02 | — | 171 | Constitucional |
 | `sentencia_su_335_2023` | Sentencia SU-335 de 2023 | Relatoria de la Corte Constitucional | [enlace](https://www.corteconstitucional.gov.co/relatoria/2023/SU335-23.htm) | 2026-10-02 | — | 194 | Constitucional |
+| `sentencia_su_336_2017` | Sentencia SU-336 de 2017 | Relatoria de la Corte Constitucional | [enlace](https://www.corteconstitucional.gov.co/relatoria/2017/SU336-17.htm) | 2026-10-03 | — | 244 | Administrativo |
 | `sentencia_su_339_2024` | Sentencia SU-339 de 2024 | Relatoria de la Corte Constitucional | [enlace](https://www.corteconstitucional.gov.co/relatoria/2024/SU339-24.htm) | 2026-10-02 | — | 158 | Constitucional |
 | `sentencia_su_339_2025` | Sentencia SU-339 de 2025 | Relatoria de la Corte Constitucional | [enlace](https://www.corteconstitucional.gov.co/relatoria/2025/SU339-25.htm) | 2026-10-02 | — | 140 | Constitucional |
 | `sentencia_su_342_2024` | Sentencia SU-342 de 2024 | Relatoria de la Corte Constitucional | [enlace](https://www.corteconstitucional.gov.co/relatoria/2024/SU342-24.htm) | 2026-10-02 | — | 79 | Constitucional |
@@ -565,11 +644,13 @@ fuente cambia. "Áreas" son las áreas del banco de preguntas (enunciado, secci�
 | `sentencia_su_388_2021` | Sentencia SU-388 de 2021 | Relatoria de la Corte Constitucional | [enlace](https://www.corteconstitucional.gov.co/relatoria/2021/SU388-21.htm) | 2026-10-02 | — | 209 | Constitucional |
 | `sentencia_su_388_2022` | Sentencia SU-388 de 2022 | Relatoria de la Corte Constitucional | [enlace](https://www.corteconstitucional.gov.co/relatoria/2022/SU388-22.htm) | 2026-10-02 | — | 61 | Constitucional |
 | `sentencia_su_388_2023` | Sentencia SU-388 de 2023 | Relatoria de la Corte Constitucional | [enlace](https://www.corteconstitucional.gov.co/relatoria/2023/SU388-23.htm) | 2026-10-02 | — | 115 | Constitucional |
+| `sentencia_su_389_2005` | Sentencia SU-389 de 2005 | Relatoria de la Corte Constitucional | [enlace](https://www.corteconstitucional.gov.co/relatoria/2005/SU389-05.htm) | 2026-10-03 | — | 76 | Constitucional |
 | `sentencia_su_38_2023` | Sentencia SU-038 de 2023 | Relatoria de la Corte Constitucional | [enlace](https://www.corteconstitucional.gov.co/relatoria/2023/SU038-23.htm) | 2026-10-02 | — | 84 | Constitucional |
 | `sentencia_su_397_2021` | Sentencia SU-397 de 2021 | Relatoria de la Corte Constitucional | [enlace](https://www.corteconstitucional.gov.co/relatoria/2021/SU397-21.htm) | 2026-10-02 | — | 267 | Constitucional |
 | `sentencia_su_397_2022` | Sentencia SU-397 de 2022 | Relatoria de la Corte Constitucional | [enlace](https://www.corteconstitucional.gov.co/relatoria/2022/SU397-22.htm) | 2026-10-02 | — | 44 | Constitucional |
 | `sentencia_su_39_1997` | Sentencia SU-039 de 1997 | Relatoria de la Corte Constitucional | [enlace](https://www.corteconstitucional.gov.co/relatoria/1997/SU039-97.htm) | 2026-10-02 | — | 71 | Constitucional |
 | `sentencia_su_405_2021` | Sentencia SU-405 de 2021 | Relatoria de la Corte Constitucional | [enlace](https://www.corteconstitucional.gov.co/relatoria/2021/SU405-21.htm) | 2026-10-02 | — | 173 | Constitucional |
+| `sentencia_su_40_2018` | Sentencia SU-40 de 2018 | Relatoria de la Corte Constitucional | [enlace](https://www.corteconstitucional.gov.co/relatoria/2018/SU040-18.htm) | 2026-10-03 | — | 86 | Laboral |
 | `sentencia_su_40_2026` | Sentencia SU-040 de 2026 | Relatoria de la Corte Constitucional | [enlace](https://www.corteconstitucional.gov.co/relatoria/2026/SU040-26.htm) | 2026-10-02 | — | 226 | Constitucional |
 | `sentencia_su_411_2020` | Sentencia SU-411 de 2020 | Relatoria de la Corte Constitucional | [enlace](https://www.corteconstitucional.gov.co/relatoria/2020/SU411-20.htm) | 2026-10-02 | — | 96 | Constitucional |
 | `sentencia_su_417_2024` | Sentencia SU-417 de 2024 | Relatoria de la Corte Constitucional | [enlace](https://www.corteconstitucional.gov.co/relatoria/2024/SU417-24.htm) | 2026-10-02 | — | 120 | Constitucional |
@@ -621,8 +702,10 @@ fuente cambia. "Áreas" son las áreas del banco de preguntas (enunciado, secci�
 | `sentencia_su_543_2023` | Sentencia SU-543 de 2023 | Relatoria de la Corte Constitucional | [enlace](https://www.corteconstitucional.gov.co/relatoria/2023/SU543-23.htm) | 2026-10-02 | — | 191 | Constitucional |
 | `sentencia_su_545_2023` | Sentencia SU-545 de 2023 | Relatoria de la Corte Constitucional | [enlace](https://www.corteconstitucional.gov.co/relatoria/2023/SU545-23.htm) | 2026-10-02 | — | 604 | Constitucional |
 | `sentencia_su_546_2023` | Sentencia SU-546 de 2023 | Relatoria de la Corte Constitucional | [enlace](https://www.corteconstitucional.gov.co/relatoria/2023/SU546-23.htm) | 2026-10-02 | — | 605 | Constitucional |
+| `sentencia_su_54_2015` | Sentencia SU-54 de 2015 | Relatoria de la Corte Constitucional | [enlace](https://www.corteconstitucional.gov.co/relatoria/2015/SU054-15.htm) | 2026-10-03 | — | 159 | Civil |
 | `sentencia_su_54_2025` | Sentencia SU-054 de 2025 | Relatoria de la Corte Constitucional | [enlace](https://www.corteconstitucional.gov.co/relatoria/2025/SU054-25.htm) | 2026-10-02 | — | 163 | Constitucional |
 | `sentencia_su_56_2025` | Sentencia SU-056 de 2025 | Relatoria de la Corte Constitucional | [enlace](https://www.corteconstitucional.gov.co/relatoria/2025/SU056-25.htm) | 2026-10-02 | — | 94 | Constitucional |
+| `sentencia_su_575_2019` | Sentencia SU-575 de 2019 | Relatoria de la Corte Constitucional | [enlace](https://www.corteconstitucional.gov.co/relatoria/2019/SU575-19.htm) | 2026-10-03 | — | 116 | Administrativo |
 | `sentencia_su_59_2024` | Sentencia SU-059 de 2024 | Relatoria de la Corte Constitucional | [enlace](https://www.corteconstitucional.gov.co/relatoria/2024/SU059-24.htm) | 2026-10-02 | — | 222 | Constitucional |
 | `sentencia_su_60_2021` | Sentencia SU-060 de 2021 | Relatoria de la Corte Constitucional | [enlace](https://www.corteconstitucional.gov.co/relatoria/2021/SU060-21.htm) | 2026-10-02 | — | 110 | Constitucional |
 | `sentencia_su_60_2024` | Sentencia SU-060 de 2024 | Relatoria de la Corte Constitucional | [enlace](https://www.corteconstitucional.gov.co/relatoria/2024/SU060-24.htm) | 2026-10-02 | — | 125 | Constitucional |
@@ -822,6 +905,8 @@ fuente cambia. "Áreas" son las áreas del banco de preguntas (enunciado, secci�
 | `sentencia_t_200_2026` | Sentencia T-200 de 2026 | Relatoria de la Corte Constitucional | [enlace](https://www.corteconstitucional.gov.co/relatoria/2026/T-200-26.htm) | 2026-10-02 | — | 97 | Constitucional |
 | `sentencia_t_201_2025` | Sentencia T-201 de 2025 | Relatoria de la Corte Constitucional | [enlace](https://www.corteconstitucional.gov.co/relatoria/2025/T-201-25.htm) | 2026-10-02 | — | 70 | Constitucional |
 | `sentencia_t_201_2026` | Sentencia T-201 de 2026 | Relatoria de la Corte Constitucional | [enlace](https://www.corteconstitucional.gov.co/relatoria/2026/T-201-26.htm) | 2026-10-02 | — | 74 | Constitucional |
+| `sentencia_t_202_2018` | Sentencia T-202 de 2018 | Relatoria de la Corte Constitucional | [enlace](https://www.corteconstitucional.gov.co/relatoria/2018/T-202-18.htm) | 2026-10-03 | — | 112 | Familia |
+| `sentencia_t_202_2024` | Sentencia T-202 de 2024 | Relatoria de la Corte Constitucional | [enlace](https://www.corteconstitucional.gov.co/relatoria/2024/T-202-24.htm) | 2026-10-03 | — | 181 | Laboral, Penal |
 | `sentencia_t_202_2025` | Sentencia T-202 de 2025 | Relatoria de la Corte Constitucional | [enlace](https://www.corteconstitucional.gov.co/relatoria/2025/T-202-25.htm) | 2026-10-02 | — | 140 | Constitucional |
 | `sentencia_t_202_2026` | Sentencia T-202 de 2026 | Relatoria de la Corte Constitucional | [enlace](https://www.corteconstitucional.gov.co/relatoria/2026/T-202-26.htm) | 2026-10-02 | — | 189 | Constitucional |
 | `sentencia_t_203_2025` | Sentencia T-203 de 2025 | Relatoria de la Corte Constitucional | [enlace](https://www.corteconstitucional.gov.co/relatoria/2025/T-203-25.htm) | 2026-10-02 | — | 64 | Constitucional |
@@ -891,6 +976,7 @@ fuente cambia. "Áreas" son las áreas del banco de preguntas (enunciado, secci�
 | `sentencia_t_24_2025` | Sentencia T-024 de 2025 | Relatoria de la Corte Constitucional | [enlace](https://www.corteconstitucional.gov.co/relatoria/2025/T-024-25.htm) | 2026-10-02 | — | 79 | Constitucional |
 | `sentencia_t_24_2026` | Sentencia T-024 de 2026 | Relatoria de la Corte Constitucional | [enlace](https://www.corteconstitucional.gov.co/relatoria/2026/T-024-26.htm) | 2026-10-02 | — | 73 | Constitucional |
 | `sentencia_t_251_2025` | Sentencia T-251 de 2025 | Relatoria de la Corte Constitucional | [enlace](https://www.corteconstitucional.gov.co/relatoria/2025/T-251-25.htm) | 2026-10-02 | — | 318 | Constitucional |
+| `sentencia_t_254_2006` | Sentencia T-254 de 2006 | Relatoria de la Corte Constitucional | [enlace](https://www.corteconstitucional.gov.co/relatoria/2006/T-254-06.htm) | 2026-10-03 | — | 69 | Civil |
 | `sentencia_t_256_2025` | Sentencia T-256 de 2025 | Relatoria de la Corte Constitucional | [enlace](https://www.corteconstitucional.gov.co/relatoria/2025/t-256-25.htm) | 2026-10-01 | — | 256 | Constitucional |
 | `sentencia_t_257_2025` | Sentencia T-257 de 2025 | Relatoria de la Corte Constitucional | [enlace](https://www.corteconstitucional.gov.co/relatoria/2025/T-257-25.htm) | 2026-10-02 | — | 156 | Constitucional |
 | `sentencia_t_258_2025` | Sentencia T-258 de 2025 | Relatoria de la Corte Constitucional | [enlace](https://www.corteconstitucional.gov.co/relatoria/2025/T-258-25.htm) | 2026-10-02 | — | 85 | Constitucional |
@@ -908,6 +994,7 @@ fuente cambia. "Áreas" son las áreas del banco de preguntas (enunciado, secci�
 | `sentencia_t_271_2025` | Sentencia T-271 de 2025 | Relatoria de la Corte Constitucional | [enlace](https://www.corteconstitucional.gov.co/relatoria/2025/T-271-25.htm) | 2026-10-02 | — | 159 | Constitucional |
 | `sentencia_t_272_2025` | Sentencia T-272 de 2025 | Relatoria de la Corte Constitucional | [enlace](https://www.corteconstitucional.gov.co/relatoria/2025/T-272-25.htm) | 2026-10-02 | — | 56 | Constitucional |
 | `sentencia_t_275_2026` | Sentencia T-275 de 2026 | Relatoria de la Corte Constitucional | [enlace](https://www.corteconstitucional.gov.co/relatoria/2026/T-275-26.htm) | 2026-10-02 | — | 126 | Constitucional |
+| `sentencia_t_277_2018` | Sentencia T-277 de 2018 | Relatoria de la Corte Constitucional | [enlace](https://www.corteconstitucional.gov.co/relatoria/2018/T-277-18.htm) | 2026-10-03 | — | 99 | Constitucional |
 | `sentencia_t_277_2026` | Sentencia T-277 de 2026 | Relatoria de la Corte Constitucional | [enlace](https://www.corteconstitucional.gov.co/relatoria/2026/T-277-26.htm) | 2026-10-02 | — | 41 | Constitucional |
 | `sentencia_t_278_2026` | Sentencia T-278 de 2026 | Relatoria de la Corte Constitucional | [enlace](https://www.corteconstitucional.gov.co/relatoria/2026/T-278-26.htm) | 2026-10-02 | — | 147 | Constitucional |
 | `sentencia_t_279_2025` | Sentencia T-279 de 2025 | Relatoria de la Corte Constitucional | [enlace](https://www.corteconstitucional.gov.co/relatoria/2025/T-279-25.htm) | 2026-10-02 | — | 50 | Constitucional |
@@ -925,6 +1012,7 @@ fuente cambia. "Áreas" son las áreas del banco de preguntas (enunciado, secci�
 | `sentencia_t_285_2025` | Sentencia T-285 de 2025 | Relatoria de la Corte Constitucional | [enlace](https://www.corteconstitucional.gov.co/relatoria/2025/T-285-25.htm) | 2026-10-02 | — | 69 | Constitucional |
 | `sentencia_t_285_2026` | Sentencia T-285 de 2026 | Relatoria de la Corte Constitucional | [enlace](https://www.corteconstitucional.gov.co/relatoria/2026/T-285-26.htm) | 2026-10-02 | — | 121 | Constitucional |
 | `sentencia_t_286_2025` | Sentencia T-286 de 2025 | Relatoria de la Corte Constitucional | [enlace](https://www.corteconstitucional.gov.co/relatoria/2025/T-286-25.htm) | 2026-10-02 | — | 96 | Constitucional |
+| `sentencia_t_287_2022` | Sentencia T-287 de 2022 | Relatoria de la Corte Constitucional | [enlace](https://www.corteconstitucional.gov.co/relatoria/2022/T-287-22.htm) | 2026-10-03 | — | 70 | Constitucional |
 | `sentencia_t_287_2025` | Sentencia T-287 de 2025 | Relatoria de la Corte Constitucional | [enlace](https://www.corteconstitucional.gov.co/relatoria/2025/T-287-25.htm) | 2026-10-02 | — | 105 | Constitucional |
 | `sentencia_t_287_2026` | Sentencia T-287 de 2026 | Relatoria de la Corte Constitucional | [enlace](https://www.corteconstitucional.gov.co/relatoria/2026/T-287-26.htm) | 2026-10-02 | — | 26 | Constitucional |
 | `sentencia_t_288_2025` | Sentencia T-288 de 2025 | Relatoria de la Corte Constitucional | [enlace](https://www.corteconstitucional.gov.co/relatoria/2025/T-288-25.htm) | 2026-10-02 | — | 134 | Constitucional |
@@ -1050,6 +1138,7 @@ fuente cambia. "Áreas" son las áreas del banco de preguntas (enunciado, secci�
 | `sentencia_t_421_2025` | Sentencia T-421 de 2025 | Relatoria de la Corte Constitucional | [enlace](https://www.corteconstitucional.gov.co/relatoria/2025/T-421-25.htm) | 2026-10-02 | — | 76 | Constitucional |
 | `sentencia_t_422_2025` | Sentencia T-422 de 2025 | Relatoria de la Corte Constitucional | [enlace](https://www.corteconstitucional.gov.co/relatoria/2025/T-422-25.htm) | 2026-10-02 | — | 34 | Constitucional |
 | `sentencia_t_423_2025` | Sentencia T-423 de 2025 | Relatoria de la Corte Constitucional | [enlace](https://www.corteconstitucional.gov.co/relatoria/2025/T-423-25.htm) | 2026-10-02 | — | 69 | Constitucional |
+| `sentencia_t_426_2003` | Sentencia T-426 de 2003 | Relatoria de la Corte Constitucional | [enlace](https://www.corteconstitucional.gov.co/relatoria/2003/T-426-03.htm) | 2026-10-03 | — | 28 | Constitucional |
 | `sentencia_t_42_2025` | Sentencia T-042 de 2025 | Relatoria de la Corte Constitucional | [enlace](https://www.corteconstitucional.gov.co/relatoria/2025/T-042-25.htm) | 2026-10-02 | — | 129 | Constitucional |
 | `sentencia_t_42_2026` | Sentencia T-042 de 2026 | Relatoria de la Corte Constitucional | [enlace](https://www.corteconstitucional.gov.co/relatoria/2026/T-042-26.htm) | 2026-10-02 | — | 105 | Constitucional |
 | `sentencia_t_430_2025` | Sentencia T-430 de 2025 | Relatoria de la Corte Constitucional | [enlace](https://www.corteconstitucional.gov.co/relatoria/2025/T-430-25.htm) | 2026-10-02 | — | 43 | Constitucional |
@@ -1073,6 +1162,7 @@ fuente cambia. "Áreas" son las áreas del banco de preguntas (enunciado, secci�
 | `sentencia_t_452_2025` | Sentencia T-452 de 2025 | Relatoria de la Corte Constitucional | [enlace](https://www.corteconstitucional.gov.co/relatoria/2025/T-452-25.htm) | 2026-10-02 | — | 120 | Constitucional |
 | `sentencia_t_453_2025` | Sentencia T-453 de 2025 | Relatoria de la Corte Constitucional | [enlace](https://www.corteconstitucional.gov.co/relatoria/2025/T-453-25.htm) | 2026-10-02 | — | 83 | Constitucional |
 | `sentencia_t_455_2025` | Sentencia T-455 de 2025 | Relatoria de la Corte Constitucional | [enlace](https://www.corteconstitucional.gov.co/relatoria/2025/T-455-25.htm) | 2026-10-02 | — | 55 | Constitucional |
+| `sentencia_t_456_2024` | Sentencia T-456 de 2024 | Relatoria de la Corte Constitucional | [enlace](https://www.corteconstitucional.gov.co/relatoria/2024/T-456-24.htm) | 2026-10-03 | — | 79 | Laboral |
 | `sentencia_t_456_2025` | Sentencia T-456 de 2025 | Relatoria de la Corte Constitucional | [enlace](https://www.corteconstitucional.gov.co/relatoria/2025/T-456-25.htm) | 2026-10-02 | — | 63 | Constitucional |
 | `sentencia_t_457_2025` | Sentencia T-457 de 2025 | Relatoria de la Corte Constitucional | [enlace](https://www.corteconstitucional.gov.co/relatoria/2025/T-457-25.htm) | 2026-10-02 | — | 72 | Constitucional |
 | `sentencia_t_458_2025` | Sentencia T-458 de 2025 | Relatoria de la Corte Constitucional | [enlace](https://www.corteconstitucional.gov.co/relatoria/2025/T-458-25.htm) | 2026-10-02 | — | 74 | Constitucional |
@@ -1110,6 +1200,7 @@ fuente cambia. "Áreas" son las áreas del banco de preguntas (enunciado, secci�
 | `sentencia_t_498_2025` | Sentencia T-498 de 2025 | Relatoria de la Corte Constitucional | [enlace](https://www.corteconstitucional.gov.co/relatoria/2025/T-498-25.htm) | 2026-10-02 | — | 61 | Constitucional |
 | `sentencia_t_499_2025` | Sentencia T-499 de 2025 | Relatoria de la Corte Constitucional | [enlace](https://www.corteconstitucional.gov.co/relatoria/2025/T-499-25.htm) | 2026-10-02 | — | 128 | Constitucional |
 | `sentencia_t_49_2025` | Sentencia T-049 de 2025 | Relatoria de la Corte Constitucional | [enlace](https://www.corteconstitucional.gov.co/relatoria/2025/T-049-25.htm) | 2026-10-02 | — | 120 | Constitucional |
+| `sentencia_t_4_2016` | Sentencia T-4 de 2016 | Relatoria de la Corte Constitucional | [enlace](https://www.corteconstitucional.gov.co/relatoria/2016/T-004-16.htm) | 2026-10-03 | — | 25 | Familia |
 | `sentencia_t_4_2025` | Sentencia T-004 de 2025 | Relatoria de la Corte Constitucional | [enlace](https://www.corteconstitucional.gov.co/relatoria/2025/T-004-25.htm) | 2026-10-02 | — | 94 | Constitucional |
 | `sentencia_t_500_2025` | Sentencia T-500 de 2025 | Relatoria de la Corte Constitucional | [enlace](https://www.corteconstitucional.gov.co/relatoria/2025/T-500-25.htm) | 2026-10-02 | — | 141 | Constitucional |
 | `sentencia_t_501_2025` | Sentencia T-501 de 2025 | Relatoria de la Corte Constitucional | [enlace](https://www.corteconstitucional.gov.co/relatoria/2025/T-501-25.htm) | 2026-10-02 | — | 105 | Constitucional |
@@ -1152,6 +1243,7 @@ fuente cambia. "Áreas" son las áreas del banco de preguntas (enunciado, secci�
 | `sentencia_t_59_2026` | Sentencia T-059 de 2026 | Relatoria de la Corte Constitucional | [enlace](https://www.corteconstitucional.gov.co/relatoria/2026/T-059-26.htm) | 2026-10-02 | — | 148 | Constitucional |
 | `sentencia_t_5_2025` | Sentencia T-005 de 2025 | Relatoria de la Corte Constitucional | [enlace](https://www.corteconstitucional.gov.co/relatoria/2025/T-005-25.htm) | 2026-10-02 | — | 39 | Constitucional |
 | `sentencia_t_60_2025` | Sentencia T-060 de 2025 | Relatoria de la Corte Constitucional | [enlace](https://www.corteconstitucional.gov.co/relatoria/2025/T-060-25.htm) | 2026-10-02 | — | 208 | Constitucional |
+| `sentencia_t_617_2010` | Sentencia T-617 de 2010 | Relatoria de la Corte Constitucional | [enlace](https://www.corteconstitucional.gov.co/relatoria/2010/T-617-10.htm) | 2026-10-03 | — | 170 | Constitucional |
 | `sentencia_t_61_2025` | Sentencia T-061 de 2025 | Relatoria de la Corte Constitucional | [enlace](https://www.corteconstitucional.gov.co/relatoria/2025/T-061-25.htm) | 2026-10-02 | — | 52 | Constitucional |
 | `sentencia_t_61_2026` | Sentencia T-061 de 2026 | Relatoria de la Corte Constitucional | [enlace](https://www.corteconstitucional.gov.co/relatoria/2026/T-061-26.htm) | 2026-10-02 | — | 112 | Constitucional |
 | `sentencia_t_62_2025` | Sentencia T-062 de 2025 | Relatoria de la Corte Constitucional | [enlace](https://www.corteconstitucional.gov.co/relatoria/2025/T-062-25.htm) | 2026-10-02 | — | 68 | Constitucional |
@@ -1172,6 +1264,7 @@ fuente cambia. "Áreas" son las áreas del banco de preguntas (enunciado, secci�
 | `sentencia_t_77_2026` | Sentencia T-077 de 2026 | Relatoria de la Corte Constitucional | [enlace](https://www.corteconstitucional.gov.co/relatoria/2026/T-077-26.htm) | 2026-10-02 | — | 122 | Constitucional |
 | `sentencia_t_78_2025` | Sentencia T-078 de 2025 | Relatoria de la Corte Constitucional | [enlace](https://www.corteconstitucional.gov.co/relatoria/2025/T-078-25.htm) | 2026-10-02 | — | 205 | Constitucional |
 | `sentencia_t_78_2026` | Sentencia T-078 de 2026 | Relatoria de la Corte Constitucional | [enlace](https://www.corteconstitucional.gov.co/relatoria/2026/T-078-26.htm) | 2026-10-02 | — | 130 | Constitucional |
+| `sentencia_t_79_2024` | Sentencia T-79 de 2024 | Relatoria de la Corte Constitucional | [enlace](https://www.corteconstitucional.gov.co/relatoria/2024/T-079-24.htm) | 2026-10-03 | — | 31 | Constitucional |
 | `sentencia_t_7_2025` | Sentencia T-007 de 2025 | Relatoria de la Corte Constitucional | [enlace](https://www.corteconstitucional.gov.co/relatoria/2025/T-007-25.htm) | 2026-10-02 | — | 96 | Constitucional |
 | `sentencia_t_81_2025` | Sentencia T-081 de 2025 | Relatoria de la Corte Constitucional | [enlace](https://www.corteconstitucional.gov.co/relatoria/2025/T-081-25.htm) | 2026-10-02 | — | 121 | Constitucional |
 | `sentencia_t_82_2025` | Sentencia T-082 de 2025 | Relatoria de la Corte Constitucional | [enlace](https://www.corteconstitucional.gov.co/relatoria/2025/T-082-25.htm) | 2026-10-02 | — | 186 | Constitucional |
@@ -1205,56 +1298,71 @@ fuente cambia. "Áreas" son las áreas del banco de preguntas (enunciado, secci�
 | `sentencia_t_9_2025` | Sentencia T-009 de 2025 | Relatoria de la Corte Constitucional | [enlace](https://www.corteconstitucional.gov.co/relatoria/2025/T-009-25.htm) | 2026-10-02 | — | 81 | Constitucional |
 | `sentencia_t_9_2026` | Sentencia T-009 de 2026 | Relatoria de la Corte Constitucional | [enlace](https://www.corteconstitucional.gov.co/relatoria/2026/T-009-26.htm) | 2026-10-02 | — | 102 | Constitucional |
 
-**Objetivos de la semilla sin documento propio (3, 3 erratas).** Las erratas son referencias mal escritas del banco que apuntan a un documento ya incorporado; el resto quedó sin descargar. El detalle está en `data/registros/fuentes_descargadas.json`.
+**Objetivos de la semilla sin documento propio (21, 3 erratas).** Las erratas son referencias mal escritas del banco que apuntan a un documento ya incorporado; el resto quedó sin descargar. El detalle está en `data/registros/fuentes_descargadas.json`.
 
 | doc_id | Estado | Motivo |
 |---|---|---|
 | `ley_11500_2007` | errata | errata de la semilla: es la Ley 1150 de 2007, ya en el corpus como ley_1150_2007 |
 | `ley_1150_2005` | errata | errata de la semilla: la Ley 1150 es de 2007, ya en el corpus como ley_1150_2007 |
 | `ley_116_2006` | errata | errata de la semilla: probablemente la Ley 1116 de 2006 (insolvencia), ya en el corpus como ley_1116_2006 |
+| `decreto_1066_2015` | error | ampliacion v5: descartado por tamano (1167 articulos > 400) |
+| `decreto_1067_2015` | error | ampliacion v5: descartado por tamano (457 articulos > 400) |
+| `decreto_1075_2015` | error | ampliacion v5: descartado por tamano (2084 articulos > 400) |
+| `decreto_1076_2015` | error | ampliacion v5: descartado por tamano (2146 articulos > 400) |
+| `decreto_1077_2015` | error | ampliacion v5: descartado por tamano (1977 articulos > 400) |
+| `decreto_1084_2015` | error | ampliacion v5: descartado por tamano (592 articulos > 400) |
+| `decreto_1833_2016` | error | ampliacion v5: descartado por tamano (1792 articulos > 400) |
+| `ley_1450_2011` | error | ampliacion v5: retirado tras r40_corpus_v5 (Plan Nacional de Desarrollo 2010-2014: ley omnibus que satura el top-10; 276 articulos) |
+| `ley_1753_2015` | error | ampliacion v5: retirado tras r40_corpus_v5 (Plan Nacional de Desarrollo 2014-2018: ley omnibus que satura el top-10; 268 articulos) |
+| `ley_1955_2019` | error | ampliacion v5: retirado tras r40_corpus_v5 (Plan Nacional de Desarrollo 2018-2022: ley omnibus que satura el top-10; 406 articulos) |
+| `ley_2294_2023` | error | ampliacion v5: retirado tras r40_corpus_v5 (Plan Nacional de Desarrollo 2022-2026: ley omnibus que satura el top-10; 500 articulos) |
+| `decreto_100_1980` | no_encontrado | http://www.secretariasenado.gov.co/senado/basedoc/decreto_0100_1980.html no existe en Secretaria del Senado |
+| `decreto_1421_2017` | no_encontrado | http://www.secretariasenado.gov.co/senado/basedoc/decreto_1421_2017.html no existe en Secretaria del Senado |
+| `decreto_2700_1991` | no_encontrado | http://www.secretariasenado.gov.co/senado/basedoc/decreto_2700_1991.html no existe en Secretaria del Senado |
+| `decreto_3030_2022` | no_encontrado | http://www.secretariasenado.gov.co/senado/basedoc/decreto_3030_2022.html no existe en Secretaria del Senado |
+| `ley_1264_2012` | no_encontrado | http://www.secretariasenado.gov.co/senado/basedoc/ley_1264_2012.html no existe en Secretaria del Senado |
+| `ley_2568_2021` | no_encontrado | http://www.secretariasenado.gov.co/senado/basedoc/ley_2568_2021.html no existe en Secretaria del Senado |
+| `sentencia_su_279_2019` | no_encontrado | https://www.corteconstitucional.gov.co/relatoria/2019/SU279-19.htm no existe en Relatoria de la Corte Constitucional |
 
 <!-- inventario:fin -->
 
 **Totales**
 
-*Agregados de la tabla anterior. Recalcular en cada actualización del corpus.*
-
 | Métrica | Valor |
 |---|---:|
-| Documentos incorporados | |
-| Artículos indexados | |
-| Fragmentos en el índice | |
-| Tamaño del corpus procesado | |
-| Tamaño del índice vectorial | |
+| Documentos incorporados | 1.285 (985 sentencias, 300 normas y documentos no normativos) |
+| Artículos indexados | 40.494 (291 documentos con articulado) |
+| Fragmentos en el índice | 185.234 |
+| Tamaño del corpus procesado | 262 MB (1.285 archivos `.txt`) |
+| Tamaño del índice vectorial | 1,5 GB sin comprimir: `index.faiss` 759 MB, `chunks.jsonl` 747 MB, `bm25/` 168 MB |
 
 ## 2. Criterio de selección
 
-*Justificar por qué se priorizaron estas fuentes/áreas frente a la composición
-del banco de preguntas (enunciado, sección 4.2). Debe explicar el criterio, no
-solo describir lo incorporado.*
+La selección se dirigió por la **demanda del banco** (enunciado, sección 4.2) y no por comodidad. Se partió de la semilla `data/registros/seed_targets.json` (186 objetivos ordenados por ítems del banco: Constitución, CGP, CST, Estatuto Tributario, Decisión Andina 486…), se agregaron las fuentes que la semilla no cubría (códigos Civil, de Comercio y Penal, CPACA, Ley 472 de 1998) y después se amplió con ampliaciones **automáticas** (sin búsqueda manual): normas de las áreas con menos cobertura, Decisiones Andinas, sentencias C- de control, tutelas 2025–2026 y las normas que el propio corpus cita y no tenía. El sábado, con la autorización de la organización, la ampliación se dirigió además por los cuerpos normativos que nombran las preguntas (solo `pregunta` y `opciones`, nunca respuestas ni `legal_basis`).
 
-| Área | Ítems en el banco | Documentos incorporados | Cobertura estimada |
-|---|---:|---:|---|
-| Derecho constitucional | 134 | | |
-| Derecho administrativo | 124 | | |
-| Derecho penal | 123 | | |
-| Derecho procesal | 111 | | |
-| Derecho comercial y sociedades | 104 | | |
-| Derecho civil | 102 | | |
-| Derecho de familia | 93 | | |
-| Derecho tributario | 92 | | |
-| Derecho laboral | 87 | | |
-| Derecho de los mercados | 72 | | |
+Un documento puede tener varias áreas. Las cifras son las del manifest v5.
+
+| Área | Ítems en el banco | Documentos incorporados | Fragmentos | Cobertura estimada |
+|---|---:|---:|---:|---|
+| Derecho constitucional | 134 | 935 | 128.160 | Alta: Constitución, sentencias C-, T- y SU, tutelas 2025–2026. Es el área sobrerrepresentada, por eso la recuperación aplica prioridad por área. |
+| Derecho administrativo | 124 | 92 | 14.228 | Buena en normas (CPACA, Leyes 80 y 1150, decretos únicos reglamentarios); sin doctrina ni circulares. |
+| Derecho penal | 123 | 65 | 20.490 | Buena: Código Penal, CPP, leyes especiales y sentencias de control. |
+| Derecho procesal | 111 | 48 | 8.499 | Media: CGP, CPACA, CPT, arbitraje y conciliación. |
+| Derecho comercial y sociedades | 104 | 40 | 9.051 | Media: Código de Comercio y leyes societarias y de insolvencia; sin doctrina. |
+| Derecho civil | 102 | 50 | 10.771 | Media: Código Civil, Ley 153, Estatuto del Consumidor y sentencias de la CSJ. |
+| Derecho de familia | 93 | 62 | 10.138 | Buena: Código de la Infancia, uniones maritales y sentencias de control. |
+| Derecho tributario | 92 | 50 | 14.631 | Buena en el Estatuto Tributario y el DUR 1625; sin doctrina de la DIAN ni modelo de convenio de la OCDE. |
+| Derecho laboral | 87 | 81 | 9.899 | Buena: CST, Ley 50/1990, reformas de 2025, DUR 1072 y sentencias de la CSJ. |
+| Derecho de los mercados | 72 | 39 | 7.160 | Media: Decisión 486, Estatuto del Consumidor, Ley 1581 y competencia; sin circulares de la SIC. |
 
 **Documentos descartados.**
 
-*Qué se consideró incorporar y no se incluyó, y por qué (volumen, redundancia,
-prioridad de tiempo frente al banco, etc.).*
+- **Cuatro Planes Nacionales de Desarrollo** (Leyes 2294/2023, 1955/2019, 1753/2015 y 1450/2011): leyes ómnibus que tocan cualquier tema y desplazaban a la norma correcta del top-10 (`docs/INDEXACION.md`, sección 18).
+- **Siete decretos únicos reglamentarios** de más de 400 artículos, por tamaño y ruido de recuperación (`docs/ingesta/fuentes_pendientes.md`, "Ampliación v5").
+- **Doctrina con derechos de autor**: no se incluye (licencia CC-BY-4.0 del corpus). Solo entran los documentos no normativos decididos el 2026-10-01.
+- **Circulares y resoluciones administrativas** (SIC, Superintendencia Financiera) y sentencias de la Corte Suprema anteriores a 2016: no hay URLs predecibles ni descarga automática; quedan como limitación.
 
 ## 3. Método de ingesta y limpieza
-
-*Describir el pipeline real usado, con las herramientas específicas de cada
-paso (ver el ejemplo para el nivel de detalle esperado por el jurado).*
 
 1. **Descarga.** `src/ingesta/descargar_fuentes.py` (solo biblioteca estándar de
    Python) recorre los 186 objetivos de `data/registros/seed_targets.json` en orden de ítems
@@ -1279,8 +1387,8 @@ paso (ver el ejemplo para el nivel de detalle esperado por el jurado).*
    fecha de consulta, el estado y el sha256 de cada descarga quedan en
    `data/registros/fuentes_descargadas.json`, a partir del cual se genera el inventario de la
    sección 1.
-2. **Extracción de texto.**
-3. **Normalización.**
+2. **Extracción de texto.** `src/ingesta/parsear_html.py` (BeautifulSoup + lxml, un extractor por fuente: compilación de Avance Jurídico, relatoría de la Corte Constitucional), `parsear_pdf.py` (PyMuPDF; Tesseract 5 `spa` para los escaneados) y `parsear_rtf.py` (pandoc, RTF y DOCX). Si un documento tiene fuente nativa (RTF/DOCX) y PDF, se usa la nativa. El formato se detecta por contenido, no por extensión.
+3. **Normalización.** `src/ingesta/_texto.py`, solo estructural: NFKC (ligaduras), encabezados y pies repetidos, guiones blandos, saltos de línea dentro de párrafo y tablas de pandoc. El contenido normativo no se reescribe; las notas de vigencia en línea (`<Artículo modificado por …>`, texto tachado) se conservan porque son hechos de la fuente.
 4. **Segmentación.** `src/indexacion/segmentar.py` (versión `seg-v1`). En las normas
    (Constitución, códigos, leyes, decretos y Decisión 486) cada artículo es un fragmento.
    Los artículos de más de 350 palabras se parten por párrafos (incisos, parágrafos,
@@ -1307,8 +1415,13 @@ paso (ver el ejemplo para el nivel de detalle esperado por el jurado).*
 
 **Problemas encontrados.**
 
-*Fallas concretas del pipeline (OCR, normas derogadas, encoding, artículos
-duplicados, etc.) y cómo se resolvieron.*
+- **Erratas de la semilla**: referencias mal escritas del banco (`decreto_1563_2012` es la Ley 1563 de 2012; `ley_11500_2007` es la Ley 1150 de 2007; `ley_1692_2017`, `ley_23_1961`…). Se corrigen en `data/registros/fuentes_override.json` y el corpus usa la identificación correcta.
+- **Fuentes sin descarga automática**: SUIN-Juriscol es una aplicación Angular sin HTML y la relatoría de la Corte Suprema no tiene URLs predecibles. Esos documentos se bajaron a mano (PDF/RTF) y se registraron en `data/registros/mapa_archivos.json`; el resto de la ampliación fue automática.
+- **PDF escaneados**: cinco sentencias y algunos PDF con capa OCR ilegible pasan por Tesseract 5 en español a 300 dpi (`OCR_FORZADO`). Se descartó Docling porque las sentencias son prosa a una columna y arrastra modelos de layout sin ganancia.
+- **Formato real distinto de la extensión**: hay `.rtf` que son DOCX y PDF con bytes antes de `%PDF`; los parsers detectan el formato por contenido.
+- **Normas modificatorias**: los artículos transcritos tras un "…quedará así:" no son artículos de la norma que los transcribe; se mantienen dentro del artículo que los introduce.
+- **Ruido de las sentencias largas**: sin filtro desplazaban a los artículos. Las sentencias de las ampliaciones solo se recuperan si la pregunta las nombra (`solo_por_cita.json`) y las sentencias y normas derogadas van detrás de la norma vigente.
+- **Leyes ómnibus**: los Planes Nacionales de Desarrollo bajaban la recuperación y se retiraron (sección 2).
 
 **Decisiones de diseño relevantes.**
 
@@ -1318,7 +1431,7 @@ duplicados, etc.) y cómo se resolvieron.*
   norma a la que pertenece. Por eso cada fragmento empieza con una línea como
   "Artículo 42 del Código General del Proceso." o "Corte Constitucional, Sentencia
   C-355 de 2006.", seguida del texto literal. Se verifica automáticamente que el
-  encabezado identifique exactamente la norma del documento, y los 31.127
+  encabezado identifique exactamente la norma del documento, y los 185.234
   fragmentos quedan respaldados por su propia norma.
 - **Encoder.** De los encoders sugeridos en el enunciado se descartó
   `jina-embeddings-v3` porque su licencia (CC-BY-NC-4.0) es incompatible con la
@@ -1330,34 +1443,42 @@ duplicados, etc.) y cómo se resolvieron.*
   "Ley 964 de 2006"). El corpus usa la identificación correcta (Ley 1563 de 2012,
   Decreto 2737 de 1989, Ley 964 de 2005).
 
+- **Recuperación sobre el índice (no cambia el corpus).** Filtro "solo por cita" para las sentencias de las ampliaciones, prioridad ×2 por el área de la pregunta, metadatos (alias de normas desde los títulos del manifest, ×1,5 al cuerpo nombrado, sentencias y derogados detrás de la norma) y reranker `BAAI/bge-reranker-v2-m3` sobre los 20 primeros candidatos fusionado por RRF. Cada una se midió y se mantuvo solo si mejoraba (`docs/INDEXACION.md`, secciones 14–24).
+- **Corpus v5 congelado.** El índice (`indice_info.json`, sha256 de `chunks.jsonl`) y los `.txt` (sha256 del manifest) no se modifican después de la entrega; la verificación en vivo corre con la caché del decoder apagada.
+
 ## 4. Evolución del puntaje
 
-*Una fila por corrida de autoevaluación con `scripts/evaluate.py` contra
-`data/sample_50.jsonl`, en orden cronológico. Sirve para mostrarle al jurado
-qué cambios del corpus movieron qué métrica.*
+Autoevaluación con `scripts/evaluate.py` sobre `data/sample_50.jsonl` (Qwen3-8B, temperatura 0). Total sobre 50 puntos, sin juez de texto libre. El detalle por corrida está en `evaluation/experiments.csv`.
 
 | Fecha | Documentos | Fragmentos | Cerradas /20 | Citación /20 | Abstención /10 | Total /50 | Qué cambió |
 |---|---:|---:|---:|---:|---:|---:|---|
-| | | | | | | | |
+| 2026-10-02 | 588 | 113.519 | 14,67 | 14,69 | 7,67 | 37,03 | `e05`: corpus v3, Qwen3-8B Q8_0 |
+| 2026-10-02 | 588 | 113.519 | 14,67 | 16,33 | 8,37 | 39,37 | `e13`: filtro solo por cita, evidencia del top-10 y lookup por metadata |
+| 2026-10-02 | 1.186 | 173.393 | 14,67 | 17,55 | 8,37 | 40,59 | `e19`/`e20`: corpus v4 (áreas delgadas, C- de control, tutelas) y prioridad por área |
+| 2026-10-02 | 1.186 | 173.393 | 16,00 | 17,55 | 8,60 | 42,15 | `e24_final`: glosario de normas en el prompt |
+| 2026-10-03 | 1.247 | 179.226 | 16,00 | 17,55 | 8,60 | 42,15 | `e41`: corpus v5 (61 normas que el corpus cita y no tenía), sin Planes de Desarrollo |
+| 2026-10-03 | 1.284 | 185.215 | 13,33 | 17,55 | 8,14 | 39,02 | `e60`: v5 con reranker y metadatos activados (corrida de muestra anterior al congelado final) |
 
 **Lectura de la curva.**
 
-*Interpretar los saltos o estancamientos de la tabla anterior: qué cambio del
-corpus o del pipeline explica cada variación.*
+- El salto de citación (14,69 a 17,55) vino del filtro solo por cita, el lookup por metadata y agregar las cabeceras citables del top-10; ninguna corrida tiene citas sin respaldo.
+- Las cerradas pasaron de 11 a 12 de 15 con el glosario de normas (#58). Las corridas v5 con reranker bajan a 10 de 15 en la muestra; con 15 cerradas una pregunta vale 1,33 puntos y no se diagnosticó una causa única, así que el resultado se reporta tal cual.
+- Las ampliaciones v5 no se miden en `sample_50` (sus normas ya estaban); su ganancia esperada es en las 992. En recuperación, doc_hit@1 subió de 0,610 (v4) a 0,659 y MRR de 0,717 a 0,747 con los metadatos, los factores de sentencia y derogada y la consulta sin la instrucción de lectura (`docs/INDEXACION.md`, secciones 19–24).
+- El juez de texto libre varía ±0,03 entre corridas: RAGAS 0,43–0,46, cerca de la línea base (0,451).
 
 ## 5. Licencia
 
-*Bajo qué licencia se publica el corpus procesado. Los textos normativos
-colombianos suelen ser de dominio público; la licencia cubre el trabajo de
-procesamiento (segmentación, limpieza, extracción de metadatos) del equipo.*
+El corpus procesado y el índice se publican bajo **CC-BY-4.0** (archivo `LICENSE` en la raíz del comprimido). La licencia cubre el trabajo de Syntax (selección, limpieza, segmentación, metadatos, encabezados de fragmentos e índice), no los textos normativos y jurisprudenciales, que son de libre reproducción (Ley 23 de 1982, art. 41). Los modelos usados son compatibles: `BAAI/bge-m3` (MIT), `BAAI/bge-reranker-v2-m3` (Apache-2.0) y Qwen3-8B (Apache-2.0).
 
 ## 6. Enlace al corpus e índice
 
-*Debe coincidir con el enlace declarado en `README.md`, sección "Corpus e
-índice". El comprimido debe contener `LICENSE`, `corpus_manifest.json`,
-`corpus/` e `indice/` (`index.faiss` + `chunks.jsonl`). Verificar que el
-enlace sea público y esté vigente antes de la entrega (ver `enunciado.pdf`).*
+Coincide con el de `README.md` ("Corpus e índice") y con `enlace_nube` de `corpus_manifest.json`.
 
 | Recurso | Enlace | Tamaño | Vigencia |
 |---|---|---|---|
-| Corpus procesado e índice | [OneDrive](https://1drv.ms/f/c/e17f9102812dd361/IgBze-a6Cpv5RIpNVH0FIz6ZAcA7qq8byJspYt3TA7v-fG8?e=UcJhmX) | | |
+| Corpus procesado e índice (v5) | [OneDrive](https://1drv.ms/u/c/e17f9102812dd361/IQBccApNKKVUR5RKm1ux2I-RAT5JSwWVU1jFBh37iHhFtXg?e=lbmgOi) | 958 MB (958.473.787 bytes) | Hasta el 2026-11-02 |
+
+- sha256 del comprimido (`Syntax-corpus-v5c.zip`): `3164e08008e40ee6ebfa4f30a7966483b15dc45483dd2ecb25c63b67e6b28f0b`.
+- sha256 de `indice/chunks.jsonl`: `9159bd3529dc59c41a7074e50e4f9e7cbf194b0ca958ff718c6c16d86454f85d` (185.234 fragmentos; `indice_info.json`).
+- Encoder `BAAI/bge-m3`, revisión `5617a9f61b028005a4858fdac845db406aefb181`, fp32.
+- La ampliación del sábado fue dirigida por las preguntas del test (solo `pregunta` y `opciones`), con la autorización de la organización del 2026-10-02.
