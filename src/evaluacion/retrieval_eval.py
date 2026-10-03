@@ -108,6 +108,7 @@ def evaluar(modo: str, items: list[dict], tipo_consulta: str, techo: bool = Fals
             "respaldo": len(ref_b & respaldadas) / len(ref_b),
             "latencia_ms": round(ms, 1),
             **({"plan": info_ret["plan"]} if "plan" in info_ret else {}),
+            "disparos": top[0].meta.get("disparos", []) if top else [],
             "top": [[p.chunk_id, round(p.score, 5)] for p in top],
         })
     n = len(filas)
@@ -211,7 +212,7 @@ def main() -> int:
                    "fusion": "rrf60" if modo == "hibrido" else "",
                    "n_candidatos_por_rama": 40, "lookup": config.lookup_metadata(),
                    "filtro_cita": config.filtro_metadata(), "area": config.area_metadata(),
-                   "composicion": config.composicion_metadata(),
+                   "composicion": config.composicion_metadata(), "metadatos": config.metadatos_metadata(),
                    "agentico": config.agentico_metadata(), "consulta": args.consulta, "metricas": met}
         with det.with_suffix(".meta.json").open("w", encoding="utf-8", newline="\n") as f:
             f.write(json.dumps(resumen, ensure_ascii=False, indent=2) + "\n")
@@ -230,6 +231,7 @@ def main() -> int:
                 if args.techo_reranker else "") + "; lookup=" + json.dumps(config.lookup_metadata(), sort_keys=True)
                 + "; filtro_cita=" + config.FILTRO_CITA + f"; area_boost={config.AREA_BOOST}"
                 + "; composicion=" + json.dumps(config.composicion_metadata(), sort_keys=True)
+                + "; metadatos=" + json.dumps(config.metadatos_metadata(), sort_keys=True)
                 + "; agentico=" + json.dumps(config.agentico_metadata(), sort_keys=True)
                 + "; subconjuntos=" + json.dumps(met["subconjuntos_referencias"], sort_keys=True),
             **{k: (round(met[k], 4) if isinstance(met[k], float) else met[k])

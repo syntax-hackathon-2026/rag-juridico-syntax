@@ -13,6 +13,7 @@ CLI para probar a mano:
 from __future__ import annotations
 
 import json
+import re
 import sys
 from dataclasses import dataclass, field
 from pathlib import Path
@@ -21,12 +22,18 @@ import numpy as np
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 import config  # noqa: E402
-from recuperacion import lexico  # noqa: E402
+from recuperacion import alias, lexico  # noqa: E402
 from recuperacion.referencias import IndiceReferencias, cuerpos_de, referencias_de  # noqa: E402
+
+sys.path.insert(0, str(config.ROOT / "scripts"))
+from citations import norm  # noqa: E402
 
 MODOS = ("bm25", "denso", "hibrido")
 RRF_K = 60
 N_CANDIDATOS = 40
+# Excepciones de los factores de metadatos (texto normalizado de la consulta)
+_PIDE_VOTO = re.compile(r"salvamento|aclaracion(?:es)? de voto|disident|voto particular|salvo (?:su|el) voto")
+_PIDE_VIGENCIA = re.compile(r"derog|vigen|antes de la reforma|texto original|subrogad")
 
 
 @dataclass
@@ -56,6 +63,15 @@ class Retriever:
         self.excluidos = self._cargar_filtro()
         manifest = json.loads(config.MANIFEST_PATH.read_text(encoding="utf-8"))
         self.areas_doc = {d["doc_id"]: frozenset(d.get("areas") or ()) for d in manifest["documentos"]}
+        # Metadatos de los fragmentos para la busqueda por metadatos (docs/INDEXACION.md 19)
+        self.por_cuerpo: dict[tuple, np.ndarray] = {}
+        for i, c in enumerate(self.chunks):
+            self.por_cuerpo.setdefault(tuple(c["canonico"]), []).append(i)
+        self.por_cuerpo = {k: np.array(v, dtype=np.int64) for k, v in self.por_cuerpo.items()}
+        self.es_voto = np.array([c.get("seccion") in ("salvamento", "aclaracion") for c in self.chunks])
+        self.es_derogado = np.array([c.get("vigencia") == "derogado" for c in self.chunks])
+        self._vectores_cuerpo: dict[tuple, np.ndarray] = {}
+        self.disparos: list[str] = []  # reglas de metadatos activadas en la ultima consulta
         import bm25s
 
         self.bm25 = bm25s.BM25.load(str(config.BM25_DIR))
@@ -88,7 +104,7 @@ class Retriever:
         """
         if self.excluidos is None:
             return buscar(consulta, n)
-        nombrados = cuerpos_de(consulta)
+        nombrados = self.nombrados(consulta)
         pedir = n
         while True:
             pares = buscar(consulta, pedir)
@@ -97,6 +113,60 @@ class Retriever:
             if len(ok) >= n or len(pares) < pedir or pedir >= len(self.chunks):
                 return ok[:n]
             pedir = min(pedir * 4, len(self.chunks))
+
+    # --- metadatos (docs/INDEXACION.md 19) -----------------------------------------
+
+    def nombrados(self, consulta: str) -> set[tuple]:
+        """Cuerpos que nombra la consulta: citations.py y, con SYNTAX_ALIAS=on, alias.py."""
+        cuerpos = cuerpos_de(consulta)
+        if config.ALIAS == "on":
+            cuerpos |= alias.cuerpos_alias(consulta)
+        return cuerpos
+
+    def referencias(self, consulta: str) -> list:
+        refs = referencias_de(consulta)
+        if config.ALIAS == "on":
+            refs = sorted(set(refs) | set(alias.referencias_alias(consulta)), key=str)
+        return refs
+
+    def _factores_meta(self, fusion: dict[int, float], consulta: str) -> None:
+        """Votos disidentes y texto derogado detras (solo reordena), salvo que la consulta los pida."""
+        t = norm(consulta)
+        reglas = []
+        if config.FACTOR_VOTO != 1.0 and not _PIDE_VOTO.search(t):
+            reglas.append((self.es_voto, config.FACTOR_VOTO))
+        if config.FACTOR_VIGENCIA != 1.0 and not _PIDE_VIGENCIA.search(t):
+            reglas.append((self.es_derogado, config.FACTOR_VIGENCIA))
+        for mascara, factor in reglas:
+            for i in fusion:
+                if mascara[i]:
+                    fusion[i] *= factor
+
+    def _cuerpos_en_corpus(self, consulta: str) -> list[tuple]:
+        return sorted((c for c in self.nombrados(consulta) if c in self.por_cuerpo), key=str)
+
+    def _rama_cuerpo(self, consulta: str, cuerpos: list[tuple], n: int) -> dict[str, list[int]]:
+        """BM25 y denso restringidos a los fragmentos de los cuerpos nombrados."""
+        ids = np.unique(np.concatenate([self.por_cuerpo[c] for c in cuerpos]))
+        ramas: dict[str, list[int]] = {}
+        tokens = lexico.tokenizar(consulta)
+        if tokens:
+            mascara = np.zeros(len(self.chunks), dtype=np.float32)
+            mascara[ids] = 1.0
+            idx, scores = self.bm25.retrieve([tokens], k=min(n, len(ids)), show_progress=False,
+                                             n_threads=1, weight_mask=mascara)
+            pares = [(int(i), float(s)) for i, s in zip(idx[0], scores[0]) if s > 0 and mascara[int(i)]]
+            ramas["cuerpo_bm25"] = [i for i, _ in sorted(pares, key=lambda p: (-p[1], self.chunks[p[0]]["chunk_id"]))]
+        if self.faiss is not None:
+            q = self._codificar(consulta)[0]
+            pares = []
+            for c in cuerpos:
+                if c not in self._vectores_cuerpo:
+                    self._vectores_cuerpo[c] = self.faiss.reconstruct_batch(self.por_cuerpo[c])
+                pares += zip(self.por_cuerpo[c].tolist(), (self._vectores_cuerpo[c] @ q).tolist())
+            pares = sorted(set(pares), key=lambda p: (-p[1], self.chunks[p[0]]["chunk_id"]))[:n]
+            ramas["cuerpo_denso"] = [i for i, _ in pares]
+        return ramas
 
     # --- ramas --------------------------------------------------------------------
 
@@ -146,13 +216,24 @@ class Retriever:
             ranks_rama[nombre] = {i: r for r, (i, _) in enumerate(rama, 1)}
             for r, (i, _) in enumerate(rama, 1):
                 fusion[i] = fusion.get(i, 0.0) + 1.0 / (RRF_K + r)
+        # Cuerpo nombrado (docs/INDEXACION.md 19): ramas acotadas a ese documento o boost.
+        self.disparos = []
+        cuerpos = self._cuerpos_en_corpus(consulta) if config.CUERPO != "off" else []
+        if cuerpos:
+            self.disparos.append("cuerpo:" + ",".join(c[0] if c[1] is None else "_".join(map(str, c))
+                                                       for c in cuerpos))
+        if cuerpos and config.CUERPO == "rama":
+            for nombre, rama in self._rama_cuerpo(consulta, cuerpos, n_candidatos).items():
+                ranks_rama[nombre] = {i: r for r, i in enumerate(rama, 1)}
+                for r, i in enumerate(rama, 1):
+                    fusion[i] = fusion.get(i, 0.0) + config.CUERPO_PESO / (RRF_K + r)
         # Lookup es una rama adicional, nunca un filtro de las ramas originales.
         indices_lookup = []
         if config.LOOKUP_MODO == "on":
             texto_lookup = consulta if consulta_lookup is None else consulta_lookup
             if config.LOOKUP_FUENTE == "pregunta" and consulta_lookup is None:
                 raise ValueError("LOOKUP_FUENTE=pregunta requiere consulta_lookup explicita")
-            indices_lookup = self.indice_referencias.buscar(referencias_de(texto_lookup))
+            indices_lookup = self.indice_referencias.buscar(self.referencias(texto_lookup))
             if indices_lookup:
                 ranks_rama["lookup"] = {i: r for r, i in enumerate(indices_lookup, 1)}
             for r, i in enumerate(indices_lookup, 1):
@@ -163,6 +244,12 @@ class Retriever:
                     fusion[i] = fusion.get(i, 0.0) + bonus
                 else:
                     fusion.setdefault(i, 0.0)
+        self._factores_meta(fusion, consulta)
+        if cuerpos and config.CUERPO == "boost":
+            ids = set(np.concatenate([self.por_cuerpo[c] for c in cuerpos]).tolist())
+            for i in fusion:
+                if i in ids:
+                    fusion[i] *= config.CUERPO_BOOST
         self._boost_area(fusion, area)
         ranking = sorted(fusion.items(), key=lambda p: (-p[1], self.chunks[p[0]]["chunk_id"]))
         if indices_lookup and config.LOOKUP_VARIANTE == "c":
@@ -219,6 +306,7 @@ class Retriever:
             for nombre, ranks in ranks_rama.items():  # senal de acuerdo BM25/denso (None = fuera de los candidatos)
                 meta[f"rank_{nombre}"] = ranks.get(i)
             meta["area_match"] = (area in self.areas_doc.get(c["doc_id"], ())) if area else None
+            meta["disparos"] = list(self.disparos)
             salida.append(RetrievedChunk(chunk_id=c["chunk_id"], doc_id=c["doc_id"], texto=c["texto"],
                                          inicio=c["inicio"], fin=c["fin"], score=s, rank=r, meta=meta))
         return salida
