@@ -96,12 +96,13 @@ if CUPO_NORMAS < 0 or MAX_POR_DOC < 0:
 # CUERPO: con un cuerpo nombrado en la consulta, off | boost (x CUERPO_BOOST a sus fragmentos)
 #   | rama (BM25 + denso restringidos a ese documento como ramas RRF de peso CUERPO_PESO).
 # ALIAS: nombres de normas que citations.py no reconoce (titulos del manifest + pocos fijos).
-FACTOR_VOTO = float(os.environ.get("SYNTAX_FACTOR_VOTO", "1.0"))
+# KEEP en r48_voto_boost (voto 0.5 + alias + boost); vigencia neutra y rama REVERT (seccion 19).
+FACTOR_VOTO = float(os.environ.get("SYNTAX_FACTOR_VOTO", "0.5"))
 FACTOR_VIGENCIA = float(os.environ.get("SYNTAX_FACTOR_VIGENCIA", "1.0"))
-CUERPO = os.environ.get("SYNTAX_CUERPO", "off")
+CUERPO = os.environ.get("SYNTAX_CUERPO", "boost")
 CUERPO_PESO = float(os.environ.get("SYNTAX_CUERPO_PESO", "1.0"))
 CUERPO_BOOST = float(os.environ.get("SYNTAX_CUERPO_BOOST", "1.5"))
-ALIAS = os.environ.get("SYNTAX_ALIAS", "off")
+ALIAS = os.environ.get("SYNTAX_ALIAS", "on")
 if not (0 < FACTOR_VOTO <= 1 and 0 < FACTOR_VIGENCIA <= 1):
     raise ValueError("SYNTAX_FACTOR_VOTO y SYNTAX_FACTOR_VIGENCIA deben estar en (0, 1]")
 if CUERPO not in {"off", "boost", "rama"} or ALIAS not in {"off", "on"}:
