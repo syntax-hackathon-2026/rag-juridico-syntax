@@ -1,0 +1,13 @@
+# Tema de la interfaz (src/interfaz/app.py) con la identidad visual de Software Colombia.
+# PROVISIONAL: reemplazar los colores por los hex del manual de marca cuando lleguen.
+# El logo va en src/interfaz/assets/software_colombia.svg|png (la app lo toma si existe).
+[theme]
+base = "light"
+primaryColor = "#0B4F8A"
+backgroundColor = "#FFFFFF"
+secondaryBackgroundColor = "#EEF3F8"
+textColor = "#1B2430"
+font = "sans serif"
+
+[browser]
+gatherUsageStats = false
