@@ -10991,6 +10991,66 @@
         "Derecho administrativo"
       ],
       "nota": "ampliacion v5 (2026-10-03): normas que cita el propio corpus y no tiene (>= 10 documentos citantes)"
+    },
+    {
+      "doc_id": "decreto_1400_1970",
+      "titulo": "Decreto 1400 de 1970 (Codigo de Procedimiento Civil)",
+      "fuente": "Funcion Publica - Gestor Normativo",
+      "url": "https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=6923",
+      "areas": [
+        "Derecho procesal"
+      ],
+      "nota": "ampliacion sabado (2026-10-03): dirigida por las preguntas del test (descarga manual)"
+    },
+    {
+      "doc_id": "decreto_920_2023",
+      "titulo": "Decreto Ley 920 de 2023 (regimen sancionatorio y de decomiso aduanero)",
+      "fuente": "Normograma DIAN",
+      "url": "https://normograma.dian.gov.co/dian/compilacion/docs/decreto_0920_2023.htm",
+      "areas": [
+        "Derecho tributario"
+      ],
+      "nota": "ampliacion sabado (2026-10-03): dirigida por las preguntas del test (descarga manual)"
+    },
+    {
+      "doc_id": "decreto_1165_2019",
+      "titulo": "Decreto 1165 de 2019 (regimen de aduanas)",
+      "fuente": "Normograma CRC",
+      "url": "https://normograma.crcom.gov.co/crc/compilacion/docs/decreto_1165_2019.htm",
+      "areas": [
+        "Derecho tributario"
+      ],
+      "nota": "ampliacion sabado (2026-10-03): dirigida por las preguntas del test (descarga manual)"
+    },
+    {
+      "doc_id": "resolucion_368_2014",
+      "titulo": "Resolucion 368 de 2014 (Ministerio de Ambiente; relleno sanitario El Carrasco)",
+      "fuente": "Ministerio de Ambiente y Desarrollo Sostenible",
+      "url": "https://www.minambiente.gov.co/",
+      "areas": [
+        "Derecho administrativo"
+      ],
+      "nota": "ampliacion sabado (2026-10-03): dirigida por las preguntas del test (descarga manual)"
+    },
+    {
+      "doc_id": "resolucion_1036_2021",
+      "titulo": "Resolucion 1036 de 2021 (Ministerio de Ambiente; relleno sanitario El Carrasco)",
+      "fuente": "Ministerio de Ambiente y Desarrollo Sostenible",
+      "url": "https://www.minambiente.gov.co/wp-content/uploads/2021/10/Resolucion-1036-de-2021.pdf",
+      "areas": [
+        "Derecho administrativo"
+      ],
+      "nota": "ampliacion sabado (2026-10-03): dirigida por las preguntas del test (descarga manual)"
+    },
+    {
+      "doc_id": "doctrina_unbosque_agencia_comercial_cesantia_2024",
+      "titulo": "Trabajo de grado Universidad El Bosque - Contrato de agencia comercial y cesantia comercial (2024)",
+      "fuente": "Repositorio Universidad El Bosque (REDCOL)",
+      "url": "https://redcol.minciencias.gov.co/Record/UNBOSQUE2_4d108bd5eb3d5ba57603313e68fd019b/",
+      "areas": [
+        "Derecho comercial y sociedades"
+      ],
+      "nota": "ampliacion sabado (2026-10-03): dirigida por las preguntas del test (descarga manual)"
     }
   ],
   "_comentario_adicionales": "Documentos fuera de seed_targets.json (fuentes del legal_basis de sample_50, ver data/fuentes_faltantes_sample50.md). Su original ya esta en data/raw/ y se registra con esta fuente/URL (docs/ingesta/referencias_normativas.md); items_del_banco=0."
