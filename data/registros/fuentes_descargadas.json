@@ -4872,6 +4872,110 @@
       "nota": "ampliacion v4 (2026-10-02): area delgada, resuelta y validada por sondeo automatico; areas propuestas por agente, falta confirmar"
     },
     {
+      "doc_id": "decreto_100_1980",
+      "titulo": "Decreto 100 de 1980",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/decreto_0100_1980.html",
+      "areas": [
+        "Derecho constitucional",
+        "Derecho penal",
+        "Derecho de familia"
+      ],
+      "items_del_banco": 0,
+      "canonico": [],
+      "estado": "no_encontrado",
+      "tipo_fuente": null,
+      "fecha_consulta": null,
+      "archivos": [],
+      "bytes": 0,
+      "sha256": null,
+      "nota": "http://www.secretariasenado.gov.co/senado/basedoc/decreto_0100_1980.html no existe en Secretaria del Senado"
+    },
+    {
+      "doc_id": "decreto_1066_2015",
+      "titulo": "Decreto 1066 de 2015",
+      "fuente": "Normograma de Colpensiones (compilacion Avance Juridico)",
+      "url": "https://normativa.colpensiones.gov.co/colpens/docs/decreto_1066_2015.htm",
+      "areas": [
+        "Derecho constitucional",
+        "Derecho tributario"
+      ],
+      "items_del_banco": 0,
+      "canonico": [],
+      "estado": "error",
+      "tipo_fuente": "html",
+      "fecha_consulta": "2026-10-02",
+      "archivos": [
+        "decreto_1066_2015.htm",
+        "decreto_1066_2015_pr001.htm",
+        "decreto_1066_2015_pr002.htm",
+        "decreto_1066_2015_pr003.htm",
+        "decreto_1066_2015_pr004.htm",
+        "decreto_1066_2015_pr005.htm",
+        "decreto_1066_2015_pr006.htm",
+        "decreto_1066_2015_pr007.htm",
+        "decreto_1066_2015_pr008.htm",
+        "decreto_1066_2015_pr009.htm",
+        "decreto_1066_2015_pr010.htm",
+        "decreto_1066_2015_pr011.htm",
+        "decreto_1066_2015_pr012.htm",
+        "decreto_1066_2015_pr013.htm",
+        "decreto_1066_2015_pr014.htm",
+        "decreto_1066_2015_pr015.htm",
+        "decreto_1066_2015_pr016.htm",
+        "decreto_1066_2015_pr017.htm",
+        "decreto_1066_2015_pr018.htm",
+        "decreto_1066_2015_pr019.htm",
+        "decreto_1066_2015_pr020.htm",
+        "decreto_1066_2015_pr021.htm",
+        "decreto_1066_2015_pr022.htm",
+        "decreto_1066_2015_pr023.htm",
+        "decreto_1066_2015_pr024.htm",
+        "decreto_1066_2015_pr025.htm",
+        "decreto_1066_2015_pr026.htm",
+        "decreto_1066_2015_pr027.htm",
+        "decreto_1066_2015_pr028.htm",
+        "decreto_1066_2015_pr029.htm",
+        "decreto_1066_2015_pr030.htm",
+        "decreto_1066_2015_pr031.htm"
+      ],
+      "bytes": 4537134,
+      "sha256": "64e7a50b5b43453d2629d33f0032faaf2880d11caa196dc5237ef4d119d96e23",
+      "nota": "ampliacion v5: descartado por tamano (1167 articulos > 400)"
+    },
+    {
+      "doc_id": "decreto_1067_2015",
+      "titulo": "Decreto 1067 de 2015",
+      "fuente": "Normograma de Colpensiones (compilacion Avance Juridico)",
+      "url": "https://normativa.colpensiones.gov.co/colpens/docs/decreto_1067_2015.htm",
+      "areas": [
+        "Derecho constitucional",
+        "Derecho laboral",
+        "Derecho tributario"
+      ],
+      "items_del_banco": 0,
+      "canonico": [],
+      "estado": "error",
+      "tipo_fuente": "html",
+      "fecha_consulta": "2026-10-03",
+      "archivos": [
+        "decreto_1067_2015.htm",
+        "decreto_1067_2015_pr001.htm",
+        "decreto_1067_2015_pr002.htm",
+        "decreto_1067_2015_pr003.htm",
+        "decreto_1067_2015_pr004.htm",
+        "decreto_1067_2015_pr005.htm",
+        "decreto_1067_2015_pr006.htm",
+        "decreto_1067_2015_pr007.htm",
+        "decreto_1067_2015_pr008.htm",
+        "decreto_1067_2015_pr009.htm",
+        "decreto_1067_2015_pr010.htm"
+      ],
+      "bytes": 1137716,
+      "sha256": "68d96e47e5d0fe0f7dbc6e2ce042b353a5a230d0c539b00e7449e990f22b8933",
+      "nota": "ampliacion v5: descartado por tamano (457 articulos > 400)"
+    },
+    {
       "doc_id": "decreto_1069_2015",
       "titulo": "Decreto 1069 de 2015 (Decreto Unico Reglamentario del Sector Justicia y del Derecho)",
       "fuente": "Normograma de la CRA (compilacion Avance Juridico)",
@@ -4934,6 +5038,72 @@
       "nota": "ampliacion desde citations.py (seccion D.2)"
     },
     {
+      "doc_id": "decreto_1075_2015",
+      "titulo": "Decreto 1075 de 2015",
+      "fuente": "Normograma de la CRA (compilacion Avance Juridico)",
+      "url": "https://normas.cra.gov.co/gestor/docs/decreto_1075_2015.htm",
+      "areas": [
+        "Derecho constitucional",
+        "Derecho laboral",
+        "Derecho penal"
+      ],
+      "items_del_banco": 0,
+      "canonico": [],
+      "estado": "error",
+      "tipo_fuente": "html",
+      "fecha_consulta": "2026-10-02",
+      "archivos": [
+        "decreto_1075_2015.htm"
+      ],
+      "bytes": 3858087,
+      "sha256": "7e75c372786fa5d177894857367a6a66bae13155045eb3fbf6ea3338ce27a0ad",
+      "nota": "ampliacion v5: descartado por tamano (2084 articulos > 400)"
+    },
+    {
+      "doc_id": "decreto_1076_2015",
+      "titulo": "Decreto 1076 de 2015",
+      "fuente": "Normograma de la CRA (compilacion Avance Juridico)",
+      "url": "https://normas.cra.gov.co/gestor/docs/decreto_1076_2015.htm",
+      "areas": [
+        "Derecho constitucional",
+        "Derecho comercial y sociedades",
+        "Derecho de los mercados [competencia, consumidor, datos personales y propiedad intelectual]"
+      ],
+      "items_del_banco": 0,
+      "canonico": [],
+      "estado": "error",
+      "tipo_fuente": "html",
+      "fecha_consulta": "2026-10-03",
+      "archivos": [
+        "decreto_1076_2015.htm"
+      ],
+      "bytes": 4175403,
+      "sha256": "17182c5423cfaf2b9e9b2abde1270510cd7850ca9c50bbd97096323ca6cf7b3f",
+      "nota": "ampliacion v5: descartado por tamano (2146 articulos > 400)"
+    },
+    {
+      "doc_id": "decreto_1077_2015",
+      "titulo": "Decreto 1077 de 2015",
+      "fuente": "Normograma de la CRA (compilacion Avance Juridico)",
+      "url": "https://normas.cra.gov.co/gestor/docs/decreto_1077_2015.htm",
+      "areas": [
+        "Derecho constitucional",
+        "Derecho laboral",
+        "Derecho comercial y sociedades"
+      ],
+      "items_del_banco": 0,
+      "canonico": [],
+      "estado": "error",
+      "tipo_fuente": "html",
+      "fecha_consulta": "2026-10-03",
+      "archivos": [
+        "decreto_1077_2015.htm"
+      ],
+      "bytes": 4991383,
+      "sha256": "c511489a6ae917fa80304d50dba16abd5b23e221a89d0eb83d8c7084b1efbe6d",
+      "nota": "ampliacion v5: descartado por tamano (1977 articulos > 400)"
+    },
+    {
       "doc_id": "decreto_1083_2015",
       "titulo": "Decreto 1083 de 2015 (Decreto Unico Reglamentario del Sector de Funcion Publica)",
       "fuente": "Gestor Normativo de Funcion Publica",
@@ -4952,6 +5122,41 @@
       "bytes": 1140715,
       "sha256": "c213010deb29388a9d313004323bba7cb15d46fa5a68fd3e5a3db7bfa0460557",
       "nota": "ampliacion desde citations.py (seccion D.2)"
+    },
+    {
+      "doc_id": "decreto_1084_2015",
+      "titulo": "Decreto 1084 de 2015",
+      "fuente": "Normograma de Colpensiones (compilacion Avance Juridico)",
+      "url": "https://normativa.colpensiones.gov.co/colpens/docs/decreto_1084_2015.htm",
+      "areas": [
+        "Derecho constitucional",
+        "Derecho comercial y sociedades",
+        "Derecho de los mercados [competencia, consumidor, datos personales y propiedad intelectual]"
+      ],
+      "items_del_banco": 0,
+      "canonico": [],
+      "estado": "error",
+      "tipo_fuente": "html",
+      "fecha_consulta": "2026-10-03",
+      "archivos": [
+        "decreto_1084_2015.htm",
+        "decreto_1084_2015_pr001.htm",
+        "decreto_1084_2015_pr002.htm",
+        "decreto_1084_2015_pr003.htm",
+        "decreto_1084_2015_pr004.htm",
+        "decreto_1084_2015_pr005.htm",
+        "decreto_1084_2015_pr006.htm",
+        "decreto_1084_2015_pr007.htm",
+        "decreto_1084_2015_pr008.htm",
+        "decreto_1084_2015_pr009.htm",
+        "decreto_1084_2015_pr010.htm",
+        "decreto_1084_2015_pr011.htm",
+        "decreto_1084_2015_pr012.htm",
+        "decreto_1084_2015_pr013.htm"
+      ],
+      "bytes": 1776513,
+      "sha256": "6739b48b38f9e8d7f11c5bdd3661e35d8fd11d85f63b5b01ae991208d0c2e22a",
+      "nota": "ampliacion v5: descartado por tamano (592 articulos > 400)"
     },
     {
       "doc_id": "decreto_1260_1970",
@@ -4973,6 +5178,27 @@
       "bytes": 146964,
       "sha256": "741d76a4d48832c5b1dbba7f0275413529312a9ec2cca723db205cf23dbbfb82",
       "nota": "ampliacion v4 (2026-10-02): area delgada, resuelta y validada por sondeo automatico; areas propuestas por agente, falta confirmar"
+    },
+    {
+      "doc_id": "decreto_1265_1970",
+      "titulo": "Decreto 1265 de 1970",
+      "fuente": "Normograma de Colpensiones (compilacion Avance Juridico)",
+      "url": "https://normativa.colpensiones.gov.co/colpens/docs/decreto_1265_1970.htm",
+      "areas": [
+        "Derecho procesal",
+        "Derecho administrativo"
+      ],
+      "items_del_banco": 0,
+      "canonico": [],
+      "estado": "descargado",
+      "tipo_fuente": "html",
+      "fecha_consulta": "2026-10-03",
+      "archivos": [
+        "decreto_1265_1970.htm"
+      ],
+      "bytes": 34805,
+      "sha256": "beafb0cbbb137a6847466171f2eaf7bcd503c2fac97d1482543ba52424fb33fc",
+      "nota": "ampliacion sabado (2026-10-02): dirigida por las preguntas del test"
     },
     {
       "doc_id": "decreto_1295_1994",
@@ -5036,6 +5262,70 @@
       "nota": "ampliacion v4 (2026-10-02): area delgada, resuelta y validada por sondeo automatico; areas propuestas por agente, falta confirmar"
     },
     {
+      "doc_id": "decreto_1421_1993",
+      "titulo": "Decreto 1421 de 1993",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/decreto_1421_1993.html",
+      "areas": [
+        "Derecho administrativo",
+        "Derecho tributario"
+      ],
+      "items_del_banco": 0,
+      "canonico": [],
+      "estado": "descargado",
+      "tipo_fuente": "html",
+      "fecha_consulta": "2026-10-03",
+      "archivos": [
+        "decreto_1421_1993.html",
+        "decreto_1421_1993_pr001.html",
+        "decreto_1421_1993_pr002.html",
+        "decreto_1421_1993_pr003.html",
+        "decreto_1421_1993_pr004.html"
+      ],
+      "bytes": 372148,
+      "sha256": "b15ef774f9de9c64932c659c75f630e774aa028c53f6e01e532890f2aa297495",
+      "nota": "ampliacion sabado (2026-10-02): dirigida por las preguntas del test"
+    },
+    {
+      "doc_id": "decreto_1421_2017",
+      "titulo": "Decreto 1421 de 2017",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/decreto_1421_2017.html",
+      "areas": [
+        "Derecho constitucional",
+        "Derecho laboral"
+      ],
+      "items_del_banco": 0,
+      "canonico": [],
+      "estado": "no_encontrado",
+      "tipo_fuente": null,
+      "fecha_consulta": null,
+      "archivos": [],
+      "bytes": 0,
+      "sha256": null,
+      "nota": "http://www.secretariasenado.gov.co/senado/basedoc/decreto_1421_2017.html no existe en Secretaria del Senado"
+    },
+    {
+      "doc_id": "decreto_1507_2014",
+      "titulo": "Decreto 1507 de 2014",
+      "fuente": "Normograma de Colpensiones (compilacion Avance Juridico)",
+      "url": "https://normativa.colpensiones.gov.co/colpens/docs/decreto_1507_2014.htm",
+      "areas": [
+        "Derecho laboral"
+      ],
+      "items_del_banco": 0,
+      "canonico": [],
+      "estado": "descargado",
+      "tipo_fuente": "html",
+      "fecha_consulta": "2026-10-03",
+      "archivos": [
+        "decreto_1507_2014.htm"
+      ],
+      "bytes": 661785,
+      "sha256": "c2bedf428af61ef2574d79b56196ff9e961fafc8ffb8c4acb69b8cc546651bd7",
+      "nota": "ampliacion sabado (2026-10-02): dirigida por las preguntas del test"
+    },
+    {
       "doc_id": "decreto_1625_2016",
       "titulo": "Decreto 1625 de 2016 (Decreto Unico Reglamentario en materia tributaria)",
       "fuente": "Normograma de la DIAN",
@@ -5074,6 +5364,56 @@
       "bytes": 327135,
       "sha256": "78e29c4f29510f7c2fdd8444cbabef830fc9cd3848fb74b47596218f731b9f62",
       "nota": "ampliacion v4 (2026-10-02): area delgada, resuelta y validada por sondeo automatico; areas propuestas por agente, falta confirmar"
+    },
+    {
+      "doc_id": "decreto_1833_2016",
+      "titulo": "Decreto 1833 de 2016",
+      "fuente": "Normograma de Colpensiones (compilacion Avance Juridico)",
+      "url": "https://normativa.colpensiones.gov.co/colpens/docs/decreto_1833_2016.htm",
+      "areas": [
+        "Derecho constitucional",
+        "Derecho laboral",
+        "Derecho tributario"
+      ],
+      "items_del_banco": 0,
+      "canonico": [],
+      "estado": "error",
+      "tipo_fuente": "html",
+      "fecha_consulta": "2026-10-03",
+      "archivos": [
+        "decreto_1833_2016.htm",
+        "decreto_1833_2016_pr001.htm",
+        "decreto_1833_2016_pr002.htm",
+        "decreto_1833_2016_pr003.htm",
+        "decreto_1833_2016_pr004.htm",
+        "decreto_1833_2016_pr005.htm",
+        "decreto_1833_2016_pr006.htm",
+        "decreto_1833_2016_pr007.htm",
+        "decreto_1833_2016_pr008.htm",
+        "decreto_1833_2016_pr009.htm",
+        "decreto_1833_2016_pr010.htm",
+        "decreto_1833_2016_pr011.htm",
+        "decreto_1833_2016_pr012.htm",
+        "decreto_1833_2016_pr013.htm",
+        "decreto_1833_2016_pr014.htm",
+        "decreto_1833_2016_pr015.htm",
+        "decreto_1833_2016_pr016.htm",
+        "decreto_1833_2016_pr017.htm",
+        "decreto_1833_2016_pr018.htm",
+        "decreto_1833_2016_pr019.htm",
+        "decreto_1833_2016_pr020.htm",
+        "decreto_1833_2016_pr021.htm",
+        "decreto_1833_2016_pr022.htm",
+        "decreto_1833_2016_pr023.htm",
+        "decreto_1833_2016_pr024.htm",
+        "decreto_1833_2016_pr025.htm",
+        "decreto_1833_2016_pr026.htm",
+        "decreto_1833_2016_pr027.htm",
+        "decreto_1833_2016_pr028.htm"
+      ],
+      "bytes": 5977248,
+      "sha256": "2113fb6b1d2b641180e970b1e3444051afe5f04a81d67b8f94e47bb10ab5e625",
+      "nota": "ampliacion v5: descartado por tamano (1792 articulos > 400)"
     },
     {
       "doc_id": "decreto_19_2012",
@@ -5117,6 +5457,114 @@
       "nota": "ampliacion desde citations.py (seccion D.6)"
     },
     {
+      "doc_id": "decreto_2106_2019",
+      "titulo": "Decreto 2106 de 2019",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/decreto_2106_2019.html",
+      "areas": [
+        "Derecho administrativo"
+      ],
+      "items_del_banco": 0,
+      "canonico": [],
+      "estado": "descargado",
+      "tipo_fuente": "html",
+      "fecha_consulta": "2026-10-03",
+      "archivos": [
+        "decreto_2106_2019.html",
+        "decreto_2106_2019_pr001.html",
+        "decreto_2106_2019_pr002.html",
+        "decreto_2106_2019_pr003.html"
+      ],
+      "bytes": 399323,
+      "sha256": "e7b127f4c8e6da2b40a5c170f654f91feb0e5c33ced07f2f4fcedfca6ff1275b",
+      "nota": "ampliacion sabado (2026-10-02): dirigida por las preguntas del test"
+    },
+    {
+      "doc_id": "decreto_2150_1995",
+      "titulo": "Decreto 2150 de 1995",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/decreto_2150_1995.html",
+      "areas": [
+        "Derecho administrativo"
+      ],
+      "items_del_banco": 0,
+      "canonico": [],
+      "estado": "descargado",
+      "tipo_fuente": "html",
+      "fecha_consulta": "2026-10-03",
+      "archivos": [
+        "decreto_2150_1995.html",
+        "decreto_2150_1995_pr001.html",
+        "decreto_2150_1995_pr002.html",
+        "decreto_2150_1995_pr003.html"
+      ],
+      "bytes": 273561,
+      "sha256": "501ca15b8ca0faaccf1eebf7bd53b16240cf96a2654f7b1a21c6c39af63ef34f",
+      "nota": "ampliacion sabado (2026-10-02): dirigida por las preguntas del test"
+    },
+    {
+      "doc_id": "decreto_2158_1948",
+      "titulo": "Decreto 2158 de 1948",
+      "fuente": "Normograma de Colpensiones (compilacion Avance Juridico)",
+      "url": "https://normativa.colpensiones.gov.co/colpens/docs/decreto_2158_1948.htm",
+      "areas": [
+        "Derecho laboral",
+        "Derecho procesal"
+      ],
+      "items_del_banco": 0,
+      "canonico": [],
+      "estado": "descargado",
+      "tipo_fuente": "html",
+      "fecha_consulta": "2026-10-03",
+      "archivos": [
+        "decreto_2158_1948.htm"
+      ],
+      "bytes": 41274,
+      "sha256": "18be7db49d57fde32f88cd8d42a0e1c4874c4f53a670933a23e86844bc2337d3",
+      "nota": "ampliacion sabado (2026-10-02): dirigida por las preguntas del test"
+    },
+    {
+      "doc_id": "decreto_216_2021",
+      "titulo": "Decreto 216 de 2021",
+      "fuente": "Normograma de Colpensiones (compilacion Avance Juridico)",
+      "url": "https://normativa.colpensiones.gov.co/compilacion/docs/decreto_0216_2021.htm",
+      "areas": [
+        "Derecho administrativo",
+        "Derecho constitucional"
+      ],
+      "items_del_banco": 0,
+      "canonico": [],
+      "estado": "descargado",
+      "tipo_fuente": "html",
+      "fecha_consulta": "2026-10-03",
+      "archivos": [
+        "decreto_0216_2021.htm"
+      ],
+      "bytes": 114434,
+      "sha256": "712f7b494eeeb2a628a4bc279ed46c9fe3967fe8ce01033fe61613359af1cbf6",
+      "nota": "ampliacion sabado (2026-10-02): dirigida por las preguntas del test"
+    },
+    {
+      "doc_id": "decreto_2351_1965",
+      "titulo": "Decreto 2351 de 1965",
+      "fuente": "Normograma de Colpensiones (compilacion Avance Juridico)",
+      "url": "https://normativa.colpensiones.gov.co/colpens/docs/decreto_2351_1965.htm",
+      "areas": [
+        "Derecho laboral"
+      ],
+      "items_del_banco": 0,
+      "canonico": [],
+      "estado": "descargado",
+      "tipo_fuente": "html",
+      "fecha_consulta": "2026-10-03",
+      "archivos": [
+        "decreto_2351_1965.htm"
+      ],
+      "bytes": 113642,
+      "sha256": "3d9ad53b7d195effcf3bcf4ba744ae8e3d52d80b2abd8bb7c4e7a057fd35482a",
+      "nota": "ampliacion sabado (2026-10-02): dirigida por las preguntas del test"
+    },
+    {
       "doc_id": "decreto_2591_1991",
       "titulo": "Decreto 2591 de 1991 (Reglamento de la accion de tutela)",
       "fuente": "Secretaria del Senado",
@@ -5137,6 +5585,95 @@
       "bytes": 93870,
       "sha256": "5811bf29c836bba838e3202da52d42adb9550f13f7e2e06c4d06ebaa2af9e5c6",
       "nota": "ampliacion v3 (2026-10-02): alto impacto por area; areas propuestas por agente, falta confirmar"
+    },
+    {
+      "doc_id": "decreto_25_2014",
+      "titulo": "Decreto 25 de 2014",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/decreto_0025_2014.html",
+      "areas": [
+        "Derecho administrativo",
+        "Derecho constitucional"
+      ],
+      "items_del_banco": 0,
+      "canonico": [],
+      "estado": "descargado",
+      "tipo_fuente": "html",
+      "fecha_consulta": "2026-10-03",
+      "archivos": [
+        "decreto_0025_2014.html"
+      ],
+      "bytes": 105864,
+      "sha256": "bef9d6822b1b9d1156bed3bdd89d7a108f6e2cf144b97473a8c8e5fee2145bed",
+      "nota": "ampliacion sabado (2026-10-02): dirigida por las preguntas del test"
+    },
+    {
+      "doc_id": "decreto_262_2000",
+      "titulo": "Decreto 262 de 2000",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/decreto_0262_2000.html",
+      "areas": [
+        "Derecho administrativo"
+      ],
+      "items_del_banco": 0,
+      "canonico": [],
+      "estado": "descargado",
+      "tipo_fuente": "html",
+      "fecha_consulta": "2026-10-02",
+      "archivos": [
+        "decreto_0262_2000.html",
+        "decreto_0262_2000_pr001.html",
+        "decreto_0262_2000_pr002.html",
+        "decreto_0262_2000_pr003.html",
+        "decreto_0262_2000_pr004.html",
+        "decreto_0262_2000_pr005.html",
+        "decreto_0262_2000_pr006.html"
+      ],
+      "bytes": 601823,
+      "sha256": "a779d88240d917b8377c6b1eca14480e8a71f85cafe6a3563b30d34e61996403",
+      "nota": "ampliacion sabado (2026-10-02): dirigida por las preguntas del test"
+    },
+    {
+      "doc_id": "decreto_2700_1991",
+      "titulo": "Decreto 2700 de 1991",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/decreto_2700_1991.html",
+      "areas": [
+        "Derecho constitucional",
+        "Derecho penal",
+        "Derecho procesal"
+      ],
+      "items_del_banco": 0,
+      "canonico": [],
+      "estado": "no_encontrado",
+      "tipo_fuente": null,
+      "fecha_consulta": null,
+      "archivos": [],
+      "bytes": 0,
+      "sha256": null,
+      "nota": "http://www.secretariasenado.gov.co/senado/basedoc/decreto_2700_1991.html no existe en Secretaria del Senado"
+    },
+    {
+      "doc_id": "decreto_2820_1974",
+      "titulo": "Decreto 2820 de 1974",
+      "fuente": "Normograma de Colpensiones (compilacion Avance Juridico)",
+      "url": "https://normativa.colpensiones.gov.co/colpens/docs/decreto_2820_1974.htm",
+      "areas": [
+        "Derecho de familia",
+        "Derecho civil"
+      ],
+      "items_del_banco": 0,
+      "canonico": [],
+      "estado": "descargado",
+      "tipo_fuente": "html",
+      "fecha_consulta": "2026-10-03",
+      "archivos": [
+        "decreto_2820_1974.htm",
+        "decreto_2820_1974_pr001.htm"
+      ],
+      "bytes": 105478,
+      "sha256": "98b5e47c76a8ab06851e71d6316fa1916c6757b8ea00c51eb97697e1ff107b32",
+      "nota": "ampliacion sabado (2026-10-02): dirigida por las preguntas del test"
     },
     {
       "doc_id": "decreto_306_1992",
@@ -5179,6 +5716,47 @@
       "nota": "ampliacion v4 (2026-10-02): area delgada, resuelta y validada por sondeo automatico; areas propuestas por agente, falta confirmar"
     },
     {
+      "doc_id": "decreto_4062_2011",
+      "titulo": "Decreto 4062 de 2011",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/decreto_4062_2011.html",
+      "areas": [
+        "Derecho administrativo"
+      ],
+      "items_del_banco": 0,
+      "canonico": [],
+      "estado": "descargado",
+      "tipo_fuente": "html",
+      "fecha_consulta": "2026-10-03",
+      "archivos": [
+        "decreto_4062_2011.html"
+      ],
+      "bytes": 87338,
+      "sha256": "5adf7f9d705515f4c8c44a2620e2c3ca8f78197b906dc1182cd4d38da4a6db83",
+      "nota": "ampliacion sabado (2026-10-02): dirigida por las preguntas del test"
+    },
+    {
+      "doc_id": "decreto_4065_2011",
+      "titulo": "Decreto 4065 de 2011",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/decreto_4065_2011.html",
+      "areas": [
+        "Derecho administrativo",
+        "Derecho constitucional"
+      ],
+      "items_del_banco": 0,
+      "canonico": [],
+      "estado": "descargado",
+      "tipo_fuente": "html",
+      "fecha_consulta": "2026-10-03",
+      "archivos": [
+        "decreto_4065_2011.html"
+      ],
+      "bytes": 71862,
+      "sha256": "3b4d39407d2dff733cfaf8dd3d1b5d7482df26b6008195535433e0600a0a47ac",
+      "nota": "ampliacion sabado (2026-10-02): dirigida por las preguntas del test"
+    },
+    {
       "doc_id": "decreto_735_2013",
       "titulo": "Decreto 735 de 2013 (Efectividad de la garantia de bienes y servicios)",
       "fuente": "Normograma de Colpensiones (compilacion Avance Juridico)",
@@ -5197,6 +5775,47 @@
       "bytes": 56483,
       "sha256": "3b9fe7dfac37af41bb5ce3af922209358142f54f46d6b23f5bc2958e7515e5d1",
       "nota": "ampliacion v4 (2026-10-02): area delgada, resuelta y validada por sondeo automatico; areas propuestas por agente, falta confirmar"
+    },
+    {
+      "doc_id": "decreto_758_1990",
+      "titulo": "Decreto 758 de 1990",
+      "fuente": "Normograma de Colpensiones (compilacion Avance Juridico)",
+      "url": "https://normativa.colpensiones.gov.co/colpens/docs/decreto_0758_1990.htm",
+      "areas": [
+        "Derecho laboral"
+      ],
+      "items_del_banco": 0,
+      "canonico": [],
+      "estado": "descargado",
+      "tipo_fuente": "html",
+      "fecha_consulta": "2026-10-02",
+      "archivos": [
+        "decreto_0758_1990.htm",
+        "decreto_0758_1990_pr001.htm"
+      ],
+      "bytes": 130819,
+      "sha256": "bd2562d884b45e46ff2fa2228e5e531f4554bff87abe17a9fbef754dc9344be6",
+      "nota": "ampliacion sabado (2026-10-02): dirigida por las preguntas del test"
+    },
+    {
+      "doc_id": "decreto_806_2020",
+      "titulo": "Decreto 806 de 2020",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/decreto_0806_2020.html",
+      "areas": [
+        "Derecho procesal"
+      ],
+      "items_del_banco": 0,
+      "canonico": [],
+      "estado": "descargado",
+      "tipo_fuente": "html",
+      "fecha_consulta": "2026-10-03",
+      "archivos": [
+        "decreto_0806_2020.html"
+      ],
+      "bytes": 133647,
+      "sha256": "1f9076f6f66b896bfc3f661057ba6c8425598d698a58e792d7c9744ec698b0de",
+      "nota": "ampliacion sabado (2026-10-02): dirigida por las preguntas del test"
     },
     {
       "doc_id": "decreto_886_2014",
@@ -5382,6 +6001,28 @@
       "nota": "ampliacion v4 (2026-10-02): area delgada, resuelta y validada por sondeo automatico; areas propuestas por agente, falta confirmar"
     },
     {
+      "doc_id": "ley_1122_2007",
+      "titulo": "Ley 1122 de 2007",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/ley_1122_2007.html",
+      "areas": [
+        "Derecho laboral",
+        "Derecho administrativo"
+      ],
+      "items_del_banco": 0,
+      "canonico": [],
+      "estado": "descargado",
+      "tipo_fuente": "html",
+      "fecha_consulta": "2026-10-02",
+      "archivos": [
+        "ley_1122_2007.html",
+        "ley_1122_2007_pr001.html"
+      ],
+      "bytes": 159097,
+      "sha256": "7b326c2890701d2631466596d56753ff4252b6d57e03e33ad85c8d9c39b98867",
+      "nota": "ampliacion sabado (2026-10-02): dirigida por las preguntas del test"
+    },
+    {
       "doc_id": "ley_1123_2007",
       "titulo": "Ley 1123 de 2007 (Codigo Disciplinario del Abogado)",
       "fuente": "Normograma de Colpensiones (compilacion Avance Juridico)",
@@ -5403,6 +6044,54 @@
       "bytes": 172837,
       "sha256": "09043dbcc69ba6030cdca343d8e44c6dac1e55e5004d202d771c3268bd54cd19",
       "nota": "ampliacion v4 (2026-10-02): area delgada, resuelta y validada por sondeo automatico; areas propuestas por agente, falta confirmar"
+    },
+    {
+      "doc_id": "ley_1142_2007",
+      "titulo": "Ley 1142 de 2007",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/ley_1142_2007.html",
+      "areas": [
+        "Derecho penal",
+        "Derecho procesal"
+      ],
+      "items_del_banco": 0,
+      "canonico": [],
+      "estado": "descargado",
+      "tipo_fuente": "html",
+      "fecha_consulta": "2026-10-03",
+      "archivos": [
+        "ley_1142_2007.html",
+        "ley_1142_2007_pr001.html"
+      ],
+      "bytes": 133616,
+      "sha256": "35c36f78304e1d49842005a34cd792094107656c377c132a713d54bfff4cd8de",
+      "nota": "ampliacion sabado (2026-10-02): dirigida por las preguntas del test"
+    },
+    {
+      "doc_id": "ley_115_1994",
+      "titulo": "Ley 115 de 1994",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/ley_0115_1994.html",
+      "areas": [
+        "Derecho administrativo",
+        "Derecho constitucional"
+      ],
+      "items_del_banco": 0,
+      "canonico": [],
+      "estado": "descargado",
+      "tipo_fuente": "html",
+      "fecha_consulta": "2026-10-02",
+      "archivos": [
+        "ley_0115_1994.html",
+        "ley_0115_1994_pr001.html",
+        "ley_0115_1994_pr002.html",
+        "ley_0115_1994_pr003.html",
+        "ley_0115_1994_pr004.html",
+        "ley_0115_1994_pr005.html"
+      ],
+      "bytes": 455270,
+      "sha256": "7f4efde73f1abc05712f13e4695926af4292e5eb266d836cac9f53f7ca7858f3",
+      "nota": "ampliacion sabado (2026-10-02): dirigida por las preguntas del test"
     },
     {
       "doc_id": "ley_1183_2008",
@@ -5443,6 +6132,27 @@
       "bytes": 61017,
       "sha256": "4495c79135e322aab38a000eb1f22cf0ff58570e71230ea22e606f61a736012d",
       "nota": "ampliacion v3 (2026-10-02): alto impacto por area; areas propuestas por agente, falta confirmar"
+    },
+    {
+      "doc_id": "ley_1251_2008",
+      "titulo": "Ley 1251 de 2008",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/ley_1251_2008.html",
+      "areas": [
+        "Derecho de familia",
+        "Derecho constitucional"
+      ],
+      "items_del_banco": 0,
+      "canonico": [],
+      "estado": "descargado",
+      "tipo_fuente": "html",
+      "fecha_consulta": "2026-10-02",
+      "archivos": [
+        "ley_1251_2008.html"
+      ],
+      "bytes": 93643,
+      "sha256": "4964413d0db62e6647cf76d97018a81899c49c5066ae76cda42998dcbeb189df",
+      "nota": "ampliacion sabado (2026-10-02): dirigida por las preguntas del test"
     },
     {
       "doc_id": "ley_1257_2008",
@@ -5507,6 +6217,27 @@
       "nota": "ampliacion v3 (2026-10-02): alto impacto por area; areas propuestas por agente, falta confirmar"
     },
     {
+      "doc_id": "ley_1276_2009",
+      "titulo": "Ley 1276 de 2009",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/ley_1276_2009.html",
+      "areas": [
+        "Derecho administrativo",
+        "Derecho de familia"
+      ],
+      "items_del_banco": 0,
+      "canonico": [],
+      "estado": "descargado",
+      "tipo_fuente": "html",
+      "fecha_consulta": "2026-10-03",
+      "archivos": [
+        "ley_1276_2009.html"
+      ],
+      "bytes": 43685,
+      "sha256": "6a703a0f55ef0332dab33b74fc516ed0de97d6dac2b0564d0521dcaa83e3134d",
+      "nota": "ampliacion sabado (2026-10-02): dirigida por las preguntas del test"
+    },
+    {
       "doc_id": "ley_1285_2009",
       "titulo": "Ley 1285 de 2009 (Reforma a la Ley Estatutaria de la Administracion de Justicia)",
       "fuente": "Normograma de la CRA (compilacion Avance Juridico)",
@@ -5525,6 +6256,28 @@
       "bytes": 95709,
       "sha256": "4fd249cede5dd29ee796cff2922418c451ca9988c081714e3aef009fa2b2f616",
       "nota": "ampliacion v3 (2026-10-02): alto impacto por area; areas propuestas por agente, falta confirmar"
+    },
+    {
+      "doc_id": "ley_12_1991",
+      "titulo": "Ley 12 de 1991",
+      "fuente": "Normograma de la Cancilleria (compilacion Avance Juridico)",
+      "url": "https://www.cancilleria.gov.co/sites/default/files/Normograma/docs/ley_0012_1991.htm",
+      "areas": [
+        "Derecho constitucional",
+        "Derecho de familia"
+      ],
+      "items_del_banco": 0,
+      "canonico": [],
+      "estado": "descargado",
+      "tipo_fuente": "html",
+      "fecha_consulta": "2026-10-02",
+      "archivos": [
+        "ley_0012_1991.htm",
+        "ley_0012_1991_pr001.htm"
+      ],
+      "bytes": 116030,
+      "sha256": "04f5895bb743a6711bda292dfe48e743d0468d420b4412b3d6fcb6811d78778a",
+      "nota": "ampliacion sabado (2026-10-02): dirigida por las preguntas del test"
     },
     {
       "doc_id": "ley_1306_2009",
@@ -5546,6 +6299,28 @@
       "bytes": 207641,
       "sha256": "cec3347a7d539d2c706acec5644010e6e57721fc6012f8e8b504c8612b0b4f6a",
       "nota": "ampliacion v3 (2026-10-02): alto impacto por area; areas propuestas por agente, falta confirmar"
+    },
+    {
+      "doc_id": "ley_130_1994",
+      "titulo": "Ley 130 de 1994",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/ley_0130_1994.html",
+      "areas": [
+        "Derecho constitucional",
+        "Derecho administrativo"
+      ],
+      "items_del_banco": 0,
+      "canonico": [],
+      "estado": "descargado",
+      "tipo_fuente": "html",
+      "fecha_consulta": "2026-10-03",
+      "archivos": [
+        "ley_0130_1994.html",
+        "ley_0130_1994_pr001.html"
+      ],
+      "bytes": 115313,
+      "sha256": "b72c055b25b7b5c0fdb446dff581176718e0549e7b555f20c94874d867f4cbbe",
+      "nota": "ampliacion sabado (2026-10-02): dirigida por las preguntas del test"
     },
     {
       "doc_id": "ley_1314_2009",
@@ -5607,6 +6382,27 @@
       "bytes": 330217,
       "sha256": "47439d6064730fa39c7f0b2466392e5d69da2ed5b2f6c06af4c5d72b5ecc614a",
       "nota": "ampliacion v3 (2026-10-02): alto impacto por area; areas propuestas por agente, falta confirmar"
+    },
+    {
+      "doc_id": "ley_1346_2009",
+      "titulo": "Ley 1346 de 2009",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/ley_1346_2009.html",
+      "areas": [
+        "Derecho constitucional",
+        "Derecho civil"
+      ],
+      "items_del_banco": 0,
+      "canonico": [],
+      "estado": "descargado",
+      "tipo_fuente": "html",
+      "fecha_consulta": "2026-10-02",
+      "archivos": [
+        "ley_1346_2009.html"
+      ],
+      "bytes": 122857,
+      "sha256": "78b7c0954c2365edc697d44b9067f4c00f79a6805f49bba16695bae1e92c8fcb",
+      "nota": "ampliacion sabado (2026-10-02): dirigida por las preguntas del test"
     },
     {
       "doc_id": "ley_134_1994",
@@ -5732,6 +6528,31 @@
       "nota": "ampliacion v3 (2026-10-02): alto impacto por area; areas propuestas por agente, falta confirmar"
     },
     {
+      "doc_id": "ley_142_1994",
+      "titulo": "Ley 142 de 1994",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/ley_0142_1994.html",
+      "areas": [
+        "Derecho administrativo",
+        "Derecho comercial y sociedades"
+      ],
+      "items_del_banco": 0,
+      "canonico": [],
+      "estado": "descargado",
+      "tipo_fuente": "html",
+      "fecha_consulta": "2026-10-02",
+      "archivos": [
+        "ley_0142_1994.html",
+        "ley_0142_1994_pr001.html",
+        "ley_0142_1994_pr002.html",
+        "ley_0142_1994_pr003.html",
+        "ley_0142_1994_pr004.html"
+      ],
+      "bytes": 571172,
+      "sha256": "e289faa0ad51d039e4176ffc05f86da972c785d2e5d0851c76716c79a7526564",
+      "nota": "ampliacion sabado (2026-10-02): dirigida por las preguntas del test"
+    },
+    {
       "doc_id": "ley_1430_2010",
       "titulo": "Ley 1430 de 2010 (Control tributario y competitividad)",
       "fuente": "Normograma de la CRA (compilacion Avance Juridico)",
@@ -5750,6 +6571,82 @@
       "bytes": 150700,
       "sha256": "bb8d5eca2d475e78ccb38e702054090d4965ac4d51eb0df62ab194aaa1fa5701",
       "nota": "ampliacion v3 (2026-10-02): alto impacto por area; areas propuestas por agente, falta confirmar"
+    },
+    {
+      "doc_id": "ley_1438_2011",
+      "titulo": "Ley 1438 de 2011",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/ley_1438_2011.html",
+      "areas": [
+        "Derecho laboral",
+        "Derecho administrativo"
+      ],
+      "items_del_banco": 0,
+      "canonico": [],
+      "estado": "descargado",
+      "tipo_fuente": "html",
+      "fecha_consulta": "2026-10-02",
+      "archivos": [
+        "ley_1438_2011.html",
+        "ley_1438_2011_pr001.html",
+        "ley_1438_2011_pr002.html",
+        "ley_1438_2011_pr003.html"
+      ],
+      "bytes": 361771,
+      "sha256": "fd663a2b25a64dcebd0c27c15ac2accc3b6854d85cfba806794aeb9596112f82",
+      "nota": "ampliacion sabado (2026-10-02): dirigida por las preguntas del test"
+    },
+    {
+      "doc_id": "ley_1448_2011",
+      "titulo": "Ley 1448 de 2011",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/ley_1448_2011.html",
+      "areas": [
+        "Derecho constitucional",
+        "Derecho administrativo",
+        "Derecho penal"
+      ],
+      "items_del_banco": 0,
+      "canonico": [],
+      "estado": "descargado",
+      "tipo_fuente": "html",
+      "fecha_consulta": "2026-10-02",
+      "archivos": [
+        "ley_1448_2011.html",
+        "ley_1448_2011_pr001.html",
+        "ley_1448_2011_pr002.html",
+        "ley_1448_2011_pr003.html",
+        "ley_1448_2011_pr004.html"
+      ],
+      "bytes": 638080,
+      "sha256": "6cadd9554ac7e61e099d2d33bb2b6ed397693a8919f17f2f1a55c7b3874a9bcd",
+      "nota": "ampliacion sabado (2026-10-02): dirigida por las preguntas del test"
+    },
+    {
+      "doc_id": "ley_1450_2011",
+      "titulo": "Ley 1450 de 2011",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/ley_1450_2011.html",
+      "areas": [
+        "Derecho administrativo",
+        "Derecho tributario"
+      ],
+      "items_del_banco": 0,
+      "canonico": [],
+      "estado": "descargado",
+      "tipo_fuente": "html",
+      "fecha_consulta": "2026-10-02",
+      "archivos": [
+        "ley_1450_2011.html",
+        "ley_1450_2011_pr001.html",
+        "ley_1450_2011_pr002.html",
+        "ley_1450_2011_pr003.html",
+        "ley_1450_2011_pr004.html",
+        "ley_1450_2011_pr005.html"
+      ],
+      "bytes": 630206,
+      "sha256": "c4899a6bb67c1687b0a443eebe6bdeaa13eb94f5cc5515c91d9e8300c4533ec0",
+      "nota": "ampliacion sabado (2026-10-02): dirigida por las preguntas del test"
     },
     {
       "doc_id": "ley_1453_2011",
@@ -5954,6 +6851,49 @@
       "nota": "ampliacion v4 (2026-10-02): area delgada, resuelta y validada por sondeo automatico; areas propuestas por agente, falta confirmar"
     },
     {
+      "doc_id": "ley_1616_2013",
+      "titulo": "Ley 1616 de 2013",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/ley_1616_2013.html",
+      "areas": [
+        "Derecho administrativo",
+        "Derecho constitucional"
+      ],
+      "items_del_banco": 0,
+      "canonico": [],
+      "estado": "descargado",
+      "tipo_fuente": "html",
+      "fecha_consulta": "2026-10-03",
+      "archivos": [
+        "ley_1616_2013.html",
+        "ley_1616_2013_pr001.html"
+      ],
+      "bytes": 141912,
+      "sha256": "772172aae2ac21fe90efabb5a50329f0626d939334ad27f781f724a32c2cdf4b",
+      "nota": "ampliacion sabado (2026-10-02): dirigida por las preguntas del test"
+    },
+    {
+      "doc_id": "ley_1618_2013",
+      "titulo": "Ley 1618 de 2013",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/ley_1618_2013.html",
+      "areas": [
+        "Derecho constitucional",
+        "Derecho administrativo"
+      ],
+      "items_del_banco": 0,
+      "canonico": [],
+      "estado": "descargado",
+      "tipo_fuente": "html",
+      "fecha_consulta": "2026-10-02",
+      "archivos": [
+        "ley_1618_2013.html"
+      ],
+      "bytes": 129502,
+      "sha256": "89046a5ef5bcf2dc184b85676df471c294795300fcbba1bd7d6393dfbf08e25e",
+      "nota": "ampliacion sabado (2026-10-02): dirigida por las preguntas del test"
+    },
+    {
       "doc_id": "ley_1648_2013",
       "titulo": "Ley 1648 de 2013 (Medidas de observancia de los derechos de propiedad industrial)",
       "fuente": "Normograma de Colpensiones (compilacion Avance Juridico)",
@@ -5993,6 +6933,53 @@
       "bytes": 148024,
       "sha256": "96081a90f0f2d0e49b1b9b842ad395690e8b7422e7a084acd820ec6ea0341108",
       "nota": "ampliacion desde citations.py (seccion D.6)"
+    },
+    {
+      "doc_id": "ley_16_1972",
+      "titulo": "Ley 16 de 1972",
+      "fuente": "Normograma de la CRA (compilacion Avance Juridico)",
+      "url": "https://normas.cra.gov.co/gestor/docs/ley_0016_1972.htm",
+      "areas": [
+        "Derecho constitucional",
+        "Derecho penal"
+      ],
+      "items_del_banco": 0,
+      "canonico": [],
+      "estado": "descargado",
+      "tipo_fuente": "html",
+      "fecha_consulta": "2026-10-02",
+      "archivos": [
+        "ley_0016_1972.htm"
+      ],
+      "bytes": 125857,
+      "sha256": "835a0aab05356701b5dd5fb4a766672987d73c0c6e9d9980351aa3f2ea1b27aa",
+      "nota": "ampliacion sabado (2026-10-02): dirigida por las preguntas del test"
+    },
+    {
+      "doc_id": "ley_1708_2014",
+      "titulo": "Ley 1708 de 2014",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/ley_1708_2014.html",
+      "areas": [
+        "Derecho penal",
+        "Derecho procesal"
+      ],
+      "items_del_banco": 0,
+      "canonico": [],
+      "estado": "descargado",
+      "tipo_fuente": "html",
+      "fecha_consulta": "2026-10-03",
+      "archivos": [
+        "ley_1708_2014.html",
+        "ley_1708_2014_pr001.html",
+        "ley_1708_2014_pr002.html",
+        "ley_1708_2014_pr003.html",
+        "ley_1708_2014_pr004.html",
+        "ley_1708_2014_pr005.html"
+      ],
+      "bytes": 499479,
+      "sha256": "beacaeb539da29dd9b5a957feeb1ccd483f745b1502f4d995ff38bb8789dbd57",
+      "nota": "ampliacion sabado (2026-10-02): dirigida por las preguntas del test"
     },
     {
       "doc_id": "ley_1709_2014",
@@ -6097,6 +7084,32 @@
       "nota": "ampliacion v3 (2026-10-02): alto impacto por area; areas propuestas por agente, falta confirmar"
     },
     {
+      "doc_id": "ley_1753_2015",
+      "titulo": "Ley 1753 de 2015",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/ley_1753_2015.html",
+      "areas": [
+        "Derecho administrativo",
+        "Derecho tributario"
+      ],
+      "items_del_banco": 0,
+      "canonico": [],
+      "estado": "descargado",
+      "tipo_fuente": "html",
+      "fecha_consulta": "2026-10-02",
+      "archivos": [
+        "ley_1753_2015.html",
+        "ley_1753_2015_pr001.html",
+        "ley_1753_2015_pr002.html",
+        "ley_1753_2015_pr003.html",
+        "ley_1753_2015_pr004.html",
+        "ley_1753_2015_pr005.html"
+      ],
+      "bytes": 824868,
+      "sha256": "bb1e1d9fcfec72e81b1e97554b491229363d948f6e8afd06b65ca3163124f7ea",
+      "nota": "ampliacion sabado (2026-10-02): dirigida por las preguntas del test"
+    },
+    {
       "doc_id": "ley_1757_2015",
       "titulo": "Ley 1757 de 2015 (Estatutaria de participacion democratica)",
       "fuente": "Secretaria del Senado",
@@ -6160,6 +7173,27 @@
       "nota": "ampliacion v3 (2026-10-02): alto impacto por area; areas propuestas por agente, falta confirmar"
     },
     {
+      "doc_id": "ley_1781_2016",
+      "titulo": "Ley 1781 de 2016",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/ley_1781_2016.html",
+      "areas": [
+        "Derecho procesal",
+        "Derecho administrativo"
+      ],
+      "items_del_banco": 0,
+      "canonico": [],
+      "estado": "descargado",
+      "tipo_fuente": "html",
+      "fecha_consulta": "2026-10-03",
+      "archivos": [
+        "ley_1781_2016.html"
+      ],
+      "bytes": 24267,
+      "sha256": "8dcbe0e6e7f97bf68a412b2dcb2f5517e6c475ae7267e69be158235050682abe",
+      "nota": "ampliacion sabado (2026-10-02): dirigida por las preguntas del test"
+    },
+    {
       "doc_id": "ley_178_1994",
       "titulo": "Ley 178 de 1994 (Aprueba el Convenio de Paris para la Proteccion de la Propiedad Industrial)",
       "fuente": "Secretaria del Senado",
@@ -6178,6 +7212,50 @@
       "bytes": 120787,
       "sha256": "4f4638a5f26d8da504df27d1f9021fc67a4e44cd63f9dc55ef3a654303ee8838",
       "nota": "ampliacion v4 (2026-10-02): area delgada, resuelta y validada por sondeo automatico; areas propuestas por agente, falta confirmar"
+    },
+    {
+      "doc_id": "ley_181_1995",
+      "titulo": "Ley 181 de 1995",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/ley_0181_1995.html",
+      "areas": [
+        "Derecho administrativo"
+      ],
+      "items_del_banco": 0,
+      "canonico": [],
+      "estado": "descargado",
+      "tipo_fuente": "html",
+      "fecha_consulta": "2026-10-03",
+      "archivos": [
+        "ley_0181_1995.html",
+        "ley_0181_1995_pr001.html",
+        "ley_0181_1995_pr002.html"
+      ],
+      "bytes": 179953,
+      "sha256": "89cb7668bb018c379e4608e0d88ad5d956c41a3d5f4830fab5f74ff885720162",
+      "nota": "ampliacion sabado (2026-10-02): dirigida por las preguntas del test"
+    },
+    {
+      "doc_id": "ley_1820_2016",
+      "titulo": "Ley 1820 de 2016",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/ley_1820_2016.html",
+      "areas": [
+        "Derecho penal",
+        "Derecho procesal"
+      ],
+      "items_del_banco": 0,
+      "canonico": [],
+      "estado": "descargado",
+      "tipo_fuente": "html",
+      "fecha_consulta": "2026-10-03",
+      "archivos": [
+        "ley_1820_2016.html",
+        "ley_1820_2016_pr001.html"
+      ],
+      "bytes": 161776,
+      "sha256": "c5c61cab5c052060356057f5f5309bff7c3ec94bf61b3205409a9d738d5289c0",
+      "nota": "ampliacion sabado (2026-10-02): dirigida por las preguntas del test"
     },
     {
       "doc_id": "ley_1822_2017",
@@ -6301,6 +7379,29 @@
       "nota": "ampliacion v3 (2026-10-02): alto impacto por area; areas propuestas por agente, falta confirmar"
     },
     {
+      "doc_id": "ley_190_1995",
+      "titulo": "Ley 190 de 1995",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/ley_0190_1995.html",
+      "areas": [
+        "Derecho administrativo",
+        "Derecho penal"
+      ],
+      "items_del_banco": 0,
+      "canonico": [],
+      "estado": "descargado",
+      "tipo_fuente": "html",
+      "fecha_consulta": "2026-10-03",
+      "archivos": [
+        "ley_0190_1995.html",
+        "ley_0190_1995_pr001.html",
+        "ley_0190_1995_pr002.html"
+      ],
+      "bytes": 156140,
+      "sha256": "c05cdc6ecccec1bd9ff48773b595274e3fa0d9c812a282351aff1486f298609c",
+      "nota": "ampliacion sabado (2026-10-02): dirigida por las preguntas del test"
+    },
+    {
       "doc_id": "ley_1915_2018",
       "titulo": "Ley 1915 de 2018 (Derecho de autor y derechos conexos)",
       "fuente": "Normograma de la DIAN (compilacion Avance Juridico)",
@@ -6364,6 +7465,55 @@
       "bytes": 512637,
       "sha256": "a08e5a6efa2263e8db9f60ccaaf29f3de20f62ebdc92e106e7ab05b133e13f9e",
       "nota": "ampliacion v4 (2026-10-02): area delgada, resuelta y validada por sondeo automatico; areas propuestas por agente, falta confirmar"
+    },
+    {
+      "doc_id": "ley_1949_2019",
+      "titulo": "Ley 1949 de 2019",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/ley_1949_2019.html",
+      "areas": [
+        "Derecho administrativo",
+        "Derecho laboral"
+      ],
+      "items_del_banco": 0,
+      "canonico": [],
+      "estado": "descargado",
+      "tipo_fuente": "html",
+      "fecha_consulta": "2026-10-02",
+      "archivos": [
+        "ley_1949_2019.html"
+      ],
+      "bytes": 55483,
+      "sha256": "d6e5f44fef8fa39ba17ef056154783de62d52767616c3edb172901d6147adfa8",
+      "nota": "ampliacion sabado (2026-10-02): dirigida por las preguntas del test"
+    },
+    {
+      "doc_id": "ley_1955_2019",
+      "titulo": "Ley 1955 de 2019",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/ley_1955_2019.html",
+      "areas": [
+        "Derecho administrativo",
+        "Derecho tributario"
+      ],
+      "items_del_banco": 0,
+      "canonico": [],
+      "estado": "descargado",
+      "tipo_fuente": "html",
+      "fecha_consulta": "2026-10-02",
+      "archivos": [
+        "ley_1955_2019.html",
+        "ley_1955_2019_pr001.html",
+        "ley_1955_2019_pr002.html",
+        "ley_1955_2019_pr003.html",
+        "ley_1955_2019_pr004.html",
+        "ley_1955_2019_pr005.html",
+        "ley_1955_2019_pr006.html",
+        "ley_1955_2019_pr007.html"
+      ],
+      "bytes": 1146151,
+      "sha256": "05d24c4f729c72136866f235a258a9ee8951bf06bf891156d81ceb4e5800ae95",
+      "nota": "ampliacion sabado (2026-10-02): dirigida por las preguntas del test"
     },
     {
       "doc_id": "ley_1957_2019",
@@ -6487,6 +7637,27 @@
       "bytes": 75915,
       "sha256": "5c9e043a1805d2c7c0c02cccb7f637bf4fb3cb07810da62d91cd2150451f2a2e",
       "nota": "ampliacion v4 (2026-10-02): area delgada, resuelta y validada por sondeo automatico; areas propuestas por agente, falta confirmar"
+    },
+    {
+      "doc_id": "ley_2055_2020",
+      "titulo": "Ley 2055 de 2020",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/ley_2055_2020.html",
+      "areas": [
+        "Derecho constitucional",
+        "Derecho de familia"
+      ],
+      "items_del_banco": 0,
+      "canonico": [],
+      "estado": "descargado",
+      "tipo_fuente": "html",
+      "fecha_consulta": "2026-10-02",
+      "archivos": [
+        "ley_2055_2020.html"
+      ],
+      "bytes": 206155,
+      "sha256": "4602bbeed17614535ffb255ae0354b1b623e31e680f483eccb43b5f562d45573",
+      "nota": "ampliacion sabado (2026-10-02): dirigida por las preguntas del test"
     },
     {
       "doc_id": "ley_2069_2020",
@@ -6712,6 +7883,29 @@
       "nota": "ampliacion v3 (2026-10-02): alto impacto por area; areas propuestas por agente, falta confirmar"
     },
     {
+      "doc_id": "ley_2136_2021",
+      "titulo": "Ley 2136 de 2021",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/ley_2136_2021.html",
+      "areas": [
+        "Derecho administrativo",
+        "Derecho constitucional"
+      ],
+      "items_del_banco": 0,
+      "canonico": [],
+      "estado": "descargado",
+      "tipo_fuente": "html",
+      "fecha_consulta": "2026-10-03",
+      "archivos": [
+        "ley_2136_2021.html",
+        "ley_2136_2021_pr001.html",
+        "ley_2136_2021_pr002.html"
+      ],
+      "bytes": 233863,
+      "sha256": "05bf6a937bbd1b1d54be0e5514e85e360184b4113f776ba1c2ead32b19dfc969",
+      "nota": "ampliacion sabado (2026-10-02): dirigida por las preguntas del test"
+    },
+    {
       "doc_id": "ley_2155_2021",
       "titulo": "Ley 2155 de 2021 (Ley de Inversion Social)",
       "fuente": "Normograma de la CRA (compilacion Avance Juridico)",
@@ -6790,6 +7984,49 @@
       "bytes": 208316,
       "sha256": "0a0cfa590a440e79e239e0a50d9caff03d1130db66b9ae501a852c3a09052644",
       "nota": "ampliacion v3 (2026-10-02): alto impacto por area; areas propuestas por agente, falta confirmar"
+    },
+    {
+      "doc_id": "ley_21_1982",
+      "titulo": "Ley 21 de 1982",
+      "fuente": "Normograma de Colpensiones (compilacion Avance Juridico)",
+      "url": "https://normativa.colpensiones.gov.co/colpens/docs/ley_0021_1982.htm",
+      "areas": [
+        "Derecho laboral"
+      ],
+      "items_del_banco": 0,
+      "canonico": [],
+      "estado": "descargado",
+      "tipo_fuente": "html",
+      "fecha_consulta": "2026-10-03",
+      "archivos": [
+        "ley_0021_1982.htm",
+        "ley_0021_1982_pr001.htm",
+        "ley_0021_1982_pr002.htm"
+      ],
+      "bytes": 248411,
+      "sha256": "b01143a80481a1a74c238814c0cf89129025897aaf68b9810d5dab8a7cec1555",
+      "nota": "ampliacion sabado (2026-10-02): dirigida por las preguntas del test"
+    },
+    {
+      "doc_id": "ley_21_1991",
+      "titulo": "Ley 21 de 1991",
+      "fuente": "Normograma de Colpensiones (compilacion Avance Juridico)",
+      "url": "https://normativa.colpensiones.gov.co/colpens/docs/ley_0021_1991.htm",
+      "areas": [
+        "Derecho constitucional"
+      ],
+      "items_del_banco": 0,
+      "canonico": [],
+      "estado": "descargado",
+      "tipo_fuente": "html",
+      "fecha_consulta": "2026-10-03",
+      "archivos": [
+        "ley_0021_1991.htm",
+        "ley_0021_1991_pr001.htm"
+      ],
+      "bytes": 84454,
+      "sha256": "582d30f4bfe402f6d41c8097578a9b76035eea92788f38106e3345aad9e01bcd",
+      "nota": "ampliacion sabado (2026-10-02): dirigida por las preguntas del test"
     },
     {
       "doc_id": "ley_2213_2022",
@@ -6877,6 +8114,36 @@
       "nota": "ampliacion v3 (2026-10-02): alto impacto por area; areas propuestas por agente, falta confirmar"
     },
     {
+      "doc_id": "ley_2294_2023",
+      "titulo": "Ley 2294 de 2023",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/ley_2294_2023.html",
+      "areas": [
+        "Derecho administrativo",
+        "Derecho tributario"
+      ],
+      "items_del_banco": 0,
+      "canonico": [],
+      "estado": "descargado",
+      "tipo_fuente": "html",
+      "fecha_consulta": "2026-10-02",
+      "archivos": [
+        "ley_2294_2023.html",
+        "ley_2294_2023_pr001.html",
+        "ley_2294_2023_pr002.html",
+        "ley_2294_2023_pr003.html",
+        "ley_2294_2023_pr004.html",
+        "ley_2294_2023_pr005.html",
+        "ley_2294_2023_pr006.html",
+        "ley_2294_2023_pr007.html",
+        "ley_2294_2023_pr008.html",
+        "ley_2294_2023_pr009.html"
+      ],
+      "bytes": 1388534,
+      "sha256": "ee5f39521c6587d105d6c56d30b093531dc002269e4d657b185c5db538f7a079",
+      "nota": "ampliacion sabado (2026-10-02): dirigida por las preguntas del test"
+    },
+    {
       "doc_id": "ley_2300_2023",
       "titulo": "Ley 2300 de 2023 (Ley Dejen de Fregar (contacto de cobranza))",
       "fuente": "Normograma de Colpensiones (compilacion Avance Juridico)",
@@ -6937,6 +8204,27 @@
       "nota": "ampliacion v3 (2026-10-02): alto impacto por area; areas propuestas por agente, falta confirmar"
     },
     {
+      "doc_id": "ley_23_1981",
+      "titulo": "Ley 23 de 1981",
+      "fuente": "Normograma de Colpensiones (compilacion Avance Juridico)",
+      "url": "https://normativa.colpensiones.gov.co/compilacion/docs/ley_0023_1981.htm",
+      "areas": [
+        "Derecho penal",
+        "Derecho civil"
+      ],
+      "items_del_banco": 0,
+      "canonico": [],
+      "estado": "descargado",
+      "tipo_fuente": "html",
+      "fecha_consulta": "2026-10-03",
+      "archivos": [
+        "ley_0023_1981.htm"
+      ],
+      "bytes": 115970,
+      "sha256": "013355cd45d653bd3ce10bdab37a88bc496f68109cd8a76947b88e1b0f0f85e1",
+      "nota": "ampliacion sabado (2026-10-02): dirigida por las preguntas del test"
+    },
+    {
       "doc_id": "ley_23_1982",
       "titulo": "Ley 23 de 1982 (Derechos de autor)",
       "fuente": "Normograma de la CRA (compilacion Avance Juridico)",
@@ -6975,6 +8263,49 @@
       "bytes": 49225,
       "sha256": "8b36bf1554e1abb38d0bee05491aa6e4780bb634ff09232bd442a8ca1583df11",
       "nota": "ampliacion v3 (2026-10-02): alto impacto por area; areas propuestas por agente, falta confirmar"
+    },
+    {
+      "doc_id": "ley_248_1995",
+      "titulo": "Ley 248 de 1995",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/ley_0248_1995.html",
+      "areas": [
+        "Derecho constitucional",
+        "Derecho penal"
+      ],
+      "items_del_banco": 0,
+      "canonico": [],
+      "estado": "descargado",
+      "tipo_fuente": "html",
+      "fecha_consulta": "2026-10-02",
+      "archivos": [
+        "ley_0248_1995.html"
+      ],
+      "bytes": 47946,
+      "sha256": "5a7c190360981aa0a9ee266f376cc6a165fa4d5b3922a9bb55ef3b8f4b9d21b4",
+      "nota": "ampliacion sabado (2026-10-02): dirigida por las preguntas del test"
+    },
+    {
+      "doc_id": "ley_24_1992",
+      "titulo": "Ley 24 de 1992",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/ley_0024_1992.html",
+      "areas": [
+        "Derecho constitucional",
+        "Derecho administrativo"
+      ],
+      "items_del_banco": 0,
+      "canonico": [],
+      "estado": "descargado",
+      "tipo_fuente": "html",
+      "fecha_consulta": "2026-10-03",
+      "archivos": [
+        "ley_0024_1992.html",
+        "ley_0024_1992_pr001.html"
+      ],
+      "bytes": 76540,
+      "sha256": "e1f8e86cc165efbd201a1d0e845c7a5c79356c30ba63048e63f09045fb806c8d",
+      "nota": "ampliacion sabado (2026-10-02): dirigida por las preguntas del test"
     },
     {
       "doc_id": "ley_258_1996",
@@ -7060,6 +8391,50 @@
       "nota": "ampliacion v3 (2026-10-02): alto impacto por area; areas propuestas por agente, falta confirmar"
     },
     {
+      "doc_id": "ley_30_1992",
+      "titulo": "Ley 30 de 1992",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/ley_0030_1992.html",
+      "areas": [
+        "Derecho administrativo"
+      ],
+      "items_del_banco": 0,
+      "canonico": [],
+      "estado": "descargado",
+      "tipo_fuente": "html",
+      "fecha_consulta": "2026-10-02",
+      "archivos": [
+        "ley_0030_1992.html",
+        "ley_0030_1992_pr001.html",
+        "ley_0030_1992_pr002.html",
+        "ley_0030_1992_pr003.html"
+      ],
+      "bytes": 271597,
+      "sha256": "bcec6b47a09e80425c988381ad359a265a6c26bb2f56ae6f0e54efc3fe93432d",
+      "nota": "ampliacion sabado (2026-10-02): dirigida por las preguntas del test"
+    },
+    {
+      "doc_id": "ley_319_1996",
+      "titulo": "Ley 319 de 1996",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/ley_0319_1996.html",
+      "areas": [
+        "Derecho constitucional",
+        "Derecho laboral"
+      ],
+      "items_del_banco": 0,
+      "canonico": [],
+      "estado": "descargado",
+      "tipo_fuente": "html",
+      "fecha_consulta": "2026-10-03",
+      "archivos": [
+        "ley_0319_1996.html"
+      ],
+      "bytes": 56728,
+      "sha256": "bdb34276efdd86c2050a10372be7ff358ca417def81198c507a2e8960c135ef4",
+      "nota": "ampliacion sabado (2026-10-02): dirigida por las preguntas del test"
+    },
+    {
       "doc_id": "ley_361_1997",
       "titulo": "Ley 361 de 1997 (Integracion social de las personas con limitacion (estabilidad reforzada))",
       "fuente": "Normograma de la CRA (compilacion Avance Juridico)",
@@ -7098,6 +8473,27 @@
       "bytes": 137275,
       "sha256": "6cec0ba986d117001bbc02cc88ecf3f5a075f07b4c403be91207a1b93c07c7d8",
       "nota": "ampliacion v4 (2026-10-02): area delgada, resuelta y validada por sondeo automatico; areas propuestas por agente, falta confirmar"
+    },
+    {
+      "doc_id": "ley_387_1997",
+      "titulo": "Ley 387 de 1997",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/ley_0387_1997.html",
+      "areas": [
+        "Derecho constitucional",
+        "Derecho administrativo"
+      ],
+      "items_del_banco": 0,
+      "canonico": [],
+      "estado": "descargado",
+      "tipo_fuente": "html",
+      "fecha_consulta": "2026-10-02",
+      "archivos": [
+        "ley_0387_1997.html"
+      ],
+      "bytes": 69824,
+      "sha256": "f130b1b8b1b7a0f46cb90a8ec3853afa7087ec8af24f17628f95bd53ad8b8e7b",
+      "nota": "ampliacion sabado (2026-10-02): dirigida por las preguntas del test"
     },
     {
       "doc_id": "ley_388_1997",
@@ -7140,6 +8536,52 @@
       "bytes": 54368,
       "sha256": "718fe44bba26eae680190a638f3d74af7d71818192c00074027b56c7a8aaadee",
       "nota": "ampliacion v3 (2026-10-02): alto impacto por area; areas propuestas por agente, falta confirmar"
+    },
+    {
+      "doc_id": "ley_397_1997",
+      "titulo": "Ley 397 de 1997",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/ley_0397_1997.html",
+      "areas": [
+        "Derecho administrativo",
+        "Derecho constitucional"
+      ],
+      "items_del_banco": 0,
+      "canonico": [],
+      "estado": "descargado",
+      "tipo_fuente": "html",
+      "fecha_consulta": "2026-10-03",
+      "archivos": [
+        "ley_0397_1997.html",
+        "ley_0397_1997_pr001.html"
+      ],
+      "bytes": 220002,
+      "sha256": "01d6bdd285b8de16e559e0c2f953ae5f8313430c2dda47db8f00268c597b7e0d",
+      "nota": "ampliacion sabado (2026-10-02): dirigida por las preguntas del test"
+    },
+    {
+      "doc_id": "ley_418_1997",
+      "titulo": "Ley 418 de 1997",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/ley_0418_1997.html",
+      "areas": [
+        "Derecho penal",
+        "Derecho administrativo"
+      ],
+      "items_del_banco": 0,
+      "canonico": [],
+      "estado": "descargado",
+      "tipo_fuente": "html",
+      "fecha_consulta": "2026-10-03",
+      "archivos": [
+        "ley_0418_1997.html",
+        "ley_0418_1997_pr001.html",
+        "ley_0418_1997_pr002.html",
+        "ley_0418_1997_pr003.html"
+      ],
+      "bytes": 344699,
+      "sha256": "0eb6e11cd89dd062ee1e7010fe2c40d60a1afb989382ae09b830aebec546c87c",
+      "nota": "ampliacion sabado (2026-10-02): dirigida por las preguntas del test"
     },
     {
       "doc_id": "ley_43_1990",
@@ -7328,6 +8770,47 @@
       "nota": "ampliacion v4 (2026-10-02): area delgada, resuelta y validada por sondeo automatico; areas propuestas por agente, falta confirmar"
     },
     {
+      "doc_id": "ley_51_1981",
+      "titulo": "Ley 51 de 1981",
+      "fuente": "Normograma de la CRA (compilacion Avance Juridico)",
+      "url": "https://normas.cra.gov.co/gestor/docs/ley_0051_1981.htm",
+      "areas": [
+        "Derecho constitucional"
+      ],
+      "items_del_banco": 0,
+      "canonico": [],
+      "estado": "descargado",
+      "tipo_fuente": "html",
+      "fecha_consulta": "2026-10-02",
+      "archivos": [
+        "ley_0051_1981.htm"
+      ],
+      "bytes": 68674,
+      "sha256": "c42dd83012f412658900b31e004e00576f457c19faa88df084e25197f7c56bea",
+      "nota": "ampliacion sabado (2026-10-02): dirigida por las preguntas del test"
+    },
+    {
+      "doc_id": "ley_550_1999",
+      "titulo": "Ley 550 de 1999",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/ley_0550_1999.html",
+      "areas": [
+        "Derecho comercial y sociedades"
+      ],
+      "items_del_banco": 0,
+      "canonico": [],
+      "estado": "descargado",
+      "tipo_fuente": "html",
+      "fecha_consulta": "2026-10-03",
+      "archivos": [
+        "ley_0550_1999.html",
+        "ley_0550_1999_pr001.html"
+      ],
+      "bytes": 308433,
+      "sha256": "28b451b92b7d74f85b9fdcbd9fe599ab283d0b417800de81c706c19c9f0cc5ea",
+      "nota": "ampliacion sabado (2026-10-02): dirigida por las preguntas del test"
+    },
+    {
       "doc_id": "ley_565_2000",
       "titulo": "Ley 565 de 2000 (Aprueba el Tratado de la OMPI sobre Derecho de Autor (WCT))",
       "fuente": "Normograma de la Cancilleria (compilacion Avance Juridico)",
@@ -7346,6 +8829,27 @@
       "bytes": 46157,
       "sha256": "8e270967e1066bfe0eea1f0b4f347bc815e2036992cba9f31ab6b80a1a9bcc02",
       "nota": "ampliacion v4 (2026-10-02): area delgada, resuelta y validada por sondeo automatico; areas propuestas por agente, falta confirmar"
+    },
+    {
+      "doc_id": "ley_575_2000",
+      "titulo": "Ley 575 de 2000",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/ley_0575_2000.html",
+      "areas": [
+        "Derecho de familia",
+        "Derecho penal"
+      ],
+      "items_del_banco": 0,
+      "canonico": [],
+      "estado": "descargado",
+      "tipo_fuente": "html",
+      "fecha_consulta": "2026-10-02",
+      "archivos": [
+        "ley_0575_2000.html"
+      ],
+      "bytes": 38196,
+      "sha256": "54fe7892fa7d8225e3d47af6b9eadceea02d3394d778f53e16fba59efa522084",
+      "nota": "ampliacion sabado (2026-10-02): dirigida por las preguntas del test"
     },
     {
       "doc_id": "ley_57_1887",
@@ -7406,6 +8910,27 @@
       "bytes": 973445,
       "sha256": "77ffcc1eaf03cac03afb9ba1b0cccde31c4a01ef32a8c9533376e1a8cb7dca62",
       "nota": "ampliacion v3 (2026-10-02): alto impacto por area; areas propuestas por agente, falta confirmar"
+    },
+    {
+      "doc_id": "ley_60_1993",
+      "titulo": "Ley 60 de 1993",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/ley_0060_1993.html",
+      "areas": [
+        "Derecho administrativo",
+        "Derecho tributario"
+      ],
+      "items_del_banco": 0,
+      "canonico": [],
+      "estado": "descargado",
+      "tipo_fuente": "html",
+      "fecha_consulta": "2026-10-03",
+      "archivos": [
+        "ley_0060_1993.html"
+      ],
+      "bytes": 172786,
+      "sha256": "7b93b4eea14896387c6e6c01aa89e52533e8458de2df2248999d500518cf1f17",
+      "nota": "ampliacion sabado (2026-10-02): dirigida por las preguntas del test"
     },
     {
       "doc_id": "ley_610_2000",
@@ -7507,6 +9032,121 @@
       "bytes": 183417,
       "sha256": "3f839464db7293c4ed891fe5054b458e8b2460d1be124c376a3dfad3393ab0cc",
       "nota": "ampliacion v3 (2026-10-02): alto impacto por area; areas propuestas por agente, falta confirmar"
+    },
+    {
+      "doc_id": "ley_70_1993",
+      "titulo": "Ley 70 de 1993",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/ley_0070_1993.html",
+      "areas": [
+        "Derecho constitucional",
+        "Derecho administrativo"
+      ],
+      "items_del_banco": 0,
+      "canonico": [],
+      "estado": "descargado",
+      "tipo_fuente": "html",
+      "fecha_consulta": "2026-10-03",
+      "archivos": [
+        "ley_0070_1993.html",
+        "ley_0070_1993_pr001.html"
+      ],
+      "bytes": 110934,
+      "sha256": "53b7a83f28ba3101c1be54988a008c6553b8de62a82a12c61dcb4f58a161b96a",
+      "nota": "ampliacion sabado (2026-10-02): dirigida por las preguntas del test"
+    },
+    {
+      "doc_id": "ley_712_2001",
+      "titulo": "Ley 712 de 2001",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/ley_0712_2001.html",
+      "areas": [
+        "Derecho laboral",
+        "Derecho procesal"
+      ],
+      "items_del_banco": 0,
+      "canonico": [],
+      "estado": "descargado",
+      "tipo_fuente": "html",
+      "fecha_consulta": "2026-10-02",
+      "archivos": [
+        "ley_0712_2001.html",
+        "ley_0712_2001_pr001.html"
+      ],
+      "bytes": 131328,
+      "sha256": "2de41fd7ebb7a9a426f6b9b213f0982eda4572af3fedabc4f43eb0d72d997dec",
+      "nota": "ampliacion sabado (2026-10-02): dirigida por las preguntas del test"
+    },
+    {
+      "doc_id": "ley_715_2001",
+      "titulo": "Ley 715 de 2001",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/ley_0715_2001.html",
+      "areas": [
+        "Derecho administrativo",
+        "Derecho tributario"
+      ],
+      "items_del_banco": 0,
+      "canonico": [],
+      "estado": "descargado",
+      "tipo_fuente": "html",
+      "fecha_consulta": "2026-10-02",
+      "archivos": [
+        "ley_0715_2001.html",
+        "ley_0715_2001_pr001.html",
+        "ley_0715_2001_pr002.html"
+      ],
+      "bytes": 377069,
+      "sha256": "a15cc5e9c1dd8323c44216bf6904ceb57777070d1cb629bb7dd2c9fe94397f96",
+      "nota": "ampliacion sabado (2026-10-02): dirigida por las preguntas del test"
+    },
+    {
+      "doc_id": "ley_734_2002",
+      "titulo": "Ley 734 de 2002",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/ley_0734_2002.html",
+      "areas": [
+        "Derecho administrativo"
+      ],
+      "items_del_banco": 0,
+      "canonico": [],
+      "estado": "descargado",
+      "tipo_fuente": "html",
+      "fecha_consulta": "2026-10-02",
+      "archivos": [
+        "ley_0734_2002.html",
+        "ley_0734_2002_pr001.html",
+        "ley_0734_2002_pr002.html",
+        "ley_0734_2002_pr003.html",
+        "ley_0734_2002_pr004.html",
+        "ley_0734_2002_pr005.html"
+      ],
+      "bytes": 539848,
+      "sha256": "e44d03c9392ad74e570666bff5713b597da76c5a76f141232581e96dd1d5f23f",
+      "nota": "ampliacion sabado (2026-10-02): dirigida por las preguntas del test"
+    },
+    {
+      "doc_id": "ley_74_1968",
+      "titulo": "Ley 74 de 1968",
+      "fuente": "Normograma de la Cancilleria (compilacion Avance Juridico)",
+      "url": "https://www.cancilleria.gov.co/sites/default/files/Normograma/docs/ley_0074_1968.htm",
+      "areas": [
+        "Derecho constitucional",
+        "Derecho penal"
+      ],
+      "items_del_banco": 0,
+      "canonico": [],
+      "estado": "descargado",
+      "tipo_fuente": "html",
+      "fecha_consulta": "2026-10-02",
+      "archivos": [
+        "ley_0074_1968.htm",
+        "ley_0074_1968_pr001.htm",
+        "ley_0074_1968_pr002.htm"
+      ],
+      "bytes": 243495,
+      "sha256": "891566b536ee1d19645f69f6000f009b1aadfc0628f880488f68fd5e23f668b0",
+      "nota": "ampliacion sabado (2026-10-02): dirigida por las preguntas del test"
     },
     {
       "doc_id": "ley_776_2002",
@@ -7630,6 +9270,26 @@
       "nota": "ampliacion v3 (2026-10-02): alto impacto por area; areas propuestas por agente, falta confirmar"
     },
     {
+      "doc_id": "ley_860_2003",
+      "titulo": "Ley 860 de 2003",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/ley_0860_2003.html",
+      "areas": [
+        "Derecho laboral"
+      ],
+      "items_del_banco": 0,
+      "canonico": [],
+      "estado": "descargado",
+      "tipo_fuente": "html",
+      "fecha_consulta": "2026-10-02",
+      "archivos": [
+        "ley_0860_2003.html"
+      ],
+      "bytes": 37888,
+      "sha256": "5c17e8668e930d608eadb83749f8b8f6ee38c26da8287f01f11b375cbdca6665",
+      "nota": "ampliacion sabado (2026-10-02): dirigida por las preguntas del test"
+    },
+    {
       "doc_id": "ley_863_2003",
       "titulo": "Ley 863 de 2003 (Reforma tributaria de 2003)",
       "fuente": "Normograma de Colpensiones (compilacion Avance Juridico)",
@@ -7649,6 +9309,26 @@
       "bytes": 408289,
       "sha256": "9b55cc1c5e1430bd54d711ac24cc9a9f58e560d0861e3d06ce7aebf1aea8f0e1",
       "nota": "ampliacion v4 (2026-10-02): area delgada, resuelta y validada por sondeo automatico; areas propuestas por agente, falta confirmar"
+    },
+    {
+      "doc_id": "ley_890_2004",
+      "titulo": "Ley 890 de 2004",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/ley_0890_2004.html",
+      "areas": [
+        "Derecho penal"
+      ],
+      "items_del_banco": 0,
+      "canonico": [],
+      "estado": "descargado",
+      "tipo_fuente": "html",
+      "fecha_consulta": "2026-10-03",
+      "archivos": [
+        "ley_0890_2004.html"
+      ],
+      "bytes": 32915,
+      "sha256": "a7ef76b9080c3d1656f9ce563eb6a5a1994d03b31ec3ae3cc8369fc991415f19",
+      "nota": "ampliacion sabado (2026-10-02): dirigida por las preguntas del test"
     },
     {
       "doc_id": "ley_909_2004",
@@ -7673,6 +9353,27 @@
       "nota": "ampliacion v3 (2026-10-02): alto impacto por area; areas propuestas por agente, falta confirmar"
     },
     {
+      "doc_id": "ley_90_1946",
+      "titulo": "Ley 90 de 1946",
+      "fuente": "Normograma de Colpensiones (compilacion Avance Juridico)",
+      "url": "https://normativa.colpensiones.gov.co/colpens/docs/ley_0090_1946.htm",
+      "areas": [
+        "Derecho laboral"
+      ],
+      "items_del_banco": 0,
+      "canonico": [],
+      "estado": "descargado",
+      "tipo_fuente": "html",
+      "fecha_consulta": "2026-10-03",
+      "archivos": [
+        "ley_0090_1946.htm",
+        "ley_0090_1946_pr001.htm"
+      ],
+      "bytes": 155302,
+      "sha256": "3a76438a26318997e54311e9366d82fa3e9e66b1e51a667bc6f854be0d37d76d",
+      "nota": "ampliacion sabado (2026-10-02): dirigida por las preguntas del test"
+    },
+    {
       "doc_id": "ley_95_1890",
       "titulo": "Ley 95 de 1890 (Reformas civiles)",
       "fuente": "Normograma de la CRA (compilacion Avance Juridico)",
@@ -7691,6 +9392,27 @@
       "bytes": 67422,
       "sha256": "69febb13860fb69e29fa342f30dd83a9deba3174e37bb47bc9ea030a9222189d",
       "nota": "ampliacion v4 (2026-10-02): area delgada, resuelta y validada por sondeo automatico; areas propuestas por agente, falta confirmar"
+    },
+    {
+      "doc_id": "ley_962_2005",
+      "titulo": "Ley 962 de 2005",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/ley_0962_2005.html",
+      "areas": [
+        "Derecho administrativo"
+      ],
+      "items_del_banco": 0,
+      "canonico": [],
+      "estado": "descargado",
+      "tipo_fuente": "html",
+      "fecha_consulta": "2026-10-02",
+      "archivos": [
+        "ley_0962_2005.html",
+        "ley_0962_2005_pr001.html"
+      ],
+      "bytes": 176504,
+      "sha256": "654d5b6df00237b84d3372f78246f8f73ad83e289857f545cef5a5e806d4c0c8",
+      "nota": "ampliacion sabado (2026-10-02): dirigida por las preguntas del test"
     },
     {
       "doc_id": "ley_975_2005",
@@ -7731,6 +9453,28 @@
       "bytes": 118686,
       "sha256": "9034d1b7ff1ddc0f25a3885b3a2ff06cb64f1cfbedb991c3a3f1b511b588b6b4",
       "nota": "ampliacion v3 (2026-10-02): alto impacto por area; areas propuestas por agente, falta confirmar"
+    },
+    {
+      "doc_id": "ley_99_1993",
+      "titulo": "Ley 99 de 1993",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/ley_0099_1993.html",
+      "areas": [
+        "Derecho administrativo"
+      ],
+      "items_del_banco": 0,
+      "canonico": [],
+      "estado": "descargado",
+      "tipo_fuente": "html",
+      "fecha_consulta": "2026-10-02",
+      "archivos": [
+        "ley_0099_1993.html",
+        "ley_0099_1993_pr001.html",
+        "ley_0099_1993_pr002.html"
+      ],
+      "bytes": 394722,
+      "sha256": "040e96b66e69c924ef12196223ffdfe6cf857e45fef8ef2a516bf531d1767d83",
+      "nota": "ampliacion sabado (2026-10-02): dirigida por las preguntas del test"
     },
     {
       "doc_id": "ley_9_1989",

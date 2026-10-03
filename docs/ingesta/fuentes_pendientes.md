@@ -254,3 +254,16 @@ Parseo: 10 sentencias C- salían truncadas en Windows (lxml/libxml2, `docs/INDEX
 
 **Lote T 2025–2026 (Fase 4, 533 sentencias)**: sondeo de `relatoria/<año>/T-<nnn>-<aa>.htm` (válida si carga `/relatoria/encabezado.js`; se para tras 80 números seguidos sin sentencia): 352 de 2025 y 181 de 2026 (hasta la T-304/26), más las 9 que ya estaban por la semilla. El HTML se guardó directo en `data/raw/html/sentencia_t_<n>_<año>/` (238 MB) y `descargar_fuentes.py --solo` solo lo registró. Todas van como `Derecho constitucional` (área por defecto, propuesta de revisión en `areas_propuestas_v3.csv`) y **solo se recuperan si la pregunta las nombra** (`solo_por_cita.json`). Medición en `docs/INDEXACION.md` 16.
 
+
+## Ampliación v5 (2026-10-03): huecos que el propio corpus cita, de forma automática
+
+Procedimiento: `docs/ingesta/corpus_v5_mac.md`. Detector `src/ingesta/huecos_por_citas.py --min-docs 10` (199 cuerpos ausentes con ≥ 10 documentos citantes), sin actos legislativos (ya incorporados a la Constitución), los 80 primeros por documentos citantes; `ampliar_desde_citas.py` resolvió 75 (Senado y espejos de Avance Jurídico), bajó 72 y los parseó sin avisos. Entraron **65 normas** (corpus de 1.251 documentos y **180.817 fragmentos**, +7.424; los 173.393 fragmentos de v4 no cambian: mismos `chunk_id`, mismo `texto`, mismo orden). Las normas nuevas quedan en el grupo `normas` de `solo_por_cita.json`, que el filtro por defecto (`sentencias`) no aplica: se recuperan sin nombrarlas.
+
+**No resueltos o descartados (sin búsqueda manual)**:
+
+- Sin regla de URL (SUIN-Juriscol): Resoluciones 2718/2024, 971/2021, 2366/2023, 641/2024 y 740/2024.
+- No existen en el Senado: Decretos 100/1980 (Código Penal anterior), 2700/1991 (Código de Procedimiento Penal anterior) y 1421/2017.
+- Descartados por tamaño (> 400 artículos, mismo criterio que el Decreto 1165/2019 en v4): Decretos únicos reglamentarios 1076/2015 (2.146 artículos), 1075/2015 (2.084), 1077/2015 (1.977), 1833/2016 (1.792), 1066/2015 (1.167), 1084/2015 (592) y 1067/2015 (457). Quedan en `fuentes_descargadas.json` con `estado: error` y la nota del descarte.
+- **Excepción al tope**: se conservan los Planes Nacionales de Desarrollo, Ley 2294/2023 (500 artículos; la nombra #218 de `sample_50`) y Ley 1955/2019 (406, en el límite), porque `corpus_v5_mac.md` los lista como objetivo. Son 906 artículos y un revert es quitar sus dos entradas de `_adicionales`.
+
+Áreas: las propuestas por el detector (las de los documentos citantes) tendían a sumar "Derecho constitucional" a todo, y desde `e15` las áreas mueven la recuperación. Se revisaron las 65 por la materia de la norma (1–2 áreas, como el resto del corpus: Ley 100 → laboral, Código Disciplinario → administrativo) y quedaron anotadas en `docs/ingesta/areas_propuestas_v3.csv` con `aprobado` vacío (pendiente de visto bueno humano).

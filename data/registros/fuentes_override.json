@@ -10339,6 +10339,702 @@
         "Derecho constitucional"
       ],
       "nota": "ampliacion v4 (2026-10-02): lote de tutelas 2025-2026 (sondeo de la relatoria), solo se recuperan si la pregunta las nombra; area por defecto, falta confirmar"
+    },
+    {
+      "doc_id": "ley_715_2001",
+      "titulo": "Ley 715 de 2001",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/ley_0715_2001.html",
+      "areas": [
+        "Derecho administrativo",
+        "Derecho tributario"
+      ],
+      "nota": "ampliacion v5 (2026-10-03): normas que cita el propio corpus y no tiene (>= 10 documentos citantes)"
+    },
+    {
+      "doc_id": "ley_1122_2007",
+      "titulo": "Ley 1122 de 2007",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/ley_1122_2007.html",
+      "areas": [
+        "Derecho laboral",
+        "Derecho administrativo"
+      ],
+      "nota": "ampliacion v5 (2026-10-03): normas que cita el propio corpus y no tiene (>= 10 documentos citantes)"
+    },
+    {
+      "doc_id": "ley_1955_2019",
+      "titulo": "Ley 1955 de 2019",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/ley_1955_2019.html",
+      "areas": [
+        "Derecho administrativo",
+        "Derecho tributario"
+      ],
+      "nota": "ampliacion v5 (2026-10-03): normas que cita el propio corpus y no tiene (>= 10 documentos citantes)"
+    },
+    {
+      "doc_id": "ley_1753_2015",
+      "titulo": "Ley 1753 de 2015",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/ley_1753_2015.html",
+      "areas": [
+        "Derecho administrativo",
+        "Derecho tributario"
+      ],
+      "nota": "ampliacion v5 (2026-10-03): normas que cita el propio corpus y no tiene (>= 10 documentos citantes)"
+    },
+    {
+      "doc_id": "ley_74_1968",
+      "titulo": "Ley 74 de 1968",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/ley_0074_1968.html",
+      "areas": [
+        "Derecho constitucional",
+        "Derecho penal"
+      ],
+      "nota": "ampliacion v5 (2026-10-03): normas que cita el propio corpus y no tiene (>= 10 documentos citantes)"
+    },
+    {
+      "doc_id": "ley_1448_2011",
+      "titulo": "Ley 1448 de 2011",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/ley_1448_2011.html",
+      "areas": [
+        "Derecho constitucional",
+        "Derecho administrativo",
+        "Derecho penal"
+      ],
+      "nota": "ampliacion v5 (2026-10-03): normas que cita el propio corpus y no tiene (>= 10 documentos citantes)"
+    },
+    {
+      "doc_id": "ley_115_1994",
+      "titulo": "Ley 115 de 1994",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/ley_0115_1994.html",
+      "areas": [
+        "Derecho administrativo",
+        "Derecho constitucional"
+      ],
+      "nota": "ampliacion v5 (2026-10-03): normas que cita el propio corpus y no tiene (>= 10 documentos citantes)"
+    },
+    {
+      "doc_id": "ley_1346_2009",
+      "titulo": "Ley 1346 de 2009",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/ley_1346_2009.html",
+      "areas": [
+        "Derecho constitucional",
+        "Derecho civil"
+      ],
+      "nota": "ampliacion v5 (2026-10-03): normas que cita el propio corpus y no tiene (>= 10 documentos citantes)"
+    },
+    {
+      "doc_id": "ley_16_1972",
+      "titulo": "Ley 16 de 1972",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/ley_0016_1972.html",
+      "areas": [
+        "Derecho constitucional",
+        "Derecho penal"
+      ],
+      "nota": "ampliacion v5 (2026-10-03): normas que cita el propio corpus y no tiene (>= 10 documentos citantes)"
+    },
+    {
+      "doc_id": "ley_1618_2013",
+      "titulo": "Ley 1618 de 2013",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/ley_1618_2013.html",
+      "areas": [
+        "Derecho constitucional",
+        "Derecho administrativo"
+      ],
+      "nota": "ampliacion v5 (2026-10-03): normas que cita el propio corpus y no tiene (>= 10 documentos citantes)"
+    },
+    {
+      "doc_id": "ley_712_2001",
+      "titulo": "Ley 712 de 2001",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/ley_0712_2001.html",
+      "areas": [
+        "Derecho laboral",
+        "Derecho procesal"
+      ],
+      "nota": "ampliacion v5 (2026-10-03): normas que cita el propio corpus y no tiene (>= 10 documentos citantes)"
+    },
+    {
+      "doc_id": "ley_1949_2019",
+      "titulo": "Ley 1949 de 2019",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/ley_1949_2019.html",
+      "areas": [
+        "Derecho administrativo",
+        "Derecho laboral"
+      ],
+      "nota": "ampliacion v5 (2026-10-03): normas que cita el propio corpus y no tiene (>= 10 documentos citantes)"
+    },
+    {
+      "doc_id": "ley_1438_2011",
+      "titulo": "Ley 1438 de 2011",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/ley_1438_2011.html",
+      "areas": [
+        "Derecho laboral",
+        "Derecho administrativo"
+      ],
+      "nota": "ampliacion v5 (2026-10-03): normas que cita el propio corpus y no tiene (>= 10 documentos citantes)"
+    },
+    {
+      "doc_id": "ley_1450_2011",
+      "titulo": "Ley 1450 de 2011",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/ley_1450_2011.html",
+      "areas": [
+        "Derecho administrativo",
+        "Derecho tributario"
+      ],
+      "nota": "ampliacion v5 (2026-10-03): normas que cita el propio corpus y no tiene (>= 10 documentos citantes)"
+    },
+    {
+      "doc_id": "ley_734_2002",
+      "titulo": "Ley 734 de 2002",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/ley_0734_2002.html",
+      "areas": [
+        "Derecho administrativo"
+      ],
+      "nota": "ampliacion v5 (2026-10-03): normas que cita el propio corpus y no tiene (>= 10 documentos citantes)"
+    },
+    {
+      "doc_id": "ley_99_1993",
+      "titulo": "Ley 99 de 1993",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/ley_0099_1993.html",
+      "areas": [
+        "Derecho administrativo"
+      ],
+      "nota": "ampliacion v5 (2026-10-03): normas que cita el propio corpus y no tiene (>= 10 documentos citantes)"
+    },
+    {
+      "doc_id": "ley_142_1994",
+      "titulo": "Ley 142 de 1994",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/ley_0142_1994.html",
+      "areas": [
+        "Derecho administrativo",
+        "Derecho comercial y sociedades"
+      ],
+      "nota": "ampliacion v5 (2026-10-03): normas que cita el propio corpus y no tiene (>= 10 documentos citantes)"
+    },
+    {
+      "doc_id": "ley_2294_2023",
+      "titulo": "Ley 2294 de 2023",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/ley_2294_2023.html",
+      "areas": [
+        "Derecho administrativo",
+        "Derecho tributario"
+      ],
+      "nota": "ampliacion v5 (2026-10-03): normas que cita el propio corpus y no tiene (>= 10 documentos citantes)"
+    },
+    {
+      "doc_id": "ley_12_1991",
+      "titulo": "Ley 12 de 1991",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/ley_0012_1991.html",
+      "areas": [
+        "Derecho constitucional",
+        "Derecho de familia"
+      ],
+      "nota": "ampliacion v5 (2026-10-03): normas que cita el propio corpus y no tiene (>= 10 documentos citantes)"
+    },
+    {
+      "doc_id": "ley_30_1992",
+      "titulo": "Ley 30 de 1992",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/ley_0030_1992.html",
+      "areas": [
+        "Derecho administrativo"
+      ],
+      "nota": "ampliacion v5 (2026-10-03): normas que cita el propio corpus y no tiene (>= 10 documentos citantes)"
+    },
+    {
+      "doc_id": "decreto_758_1990",
+      "titulo": "Decreto 758 de 1990",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/decreto_0758_1990.html",
+      "areas": [
+        "Derecho laboral"
+      ],
+      "nota": "ampliacion v5 (2026-10-03): normas que cita el propio corpus y no tiene (>= 10 documentos citantes)"
+    },
+    {
+      "doc_id": "ley_248_1995",
+      "titulo": "Ley 248 de 1995",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/ley_0248_1995.html",
+      "areas": [
+        "Derecho constitucional",
+        "Derecho penal"
+      ],
+      "nota": "ampliacion v5 (2026-10-03): normas que cita el propio corpus y no tiene (>= 10 documentos citantes)"
+    },
+    {
+      "doc_id": "ley_860_2003",
+      "titulo": "Ley 860 de 2003",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/ley_0860_2003.html",
+      "areas": [
+        "Derecho laboral"
+      ],
+      "nota": "ampliacion v5 (2026-10-03): normas que cita el propio corpus y no tiene (>= 10 documentos citantes)"
+    },
+    {
+      "doc_id": "ley_962_2005",
+      "titulo": "Ley 962 de 2005",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/ley_0962_2005.html",
+      "areas": [
+        "Derecho administrativo"
+      ],
+      "nota": "ampliacion v5 (2026-10-03): normas que cita el propio corpus y no tiene (>= 10 documentos citantes)"
+    },
+    {
+      "doc_id": "ley_51_1981",
+      "titulo": "Ley 51 de 1981",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/ley_0051_1981.html",
+      "areas": [
+        "Derecho constitucional"
+      ],
+      "nota": "ampliacion v5 (2026-10-03): normas que cita el propio corpus y no tiene (>= 10 documentos citantes)"
+    },
+    {
+      "doc_id": "ley_1251_2008",
+      "titulo": "Ley 1251 de 2008",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/ley_1251_2008.html",
+      "areas": [
+        "Derecho de familia",
+        "Derecho constitucional"
+      ],
+      "nota": "ampliacion v5 (2026-10-03): normas que cita el propio corpus y no tiene (>= 10 documentos citantes)"
+    },
+    {
+      "doc_id": "ley_2055_2020",
+      "titulo": "Ley 2055 de 2020",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/ley_2055_2020.html",
+      "areas": [
+        "Derecho constitucional",
+        "Derecho de familia"
+      ],
+      "nota": "ampliacion v5 (2026-10-03): normas que cita el propio corpus y no tiene (>= 10 documentos citantes)"
+    },
+    {
+      "doc_id": "ley_387_1997",
+      "titulo": "Ley 387 de 1997",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/ley_0387_1997.html",
+      "areas": [
+        "Derecho constitucional",
+        "Derecho administrativo"
+      ],
+      "nota": "ampliacion v5 (2026-10-03): normas que cita el propio corpus y no tiene (>= 10 documentos citantes)"
+    },
+    {
+      "doc_id": "ley_575_2000",
+      "titulo": "Ley 575 de 2000",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/ley_0575_2000.html",
+      "areas": [
+        "Derecho de familia",
+        "Derecho penal"
+      ],
+      "nota": "ampliacion v5 (2026-10-03): normas que cita el propio corpus y no tiene (>= 10 documentos citantes)"
+    },
+    {
+      "doc_id": "decreto_262_2000",
+      "titulo": "Decreto 262 de 2000",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/decreto_0262_2000.html",
+      "areas": [
+        "Derecho administrativo"
+      ],
+      "nota": "ampliacion v5 (2026-10-03): normas que cita el propio corpus y no tiene (>= 10 documentos citantes)"
+    },
+    {
+      "doc_id": "ley_418_1997",
+      "titulo": "Ley 418 de 1997",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/ley_0418_1997.html",
+      "areas": [
+        "Derecho penal",
+        "Derecho administrativo"
+      ],
+      "nota": "ampliacion v5 (2026-10-03): normas que cita el propio corpus y no tiene (>= 10 documentos citantes)"
+    },
+    {
+      "doc_id": "ley_21_1991",
+      "titulo": "Ley 21 de 1991",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/ley_0021_1991.html",
+      "areas": [
+        "Derecho constitucional"
+      ],
+      "nota": "ampliacion v5 (2026-10-03): normas que cita el propio corpus y no tiene (>= 10 documentos citantes)"
+    },
+    {
+      "doc_id": "decreto_25_2014",
+      "titulo": "Decreto 25 de 2014",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/decreto_0025_2014.html",
+      "areas": [
+        "Derecho administrativo",
+        "Derecho constitucional"
+      ],
+      "nota": "ampliacion v5 (2026-10-03): normas que cita el propio corpus y no tiene (>= 10 documentos citantes)"
+    },
+    {
+      "doc_id": "ley_70_1993",
+      "titulo": "Ley 70 de 1993",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/ley_0070_1993.html",
+      "areas": [
+        "Derecho constitucional",
+        "Derecho administrativo"
+      ],
+      "nota": "ampliacion v5 (2026-10-03): normas que cita el propio corpus y no tiene (>= 10 documentos citantes)"
+    },
+    {
+      "doc_id": "ley_60_1993",
+      "titulo": "Ley 60 de 1993",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/ley_0060_1993.html",
+      "areas": [
+        "Derecho administrativo",
+        "Derecho tributario"
+      ],
+      "nota": "ampliacion v5 (2026-10-03): normas que cita el propio corpus y no tiene (>= 10 documentos citantes)"
+    },
+    {
+      "doc_id": "ley_1616_2013",
+      "titulo": "Ley 1616 de 2013",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/ley_1616_2013.html",
+      "areas": [
+        "Derecho administrativo",
+        "Derecho constitucional"
+      ],
+      "nota": "ampliacion v5 (2026-10-03): normas que cita el propio corpus y no tiene (>= 10 documentos citantes)"
+    },
+    {
+      "doc_id": "decreto_2106_2019",
+      "titulo": "Decreto 2106 de 2019",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/decreto_2106_2019.html",
+      "areas": [
+        "Derecho administrativo"
+      ],
+      "nota": "ampliacion v5 (2026-10-03): normas que cita el propio corpus y no tiene (>= 10 documentos citantes)"
+    },
+    {
+      "doc_id": "ley_24_1992",
+      "titulo": "Ley 24 de 1992",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/ley_0024_1992.html",
+      "areas": [
+        "Derecho constitucional",
+        "Derecho administrativo"
+      ],
+      "nota": "ampliacion v5 (2026-10-03): normas que cita el propio corpus y no tiene (>= 10 documentos citantes)"
+    },
+    {
+      "doc_id": "ley_550_1999",
+      "titulo": "Ley 550 de 1999",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/ley_0550_1999.html",
+      "areas": [
+        "Derecho comercial y sociedades"
+      ],
+      "nota": "ampliacion v5 (2026-10-03): normas que cita el propio corpus y no tiene (>= 10 documentos citantes)"
+    },
+    {
+      "doc_id": "ley_21_1982",
+      "titulo": "Ley 21 de 1982",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/ley_0021_1982.html",
+      "areas": [
+        "Derecho laboral"
+      ],
+      "nota": "ampliacion v5 (2026-10-03): normas que cita el propio corpus y no tiene (>= 10 documentos citantes)"
+    },
+    {
+      "doc_id": "ley_1781_2016",
+      "titulo": "Ley 1781 de 2016",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/ley_1781_2016.html",
+      "areas": [
+        "Derecho procesal",
+        "Derecho administrativo"
+      ],
+      "nota": "ampliacion v5 (2026-10-03): normas que cita el propio corpus y no tiene (>= 10 documentos citantes)"
+    },
+    {
+      "doc_id": "decreto_1507_2014",
+      "titulo": "Decreto 1507 de 2014",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/decreto_1507_2014.html",
+      "areas": [
+        "Derecho laboral"
+      ],
+      "nota": "ampliacion v5 (2026-10-03): normas que cita el propio corpus y no tiene (>= 10 documentos citantes)"
+    },
+    {
+      "doc_id": "ley_2136_2021",
+      "titulo": "Ley 2136 de 2021",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/ley_2136_2021.html",
+      "areas": [
+        "Derecho administrativo",
+        "Derecho constitucional"
+      ],
+      "nota": "ampliacion v5 (2026-10-03): normas que cita el propio corpus y no tiene (>= 10 documentos citantes)"
+    },
+    {
+      "doc_id": "decreto_806_2020",
+      "titulo": "Decreto 806 de 2020",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/decreto_0806_2020.html",
+      "areas": [
+        "Derecho procesal"
+      ],
+      "nota": "ampliacion v5 (2026-10-03): normas que cita el propio corpus y no tiene (>= 10 documentos citantes)"
+    },
+    {
+      "doc_id": "ley_397_1997",
+      "titulo": "Ley 397 de 1997",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/ley_0397_1997.html",
+      "areas": [
+        "Derecho administrativo",
+        "Derecho constitucional"
+      ],
+      "nota": "ampliacion v5 (2026-10-03): normas que cita el propio corpus y no tiene (>= 10 documentos citantes)"
+    },
+    {
+      "doc_id": "ley_1276_2009",
+      "titulo": "Ley 1276 de 2009",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/ley_1276_2009.html",
+      "areas": [
+        "Derecho administrativo",
+        "Derecho de familia"
+      ],
+      "nota": "ampliacion v5 (2026-10-03): normas que cita el propio corpus y no tiene (>= 10 documentos citantes)"
+    },
+    {
+      "doc_id": "decreto_2158_1948",
+      "titulo": "Decreto 2158 de 1948",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/decreto_2158_1948.html",
+      "areas": [
+        "Derecho laboral",
+        "Derecho procesal"
+      ],
+      "nota": "ampliacion v5 (2026-10-03): normas que cita el propio corpus y no tiene (>= 10 documentos citantes)"
+    },
+    {
+      "doc_id": "ley_190_1995",
+      "titulo": "Ley 190 de 1995",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/ley_0190_1995.html",
+      "areas": [
+        "Derecho administrativo",
+        "Derecho penal"
+      ],
+      "nota": "ampliacion v5 (2026-10-03): normas que cita el propio corpus y no tiene (>= 10 documentos citantes)"
+    },
+    {
+      "doc_id": "decreto_1265_1970",
+      "titulo": "Decreto 1265 de 1970",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/decreto_1265_1970.html",
+      "areas": [
+        "Derecho procesal",
+        "Derecho administrativo"
+      ],
+      "nota": "ampliacion v5 (2026-10-03): normas que cita el propio corpus y no tiene (>= 10 documentos citantes)"
+    },
+    {
+      "doc_id": "ley_130_1994",
+      "titulo": "Ley 130 de 1994",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/ley_0130_1994.html",
+      "areas": [
+        "Derecho constitucional",
+        "Derecho administrativo"
+      ],
+      "nota": "ampliacion v5 (2026-10-03): normas que cita el propio corpus y no tiene (>= 10 documentos citantes)"
+    },
+    {
+      "doc_id": "decreto_1421_1993",
+      "titulo": "Decreto 1421 de 1993",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/decreto_1421_1993.html",
+      "areas": [
+        "Derecho administrativo",
+        "Derecho tributario"
+      ],
+      "nota": "ampliacion v5 (2026-10-03): normas que cita el propio corpus y no tiene (>= 10 documentos citantes)"
+    },
+    {
+      "doc_id": "ley_1142_2007",
+      "titulo": "Ley 1142 de 2007",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/ley_1142_2007.html",
+      "areas": [
+        "Derecho penal",
+        "Derecho procesal"
+      ],
+      "nota": "ampliacion v5 (2026-10-03): normas que cita el propio corpus y no tiene (>= 10 documentos citantes)"
+    },
+    {
+      "doc_id": "decreto_4065_2011",
+      "titulo": "Decreto 4065 de 2011",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/decreto_4065_2011.html",
+      "areas": [
+        "Derecho administrativo",
+        "Derecho constitucional"
+      ],
+      "nota": "ampliacion v5 (2026-10-03): normas que cita el propio corpus y no tiene (>= 10 documentos citantes)"
+    },
+    {
+      "doc_id": "ley_319_1996",
+      "titulo": "Ley 319 de 1996",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/ley_0319_1996.html",
+      "areas": [
+        "Derecho constitucional",
+        "Derecho laboral"
+      ],
+      "nota": "ampliacion v5 (2026-10-03): normas que cita el propio corpus y no tiene (>= 10 documentos citantes)"
+    },
+    {
+      "doc_id": "ley_890_2004",
+      "titulo": "Ley 890 de 2004",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/ley_0890_2004.html",
+      "areas": [
+        "Derecho penal"
+      ],
+      "nota": "ampliacion v5 (2026-10-03): normas que cita el propio corpus y no tiene (>= 10 documentos citantes)"
+    },
+    {
+      "doc_id": "decreto_2820_1974",
+      "titulo": "Decreto 2820 de 1974",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/decreto_2820_1974.html",
+      "areas": [
+        "Derecho de familia",
+        "Derecho civil"
+      ],
+      "nota": "ampliacion v5 (2026-10-03): normas que cita el propio corpus y no tiene (>= 10 documentos citantes)"
+    },
+    {
+      "doc_id": "decreto_2351_1965",
+      "titulo": "Decreto 2351 de 1965",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/decreto_2351_1965.html",
+      "areas": [
+        "Derecho laboral"
+      ],
+      "nota": "ampliacion v5 (2026-10-03): normas que cita el propio corpus y no tiene (>= 10 documentos citantes)"
+    },
+    {
+      "doc_id": "ley_181_1995",
+      "titulo": "Ley 181 de 1995",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/ley_0181_1995.html",
+      "areas": [
+        "Derecho administrativo"
+      ],
+      "nota": "ampliacion v5 (2026-10-03): normas que cita el propio corpus y no tiene (>= 10 documentos citantes)"
+    },
+    {
+      "doc_id": "ley_1708_2014",
+      "titulo": "Ley 1708 de 2014",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/ley_1708_2014.html",
+      "areas": [
+        "Derecho penal",
+        "Derecho procesal"
+      ],
+      "nota": "ampliacion v5 (2026-10-03): normas que cita el propio corpus y no tiene (>= 10 documentos citantes)"
+    },
+    {
+      "doc_id": "ley_23_1981",
+      "titulo": "Ley 23 de 1981",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/ley_0023_1981.html",
+      "areas": [
+        "Derecho penal",
+        "Derecho civil"
+      ],
+      "nota": "ampliacion v5 (2026-10-03): normas que cita el propio corpus y no tiene (>= 10 documentos citantes)"
+    },
+    {
+      "doc_id": "decreto_2150_1995",
+      "titulo": "Decreto 2150 de 1995",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/decreto_2150_1995.html",
+      "areas": [
+        "Derecho administrativo"
+      ],
+      "nota": "ampliacion v5 (2026-10-03): normas que cita el propio corpus y no tiene (>= 10 documentos citantes)"
+    },
+    {
+      "doc_id": "ley_1820_2016",
+      "titulo": "Ley 1820 de 2016",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/ley_1820_2016.html",
+      "areas": [
+        "Derecho penal",
+        "Derecho procesal"
+      ],
+      "nota": "ampliacion v5 (2026-10-03): normas que cita el propio corpus y no tiene (>= 10 documentos citantes)"
+    },
+    {
+      "doc_id": "decreto_216_2021",
+      "titulo": "Decreto 216 de 2021",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/decreto_0216_2021.html",
+      "areas": [
+        "Derecho administrativo",
+        "Derecho constitucional"
+      ],
+      "nota": "ampliacion v5 (2026-10-03): normas que cita el propio corpus y no tiene (>= 10 documentos citantes)"
+    },
+    {
+      "doc_id": "ley_90_1946",
+      "titulo": "Ley 90 de 1946",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/ley_0090_1946.html",
+      "areas": [
+        "Derecho laboral"
+      ],
+      "nota": "ampliacion v5 (2026-10-03): normas que cita el propio corpus y no tiene (>= 10 documentos citantes)"
+    },
+    {
+      "doc_id": "decreto_4062_2011",
+      "titulo": "Decreto 4062 de 2011",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/decreto_4062_2011.html",
+      "areas": [
+        "Derecho administrativo"
+      ],
+      "nota": "ampliacion v5 (2026-10-03): normas que cita el propio corpus y no tiene (>= 10 documentos citantes)"
     }
   ],
   "_comentario_adicionales": "Documentos fuera de seed_targets.json (fuentes del legal_basis de sample_50, ver data/fuentes_faltantes_sample50.md). Su original ya esta en data/raw/ y se registra con esta fuente/URL (docs/ingesta/referencias_normativas.md); items_del_banco=0."
