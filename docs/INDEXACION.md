@@ -354,7 +354,7 @@ En las 50 preguntas, 184 de los 500 puestos del top-10 son ventanas de sentencia
 - `src/ingesta/huecos_preguntas.py`: sobre un lote de preguntas (solo `pregunta` y `opciones`), lista las normas nombradas que no están, los artículos nombrados ausentes y los términos con df < 3 en BM25, por área. En `sample_50` encuentra la Ley 2294/2023 (#218) y la Resolución 368/2014 (#748). Los términos raros son sobre todo erratas del banco. Para el sábado: `--entrada data/test_992.jsonl --md salidas/huecos_test.md`.
 
 
-## 18. Corpus v5: huecos que el propio corpus cita (`r40`, 2026-10-03)
+## 18. Corpus v5: huecos que el propio corpus cita (`r40`, `r41`, `e41`, 2026-10-03)
 
 Ampliación automática de v4 (procedimiento `docs/ingesta/corpus_v5_mac.md`, lista y descartes en `docs/ingesta/fuentes_pendientes.md` "Ampliación v5"): detector `huecos_por_citas.py` (≥ 10 documentos citantes, sin actos legislativos, 80 primeros) y `ampliar_desde_citas.py`. Se bajaron 72 normas; 7 decretos únicos reglamentarios se descartaron por tamaño (> 400 artículos) y 3 decretos no existen en el Senado. Los 173.393 fragmentos de v4 no cambian (mismos `chunk_id`, `texto` y orden). Las áreas de las normas nuevas se revisaron por materia (`areas_propuestas_v3.csv`, `aprobado` pendiente).
 
@@ -362,11 +362,24 @@ Ampliación automática de v4 (procedimiento `docs/ingesta/corpus_v5_mac.md`, li
 |---|---:|---:|---:|---:|---:|---:|
 | v4 + T (`e18_corpus_v4_t`) | 173.393 | 0,610 | 0,902 | 0,717 | 0,927 | 0,579 |
 | v5 con 65 normas (`r40_corpus_v5`, MPS) | 180.817 | 0,585 | **0,878** | 0,691 | 0,927 | 0,526 |
+| v5 sin PND, 61 normas (`r41_corpus_v5_sin_pnd`, CUDA) | 179.226 | 0,610 | **0,902** | 0,717 | 0,927 | 0,579 |
 
 - **No cumple KEEP** (`doc_hit@10` ≥ 0,902). De las 41 preguntas, 39 conservan su rank; cambian dos. **#218** (rank 1 → fuera): nombra el art. 32 de la Ley 2294/2023 y el art. 313 de la Constitución (el fundamento es la Constitución); con la Ley 2294 en el corpus los 10 puestos del top-10 son de esa ley y sale el art. 313. **#748**: CPACA del rank 6 al 9 por fragmentos de las Leyes 1448/2011, 1753/2015 y 2294/2023.
-- **Decisión**: retirar los 4 Planes Nacionales de Desarrollo (Leyes 2294/2023, 1955/2019, 1753/2015 y 1450/2011), leyes ómnibus que tocan cualquier tema. El corpus queda en **61 normas nuevas, 1.247 documentos y 179.226 fragmentos** (+5.833 sobre v4; v4 idéntico). **Pendiente**: reconstruir el índice y medir de nuevo en la 4090 (`r41_corpus_v5_sin_pnd`) con la misma regla; si tampoco cumple, volver al v4 (`data_corpus_v4.zip`). Los vectores de los fragmentos restantes ya están en `cache_emb/`.
+- **Decisión**: retirar los 4 Planes Nacionales de Desarrollo (Leyes 2294/2023, 1955/2019, 1753/2015 y 1450/2011), leyes ómnibus que tocan cualquier tema. El corpus queda en **61 normas nuevas, 1.247 documentos y 179.226 fragmentos** (+5.833 sobre v4; v4 idéntico). Medido de nuevo en la 4090 (`r41`, abajo).
 - Latencia de recuperación en un M1 con MPS: 500 ms/consulta.
-- **`r41_corpus_v5_sin_pnd` (4090, CUDA)**: doc_hit@1 0,610, doc_hit@10 **0,902**, MRR 0,717, respaldo@10 0,927, art_hit@10 0,579; fallan #247, #679, #239 y #661, igual que v4. **Cumple KEEP.**
+
+**`r41` / `e41` en la RTX 4090 (v5 sin PND).** Corpus regenerado en Windows desde `data/raw/html` (`parsear_html.py --solo` con las 61 normas): los 1.247 `.txt` son idénticos al sha256 del manifest generado en el Mac, la segmentación da los mismos 179.226 fragmentos y los 173.393 de v4 son idénticos (`chunk_id`, `texto` y `retrieval_text`). Índice con `SYNTAX_DEVICE=cuda --batch 64`: 173.507 vectores de `cache_emb/` (CUDA) y 5.719 codificados (~40 s); `sha256_chunks` `6f1d931e…`. Todos los vectores son de CUDA (una sola máquina, como pide `corpus_v5_mac.md` paso 6).
+
+- **Recuperación: cumple KEEP** (tabla de arriba): las cifras son las de v4 y fallan las mismas 4 (#247, #679, #239 y #661). De las 41 preguntas, 21 cambian algo dentro del top-10 (sobre todo por las estadísticas de BM25), pero el rank del documento de referencia solo cambia en **#748** (CPACA 6 → 7; con los PND bajaba a 9). En 9 preguntas entra alguna norma nueva al top-10 sin sacar la referencia (Ley 142/1994 en #218 y #290; Leyes 1142/2007 y 1708/2014 en #600).
+- **Generación `e41_corpus_v5_sin_pnd`** (sample_50, misma configuración que `e24_final`, solo cambia el índice; `SYNTAX_LLM_CACHE=off`):
+
+| | cerradas | citación | abstención | RAGAS | total /80 | s/pregunta |
+|---|---:|---:|---:|---:|---:|---:|
+| `e24_final` (v4) | 12/15 (16,0) | 17,55 | 8,60 | 0,4401 (3 sin veredicto = 0) | 55,35 | 4,4 |
+| `e41_corpus_v5_sin_pnd` | 12/15 (16,0) | 17,55 | 8,60 | 0,4483 (0 sin veredicto) | **55,60** | 4,7 |
+
+- La subida de RAGAS no es del corpus: `e24_final` tuvo 3 ítems sin veredicto del juez (cuentan 0). Juez pareado (`juez_por_item.py`, `evaluation/juez/j5_e41_corpus_v5.csv` vs `j1_e24_final.csv`) en los 10 ítems de texto libre que cambian: −0,030, mejoran 1, empeoran 3 ⇒ empate. Lo domina **#280** (0,98 → 0,53) con dos respuestas equivalentes (art. 64 del Código Penal, mismos requisitos): ruido del juez; sin #280, +0,016. **#960** mejora (+0,25).
+- **Decisión: KEEP del v5 sin PND** con la regla de `corpus_v5_mac.md` paso 7 (`doc_hit@10` ≥ 0,902, `respaldo@10` ≥ 0,927, cerradas ≥ 12/15). En `sample_50` no se mide ganancia (sus normas ya estaban): no diluye. La ganancia esperada es en las 992.
 
 ## 19. Búsqueda por metadatos (`r42`–`r49`, `e25`, 2026-10-03)
 
@@ -397,3 +410,29 @@ Regla KEEP fijada antes de medir: doc_hit@10 y respaldo@10 ≥ base, y **ninguna
 - **Generación en sample** (índice de la ola 1, Qwen3-8B Q8_0, sin juez): `e25_base` y `e25_metadatos` dan **lo mismo** (cerradas 10/15, citación 17,14, abstención 8,14, 38,61/50, 0 errores de schema, 4,1 s/pregunta; recuperación 711 → 727 ms). Queda activado por defecto porque mejora el ranking sin costo: `SYNTAX_FACTOR_VOTO=0.5`, `SYNTAX_ALIAS=on`, `SYNTAX_CUERPO=boost`. Los defaults reproducen `r48`.
 - **Aviso sobre la ola 1** (no son los metadatos): frente a `e24_final` (12/15) se pierden dos cerradas. **#528** (C → B) cita el Decreto 1400/1970 (el Código de Procedimiento Civil derogado, que ahora compite con el CGP) y **#748** (A → D) se queda sin el CPACA porque la Resolución 368/2014, que nombra la pregunta, ocupa el top-10.
 - Pendiente para las 992: `disparos_metadatos.py --entrada data/test_992.jsonl --mostrar nombres` (revisar a mano que los alias no se equivoquen de norma) y `analizar_test.py` para el respaldo nombrado@10.
+
+## 20. Reranker cross-encoder (`r50`–`r55`, `e50`, `e53`, 2026-10-03)
+
+`BAAI/bge-reranker-v2-m3` (Apache-2.0, revisión `953dc6f6f85a1b2dbfca4c34a2796e7dde08d41e`) vía `sentence_transformers.CrossEncoder`, fp32, `max_length=512`. En `retriever.retrieve` (solo híbrido), después de la fusión con área, metadatos y lookup, y antes de `_componer`: puntúa (consulta, `texto` = cabecera + literal) de los `SYNTAX_RERANK_N` primeros y reordena solo ese tramo. `SYNTAX_RERANK_MODO=rrf` funde el rango de la fusión con el del cross-encoder (1/(60+r) + 1/(60+r_ce)); `puro` usa solo el cross-encoder. Los fragmentos del lookup quedan fijos en su puesto. `pasajes_recuperados.score` sigue siendo el de la fusión. Empates: score redondeado a 1e-5 y `chunk_id`. `reproducir.py` (etapa `decoder`) baja los pesos en la revisión fijada.
+
+Techo previo (fase 0, sin lookup, índice v5 sin PND): art_hit@10 0,579 → @40 0,632 (+1 pregunta), doc_hit@10 0,878 → @40 0,951. No llegaba a la puerta del plan 05 (≥ 4 preguntas); se implementó igual para buscar la ganancia en el orden dentro del top-10 (lo que ve el decoder con `GENERATION_K=5`).
+
+| híbrido, índice ola 1 (181.662) | doc_hit@10 | MRR | respaldo@10 | art_hit@10 | ret. ms | cambios del cuerpo/artículo |
+|---|---:|---:|---:|---:|---:|---|
+| base `r50` (= `r48`) | 0,878 | 0,725 | 0,927 | 0,579 | 1.173 | — |
+| rrf N=40 `r51` | 0,829 | 0,699 | 0,939 | 0,579 | 1.714 | **#647 5 → fuera, #1073 7 → fuera** |
+| puro N=40 `r52` | 0,829 | 0,637 | 0,915 | 0,632 | 1.241 | mismas pérdidas, #748 pierde respaldo |
+| **rrf N=20 `r53`** | **0,878** | 0,700 | **0,939** | 0,579 | 1.234 | #51 respaldo 0,5 → 1; art #352 4 → 3, #358 9 → 6, #589 9 → 4; doc #58 y #79 1 → 4, #647 5 → 9 |
+| puro N=20 `r54` | 0,829 | 0,659 | 0,939 | 0,579 | 1.513 | #647 fuera, #1073 fuera |
+| rrf N=15 `r55` | 0,878 | 0,702 | 0,939 | 0,579 | 1.418 | ≈ N=20 |
+
+Generación en sample (mismo índice, Qwen3-8B Q8_0, sin juez):
+
+| | cerradas | citación | abstención | total /50 | s/pregunta |
+|---|---:|---:|---:|---:|---:|
+| `e50_base` (= `e25_metadatos`) | 10/15 | 17,14 | 8,14 | 38,61 | 4,5 |
+| **`e53_rerank_rrf20`** | 10/15 | **17,55** | 8,14 | **39,02** | 4,6 |
+
+- **KEEP: rrf N=20, activado por defecto.** No saca ningún cuerpo del top-10, sube respaldo@10 y citación (+0,41/50), y cuesta +0,1 s/pregunta. N=40 y `puro` dejan subir candidatos de la cola que desplazan documentos buenos.
+- Cambian los pasajes de las 50 respuestas (todo reordenamiento cuenta). **Juez** (las dos entregas en paralelo, mismo índice; regla fijada antes: REVERT si cae más de 0,03): `e50_base_ragas` 0,4503 → `e53_rerank_rrf20_ragas` **0,4565** (+0,006, dentro del ruido ±0,03), total **52,12 → 52,72/80**. Sin ítems sin veredicto. No baja: se mantiene KEEP.
+- Medido sobre el índice de la ola 1. Tras congelar el índice del sábado hay que repetir `r50`/`r53` y el determinismo (dos corridas con `SYNTAX_LLM_CACHE=off` → `comparar_entregas.py` = 0 diferencias, también entre máquinas) antes de la corrida final. Apagar con `SYNTAX_RERANKER=off`.
