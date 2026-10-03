@@ -340,7 +340,7 @@ En las 50 preguntas, 184 de los 500 puestos del top-10 son ventanas de sentencia
 | `c01_cupo6m2` | 12/15 | 17,55 | 8,60 | 3,81 |
 | `c02_cupo6m2_k10` (`GENERATION_K=10`) | 11/15 (pierde #528) | 17,96 | 8,60 | 4,51 |
 
-- **c01: neutra en lo determinista**. Cambia los pasajes de 21 de las 50 respuestas, así que su efecto en el texto libre solo lo mide el juez. Queda **apagada** y es candidata para la corrida final con juez.
+- **c01: neutra en lo determinista**. Cambia los pasajes de 21 de las 50 respuestas. **Juez (`c01_cupo6m2_ragas`): RAGAS 0,4185** frente a 0,4401 de `e24_final` (3 ítems sin veredicto en ambas), total 54,70/80 frente a 55,35. Criterio fijado antes de medir: KEEP ≥ 0,440, REVERT < 0,41, en medio empate ⇒ gana lo más simple. **Queda apagada** (`SYNTAX_CUPO_NORMAS=0`, `SYNTAX_MAX_POR_DOC=0`).
 - **c02: REVERT**. Con k=10 el modelo ve el art. 176 en #647 y aun así elige D. En #528 inventa "SMLMV ≈ 1.000.000 COP" y pasa de C a B.
 - **Las tres cerradas no se arreglan con recuperación ni con generación**:
   - #647: el art. 176 iguala socorro y ayuda. La distinción "ayuda = apoyo intelectual, moral y afectivo" es doctrina y ningún fragmento del corpus la trae (búsqueda de "socorro" + "ayuda" + "moral/afectivo": 5 pasajes, ninguno la define).
