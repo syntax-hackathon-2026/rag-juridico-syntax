@@ -1,0 +1,8 @@
+cuerpo,n_preguntas,ids,doc_id,motivo
+acuerdo 01 2025,1,351,,cuerpo sin numero/anio (acuerdo): codigo o norma que deberia estar ya; revisar a mano
+decreto 0175 2025,1,424,decreto_175_2025,ya en el corpus o en _adicionales
+jurisprudencia SL-3871 2021,1,99,sentencia_sl_3871_2021,sin regla de URL (Relatoria de la Corte Suprema de Justicia): busqueda manual -> --manual
+Decreto 3030 de 2022,1,608,decreto_3030_2022,no_encontrado: http://www.secretariasenado.gov.co/senado/basedoc/decreto_3030_2022.html no existe en Secretaria del Senado
+Ley 1264 de 2012,1,117,ley_1264_2012,no_encontrado: http://www.secretariasenado.gov.co/senado/basedoc/ley_1264_2012.html no existe en Secretaria del Senado
+Ley 2568 de 2021,1,608,ley_2568_2021,no_encontrado: http://www.secretariasenado.gov.co/senado/basedoc/ley_2568_2021.html no existe en Secretaria del Senado
+Sentencia SU-279 de 2019,1,921,sentencia_su_279_2019,no_encontrado: https://www.corteconstitucional.gov.co/relatoria/2019/SU279-19.htm no existe en Relatoria de la Corte Constitucional

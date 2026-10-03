@@ -354,7 +354,7 @@ En las 50 preguntas, 184 de los 500 puestos del top-10 son ventanas de sentencia
 - `src/ingesta/huecos_preguntas.py`: sobre un lote de preguntas (solo `pregunta` y `opciones`), lista las normas nombradas que no están, los artículos nombrados ausentes y los términos con df < 3 en BM25, por área. En `sample_50` encuentra la Ley 2294/2023 (#218) y la Resolución 368/2014 (#748). Los términos raros son sobre todo erratas del banco. Para el sábado: `--entrada data/test_992.jsonl --md salidas/huecos_test.md`.
 
 
-## 18. Corpus v5: huecos que el propio corpus cita (`r40`, 2026-10-03)
+## 18. Corpus v5: huecos que el propio corpus cita (`r40`, `r41`, `e41`, 2026-10-03)
 
 Ampliación automática de v4 (procedimiento `docs/ingesta/corpus_v5_mac.md`, lista y descartes en `docs/ingesta/fuentes_pendientes.md` "Ampliación v5"): detector `huecos_por_citas.py` (≥ 10 documentos citantes, sin actos legislativos, 80 primeros) y `ampliar_desde_citas.py`. Se bajaron 72 normas; 7 decretos únicos reglamentarios se descartaron por tamaño (> 400 artículos) y 3 decretos no existen en el Senado. Los 173.393 fragmentos de v4 no cambian (mismos `chunk_id`, `texto` y orden). Las áreas de las normas nuevas se revisaron por materia (`areas_propuestas_v3.csv`, `aprobado` pendiente).
 
@@ -362,11 +362,24 @@ Ampliación automática de v4 (procedimiento `docs/ingesta/corpus_v5_mac.md`, li
 |---|---:|---:|---:|---:|---:|---:|
 | v4 + T (`e18_corpus_v4_t`) | 173.393 | 0,610 | 0,902 | 0,717 | 0,927 | 0,579 |
 | v5 con 65 normas (`r40_corpus_v5`, MPS) | 180.817 | 0,585 | **0,878** | 0,691 | 0,927 | 0,526 |
+| v5 sin PND, 61 normas (`r41_corpus_v5_sin_pnd`, CUDA) | 179.226 | 0,610 | **0,902** | 0,717 | 0,927 | 0,579 |
 
 - **No cumple KEEP** (`doc_hit@10` ≥ 0,902). De las 41 preguntas, 39 conservan su rank; cambian dos. **#218** (rank 1 → fuera): nombra el art. 32 de la Ley 2294/2023 y el art. 313 de la Constitución (el fundamento es la Constitución); con la Ley 2294 en el corpus los 10 puestos del top-10 son de esa ley y sale el art. 313. **#748**: CPACA del rank 6 al 9 por fragmentos de las Leyes 1448/2011, 1753/2015 y 2294/2023.
-- **Decisión**: retirar los 4 Planes Nacionales de Desarrollo (Leyes 2294/2023, 1955/2019, 1753/2015 y 1450/2011), leyes ómnibus que tocan cualquier tema. El corpus queda en **61 normas nuevas, 1.247 documentos y 179.226 fragmentos** (+5.833 sobre v4; v4 idéntico). **Pendiente**: reconstruir el índice y medir de nuevo en la 4090 (`r41_corpus_v5_sin_pnd`) con la misma regla; si tampoco cumple, volver al v4 (`data_corpus_v4.zip`). Los vectores de los fragmentos restantes ya están en `cache_emb/`.
+- **Decisión**: retirar los 4 Planes Nacionales de Desarrollo (Leyes 2294/2023, 1955/2019, 1753/2015 y 1450/2011), leyes ómnibus que tocan cualquier tema. El corpus queda en **61 normas nuevas, 1.247 documentos y 179.226 fragmentos** (+5.833 sobre v4; v4 idéntico). Medido de nuevo en la 4090 (`r41`, abajo).
 - Latencia de recuperación en un M1 con MPS: 500 ms/consulta.
-- **`r41_corpus_v5_sin_pnd` (4090, CUDA)**: doc_hit@1 0,610, doc_hit@10 **0,902**, MRR 0,717, respaldo@10 0,927, art_hit@10 0,579; fallan #247, #679, #239 y #661, igual que v4. **Cumple KEEP.**
+
+**`r41` / `e41` en la RTX 4090 (v5 sin PND).** Corpus regenerado en Windows desde `data/raw/html` (`parsear_html.py --solo` con las 61 normas): los 1.247 `.txt` son idénticos al sha256 del manifest generado en el Mac, la segmentación da los mismos 179.226 fragmentos y los 173.393 de v4 son idénticos (`chunk_id`, `texto` y `retrieval_text`). Índice con `SYNTAX_DEVICE=cuda --batch 64`: 173.507 vectores de `cache_emb/` (CUDA) y 5.719 codificados (~40 s); `sha256_chunks` `6f1d931e…`. Todos los vectores son de CUDA (una sola máquina, como pide `corpus_v5_mac.md` paso 6).
+
+- **Recuperación: cumple KEEP** (tabla de arriba): las cifras son las de v4 y fallan las mismas 4 (#247, #679, #239 y #661). De las 41 preguntas, 21 cambian algo dentro del top-10 (sobre todo por las estadísticas de BM25), pero el rank del documento de referencia solo cambia en **#748** (CPACA 6 → 7; con los PND bajaba a 9). En 9 preguntas entra alguna norma nueva al top-10 sin sacar la referencia (Ley 142/1994 en #218 y #290; Leyes 1142/2007 y 1708/2014 en #600).
+- **Generación `e41_corpus_v5_sin_pnd`** (sample_50, misma configuración que `e24_final`, solo cambia el índice; `SYNTAX_LLM_CACHE=off`):
+
+| | cerradas | citación | abstención | RAGAS | total /80 | s/pregunta |
+|---|---:|---:|---:|---:|---:|---:|
+| `e24_final` (v4) | 12/15 (16,0) | 17,55 | 8,60 | 0,4401 (3 sin veredicto = 0) | 55,35 | 4,4 |
+| `e41_corpus_v5_sin_pnd` | 12/15 (16,0) | 17,55 | 8,60 | 0,4483 (0 sin veredicto) | **55,60** | 4,7 |
+
+- La subida de RAGAS no es del corpus: `e24_final` tuvo 3 ítems sin veredicto del juez (cuentan 0). Juez pareado (`juez_por_item.py`, `evaluation/juez/j5_e41_corpus_v5.csv` vs `j1_e24_final.csv`) en los 10 ítems de texto libre que cambian: −0,030, mejoran 1, empeoran 3 ⇒ empate. Lo domina **#280** (0,98 → 0,53) con dos respuestas equivalentes (art. 64 del Código Penal, mismos requisitos): ruido del juez; sin #280, +0,016. **#960** mejora (+0,25).
+- **Decisión: KEEP del v5 sin PND** con la regla de `corpus_v5_mac.md` paso 7 (`doc_hit@10` ≥ 0,902, `respaldo@10` ≥ 0,927, cerradas ≥ 12/15). En `sample_50` no se mide ganancia (sus normas ya estaban): no diluye. La ganancia esperada es en las 992.
 
 ## 19. Búsqueda por metadatos (`r42`–`r49`, `e25`, 2026-10-03)
 

@@ -1,0 +1,39 @@
+cuerpo,tipo,numero,anio,doc_id_propuesto,resoluble_auto,n_preguntas,ids,areas
+Sentencia SU-288 de 2015,jurisprudencia,SU-288,2015,sentencia_su_288_2015,True,2,896 906,Derecho constitucional;Derecho administrativo
+Sentencia T-202 de 2018,jurisprudencia,T-202,2018,sentencia_t_202_2018,True,2,200 219,Derecho de familia
+Sentencia T-202 de 2024,jurisprudencia,T-202,2024,sentencia_t_202_2024,True,2,238 432,Derecho penal;Derecho laboral
+Acuerdo 01 de 2025,acuerdo,01,2025,,False,1,351,Derecho constitucional
+Decreto 0175 de 2025,decreto,0175,2025,decreto_175_2025,True,1,424,Derecho constitucional
+Decreto 1382 de 2000,decreto,1382,2000,decreto_1382_2000,True,1,351,Derecho constitucional
+Decreto 2555 de 2010,decreto,2555,2010,decreto_2555_2010,True,1,117,Derecho comercial y sociedades
+Decreto 3030 de 2022,decreto,3030,2022,decreto_3030_2022,True,1,608,Derecho tributario
+Decreto 678 de 2020,decreto,678,2020,decreto_678_2020,True,1,1042,Derecho tributario
+Ley 1264 de 2012,ley,1264,2012,ley_1264_2012,True,1,117,Derecho comercial y sociedades
+Ley 2445 de 2025,ley,2445,2025,ley_2445_2025,True,1,243,Derecho procesal
+Ley 2568 de 2021,ley,2568,2021,ley_2568_2021,True,1,608,Derecho tributario
+Ley 284 de 2007,ley,284,2007,ley_284_2007,True,1,189,Derecho penal
+Ley 722 de 2011,ley,722,2011,ley_722_2011,True,1,189,Derecho penal
+Sentencia C-148 de 2025,jurisprudencia,C-148,2025,sentencia_c_148_2025,True,1,181,Derecho tributario
+Sentencia C-317 de 2025,jurisprudencia,C-317,2025,sentencia_c_317_2025,True,1,208,Derecho constitucional
+Sentencia C-448 de 2020,jurisprudencia,C-448,2020,sentencia_c_448_2020,True,1,1042,Derecho tributario
+Sentencia C-465 de 2008,jurisprudencia,C-465,2008,sentencia_c_465_2008,True,1,613,Derecho laboral
+Sentencia C-517 de 2024,jurisprudencia,C-517,2024,sentencia_c_517_2024,True,1,474,Derecho constitucional
+Sentencia C-581 de 2001,jurisprudencia,C-581,2001,sentencia_c_581_2001,True,1,262,Derecho penal
+Sentencia C-878 de 2011,jurisprudencia,C-878,2011,sentencia_c_878_2011,True,1,995,Derecho tributario
+Sentencia SL-3871 de 2021,jurisprudencia,SL-3871,2021,sentencia_sl_3871_2021,False,1,99,Derecho laboral
+Sentencia SU-237 de 2019,jurisprudencia,SU-237,2019,sentencia_su_237_2019,True,1,908,Derecho administrativo
+Sentencia SU-279 de 2019,jurisprudencia,SU-279,2019,sentencia_su_279_2019,True,1,921,Derecho civil
+Sentencia SU-336 de 2017,jurisprudencia,SU-336,2017,sentencia_su_336_2017,True,1,902,Derecho administrativo
+Sentencia SU-389 de 2005,jurisprudencia,SU-389,2005,sentencia_su_389_2005,True,1,474,Derecho constitucional
+Sentencia SU-40 de 2018,jurisprudencia,SU-40,2018,sentencia_su_40_2018,True,1,173,Derecho laboral
+Sentencia SU-488 de 2011,jurisprudencia,SU-488,2011,sentencia_su_488_2011,True,1,898,Derecho administrativo
+Sentencia SU-54 de 2015,jurisprudencia,SU-54,2015,sentencia_su_54_2015,True,1,923,Derecho civil
+Sentencia SU-575 de 2019,jurisprudencia,SU-575,2019,sentencia_su_575_2019,True,1,907,Derecho administrativo
+Sentencia T-254 de 2006,jurisprudencia,T-254,2006,sentencia_t_254_2006,True,1,929,Derecho civil
+Sentencia T-277 de 2018,jurisprudencia,T-277,2018,sentencia_t_277_2018,True,1,376,Derecho constitucional
+Sentencia T-287 de 2022,jurisprudencia,T-287,2022,sentencia_t_287_2022,True,1,429,Derecho constitucional
+Sentencia T-4 de 2016,jurisprudencia,T-4,2016,sentencia_t_4_2016,True,1,931,Derecho de familia
+Sentencia T-426 de 2003,jurisprudencia,T-426,2003,sentencia_t_426_2003,True,1,113,Derecho constitucional
+Sentencia T-456 de 2024,jurisprudencia,T-456,2024,sentencia_t_456_2024,True,1,950,Derecho laboral
+Sentencia T-617 de 2010,jurisprudencia,T-617,2010,sentencia_t_617_2010,True,1,821,Derecho constitucional
+Sentencia T-79 de 2024,jurisprudencia,T-79,2024,sentencia_t_79_2024,True,1,474,Derecho constitucional
