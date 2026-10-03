@@ -1,0 +1,8 @@
+variante,id,formato,correctness,sin_veredicto,n_palabras
+E,140,semi_open,0.3571,0,76
+E,190,semi_open,0.2875,0,75
+E,563,semi_open,0.2114,0,67
+E,919,semi_open,0.5661,0,91
+E,946,semi_open,0.7597,0,87
+E,991,semi_open,0.5019,0,81
+E,1015,semi_open,0.5923,0,94

@@ -123,6 +123,108 @@ Experimentos solo de cerradas (`--ids` de las 15; REVERT):
 - **`CITAR_EVIDENCIA=top10`**: recupera las citas de #674, #879 y #1073 (cuerpo en ranks 7–9 que el decoder no veía) y, con ellas, su acierto en abstención. Sin costo en RAGAS.
 - Latencia media 4,3 s/pregunta (recuperación ~0,1 s en caliente): ~1,2 h para 992.
 
+Corridas del 2026-10-02 (noche, corpus v4, rama `santiago-agentico`; sección 9):
+
+| corrida | cambio | cerradas | RAGAS | citación | abstención | total |
+|---|---|---:|---:|---:|---:|---:|
+| `e21_base` | e20 rehecha (0 diferencias) | 11/15 | — | 17,55 | 8,37 | 40,59/50 |
+| `e22_glosario` | glosario de normas en el prompt | **12/15** | — | 17,55 | 8,60 | **42,15/50** |
+| `e23_prompt_mc` | + reglas de decisión p-v2 (REVERT) | 12/15 (mismas letras) | — | 17,55 | 8,60 | 42,15/50 |
+| `e24_final` | defaults (glosario on), idéntica a e22 | 12/15 | 0,440 | 17,55 | 8,60 | **55,35/80** |
+
+## 9. Cerradas y recuperación agéntica (2026-10-02)
+
+**Diagnóstico.** Las cerradas estaban fijas en 11/15 desde `e05`, aunque la recuperación mejoró. En las cerradas la recuperación ya es casi perfecta (`r21_base`: doc_hit@10 = 1,0 y art_hit@10 = 0,86 en las 13 con `legal_basis`), así que los fallos están en la generación. Fallaban siempre las mismas cuatro:
+- **#58**: la opción correcta es «Ley 1564 de 2002», errata del CGP. El CGP estaba en el top-1, pero su cabecera no dice «Ley 1564» y el decoder descartaba la opción por «no mencionada en los pasajes».
+- **#128** (fintech) y **#671** (regla de desempate de los CDI): doctrina que no está en el corpus.
+- **#647**: definición doctrinal de «ayuda» (C.C. art. 176, que sí está en el corpus pero no llega al top-10).
+
+**Glosario (KEEP, `SYNTAX_GLOSARIO=on` por defecto, `generacion/glosario.py`).**
+- Debajo de la cabecera de cada pasaje va la línea `(Norma: <titulo del manifest>)`. Las normas que nombran la pregunta y las opciones llevan `[nota: ...]`: la equivalencia nombre ↔ número o, si el número existe con otro año, el aviso «probablemente se refiere a …».
+- Solo se usan títulos que aportan algo (paréntesis o coma) y que, si el decoder los copia, no extraen otra norma: «Codigo Civil (Ley 57 de 1887)» queda fuera porque daría una cita espuria.
+- `pasajes_recuperados.texto` no cambia.
+- Arregla #58 sin regresiones; `prompt_version` pasa a `p-v0+glosario`.
+
+**Probado y descartado (REVERT, flags apagados):**
+- **Reglas de decisión p-v2** (`SYNTAX_PROMPT_MC=p-v2`): «ausencia en los pasajes ≠ falsedad», opciones meta, cálculo explícito. Mismas 15 letras.
+- **Una consulta por opción** (`SYNTAX_CONSULTA_OPCIONES=on`, `recuperacion/consulta.py` + `Retriever.retrieve_multi`): doc_hit@10 baja de 0,902 a 0,878 (pierde #748), con peso 1 y con 0,5. No gana ningún artículo.
+- **Planificador** (`SYNTAX_PLANIFICADOR=on`, `generacion/planificador.py`): una llamada corta al 8B que reformula la consulta y propone normas con artículo para el lookup.
+  - Con ejemplos reales en el prompt (plan-v1), el 8B los copia en casi todas las preguntas: «artículo 25 del CGP» en 16 de 41. Sin ejemplos (plan-v2), acierta el artículo en solo 3 de 39 planes, y los artículos inventados arrastran documentos equivocados (doc_hit@10 0,805, respaldo@10 0,866).
+  - Solo con las reformulaciones (`SYNTAX_PLAN_NORMAS=off`), doc_hit@10 queda en 0,805–0,829, peor que la línea base (0,902).
+  - El aparente +3,6 puntos de respaldo de plan-v1 era un artefacto: los artículos copiados meten cuerpos populares (CGP, Constitución) en el top-10.
+  - **Conclusión: Qwen3-8B sin thinking no recuerda números de artículo con fiabilidad, y la multi-consulta diluye el RRF.** No volver a intentarlo sin otra señal, como un reranker o el thinking solo en el planificador.
+- Lo que queda en cerradas es para la revisión del corpus: doctrina sobre leasing y fintech, modelo de convenio OCDE (regla de desempate), el decreto anual del SMLMV (cuantías, #528) y el art. 176 del C.C. para #647.
+
+## 10. Texto libre (2026-10-02, noche)
+
+**Diagnóstico.** El texto libre vale 30 puntos y es el componente más lejos del máximo: RAGAS 0,42–0,46 con el corpus v4, y el prompt seguía en `p-v0`. Juez por ítem sobre `e24_final` (**J1**, `evaluation/juez/j1_e24_final.csv`): 0,4573, y esta vez **ningún ítem sin veredicto**. En la corrida anterior de la misma entrega hubo 3 (0,4401). Los ítems sin veredicto son ruido intermitente del juez, no un patrón del texto. Lo peor puntuado, por patrón:
+- casos con narrativa (#513 0,21, #247 0,22, #1073 0,22, #679 0,32), donde falta la norma decisiva o el razonamiento;
+- sentencias nombradas con la sección equivocada en el top-5 (#190 0,21, #946 0,38);
+- forma (#490 0,32, #24 0,36): enumeraciones incompletas, o anclaje a pasajes de otra figura.
+
+**Flags (todos apagados por defecto, `src/config.py`):**
+- `SYNTAX_PROMPT_TL=p-tl1` (`prompts.INSTRUCCIONES_TL1`; `prompt_version` suma `+tl1`). En semi_open:
+  - la forma depende de la pregunta: una línea si pregunta qué artículo; la enumeración completa en una oración con punto y coma si pide requisitos; «Sí»/«No» primero en las de procedencia o verdadero/falso;
+  - se ignoran los pasajes de otra figura;
+  - en `respuesta` va solo la norma principal; las demás, en `referencia_legal`, que el juez no ve.
+  - En open_ended, `analisis` empieza con la respuesta directa. Las cerradas no cambian, así que su caché del decoder sigue valiendo.
+- `SYNTAX_SECCION_SENTENCIA=on` (`generacion/seleccion.py`). Si la pregunta nombra una sentencia:
+  - sus fragmentos de la sección pedida suben dentro del top-10 (problema jurídico → síntesis/consideraciones, con preferencia por el texto que trae la frase; hechos → antecedentes; decisión → resuelve);
+  - los salvamentos y las aclaraciones de voto bajan al final, porque en #563 y #1015 ocupaban el top-5;
+  - solo cambia lo que ve el decoder: el top-10 de la entrega, la citación y la abstención no se tocan.
+- `SYNTAX_PENSAR_CASOS=40`: thinking (`PENSAR_TOKENS`) en el texto libre cuya pregunta tiene ≥ 40 palabras (10 de 35 en sample_50).
+
+**Método.** `main.py --replay-trazas evaluation/generacion/e24_final/trazas.jsonl` (`recuperacion/fijo.py`) repite el top-10 de `e24_final` con el texto y la metadata reales de `chunks.jsonl` del índice v4 (mismo `sha256_chunks`), sin cargar bge-m3 ni FAISS junto al decoder. Fidelidad comprobada: el pipeline completo en el Mac sobre #280 y #589 salió entero del caché que había llenado el replay, es decir, con peticiones idénticas. Brazos en el Mac con Q4 (`salidas/run_noche.sh`):
+
+| brazo | flags |
+|---|---|
+| A | `p-v0` |
+| B | `p-tl1` |
+| C | B + `SECCION_SENTENCIA=on` |
+| D | B + `PENSAR_CASOS=40` |
+
+El juez (J2 = A, J3 = B, C y D en una corrida) se pasa solo sobre los ítems cuyo texto difiere, y la comparación es pareada por ítem (`juez_por_item.py comparar`).
+
+Regla fijada antes de medir:
+- **KEEP** si la media pareada es ≥ +0,03 y los ítems que mejoran (> +0,02) superan en ≥ 2 a los que empeoran;
+- la citación y la abstención no bajan;
+- empate ⇒ REVERT.
+
+B se compara contra A; C y D, contra B.
+
+**Resultados (Mac, Q4, replay de `e24_final`, 2026-10-03).** Parte determinista idéntica en todos los brazos: cerradas 16,0, citación 17,55, abstención 8,60, 0 errores. Juez: J2 (A), J3 (B, C y D) y J4 (E), en `evaluation/juez/`.
+
+| comparación | ítems | media pareada | mejoran / empeoran | decisión |
+|---|---:|---:|---:|---|
+| B (`p-tl1`) vs A (`p-v0`) | 35 | −0,025 | 12 / 16 | **REVERT** |
+| C (B + sección) vs B | 7 que cambian | +0,081 | 5 / 1 | pasa, pero sobre un prompt descartado |
+| D (B + thinking en casos) vs B | 10 que cambian | +0,003 | 5 / 4 | **REVERT** (#1005: 0,60 → 0,22) |
+| E (`p-v0` + sección) vs A | 7 que cambian | −0,002 | 1 / 3 | **REVERT** |
+
+- **`p-tl1` empeora.** Las respuestas más cortas y sin normas secundarias pierden afirmaciones que el juez sí contaba como verdaderos positivos. La hipótesis de los falsos positivos no se sostuvo.
+- **La sección de sentencia solo ayudaba a reparar lo que `p-tl1` había roto.** Con `p-v0`, el resultado es neutro: #946 sube de 0,43 a 0,76, pero #140 baja de 0,57 a 0,36.
+- **El thinking en casos es neutro en promedio** y duplica la latencia de esos ítems.
+- **Ningún flag se activa.** La configuración de la entrega sigue siendo la de `e24_final`. Las 4 corridas del juez quedan como línea base por ítem para lo que venga.
+- Lo que sigue para el texto libre ya no es de prompt: es de recuperación en los casos con narrativa (#247: la Ley 472 no llega al top-10) y de corpus.
+
+**Confirmación en la 4090:** no hace falta, porque ningún flag salió KEEP.
+
+**Confirmación en la 4090 (sábado temprano, M1).** Se activan solo los flags KEEP:
+
+```
+git pull
+$env:SYNTAX_PROMPT_TL="p-tl1"; $env:SYNTAX_SECCION_SENTENCIA="on"     # los que hayan salido KEEP
+python src/main.py --split sample --experimento e25_tl --sin-reanudar
+python src/evaluacion/evaluar_entrega.py --entrega salidas/sample_e25_tl.jsonl --experimento e25_tl
+python src/evaluacion/comparar_entregas.py evaluation/generacion/e24_final/entrega.jsonl salidas/sample_e25_tl.jsonl
+python src/evaluacion/juez_por_item.py juzgar --experimento j4_e25_tl --entrega e25=salidas/sample_e25_tl.jsonl --solo-cambiados-vs evaluation/generacion/e24_final/entrega.jsonl
+python src/evaluacion/juez_por_item.py comparar evaluation/juez/j1_e24_final.csv:e24 evaluation/juez/j4_e25_tl.csv:e25
+```
+
+- Parte determinista: cerradas 12/15, citación 17,55 y abstención 8,60 iguales a `e24_final`.
+- Juez: la misma regla de arriba.
+- Si pasa, los flags KEEP pasan a ser el valor por defecto en `config.py` **antes de la corrida final de las 11:00** (`docs/SABADO.md` §4). La entrega de respaldo de las 09:05 puede salir con los valores anteriores: es solo respaldo.
+
 ## 7. Pendientes
 
 1. **Máquina final**: medir la latencia en las candidatas (GPU NVIDIA del equipo o del campus). La corrida de las 992 y la verificación en vivo del sábado deben usar la misma máquina y la misma configuración (sección 4.2).

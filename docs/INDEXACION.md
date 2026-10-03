@@ -282,3 +282,87 @@ El banco trae `area` en cada pregunta (las 992 tienen la estructura de sample_50
 - Con la prioridad por área, las 96 normas de v3 pueden recuperarse sin nombrarlas sin perder nada (era la condición para ampliar las áreas delgadas). Las sentencias siguen filtradas: sin filtro, ni con boost 1,5 se recupera v2 (`e15_sinfiltro_area150`).
 - Generación (`e16_area200`, sin juez): cerradas 0,733 (= `e13`), **citación 16,33 → 17,55**, abstención 8,37 (=). La latencia medida (11,8 s/pregunta) no es comparable: otra sesión codificaba el corpus completo en la misma 4090 durante la corrida.
 
+## 16. Corpus v4: áreas delgadas, C- de control y lote T 2025–2026 (`e17`, `e18`, 2026-10-02)
+
+Ampliación automática (procedimiento y lista de descartes en `docs/ingesta/fuentes_pendientes.md`, "Ampliación v4"): **+65 documentos** (34 normas de mercados, tributario, procesal y civil; Decisiones Andinas 345, 391 y 608; 28 sentencias C- de control) y **+533 tutelas de 2025–2026** (lote sondeado en la relatoría). Total: **1.186 documentos y 173.393 fragmentos**. Los 113.519 fragmentos de v3 no cambian (comprobado byte a byte). Las sentencias nuevas (C- y T-) entran a `solo_por_cita.json` (840 sentencias y 133 normas en el registro); las normas nuevas se recuperan sin nombrarlas (filtro `sentencias`, sección 15).
+
+Documentos por área (un documento cuenta en cada una de sus áreas; "recuperables" = sin las sentencias solo por cita):
+
+| Área | v3 | v4 | v4 recuperables sin nombrar | fragmentos recuperables |
+|---|---:|---:|---:|---:|
+| Constitucional | 340 | 901 | 61 | 11.402 |
+| Laboral | 56 | 62 | 51 | 6.635 |
+| Familia | 49 | 54 | 46 | 7.933 |
+| Administrativo | 40 | 52 | 43 | 8.614 |
+| Civil | 35 | 45 | 43 | 10.127 |
+| Tributario | 31 | 41 | 40 | 11.467 |
+| Mercados | 25 | 39 | 38 | 6.537 |
+| Penal | 45 | 51 | 37 | 10.438 |
+| Comercial | 36 | 36 | 36 | 8.693 |
+| Procesal | 28 | 38 | 31 | 5.587 |
+
+| híbrido (41 preguntas, filtro `sentencias`, área ×2,0) | fragmentos | doc_hit@1 | doc_hit@10 | MRR | respaldo@10 | art_hit@10 | ms/consulta |
+|---|---:|---:|---:|---:|---:|---:|---:|
+| v3 (`e15_normasv3_area200`) | 113.519 | 0,610 | 0,902 | 0,718 | 0,939 | 0,579 | — |
+| **v4 (`e17_corpus_v4`)** | 124.302 | 0,610 | 0,902 | 0,718 | 0,939 | 0,579 | 729 |
+| **v4 + T (`e18_corpus_v4_t`)** | 173.393 | 0,610 | 0,902 | 0,717 | 0,927 | 0,579 | 1.153 |
+
+- **v4 no diluye nada** en sample_50 (idéntico a v3 pregunta por pregunta). Sondeo de ganancia sobre las 37 normas/decisiones nuevas: 34/34 artículos nombrados ("¿Qué establece el artículo N de la Ley X de Y?") en el top-3 (todos en el rank 1) y 37/37 documentos en el top-10 consultando solo el tema con su área (optimista: el tema sale del título).
+- **Lote T**: 25/25 tutelas nombradas (muestra fija, semilla 0) en el top-10. Costo: aunque las T no entran al top-10 sin nombrarlas, **cambian las estadísticas de BM25** (IDF y longitud media se calculan con todo el índice), y eso reordena un poco el top-10 de varias preguntas: #51 pierde medio punto de respaldo (sale un pasaje de la T-262/2025 que traía su cita) y #748 pasa del rank 5 al 6. Es −1/2 pregunta de 41, dentro de la regla KEEP fijada antes de medir (≤ 1 pregunta). Latencia de recuperación +0,4 s/consulta (más candidatos filtrados en `_filtrar`). **KEEP**. Si hiciera falta recortar, la alternativa es construir BM25 sin las sentencias solo por cita (quedarían recuperables por la rama densa y el lookup).
+- Parseo: `parsear_html.py` reintenta con `html.parser` cuando lxml trunca una sentencia (10 C- en Windows). Ningún `.txt` previo cambia.
+- **Generación con el corpus final** (`e19_corpus_v4_t`, Qwen3-8B Q8_0 en la 4090, GPU sin otra carga): cerradas 0,733 (= `e13`), citación **17,55** (`e13`: 16,33), abstención 8,37 (=), 0 errores de schema, **4,0 s/pregunta** (recuperación 610 ms). Única corrida con juez de la ola (`e19_corpus_v4_t_ragas`, presupuesto de API): RAGAS 0,4314 y total **53,53/80**, pero el juez **no devolvió veredicto en 4 de 35 ítems** (cuentan como cero). Los 31 juzgados promedian 0,487 frente a 0,5019 de `e13`, dentro del ruido del juez (±0,03, `docs/GENERACION.md` 6). Cambiaron 21 de las 35 respuestas de texto libre (otra evidencia). No se gastó una segunda corrida con juez: no hay reversión que confirmar.
+
+
+## 17. Composición del top-10 y huecos de fuente de las cerradas (`c00`–`c02`, 2026-10-02)
+
+Base: `e24_final` (cerradas 12/15). `c00_base` la reproduce con 0 diferencias (`comparar_entregas.py`). Las tres cerradas que fallan desde `e13` son #128, #647 y #671. Rank de su fragmento clave en los 40 candidatos por rama, con la consulta pregunta + opciones y el área:
+
+| id | fragmento clave | fusión | BM25 | denso | top-10 (normas/sentencias) |
+|---|---|---:|---:|---:|---|
+| #647 | `codigo_civil#art_176#p1` ("socorrerse y ayudarse mutuamente") | 17 | — | 11 | 4 / 6 |
+| #671 | `ley_1692_2013#art_4` (residente de ambos Estados) | — | — | — | 10 / 0 |
+| #128 | `decreto_663_1993#art_24#p1` (leasing de las compañías de financiamiento) | 46 | 37 | — | 10 / 0 |
+
+En las 50 preguntas, 184 de los 500 puestos del top-10 son ventanas de sentencias.
+
+**Composición del top-k** (`retriever._componer`, apagada por defecto): `SYNTAX_CUPO_NORMAS=n` garantiza al menos n fragmentos de normas en el top-k, cambiando las sentencias peor ubicadas por las mejores normas que siguen en la fusión. `SYNTAX_MAX_POR_DOC=m` permite como máximo m ventanas de una misma sentencia. Solo reordena candidatos de la fusión.
+
+| híbrido (41 con fundamento) | doc_hit@10 | MRR | respaldo@10 | art_hit@10 | cambios |
+|---|---:|---:|---:|---:|---|
+| base | 0,902 | 0,717 | 0,927 | 0,579 | — |
+| cupo 4–7 | 0,927 | 0,720 | 0,919–0,927 | 0,579 | +#661 |
+| máx. 2 por sentencia | 0,902 | 0,722 | 0,927 | 0,579 | #60: Constitución art. 29 del rank 7 al 4 |
+| **cupo 6 + máx. 2** | **0,927** | **0,724** | 0,927 | 0,579 | +#661, sin pérdidas |
+
+| generación (sin juez) | cerradas | citación | abstención | s/pregunta |
+|---|---:|---:|---:|---:|
+| `c00_base` | 12/15 | 17,55 | 8,60 | 4,06 |
+| `c01_cupo6m2` | 12/15 | 17,55 | 8,60 | 3,81 |
+| `c02_cupo6m2_k10` (`GENERATION_K=10`) | 11/15 (pierde #528) | 17,96 | 8,60 | 4,51 |
+
+- **c01: neutra en lo determinista**. Cambia los pasajes de 21 de las 50 respuestas. **Juez (`c01_cupo6m2_ragas`): RAGAS 0,4185** frente a 0,4401 de `e24_final` (3 ítems sin veredicto en ambas), total 54,70/80 frente a 55,35. Criterio fijado antes de medir: KEEP ≥ 0,440, REVERT < 0,41, en medio empate ⇒ gana lo más simple. **Queda apagada** (`SYNTAX_CUPO_NORMAS=0`, `SYNTAX_MAX_POR_DOC=0`).
+- **c02: REVERT**. Con k=10 el modelo ve el art. 176 en #647 y aun así elige D. En #528 inventa "SMLMV ≈ 1.000.000 COP" y pasa de C a B.
+- **Las tres cerradas no se arreglan con recuperación ni con generación**:
+  - #647: el art. 176 iguala socorro y ayuda. La distinción "ayuda = apoyo intelectual, moral y afectivo" es doctrina y ningún fragmento del corpus la trae (búsqueda de "socorro" + "ayuda" + "moral/afectivo": 5 pasajes, ninguno la define).
+  - #671: "reglas de desempate" no aparece en ninguna norma tributaria. La regla (art. 4 de los convenios) no entra a los 40 candidatos.
+  - #128: "Fintech" no aparece junto a "leasing" en ninguna norma del corpus.
+  - Además #528 depende del SMLMV del año, que ningún documento del corpus trae.
+
+**Herramientas de huecos de fuente** (solo stdlib + `citations.py`, no descargan nada):
+
+- `src/ingesta/huecos_por_citas.py`: normas que el propio corpus cita y que no están en el corpus, ordenadas por documentos citantes (47 s con multiprocessing). Tabla en `docs/ingesta/huecos_por_citas.md`: 1.006 cuerpos con ≥ 3 documentos citantes. Arriba están Leyes 715/2001, 1122/2007, 1955/2019, 1448/2011, 734/2002, 142/1994, la Ley 2294/2023 (PND) y los tratados aprobados por ley (PIDCP Ley 74/1968, CADH Ley 16/1972, OIT Ley 21/1991). Ni los convenios de doble imposición ni los decretos del SMLMV aparecen: el corpus no los cita por número.
+- `src/ingesta/huecos_preguntas.py`: sobre un lote de preguntas (solo `pregunta` y `opciones`), lista las normas nombradas que no están, los artículos nombrados ausentes y los términos con df < 3 en BM25, por área. En `sample_50` encuentra la Ley 2294/2023 (#218) y la Resolución 368/2014 (#748). Los términos raros son sobre todo erratas del banco. Para el sábado: `--entrada data/test_992.jsonl --md salidas/huecos_test.md`.
+
+
+## 18. Corpus v5: huecos que el propio corpus cita (`r40`, 2026-10-03)
+
+Ampliación automática de v4 (procedimiento `docs/ingesta/corpus_v5_mac.md`, lista y descartes en `docs/ingesta/fuentes_pendientes.md` "Ampliación v5"): detector `huecos_por_citas.py` (≥ 10 documentos citantes, sin actos legislativos, 80 primeros) y `ampliar_desde_citas.py`. Se bajaron 72 normas; 7 decretos únicos reglamentarios se descartaron por tamaño (> 400 artículos) y 3 decretos no existen en el Senado. Los 173.393 fragmentos de v4 no cambian (mismos `chunk_id`, `texto` y orden). Las áreas de las normas nuevas se revisaron por materia (`areas_propuestas_v3.csv`, `aprobado` pendiente).
+
+| híbrido (41 preguntas, filtro `sentencias`, área ×2,0) | fragmentos | doc_hit@1 | doc_hit@10 | MRR | respaldo@10 | art_hit@10 |
+|---|---:|---:|---:|---:|---:|---:|
+| v4 + T (`e18_corpus_v4_t`) | 173.393 | 0,610 | 0,902 | 0,717 | 0,927 | 0,579 |
+| v5 con 65 normas (`r40_corpus_v5`, MPS) | 180.817 | 0,585 | **0,878** | 0,691 | 0,927 | 0,526 |
+
+- **No cumple KEEP** (`doc_hit@10` ≥ 0,902). De las 41 preguntas, 39 conservan su rank; cambian dos. **#218** (rank 1 → fuera): nombra el art. 32 de la Ley 2294/2023 y el art. 313 de la Constitución (el fundamento es la Constitución); con la Ley 2294 en el corpus los 10 puestos del top-10 son de esa ley y sale el art. 313. **#748**: CPACA del rank 6 al 9 por fragmentos de las Leyes 1448/2011, 1753/2015 y 2294/2023.
+- **Decisión**: retirar los 4 Planes Nacionales de Desarrollo (Leyes 2294/2023, 1955/2019, 1753/2015 y 1450/2011), leyes ómnibus que tocan cualquier tema. El corpus queda en **61 normas nuevas, 1.247 documentos y 179.226 fragmentos** (+5.833 sobre v4; v4 idéntico). **Pendiente**: reconstruir el índice y medir de nuevo en la 4090 (`r41_corpus_v5_sin_pnd`) con la misma regla; si tampoco cumple, volver al v4 (`data_corpus_v4.zip`). Los vectores de los fragmentos restantes ya están en `cache_emb/`.
+- Latencia de recuperación en un M1 con MPS: 500 ms/consulta.

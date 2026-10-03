@@ -33,6 +33,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 import config  # noqa: E402
+from generacion import planificador  # noqa: E402
 from recuperacion.consulta import consulta_de  # noqa: E402
 from recuperacion.referencias import referencias_de, normalizar_articulo  # noqa: E402
 from evaluacion.techo_reranker import metricas_techo  # noqa: E402
@@ -66,6 +67,13 @@ def evaluar(modo: str, items: list[dict], tipo_consulta: str, techo: bool = Fals
     if techo and modo != "hibrido":
         raise ValueError("El techo se mide sobre RRF hibrido")
     ret = cargar(cargar_denso=modo != "bm25")
+    compuesta = modo == "hibrido" and tipo_consulta == "pregunta+opciones" and (
+        config.CONSULTA_OPCIONES == "on" or config.PLANIFICADOR == "on")
+    decoder = None
+    if compuesta and config.PLANIFICADOR == "on":
+        from generacion.llm import Decoder
+
+        decoder = Decoder()
     filas = []
     for it in items:
         ref = citations.extract(it.get("legal_basis") or "")
@@ -78,7 +86,12 @@ def evaluar(modo: str, items: list[dict], tipo_consulta: str, techo: bool = Fals
         kwargs = ({"consulta_lookup": it["pregunta"]} if config.LOOKUP_MODO == "on"
                   and config.LOOKUP_FUENTE == "pregunta" else {})
         t0 = time.perf_counter()
-        top = ret.retrieve(consulta, k=40 if techo else max(KS), modo=modo, area=it.get("area"), **kwargs)
+        info_ret: dict = {}
+        if compuesta:  # la misma recuperacion de responder.py (generacion/planificador.py)
+            entrada = {kk: it[kk] for kk in ("id", "formato", "area", "pregunta", "opciones") if kk in it}
+            top, info_ret = planificador.recuperar(entrada, ret, decoder, k=40 if techo else max(KS))
+        else:
+            top = ret.retrieve(consulta, k=40 if techo else max(KS), modo=modo, area=it.get("area"), **kwargs)
         ms = (time.perf_counter() - t0) * 1000
         cuerpos = [tuple(p.meta["canonico"]) for p in top]
         arts = [(*p.meta["canonico"], _art(p.meta["articulo"])) for p in top]
@@ -94,6 +107,7 @@ def evaluar(modo: str, items: list[dict], tipo_consulta: str, techo: bool = Fals
             "referencias_explicitas": [list(r) for r in refs_explicitas],
             "respaldo": len(ref_b & respaldadas) / len(ref_b),
             "latencia_ms": round(ms, 1),
+            **({"plan": info_ret["plan"]} if "plan" in info_ret else {}),
             "top": [[p.chunk_id, round(p.score, 5)] for p in top],
         })
     n = len(filas)
@@ -118,7 +132,9 @@ def evaluar(modo: str, items: list[dict], tipo_consulta: str, techo: bool = Fals
 def metricas_subconjuntos(filas: list[dict]) -> dict:
     salida = {}
     for nombre, grupo in (("con_referencia", [f for f in filas if f.get("referencias_explicitas")]),
-                          ("sin_referencia", [f for f in filas if not f.get("referencias_explicitas")])):
+                          ("sin_referencia", [f for f in filas if not f.get("referencias_explicitas")]),
+                          ("cerradas", [f for f in filas if f.get("formato") == "multiple_choice"]),
+                          ("texto_libre", [f for f in filas if f.get("formato") != "multiple_choice"])):
         n = len(grupo)
         art = [f for f in grupo if f["referencia_articulos"]]
         salida[nombre] = {
@@ -195,7 +211,8 @@ def main() -> int:
                    "fusion": "rrf60" if modo == "hibrido" else "",
                    "n_candidatos_por_rama": 40, "lookup": config.lookup_metadata(),
                    "filtro_cita": config.filtro_metadata(), "area": config.area_metadata(),
-                   "consulta": args.consulta, "metricas": met}
+                   "composicion": config.composicion_metadata(),
+                   "agentico": config.agentico_metadata(), "consulta": args.consulta, "metricas": met}
         with det.with_suffix(".meta.json").open("w", encoding="utf-8", newline="\n") as f:
             f.write(json.dumps(resumen, ensure_ascii=False, indent=2) + "\n")
         denso = info.get("denso") or {}
@@ -212,6 +229,8 @@ def main() -> int:
                 "; fase0_reranker=" + json.dumps(metricas_techo(filas), ensure_ascii=False, sort_keys=True)
                 if args.techo_reranker else "") + "; lookup=" + json.dumps(config.lookup_metadata(), sort_keys=True)
                 + "; filtro_cita=" + config.FILTRO_CITA + f"; area_boost={config.AREA_BOOST}"
+                + "; composicion=" + json.dumps(config.composicion_metadata(), sort_keys=True)
+                + "; agentico=" + json.dumps(config.agentico_metadata(), sort_keys=True)
                 + "; subconjuntos=" + json.dumps(met["subconjuntos_referencias"], sort_keys=True),
             **{k: (round(met[k], 4) if isinstance(met[k], float) else met[k])
                for k in COLUMNAS if k in met},

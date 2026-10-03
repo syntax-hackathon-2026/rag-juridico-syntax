@@ -213,6 +213,8 @@ def main() -> int:
                   f"filtro_cita={(ret.get('filtro_cita') or {}).get('modo', 'off')}; "
                   f"area_boost={(ret.get('area') or {}).get('boost', 1.0)}; prompt={meta.get('prompt_version', '')}; "
                   f"pensar={json.dumps(meta.get('pensar') or {}, sort_keys=True)}; "
+                  f"agentico={json.dumps(ret.get('agentico') or {}, sort_keys=True)}; "
+                  f"composicion={json.dumps(ret.get('composicion') or {}, sort_keys=True)}; "
                   + "lookup=" + json.dumps(ret.get("lookup", {"modo": "off"}), sort_keys=True) + "; " + args.notas).strip(),
     }
     nuevo = not config.EXPERIMENTS_CSV.is_file()

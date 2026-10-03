@@ -22,8 +22,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 import config  # noqa: E402
-from generacion import abstencion, citas, postproceso, prompts  # noqa: E402
-from recuperacion.consulta import consulta_de  # noqa: E402
+from generacion import abstencion, citas, planificador, postproceso, prompts, seleccion  # noqa: E402
 
 sys.path.insert(0, str(config.ROOT / "scripts"))
 from evaluate import answer_text  # noqa: E402
@@ -64,6 +63,12 @@ def _quitar(campos: dict, malas: set) -> dict:
     return salida
 
 
+def pensar_caso(item: dict) -> bool:
+    """Thinking en texto libre para casos largos (SYNTAX_PENSAR_CASOS = minimo de palabras)."""
+    return (config.PENSAR_CASOS > 0 and item["formato"] != "multiple_choice"
+            and len(item["pregunta"].split()) >= config.PENSAR_CASOS)
+
+
 def _agregar_evidencia(formato: str, campos: dict, cabeceras: list[str]) -> dict:
     if not cabeceras:
         return campos
@@ -82,6 +87,8 @@ def _generar_json(decoder, msgs: list[dict], esquema: dict, max_tokens: int, lla
         llamada = {"ms": r.ms, "fin": r.fin, "uso": r.uso, "tiempos": r.tiempos, "texto": r.texto}
         if r.razonamiento:
             llamada["razonamiento"] = r.razonamiento
+        if r.cache:  # ms es el de la llamada original
+            llamada["cache"] = True
         llamadas.append(llamada)
         try:
             salida = json.loads(r.texto)
@@ -100,19 +107,17 @@ def responder(item: dict, retriever, decoder, generation_k: int | None = None,
     generation_k = generation_k or config.GENERATION_K
     item = entrada_runtime(item)
     formato = item["formato"]
-    pensar = formato in config.PENSAR_FORMATOS
-    consulta = consulta_de(item)
-
-    kwargs_lookup = ({"consulta_lookup": item["pregunta"]} if config.LOOKUP_MODO == "on"
-                     and config.LOOKUP_FUENTE == "pregunta" else {})
-    top = retriever.retrieve(consulta, k=config.RETRIEVAL_K, modo=config.MODO_RECUPERACION,
-                             area=item.get("area"), **kwargs_lookup)
-    ms_ret = (time.perf_counter() - t0) * 1000
+    pensar = formato in config.PENSAR_FORMATOS or pensar_caso(item)
+    top, info_ret = planificador.recuperar(item, retriever, decoder)
+    consulta = info_ret["consulta"]
+    ms_ret = (time.perf_counter() - t0) * 1000  # incluye el planificador (info_ret["plan_ms"])
     perm = citas.permitidas([p.texto for p in top])
     llamadas: list[dict] = []
     traza: dict = {"id": item["id"], "formato": formato, "prompt_version": prompts.PROMPT_VERSION,
                    "generation_k": generation_k, "pensar": pensar, "top": [[p.chunk_id, round(p.score, 6)] for p in top],
                    "senales": abstencion.senales(consulta, top, perm), "llamadas": llamadas}
+    if info_ret["n_consultas"] > 1 or "plan" in info_ret:
+        traza["recuperacion"] = {kk: v for kk, v in info_ret.items() if kk != "consulta"}
     if config.LOOKUP_MODO == "on":
         traza["lookup"] = {
             "config": config.lookup_metadata(),
@@ -125,10 +130,17 @@ def responder(item: dict, retriever, decoder, generation_k: int | None = None,
     if not top:
         motivos.append("sin_pasajes")
     else:
-        gen = top[:generation_k]
+        orden = top
+        if config.SECCION_SENTENCIA == "on" and formato != "multiple_choice":
+            # solo cambia que pasajes ve el decoder; top (evidencia, citas) queda igual
+            orden, info_sec = seleccion.reordenar(item["pregunta"], top)
+            if info_sec:
+                traza["seccion_reordenada"] = info_sec
+        gen = orden[:generation_k]
         letras = prompts.letras_de(item)
         esquema = prompts.schema(formato, letras)
-        msgs = prompts.mensajes(item, [p.texto for p in gen])
+        msgs = prompts.mensajes(item, [p.texto for p in gen],
+                                [p.meta for p in gen] if config.GLOSARIO == "on" else None)
         salida = _generar_json(decoder, msgs, esquema, prompts.MAX_TOKENS[formato], llamadas, pensar)
         if salida is None:
             motivos.append("salida_invalida")
@@ -173,10 +185,15 @@ def responder(item: dict, retriever, decoder, generation_k: int | None = None,
     if abst:
         campos = postproceso.vacios(formato)
     traza["abstencion"] = {"abstiene": abst, "motivos": motivos}
-    ms_total = (time.perf_counter() - t0) * 1000
+    # Una llamada servida desde la cache cuenta con su duracion original: latencia_ms es
+    # la de generar la respuesta, no la de leerla.
+    ms_cache = sum(l["ms"] for l in llamadas if l.get("cache"))
+    ms_total = (time.perf_counter() - t0) * 1000 + ms_cache
     reg = postproceso.registro(item["id"], formato, campos, abst, [p.pasaje() for p in top], int(round(ms_total)))
     traza["citas_respuesta"] = sorted(map(list, citas.cuerpos(answer_text(reg))), key=str)
-    traza["latencia"] = {"ret_ms": round(ms_ret, 1), "gen_ms": round(sum(l["ms"] for l in llamadas), 1),
-                         "total_ms": round(ms_total, 1), "n_llamadas": len(llamadas)}
+    traza["latencia"] = {"ret_ms": round(ms_ret, 1), "plan_ms": round(info_ret["plan_ms"], 1),
+                         "gen_ms": round(sum(l["ms"] for l in llamadas), 1),
+                         "total_ms": round(ms_total, 1), "n_llamadas": len(llamadas),
+                         "n_cache": sum(1 for l in llamadas if l.get("cache"))}
     traza["errores_schema"] = postproceso.validar(reg)
     return reg, traza

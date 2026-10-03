@@ -82,6 +82,14 @@ if FILTRO_CITA not in {"off", "sentencias", "todo"}:
 AREA_BOOST = float(os.environ.get("SYNTAX_AREA_BOOST", "2.0"))
 if not 1.0 <= AREA_BOOST < float("inf"):
     raise ValueError("SYNTAX_AREA_BOOST debe ser un factor finito >= 1")
+# Composicion del top-k (docs/INDEXACION.md 17): las ventanas de sentencias desplazan
+# articulos (#647: CC art. 176 en el puesto 17 con 6 sentencias en el top-10).
+# CUPO_NORMAS = minimo de fragmentos de normas en el top-k (cambia sentencias por las
+# mejores normas que siguen). MAX_POR_DOC = maximo de ventanas por sentencia. 0 = apagado.
+CUPO_NORMAS = int(os.environ.get("SYNTAX_CUPO_NORMAS", "0"))
+MAX_POR_DOC = int(os.environ.get("SYNTAX_MAX_POR_DOC", "0"))
+if CUPO_NORMAS < 0 or MAX_POR_DOC < 0:
+    raise ValueError("SYNTAX_CUPO_NORMAS y SYNTAX_MAX_POR_DOC deben ser >= 0")
 EXPERIMENTS_CSV = EVALUATION_DIR / "experiments.csv"
 
 # Encoder denso (enunciado 3.1). bge-m3: MIT, 1024 dim, 8192 tokens, sin prefijos.
@@ -130,6 +138,11 @@ LLM_URL = os.environ.get("SYNTAX_LLM_URL", "http://127.0.0.1:8080/v1")
 LLM_CTX = 8192
 LLM_SEED = 0
 LLM_TIMEOUT_S = 600
+# Cache de respuestas del decoder por hash de la peticion (generacion/llm.py): on | off.
+# off en la verificacion en vivo y al medir latencia.
+LLM_CACHE = os.environ.get("SYNTAX_LLM_CACHE", "on")
+if LLM_CACHE not in ("on", "off"):
+    raise ValueError("SYNTAX_LLM_CACHE: on | off")
 
 # Pipeline de respuesta. retrieval_k fijo en 10 (el evaluador mira los 10 primeros
 # pasajes); generation_k es el hiperparametro de cuantos ve el decoder.
@@ -146,8 +159,42 @@ PENSAR_FORMATOS = frozenset(f for f in os.environ.get("SYNTAX_PENSAR_FORMATOS", 
 PENSAR_TOKENS = int(os.environ.get("SYNTAX_PENSAR_TOKENS", "768"))
 if not PENSAR_FORMATOS <= {"multiple_choice", "semi_open", "open_ended"} or PENSAR_TOKENS < 1:
     raise ValueError("SYNTAX_PENSAR_FORMATOS: multiple_choice,semi_open,open_ended; SYNTAX_PENSAR_TOKENS > 0")
+# Recuperacion agentica y glosario (docs/GENERACION.md, seccion 9). Todo off|on.
+# GLOSARIO: equivalencias nombre <-> numero de norma (titulo del manifest) en el prompt,
+#   para cabeceras de pasajes y opciones; nunca toca pasajes_recuperados.texto.
+# CONSULTA_OPCIONES: en cerradas, una consulta por opcion sustantiva fusionada por RRF.
+# PLANIFICADOR: una llamada corta al decoder reformula la consulta y nombra normas
+#   candidatas (que entran por lookup); PESO_EXTRA pondera las listas extra en el RRF.
+GLOSARIO = os.environ.get("SYNTAX_GLOSARIO", "on")
+CONSULTA_OPCIONES = os.environ.get("SYNTAX_CONSULTA_OPCIONES", "off")
+PLANIFICADOR = os.environ.get("SYNTAX_PLANIFICADOR", "off")
+PESO_EXTRA = float(os.environ.get("SYNTAX_PESO_EXTRA", "1.0"))
+PLAN_NORMAS = os.environ.get("SYNTAX_PLAN_NORMAS", "on")  # off: solo las reformulaciones del plan
+# Version de las instrucciones de cerradas (generacion/prompts.py): p-v0 | p-v2.
+PROMPT_MC = os.environ.get("SYNTAX_PROMPT_MC", "p-v0")
+if PROMPT_MC not in {"p-v0", "p-v2"}:
+    raise ValueError("SYNTAX_PROMPT_MC debe ser p-v0|p-v2")
+# Texto libre (docs/GENERACION.md, seccion 10).
+# PROMPT_TL: instrucciones de semi_open/open_ended: p-v0 | p-tl1 (forma segun la pregunta).
+# SECCION_SENTENCIA: si la pregunta nombra una sentencia y pide una seccion (problema
+#   juridico, hechos, decision), sus fragmentos de esa seccion suben dentro del top-10.
+# PENSAR_CASOS: thinking en texto libre cuando la pregunta tiene al menos N palabras (0 = off).
+PROMPT_TL = os.environ.get("SYNTAX_PROMPT_TL", "p-v0")
+if PROMPT_TL not in {"p-v0", "p-tl1"}:
+    raise ValueError("SYNTAX_PROMPT_TL debe ser p-v0|p-tl1")
+SECCION_SENTENCIA = os.environ.get("SYNTAX_SECCION_SENTENCIA", "off")
+PENSAR_CASOS = int(os.environ.get("SYNTAX_PENSAR_CASOS", "0"))
+for _nombre, _valor in (("SYNTAX_GLOSARIO", GLOSARIO), ("SYNTAX_CONSULTA_OPCIONES", CONSULTA_OPCIONES),
+                        ("SYNTAX_PLANIFICADOR", PLANIFICADOR), ("SYNTAX_PLAN_NORMAS", PLAN_NORMAS),
+                        ("SYNTAX_SECCION_SENTENCIA", SECCION_SENTENCIA)):
+    if _valor not in {"off", "on"}:
+        raise ValueError(f"{_nombre} debe ser off|on")
+if not 0.0 <= PESO_EXTRA < float("inf"):
+    raise ValueError("SYNTAX_PESO_EXTRA debe ser finito no negativo")
 SALIDAS_DIR = ROOT / "salidas"  # entregas de desarrollo (en .gitignore)
+PLANES_DIR = SALIDAS_DIR / "planes"  # cache determinista de planes (planificador)
 TRAZAS_DIR = SALIDAS_DIR / "trazas"
+CACHE_LLM_DIR = SALIDAS_DIR / "cache_llm"  # un JSONL por GGUF; se puede copiar entre maquinas iguales
 SCHEMA_PATH = ROOT / "schema" / "submission.schema.json"
 SAMPLE_PATH = ROOT / "data" / "sample_50.jsonl"
 TEST_PATH = ROOT / "data" / "test_992.jsonl"  # se entrega el sabado 09:00
@@ -166,6 +213,16 @@ def filtro_metadata() -> dict:
 
 def area_metadata() -> dict:
     return {"boost": AREA_BOOST, "fuente": "corpus_manifest.json", "aplica_a": "hibrido"}
+
+
+def composicion_metadata() -> dict:
+    return {"cupo_normas": CUPO_NORMAS, "max_por_doc": MAX_POR_DOC, "aplica_a": "top-k"}
+
+
+def agentico_metadata() -> dict:
+    return {"glosario": GLOSARIO, "consulta_opciones": CONSULTA_OPCIONES,
+            "planificador": PLANIFICADOR, "plan_normas": PLAN_NORMAS, "peso_extra": PESO_EXTRA,
+            "prompt_mc": PROMPT_MC}
 
 
 def abstencion_metadata() -> dict:

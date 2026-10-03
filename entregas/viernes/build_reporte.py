@@ -1,4 +1,4 @@
-"""Genera REPORTE_AVANCE.docx (y el PDF con Word) del entregable del viernes.
+﻿"""Genera REPORTE_AVANCE.docx (y el PDF con Word) del entregable del viernes.
 
 Todas las cifras se leen de los artefactos del repo; nada se transcribe a mano:
   - evaluation/generacion/<exp>/reporte.json   (salida de scripts/evaluate.py)
@@ -35,9 +35,10 @@ ROOT = HERE.parent.parent
 
 EQUIPO = "Syntax"
 INTEGRANTES = "Sofía Morato, Joel David Niño y Santiago Muñoz"
-ACENTO = RGBColor(0x1F, 0x3A, 0x5F)
-GRIS = "EEF1F5"
-FUENTE = "Calibri"
+ACENTO = RGBColor(0x1E, 0x5B, 0x3A)
+GRIS = "E4F0E7"
+FUENTE = "Times New Roman"
+LINEA = 1.05  # interlineado
 TZ_LOCAL = timezone(timedelta(hours=-5))
 
 AREAS_BANCO = [
@@ -49,22 +50,25 @@ AREAS_BANCO = [
 
 # Texto editable (se revisa contra la configuracion congelada).
 ABSTENCION = (
-    "Validación de citas contra el top-10; si quedan campos vacíos tras regenerar, se abstiene. "
-    "Regla por señales (score, margen, acuerdo BM25/denso) en evaluación."
+    "Por ahora solo se abstiene cuando no hay respaldo: si no se encuentran textos, si la respuesta del "
+    "modelo no es válida o si, al quitar las citas que no se pueden comprobar, la respuesta queda vacía. "
+    "Una regla que decida según la confianza en lo encontrado está en evaluación."
 )
-RIESGOS = [
-    ("Tiempo de las 992 preguntas (≈6 h).",
-     "{lat_txt} Se congela una sola máquina y configuración para la corrida final y la verificación "
-     "en vivo; un Mac M1 tarda ~145 s por pregunta."),
-    ("Recuperación a nivel de artículo, cerradas y dependencia del campo área.",
-     "En muestra, art_hit@10 ≈ 0,4–0,6 y cerradas {acc} frente a la referencia 0,905. "
-     "{area_txt}Se prueban reranker y generation_k, un cambio por experimento."),
+LIMITACIONES = [
+    ("Tiempo para las 992 preguntas.",
+     "Deben responderse en unas 6 horas. {lat_txt} La corrida final y la verificación en vivo usarán "
+     "una sola máquina y configuración."),
+    ("Búsqueda del artículo exacto y preguntas cerradas.",
+     "En la muestra, el sistema acierta {acc} de las preguntas cerradas, por debajo de la referencia "
+     "(0,905), y no siempre encuentra el artículo preciso. {area_txt}Se probarán mejoras de una en una."),
     ("Abstención sin calibrar.",
-     "{mal} respuestas incorrectas que valdrían 0,5 si se abstuviera; se evalúa una regla simple por "
-     "formato, sin sobreajustar a 50 preguntas."),
-    ("Entrega del corpus y reproducibilidad.",
-     "Falta el empaquetado, el enlace público verificado en ventana privada y la prueba en contenedor "
-     "limpio (reproducir.py); la interfaz sigue pendiente."),
+     "El sistema casi nunca se abstiene: {mal} respuestas incorrectas habrían valido más de haberse "
+     "abstenido. Se probará una regla sencilla, sin ajustarla en exceso a solo 50 preguntas."),
+    ("Corpus desbalanceado.",
+     "La mayoría de los documentos son sentencias de la Corte Constitucional, casi todas usadas solo si la "
+     "pregunta las nombra. Comercial, procesal y mercados tienen menos documentos; faltan confirmar áreas."),
+    ("Entrega final.",
+     "Código, corpus e índice de esta medición quedaron congelados. Falta publicar el corpus y la interfaz."),
 ]
 
 
@@ -74,6 +78,17 @@ def num(x: float, dec: int = 2) -> str:
 
 def miles(n: int) -> str:
     return f"{n:,}".replace(",", ".")
+
+
+def texto_ragas(ragas: dict, total_sin: float) -> str:
+    """Observacion del juez: corrección media, referencia y respuestas sin veredicto (cuentan como cero)."""
+    n, fallidos = ragas["n_juzgados"], ragas.get("n_fallidos") or 0
+    t = f"Texto libre: corrección {num(ragas['correctness'], 3)} (referencia {num(ragas['referencia'], 3)})"
+    if fallidos:
+        media_juzgadas = ragas["correctness"] * n / (n - fallidos)
+        t += (f"; {fallidos} de {n} respuestas quedaron sin veredicto del juez y cuentan como cero "
+              f"({num(media_juzgadas, 3)} en las {n - fallidos} juzgadas)")
+    return t + f". Sin el juez: {num(total_sin)} de 50."
 
 
 # ---------------------------------------------------------------- datos
@@ -131,7 +146,7 @@ def parrafo(doc_or_cell, texto="", size=10, bold=False, color=None, before=0, af
             align=None, italic=False):
     p = doc_or_cell.add_paragraph()
     pf = p.paragraph_format
-    pf.space_before, pf.space_after, pf.line_spacing = Pt(before), Pt(after), 1.0
+    pf.space_before, pf.space_after, pf.line_spacing = Pt(before), Pt(after), LINEA
     if align:
         p.alignment = align
     if texto:
@@ -150,7 +165,7 @@ def titulo_seccion(doc, texto):
     pPr = p._p.get_or_add_pPr()
     borde = OxmlElement("w:pBdr")
     b = OxmlElement("w:bottom")
-    for k, v in (("val", "single"), ("sz", "6"), ("space", "1"), ("color", "1F3A5F")):
+    for k, v in (("val", "single"), ("sz", "6"), ("space", "1"), ("color", "1E5B3A")):
         b.set(qn(f"w:{k}"), v)
     borde.append(b)
     pPr.append(borde)
@@ -171,7 +186,7 @@ def bordes(table):
     b = OxmlElement("w:tblBorders")
     for lado in ("top", "bottom", "insideH"):
         e = OxmlElement(f"w:{lado}")
-        for k, v in (("val", "single"), ("sz", "4"), ("space", "0"), ("color", "B8C0CC")):
+        for k, v in (("val", "single"), ("sz", "4"), ("space", "0"), ("color", "9DBBA6")):
             e.set(qn(f"w:{k}"), v)
         b.append(e)
     tblPr.append(b)
@@ -189,7 +204,7 @@ def tabla(doc, filas, anchos, encabezado=True, alinear_der=(), negrita_ultima=Fa
             p = c.paragraphs[0]
             p.paragraph_format.space_before = Pt(1)
             p.paragraph_format.space_after = Pt(1)
-            p.paragraph_format.line_spacing = 1.0
+            p.paragraph_format.line_spacing = LINEA
             if j in alinear_der:
                 p.alignment = WD_ALIGN_PARAGRAPH.RIGHT
             es_enc = encabezado and i == 0
@@ -219,22 +234,22 @@ def construir(rep, fila, exp, manifest, salida: Path, commit: str | None = None,
     m_area = re.search(r"area_boost=([0-9.]+)", fila["notas"])
     boost = float(m_area.group(1)) if m_area else 1.0
     if lat <= 10:
-        lat_txt = f"{num(lat, 1)} s/pregunta en la RTX 4090 cumplen el objetivo (<10 s)."
+        lat_txt = f"En la RTX 4090 tarda {num(lat, 1)} s por pregunta, dentro del objetivo (menos de 10 s)."
     elif lat_sin_carga:
-        lat_txt = (f"{num(lat, 1)} s/pregunta con la GPU compartida con otros experimentos "
-                   f"({num(lat_sin_carga, 1)} s sin carga, e14); el objetivo es <10 s y falta medirlo en máquina dedicada.")
+        lat_txt = (f"En la tarjeta gráfica RTX 4090 tardó {num(lat, 1)} s por pregunta mientras se "
+                   f"compartía con otras pruebas, y {num(lat_sin_carga, 1)} s sin carga; el objetivo es menos de 10 s "
+                   "y falta medirlo en una máquina dedicada.")
     else:
-        lat_txt = f"{num(lat, 1)} s/pregunta en la RTX 4090; el objetivo es <10 s."
-    area_txt = ("La prioridad por área usa el campo «area» de la pregunta (presente en la muestra); "
-                "si las 992 no lo traen, el puntaje será el de la recuperación sin ese refuerzo. "
-                if boost > 1 else "")
+        lat_txt = f"En la tarjeta gráfica RTX 4090 tarda {num(lat, 1)} s por pregunta; el objetivo es menos de 10 s."
+    area_txt = ("La búsqueda da prioridad al área indicada en cada pregunta; si las 992 preguntas no la "
+                "traen, el puntaje será algo menor. " if boost > 1 else "")
 
 
     doc = Document()
     s = doc.sections[0]
     s.page_width, s.page_height = Cm(21.0), Cm(29.7)
     s.left_margin = s.right_margin = Cm(1.7)
-    s.top_margin, s.bottom_margin = Cm(1.4), Cm(1.4)
+    s.top_margin, s.bottom_margin = Cm(1.0), Cm(1.0)
     doc.styles["Normal"].font.name = FUENTE
     doc.styles["Normal"].font.size = Pt(10)
 
@@ -242,33 +257,40 @@ def construir(rep, fila, exp, manifest, salida: Path, commit: str | None = None,
     p = parrafo(doc, after=0)
     mixto(p, [("Equipo: ", True), (EQUIPO, False), ("    Integrantes: ", True), (INTEGRANTES, False)])
     p = parrafo(doc, after=0)
-    mixto(p, [("Fecha de la medición: ", True), (fecha, False),
-              (f"    Corrida: {exp} (commit {commit or fila['commit'].split('+')[0]})", False)], size=9)
+    mixto(p, [("Fecha de la medición: ", True), (fecha, False)])
 
     # 1. Puntaje
     titulo_seccion(doc, "1. Puntaje sobre las preguntas de muestra")
-    parrafo(doc, "Resultado de python scripts/evaluate.py --submission <archivo> --split sample.",
+    ragas = rep.get("correccion_ragas", {})
+    con_ragas = ragas.get("puntos") is not None
+    parrafo(doc, f"Resultado de python scripts/evaluate.py --submission salidas/sample_{exp}.jsonl --split sample"
+                 + (" --ragas" if con_ragas else "") + ".",
             size=8.5, italic=True, after=2)
-    tabla(doc, [
+    filas = [
+        ["Componente", "Puntos obtenidos", "Puntos posibles"],
+        ["Exactitud en cerradas", num(pts[0]), "20"],
+        ["Corrección de texto libre (juez RAGAS)", num(ragas["puntos"]), "30"],
+        ["Calidad de citación", num(pts[1]), "20"],
+        ["Abstención calibrada", num(pts[2]), "10"],
+        ["Total automático", num(round(total + ragas["puntos"], 2)), "80"],
+    ] if con_ragas else [
         ["Componente", "Puntos obtenidos", "Puntos posibles"],
         ["Exactitud en cerradas", num(pts[0]), "20"],
         ["Calidad de citación", num(pts[1]), "20"],
         ["Abstención calibrada", num(pts[2]), "10"],
         ["Total automático sin RAGAS", num(total), "50"],
-    ], [8.0, 4.5, 4.5], alinear_der=(1, 2), negrita_ultima=True)
+    ]
+    tabla(doc, filas, [8.0, 4.5, 4.5], alinear_der=(1, 2), negrita_ultima=True)
     p = parrafo(doc, before=3, after=0)
     mixto(p, [("Observaciones. ", True), (
-        f"Cerradas {cer['aciertos']}/{cer['n']} ({num(cer['accuracy'], 3)}; referencia del baseline "
-        f"{num(cer['referencia'], 3)}). Citación: recall ponderado {num(cit['recall_citas_ponderado'], 3)} "
-        f"y {cit['citas_sin_respaldo']} citas sin respaldo en {cit['n_citadas']} emitidas. "
-        f"Abstención: {abst['abstuvo_bien'] + abst['abstuvo_de_mas']} abstenciones; "
-        f"{abst['respondio_bien']} de {abst['items_evaluados']} respondidas bien. "
-        "Con 50 preguntas, una diferencia de 1–2 aciertos no es significativa.", False)])
-    ragas = rep.get("correccion_ragas", {})
-    if ragas.get("puntos") is not None:
-        parrafo(doc, f"Referencia adicional con juez RAGAS: correctness {num(ragas['correctness'], 3)} "
-                     f"({num(ragas['puntos'])}/30)" + (f"; medido en {ragas['origen']}" if ragas.get("origen") else "") + ".",
-                size=8.5, italic=True, after=0)
+        f"Preguntas cerradas: {cer['aciertos']} de {cer['n']} correctas (la referencia es {num(cer['referencia'], 3)}). "
+        f"Citación: ninguna de las {cit['n_citadas']} citas emitidas carece de respaldo "
+        f"en los textos recuperados. " if cit['citas_sin_respaldo'] == 0 else
+        f"Preguntas cerradas: {cer['aciertos']} de {cer['n']} correctas (la referencia es {num(cer['referencia'], 3)}). "
+        f"Citación: {cit['citas_sin_respaldo']} de las {cit['n_citadas']} citas emitidas no tienen respaldo. ", False),
+        (f"Abstención: {abst['abstuvo_bien'] + abst['abstuvo_de_mas']} abstenciones; "
+         f"{abst['respondio_bien']} de {abst['items_evaluados']} preguntas respondidas bien.", False)]
+        + ([(" " + texto_ragas(ragas, total), False)] if con_ragas else []))
 
     # 2. Corpus
     titulo_seccion(doc, "2. Estado del corpus")
@@ -286,35 +308,38 @@ def construir(rep, fila, exp, manifest, salida: Path, commit: str | None = None,
     mixto(p, [("Fuentes consultadas. ", True), (fuentes(manifest) + ".", False)])
     p = parrafo(doc, after=0)
     mixto(p, [("Documentos por área ", True),
-              (f"(un documento puede tener varias): {top}. El corpus tiene desbalance hacia "
-               "constitucional (sentencias de la Corte); las áreas de 30 documentos adicionales "
-               "son provisionales.", False)])
+              (f"(un documento puede pertenecer a varias): {top}.", False)])
 
     # 3. Arquitectura
     titulo_seccion(doc, "3. Arquitectura actual")
     tabla(doc, [
         ["Componente", "Elección"],
-        ["Encoder", f"{fila['encoder']} (fp32, FAISS IndexFlatIP, vectores normalizados)"],
-        ["Decoder", f"Qwen3-8B, cuantización {fila['cuantizacion']} con llama.cpp; temperature=0, seed=0, "
-                    "salida restringida por JSON Schema"],
+        ["Encoder (convierte textos en vectores para comparar significado)",
+         f"{fila['encoder']}, modelo multilingüe de código abierto"],
+        ["Decoder (redacta la respuesta)",
+         f"Qwen3-8B (8.000 millones de parámetros), ejecutado localmente; da siempre la misma respuesta "
+         "ante la misma pregunta y su salida sigue un formato fijo"],
         ["Estrategia de recuperación",
-         f"Híbrida: BM25 (bm25s) + denso, fusión RRF (k=60)"
-         + (", más búsqueda por referencia explícita (norma/artículo detectados con citations.py) como candidato extra"
+         "Combina dos búsquedas: por palabras exactas (útil para números de artículo y siglas) y por "
+         "significado, y fusiona sus resultados"
+         + ("; si la pregunta nombra una norma y un artículo, ese artículo se añade como candidato"
             if '"modo": "on"' in fila["notas"] else "")
-         + (f"; prioridad por área del banco (factor {num(boost, 1)}, reordena sin filtrar)" if boost > 1 else "")
-         + f"; top-{fila['retrieval_k']} como evidencia, {fila['generation_k']} pasajes al decoder; "
-         f"citas validadas contra el top-{fila['retrieval_k']}"],
-        ["Segmentación del corpus", f"{fila['version_segmentador']}: un artículo = un fragmento (≤350 palabras, "
-                                    "partido por párrafos); sentencias en ventanas de ~350 palabras por sección"],
+         + ("; se da prioridad a los documentos del área de la pregunta" if boost > 1 else "")
+         + f". Se recuperan {fila['retrieval_k']} textos como evidencia y {fila['generation_k']} se entregan al "
+         f"decoder; toda cita debe provenir de esos {fila['retrieval_k']} textos"],
+        ["Segmentación del corpus",
+         "Cada artículo de una norma es un fragmento (si es muy largo se divide por párrafos); las "
+         "sentencias se dividen en tramos de unas 350 palabras, sin mezclar secciones"],
         ["Mecanismo de abstención", ABSTENCION],
     ], [4.6, 12.4])
 
-    # 4. Riesgos
-    titulo_seccion(doc, "4. Riesgos identificados")
-    for i, (titulo, cuerpo) in enumerate(RIESGOS, 1):
+    # 4. Riesgos y limitaciones
+    titulo_seccion(doc, "4. Riesgos y limitaciones identificados")
+    for i, (titulo, cuerpo) in enumerate(LIMITACIONES, 1):
         p = parrafo(doc, after=1)
         mixto(p, [(f"{i}. {titulo} ", True),
-                  (cuerpo.format(lat_txt=lat_txt, area_txt=area_txt, acc=num(cer["accuracy"], 3),
+                  (cuerpo.format(lat_txt=lat_txt, area_txt=area_txt,
+                                 acc=f"{cer['aciertos']} de {cer['n']}",
                                  mal=abst["respondio_mal"]), False)])
 
     salida.parent.mkdir(parents=True, exist_ok=True)
@@ -354,3 +379,12 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+
+
+
+
+
+
+
+

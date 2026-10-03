@@ -1,0 +1,79 @@
+{
+  "experimento": "r24_plan_v2",
+  "modo": "hibrido",
+  "reranker": "off",
+  "fusion": "rrf60",
+  "n_candidatos_por_rama": 40,
+  "lookup": {
+    "modo": "on",
+    "variante": "a",
+    "fuente": "consulta",
+    "bonus": 0.005,
+    "m": 2,
+    "aplica_a": "hibrido",
+    "parser": "scripts/citations.py"
+  },
+  "filtro_cita": {
+    "modo": "sentencias",
+    "registro": "data/registros/solo_por_cita.json"
+  },
+  "area": {
+    "boost": 2.0,
+    "fuente": "corpus_manifest.json",
+    "aplica_a": "hibrido"
+  },
+  "agentico": {
+    "glosario": "off",
+    "consulta_opciones": "off",
+    "planificador": "on",
+    "peso_extra": 1.0
+  },
+  "consulta": "pregunta+opciones",
+  "metricas": {
+    "doc_hit@1": 0.6097560975609756,
+    "doc_hit@3": 0.7317073170731707,
+    "doc_hit@5": 0.7560975609756098,
+    "doc_hit@10": 0.8048780487804879,
+    "mrr": 0.6746225319396051,
+    "respaldo@10": 0.8658536585365854,
+    "art_hit@1": 0.3684210526315789,
+    "art_hit@10": 0.631578947368421,
+    "n_con_articulo": 19,
+    "n_preguntas": 41,
+    "latencia_ret_ms": 2726.580487804878,
+    "subconjuntos_referencias": {
+      "con_referencia": {
+        "n": 14,
+        "n_con_articulo_gt": 4,
+        "doc_hit@10": 0.8571428571428571,
+        "art_hit@10": 1.0,
+        "mrr": 0.7678571428571429,
+        "respaldo@10": 0.8571428571428571
+      },
+      "sin_referencia": {
+        "n": 27,
+        "n_con_articulo_gt": 15,
+        "doc_hit@10": 0.7777777777777778,
+        "art_hit@10": 0.5333333333333333,
+        "mrr": 0.6262786596119929,
+        "respaldo@10": 0.8703703703703703
+      },
+      "cerradas": {
+        "n": 13,
+        "n_con_articulo_gt": 7,
+        "doc_hit@10": 0.8461538461538461,
+        "art_hit@10": 0.8571428571428571,
+        "mrr": 0.6487179487179487,
+        "respaldo@10": 0.8846153846153846
+      },
+      "texto_libre": {
+        "n": 28,
+        "n_con_articulo_gt": 12,
+        "doc_hit@10": 0.7857142857142857,
+        "art_hit@10": 0.5,
+        "mrr": 0.6866496598639455,
+        "respaldo@10": 0.8571428571428571
+      }
+    }
+  }
+}
