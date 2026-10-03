@@ -215,6 +215,7 @@ def main() -> int:
                   f"pensar={json.dumps(meta.get('pensar') or {}, sort_keys=True)}; "
                   f"agentico={json.dumps(ret.get('agentico') or {}, sort_keys=True)}; "
                   f"composicion={json.dumps(ret.get('composicion') or {}, sort_keys=True)}; "
+                  f"metadatos={json.dumps(ret.get('metadatos') or {}, sort_keys=True)}; "
                   + "lookup=" + json.dumps(ret.get("lookup", {"modo": "off"}), sort_keys=True) + "; " + args.notas).strip(),
     }
     nuevo = not config.EXPERIMENTS_CSV.is_file()

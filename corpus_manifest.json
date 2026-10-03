@@ -1,10 +1,10 @@
 {
   "equipo": "Syntax",
   "licencia": "CC-BY-4.0",
-  "fecha_generacion": "2026-10-02",
+  "fecha_generacion": "2026-10-03",
   "enlace_nube": "https://1drv.ms/f/c/e17f9102812dd361/IgBze-a6Cpv5RIpNVH0FIz6ZAcA7qq8byJspYt3TA7v-fG8?e=UcJhmX",
-  "n_documentos": 1186,
-  "n_fragmentos": 173393,
+  "n_documentos": 1253,
+  "n_fragmentos": 181662,
   "documentos": [
     {
       "doc_id": "constitucion_politica_1991",
@@ -2868,6 +2868,20 @@
       "sha256": "ca9b36297fc02be64de421bc78b65ee1fe4e0cedb0e4f4523254745ad29c85cc"
     },
     {
+      "doc_id": "decreto_1165_2019",
+      "titulo": "Decreto 1165 de 2019 (regimen de aduanas)",
+      "fuente": "Normograma CRC",
+      "url": "https://normograma.crcom.gov.co/crc/compilacion/docs/decreto_1165_2019.htm",
+      "fecha_consulta": "2026-10-03",
+      "areas": [
+        "Derecho tributario"
+      ],
+      "n_articulos": 775,
+      "n_fragmentos": 1284,
+      "metodo_ingesta": "extraccion de PDF con PyMuPDF + limpieza de encabezados",
+      "sha256": "f252bc7ef638f871e48673a727da463e00e9f881e239eebc977a4a73bc442b42"
+    },
+    {
       "doc_id": "decreto_1260_1970",
       "titulo": "Decreto 1260 de 1970 (Estatuto del registro del estado civil de las personas)",
       "fuente": "Normograma de la CRA (compilacion Avance Juridico)",
@@ -2881,6 +2895,21 @@
       "n_fragmentos": 125,
       "metodo_ingesta": "parser HTML (BeautifulSoup) + limpieza de navegacion y notas editoriales",
       "sha256": "5d8ad31e6b950b3f9d911dac1602ef7131a2d97a598e0def942988117132c841"
+    },
+    {
+      "doc_id": "decreto_1265_1970",
+      "titulo": "Decreto 1265 de 1970",
+      "fuente": "Normograma de Colpensiones (compilacion Avance Juridico)",
+      "url": "https://normativa.colpensiones.gov.co/colpens/docs/decreto_1265_1970.htm",
+      "fecha_consulta": "2026-10-03",
+      "areas": [
+        "Derecho procesal",
+        "Derecho administrativo"
+      ],
+      "n_articulos": 22,
+      "n_fragmentos": 23,
+      "metodo_ingesta": "parser HTML (BeautifulSoup) + limpieza de navegacion y notas editoriales",
+      "sha256": "bd27067aa06a12f794da5c591767cee6d28ab6872c6dd2cdbbf3f7628e896cdf"
     },
     {
       "doc_id": "decreto_1295_1994",
@@ -2924,6 +2953,49 @@
       "n_fragmentos": 31,
       "metodo_ingesta": "parser HTML (BeautifulSoup) + limpieza de navegacion y notas editoriales",
       "sha256": "6d032ba30bcf2b2789790a5e4d1db1231bf2bbff3ea673e46e29a9b448f7f687"
+    },
+    {
+      "doc_id": "decreto_1400_1970",
+      "titulo": "Decreto 1400 de 1970 (Codigo de Procedimiento Civil)",
+      "fuente": "Funcion Publica - Gestor Normativo",
+      "url": "https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=6923",
+      "fecha_consulta": "2026-10-03",
+      "areas": [
+        "Derecho procesal"
+      ],
+      "n_articulos": 678,
+      "n_fragmentos": 757,
+      "metodo_ingesta": "extraccion de PDF con PyMuPDF + limpieza de encabezados",
+      "sha256": "05a7148915f67a43f45ce3cb3c6ff867ceaa3e3bd22b96695f56ec06c7c2d72c"
+    },
+    {
+      "doc_id": "decreto_1421_1993",
+      "titulo": "Decreto 1421 de 1993",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/decreto_1421_1993.html",
+      "fecha_consulta": "2026-10-03",
+      "areas": [
+        "Derecho administrativo",
+        "Derecho tributario"
+      ],
+      "n_articulos": 180,
+      "n_fragmentos": 196,
+      "metodo_ingesta": "parser HTML (BeautifulSoup) + limpieza de navegacion y notas editoriales",
+      "sha256": "338b7a15fe0d736cc8b2a310982cd4b5a62facec18e248a4b0d8a66677331a86"
+    },
+    {
+      "doc_id": "decreto_1507_2014",
+      "titulo": "Decreto 1507 de 2014",
+      "fuente": "Normograma de Colpensiones (compilacion Avance Juridico)",
+      "url": "https://normativa.colpensiones.gov.co/colpens/docs/decreto_1507_2014.htm",
+      "fecha_consulta": "2026-10-03",
+      "areas": [
+        "Derecho laboral"
+      ],
+      "n_articulos": 6,
+      "n_fragmentos": 183,
+      "metodo_ingesta": "parser HTML (BeautifulSoup) + limpieza de navegacion y notas editoriales",
+      "sha256": "d27af6edff9803e96c8120bc5962c268df85b996a9b50e5d7d9a40afa47f05cb"
     },
     {
       "doc_id": "decreto_1625_2016",
@@ -2983,6 +3055,78 @@
       "sha256": "151269cdd799c0dfcaabea843b8e4311ff1c11bf7d4bcc180168fe38b0cae88b"
     },
     {
+      "doc_id": "decreto_2106_2019",
+      "titulo": "Decreto 2106 de 2019",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/decreto_2106_2019.html",
+      "fecha_consulta": "2026-10-03",
+      "areas": [
+        "Derecho administrativo"
+      ],
+      "n_articulos": 158,
+      "n_fragmentos": 186,
+      "metodo_ingesta": "parser HTML (BeautifulSoup) + limpieza de navegacion y notas editoriales",
+      "sha256": "334470fa1afd4d5612e4069d3ef3116d77e7d6de573edccb75c4acdb3af2dad4"
+    },
+    {
+      "doc_id": "decreto_2150_1995",
+      "titulo": "Decreto 2150 de 1995",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/decreto_2150_1995.html",
+      "fecha_consulta": "2026-10-03",
+      "areas": [
+        "Derecho administrativo"
+      ],
+      "n_articulos": 152,
+      "n_fragmentos": 154,
+      "metodo_ingesta": "parser HTML (BeautifulSoup) + limpieza de navegacion y notas editoriales",
+      "sha256": "e31e6934499a81335be12cf74debedc7626aa758de39a3786bcb4228ca57811b"
+    },
+    {
+      "doc_id": "decreto_2158_1948",
+      "titulo": "Decreto 2158 de 1948",
+      "fuente": "Normograma de Colpensiones (compilacion Avance Juridico)",
+      "url": "https://normativa.colpensiones.gov.co/colpens/docs/decreto_2158_1948.htm",
+      "fecha_consulta": "2026-10-03",
+      "areas": [
+        "Derecho laboral",
+        "Derecho procesal"
+      ],
+      "n_articulos": 1,
+      "n_fragmentos": 7,
+      "metodo_ingesta": "parser HTML (BeautifulSoup) + limpieza de navegacion y notas editoriales",
+      "sha256": "9038063738cb9172ca4c7e542c2aa084ac3e0fa4afe49dedb00f691a97ed296b"
+    },
+    {
+      "doc_id": "decreto_216_2021",
+      "titulo": "Decreto 216 de 2021",
+      "fuente": "Normograma de Colpensiones (compilacion Avance Juridico)",
+      "url": "https://normativa.colpensiones.gov.co/compilacion/docs/decreto_0216_2021.htm",
+      "fecha_consulta": "2026-10-03",
+      "areas": [
+        "Derecho administrativo",
+        "Derecho constitucional"
+      ],
+      "n_articulos": 21,
+      "n_fragmentos": 37,
+      "metodo_ingesta": "parser HTML (BeautifulSoup) + limpieza de navegacion y notas editoriales",
+      "sha256": "e909666f007c115bad7528a5aa8511407c3389864c4e1295d3dfcf06081f160a"
+    },
+    {
+      "doc_id": "decreto_2351_1965",
+      "titulo": "Decreto 2351 de 1965",
+      "fuente": "Normograma de Colpensiones (compilacion Avance Juridico)",
+      "url": "https://normativa.colpensiones.gov.co/colpens/docs/decreto_2351_1965.htm",
+      "fecha_consulta": "2026-10-03",
+      "areas": [
+        "Derecho laboral"
+      ],
+      "n_articulos": 6,
+      "n_fragmentos": 8,
+      "metodo_ingesta": "parser HTML (BeautifulSoup) + limpieza de navegacion y notas editoriales",
+      "sha256": "868aba5b822cbb8dc65c8b4639eefd899d7d97d81ec30094f18ca9bd089e82e1"
+    },
+    {
       "doc_id": "decreto_2591_1991",
       "titulo": "Decreto 2591 de 1991 (Reglamento de la accion de tutela)",
       "fuente": "Secretaria del Senado",
@@ -2996,6 +3140,50 @@
       "n_fragmentos": 56,
       "metodo_ingesta": "parser HTML (BeautifulSoup) + limpieza de navegacion y notas editoriales",
       "sha256": "0ec698eaba6ec4eaab5e82aeca6fa4e6ba53675c3d07e8d7dba02e1f21139522"
+    },
+    {
+      "doc_id": "decreto_25_2014",
+      "titulo": "Decreto 25 de 2014",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/decreto_0025_2014.html",
+      "fecha_consulta": "2026-10-03",
+      "areas": [
+        "Derecho administrativo",
+        "Derecho constitucional"
+      ],
+      "n_articulos": 28,
+      "n_fragmentos": 46,
+      "metodo_ingesta": "parser HTML (BeautifulSoup) + limpieza de navegacion y notas editoriales",
+      "sha256": "ca08e063b6c027c2df58e58f3584a0fe83a89fa92447141890ce8bdadfa3d3fb"
+    },
+    {
+      "doc_id": "decreto_262_2000",
+      "titulo": "Decreto 262 de 2000",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/decreto_0262_2000.html",
+      "fecha_consulta": "2026-10-02",
+      "areas": [
+        "Derecho administrativo"
+      ],
+      "n_articulos": 262,
+      "n_fragmentos": 301,
+      "metodo_ingesta": "parser HTML (BeautifulSoup) + limpieza de navegacion y notas editoriales",
+      "sha256": "b0dce9c87ee511e2aa9f6adc3fb1853770f1303e2385ad84bf0484b8ec017736"
+    },
+    {
+      "doc_id": "decreto_2820_1974",
+      "titulo": "Decreto 2820 de 1974",
+      "fuente": "Normograma de Colpensiones (compilacion Avance Juridico)",
+      "url": "https://normativa.colpensiones.gov.co/colpens/docs/decreto_2820_1974.htm",
+      "fecha_consulta": "2026-10-03",
+      "areas": [
+        "Derecho de familia",
+        "Derecho civil"
+      ],
+      "n_articulos": 71,
+      "n_fragmentos": 72,
+      "metodo_ingesta": "parser HTML (BeautifulSoup) + limpieza de navegacion y notas editoriales",
+      "sha256": "607b492ec69badac1e00c1e082fb748745f73b6ddde8ddcff92ffeead5d9df4b"
     },
     {
       "doc_id": "decreto_306_1992",
@@ -3026,6 +3214,35 @@
       "sha256": "992251236604f159b55b19aa4280538b05b77f99a92571a2a6870d726a3b8a3f"
     },
     {
+      "doc_id": "decreto_4062_2011",
+      "titulo": "Decreto 4062 de 2011",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/decreto_4062_2011.html",
+      "fecha_consulta": "2026-10-03",
+      "areas": [
+        "Derecho administrativo"
+      ],
+      "n_articulos": 34,
+      "n_fragmentos": 44,
+      "metodo_ingesta": "parser HTML (BeautifulSoup) + limpieza de navegacion y notas editoriales",
+      "sha256": "72a2d7d1e1b3e5e73a1339bb78096d370aeaaa47b48ba3f5568649826d80e979"
+    },
+    {
+      "doc_id": "decreto_4065_2011",
+      "titulo": "Decreto 4065 de 2011",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/decreto_4065_2011.html",
+      "fecha_consulta": "2026-10-03",
+      "areas": [
+        "Derecho administrativo",
+        "Derecho constitucional"
+      ],
+      "n_articulos": 26,
+      "n_fragmentos": 35,
+      "metodo_ingesta": "parser HTML (BeautifulSoup) + limpieza de navegacion y notas editoriales",
+      "sha256": "e9869ba934b33a7d69fb586bd070544210793b03d805f4f26b28054a58ef0842"
+    },
+    {
       "doc_id": "decreto_735_2013",
       "titulo": "Decreto 735 de 2013 (Efectividad de la garantia de bienes y servicios)",
       "fuente": "Normograma de Colpensiones (compilacion Avance Juridico)",
@@ -3040,6 +3257,34 @@
       "sha256": "84e539725481e5201848887b25b0a22ae9f9f3cbf5f467ae44d7bca53c7d84a4"
     },
     {
+      "doc_id": "decreto_758_1990",
+      "titulo": "Decreto 758 de 1990",
+      "fuente": "Normograma de Colpensiones (compilacion Avance Juridico)",
+      "url": "https://normativa.colpensiones.gov.co/colpens/docs/decreto_0758_1990.htm",
+      "fecha_consulta": "2026-10-02",
+      "areas": [
+        "Derecho laboral"
+      ],
+      "n_articulos": 54,
+      "n_fragmentos": 73,
+      "metodo_ingesta": "parser HTML (BeautifulSoup) + limpieza de navegacion y notas editoriales",
+      "sha256": "84a99ed9f8969eb681ca72204504c2b7de958371598238eaad8cda4196851ebf"
+    },
+    {
+      "doc_id": "decreto_806_2020",
+      "titulo": "Decreto 806 de 2020",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/decreto_0806_2020.html",
+      "fecha_consulta": "2026-10-03",
+      "areas": [
+        "Derecho procesal"
+      ],
+      "n_articulos": 16,
+      "n_fragmentos": 51,
+      "metodo_ingesta": "parser HTML (BeautifulSoup) + limpieza de navegacion y notas editoriales",
+      "sha256": "28fb90be039561e19fe15021ffd3ea8876bb5ec17102e0c61883fe59460f43de"
+    },
+    {
       "doc_id": "decreto_886_2014",
       "titulo": "Decreto 886 de 2014 (Registro Nacional de Bases de Datos)",
       "fuente": "Normograma de Colpensiones (compilacion Avance Juridico)",
@@ -3052,6 +3297,20 @@
       "n_fragmentos": 18,
       "metodo_ingesta": "parser HTML (BeautifulSoup) + limpieza de navegacion y notas editoriales",
       "sha256": "45f55c95638c3cd9e642b00655080884be05f533410fd144db2f4d05dbfde88d"
+    },
+    {
+      "doc_id": "decreto_920_2023",
+      "titulo": "Decreto Ley 920 de 2023 (regimen sancionatorio y de decomiso aduanero)",
+      "fuente": "Normograma DIAN",
+      "url": "https://normograma.dian.gov.co/dian/compilacion/docs/decreto_0920_2023.htm",
+      "fecha_consulta": "2026-10-03",
+      "areas": [
+        "Derecho tributario"
+      ],
+      "n_articulos": 155,
+      "n_fragmentos": 301,
+      "metodo_ingesta": "extraccion de PDF con PyMuPDF + limpieza de encabezados",
+      "sha256": "b9e31cc4c008af0587f5a18be11e0008bbde805110b2f65129506ce320e0cf94"
     },
     {
       "doc_id": "doctrina_arbanza_grupo_sociedades_2024",
@@ -3080,6 +3339,20 @@
       "n_fragmentos": 4,
       "metodo_ingesta": "extraccion de PDF con PyMuPDF + limpieza de encabezados",
       "sha256": "d3c84c3640c7a9c61c670e8692517f55c46812d9513269d4fc35f6cb00653240"
+    },
+    {
+      "doc_id": "doctrina_unbosque_agencia_comercial_cesantia_2024",
+      "titulo": "Trabajo de grado Universidad El Bosque - Contrato de agencia comercial y cesantia comercial (2024)",
+      "fuente": "Repositorio Universidad El Bosque (REDCOL)",
+      "url": "https://redcol.minciencias.gov.co/Record/UNBOSQUE2_4d108bd5eb3d5ba57603313e68fd019b/",
+      "fecha_consulta": "2026-10-03",
+      "areas": [
+        "Derecho comercial y sociedades"
+      ],
+      "n_articulos": null,
+      "n_fragmentos": 19,
+      "metodo_ingesta": "extraccion de PDF con PyMuPDF + limpieza de encabezados",
+      "sha256": "cf088f240835de160c4bfb0e74f19fe0638c3039b46dea42c3d4ece4a9a2e09e"
     },
     {
       "doc_id": "ley_1004_2005",
@@ -3168,6 +3441,21 @@
       "sha256": "d251fd263b132200a73a03fa89854736edc1ad788e5c73267fd15c947fe17fb1"
     },
     {
+      "doc_id": "ley_1122_2007",
+      "titulo": "Ley 1122 de 2007",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/ley_1122_2007.html",
+      "fecha_consulta": "2026-10-02",
+      "areas": [
+        "Derecho laboral",
+        "Derecho administrativo"
+      ],
+      "n_articulos": 46,
+      "n_fragmentos": 63,
+      "metodo_ingesta": "parser HTML (BeautifulSoup) + limpieza de navegacion y notas editoriales",
+      "sha256": "55da7e058e88e24bd1046c4bf5a9bf6bcf99d5df9a19629108fd7dc942e0f10b"
+    },
+    {
       "doc_id": "ley_1123_2007",
       "titulo": "Ley 1123 de 2007 (Codigo Disciplinario del Abogado)",
       "fuente": "Normograma de Colpensiones (compilacion Avance Juridico)",
@@ -3181,6 +3469,36 @@
       "n_fragmentos": 117,
       "metodo_ingesta": "parser HTML (BeautifulSoup) + limpieza de navegacion y notas editoriales",
       "sha256": "0a7f6caf8dbb9473f702c6295d3f1398325d75d15d19cd0f76bcb2f9a9e99566"
+    },
+    {
+      "doc_id": "ley_1142_2007",
+      "titulo": "Ley 1142 de 2007",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/ley_1142_2007.html",
+      "fecha_consulta": "2026-10-03",
+      "areas": [
+        "Derecho penal",
+        "Derecho procesal"
+      ],
+      "n_articulos": 56,
+      "n_fragmentos": 61,
+      "metodo_ingesta": "parser HTML (BeautifulSoup) + limpieza de navegacion y notas editoriales",
+      "sha256": "88a0d4e80b2e532f5e7485f0de7c040045d235ad50634c9b697620ad49b624bb"
+    },
+    {
+      "doc_id": "ley_115_1994",
+      "titulo": "Ley 115 de 1994",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/ley_0115_1994.html",
+      "fecha_consulta": "2026-10-02",
+      "areas": [
+        "Derecho administrativo",
+        "Derecho constitucional"
+      ],
+      "n_articulos": 222,
+      "n_fragmentos": 233,
+      "metodo_ingesta": "parser HTML (BeautifulSoup) + limpieza de navegacion y notas editoriales",
+      "sha256": "d7c9a0ce390133d032520817d8e6817bc7fd16fc9befd3f2e733b4efbbb54aa9"
     },
     {
       "doc_id": "ley_1183_2008",
@@ -3209,6 +3527,21 @@
       "n_fragmentos": 14,
       "metodo_ingesta": "parser HTML (BeautifulSoup) + limpieza de navegacion y notas editoriales",
       "sha256": "85a3c6b4bbedd25a276c7e65297b8e9234a8349520b8f9cb03a74391e504a89a"
+    },
+    {
+      "doc_id": "ley_1251_2008",
+      "titulo": "Ley 1251 de 2008",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/ley_1251_2008.html",
+      "fecha_consulta": "2026-10-02",
+      "areas": [
+        "Derecho de familia",
+        "Derecho constitucional"
+      ],
+      "n_articulos": 35,
+      "n_fragmentos": 48,
+      "metodo_ingesta": "parser HTML (BeautifulSoup) + limpieza de navegacion y notas editoriales",
+      "sha256": "f8e261246fe66d586a742ac02764ac61f0d1e161bf882b0b3692a75eb7009ec9"
     },
     {
       "doc_id": "ley_1257_2008",
@@ -3255,6 +3588,21 @@
       "sha256": "ade51cb49973acfdf634d5d00d6a7c4538596eef09ff1732aeaa74b4736998c2"
     },
     {
+      "doc_id": "ley_1276_2009",
+      "titulo": "Ley 1276 de 2009",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/ley_1276_2009.html",
+      "fecha_consulta": "2026-10-03",
+      "areas": [
+        "Derecho administrativo",
+        "Derecho de familia"
+      ],
+      "n_articulos": 15,
+      "n_fragmentos": 18,
+      "metodo_ingesta": "parser HTML (BeautifulSoup) + limpieza de navegacion y notas editoriales",
+      "sha256": "a531cd1d35ba346caf411afa7f43c0dd220415500e0a84aefcba5e159f996e68"
+    },
+    {
       "doc_id": "ley_1285_2009",
       "titulo": "Ley 1285 de 2009 (Reforma a la Ley Estatutaria de la Administracion de Justicia)",
       "fuente": "Normograma de la CRA (compilacion Avance Juridico)",
@@ -3267,6 +3615,21 @@
       "n_fragmentos": 31,
       "metodo_ingesta": "parser HTML (BeautifulSoup) + limpieza de navegacion y notas editoriales",
       "sha256": "230fceec6410608c0315b127308d020bd04c1fa39f7e10104c53e669399dd76b"
+    },
+    {
+      "doc_id": "ley_12_1991",
+      "titulo": "Ley 12 de 1991",
+      "fuente": "Normograma de la Cancilleria (compilacion Avance Juridico)",
+      "url": "https://www.cancilleria.gov.co/sites/default/files/Normograma/docs/ley_0012_1991.htm",
+      "fecha_consulta": "2026-10-02",
+      "areas": [
+        "Derecho constitucional",
+        "Derecho de familia"
+      ],
+      "n_articulos": 54,
+      "n_fragmentos": 72,
+      "metodo_ingesta": "parser HTML (BeautifulSoup) + limpieza de navegacion y notas editoriales",
+      "sha256": "fa0325b55656c2040b141a9f13eb087b4bd60b04d07647cb061dd4f54880f7e2"
     },
     {
       "doc_id": "ley_1306_2009",
@@ -3282,6 +3645,21 @@
       "n_fragmentos": 124,
       "metodo_ingesta": "parser HTML (BeautifulSoup) + limpieza de navegacion y notas editoriales",
       "sha256": "578c1d7a24311b7f304ec00e6893ea2d7e879c9ed189beffc02b623b11ed3933"
+    },
+    {
+      "doc_id": "ley_130_1994",
+      "titulo": "Ley 130 de 1994",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/ley_0130_1994.html",
+      "fecha_consulta": "2026-10-03",
+      "areas": [
+        "Derecho constitucional",
+        "Derecho administrativo"
+      ],
+      "n_articulos": 54,
+      "n_fragmentos": 59,
+      "metodo_ingesta": "parser HTML (BeautifulSoup) + limpieza de navegacion y notas editoriales",
+      "sha256": "8ae43cd8106cbf3c23888447a78668638a6bf25ae2f0e36358d104a2b0195194"
     },
     {
       "doc_id": "ley_1314_2009",
@@ -3325,6 +3703,21 @@
       "n_fragmentos": 126,
       "metodo_ingesta": "parser HTML (BeautifulSoup) + limpieza de navegacion y notas editoriales",
       "sha256": "2101fa04ed10dcddf56e2ab0d8c0cc22925f8058a43fe625dca5c4086bf9780b"
+    },
+    {
+      "doc_id": "ley_1346_2009",
+      "titulo": "Ley 1346 de 2009",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/ley_1346_2009.html",
+      "fecha_consulta": "2026-10-02",
+      "areas": [
+        "Derecho constitucional",
+        "Derecho civil"
+      ],
+      "n_articulos": 50,
+      "n_fragmentos": 68,
+      "metodo_ingesta": "parser HTML (BeautifulSoup) + limpieza de navegacion y notas editoriales",
+      "sha256": "313bd496504f7e77c57218a01ef5e05e09fc892f271554ba9f3747b465453d72"
     },
     {
       "doc_id": "ley_134_1994",
@@ -3412,6 +3805,21 @@
       "sha256": "df2796dc5ee613e09fc67f92bd0e0befb310a767a5277692707f8f2adbcc0b72"
     },
     {
+      "doc_id": "ley_142_1994",
+      "titulo": "Ley 142 de 1994",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/ley_0142_1994.html",
+      "fecha_consulta": "2026-10-02",
+      "areas": [
+        "Derecho administrativo",
+        "Derecho comercial y sociedades"
+      ],
+      "n_articulos": 189,
+      "n_fragmentos": 239,
+      "metodo_ingesta": "parser HTML (BeautifulSoup) + limpieza de navegacion y notas editoriales",
+      "sha256": "8b8b98ee3bb2a04e52083ac5da9a07e34d3a907498637cf493d0a8dbce697dad"
+    },
+    {
       "doc_id": "ley_1430_2010",
       "titulo": "Ley 1430 de 2010 (Control tributario y competitividad)",
       "fuente": "Normograma de la CRA (compilacion Avance Juridico)",
@@ -3424,6 +3832,37 @@
       "n_fragmentos": 79,
       "metodo_ingesta": "parser HTML (BeautifulSoup) + limpieza de navegacion y notas editoriales",
       "sha256": "03b87e1657cd5d843507d7f99289651861741e362992b4a70f061bd24b363988"
+    },
+    {
+      "doc_id": "ley_1438_2011",
+      "titulo": "Ley 1438 de 2011",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/ley_1438_2011.html",
+      "fecha_consulta": "2026-10-02",
+      "areas": [
+        "Derecho laboral",
+        "Derecho administrativo"
+      ],
+      "n_articulos": 145,
+      "n_fragmentos": 172,
+      "metodo_ingesta": "parser HTML (BeautifulSoup) + limpieza de navegacion y notas editoriales",
+      "sha256": "59bbbe590fb8af2bc525482046919fab8a16b49f112d341e7773a20f39c98b97"
+    },
+    {
+      "doc_id": "ley_1448_2011",
+      "titulo": "Ley 1448 de 2011",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/ley_1448_2011.html",
+      "fecha_consulta": "2026-10-02",
+      "areas": [
+        "Derecho constitucional",
+        "Derecho administrativo",
+        "Derecho penal"
+      ],
+      "n_articulos": 208,
+      "n_fragmentos": 280,
+      "metodo_ingesta": "parser HTML (BeautifulSoup) + limpieza de navegacion y notas editoriales",
+      "sha256": "76954d248dd3ec2633dd8e8153e0af5b92ca178341e26192d9f9df163e3aad76"
     },
     {
       "doc_id": "ley_1453_2011",
@@ -3568,6 +4007,36 @@
       "sha256": "20340f0af50446796bcc4e56aac1788a1aa8f614e35679522f546766f15fb8e8"
     },
     {
+      "doc_id": "ley_1616_2013",
+      "titulo": "Ley 1616 de 2013",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/ley_1616_2013.html",
+      "fecha_consulta": "2026-10-03",
+      "areas": [
+        "Derecho administrativo",
+        "Derecho constitucional"
+      ],
+      "n_articulos": 44,
+      "n_fragmentos": 55,
+      "metodo_ingesta": "parser HTML (BeautifulSoup) + limpieza de navegacion y notas editoriales",
+      "sha256": "094df2ce2d6f9bf9a3ca0a63f7d90725293ea3c96bc6b56a9bc00ae32051f33e"
+    },
+    {
+      "doc_id": "ley_1618_2013",
+      "titulo": "Ley 1618 de 2013",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/ley_1618_2013.html",
+      "fecha_consulta": "2026-10-02",
+      "areas": [
+        "Derecho constitucional",
+        "Derecho administrativo"
+      ],
+      "n_articulos": 32,
+      "n_fragmentos": 54,
+      "metodo_ingesta": "parser HTML (BeautifulSoup) + limpieza de navegacion y notas editoriales",
+      "sha256": "ebbf8a3f481340ae2e601ed3d6501be8838fdba6a49fe2acfd26967f952a9064"
+    },
+    {
       "doc_id": "ley_1648_2013",
       "titulo": "Ley 1648 de 2013 (Medidas de observancia de los derechos de propiedad industrial)",
       "fuente": "Normograma de Colpensiones (compilacion Avance Juridico)",
@@ -3595,6 +4064,36 @@
       "n_fragmentos": 105,
       "metodo_ingesta": "extraccion de PDF con PyMuPDF + limpieza de encabezados",
       "sha256": "7800f822e76cae0b257697c47f2c20141a39e2f26e5d20ea943cf4f03ee0b0ae"
+    },
+    {
+      "doc_id": "ley_16_1972",
+      "titulo": "Ley 16 de 1972",
+      "fuente": "Normograma de la CRA (compilacion Avance Juridico)",
+      "url": "https://normas.cra.gov.co/gestor/docs/ley_0016_1972.htm",
+      "fecha_consulta": "2026-10-02",
+      "areas": [
+        "Derecho constitucional",
+        "Derecho penal"
+      ],
+      "n_articulos": 82,
+      "n_fragmentos": 84,
+      "metodo_ingesta": "parser HTML (BeautifulSoup) + limpieza de navegacion y notas editoriales",
+      "sha256": "9bf4c8b95b5281110f4c1ad0369b095a2843aef0d5e5d980ada2e8717f17b93c"
+    },
+    {
+      "doc_id": "ley_1708_2014",
+      "titulo": "Ley 1708 de 2014",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/ley_1708_2014.html",
+      "fecha_consulta": "2026-10-03",
+      "areas": [
+        "Derecho penal",
+        "Derecho procesal"
+      ],
+      "n_articulos": 217,
+      "n_fragmentos": 253,
+      "metodo_ingesta": "parser HTML (BeautifulSoup) + limpieza de navegacion y notas editoriales",
+      "sha256": "b490d89bc123bcadc121ad8bb7142a0bbd866871decb066534d1b47c1d150905"
     },
     {
       "doc_id": "ley_1709_2014",
@@ -3711,6 +4210,21 @@
       "sha256": "7c960f494047dad91c7d1602c111a482da8036187b9bf50082bbb3463d633bc2"
     },
     {
+      "doc_id": "ley_1781_2016",
+      "titulo": "Ley 1781 de 2016",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/ley_1781_2016.html",
+      "fecha_consulta": "2026-10-03",
+      "areas": [
+        "Derecho procesal",
+        "Derecho administrativo"
+      ],
+      "n_articulos": 4,
+      "n_fragmentos": 5,
+      "metodo_ingesta": "parser HTML (BeautifulSoup) + limpieza de navegacion y notas editoriales",
+      "sha256": "5f2b84bac2e9d336578a4e0d13d5957ce2db1997caf5a4c324c4808e774db030"
+    },
+    {
       "doc_id": "ley_178_1994",
       "titulo": "Ley 178 de 1994 (Aprueba el Convenio de Paris para la Proteccion de la Propiedad Industrial)",
       "fuente": "Secretaria del Senado",
@@ -3723,6 +4237,35 @@
       "n_fragmentos": 64,
       "metodo_ingesta": "parser HTML (BeautifulSoup) + limpieza de navegacion y notas editoriales",
       "sha256": "ed48bec16c43eafc5d09ed6f7944128ec67237af81fd885928698dc564fe97f1"
+    },
+    {
+      "doc_id": "ley_181_1995",
+      "titulo": "Ley 181 de 1995",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/ley_0181_1995.html",
+      "fecha_consulta": "2026-10-03",
+      "areas": [
+        "Derecho administrativo"
+      ],
+      "n_articulos": 91,
+      "n_fragmentos": 96,
+      "metodo_ingesta": "parser HTML (BeautifulSoup) + limpieza de navegacion y notas editoriales",
+      "sha256": "8f5b02512ace9e25151229e3853e3a92de363f351f6b62084966d6bad5753a54"
+    },
+    {
+      "doc_id": "ley_1820_2016",
+      "titulo": "Ley 1820 de 2016",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/ley_1820_2016.html",
+      "fecha_consulta": "2026-10-03",
+      "areas": [
+        "Derecho penal",
+        "Derecho procesal"
+      ],
+      "n_articulos": 61,
+      "n_fragmentos": 72,
+      "metodo_ingesta": "parser HTML (BeautifulSoup) + limpieza de navegacion y notas editoriales",
+      "sha256": "7166e73c00660b5e922df2771c54ddf732df620e3fb9a53566cb594cc6717017"
     },
     {
       "doc_id": "ley_1822_2017",
@@ -3810,6 +4353,21 @@
       "sha256": "37eac37c25b625d7e2df1dca8cf7211a97e94140d5da53d0a9ec0e27563aea69"
     },
     {
+      "doc_id": "ley_190_1995",
+      "titulo": "Ley 190 de 1995",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/ley_0190_1995.html",
+      "fecha_consulta": "2026-10-03",
+      "areas": [
+        "Derecho administrativo",
+        "Derecho penal"
+      ],
+      "n_articulos": 85,
+      "n_fragmentos": 86,
+      "metodo_ingesta": "parser HTML (BeautifulSoup) + limpieza de navegacion y notas editoriales",
+      "sha256": "4b53a36ff4dcbb72292bfffed7bf58f8dd3a9ed69e771e96879a1d739d4b6171"
+    },
+    {
       "doc_id": "ley_1915_2018",
       "titulo": "Ley 1915 de 2018 (Derecho de autor y derechos conexos)",
       "fuente": "Normograma de la DIAN (compilacion Avance Juridico)",
@@ -3851,6 +4409,21 @@
       "n_fragmentos": 204,
       "metodo_ingesta": "parser HTML (BeautifulSoup) + limpieza de navegacion y notas editoriales",
       "sha256": "24b8804014b0f6a703216825994317ebfa9b80b077ef187e42dbd18f29670dd5"
+    },
+    {
+      "doc_id": "ley_1949_2019",
+      "titulo": "Ley 1949 de 2019",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/ley_1949_2019.html",
+      "fecha_consulta": "2026-10-02",
+      "areas": [
+        "Derecho administrativo",
+        "Derecho laboral"
+      ],
+      "n_articulos": 12,
+      "n_fragmentos": 22,
+      "metodo_ingesta": "parser HTML (BeautifulSoup) + limpieza de navegacion y notas editoriales",
+      "sha256": "85d4ba57220112ae2b50781caf0571d84f3fd05d3e90bcf03639f13f39b03d0e"
     },
     {
       "doc_id": "ley_1957_2019",
@@ -3938,6 +4511,21 @@
       "n_fragmentos": 38,
       "metodo_ingesta": "parser HTML (BeautifulSoup) + limpieza de navegacion y notas editoriales",
       "sha256": "5602cacf94eb548bbd9521b2cc63246aa9b31cd8862d7de06e2f150b3e9e8e98"
+    },
+    {
+      "doc_id": "ley_2055_2020",
+      "titulo": "Ley 2055 de 2020",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/ley_2055_2020.html",
+      "fecha_consulta": "2026-10-02",
+      "areas": [
+        "Derecho constitucional",
+        "Derecho de familia"
+      ],
+      "n_articulos": 41,
+      "n_fragmentos": 100,
+      "metodo_ingesta": "parser HTML (BeautifulSoup) + limpieza de navegacion y notas editoriales",
+      "sha256": "07cba3c8ca86a2fbd55895621fd1c55ef0c0fb4af4cad652d24bae918e400917"
     },
     {
       "doc_id": "ley_2069_2020",
@@ -4096,6 +4684,21 @@
       "sha256": "4847e09bc2fd824c1031ff7899aa083cea1c3eb23b35d1fba43fd46de2701127"
     },
     {
+      "doc_id": "ley_2136_2021",
+      "titulo": "Ley 2136 de 2021",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/ley_2136_2021.html",
+      "fecha_consulta": "2026-10-03",
+      "areas": [
+        "Derecho administrativo",
+        "Derecho constitucional"
+      ],
+      "n_articulos": 91,
+      "n_fragmentos": 111,
+      "metodo_ingesta": "parser HTML (BeautifulSoup) + limpieza de navegacion y notas editoriales",
+      "sha256": "2446ef11b32855520b7da770eb94f714299baeb758117201d421cf63efc90464"
+    },
+    {
       "doc_id": "ley_2155_2021",
       "titulo": "Ley 2155 de 2021 (Ley de Inversion Social)",
       "fuente": "Normograma de la CRA (compilacion Avance Juridico)",
@@ -4150,6 +4753,34 @@
       "n_fragmentos": 78,
       "metodo_ingesta": "parser HTML (BeautifulSoup) + limpieza de navegacion y notas editoriales",
       "sha256": "9504863746a058dae97b8fadd9f21db79d2a3e85d2b9d8661c4bc5300c7b7d2d"
+    },
+    {
+      "doc_id": "ley_21_1982",
+      "titulo": "Ley 21 de 1982",
+      "fuente": "Normograma de Colpensiones (compilacion Avance Juridico)",
+      "url": "https://normativa.colpensiones.gov.co/colpens/docs/ley_0021_1982.htm",
+      "fecha_consulta": "2026-10-03",
+      "areas": [
+        "Derecho laboral"
+      ],
+      "n_articulos": 94,
+      "n_fragmentos": 157,
+      "metodo_ingesta": "parser HTML (BeautifulSoup) + limpieza de navegacion y notas editoriales",
+      "sha256": "c1224f82aee4002c693939cfc9e3767965f705d7601a93c5f6fdd9dcc3adb444"
+    },
+    {
+      "doc_id": "ley_21_1991",
+      "titulo": "Ley 21 de 1991",
+      "fuente": "Normograma de Colpensiones (compilacion Avance Juridico)",
+      "url": "https://normativa.colpensiones.gov.co/colpens/docs/ley_0021_1991.htm",
+      "fecha_consulta": "2026-10-03",
+      "areas": [
+        "Derecho constitucional"
+      ],
+      "n_articulos": 44,
+      "n_fragmentos": 50,
+      "metodo_ingesta": "parser HTML (BeautifulSoup) + limpieza de navegacion y notas editoriales",
+      "sha256": "2f445996ad6f7d85b1d7e364f3b45352606570868a303a0278ab067021bd8ca9"
     },
     {
       "doc_id": "ley_2213_2022",
@@ -4250,6 +4881,21 @@
       "sha256": "9331be49da89d960b9252323e38a5aa271ce708c3a9673cb0b30734496c99d33"
     },
     {
+      "doc_id": "ley_23_1981",
+      "titulo": "Ley 23 de 1981",
+      "fuente": "Normograma de Colpensiones (compilacion Avance Juridico)",
+      "url": "https://normativa.colpensiones.gov.co/compilacion/docs/ley_0023_1981.htm",
+      "fecha_consulta": "2026-10-03",
+      "areas": [
+        "Derecho penal",
+        "Derecho civil"
+      ],
+      "n_articulos": 94,
+      "n_fragmentos": 96,
+      "metodo_ingesta": "parser HTML (BeautifulSoup) + limpieza de navegacion y notas editoriales",
+      "sha256": "8b41390e7c60753dd2fe5823d65e1a3186412b78e790d9fadf258b8a831e29d0"
+    },
+    {
       "doc_id": "ley_23_1982",
       "titulo": "Ley 23 de 1982 (Derechos de autor)",
       "fuente": "Normograma de la CRA (compilacion Avance Juridico)",
@@ -4276,6 +4922,36 @@
       "n_fragmentos": 24,
       "metodo_ingesta": "parser HTML (BeautifulSoup) + limpieza de navegacion y notas editoriales",
       "sha256": "39e3a72fd681166b7f4198cf919f569ecf97221547eaab6c681f8a6ce9a68b07"
+    },
+    {
+      "doc_id": "ley_248_1995",
+      "titulo": "Ley 248 de 1995",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/ley_0248_1995.html",
+      "fecha_consulta": "2026-10-02",
+      "areas": [
+        "Derecho constitucional",
+        "Derecho penal"
+      ],
+      "n_articulos": 25,
+      "n_fragmentos": 31,
+      "metodo_ingesta": "parser HTML (BeautifulSoup) + limpieza de navegacion y notas editoriales",
+      "sha256": "4eb1580a1d3f20ff2af78f1cdede8bb7efb3862006d8a12b48ddff98029a5c7e"
+    },
+    {
+      "doc_id": "ley_24_1992",
+      "titulo": "Ley 24 de 1992",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/ley_0024_1992.html",
+      "fecha_consulta": "2026-10-03",
+      "areas": [
+        "Derecho constitucional",
+        "Derecho administrativo"
+      ],
+      "n_articulos": 41,
+      "n_fragmentos": 42,
+      "metodo_ingesta": "parser HTML (BeautifulSoup) + limpieza de navegacion y notas editoriales",
+      "sha256": "6e81f89b486da586d70c8cf2629f3c6121048691f0aef062f1af700d60220b12"
     },
     {
       "doc_id": "ley_258_1996",
@@ -4337,6 +5013,35 @@
       "sha256": "bafaac119588f5bc2a2fad3df8e9dc702451544744971b9724f8732ef7613a15"
     },
     {
+      "doc_id": "ley_30_1992",
+      "titulo": "Ley 30 de 1992",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/ley_0030_1992.html",
+      "fecha_consulta": "2026-10-02",
+      "areas": [
+        "Derecho administrativo"
+      ],
+      "n_articulos": 144,
+      "n_fragmentos": 154,
+      "metodo_ingesta": "parser HTML (BeautifulSoup) + limpieza de navegacion y notas editoriales",
+      "sha256": "dd04a53807af897599f6deef338cbd103c690a5a866e612c3780ab3c319325e8"
+    },
+    {
+      "doc_id": "ley_319_1996",
+      "titulo": "Ley 319 de 1996",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/ley_0319_1996.html",
+      "fecha_consulta": "2026-10-03",
+      "areas": [
+        "Derecho constitucional",
+        "Derecho laboral"
+      ],
+      "n_articulos": 22,
+      "n_fragmentos": 30,
+      "metodo_ingesta": "parser HTML (BeautifulSoup) + limpieza de navegacion y notas editoriales",
+      "sha256": "d8854b87db949b8e9547160d28dc8dbb452619184ac924223567c500f6cb9590"
+    },
+    {
       "doc_id": "ley_361_1997",
       "titulo": "Ley 361 de 1997 (Integracion social de las personas con limitacion (estabilidad reforzada))",
       "fuente": "Normograma de la CRA (compilacion Avance Juridico)",
@@ -4363,6 +5068,21 @@
       "n_fragmentos": 78,
       "metodo_ingesta": "parser HTML (BeautifulSoup) + limpieza de navegacion y notas editoriales",
       "sha256": "3234d28d0f05d29d77f99ea45265cbb530a0fa54521e04e6a77b7760d06b70c7"
+    },
+    {
+      "doc_id": "ley_387_1997",
+      "titulo": "Ley 387 de 1997",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/ley_0387_1997.html",
+      "fecha_consulta": "2026-10-02",
+      "areas": [
+        "Derecho constitucional",
+        "Derecho administrativo"
+      ],
+      "n_articulos": 34,
+      "n_fragmentos": 39,
+      "metodo_ingesta": "parser HTML (BeautifulSoup) + limpieza de navegacion y notas editoriales",
+      "sha256": "dc3a8ad85efb48c23130fdf754fedbaf7386bbce39a5797e674f21d1a1db5aa2"
     },
     {
       "doc_id": "ley_388_1997",
@@ -4393,6 +5113,36 @@
       "n_fragmentos": 33,
       "metodo_ingesta": "parser HTML (BeautifulSoup) + limpieza de navegacion y notas editoriales",
       "sha256": "5e49a4e1b8939d35daed1188ae8aeaa519836824ac376dc692b25c6645408162"
+    },
+    {
+      "doc_id": "ley_397_1997",
+      "titulo": "Ley 397 de 1997",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/ley_0397_1997.html",
+      "fecha_consulta": "2026-10-03",
+      "areas": [
+        "Derecho administrativo",
+        "Derecho constitucional"
+      ],
+      "n_articulos": 83,
+      "n_fragmentos": 110,
+      "metodo_ingesta": "parser HTML (BeautifulSoup) + limpieza de navegacion y notas editoriales",
+      "sha256": "87c5bde89c1d00a8e2a4d47144b617d68e5d6560030af44d84d39316230e9178"
+    },
+    {
+      "doc_id": "ley_418_1997",
+      "titulo": "Ley 418 de 1997",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/ley_0418_1997.html",
+      "fecha_consulta": "2026-10-03",
+      "areas": [
+        "Derecho penal",
+        "Derecho administrativo"
+      ],
+      "n_articulos": 131,
+      "n_fragmentos": 158,
+      "metodo_ingesta": "parser HTML (BeautifulSoup) + limpieza de navegacion y notas editoriales",
+      "sha256": "64dc65f46b748dcb60641a5249f9d3ebe3a018a9b1f0b665c46313166360d4e6"
     },
     {
       "doc_id": "ley_43_1990",
@@ -4523,6 +5273,34 @@
       "sha256": "bf5ab2e2009e46ce1c530e199c37698bd85d3c678c560a9768e91cadbfbf5ecd"
     },
     {
+      "doc_id": "ley_51_1981",
+      "titulo": "Ley 51 de 1981",
+      "fuente": "Normograma de la CRA (compilacion Avance Juridico)",
+      "url": "https://normas.cra.gov.co/gestor/docs/ley_0051_1981.htm",
+      "fecha_consulta": "2026-10-02",
+      "areas": [
+        "Derecho constitucional"
+      ],
+      "n_articulos": 25,
+      "n_fragmentos": 32,
+      "metodo_ingesta": "parser HTML (BeautifulSoup) + limpieza de navegacion y notas editoriales",
+      "sha256": "0e6ef79db5a729130afd42764e7326e9b098342a69923b650a9de8c8e6ba4342"
+    },
+    {
+      "doc_id": "ley_550_1999",
+      "titulo": "Ley 550 de 1999",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/ley_0550_1999.html",
+      "fecha_consulta": "2026-10-03",
+      "areas": [
+        "Derecho comercial y sociedades"
+      ],
+      "n_articulos": 38,
+      "n_fragmentos": 48,
+      "metodo_ingesta": "parser HTML (BeautifulSoup) + limpieza de navegacion y notas editoriales",
+      "sha256": "d236d5052658c8b3d3b29141f3de73330676822eb22e8b43765e9fc7b7179585"
+    },
+    {
       "doc_id": "ley_565_2000",
       "titulo": "Ley 565 de 2000 (Aprueba el Tratado de la OMPI sobre Derecho de Autor (WCT))",
       "fuente": "Normograma de la Cancilleria (compilacion Avance Juridico)",
@@ -4535,6 +5313,21 @@
       "n_fragmentos": 54,
       "metodo_ingesta": "parser HTML (BeautifulSoup) + limpieza de navegacion y notas editoriales",
       "sha256": "7659b7e50d00ffaf917d45638c8291e4408559de1cc25457612cc0fd2af38b4f"
+    },
+    {
+      "doc_id": "ley_575_2000",
+      "titulo": "Ley 575 de 2000",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/ley_0575_2000.html",
+      "fecha_consulta": "2026-10-02",
+      "areas": [
+        "Derecho de familia",
+        "Derecho penal"
+      ],
+      "n_articulos": 14,
+      "n_fragmentos": 17,
+      "metodo_ingesta": "parser HTML (BeautifulSoup) + limpieza de navegacion y notas editoriales",
+      "sha256": "db11bc962594c337692f2a5a6adca9b49ae06528bea36173cf392a61443037eb"
     },
     {
       "doc_id": "ley_57_1887",
@@ -4577,6 +5370,21 @@
       "n_fragmentos": 510,
       "metodo_ingesta": "parser HTML (BeautifulSoup) + limpieza de navegacion y notas editoriales",
       "sha256": "0f1616d63ac7fcc2232edf240de24472090b4269550b910e0c69f597d9b65c85"
+    },
+    {
+      "doc_id": "ley_60_1993",
+      "titulo": "Ley 60 de 1993",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/ley_0060_1993.html",
+      "fecha_consulta": "2026-10-03",
+      "areas": [
+        "Derecho administrativo",
+        "Derecho tributario"
+      ],
+      "n_articulos": 43,
+      "n_fragmentos": 75,
+      "metodo_ingesta": "parser HTML (BeautifulSoup) + limpieza de navegacion y notas editoriales",
+      "sha256": "10455f4029a70c874078d8f58bd840160a2bb830acde57c6747657d4c88578a3"
     },
     {
       "doc_id": "ley_610_2000",
@@ -4647,6 +5455,80 @@
       "n_fragmentos": 94,
       "metodo_ingesta": "parser HTML (BeautifulSoup) + limpieza de navegacion y notas editoriales",
       "sha256": "aaaee5d2a426334b4e47363ee1ff8ed8cee648cb86d993720ee14d61b0c0f093"
+    },
+    {
+      "doc_id": "ley_70_1993",
+      "titulo": "Ley 70 de 1993",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/ley_0070_1993.html",
+      "fecha_consulta": "2026-10-03",
+      "areas": [
+        "Derecho constitucional",
+        "Derecho administrativo"
+      ],
+      "n_articulos": 68,
+      "n_fragmentos": 71,
+      "metodo_ingesta": "parser HTML (BeautifulSoup) + limpieza de navegacion y notas editoriales",
+      "sha256": "99629a37ac1e1e1100160a017a1e2a0a6119ff40f6000a21d76c00e0ebc32f5b"
+    },
+    {
+      "doc_id": "ley_712_2001",
+      "titulo": "Ley 712 de 2001",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/ley_0712_2001.html",
+      "fecha_consulta": "2026-10-02",
+      "areas": [
+        "Derecho laboral",
+        "Derecho procesal"
+      ],
+      "n_articulos": 55,
+      "n_fragmentos": 68,
+      "metodo_ingesta": "parser HTML (BeautifulSoup) + limpieza de navegacion y notas editoriales",
+      "sha256": "e816b7e8e1dfe501bd142c4f847ab6934a6b67b1412908fb3fe246c4c4d1512b"
+    },
+    {
+      "doc_id": "ley_715_2001",
+      "titulo": "Ley 715 de 2001",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/ley_0715_2001.html",
+      "fecha_consulta": "2026-10-02",
+      "areas": [
+        "Derecho administrativo",
+        "Derecho tributario"
+      ],
+      "n_articulos": 113,
+      "n_fragmentos": 157,
+      "metodo_ingesta": "parser HTML (BeautifulSoup) + limpieza de navegacion y notas editoriales",
+      "sha256": "a3067cf33ffeeccb66693a37989976d446045a3a68f00fdbb6c4164eb4da5b65"
+    },
+    {
+      "doc_id": "ley_734_2002",
+      "titulo": "Ley 734 de 2002",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/ley_0734_2002.html",
+      "fecha_consulta": "2026-10-02",
+      "areas": [
+        "Derecho administrativo"
+      ],
+      "n_articulos": 221,
+      "n_fragmentos": 246,
+      "metodo_ingesta": "parser HTML (BeautifulSoup) + limpieza de navegacion y notas editoriales",
+      "sha256": "3cea95181a796d0ac06bc000514064140b693f9b2aecfd2294bce45856909f79"
+    },
+    {
+      "doc_id": "ley_74_1968",
+      "titulo": "Ley 74 de 1968",
+      "fuente": "Normograma de la Cancilleria (compilacion Avance Juridico)",
+      "url": "https://www.cancilleria.gov.co/sites/default/files/Normograma/docs/ley_0074_1968.htm",
+      "fecha_consulta": "2026-10-02",
+      "areas": [
+        "Derecho constitucional",
+        "Derecho penal"
+      ],
+      "n_articulos": 53,
+      "n_fragmentos": 165,
+      "metodo_ingesta": "parser HTML (BeautifulSoup) + limpieza de navegacion y notas editoriales",
+      "sha256": "2e4bb2f9142ef2e2d14b1c014cadaaa2632e30f250f1c786a1c45c6804ac0e93"
     },
     {
       "doc_id": "ley_776_2002",
@@ -4733,6 +5615,20 @@
       "sha256": "a69590a12c23441c7dfd5f99fb7ec1bebeba4e3e0a13c4367d8ffb560e584585"
     },
     {
+      "doc_id": "ley_860_2003",
+      "titulo": "Ley 860 de 2003",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/ley_0860_2003.html",
+      "fecha_consulta": "2026-10-02",
+      "areas": [
+        "Derecho laboral"
+      ],
+      "n_articulos": 5,
+      "n_fragmentos": 10,
+      "metodo_ingesta": "parser HTML (BeautifulSoup) + limpieza de navegacion y notas editoriales",
+      "sha256": "da2b9b58f84d910731f50e6fc7423570665d44ee9802c9cd960762f09fa6545d"
+    },
+    {
       "doc_id": "ley_863_2003",
       "titulo": "Ley 863 de 2003 (Reforma tributaria de 2003)",
       "fuente": "Normograma de Colpensiones (compilacion Avance Juridico)",
@@ -4745,6 +5641,20 @@
       "n_fragmentos": 131,
       "metodo_ingesta": "parser HTML (BeautifulSoup) + limpieza de navegacion y notas editoriales",
       "sha256": "d91336aa1876fdefebd4c42343eee6af6793c3acef6dedb35e8b1995cc28cf2c"
+    },
+    {
+      "doc_id": "ley_890_2004",
+      "titulo": "Ley 890 de 2004",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/ley_0890_2004.html",
+      "fecha_consulta": "2026-10-03",
+      "areas": [
+        "Derecho penal"
+      ],
+      "n_articulos": 15,
+      "n_fragmentos": 17,
+      "metodo_ingesta": "parser HTML (BeautifulSoup) + limpieza de navegacion y notas editoriales",
+      "sha256": "d68834be54c2d5f84086a4edcdde11ab4087911eee475e9439eb89b06b340cf2"
     },
     {
       "doc_id": "ley_909_2004",
@@ -4762,6 +5672,20 @@
       "sha256": "c73d0f2f236787dd1b71bfd19fc33398cb9b83adedc8aeb66fcf8d5fb40db97e"
     },
     {
+      "doc_id": "ley_90_1946",
+      "titulo": "Ley 90 de 1946",
+      "fuente": "Normograma de Colpensiones (compilacion Avance Juridico)",
+      "url": "https://normativa.colpensiones.gov.co/colpens/docs/ley_0090_1946.htm",
+      "fecha_consulta": "2026-10-03",
+      "areas": [
+        "Derecho laboral"
+      ],
+      "n_articulos": 84,
+      "n_fragmentos": 125,
+      "metodo_ingesta": "parser HTML (BeautifulSoup) + limpieza de navegacion y notas editoriales",
+      "sha256": "7ebfa27c5aa866418e2afb6c6f6154d90dc556b23d6da4c086e3e5209de9d83f"
+    },
+    {
       "doc_id": "ley_95_1890",
       "titulo": "Ley 95 de 1890 (Reformas civiles)",
       "fuente": "Normograma de la CRA (compilacion Avance Juridico)",
@@ -4774,6 +5698,20 @@
       "n_fragmentos": 43,
       "metodo_ingesta": "parser HTML (BeautifulSoup) + limpieza de navegacion y notas editoriales",
       "sha256": "9149ea6690594e1caff1e22e12b3b1789970644302672bc19de38faa2ace8914"
+    },
+    {
+      "doc_id": "ley_962_2005",
+      "titulo": "Ley 962 de 2005",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/ley_0962_2005.html",
+      "fecha_consulta": "2026-10-02",
+      "areas": [
+        "Derecho administrativo"
+      ],
+      "n_articulos": 86,
+      "n_fragmentos": 97,
+      "metodo_ingesta": "parser HTML (BeautifulSoup) + limpieza de navegacion y notas editoriales",
+      "sha256": "fef1f6faa5826c7d3ec425fd3173229e23eb6a06c22818ac34d62eb7cbfa6146"
     },
     {
       "doc_id": "ley_975_2005",
@@ -4804,6 +5742,20 @@
       "sha256": "ee6024f4b651de7b408ed7756e38a7500d255f70cda559ae894ee3f1a5de9800"
     },
     {
+      "doc_id": "ley_99_1993",
+      "titulo": "Ley 99 de 1993",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/ley_0099_1993.html",
+      "fecha_consulta": "2026-10-02",
+      "areas": [
+        "Derecho administrativo"
+      ],
+      "n_articulos": 118,
+      "n_fragmentos": 171,
+      "metodo_ingesta": "parser HTML (BeautifulSoup) + limpieza de navegacion y notas editoriales",
+      "sha256": "896bfb35889112e8130535b567ea03b07ea83ca37796bb81309229592fe1973e"
+    },
+    {
       "doc_id": "ley_9_1989",
       "titulo": "Ley 9 de 1989 (Ley de reforma urbana)",
       "fuente": "Normograma de la CRA (compilacion Avance Juridico)",
@@ -4817,6 +5769,34 @@
       "n_fragmentos": 135,
       "metodo_ingesta": "parser HTML (BeautifulSoup) + limpieza de navegacion y notas editoriales",
       "sha256": "fd5a76ecc606d6728c28b3b5cff8c8c8f3f8be8b6e9d6ddbee573d517f04dc0f"
+    },
+    {
+      "doc_id": "resolucion_1036_2021",
+      "titulo": "Resolucion 1036 de 2021 (Ministerio de Ambiente; relleno sanitario El Carrasco)",
+      "fuente": "Ministerio de Ambiente y Desarrollo Sostenible",
+      "url": "https://www.minambiente.gov.co/wp-content/uploads/2021/10/Resolucion-1036-de-2021.pdf",
+      "fecha_consulta": "2026-10-03",
+      "areas": [
+        "Derecho administrativo"
+      ],
+      "n_articulos": 8,
+      "n_fragmentos": 41,
+      "metodo_ingesta": "extraccion de PDF con PyMuPDF + limpieza de encabezados",
+      "sha256": "4327cfafd8ef8ce2fd6072fbf2a2646cbcc55fcbdc429b51c612ca2e044ec413"
+    },
+    {
+      "doc_id": "resolucion_368_2014",
+      "titulo": "Resolucion 368 de 2014 (Ministerio de Ambiente; relleno sanitario El Carrasco)",
+      "fuente": "Ministerio de Ambiente y Desarrollo Sostenible",
+      "url": "https://www.minambiente.gov.co/",
+      "fecha_consulta": "2026-10-03",
+      "areas": [
+        "Derecho administrativo"
+      ],
+      "n_articulos": 2,
+      "n_fragmentos": 34,
+      "metodo_ingesta": "OCR con Tesseract (spa, 300 dpi) + limpieza de encabezados",
+      "sha256": "aa10a47305a943818ee9f82b8183830ed424569a5a465dea0a789cfeb2cff6a1"
     },
     {
       "doc_id": "sentencia_c_1011_2008",

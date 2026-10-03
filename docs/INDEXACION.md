@@ -352,3 +352,48 @@ En las 50 preguntas, 184 de los 500 puestos del top-10 son ventanas de sentencia
 
 - `src/ingesta/huecos_por_citas.py`: normas que el propio corpus cita y que no están en el corpus, ordenadas por documentos citantes (47 s con multiprocessing). Tabla en `docs/ingesta/huecos_por_citas.md`: 1.006 cuerpos con ≥ 3 documentos citantes. Arriba están Leyes 715/2001, 1122/2007, 1955/2019, 1448/2011, 734/2002, 142/1994, la Ley 2294/2023 (PND) y los tratados aprobados por ley (PIDCP Ley 74/1968, CADH Ley 16/1972, OIT Ley 21/1991). Ni los convenios de doble imposición ni los decretos del SMLMV aparecen: el corpus no los cita por número.
 - `src/ingesta/huecos_preguntas.py`: sobre un lote de preguntas (solo `pregunta` y `opciones`), lista las normas nombradas que no están, los artículos nombrados ausentes y los términos con df < 3 en BM25, por área. En `sample_50` encuentra la Ley 2294/2023 (#218) y la Resolución 368/2014 (#748). Los términos raros son sobre todo erratas del banco. Para el sábado: `--entrada data/test_992.jsonl --md salidas/huecos_test.md`.
+
+
+## 18. Corpus v5: huecos que el propio corpus cita (`r40`, 2026-10-03)
+
+Ampliación automática de v4 (procedimiento `docs/ingesta/corpus_v5_mac.md`, lista y descartes en `docs/ingesta/fuentes_pendientes.md` "Ampliación v5"): detector `huecos_por_citas.py` (≥ 10 documentos citantes, sin actos legislativos, 80 primeros) y `ampliar_desde_citas.py`. Se bajaron 72 normas; 7 decretos únicos reglamentarios se descartaron por tamaño (> 400 artículos) y 3 decretos no existen en el Senado. Los 173.393 fragmentos de v4 no cambian (mismos `chunk_id`, `texto` y orden). Las áreas de las normas nuevas se revisaron por materia (`areas_propuestas_v3.csv`, `aprobado` pendiente).
+
+| híbrido (41 preguntas, filtro `sentencias`, área ×2,0) | fragmentos | doc_hit@1 | doc_hit@10 | MRR | respaldo@10 | art_hit@10 |
+|---|---:|---:|---:|---:|---:|---:|
+| v4 + T (`e18_corpus_v4_t`) | 173.393 | 0,610 | 0,902 | 0,717 | 0,927 | 0,579 |
+| v5 con 65 normas (`r40_corpus_v5`, MPS) | 180.817 | 0,585 | **0,878** | 0,691 | 0,927 | 0,526 |
+
+- **No cumple KEEP** (`doc_hit@10` ≥ 0,902). De las 41 preguntas, 39 conservan su rank; cambian dos. **#218** (rank 1 → fuera): nombra el art. 32 de la Ley 2294/2023 y el art. 313 de la Constitución (el fundamento es la Constitución); con la Ley 2294 en el corpus los 10 puestos del top-10 son de esa ley y sale el art. 313. **#748**: CPACA del rank 6 al 9 por fragmentos de las Leyes 1448/2011, 1753/2015 y 2294/2023.
+- **Decisión**: retirar los 4 Planes Nacionales de Desarrollo (Leyes 2294/2023, 1955/2019, 1753/2015 y 1450/2011), leyes ómnibus que tocan cualquier tema. El corpus queda en **61 normas nuevas, 1.247 documentos y 179.226 fragmentos** (+5.833 sobre v4; v4 idéntico). **Pendiente**: reconstruir el índice y medir de nuevo en la 4090 (`r41_corpus_v5_sin_pnd`) con la misma regla; si tampoco cumple, volver al v4 (`data_corpus_v4.zip`). Los vectores de los fragmentos restantes ya están en `cache_emb/`.
+- Latencia de recuperación en un M1 con MPS: 500 ms/consulta.
+- **`r41_corpus_v5_sin_pnd` (4090, CUDA)**: doc_hit@1 0,610, doc_hit@10 **0,902**, MRR 0,717, respaldo@10 0,927, art_hit@10 0,579; fallan #247, #679, #239 y #661, igual que v4. **Cumple KEEP.**
+
+## 19. Búsqueda por metadatos (`r42`–`r49`, `e25`, 2026-10-03)
+
+Señales que ya estaban en `chunks.jsonl` y en el manifest pero que la recuperación no usaba. Todo en runtime (el índice no cambia), solo en el híbrido y con flags que **reordenan o suman candidatos, nunca filtran**. Desempate por `chunk_id`. Con todo apagado se reproduce `r41` pregunta por pregunta (`r41b_reproduce`: 0/41 top-10 distintos).
+
+- **`SYNTAX_FACTOR_VOTO`**: multiplica el score de las ventanas `salvamento`/`aclaracion` (~18.000, votos disidentes que suelen decir lo contrario de la decisión), salvo que la consulta pida el voto (`salvamento|aclaracion de voto|disident|voto particular`).
+- **`SYNTAX_FACTOR_VIGENCIA`**: lo mismo para los fragmentos `derogado` (3.669), salvo que la consulta hable de vigencia o de derogatoria. `inexequible` no se toca: el aparte tachado convive con el texto vigente.
+- **`SYNTAX_CUERPO=boost|rama`**: si la consulta nombra un cuerpo que está en el corpus, `boost` multiplica por `SYNTAX_CUERPO_BOOST` (1,5) los candidatos de ese documento; `rama` agrega BM25 (`weight_mask` de bm25s) y denso (vectores del documento reconstruidos de FAISS) **restringidos a ese documento**, como dos ramas RRF de peso `SYNTAX_CUERPO_PESO`. Antes, los cuerpos nombrados sin artículo (11 de las 15 preguntas de sample_50 que nombran algo) solo servían para el filtro de sentencias.
+- **`SYNTAX_ALIAS=on`** (`src/recuperacion/alias.py`): nombres que `citations.py` no reconoce. Automáticos desde el `titulo` del manifest: el nombre entre paréntesis o el que va antes de "(", si empieza por Codigo/Estatuto/Regimen/Reglamento/Convenio/Decreto Unico o tiene ≥ 4 palabras de contenido; se descarta el que apunta a más de un documento (87 nombres en v5). Fijos, pocos: la Constitución como "artículo N superior / de la Carta / norma superior" (con el artículo, que entra al lookup), "EOSF" y "Estatuto (General) de Contratación" → Ley 80/1993. Solo sirve para recuperar: no toca las citas emitidas. `python src/recuperacion/alias.py` lista los nombres para revisarlos. Ojo: "Constitución" a secas y "Carta Política" ya los reconoce `citations.py`, y el "Superior" de #60 es "Consejo Superior".
+- `meta["disparos"]` (y `disparos` en `evaluation/retrieval/*.jsonl`) registra qué regla se activó. `python src/evaluacion/disparos_metadatos.py --entrada <jsonl> [--mostrar nombres|cuerpo]` cuenta los disparos de un lote sin índice ni modelos. En sample_50, el 32 % dispara la regla de cuerpo y el alias agrega #290.
+
+Regla KEEP fijada antes de medir: doc_hit@10 y respaldo@10 ≥ base, y **ninguna pregunta pierde su cuerpo del top-10**; desempatan MRR, doc_hit@1 y art_hit@10.
+
+| híbrido (41 con fundamento) | índice | doc_hit@1 | doc_hit@10 | MRR | respaldo@10 | art_hit@1 | top-10 distintos | cambios de rank del cuerpo |
+|---|---|---:|---:|---:|---:|---:|---:|---|
+| base `r41` | v5 sin PND | 0,610 | 0,902 | 0,717 | 0,927 | 0,368 | — | — |
+| `r42_voto05` (= `voto025`) | v5 sin PND | 0,634 | 0,902 | 0,729 | 0,927 | 0,368 | 12 | #1015 2 → 1 |
+| `r44_vigencia07` | v5 sin PND | 0,610 | 0,902 | 0,717 | 0,927 | 0,368 | 3 | ninguno |
+| `r43_cuerpo_boost` (alias) | v5 sin PND | 0,634 | 0,902 | 0,729 | 0,927 | 0,368 | 10 | #272 2 → 1, #1015 2 → 1, #563 1 → 2 |
+| base `r46_base_ola1` | ola 1 (181.662) | 0,610 | 0,878 | 0,713 | 0,927 | 0,368 | — | frente a `r41`: **#748 7 → fuera**, #589 art 4 → 9 |
+| `r47_cuerpo_rama` (alias) | ola 1 | 0,610 | 0,878 | 0,704 | 0,927 | 0,316 | 14 | #563 **1 → 8**, #290 1 → 2, #272 y #1015 2 → 1 |
+| **`r48_voto_boost`** (voto 0,5 + alias + boost) | ola 1 | **0,634** | 0,878 | **0,725** | 0,927 | 0,368 | 16 | #272 2 → 1, #1015 2 → 1, #563 1 → 2 |
+
+- **KEEP: voto 0,5 + alias + boost.** Sin pérdidas y con mejor rank arriba. #563 (nombra la T-760/2008, fundamento SU-277/2025) baja al 2 sin salir del top-10: era el riesgo previsto.
+- **REVERT: `rama`.** La búsqueda dentro del documento nombrado empuja demasiado los fragmentos de ese documento (#563 al 8). Queda disponible por flag.
+- **Vigencia: neutra** (3 top-10 distintos, ninguna métrica cambia). Queda apagada: a igualdad, gana lo más simple.
+- La pérdida de #748 en la ola 1 viene del corpus nuevo, no de los metadatos (pasa igual con todo apagado).
+- **Generación en sample** (índice de la ola 1, Qwen3-8B Q8_0, sin juez): `e25_base` y `e25_metadatos` dan **lo mismo** (cerradas 10/15, citación 17,14, abstención 8,14, 38,61/50, 0 errores de schema, 4,1 s/pregunta; recuperación 711 → 727 ms). Queda activado por defecto porque mejora el ranking sin costo: `SYNTAX_FACTOR_VOTO=0.5`, `SYNTAX_ALIAS=on`, `SYNTAX_CUERPO=boost`. Los defaults reproducen `r48`.
+- **Aviso sobre la ola 1** (no son los metadatos): frente a `e24_final` (12/15) se pierden dos cerradas. **#528** (C → B) cita el Decreto 1400/1970 (el Código de Procedimiento Civil derogado, que ahora compite con el CGP) y **#748** (A → D) se queda sin el CPACA porque la Resolución 368/2014, que nombra la pregunta, ocupa el top-10.
+- Pendiente para las 992: `disparos_metadatos.py --entrada data/test_992.jsonl --mostrar nombres` (revisar a mano que los alias no se equivoquen de norma) y `analizar_test.py` para el respaldo nombrado@10.
