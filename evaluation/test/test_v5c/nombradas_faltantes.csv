@@ -1,0 +1,13 @@
+cuerpo,tipo,numero,anio,doc_id_propuesto,resoluble_auto,n_preguntas,ids,areas
+Acuerdo 01 de 2025,acuerdo,01,2025,,False,1,351,Derecho constitucional
+Decreto 0175 de 2025,decreto,0175,2025,decreto_175_2025,True,1,424,Derecho constitucional
+Decreto 2555 de 2010,decreto,2555,2010,decreto_2555_2010,True,1,117,Derecho comercial y sociedades
+Decreto 3030 de 2022,decreto,3030,2022,decreto_3030_2022,True,1,608,Derecho tributario
+Ley 1264 de 2012,ley,1264,2012,ley_1264_2012,True,1,117,Derecho comercial y sociedades
+Ley 2568 de 2021,ley,2568,2021,ley_2568_2021,True,1,608,Derecho tributario
+Ley 284 de 2007,ley,284,2007,ley_284_2007,True,1,189,Derecho penal
+Ley 722 de 2011,ley,722,2011,ley_722_2011,True,1,189,Derecho penal
+Sentencia SL-3871 de 2021,jurisprudencia,SL-3871,2021,sentencia_sl_3871_2021,False,1,99,Derecho laboral
+Sentencia SU-140 de 2019,jurisprudencia,SU-140,2019,sentencia_su_140_2019,True,1,92,Derecho laboral
+Sentencia SU-279 de 2019,jurisprudencia,SU-279,2019,sentencia_su_279_2019,True,1,921,Derecho civil
+Sentencia SU-488 de 2011,jurisprudencia,SU-488,2011,sentencia_su_488_2011,True,1,898,Derecho administrativo

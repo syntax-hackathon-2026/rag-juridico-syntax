@@ -103,12 +103,36 @@ CUERPO = os.environ.get("SYNTAX_CUERPO", "boost")
 CUERPO_PESO = float(os.environ.get("SYNTAX_CUERPO_PESO", "1.0"))
 CUERPO_BOOST = float(os.environ.get("SYNTAX_CUERPO_BOOST", "1.5"))
 ALIAS = os.environ.get("SYNTAX_ALIAS", "on")
-if not (0 < FACTOR_VOTO <= 1 and 0 < FACTOR_VIGENCIA <= 1):
-    raise ValueError("SYNTAX_FACTOR_VOTO y SYNTAX_FACTOR_VIGENCIA deben estar en (0, 1]")
+# FACTOR_SENTENCIA: score de las ventanas de sentencia si la consulta no nombra una sentencia ni
+#   pide jurisprudencia (el 72 % de los fragmentos son sentencias y ganan el top-1 a la norma).
+# FACTOR_DEROGADA: score de los documentos derogados enteros (DOCS_DEROGADOS: CPC, CCA, Codigo
+#   del Menor), salvo que la consulta los nombre o hable de vigencia.
+FACTOR_SENTENCIA = float(os.environ.get("SYNTAX_FACTOR_SENTENCIA", "0.5"))
+FACTOR_DEROGADA = float(os.environ.get("SYNTAX_FACTOR_DEROGADA", "0.5"))
+# KEEP en r64/e64 (0.5 + 0.5): MRR 0,700 -> 0,742 y mismo puntaje en sample (docs/INDEXACION.md 22).
+DOCS_DEROGADOS = frozenset({"decreto_1400_1970", "decreto_1_1984", "decreto_2737_1989"})
+if not (0 < FACTOR_VOTO <= 1 and 0 < FACTOR_VIGENCIA <= 1
+        and 0 < FACTOR_SENTENCIA <= 1 and 0 < FACTOR_DEROGADA <= 1):
+    raise ValueError("SYNTAX_FACTOR_VOTO/VIGENCIA/SENTENCIA/DEROGADA deben estar en (0, 1]")
 if CUERPO not in {"off", "boost", "rama"} or ALIAS not in {"off", "on"}:
     raise ValueError("SYNTAX_CUERPO debe ser off|boost|rama y SYNTAX_ALIAS off|on")
 if CUERPO_PESO < 0 or CUERPO_BOOST < 1:
     raise ValueError("SYNTAX_CUERPO_PESO >= 0 y SYNTAX_CUERPO_BOOST >= 1")
+# Reranker cross-encoder (docs/INDEXACION.md 20), solo en el hibrido: reordena los RERANK_N
+# primeros de la fusion (tras area, metadatos y lookup) y deja el resto detras, en su orden.
+# RERANKER: off | bge. RERANK_MODO: puro (orden del cross-encoder) | rrf (RRF de los rangos
+# de la fusion y del cross-encoder, conserva la senal de area y lookup). Los fragmentos del
+# lookup (norma + articulo nombrados) no bajan de su puesto.
+# KEEP en e53_rerank_rrf20 (rrf, N=20): +0,41/50 en sample (citacion); N=40 y puro sacan
+# documentos del top-10 (#647, #1073). Juez 0,4503 -> 0,4565 (52,12 -> 52,72/80).
+RERANKER = os.environ.get("SYNTAX_RERANKER", "bge")
+RERANK_N = int(os.environ.get("SYNTAX_RERANK_N", "20"))
+RERANK_MODO = os.environ.get("SYNTAX_RERANK_MODO", "rrf")
+RERANKER_MODEL = "BAAI/bge-reranker-v2-m3"  # Apache-2.0
+RERANKER_REVISION = "953dc6f6f85a1b2dbfca4c34a2796e7dde08d41e"
+RERANKER_MAX_SEQ = 512
+if RERANKER not in {"off", "bge"} or RERANK_MODO not in {"puro", "rrf"} or RERANK_N < 1:
+    raise ValueError("SYNTAX_RERANKER off|bge, SYNTAX_RERANK_MODO puro|rrf, SYNTAX_RERANK_N >= 1")
 EXPERIMENTS_CSV = EVALUATION_DIR / "experiments.csv"
 
 # Encoder denso (enunciado 3.1). bge-m3: MIT, 1024 dim, 8192 tokens, sin prefijos.
@@ -241,6 +265,11 @@ def metadatos_metadata() -> dict:
 
 def composicion_metadata() -> dict:
     return {"cupo_normas": CUPO_NORMAS, "max_por_doc": MAX_POR_DOC, "aplica_a": "top-k"}
+
+
+def reranker_metadata() -> dict:
+    return {"modo": RERANKER, "n": RERANK_N, "fusion": RERANK_MODO, "modelo": RERANKER_MODEL,
+            "revision": RERANKER_REVISION, "max_seq": RERANKER_MAX_SEQ, "aplica_a": "hibrido"}
 
 
 def agentico_metadata() -> dict:

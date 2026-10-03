@@ -13,6 +13,7 @@ CLI para probar a mano:
 from __future__ import annotations
 
 import json
+import os
 import re
 import sys
 from dataclasses import dataclass, field
@@ -29,11 +30,22 @@ sys.path.insert(0, str(config.ROOT / "scripts"))
 from citations import norm  # noqa: E402
 
 MODOS = ("bm25", "denso", "hibrido")
-RRF_K = 60
-N_CANDIDATOS = 40
+RRF_K = int(os.environ.get("SYNTAX_RRF_K", "60"))
+N_CANDIDATOS = int(os.environ.get("SYNTAX_N_CANDIDATOS", "40"))
+# Peso de cada rama en la fusion RRF (1.0 = RRF clasico)
+PESO_RAMA = {"bm25": float(os.environ.get("SYNTAX_PESO_BM25", "1.0")),
+             "denso": float(os.environ.get("SYNTAX_PESO_DENSO", "1.0"))}
 # Excepciones de los factores de metadatos (texto normalizado de la consulta)
 _PIDE_VOTO = re.compile(r"salvamento|aclaracion(?:es)? de voto|disident|voto particular|salvo (?:su|el) voto")
 _PIDE_VIGENCIA = re.compile(r"derog|vigen|antes de la reforma|texto original|subrogad")
+_PIDE_JURISPRUDENCIA = re.compile(r"sentencia|jurisprudenc|precedente|subregla|ratio decidendi|providencia|fallo")
+
+
+def _sin_ceros(cuerpo: tuple) -> tuple:
+    """("decreto", "0175", "2025") -> ("decreto", "175", "2025"); citations compara el numero como texto."""
+    if len(cuerpo) >= 2 and isinstance(cuerpo[1], str) and cuerpo[1].isdigit():
+        return (cuerpo[0], str(int(cuerpo[1])), *cuerpo[2:])
+    return tuple(cuerpo)
 
 
 @dataclass
@@ -68,8 +80,12 @@ class Retriever:
         for i, c in enumerate(self.chunks):
             self.por_cuerpo.setdefault(tuple(c["canonico"]), []).append(i)
         self.por_cuerpo = {k: np.array(v, dtype=np.int64) for k, v in self.por_cuerpo.items()}
+        # Numero sin ceros -> forma del corpus: "Decreto 175" y "Decreto 0175" nombran el mismo documento
+        self.forma_corpus = {_sin_ceros(k): k for k in sorted(self.por_cuerpo, key=str)}
         self.es_voto = np.array([c.get("seccion") in ("salvamento", "aclaracion") for c in self.chunks])
         self.es_derogado = np.array([c.get("vigencia") == "derogado" for c in self.chunks])
+        self.es_sentencia = np.array([c["tipo"] == "sentencia" for c in self.chunks])
+        self.es_doc_derogado = np.array([c["doc_id"] in config.DOCS_DEROGADOS for c in self.chunks])
         self._vectores_cuerpo: dict[tuple, np.ndarray] = {}
         self.disparos: list[str] = []  # reglas de metadatos activadas en la ultima consulta
         import bm25s
@@ -77,6 +93,7 @@ class Retriever:
         self.bm25 = bm25s.BM25.load(str(config.BM25_DIR))
         self.faiss = None
         self._encoder = None
+        self._reranker = None
         self._ultima: tuple[str, np.ndarray] | None = None
         if cargar_denso and config.FAISS_PATH.is_file():
             import faiss
@@ -121,13 +138,19 @@ class Retriever:
         cuerpos = cuerpos_de(consulta)
         if config.ALIAS == "on":
             cuerpos |= alias.cuerpos_alias(consulta)
-        return cuerpos
+        return {self._forma(c) for c in cuerpos}
 
     def referencias(self, consulta: str) -> list:
         refs = referencias_de(consulta)
         if config.ALIAS == "on":
             refs = sorted(set(refs) | set(alias.referencias_alias(consulta)), key=str)
-        return refs
+        return sorted({(*self._forma(tuple(r[:3])), r[3]) for r in refs}, key=str)
+
+    def _forma(self, cuerpo: tuple) -> tuple:
+        """El cuerpo tal como esta en el corpus; si no esta, la forma que solo difiere en ceros."""
+        if cuerpo in self.por_cuerpo:
+            return cuerpo
+        return self.forma_corpus.get(_sin_ceros(cuerpo), cuerpo)
 
     def _factores_meta(self, fusion: dict[int, float], consulta: str) -> None:
         """Votos disidentes y texto derogado detras (solo reordena), salvo que la consulta los pida."""
@@ -137,6 +160,16 @@ class Retriever:
             reglas.append((self.es_voto, config.FACTOR_VOTO))
         if config.FACTOR_VIGENCIA != 1.0 and not _PIDE_VIGENCIA.search(t):
             reglas.append((self.es_derogado, config.FACTOR_VIGENCIA))
+        if config.FACTOR_SENTENCIA != 1.0 or config.FACTOR_DEROGADA != 1.0:
+            nombrados = self.nombrados(consulta)
+            if (config.FACTOR_SENTENCIA != 1.0 and not _PIDE_JURISPRUDENCIA.search(t)
+                    and not any(c[0] == "jurisprudencia" for c in nombrados)):
+                reglas.append((self.es_sentencia, config.FACTOR_SENTENCIA))
+                self.disparos.append("factor_sentencia")
+            nombra_derogado = any(self.chunks[self.por_cuerpo[c][0]]["doc_id"] in config.DOCS_DEROGADOS
+                                  for c in nombrados if c in self.por_cuerpo)
+            if config.FACTOR_DEROGADA != 1.0 and not nombra_derogado and not _PIDE_VIGENCIA.search(t):
+                reglas.append((self.es_doc_derogado, config.FACTOR_DEROGADA))
         for mascara, factor in reglas:
             for i in fusion:
                 if mascara[i]:
@@ -215,7 +248,7 @@ class Retriever:
                              ("denso", self._filtrar(self.buscar_denso, consulta, n_candidatos))):
             ranks_rama[nombre] = {i: r for r, (i, _) in enumerate(rama, 1)}
             for r, (i, _) in enumerate(rama, 1):
-                fusion[i] = fusion.get(i, 0.0) + 1.0 / (RRF_K + r)
+                fusion[i] = fusion.get(i, 0.0) + PESO_RAMA[nombre] / (RRF_K + r)
         # Cuerpo nombrado (docs/INDEXACION.md 19): ramas acotadas a ese documento o boost.
         self.disparos = []
         cuerpos = self._cuerpos_en_corpus(consulta) if config.CUERPO != "off" else []
@@ -295,6 +328,45 @@ class Retriever:
         tomados = set(elegidos)
         return [ranking[p] for p in elegidos] + [par for p, par in enumerate(ranking) if p not in tomados]
 
+    # --- reranker (docs/INDEXACION.md 20) -------------------------------------------
+
+    def _cross_encoder(self):
+        if self._reranker is None:
+            from sentence_transformers import CrossEncoder
+
+            self._reranker = CrossEncoder(config.RERANKER_MODEL, revision=config.RERANKER_REVISION,
+                                          max_length=config.RERANKER_MAX_SEQ,
+                                          device=config.resolver_device())
+            self._reranker.model.float().eval()  # fp32 siempre, como el encoder
+        return self._reranker
+
+    def _rerankear(self, consulta: str, ranking: list[tuple[int, float]],
+                   ranks_rama: dict) -> list[tuple[int, float]]:
+        """Reordena los RERANK_N primeros con el cross-encoder; el resto queda detras.
+
+        Los pares conservan el score de la fusion (va a pasajes_recuperados.score). Los
+        fragmentos del lookup mantienen su puesto. Empates por chunk_id: determinista.
+        """
+        top, resto = ranking[:config.RERANK_N], ranking[config.RERANK_N:]
+        if len(top) < 2:
+            return ranking
+        pares = [(consulta, self.chunks[i]["texto"]) for i, _ in top]
+        scores = self._cross_encoder().predict(pares, batch_size=16, show_progress_bar=False,
+                                               convert_to_numpy=True)
+        cid = [self.chunks[i]["chunk_id"] for i, _ in top]
+        orden_ce = sorted(range(len(top)), key=lambda j: (-round(float(scores[j]), 5), cid[j]))
+        rank_ce = {j: r for r, j in enumerate(orden_ce, 1)}
+        ranks_rama["reranker"] = {top[j][0]: r for j, r in rank_ce.items()}
+        if config.RERANK_MODO == "puro":
+            orden = orden_ce
+        else:
+            orden = sorted(range(len(top)), key=lambda j: (-(1.0 / (RRF_K + j + 1) + 1.0 / (RRF_K + rank_ce[j])),
+                                                           cid[j]))
+        fijos = {j for j, (i, _) in enumerate(top) if i in ranks_rama.get("lookup", {})}
+        libres = iter(j for j in orden if j not in fijos)
+        nuevo = [top[j] if j in fijos else top[next(libres)] for j in range(len(top))]
+        return nuevo + resto
+
     def _salida(self, ranking: list[tuple[int, float]], k: int, ranks_rama: dict,
                 area: str | None) -> list[RetrievedChunk]:
         ranking = self._componer(ranking, k)
@@ -319,6 +391,8 @@ class Retriever:
         """`area` = area de la pregunta (campo del banco); con SYNTAX_AREA_BOOST > 1 prioriza
         en el hibrido los fragmentos de documentos de esa area, sin descartar los demas."""
         ranking, ranks_rama = self._ranking(consulta, k, modo, n_candidatos, consulta_lookup, area)
+        if config.RERANKER != "off" and modo == "hibrido":
+            ranking = self._rerankear(consulta, ranking, ranks_rama)
         return self._salida(ranking, k, ranks_rama, area)
 
     def retrieve_multi(self, consultas: list[tuple[str, float]], k: int = 10, modo: str = "hibrido",

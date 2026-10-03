@@ -1,0 +1,102 @@
+{
+  "experimento": "r50_base",
+  "modo": "hibrido",
+  "reranker": {
+    "modo": "off",
+    "n": 40,
+    "fusion": "rrf",
+    "modelo": "BAAI/bge-reranker-v2-m3",
+    "revision": "953dc6f6f85a1b2dbfca4c34a2796e7dde08d41e",
+    "max_seq": 512,
+    "aplica_a": "hibrido"
+  },
+  "fusion": "rrf60",
+  "n_candidatos_por_rama": 40,
+  "lookup": {
+    "modo": "on",
+    "variante": "a",
+    "fuente": "consulta",
+    "bonus": 0.005,
+    "m": 2,
+    "aplica_a": "hibrido",
+    "parser": "scripts/citations.py"
+  },
+  "filtro_cita": {
+    "modo": "sentencias",
+    "registro": "data/registros/solo_por_cita.json"
+  },
+  "area": {
+    "boost": 2.0,
+    "fuente": "corpus_manifest.json",
+    "aplica_a": "hibrido"
+  },
+  "composicion": {
+    "cupo_normas": 0,
+    "max_por_doc": 0,
+    "aplica_a": "top-k"
+  },
+  "metadatos": {
+    "factor_voto": 0.5,
+    "factor_vigencia": 1.0,
+    "cuerpo": "boost",
+    "cuerpo_peso": 1.0,
+    "cuerpo_boost": 1.5,
+    "alias": "on"
+  },
+  "agentico": {
+    "glosario": "on",
+    "consulta_opciones": "off",
+    "planificador": "off",
+    "plan_normas": "on",
+    "peso_extra": 1.0,
+    "prompt_mc": "p-v0"
+  },
+  "consulta": "pregunta+opciones",
+  "metricas": {
+    "doc_hit@1": 0.6341463414634146,
+    "doc_hit@3": 0.7804878048780488,
+    "doc_hit@5": 0.8292682926829268,
+    "doc_hit@10": 0.8780487804878049,
+    "mrr": 0.7252613240418118,
+    "respaldo@10": 0.926829268292683,
+    "art_hit@1": 0.3684210526315789,
+    "art_hit@10": 0.5789473684210527,
+    "n_con_articulo": 19,
+    "n_preguntas": 41,
+    "latencia_ret_ms": 1172.9341463414635,
+    "subconjuntos_referencias": {
+      "con_referencia": {
+        "n": 14,
+        "n_con_articulo_gt": 4,
+        "doc_hit@10": 0.9285714285714286,
+        "art_hit@10": 1.0,
+        "mrr": 0.8928571428571429,
+        "respaldo@10": 1.0
+      },
+      "sin_referencia": {
+        "n": 27,
+        "n_con_articulo_gt": 15,
+        "doc_hit@10": 0.8518518518518519,
+        "art_hit@10": 0.4666666666666667,
+        "mrr": 0.6383597883597883,
+        "respaldo@10": 0.8888888888888888
+      },
+      "cerradas": {
+        "n": 13,
+        "n_con_articulo_gt": 7,
+        "doc_hit@10": 0.9230769230769231,
+        "art_hit@10": 0.8571428571428571,
+        "mrr": 0.6994505494505495,
+        "respaldo@10": 0.9615384615384616
+      },
+      "texto_libre": {
+        "n": 28,
+        "n_con_articulo_gt": 12,
+        "doc_hit@10": 0.8571428571428571,
+        "art_hit@10": 0.4166666666666667,
+        "mrr": 0.7372448979591837,
+        "respaldo@10": 0.9107142857142857
+      }
+    }
+  }
+}

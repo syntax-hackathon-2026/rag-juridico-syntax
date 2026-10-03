@@ -113,6 +113,7 @@ def main() -> int:
                       "lookup": config.lookup_metadata(),
                       "filtro_cita": config.filtro_metadata(), "area": config.area_metadata(),
                       "composicion": config.composicion_metadata(), "metadatos": config.metadatos_metadata(),
+                      "reranker": config.reranker_metadata(),
                       "agentico": config.agentico_metadata()},
         "indice": {k: info_indice.get(k) for k in ("n_fragmentos", "sha256_chunks", "version_segmentador")}
                   | {"encoder": (info_indice.get("denso") or {}).get("modelo"),
