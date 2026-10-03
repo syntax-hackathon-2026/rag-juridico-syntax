@@ -456,4 +456,15 @@ Dos factores en runtime, del mismo tipo que `FACTOR_VOTO` (multiplican el score 
 
 - `r64` sube 8 preguntas (#60 8 → 2, #647 9 → 2, #352 3 → 1 con el artículo, #617 2 → 1, #490 5 → 3, #589 3 → 2 y art. 4 → 2, #1089 art. 6 → 5) y ningún cuerpo sale del top-10.
 - Pierde **#51**: respaldo 1 → 0,5, porque el art. 88 de la Constitución solo estaba respaldado por una ventana de la SU-429/2024 que lo cita, y el factor la saca del top-10. Además #879 baja de 1 a 2 (sin sentencias en su top-10: es reacomodo del reranker rrf).
-- No cumple la regla KEEP de la sección 19 (respaldo@10 0,939 → 0,927). **Pendiente**: medir la generación en sample (`e60_base` frente a `e64_sent05_derog05`) y decidir; si la citación no baja, activarlo.
+- No cumple la regla KEEP de la sección 19 (respaldo@10 0,939 → 0,927), así que se midió la generación.
+
+Generación en sample (Qwen3-8B Q8_0, servidor compartido con otra sesión: las latencias absolutas no son comparables):
+
+| | cerradas | citación | abstención | total /50 | schema | recuperación ms |
+|---|---:|---:|---:|---:|---:|---:|
+| `e60_base` (= `e53`) | 10/15 | 17,55 | 8,14 | 39,02 | 0 | 1.417 |
+| `e64_sent05_derog05` | 10/15 | 17,55 | 8,14 | 39,02 | 0 | 1.355 |
+
+- **Empate en lo determinista.** La pérdida de respaldo de #51 no cuesta puntos: la cita perdida es la SU-429/2024, que no está en el `legal_basis`; la Ley 472 sigue citada. #1065 deja de citar la C-015/2018 (tampoco puntuaba) y #168 agrega la Ley 57/1887.
+- Las cerradas que suben de rank (#60, #352, #617, #647) no cambian de respuesta. En #647 el diagnóstico pasa de RANKING a GENERATION: el Código Civil ya está en el puesto 2 y el modelo igual se equivoca (doctrina, sección 17).
+- Sin juez: el texto libre cambia en las preguntas reordenadas. **Decisión pendiente del equipo**: activar (`SYNTAX_FACTOR_SENTENCIA=0.5 SYNTAX_FACTOR_DEROGADA=0.5`) por el mejor ranking a igual puntaje, o pasar el juez antes (regla de la sección 20: REVERT si cae más de 0,03).
