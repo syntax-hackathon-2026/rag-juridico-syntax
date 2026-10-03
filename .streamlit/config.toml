@@ -1,0 +1,15 @@
+# Tema de la interfaz (src/interfaz/app.py) con la estetica de software-colombia.com:
+# turquesa #09ACC4, naranja #FF993B (acento, en el CSS de app.py), texto #32373C, Montserrat.
+[theme]
+base = "light"
+primaryColor = "#09ACC4"
+backgroundColor = "#FFFFFF"
+secondaryBackgroundColor = "#F3FAFC"
+textColor = "#32373C"
+font = "sans serif"
+
+[client]
+toolbarMode = "minimal"
+
+[browser]
+gatherUsageStats = false

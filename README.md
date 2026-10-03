@@ -122,7 +122,16 @@ Corrida `e24_final` (configuración por defecto, RTX 4090, Qwen3-8B Q8_0), evalu
 
 ## Interfaz gráfica
 
-Pendiente.
+Aplicación Streamlit (`src/interfaz/app.py`) sobre el mismo `responder()` que usa `src/main.py`, con la identidad visual de Software Colombia (tema en `.streamlit/config.toml`, logo en `src/interfaz/assets/`). Cómo ejecutarla:
+
+```bash
+python src/generacion/modelo.py servir      # otra terminal: llama-server (solo para "Consultar")
+streamlit run src/interfaz/app.py           # o: bash interfaz.sh  ->  http://localhost:8501
+```
+
+- **Consultar**: pregunta libre o un ejemplo de `sample_50` (solo `id, formato, area, pregunta, opciones`), en los tres formatos. Muestra la respuesta, las citas marcadas como respaldadas o no en los 10 pasajes (mismo criterio de `scripts/citations.py` que usa el evaluador), los 10 pasajes literales con su `doc_id` (señalando los 5 que lee el decoder), la latencia y si hubo regeneración o abstención. El registro se descarga en JSON, en el formato de `submissions.jsonl`. Necesita `data_corpus/indice/` y el decoder; si faltan, la app indica el comando que lo resuelve.
+- **Explorar entrega**: abre cualquier `.jsonl` de entrega (`submissions.jsonl`, `evaluation/generacion/<exp>/entrega.jsonl` con su traza) sin índice ni decoder. Sirve para la verificación en vivo.
+- Usa la configuración por defecto de `config.py`, así que la misma pregunta da el mismo registro que la corrida por lotes. En la demo se corre con `SYNTAX_LLM_CACHE=off`.
 
 ## Limitaciones conocidas
 

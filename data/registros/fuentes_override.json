@@ -11363,6 +11363,16 @@
         "Derecho constitucional"
       ],
       "nota": "ampliacion sabado (2026-10-03): dirigida por las preguntas del test (descarga manual)"
+    },
+    {
+      "doc_id": "decreto_472_2015",
+      "titulo": "Decreto 472 de 2015",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/decreto_0472_2015.html",
+      "areas": [
+        "Derecho laboral"
+      ],
+      "nota": "ampliacion sabado (2026-10-03): dirigida por las preguntas del test"
     }
   ],
   "_comentario_adicionales": "Documentos fuera de seed_targets.json (fuentes del legal_basis de sample_50, ver data/fuentes_faltantes_sample50.md). Su original ya esta en data/raw/ y se registra con esta fuente/URL (docs/ingesta/referencias_normativas.md); items_del_banco=0."

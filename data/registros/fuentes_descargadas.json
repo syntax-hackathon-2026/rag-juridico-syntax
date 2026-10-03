@@ -5855,6 +5855,26 @@
       "nota": "ampliacion sabado (2026-10-02): dirigida por las preguntas del test"
     },
     {
+      "doc_id": "decreto_472_2015",
+      "titulo": "Decreto 472 de 2015",
+      "fuente": "Normograma de Colpensiones (compilacion Avance Juridico)",
+      "url": "https://normativa.colpensiones.gov.co/compilacion/docs/decreto_0472_2015.htm",
+      "areas": [
+        "Derecho laboral"
+      ],
+      "items_del_banco": 0,
+      "canonico": [],
+      "estado": "descargado",
+      "tipo_fuente": "html",
+      "fecha_consulta": "2026-10-03",
+      "archivos": [
+        "decreto_0472_2015.htm"
+      ],
+      "bytes": 76773,
+      "sha256": "e14e031ee49d2a44915b94af5ce438a1ba37a74ec5c436deaa462f5a6ae3956a",
+      "nota": "ampliacion sabado (2026-10-03): dirigida por las preguntas del test"
+    },
+    {
       "doc_id": "decreto_678_2020",
       "titulo": "Decreto 678 de 2020",
       "fuente": "Secretaria del Senado",
