@@ -11343,6 +11343,26 @@
         "Derecho comercial y sociedades"
       ],
       "nota": "ampliacion sabado (2026-10-03): dirigida por las preguntas del test (descarga manual)"
+    },
+    {
+      "doc_id": "sentencia_sl_3871_2021",
+      "titulo": "Sentencia SL3871 de 2021",
+      "fuente": "Relatoria de la Corte Suprema de Justicia - Sala de Casacion Laboral",
+      "url": "https://www.cortesuprema.gov.co/corte/wp-content/uploads/relatorias/la/bnov2021/SL3871-2021.pdf",
+      "areas": [
+        "Derecho laboral"
+      ],
+      "nota": "ampliacion sabado (2026-10-03): dirigida por las preguntas del test (descarga manual)"
+    },
+    {
+      "doc_id": "acuerdo_1_2025",
+      "titulo": "Acuerdo 01 de 2025 de la Corte Constitucional (reparto de tutelas)",
+      "fuente": "Normograma de la Cancilleria (compilacion)",
+      "url": "https://www.cancilleria.gov.co/normograma/compilacion/docs/acuerdo_cconstitucional_0001_2025.htm",
+      "areas": [
+        "Derecho constitucional"
+      ],
+      "nota": "ampliacion sabado (2026-10-03): dirigida por las preguntas del test (descarga manual)"
     }
   ],
   "_comentario_adicionales": "Documentos fuera de seed_targets.json (fuentes del legal_basis de sample_50, ver data/fuentes_faltantes_sample50.md). Su original ya esta en data/raw/ y se registra con esta fuente/URL (docs/ingesta/referencias_normativas.md); items_del_banco=0."

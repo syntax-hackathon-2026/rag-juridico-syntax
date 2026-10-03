@@ -3,8 +3,8 @@
   "licencia": "CC-BY-4.0",
   "fecha_generacion": "2026-10-03",
   "enlace_nube": "<URL>",
-  "n_documentos": 1282,
-  "n_fragmentos": 185071,
+  "n_documentos": 1284,
+  "n_fragmentos": 185215,
   "documentos": [
     {
       "doc_id": "constitucion_politica_1991",
@@ -2650,6 +2650,20 @@
       "n_fragmentos": 34,
       "metodo_ingesta": "extraccion de PDF con PyMuPDF + limpieza de encabezados",
       "sha256": "fd5bb224d43df39e0aff8ec228ad719c52b1afe76e0bad3285e5b64e3b4bb6de"
+    },
+    {
+      "doc_id": "acuerdo_1_2025",
+      "titulo": "Acuerdo 01 de 2025 de la Corte Constitucional (reparto de tutelas)",
+      "fuente": "Normograma de la Cancilleria (compilacion)",
+      "url": "https://www.cancilleria.gov.co/normograma/compilacion/docs/acuerdo_cconstitucional_0001_2025.htm",
+      "fecha_consulta": "2026-10-03",
+      "areas": [
+        "Derecho constitucional"
+      ],
+      "n_articulos": 113,
+      "n_fragmentos": 126,
+      "metodo_ingesta": "extraccion de PDF con PyMuPDF + limpieza de encabezados",
+      "sha256": "daeb0bb6da9fb25fe40e52fa94195af8cf0b9d91003da5726b8f70d0fa79a67a"
     },
     {
       "doc_id": "auto_supersociedades_2025_01_730337",
@@ -6781,6 +6795,20 @@
       "n_fragmentos": 82,
       "metodo_ingesta": "extraccion de PDF con PyMuPDF + limpieza de encabezados",
       "sha256": "e85f5279d68fa654ad8b68ce4cbdb76b0fa2639c54d8d80898cc6124dbd88b5d"
+    },
+    {
+      "doc_id": "sentencia_sl_3871_2021",
+      "titulo": "Sentencia SL3871 de 2021",
+      "fuente": "Relatoria de la Corte Suprema de Justicia - Sala de Casacion Laboral",
+      "url": "https://www.cortesuprema.gov.co/corte/wp-content/uploads/relatorias/la/bnov2021/SL3871-2021.pdf",
+      "fecha_consulta": "2026-10-03",
+      "areas": [
+        "Derecho laboral"
+      ],
+      "n_articulos": null,
+      "n_fragmentos": 18,
+      "metodo_ingesta": "extraccion de PDF con PyMuPDF + limpieza de encabezados",
+      "sha256": "c1af5adad738bda56ea65f3e541f274bc8c1abbf82736b01d7b20d82a1a253b4"
     },
     {
       "doc_id": "sentencia_su_103_2022",

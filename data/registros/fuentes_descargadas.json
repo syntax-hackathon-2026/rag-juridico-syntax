@@ -4648,6 +4648,26 @@
       "nota": "ampliacion desde citations.py (seccion D.3)"
     },
     {
+      "doc_id": "acuerdo_1_2025",
+      "titulo": "Acuerdo 01 de 2025 de la Corte Constitucional (reparto de tutelas)",
+      "fuente": "Normograma de la Cancilleria (compilacion)",
+      "url": "https://www.cancilleria.gov.co/normograma/compilacion/docs/acuerdo_cconstitucional_0001_2025.htm",
+      "areas": [
+        "Derecho constitucional"
+      ],
+      "items_del_banco": 0,
+      "canonico": [],
+      "estado": "descargado",
+      "tipo_fuente": "pdf",
+      "fecha_consulta": "2026-10-03",
+      "archivos": [
+        "acuerdo_cconstitucional_0001_2025.pdf"
+      ],
+      "bytes": 221247,
+      "sha256": "45968221fe601c8e952ab872db16ee62032721d2061349c0caac6d99bcfd4fda",
+      "nota": "ampliacion sabado (2026-10-03): dirigida por las preguntas del test (descarga manual)"
+    },
+    {
       "doc_id": "auto_supersociedades_2025_01_730337",
       "titulo": "Auto 2025-01-730337 de la Superintendencia de Sociedades",
       "fuente": "Superintendencia de Sociedades (Baranda Virtual)",
@@ -11056,6 +11076,26 @@
       "bytes": 586124,
       "sha256": "0db72402b64a9a8d5c4311c2489a17956379b88f67193ab96b9a388a9946191a",
       "nota": "pregunta 697 de sample_50 (caso Dow Chemical)"
+    },
+    {
+      "doc_id": "sentencia_sl_3871_2021",
+      "titulo": "Sentencia SL3871 de 2021",
+      "fuente": "Relatoria de la Corte Suprema de Justicia - Sala de Casacion Laboral",
+      "url": "https://www.cortesuprema.gov.co/corte/wp-content/uploads/relatorias/la/bnov2021/SL3871-2021.pdf",
+      "areas": [
+        "Derecho laboral"
+      ],
+      "items_del_banco": 0,
+      "canonico": [],
+      "estado": "descargado",
+      "tipo_fuente": "pdf",
+      "fecha_consulta": "2026-10-03",
+      "archivos": [
+        "sentencia_sl_3871_2021.pdf"
+      ],
+      "bytes": 1329372,
+      "sha256": "a77a6c5b84178f8733c2ee439107ffda0c4084d646d54fac77f905be50ee25eb",
+      "nota": "ampliacion sabado (2026-10-03): dirigida por las preguntas del test (descarga manual)"
     },
     {
       "doc_id": "sentencia_su_103_2022",
