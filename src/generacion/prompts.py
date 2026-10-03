@@ -22,7 +22,9 @@ import config  # noqa: E402
 
 # p-v0: base. p-v2: reglas de decision en cerradas (SYNTAX_PROMPT_MC; docs/GENERACION.md 9).
 # "+glosario": fichas y notas de equivalencia de normas (SYNTAX_GLOSARIO, generacion/glosario.py).
-PROMPT_VERSION = config.PROMPT_MC + ("+glosario" if config.GLOSARIO == "on" else "")
+# "+tl1": instrucciones de texto libre p-tl1 (SYNTAX_PROMPT_TL; docs/GENERACION.md 10).
+PROMPT_VERSION = (config.PROMPT_MC + ("+glosario" if config.GLOSARIO == "on" else "")
+                  + ("+tl1" if config.PROMPT_TL == "p-tl1" else ""))
 
 MAX_TOKENS = {"multiple_choice": 700, "semi_open": 450, "open_ended": 1100}
 
@@ -54,6 +56,34 @@ Para elegir:
 - "conclusion": de 1 a 3 oraciones con la respuesta concreta al caso.""",
 }
 
+
+# p-tl1 (docs/GENERACION.md 10): el juez RAGAS compara afirmaciones con la respuesta esperada,
+# que es una linea (que articulo), una enumeracion (requisitos) o un Si/No con la regla. La
+# forma uniforme de p-v0 agrega afirmaciones de sobra o deja elementos fuera.
+INSTRUCCIONES_TL1 = {
+    "semi_open": """Formato: pregunta de respuesta corta.
+- "respuesta": como máximo 5 oraciones y 120 palabras. La primera oración responde directamente la pregunta. Ajusta la forma a lo que se pregunta:
+  - Si pregunta qué artículo o qué norma regula algo, o pide citar o transcribir una disposición: una o dos oraciones con la norma y su contenido.
+  - Si pide requisitos, elementos, causales, condiciones o etapas: enuméralos todos, sin omitir ninguno, en una oración separada por punto y coma.
+  - Si pregunta si algo procede, existe, es posible o es verdadero o falso: empieza con «Sí», «No», «Verdadera» o «Falsa» y luego da la regla que lo determina.
+  - Si pregunta por una sentencia: di lo que la sentencia plantea o decide (problema jurídico, hechos, regla o decisión), no datos del expediente ni del trámite.
+  - Si pide una definición: da la definición legal o doctrinal precisa.
+- Usa solo los pasajes que tratan la figura o institución por la que se pregunta. Si los pasajes tratan otra figura u otro tipo de contrato, ignóralos y responde con tu conocimiento del derecho colombiano, sin citar normas.
+- En "respuesta" menciona solo la norma principal. No agregues normas, sentencias ni datos que la pregunta no pide.
+- "palabras_clave": de 3 a 6 términos jurídicos clave de la respuesta.
+- "referencia_legal": la norma o el artículo principal que fundamenta la respuesta y, si aplica, otras normas pertinentes de los pasajes (por ejemplo «Artículo 1502 del Código Civil»).""",
+    "open_ended": """Formato: caso práctico que exige un análisis completo.
+- "marco_normativo": las normas aplicables tomadas de los pasajes, separadas por punto y coma, cada una con una frase breve sobre lo que regula.
+- "analisis": de 5 a 8 oraciones. La primera oración responde directamente cada pregunta del caso (qué acción procede, quién responde, si es posible o no). Luego aplica las normas a los hechos.
+- "jurisprudencia": las sentencias de los pasajes que sean pertinentes y la regla que fijan; si los pasajes no traen sentencias pertinentes, escribe «No se recuperó jurisprudencia pertinente para el caso.».
+- "conclusion": de 1 a 3 oraciones que respondan cada pregunta planteada en el caso.""",
+}
+
+
+def instrucciones(formato: str) -> str:
+    if config.PROMPT_TL == "p-tl1" and formato in INSTRUCCIONES_TL1:
+        return INSTRUCCIONES_TL1[formato]
+    return INSTRUCCIONES[formato]
 
 def _texto(maximo: int) -> dict:
     return {"type": "string", "minLength": 1, "maxLength": maximo}
@@ -125,7 +155,7 @@ def mensajes(item: dict, pasajes: list[str], metas: list[dict] | None = None) ->
     if ops:
         pares = ops.items() if isinstance(ops, dict) else zip("ABCD", ops)
         usuario += "\n\nOpciones:\n" + "\n".join(f"{l}. {str(t).strip()}{nota(str(t))}" for l, t in pares)
-    return [{"role": "system", "content": REGLAS + "\n\n" + INSTRUCCIONES[item["formato"]]},
+    return [{"role": "system", "content": REGLAS + "\n\n" + instrucciones(item["formato"])},
             {"role": "user", "content": usuario}]
 
 

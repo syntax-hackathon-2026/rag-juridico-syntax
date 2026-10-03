@@ -59,6 +59,8 @@ def main() -> int:
     ap.add_argument("--sin-reanudar", action="store_true", help="borrar la salida previa y empezar de cero")
     ap.add_argument("--generation-k", type=int, choices=(3, 5, 7, 10),
                     help="pasajes al decoder (alternativa a SYNTAX_GENERATION_K)")
+    ap.add_argument("--replay-trazas", type=Path,
+                    help="repetir el top-10 de las trazas de otra corrida (prueba de generacion, sin encoder)")
     args = ap.parse_args()
 
     if args.generation_k is not None:
@@ -95,14 +97,17 @@ def main() -> int:
         for p in (salida, trazas):
             p.unlink(missing_ok=True)
 
-    config.verificar_indice()
+    if not args.replay_trazas:
+        config.verificar_indice()
     info_llm = modelo.verificar()
     info_indice = json.loads(config.INDICE_INFO_PATH.read_text(encoding="utf-8"))
     meta = {
         "experimento": experimento, "fecha": datetime.now(timezone.utc).isoformat(timespec="seconds"),
         "commit": git_commit(), "entrada": entrada.name, "n_items": len(items),
         "decoder": info_llm, "prompt_version": prompts.PROMPT_VERSION,
-        "pensar": {"formatos": sorted(config.PENSAR_FORMATOS), "tokens": config.PENSAR_TOKENS},
+        "pensar": {"formatos": sorted(config.PENSAR_FORMATOS), "tokens": config.PENSAR_TOKENS,
+                   "casos_min_palabras": config.PENSAR_CASOS},
+        "texto_libre": {"prompt_tl": config.PROMPT_TL, "seccion_sentencia": config.SECCION_SENTENCIA},
         "retrieval": {"modo": config.MODO_RECUPERACION, "retrieval_k": config.RETRIEVAL_K,
                       "generation_k": config.GENERATION_K, "citar_evidencia": config.CITAR_EVIDENCIA,
                       "lookup": config.lookup_metadata(),
@@ -124,11 +129,20 @@ def main() -> int:
     print(f"{experimento}: {len(items)} items, {len(hechos & {it['id'] for it in items})} ya hechos, "
           f"{len(pendientes)} por hacer -> {salida.relative_to(config.ROOT).as_posix()}", flush=True)
 
-    retriever = cargar(cargar_denso=config.MODO_RECUPERACION != "bm25")
+    if args.replay_trazas:
+        from recuperacion.fijo import RetrieverFijo
+        retriever = RetrieverFijo(args.replay_trazas)
+        meta["replay_trazas"] = args.replay_trazas.as_posix()
+        (config.TRAZAS_DIR / f"{experimento}{sufijo}.meta.json").write_text(
+            json.dumps(meta, ensure_ascii=False, indent=2) + "\n", encoding="utf-8", newline="\n")
+    else:
+        retriever = cargar(cargar_denso=config.MODO_RECUPERACION != "bm25")
     decoder = Decoder()
     t0 = time.perf_counter()
     with salida.open("a", encoding="utf-8", newline="\n") as fs, trazas.open("a", encoding="utf-8", newline="\n") as ft:
         for n, it in enumerate(pendientes, 1):
+            if args.replay_trazas:
+                retriever.fijar(it["id"])
             reg, traza = responder(
                 it, retriever, decoder, regla_abstencion=regla_abstencion
             )
