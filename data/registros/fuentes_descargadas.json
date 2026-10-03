@@ -5282,6 +5282,26 @@
       "nota": "ampliacion v4 (2026-10-02): area delgada, resuelta y validada por sondeo automatico; areas propuestas por agente, falta confirmar"
     },
     {
+      "doc_id": "decreto_1382_2000",
+      "titulo": "Decreto 1382 de 2000",
+      "fuente": "Normograma de la CRA (compilacion Avance Juridico)",
+      "url": "https://normas.cra.gov.co/gestor/docs/decreto_1382_2000.htm",
+      "areas": [
+        "Derecho constitucional"
+      ],
+      "items_del_banco": 0,
+      "canonico": [],
+      "estado": "descargado",
+      "tipo_fuente": "html",
+      "fecha_consulta": "2026-10-03",
+      "archivos": [
+        "decreto_1382_2000.htm"
+      ],
+      "bytes": 50837,
+      "sha256": "dc9f1dda4b17fdbf1eeafa3c63ecccfc8552557a7aedf502c90996c8144cc74c",
+      "nota": "ampliacion sabado (2026-10-03): dirigida por las preguntas del test"
+    },
+    {
       "doc_id": "decreto_1400_1970",
       "titulo": "Decreto 1400 de 1970 (Codigo de Procedimiento Civil)",
       "fuente": "Funcion Publica - Gestor Normativo",
@@ -5716,6 +5736,24 @@
       "nota": "ampliacion sabado (2026-10-02): dirigida por las preguntas del test"
     },
     {
+      "doc_id": "decreto_3030_2022",
+      "titulo": "Decreto 3030 de 2022",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/decreto_3030_2022.html",
+      "areas": [
+        "Derecho tributario"
+      ],
+      "items_del_banco": 0,
+      "canonico": [],
+      "estado": "no_encontrado",
+      "tipo_fuente": null,
+      "fecha_consulta": null,
+      "archivos": [],
+      "bytes": 0,
+      "sha256": null,
+      "nota": "http://www.secretariasenado.gov.co/senado/basedoc/decreto_3030_2022.html no existe en Secretaria del Senado"
+    },
+    {
       "doc_id": "decreto_306_1992",
       "titulo": "Decreto 306 de 1992 (Reglamenta el Decreto 2591 de 1991 (accion de tutela))",
       "fuente": "Normograma de Colpensiones (compilacion Avance Juridico)",
@@ -5795,6 +5833,26 @@
       "bytes": 71862,
       "sha256": "3b4d39407d2dff733cfaf8dd3d1b5d7482df26b6008195535433e0600a0a47ac",
       "nota": "ampliacion sabado (2026-10-02): dirigida por las preguntas del test"
+    },
+    {
+      "doc_id": "decreto_678_2020",
+      "titulo": "Decreto 678 de 2020",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/decreto_0678_2020.html",
+      "areas": [
+        "Derecho tributario"
+      ],
+      "items_del_banco": 0,
+      "canonico": [],
+      "estado": "descargado",
+      "tipo_fuente": "html",
+      "fecha_consulta": "2026-10-03",
+      "archivos": [
+        "decreto_0678_2020.html"
+      ],
+      "bytes": 68314,
+      "sha256": "28e9e15797853d09532787973360c4aeab8d960561c06ad4d3b39cebb56e72eb",
+      "nota": "ampliacion sabado (2026-10-03): dirigida por las preguntas del test"
     },
     {
       "doc_id": "decreto_735_2013",
@@ -6254,6 +6312,24 @@
       "bytes": 106859,
       "sha256": "d04ede041a69fa60a321e9bb9ed0b794a11fb8f63fa5f83811a4cc6f10ba457f",
       "nota": "ampliacion v3 (2026-10-02): alto impacto por area; areas propuestas por agente, falta confirmar"
+    },
+    {
+      "doc_id": "ley_1264_2012",
+      "titulo": "Ley 1264 de 2012",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/ley_1264_2012.html",
+      "areas": [
+        "Derecho comercial y sociedades"
+      ],
+      "items_del_banco": 0,
+      "canonico": [],
+      "estado": "no_encontrado",
+      "tipo_fuente": null,
+      "fecha_consulta": null,
+      "archivos": [],
+      "bytes": 0,
+      "sha256": null,
+      "nota": "http://www.secretariasenado.gov.co/senado/basedoc/ley_1264_2012.html no existe en Secretaria del Senado"
     },
     {
       "doc_id": "ley_1266_2008",
@@ -8325,6 +8401,26 @@
       "nota": "ampliacion v3 (2026-10-02): alto impacto por area; areas propuestas por agente, falta confirmar"
     },
     {
+      "doc_id": "ley_2445_2025",
+      "titulo": "Ley 2445 de 2025",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/ley_2445_2025.html",
+      "areas": [
+        "Derecho procesal"
+      ],
+      "items_del_banco": 0,
+      "canonico": [],
+      "estado": "descargado",
+      "tipo_fuente": "html",
+      "fecha_consulta": "2026-10-03",
+      "archivos": [
+        "ley_2445_2025.html"
+      ],
+      "bytes": 172444,
+      "sha256": "6a98b7766e33ba689f1d79797a8a17bc505e5ebdaf1be0e34ed133a033fcf8e2",
+      "nota": "ampliacion sabado (2026-10-03): dirigida por las preguntas del test"
+    },
+    {
       "doc_id": "ley_2447_2025",
       "titulo": "Ley 2447 de 2025 (Prohibicion del matrimonio infantil y las uniones tempranas)",
       "fuente": "Secretaria del Senado",
@@ -8386,6 +8482,24 @@
       "bytes": 76540,
       "sha256": "e1f8e86cc165efbd201a1d0e845c7a5c79356c30ba63048e63f09045fb806c8d",
       "nota": "ampliacion sabado (2026-10-02): dirigida por las preguntas del test"
+    },
+    {
+      "doc_id": "ley_2568_2021",
+      "titulo": "Ley 2568 de 2021",
+      "fuente": "Secretaria del Senado",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/ley_2568_2021.html",
+      "areas": [
+        "Derecho tributario"
+      ],
+      "items_del_banco": 0,
+      "canonico": [],
+      "estado": "no_encontrado",
+      "tipo_fuente": null,
+      "fecha_consulta": null,
+      "archivos": [],
+      "bytes": 0,
+      "sha256": null,
+      "nota": "http://www.secretariasenado.gov.co/senado/basedoc/ley_2568_2021.html no existe en Secretaria del Senado"
     },
     {
       "doc_id": "ley_258_1996",
@@ -9804,6 +9918,26 @@
       "nota": "ampliacion v4 (2026-10-02): control de constitucionalidad de ley_2094_2021 (co-citada 10 veces con esa ley en el corpus); areas de la ley controlada, falta confirmar"
     },
     {
+      "doc_id": "sentencia_c_148_2025",
+      "titulo": "Sentencia C-148 de 2025",
+      "fuente": "Relatoria de la Corte Constitucional",
+      "url": "https://www.corteconstitucional.gov.co/relatoria/2025/C-148-25.htm",
+      "areas": [
+        "Derecho tributario"
+      ],
+      "items_del_banco": 0,
+      "canonico": [],
+      "estado": "descargado",
+      "tipo_fuente": "html",
+      "fecha_consulta": "2026-10-03",
+      "archivos": [
+        "C-148-25.htm"
+      ],
+      "bytes": 3081341,
+      "sha256": "e2dc71be3883187fb53423c70a3379b06dbbaab21971cc550470a998d974504c",
+      "nota": "ampliacion sabado (2026-10-03): dirigida por las preguntas del test"
+    },
+    {
       "doc_id": "sentencia_c_150_2015",
       "titulo": "Sentencia C-150 de 2015",
       "fuente": "Relatoria de la Corte Constitucional",
@@ -10013,6 +10147,26 @@
       "nota": "ampliacion v3 (2026-10-02): sentencia hito; areas propuestas por agente, falta confirmar"
     },
     {
+      "doc_id": "sentencia_c_317_2025",
+      "titulo": "Sentencia C-317 de 2025",
+      "fuente": "Relatoria de la Corte Constitucional",
+      "url": "https://www.corteconstitucional.gov.co/relatoria/2025/C-317-25.htm",
+      "areas": [
+        "Derecho constitucional"
+      ],
+      "items_del_banco": 0,
+      "canonico": [],
+      "estado": "descargado",
+      "tipo_fuente": "html",
+      "fecha_consulta": "2026-10-03",
+      "archivos": [
+        "C-317-25.htm"
+      ],
+      "bytes": 396879,
+      "sha256": "24e8b2b5d5c7f1825b1b7035c454b099fab0c6966e79cf8f0af667a1c08af690",
+      "nota": "ampliacion sabado (2026-10-03): dirigida por las preguntas del test"
+    },
+    {
       "doc_id": "sentencia_c_319_2006",
       "titulo": "Sentencia C-319 de 2006",
       "fuente": "Relatoria de la Corte Constitucional",
@@ -10118,6 +10272,26 @@
       "nota": "ampliacion v4 (2026-10-02): control de constitucionalidad de ley_270_1996 (co-citada 19 veces con esa ley en el corpus); areas de la ley controlada, falta confirmar"
     },
     {
+      "doc_id": "sentencia_c_448_2020",
+      "titulo": "Sentencia C-448 de 2020",
+      "fuente": "Relatoria de la Corte Constitucional",
+      "url": "https://www.corteconstitucional.gov.co/relatoria/2020/C-448-20.htm",
+      "areas": [
+        "Derecho tributario"
+      ],
+      "items_del_banco": 0,
+      "canonico": [],
+      "estado": "descargado",
+      "tipo_fuente": "html",
+      "fecha_consulta": "2026-10-03",
+      "archivos": [
+        "C-448-20.htm"
+      ],
+      "bytes": 622453,
+      "sha256": "d83fb55eccac102af704119295442b3e7b1976a71b554b5de6a5e352b90bb52e",
+      "nota": "ampliacion sabado (2026-10-03): dirigida por las preguntas del test"
+    },
+    {
       "doc_id": "sentencia_c_44_2015",
       "titulo": "Sentencia C-044 de 2015",
       "fuente": "Relatoria de la Corte Constitucional",
@@ -10157,6 +10331,26 @@
       "bytes": 600040,
       "sha256": "50883bd648502c4869ea242253a33afb3a86d4c8c2361182198c3781624461b5",
       "nota": "ampliacion v4 (2026-10-02): control de constitucionalidad de ley_361_1997 (co-citada 7 veces con esa ley en el corpus); areas de la ley controlada, falta confirmar"
+    },
+    {
+      "doc_id": "sentencia_c_465_2008",
+      "titulo": "Sentencia C-465 de 2008",
+      "fuente": "Relatoria de la Corte Constitucional",
+      "url": "https://www.corteconstitucional.gov.co/relatoria/2008/C-465-08.htm",
+      "areas": [
+        "Derecho laboral"
+      ],
+      "items_del_banco": 0,
+      "canonico": [],
+      "estado": "descargado",
+      "tipo_fuente": "html",
+      "fecha_consulta": "2026-10-03",
+      "archivos": [
+        "C-465-08.htm"
+      ],
+      "bytes": 192964,
+      "sha256": "d7c4fa145d31d042c20d71175b6741be6a74ab5ee5f0e5894190189e1cfd780f",
+      "nota": "ampliacion sabado (2026-10-03): dirigida por las preguntas del test"
     },
     {
       "doc_id": "sentencia_c_467_2016",
@@ -12822,6 +13016,27 @@
       "bytes": 467363,
       "sha256": "29af0e251261e11d69aed29c97feaecb36752ba9ce75f0715e694401d5c8595d",
       "nota": "ampliacion v3 (2026-10-02): lote de sentencias de unificacion 2020-2026 (sobrerrepresentadas en el banco); area por defecto, falta confirmar"
+    },
+    {
+      "doc_id": "sentencia_su_288_2015",
+      "titulo": "Sentencia SU-288 de 2015",
+      "fuente": "Relatoria de la Corte Constitucional",
+      "url": "https://www.corteconstitucional.gov.co/relatoria/2015/SU288-15.htm",
+      "areas": [
+        "Derecho constitucional",
+        "Derecho administrativo"
+      ],
+      "items_del_banco": 0,
+      "canonico": [],
+      "estado": "descargado",
+      "tipo_fuente": "html",
+      "fecha_consulta": "2026-10-03",
+      "archivos": [
+        "SU288-15.htm"
+      ],
+      "bytes": 309896,
+      "sha256": "a3c18e00ea37877ff02c10560472527cba428003150c58acf204073ef0029b72",
+      "nota": "ampliacion sabado (2026-10-03): dirigida por las preguntas del test"
     },
     {
       "doc_id": "sentencia_su_288_2022",
@@ -18987,6 +19202,47 @@
       "bytes": 357764,
       "sha256": "383bb033eae9621ddf78cfdbe85a75ad36b9f50e12d6e5b6622e6907c4fe27a9",
       "nota": "ampliacion v4 (2026-10-02): lote de tutelas 2025-2026 (sondeo de la relatoria), solo se recuperan si la pregunta las nombra; area por defecto, falta confirmar"
+    },
+    {
+      "doc_id": "sentencia_t_202_2018",
+      "titulo": "Sentencia T-202 de 2018",
+      "fuente": "Relatoria de la Corte Constitucional",
+      "url": "https://www.corteconstitucional.gov.co/relatoria/2018/T-202-18.htm",
+      "areas": [
+        "Derecho de familia"
+      ],
+      "items_del_banco": 0,
+      "canonico": [],
+      "estado": "descargado",
+      "tipo_fuente": "html",
+      "fecha_consulta": "2026-10-03",
+      "archivos": [
+        "T-202-18.htm"
+      ],
+      "bytes": 424980,
+      "sha256": "c631253b4a1d5e637ddeaa81d7c70e10ca98ffa30de5f5531bf596824d356315",
+      "nota": "ampliacion sabado (2026-10-03): dirigida por las preguntas del test"
+    },
+    {
+      "doc_id": "sentencia_t_202_2024",
+      "titulo": "Sentencia T-202 de 2024",
+      "fuente": "Relatoria de la Corte Constitucional",
+      "url": "https://www.corteconstitucional.gov.co/relatoria/2024/T-202-24.htm",
+      "areas": [
+        "Derecho penal",
+        "Derecho laboral"
+      ],
+      "items_del_banco": 0,
+      "canonico": [],
+      "estado": "descargado",
+      "tipo_fuente": "html",
+      "fecha_consulta": "2026-10-03",
+      "archivos": [
+        "T-202-24.htm"
+      ],
+      "bytes": 939659,
+      "sha256": "2ecf5f60a6b309b2eba411fb5ec0146ebc1f0d524cfde7095abad08b9ef21658",
+      "nota": "ampliacion sabado (2026-10-03): dirigida por las preguntas del test"
     },
     {
       "doc_id": "sentencia_t_202_2025",
