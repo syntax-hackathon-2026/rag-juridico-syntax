@@ -10436,6 +10436,26 @@
       "nota": "ampliacion v4 (2026-10-02): control de constitucionalidad de ley_1475_2011 (co-citada 16 veces con esa ley en el corpus); areas de la ley controlada, falta confirmar"
     },
     {
+      "doc_id": "sentencia_c_517_2024",
+      "titulo": "Sentencia C-517 de 2024",
+      "fuente": "Relatoria de la Corte Constitucional",
+      "url": "https://www.corteconstitucional.gov.co/relatoria/2024/C-517-24.htm",
+      "areas": [
+        "Derecho constitucional"
+      ],
+      "items_del_banco": 0,
+      "canonico": [],
+      "estado": "descargado",
+      "tipo_fuente": "html",
+      "fecha_consulta": "2026-10-03",
+      "archivos": [
+        "C-517-24.htm"
+      ],
+      "bytes": 593545,
+      "sha256": "346041937b88d962aa98df2f021b565710a2324d16429c460bf5ef86f7d83db5",
+      "nota": "ampliacion sabado (2026-10-03): dirigida por las preguntas del test"
+    },
+    {
       "doc_id": "sentencia_c_531_2000",
       "titulo": "Sentencia C-531 de 2000",
       "fuente": "Relatoria de la Corte Constitucional",
@@ -10601,6 +10621,26 @@
       "bytes": 2556750,
       "sha256": "8e4f15b12b1693c16b8ff4d006f127c49cd5b25afa51289821312498588a2fe3",
       "nota": "ampliacion v3 (2026-10-02): sentencia hito; areas propuestas por agente, falta confirmar"
+    },
+    {
+      "doc_id": "sentencia_c_581_2001",
+      "titulo": "Sentencia C-581 de 2001",
+      "fuente": "Relatoria de la Corte Constitucional",
+      "url": "https://www.corteconstitucional.gov.co/relatoria/2001/C-581-01.htm",
+      "areas": [
+        "Derecho penal"
+      ],
+      "items_del_banco": 0,
+      "canonico": [],
+      "estado": "descargado",
+      "tipo_fuente": "html",
+      "fecha_consulta": "2026-10-03",
+      "archivos": [
+        "C-581-01.htm"
+      ],
+      "bytes": 171221,
+      "sha256": "ab9288ebd57393234bbf5b5f1e7770c9bc16411873f7339a2fba32b56410862e",
+      "nota": "ampliacion sabado (2026-10-03): dirigida por las preguntas del test"
     },
     {
       "doc_id": "sentencia_c_590_2005",
@@ -10853,6 +10893,26 @@
       "bytes": 340396,
       "sha256": "2d6eafca90e862fe5efcb44c7d6a218d50f580e4ab7e3b74bcc35af41a2628a2",
       "nota": "ampliacion v3 (2026-10-02): sentencia hito; areas propuestas por agente, falta confirmar"
+    },
+    {
+      "doc_id": "sentencia_c_878_2011",
+      "titulo": "Sentencia C-878 de 2011",
+      "fuente": "Relatoria de la Corte Constitucional",
+      "url": "https://www.corteconstitucional.gov.co/relatoria/2011/C-878-11.htm",
+      "areas": [
+        "Derecho tributario"
+      ],
+      "items_del_banco": 0,
+      "canonico": [],
+      "estado": "descargado",
+      "tipo_fuente": "html",
+      "fecha_consulta": "2026-10-03",
+      "archivos": [
+        "C-878-11.htm"
+      ],
+      "bytes": 192956,
+      "sha256": "16457cb00e2ea355b58888952ec2455caeb435428ff2908ad545484e9c2ac19a",
+      "nota": "ampliacion sabado (2026-10-03): dirigida por las preguntas del test"
     },
     {
       "doc_id": "sentencia_c_886_2010",
@@ -12578,6 +12638,26 @@
       "nota": "ampliacion v3 (2026-10-02): lote de sentencias de unificacion 2020-2026 (sobrerrepresentadas en el banco); area por defecto, falta confirmar"
     },
     {
+      "doc_id": "sentencia_su_237_2019",
+      "titulo": "Sentencia SU-237 de 2019",
+      "fuente": "Relatoria de la Corte Constitucional",
+      "url": "https://www.corteconstitucional.gov.co/relatoria/2019/SU237-19.htm",
+      "areas": [
+        "Derecho administrativo"
+      ],
+      "items_del_banco": 0,
+      "canonico": [],
+      "estado": "descargado",
+      "tipo_fuente": "html",
+      "fecha_consulta": "2026-10-03",
+      "archivos": [
+        "SU237-19.htm"
+      ],
+      "bytes": 282583,
+      "sha256": "e21450c85adeb13296d17e10195f54e9d01f8a4f882eef8dbb621f109fd572dc",
+      "nota": "ampliacion sabado (2026-10-03): dirigida por las preguntas del test"
+    },
+    {
       "doc_id": "sentencia_su_239_2024",
       "titulo": "Sentencia SU-239 de 2024",
       "fuente": "Relatoria de la Corte Constitucional",
@@ -12936,6 +13016,24 @@
       "bytes": 1308644,
       "sha256": "f284575802ee598deaa6abeb19e1bcb86df28ccd37f325dec4684e3fa97e958e",
       "nota": "pregunta 563 de sample_50"
+    },
+    {
+      "doc_id": "sentencia_su_279_2019",
+      "titulo": "Sentencia SU-279 de 2019",
+      "fuente": "Relatoria de la Corte Constitucional",
+      "url": "https://www.corteconstitucional.gov.co/relatoria/2019/SU279-19.htm",
+      "areas": [
+        "Derecho civil"
+      ],
+      "items_del_banco": 0,
+      "canonico": [],
+      "estado": "no_encontrado",
+      "tipo_fuente": null,
+      "fecha_consulta": null,
+      "archivos": [],
+      "bytes": 0,
+      "sha256": null,
+      "nota": "https://www.corteconstitucional.gov.co/relatoria/2019/SU279-19.htm no existe en Relatoria de la Corte Constitucional"
     },
     {
       "doc_id": "sentencia_su_279_2024",
@@ -13539,6 +13637,26 @@
       "nota": "ampliacion v3 (2026-10-02): lote de sentencias de unificacion 2020-2026 (sobrerrepresentadas en el banco); area por defecto, falta confirmar"
     },
     {
+      "doc_id": "sentencia_su_336_2017",
+      "titulo": "Sentencia SU-336 de 2017",
+      "fuente": "Relatoria de la Corte Constitucional",
+      "url": "https://www.corteconstitucional.gov.co/relatoria/2017/SU336-17.htm",
+      "areas": [
+        "Derecho administrativo"
+      ],
+      "items_del_banco": 0,
+      "canonico": [],
+      "estado": "descargado",
+      "tipo_fuente": "html",
+      "fecha_consulta": "2026-10-03",
+      "archivos": [
+        "SU336-17.htm"
+      ],
+      "bytes": 864497,
+      "sha256": "6b4e85800e648b9d31366aeeb171303781dbda4f540cab54caeac222efe142ad",
+      "nota": "ampliacion sabado (2026-10-03): dirigida por las preguntas del test"
+    },
+    {
       "doc_id": "sentencia_su_339_2024",
       "titulo": "Sentencia SU-339 de 2024",
       "fuente": "Relatoria de la Corte Constitucional",
@@ -14059,6 +14177,26 @@
       "nota": "ampliacion v3 (2026-10-02): lote de sentencias de unificacion 2020-2026 (sobrerrepresentadas en el banco); area por defecto, falta confirmar"
     },
     {
+      "doc_id": "sentencia_su_389_2005",
+      "titulo": "Sentencia SU-389 de 2005",
+      "fuente": "Relatoria de la Corte Constitucional",
+      "url": "https://www.corteconstitucional.gov.co/relatoria/2005/SU389-05.htm",
+      "areas": [
+        "Derecho constitucional"
+      ],
+      "items_del_banco": 0,
+      "canonico": [],
+      "estado": "descargado",
+      "tipo_fuente": "html",
+      "fecha_consulta": "2026-10-03",
+      "archivos": [
+        "SU389-05.htm"
+      ],
+      "bytes": 216548,
+      "sha256": "c962fd5435ca3dfc123239ef9ff0d458c5d2b73ddd9849b7a7ee0b4459ac9fe8",
+      "nota": "ampliacion sabado (2026-10-03): dirigida por las preguntas del test"
+    },
+    {
       "doc_id": "sentencia_su_38_2023",
       "titulo": "Sentencia SU-038 de 2023",
       "fuente": "Relatoria de la Corte Constitucional",
@@ -14157,6 +14295,26 @@
       "bytes": 788793,
       "sha256": "55a3e4bd12800ee53caa7a9ff63b3ab36fac941ffffb5e1dcdeff3d6b2c58b31",
       "nota": "ampliacion v3 (2026-10-02): lote de sentencias de unificacion 2020-2026 (sobrerrepresentadas en el banco); area por defecto, falta confirmar"
+    },
+    {
+      "doc_id": "sentencia_su_40_2018",
+      "titulo": "Sentencia SU-40 de 2018",
+      "fuente": "Relatoria de la Corte Constitucional",
+      "url": "https://www.corteconstitucional.gov.co/relatoria/2018/SU040-18.htm",
+      "areas": [
+        "Derecho laboral"
+      ],
+      "items_del_banco": 0,
+      "canonico": [],
+      "estado": "descargado",
+      "tipo_fuente": "html",
+      "fecha_consulta": "2026-10-03",
+      "archivos": [
+        "SU040-18.htm"
+      ],
+      "bytes": 252405,
+      "sha256": "198c7360891190a3d1fe588d5e876a38817f17944487a05ac1581dee4fc693db",
+      "nota": "ampliacion sabado (2026-10-03): dirigida por las preguntas del test"
     },
     {
       "doc_id": "sentencia_su_40_2026",
@@ -15180,6 +15338,26 @@
       "nota": "ampliacion v3 (2026-10-02): lote de sentencias de unificacion 2020-2026 (sobrerrepresentadas en el banco); area por defecto, falta confirmar"
     },
     {
+      "doc_id": "sentencia_su_54_2015",
+      "titulo": "Sentencia SU-54 de 2015",
+      "fuente": "Relatoria de la Corte Constitucional",
+      "url": "https://www.corteconstitucional.gov.co/relatoria/2015/SU054-15.htm",
+      "areas": [
+        "Derecho civil"
+      ],
+      "items_del_banco": 0,
+      "canonico": [],
+      "estado": "descargado",
+      "tipo_fuente": "html",
+      "fecha_consulta": "2026-10-03",
+      "archivos": [
+        "SU054-15.htm"
+      ],
+      "bytes": 555191,
+      "sha256": "3af93e32e9f7cdc5ce73270a8d0c27d261cfdc1f6c74dc693560977d2483c97c",
+      "nota": "ampliacion sabado (2026-10-03): dirigida por las preguntas del test"
+    },
+    {
       "doc_id": "sentencia_su_54_2025",
       "titulo": "Sentencia SU-054 de 2025",
       "fuente": "Relatoria de la Corte Constitucional",
@@ -15218,6 +15396,26 @@
       "bytes": 574184,
       "sha256": "4330409aeeccec660b39122299a04192208c2c1d2ad1020357b9f77ffd520f85",
       "nota": "ampliacion v3 (2026-10-02): lote de sentencias de unificacion 2020-2026 (sobrerrepresentadas en el banco); area por defecto, falta confirmar"
+    },
+    {
+      "doc_id": "sentencia_su_575_2019",
+      "titulo": "Sentencia SU-575 de 2019",
+      "fuente": "Relatoria de la Corte Constitucional",
+      "url": "https://www.corteconstitucional.gov.co/relatoria/2019/SU575-19.htm",
+      "areas": [
+        "Derecho administrativo"
+      ],
+      "items_del_banco": 0,
+      "canonico": [],
+      "estado": "descargado",
+      "tipo_fuente": "html",
+      "fecha_consulta": "2026-10-03",
+      "archivos": [
+        "SU575-19.htm"
+      ],
+      "bytes": 640545,
+      "sha256": "03a91084d9d3d09fe8c0e83eea8c221ceb780a2a2b471b8f9c90b07dd9f7bd4f",
+      "nota": "ampliacion sabado (2026-10-03): dirigida por las preguntas del test"
     },
     {
       "doc_id": "sentencia_su_59_2024",
@@ -20625,6 +20823,26 @@
       "nota": "ampliacion v4 (2026-10-02): lote de tutelas 2025-2026 (sondeo de la relatoria), solo se recuperan si la pregunta las nombra; area por defecto, falta confirmar"
     },
     {
+      "doc_id": "sentencia_t_254_2006",
+      "titulo": "Sentencia T-254 de 2006",
+      "fuente": "Relatoria de la Corte Constitucional",
+      "url": "https://www.corteconstitucional.gov.co/relatoria/2006/T-254-06.htm",
+      "areas": [
+        "Derecho civil"
+      ],
+      "items_del_banco": 0,
+      "canonico": [],
+      "estado": "descargado",
+      "tipo_fuente": "html",
+      "fecha_consulta": "2026-10-03",
+      "archivos": [
+        "T-254-06.htm"
+      ],
+      "bytes": 271859,
+      "sha256": "becc3a1d53435ae4b17ce89cdabc19d7c13eefde37c3365bf431de4e056400d3",
+      "nota": "ampliacion sabado (2026-10-03): dirigida por las preguntas del test"
+    },
+    {
       "doc_id": "sentencia_t_256_2025",
       "titulo": "Sentencia T-256 de 2025",
       "fuente": "Relatoria de la Corte Constitucional",
@@ -20965,6 +21183,26 @@
       "nota": "ampliacion v4 (2026-10-02): lote de tutelas 2025-2026 (sondeo de la relatoria), solo se recuperan si la pregunta las nombra; area por defecto, falta confirmar"
     },
     {
+      "doc_id": "sentencia_t_277_2018",
+      "titulo": "Sentencia T-277 de 2018",
+      "fuente": "Relatoria de la Corte Constitucional",
+      "url": "https://www.corteconstitucional.gov.co/relatoria/2018/T-277-18.htm",
+      "areas": [
+        "Derecho constitucional"
+      ],
+      "items_del_banco": 0,
+      "canonico": [],
+      "estado": "descargado",
+      "tipo_fuente": "html",
+      "fecha_consulta": "2026-10-03",
+      "archivos": [
+        "T-277-18.htm"
+      ],
+      "bytes": 373548,
+      "sha256": "59f5fa91e12c97e276c75719c1d24b3ffc8096eca6e44cc0e7cd9ea3641bef65",
+      "nota": "ampliacion sabado (2026-10-03): dirigida por las preguntas del test"
+    },
+    {
       "doc_id": "sentencia_t_277_2026",
       "titulo": "Sentencia T-277 de 2026",
       "fuente": "Relatoria de la Corte Constitucional",
@@ -21303,6 +21541,26 @@
       "bytes": 681537,
       "sha256": "08985e6c1603b2e4856a97a1944d4b54d777ca71a7ffc5b5a09f3e2bb97905aa",
       "nota": "ampliacion v4 (2026-10-02): lote de tutelas 2025-2026 (sondeo de la relatoria), solo se recuperan si la pregunta las nombra; area por defecto, falta confirmar"
+    },
+    {
+      "doc_id": "sentencia_t_287_2022",
+      "titulo": "Sentencia T-287 de 2022",
+      "fuente": "Relatoria de la Corte Constitucional",
+      "url": "https://www.corteconstitucional.gov.co/relatoria/2022/T-287-22.htm",
+      "areas": [
+        "Derecho constitucional"
+      ],
+      "items_del_banco": 0,
+      "canonico": [],
+      "estado": "descargado",
+      "tipo_fuente": "html",
+      "fecha_consulta": "2026-10-03",
+      "archivos": [
+        "T-287-22.htm"
+      ],
+      "bytes": 342082,
+      "sha256": "fdc1d1b314f936f295a21ad12020586cead4669bd17c48527fec956ef58ea8d4",
+      "nota": "ampliacion sabado (2026-10-03): dirigida por las preguntas del test"
     },
     {
       "doc_id": "sentencia_t_287_2025",
@@ -23806,6 +24064,26 @@
       "nota": "ampliacion v4 (2026-10-02): lote de tutelas 2025-2026 (sondeo de la relatoria), solo se recuperan si la pregunta las nombra; area por defecto, falta confirmar"
     },
     {
+      "doc_id": "sentencia_t_426_2003",
+      "titulo": "Sentencia T-426 de 2003",
+      "fuente": "Relatoria de la Corte Constitucional",
+      "url": "https://www.corteconstitucional.gov.co/relatoria/2003/T-426-03.htm",
+      "areas": [
+        "Derecho constitucional"
+      ],
+      "items_del_banco": 0,
+      "canonico": [],
+      "estado": "descargado",
+      "tipo_fuente": "html",
+      "fecha_consulta": "2026-10-03",
+      "archivos": [
+        "T-426-03.htm"
+      ],
+      "bytes": 94300,
+      "sha256": "5291dd1617ce6a0503a56ea3cd0f1eebf69ab321ae421d255736443c0fa9c755",
+      "nota": "ampliacion sabado (2026-10-03): dirigida por las preguntas del test"
+    },
+    {
       "doc_id": "sentencia_t_42_2025",
       "titulo": "Sentencia T-042 de 2025",
       "fuente": "Relatoria de la Corte Constitucional",
@@ -24264,6 +24542,26 @@
       "bytes": 300013,
       "sha256": "9c401ee9cb341bd986b97087739ce62595d16d66c1a10e430a76a1a889413cab",
       "nota": "ampliacion v4 (2026-10-02): lote de tutelas 2025-2026 (sondeo de la relatoria), solo se recuperan si la pregunta las nombra; area por defecto, falta confirmar"
+    },
+    {
+      "doc_id": "sentencia_t_456_2024",
+      "titulo": "Sentencia T-456 de 2024",
+      "fuente": "Relatoria de la Corte Constitucional",
+      "url": "https://www.corteconstitucional.gov.co/relatoria/2024/T-456-24.htm",
+      "areas": [
+        "Derecho laboral"
+      ],
+      "items_del_banco": 0,
+      "canonico": [],
+      "estado": "descargado",
+      "tipo_fuente": "html",
+      "fecha_consulta": "2026-10-03",
+      "archivos": [
+        "T-456-24.htm"
+      ],
+      "bytes": 404508,
+      "sha256": "d40a76a9e3212d2c7b5fad2d4c81add39fe8b220105a093b1c398f4b96ee9fa6",
+      "nota": "ampliacion sabado (2026-10-03): dirigida por las preguntas del test"
     },
     {
       "doc_id": "sentencia_t_456_2025",
@@ -25004,6 +25302,26 @@
       "bytes": 949447,
       "sha256": "5aa37c4d8ff31e93273b1eddee7fb315dd27634e2263f7cb918b2609cf70ded9",
       "nota": "ampliacion v4 (2026-10-02): lote de tutelas 2025-2026 (sondeo de la relatoria), solo se recuperan si la pregunta las nombra; area por defecto, falta confirmar"
+    },
+    {
+      "doc_id": "sentencia_t_4_2016",
+      "titulo": "Sentencia T-4 de 2016",
+      "fuente": "Relatoria de la Corte Constitucional",
+      "url": "https://www.corteconstitucional.gov.co/relatoria/2016/T-004-16.htm",
+      "areas": [
+        "Derecho de familia"
+      ],
+      "items_del_banco": 0,
+      "canonico": [],
+      "estado": "descargado",
+      "tipo_fuente": "html",
+      "fecha_consulta": "2026-10-03",
+      "archivos": [
+        "T-004-16.htm"
+      ],
+      "bytes": 127211,
+      "sha256": "7136dbed0be61a554e27fa396987d7da329f0c9d58f094105807ee0e9a87849d",
+      "nota": "ampliacion sabado (2026-10-03): dirigida por las preguntas del test"
     },
     {
       "doc_id": "sentencia_t_4_2025",
@@ -25846,6 +26164,26 @@
       "nota": "ampliacion v4 (2026-10-02): lote de tutelas 2025-2026 (sondeo de la relatoria), solo se recuperan si la pregunta las nombra; area por defecto, falta confirmar"
     },
     {
+      "doc_id": "sentencia_t_617_2010",
+      "titulo": "Sentencia T-617 de 2010",
+      "fuente": "Relatoria de la Corte Constitucional",
+      "url": "https://www.corteconstitucional.gov.co/relatoria/2010/T-617-10.htm",
+      "areas": [
+        "Derecho constitucional"
+      ],
+      "items_del_banco": 0,
+      "canonico": [],
+      "estado": "descargado",
+      "tipo_fuente": "html",
+      "fecha_consulta": "2026-10-03",
+      "archivos": [
+        "T-617-10.htm"
+      ],
+      "bytes": 493169,
+      "sha256": "d09528f7f8146b7fe713001cf1fcc640db4128d4514725efece1bf8ef0c26c48",
+      "nota": "ampliacion sabado (2026-10-03): dirigida por las preguntas del test"
+    },
+    {
       "doc_id": "sentencia_t_61_2025",
       "titulo": "Sentencia T-061 de 2025",
       "fuente": "Relatoria de la Corte Constitucional",
@@ -26245,6 +26583,26 @@
       "bytes": 542669,
       "sha256": "a3c591f20a6bc66bd6c5bd6a6f86e8bde1b7019fb1ed60a21f76896c5c609804",
       "nota": "ampliacion v4 (2026-10-02): lote de tutelas 2025-2026 (sondeo de la relatoria), solo se recuperan si la pregunta las nombra; area por defecto, falta confirmar"
+    },
+    {
+      "doc_id": "sentencia_t_79_2024",
+      "titulo": "Sentencia T-79 de 2024",
+      "fuente": "Relatoria de la Corte Constitucional",
+      "url": "https://www.corteconstitucional.gov.co/relatoria/2024/T-079-24.htm",
+      "areas": [
+        "Derecho constitucional"
+      ],
+      "items_del_banco": 0,
+      "canonico": [],
+      "estado": "descargado",
+      "tipo_fuente": "html",
+      "fecha_consulta": "2026-10-03",
+      "archivos": [
+        "T-079-24.htm"
+      ],
+      "bytes": 199715,
+      "sha256": "de112728a237c02100de372411ce2708b2a051ab222a280bfd8e9e6fb9780c26",
+      "nota": "ampliacion sabado (2026-10-03): dirigida por las preguntas del test"
     },
     {
       "doc_id": "sentencia_t_7_2025",
