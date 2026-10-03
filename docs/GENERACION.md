@@ -192,7 +192,22 @@ Regla fijada antes de medir:
 
 B se compara contra A; C y D, contra B.
 
-**Resultados (Mac, Q4, replay de `e24_final`):** _pendiente_
+**Resultados (Mac, Q4, replay de `e24_final`, 2026-10-03).** Parte determinista idéntica en todos los brazos: cerradas 16,0, citación 17,55, abstención 8,60, 0 errores. Juez: J2 (A), J3 (B, C y D) y J4 (E), en `evaluation/juez/`.
+
+| comparación | ítems | media pareada | mejoran / empeoran | decisión |
+|---|---:|---:|---:|---|
+| B (`p-tl1`) vs A (`p-v0`) | 35 | −0,025 | 12 / 16 | **REVERT** |
+| C (B + sección) vs B | 7 que cambian | +0,081 | 5 / 1 | pasa, pero sobre un prompt descartado |
+| D (B + thinking en casos) vs B | 10 que cambian | +0,003 | 5 / 4 | **REVERT** (#1005: 0,60 → 0,22) |
+| E (`p-v0` + sección) vs A | 7 que cambian | −0,002 | 1 / 3 | **REVERT** |
+
+- **`p-tl1` empeora.** Las respuestas más cortas y sin normas secundarias pierden afirmaciones que el juez sí contaba como verdaderos positivos. La hipótesis de los falsos positivos no se sostuvo.
+- **La sección de sentencia solo ayudaba a reparar lo que `p-tl1` había roto.** Con `p-v0`, el resultado es neutro: #946 sube de 0,43 a 0,76, pero #140 baja de 0,57 a 0,36.
+- **El thinking en casos es neutro en promedio** y duplica la latencia de esos ítems.
+- **Ningún flag se activa.** La configuración de la entrega sigue siendo la de `e24_final`. Las 4 corridas del juez quedan como línea base por ítem para lo que venga.
+- Lo que sigue para el texto libre ya no es de prompt: es de recuperación en los casos con narrativa (#247: la Ley 472 no llega al top-10) y de corpus.
+
+**Confirmación en la 4090:** no hace falta, porque ningún flag salió KEEP.
 
 **Confirmación en la 4090 (sábado temprano, M1).** Se activan solo los flags KEEP:
 

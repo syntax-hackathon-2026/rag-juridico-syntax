@@ -87,7 +87,7 @@ def cmd_juzgar(args) -> int:
     for spec in args.entrega:
         nombre, _, ruta = spec.partition("=")
         subs = _subs(Path(ruta))
-        for qid in sorted(ids):
+        for qid in sorted(ids & set(subs)):  # un id ausente de la entrega no es una abstencion
             texto = _texto(subs.get(qid))
             if texto is None:
                 abstenidos.append((nombre, qid))
