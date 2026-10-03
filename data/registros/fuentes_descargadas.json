@@ -6633,7 +6633,7 @@
       ],
       "items_del_banco": 0,
       "canonico": [],
-      "estado": "descargado",
+      "estado": "error",
       "tipo_fuente": "html",
       "fecha_consulta": "2026-10-02",
       "archivos": [
@@ -6646,7 +6646,7 @@
       ],
       "bytes": 630206,
       "sha256": "c4899a6bb67c1687b0a443eebe6bdeaa13eb94f5cc5515c91d9e8300c4533ec0",
-      "nota": "ampliacion sabado (2026-10-02): dirigida por las preguntas del test"
+      "nota": "ampliacion v5: retirado tras r40_corpus_v5 (Plan Nacional de Desarrollo 2010-2014: ley omnibus que satura el top-10; 276 articulos)"
     },
     {
       "doc_id": "ley_1453_2011",
@@ -7094,7 +7094,7 @@
       ],
       "items_del_banco": 0,
       "canonico": [],
-      "estado": "descargado",
+      "estado": "error",
       "tipo_fuente": "html",
       "fecha_consulta": "2026-10-02",
       "archivos": [
@@ -7107,7 +7107,7 @@
       ],
       "bytes": 824868,
       "sha256": "bb1e1d9fcfec72e81b1e97554b491229363d948f6e8afd06b65ca3163124f7ea",
-      "nota": "ampliacion sabado (2026-10-02): dirigida por las preguntas del test"
+      "nota": "ampliacion v5: retirado tras r40_corpus_v5 (Plan Nacional de Desarrollo 2014-2018: ley omnibus que satura el top-10; 268 articulos)"
     },
     {
       "doc_id": "ley_1757_2015",
@@ -7498,7 +7498,7 @@
       ],
       "items_del_banco": 0,
       "canonico": [],
-      "estado": "descargado",
+      "estado": "error",
       "tipo_fuente": "html",
       "fecha_consulta": "2026-10-02",
       "archivos": [
@@ -7513,7 +7513,7 @@
       ],
       "bytes": 1146151,
       "sha256": "05d24c4f729c72136866f235a258a9ee8951bf06bf891156d81ceb4e5800ae95",
-      "nota": "ampliacion sabado (2026-10-02): dirigida por las preguntas del test"
+      "nota": "ampliacion v5: retirado tras r40_corpus_v5 (Plan Nacional de Desarrollo 2018-2022: ley omnibus que satura el top-10; 406 articulos)"
     },
     {
       "doc_id": "ley_1957_2019",
@@ -8124,7 +8124,7 @@
       ],
       "items_del_banco": 0,
       "canonico": [],
-      "estado": "descargado",
+      "estado": "error",
       "tipo_fuente": "html",
       "fecha_consulta": "2026-10-02",
       "archivos": [
@@ -8141,7 +8141,7 @@
       ],
       "bytes": 1388534,
       "sha256": "ee5f39521c6587d105d6c56d30b093531dc002269e4d657b185c5db538f7a079",
-      "nota": "ampliacion sabado (2026-10-02): dirigida por las preguntas del test"
+      "nota": "ampliacion v5: retirado tras r40_corpus_v5 (Plan Nacional de Desarrollo 2022-2026: ley omnibus que satura el top-10; 500 articulos)"
     },
     {
       "doc_id": "ley_2300_2023",

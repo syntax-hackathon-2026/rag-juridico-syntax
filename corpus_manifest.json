@@ -3,8 +3,8 @@
   "licencia": "CC-BY-4.0",
   "fecha_generacion": "2026-10-03",
   "enlace_nube": "<URL>",
-  "n_documentos": 1251,
-  "n_fragmentos": 180817,
+  "n_documentos": 1247,
+  "n_fragmentos": 179226,
   "documentos": [
     {
       "doc_id": "constitucion_politica_1991",
@@ -3809,21 +3809,6 @@
       "sha256": "76954d248dd3ec2633dd8e8153e0af5b92ca178341e26192d9f9df163e3aad76"
     },
     {
-      "doc_id": "ley_1450_2011",
-      "titulo": "Ley 1450 de 2011",
-      "fuente": "Secretaria del Senado",
-      "url": "http://www.secretariasenado.gov.co/senado/basedoc/ley_1450_2011.html",
-      "fecha_consulta": "2026-10-02",
-      "areas": [
-        "Derecho administrativo",
-        "Derecho tributario"
-      ],
-      "n_articulos": 276,
-      "n_fragmentos": 308,
-      "metodo_ingesta": "parser HTML (BeautifulSoup) + limpieza de navegacion y notas editoriales",
-      "sha256": "c8ec642c86fab290f1142d80233c84b51ae6fc85713546cb76c2fb39e958a152"
-    },
-    {
       "doc_id": "ley_1453_2011",
       "titulo": "Ley 1453 de 2011 (Seguridad ciudadana)",
       "fuente": "Normograma de la CRA (compilacion Avance Juridico)",
@@ -4126,21 +4111,6 @@
       "sha256": "e6d92cf65e6e8830df9f637abb55a4aba7282f66ec8dfeacbfd4e258ba4479d8"
     },
     {
-      "doc_id": "ley_1753_2015",
-      "titulo": "Ley 1753 de 2015",
-      "fuente": "Secretaria del Senado",
-      "url": "http://www.secretariasenado.gov.co/senado/basedoc/ley_1753_2015.html",
-      "fecha_consulta": "2026-10-02",
-      "areas": [
-        "Derecho administrativo",
-        "Derecho tributario"
-      ],
-      "n_articulos": 267,
-      "n_fragmentos": 342,
-      "metodo_ingesta": "parser HTML (BeautifulSoup) + limpieza de navegacion y notas editoriales",
-      "sha256": "ed4baf8012d696e6b9d06ec29aa12c484b0ff086854f83fa43023805bd4a50f2"
-    },
-    {
       "doc_id": "ley_1757_2015",
       "titulo": "Ley 1757 de 2015 (Estatutaria de participacion democratica)",
       "fuente": "Secretaria del Senado",
@@ -4398,21 +4368,6 @@
       "n_fragmentos": 22,
       "metodo_ingesta": "parser HTML (BeautifulSoup) + limpieza de navegacion y notas editoriales",
       "sha256": "85d4ba57220112ae2b50781caf0571d84f3fd05d3e90bcf03639f13f39b03d0e"
-    },
-    {
-      "doc_id": "ley_1955_2019",
-      "titulo": "Ley 1955 de 2019",
-      "fuente": "Secretaria del Senado",
-      "url": "http://www.secretariasenado.gov.co/senado/basedoc/ley_1955_2019.html",
-      "fecha_consulta": "2026-10-02",
-      "areas": [
-        "Derecho administrativo",
-        "Derecho tributario"
-      ],
-      "n_articulos": 334,
-      "n_fragmentos": 455,
-      "metodo_ingesta": "parser HTML (BeautifulSoup) + limpieza de navegacion y notas editoriales",
-      "sha256": "a22ac6505417a21c390ef74c05a43c2456d27a295d6a3826c271202960b08ad2"
     },
     {
       "doc_id": "ley_1957_2019",
@@ -4826,21 +4781,6 @@
       "n_fragmentos": 147,
       "metodo_ingesta": "parser HTML (BeautifulSoup) + limpieza de navegacion y notas editoriales",
       "sha256": "bef4f35655ce34842de419782fe90789be50ea33239b56dd3d3acb872c36a69d"
-    },
-    {
-      "doc_id": "ley_2294_2023",
-      "titulo": "Ley 2294 de 2023",
-      "fuente": "Secretaria del Senado",
-      "url": "http://www.secretariasenado.gov.co/senado/basedoc/ley_2294_2023.html",
-      "fecha_consulta": "2026-10-02",
-      "areas": [
-        "Derecho administrativo",
-        "Derecho tributario"
-      ],
-      "n_articulos": 372,
-      "n_fragmentos": 486,
-      "metodo_ingesta": "parser HTML (BeautifulSoup) + limpieza de navegacion y notas editoriales",
-      "sha256": "6045667d7233c49e2b3e50a7d377a47710f8db27fcba50271f0e1cfa842716ec"
     },
     {
       "doc_id": "ley_2300_2023",

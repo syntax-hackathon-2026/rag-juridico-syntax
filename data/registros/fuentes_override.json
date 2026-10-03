@@ -10363,28 +10363,6 @@
       "nota": "ampliacion v5 (2026-10-03): normas que cita el propio corpus y no tiene (>= 10 documentos citantes)"
     },
     {
-      "doc_id": "ley_1955_2019",
-      "titulo": "Ley 1955 de 2019",
-      "fuente": "Secretaria del Senado",
-      "url": "http://www.secretariasenado.gov.co/senado/basedoc/ley_1955_2019.html",
-      "areas": [
-        "Derecho administrativo",
-        "Derecho tributario"
-      ],
-      "nota": "ampliacion v5 (2026-10-03): normas que cita el propio corpus y no tiene (>= 10 documentos citantes)"
-    },
-    {
-      "doc_id": "ley_1753_2015",
-      "titulo": "Ley 1753 de 2015",
-      "fuente": "Secretaria del Senado",
-      "url": "http://www.secretariasenado.gov.co/senado/basedoc/ley_1753_2015.html",
-      "areas": [
-        "Derecho administrativo",
-        "Derecho tributario"
-      ],
-      "nota": "ampliacion v5 (2026-10-03): normas que cita el propio corpus y no tiene (>= 10 documentos citantes)"
-    },
-    {
       "doc_id": "ley_74_1968",
       "titulo": "Ley 74 de 1968",
       "fuente": "Secretaria del Senado",
@@ -10485,17 +10463,6 @@
       "nota": "ampliacion v5 (2026-10-03): normas que cita el propio corpus y no tiene (>= 10 documentos citantes)"
     },
     {
-      "doc_id": "ley_1450_2011",
-      "titulo": "Ley 1450 de 2011",
-      "fuente": "Secretaria del Senado",
-      "url": "http://www.secretariasenado.gov.co/senado/basedoc/ley_1450_2011.html",
-      "areas": [
-        "Derecho administrativo",
-        "Derecho tributario"
-      ],
-      "nota": "ampliacion v5 (2026-10-03): normas que cita el propio corpus y no tiene (>= 10 documentos citantes)"
-    },
-    {
       "doc_id": "ley_734_2002",
       "titulo": "Ley 734 de 2002",
       "fuente": "Secretaria del Senado",
@@ -10523,17 +10490,6 @@
       "areas": [
         "Derecho administrativo",
         "Derecho comercial y sociedades"
-      ],
-      "nota": "ampliacion v5 (2026-10-03): normas que cita el propio corpus y no tiene (>= 10 documentos citantes)"
-    },
-    {
-      "doc_id": "ley_2294_2023",
-      "titulo": "Ley 2294 de 2023",
-      "fuente": "Secretaria del Senado",
-      "url": "http://www.secretariasenado.gov.co/senado/basedoc/ley_2294_2023.html",
-      "areas": [
-        "Derecho administrativo",
-        "Derecho tributario"
       ],
       "nota": "ampliacion v5 (2026-10-03): normas que cita el propio corpus y no tiene (>= 10 documentos citantes)"
     },

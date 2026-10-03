@@ -352,3 +352,17 @@ En las 50 preguntas, 184 de los 500 puestos del top-10 son ventanas de sentencia
 
 - `src/ingesta/huecos_por_citas.py`: normas que el propio corpus cita y que no están en el corpus, ordenadas por documentos citantes (47 s con multiprocessing). Tabla en `docs/ingesta/huecos_por_citas.md`: 1.006 cuerpos con ≥ 3 documentos citantes. Arriba están Leyes 715/2001, 1122/2007, 1955/2019, 1448/2011, 734/2002, 142/1994, la Ley 2294/2023 (PND) y los tratados aprobados por ley (PIDCP Ley 74/1968, CADH Ley 16/1972, OIT Ley 21/1991). Ni los convenios de doble imposición ni los decretos del SMLMV aparecen: el corpus no los cita por número.
 - `src/ingesta/huecos_preguntas.py`: sobre un lote de preguntas (solo `pregunta` y `opciones`), lista las normas nombradas que no están, los artículos nombrados ausentes y los términos con df < 3 en BM25, por área. En `sample_50` encuentra la Ley 2294/2023 (#218) y la Resolución 368/2014 (#748). Los términos raros son sobre todo erratas del banco. Para el sábado: `--entrada data/test_992.jsonl --md salidas/huecos_test.md`.
+
+
+## 18. Corpus v5: huecos que el propio corpus cita (`r40`, 2026-10-03)
+
+Ampliación automática de v4 (procedimiento `docs/ingesta/corpus_v5_mac.md`, lista y descartes en `docs/ingesta/fuentes_pendientes.md` "Ampliación v5"): detector `huecos_por_citas.py` (≥ 10 documentos citantes, sin actos legislativos, 80 primeros) y `ampliar_desde_citas.py`. Se bajaron 72 normas; 7 decretos únicos reglamentarios se descartaron por tamaño (> 400 artículos) y 3 decretos no existen en el Senado. Los 173.393 fragmentos de v4 no cambian (mismos `chunk_id`, `texto` y orden). Las áreas de las normas nuevas se revisaron por materia (`areas_propuestas_v3.csv`, `aprobado` pendiente).
+
+| híbrido (41 preguntas, filtro `sentencias`, área ×2,0) | fragmentos | doc_hit@1 | doc_hit@10 | MRR | respaldo@10 | art_hit@10 |
+|---|---:|---:|---:|---:|---:|---:|
+| v4 + T (`e18_corpus_v4_t`) | 173.393 | 0,610 | 0,902 | 0,717 | 0,927 | 0,579 |
+| v5 con 65 normas (`r40_corpus_v5`, MPS) | 180.817 | 0,585 | **0,878** | 0,691 | 0,927 | 0,526 |
+
+- **No cumple KEEP** (`doc_hit@10` ≥ 0,902). De las 41 preguntas, 39 conservan su rank; cambian dos. **#218** (rank 1 → fuera): nombra el art. 32 de la Ley 2294/2023 y el art. 313 de la Constitución (el fundamento es la Constitución); con la Ley 2294 en el corpus los 10 puestos del top-10 son de esa ley y sale el art. 313. **#748**: CPACA del rank 6 al 9 por fragmentos de las Leyes 1448/2011, 1753/2015 y 2294/2023.
+- **Decisión**: retirar los 4 Planes Nacionales de Desarrollo (Leyes 2294/2023, 1955/2019, 1753/2015 y 1450/2011), leyes ómnibus que tocan cualquier tema. El corpus queda en **61 normas nuevas, 1.247 documentos y 179.226 fragmentos** (+5.833 sobre v4; v4 idéntico). **Pendiente**: reconstruir el índice y medir de nuevo en la 4090 (`r41_corpus_v5_sin_pnd`) con la misma regla; si tampoco cumple, volver al v4 (`data_corpus_v4.zip`). Los vectores de los fragmentos restantes ya están en `cache_emb/`.
+- Latencia de recuperación en un M1 con MPS: 500 ms/consulta.
