@@ -436,3 +436,20 @@ Generación en sample (mismo índice, Qwen3-8B Q8_0, sin juez):
 - **KEEP: rrf N=20, activado por defecto.** No saca ningún cuerpo del top-10, sube respaldo@10 y citación (+0,41/50), y cuesta +0,1 s/pregunta. N=40 y `puro` dejan subir candidatos de la cola que desplazan documentos buenos.
 - Cambian los pasajes de las 50 respuestas (todo reordenamiento cuenta). **Juez** (las dos entregas en paralelo, mismo índice; regla fijada antes: REVERT si cae más de 0,03): `e50_base_ragas` 0,4503 → `e53_rerank_rrf20_ragas` **0,4565** (+0,006, dentro del ruido ±0,03), total **52,12 → 52,72/80**. Sin ítems sin veredicto. No baja: se mantiene KEEP.
 - Medido sobre el índice de la ola 1. Tras congelar el índice del sábado hay que repetir `r50`/`r53` y el determinismo (dos corridas con `SYNTAX_LLM_CACHE=off` → `comparar_entregas.py` = 0 diferencias, también entre máquinas) antes de la corrida final. Apagar con `SYNTAX_RERANKER=off`.
+
+## 21. Parámetros de la fusión (`f00`–`f06`, 2026-10-03)
+
+`RRF_K`, candidatos por rama y peso de cada rama estaban fijos (60, 40, 1:1) y nunca se habían medido. Quedan como variables de entorno con esos mismos valores por defecto: `SYNTAX_RRF_K`, `SYNTAX_N_CANDIDATOS`, `SYNTAX_PESO_BM25`, `SYNTAX_PESO_DENSO`. Índice v5 congelado (185.215 fragmentos), reranker rrf N=20 y metadatos activados, 41 preguntas con fundamento. Regla KEEP fijada antes: doc_hit@10 y respaldo@10 ≥ base, ningún cuerpo sale del top-10, sube MRR o art_hit.
+
+| variante | doc_hit@1 | doc_hit@10 | MRR | art_hit@10 | respaldo@10 | cambios |
+|---|---:|---:|---:|---:|---:|---|
+| base `f00` (k 60, 40 cand.) | 0,634 | 0,878 | 0,700 | 0,579 | 0,939 | — (= `r53`) |
+| `f01_k20` | 0,634 | 0,878 | 0,706 | 0,579 | 0,939 | art #589 4 → 3, #1089 6 → 4; doc #58 4 → 2, #647 9 → 10 |
+| `f02_k100` | 0,634 | 0,878 | 0,699 | 0,579 | 0,939 | ±1 puesto en 3 preguntas |
+| `f03_cand100` | 0,659 | 0,829 | 0,711 | 0,579 | 0,939 | **#647 y #1073 fuera** |
+| `f04_cand200` | 0,659 | 0,829 | 0,715 | 0,526 | 0,951 | #647 y #1073 fuera, art #358 fuera |
+| `f05_denso15` | 0,634 | 0,854 | 0,703 | 0,579 | 0,927 | #1073 fuera, respaldo #51 1 → 0,5 |
+| `f06_bm2515` | 0,659 | 0,854 | 0,723 | 0,526 | 0,939 | #647 fuera, art #358 y #589 fuera |
+
+- **Se mantienen los valores de siempre.** Más candidatos o más peso a una rama sube el rank 1 pero deja entrar candidatos de la cola que el boost de área (×2) empuja sobre el documento bueno (el mismo patrón del reranker N=40). `k=20` cumple la regla, pero la ganancia es de 2 artículos en 41 y deja #647 en el borde (puesto 10). No justifica cambiar la configuración congelada horas antes de la corrida final.
+- Conclusión: con el corpus congelado, la recuperación está en su techo de runtime. Los fallos que quedan (#247, #679, #239, #661) no nombran su norma y los fallos de artículo son de ranking dentro del documento correcto.
