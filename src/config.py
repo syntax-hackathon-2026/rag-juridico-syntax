@@ -90,6 +90,24 @@ CUPO_NORMAS = int(os.environ.get("SYNTAX_CUPO_NORMAS", "0"))
 MAX_POR_DOC = int(os.environ.get("SYNTAX_MAX_POR_DOC", "0"))
 if CUPO_NORMAS < 0 or MAX_POR_DOC < 0:
     raise ValueError("SYNTAX_CUPO_NORMAS y SYNTAX_MAX_POR_DOC deben ser >= 0")
+# Busqueda por metadatos (docs/INDEXACION.md 19). Todo en el hibrido, solo reordena o suma.
+# FACTOR_VOTO: score de las ventanas salvamento/aclaracion (salvo que la consulta pida el voto).
+# FACTOR_VIGENCIA: score de los fragmentos `derogado` (salvo que la consulta hable de vigencia).
+# CUERPO: con un cuerpo nombrado en la consulta, off | boost (x CUERPO_BOOST a sus fragmentos)
+#   | rama (BM25 + denso restringidos a ese documento como ramas RRF de peso CUERPO_PESO).
+# ALIAS: nombres de normas que citations.py no reconoce (titulos del manifest + pocos fijos).
+FACTOR_VOTO = float(os.environ.get("SYNTAX_FACTOR_VOTO", "1.0"))
+FACTOR_VIGENCIA = float(os.environ.get("SYNTAX_FACTOR_VIGENCIA", "1.0"))
+CUERPO = os.environ.get("SYNTAX_CUERPO", "off")
+CUERPO_PESO = float(os.environ.get("SYNTAX_CUERPO_PESO", "1.0"))
+CUERPO_BOOST = float(os.environ.get("SYNTAX_CUERPO_BOOST", "1.5"))
+ALIAS = os.environ.get("SYNTAX_ALIAS", "off")
+if not (0 < FACTOR_VOTO <= 1 and 0 < FACTOR_VIGENCIA <= 1):
+    raise ValueError("SYNTAX_FACTOR_VOTO y SYNTAX_FACTOR_VIGENCIA deben estar en (0, 1]")
+if CUERPO not in {"off", "boost", "rama"} or ALIAS not in {"off", "on"}:
+    raise ValueError("SYNTAX_CUERPO debe ser off|boost|rama y SYNTAX_ALIAS off|on")
+if CUERPO_PESO < 0 or CUERPO_BOOST < 1:
+    raise ValueError("SYNTAX_CUERPO_PESO >= 0 y SYNTAX_CUERPO_BOOST >= 1")
 EXPERIMENTS_CSV = EVALUATION_DIR / "experiments.csv"
 
 # Encoder denso (enunciado 3.1). bge-m3: MIT, 1024 dim, 8192 tokens, sin prefijos.
@@ -213,6 +231,11 @@ def filtro_metadata() -> dict:
 
 def area_metadata() -> dict:
     return {"boost": AREA_BOOST, "fuente": "corpus_manifest.json", "aplica_a": "hibrido"}
+
+
+def metadatos_metadata() -> dict:
+    return {"factor_voto": FACTOR_VOTO, "factor_vigencia": FACTOR_VIGENCIA, "cuerpo": CUERPO,
+            "cuerpo_peso": CUERPO_PESO, "cuerpo_boost": CUERPO_BOOST, "alias": ALIAS}
 
 
 def composicion_metadata() -> dict:

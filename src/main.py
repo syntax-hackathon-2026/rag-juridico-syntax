@@ -112,7 +112,7 @@ def main() -> int:
                       "generation_k": config.GENERATION_K, "citar_evidencia": config.CITAR_EVIDENCIA,
                       "lookup": config.lookup_metadata(),
                       "filtro_cita": config.filtro_metadata(), "area": config.area_metadata(),
-                      "composicion": config.composicion_metadata(),
+                      "composicion": config.composicion_metadata(), "metadatos": config.metadatos_metadata(),
                       "agentico": config.agentico_metadata()},
         "indice": {k: info_indice.get(k) for k in ("n_fragmentos", "sha256_chunks", "version_segmentador")}
                   | {"encoder": (info_indice.get("denso") or {}).get("modelo"),
