@@ -436,3 +436,24 @@ Generación en sample (mismo índice, Qwen3-8B Q8_0, sin juez):
 - **KEEP: rrf N=20, activado por defecto.** No saca ningún cuerpo del top-10, sube respaldo@10 y citación (+0,41/50), y cuesta +0,1 s/pregunta. N=40 y `puro` dejan subir candidatos de la cola que desplazan documentos buenos.
 - Cambian los pasajes de las 50 respuestas (todo reordenamiento cuenta). **Juez** (las dos entregas en paralelo, mismo índice; regla fijada antes: REVERT si cae más de 0,03): `e50_base_ragas` 0,4503 → `e53_rerank_rrf20_ragas` **0,4565** (+0,006, dentro del ruido ±0,03), total **52,12 → 52,72/80**. Sin ítems sin veredicto. No baja: se mantiene KEEP.
 - Medido sobre el índice de la ola 1. Tras congelar el índice del sábado hay que repetir `r50`/`r53` y el determinismo (dos corridas con `SYNTAX_LLM_CACHE=off` → `comparar_entregas.py` = 0 diferencias, también entre máquinas) antes de la corrida final. Apagar con `SYNTAX_RERANKER=off`.
+
+## 21. Sentencias y derogados detrás de la norma (`r60`–`r64`, 2026-10-03)
+
+Diagnóstico sobre el v5 congelado (`r60_base`, con reranker rrf20): de las 15 preguntas cuyo cuerpo no queda en el top-1, en 6 lo ocupa una ventana de sentencia en una pregunta conceptual que no nombra ninguna (#60 T-323/2024, #647 T-1096/2008, #661 C-389/2023, #490, #617, #352). El 72 % de los fragmentos (133.626 de 185.215) son sentencias. En otras dos (#589, #528) compite el Decreto 1400/1970 (el CPC, derogado entero por el CGP), que casi no tiene fragmentos marcados `derogado`, así que `SYNTAX_FACTOR_VIGENCIA` no lo toca.
+
+Dos factores en runtime, del mismo tipo que `FACTOR_VOTO` (multiplican el score de la fusión antes del reranker, no filtran), **apagados por defecto**:
+
+- `SYNTAX_FACTOR_SENTENCIA`: ventanas `tipo == sentencia`, salvo que la consulta nombre una sentencia (`citations.py`/alias) o diga `sentencia|jurisprudenc|precedente|subregla|ratio decidendi|providencia|fallo`. En el test se activa en 778 de 992 preguntas. Disparo `factor_sentencia`.
+- `SYNTAX_FACTOR_DEROGADA`: documentos derogados enteros (`config.DOCS_DEROGADOS`: Decreto 1400/1970, Decreto 01/1984 y Decreto 2737/1989), salvo que la consulta los nombre o hable de vigencia.
+
+| híbrido (41 con fundamento) | doc_hit@1 | doc_hit@3 | doc_hit@10 | MRR | respaldo@10 | art_hit@1 | art_hit@10 |
+|---|---:|---:|---:|---:|---:|---:|---:|
+| `r60_base` | 0,634 | 0,732 | 0,878 | 0,700 | 0,939 | 0,368 | 0,579 |
+| `r61_sent07` | 0,659 | 0,780 | 0,878 | 0,732 | 0,927 | 0,421 | 0,579 |
+| `r62_sent05` | 0,659 | 0,805 | 0,878 | 0,738 | 0,927 | 0,421 | 0,579 |
+| `r63_derog05` | 0,610 | 0,732 | 0,878 | 0,692 | 0,939 | 0,368 | 0,579 |
+| **`r64_sent05_derog05`** | **0,659** | **0,805** | 0,878 | **0,742** | 0,927 | **0,421** | 0,579 |
+
+- `r64` sube 8 preguntas (#60 8 → 2, #647 9 → 2, #352 3 → 1 con el artículo, #617 2 → 1, #490 5 → 3, #589 3 → 2 y art. 4 → 2, #1089 art. 6 → 5) y ningún cuerpo sale del top-10.
+- Pierde **#51**: respaldo 1 → 0,5, porque el art. 88 de la Constitución solo estaba respaldado por una ventana de la SU-429/2024 que lo cita, y el factor la saca del top-10. Además #879 baja de 1 a 2 (sin sentencias en su top-10: es reacomodo del reranker rrf).
+- No cumple la regla KEEP de la sección 19 (respaldo@10 0,939 → 0,927). **Pendiente**: medir la generación en sample (`e60_base` frente a `e64_sent05_derog05`) y decidir; si la citación no baja, activarlo.

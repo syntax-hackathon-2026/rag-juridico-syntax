@@ -34,6 +34,7 @@ N_CANDIDATOS = 40
 # Excepciones de los factores de metadatos (texto normalizado de la consulta)
 _PIDE_VOTO = re.compile(r"salvamento|aclaracion(?:es)? de voto|disident|voto particular|salvo (?:su|el) voto")
 _PIDE_VIGENCIA = re.compile(r"derog|vigen|antes de la reforma|texto original|subrogad")
+_PIDE_JURISPRUDENCIA = re.compile(r"sentencia|jurisprudenc|precedente|subregla|ratio decidendi|providencia|fallo")
 
 
 def _sin_ceros(cuerpo: tuple) -> tuple:
@@ -79,6 +80,8 @@ class Retriever:
         self.forma_corpus = {_sin_ceros(k): k for k in sorted(self.por_cuerpo, key=str)}
         self.es_voto = np.array([c.get("seccion") in ("salvamento", "aclaracion") for c in self.chunks])
         self.es_derogado = np.array([c.get("vigencia") == "derogado" for c in self.chunks])
+        self.es_sentencia = np.array([c["tipo"] == "sentencia" for c in self.chunks])
+        self.es_doc_derogado = np.array([c["doc_id"] in config.DOCS_DEROGADOS for c in self.chunks])
         self._vectores_cuerpo: dict[tuple, np.ndarray] = {}
         self.disparos: list[str] = []  # reglas de metadatos activadas en la ultima consulta
         import bm25s
@@ -153,6 +156,16 @@ class Retriever:
             reglas.append((self.es_voto, config.FACTOR_VOTO))
         if config.FACTOR_VIGENCIA != 1.0 and not _PIDE_VIGENCIA.search(t):
             reglas.append((self.es_derogado, config.FACTOR_VIGENCIA))
+        if config.FACTOR_SENTENCIA != 1.0 or config.FACTOR_DEROGADA != 1.0:
+            nombrados = self.nombrados(consulta)
+            if (config.FACTOR_SENTENCIA != 1.0 and not _PIDE_JURISPRUDENCIA.search(t)
+                    and not any(c[0] == "jurisprudencia" for c in nombrados)):
+                reglas.append((self.es_sentencia, config.FACTOR_SENTENCIA))
+                self.disparos.append("factor_sentencia")
+            nombra_derogado = any(self.chunks[self.por_cuerpo[c][0]]["doc_id"] in config.DOCS_DEROGADOS
+                                  for c in nombrados if c in self.por_cuerpo)
+            if config.FACTOR_DEROGADA != 1.0 and not nombra_derogado and not _PIDE_VIGENCIA.search(t):
+                reglas.append((self.es_doc_derogado, config.FACTOR_DEROGADA))
         for mascara, factor in reglas:
             for i in fusion:
                 if mascara[i]:
