@@ -1,0 +1,64 @@
+{
+  "experimento": "c00_base",
+  "fecha": "2026-10-03T00:13:51+00:00",
+  "commit": "a7b5d67",
+  "entrada": "sample_50.jsonl",
+  "n_items": 50,
+  "decoder": {
+    "llm": "qwen3-8b-q8",
+    "gguf": "Qwen3-8B-Q8_0.gguf",
+    "sha256": "408b955510e196121c1c375201744783b5c9a43c7956d73fc78df54c66e883d6",
+    "cuantizacion": "Q8_0",
+    "llama_cpp": "",
+    "url": "http://127.0.0.1:8080/v1"
+  },
+  "prompt_version": "p-v0+glosario",
+  "pensar": {
+    "formatos": [],
+    "tokens": 768
+  },
+  "retrieval": {
+    "modo": "hibrido",
+    "retrieval_k": 10,
+    "generation_k": 5,
+    "citar_evidencia": "top10",
+    "lookup": {
+      "modo": "on",
+      "variante": "a",
+      "fuente": "consulta",
+      "bonus": 0.005,
+      "m": 2,
+      "aplica_a": "hibrido",
+      "parser": "scripts/citations.py"
+    },
+    "filtro_cita": {
+      "modo": "sentencias",
+      "registro": "data/registros/solo_por_cita.json"
+    },
+    "area": {
+      "boost": 2.0,
+      "fuente": "corpus_manifest.json",
+      "aplica_a": "hibrido"
+    },
+    "agentico": {
+      "glosario": "on",
+      "consulta_opciones": "off",
+      "planificador": "off",
+      "plan_normas": "on",
+      "peso_extra": 1.0,
+      "prompt_mc": "p-v0"
+    }
+  },
+  "indice": {
+    "n_fragmentos": 173393,
+    "sha256_chunks": "030d9268939055b63ee20a27d9714103e78af93e5c3e2cfa06a70352c3ad7f18",
+    "version_segmentador": "seg-v1",
+    "encoder": "BAAI/bge-m3",
+    "encoder_revision": "5617a9f61b028005a4858fdac845db406aefb181"
+  },
+  "device_encoder": "cuda",
+  "abstencion": {
+    "modo": "off",
+    "config_sha256": "d163a18ba87ab24f0430ef65b46db7b127c374b417e14439f4dfe52edf876232"
+  }
+}

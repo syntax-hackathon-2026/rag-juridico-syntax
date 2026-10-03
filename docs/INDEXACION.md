@@ -312,3 +312,43 @@ Documentos por área (un documento cuenta en cada una de sus áreas; "recuperabl
 - Parseo: `parsear_html.py` reintenta con `html.parser` cuando lxml trunca una sentencia (10 C- en Windows). Ningún `.txt` previo cambia.
 - **Generación con el corpus final** (`e19_corpus_v4_t`, Qwen3-8B Q8_0 en la 4090, GPU sin otra carga): cerradas 0,733 (= `e13`), citación **17,55** (`e13`: 16,33), abstención 8,37 (=), 0 errores de schema, **4,0 s/pregunta** (recuperación 610 ms). Única corrida con juez de la ola (`e19_corpus_v4_t_ragas`, presupuesto de API): RAGAS 0,4314 y total **53,53/80**, pero el juez **no devolvió veredicto en 4 de 35 ítems** (cuentan como cero). Los 31 juzgados promedian 0,487 frente a 0,5019 de `e13`, dentro del ruido del juez (±0,03, `docs/GENERACION.md` 6). Cambiaron 21 de las 35 respuestas de texto libre (otra evidencia). No se gastó una segunda corrida con juez: no hay reversión que confirmar.
 
+
+## 17. Composición del top-10 y huecos de fuente de las cerradas (`c00`–`c02`, 2026-10-02)
+
+Base: `e24_final` (cerradas 12/15). `c00_base` la reproduce con 0 diferencias (`comparar_entregas.py`). Las tres cerradas que fallan desde `e13` son #128, #647 y #671. Rank de su fragmento clave en los 40 candidatos por rama, con la consulta pregunta + opciones y el área:
+
+| id | fragmento clave | fusión | BM25 | denso | top-10 (normas/sentencias) |
+|---|---|---:|---:|---:|---|
+| #647 | `codigo_civil#art_176#p1` ("socorrerse y ayudarse mutuamente") | 17 | — | 11 | 4 / 6 |
+| #671 | `ley_1692_2013#art_4` (residente de ambos Estados) | — | — | — | 10 / 0 |
+| #128 | `decreto_663_1993#art_24#p1` (leasing de las compañías de financiamiento) | 46 | 37 | — | 10 / 0 |
+
+En las 50 preguntas, 184 de los 500 puestos del top-10 son ventanas de sentencias.
+
+**Composición del top-k** (`retriever._componer`, apagada por defecto): `SYNTAX_CUPO_NORMAS=n` garantiza al menos n fragmentos de normas en el top-k, cambiando las sentencias peor ubicadas por las mejores normas que siguen en la fusión. `SYNTAX_MAX_POR_DOC=m` permite como máximo m ventanas de una misma sentencia. Solo reordena candidatos de la fusión.
+
+| híbrido (41 con fundamento) | doc_hit@10 | MRR | respaldo@10 | art_hit@10 | cambios |
+|---|---:|---:|---:|---:|---|
+| base | 0,902 | 0,717 | 0,927 | 0,579 | — |
+| cupo 4–7 | 0,927 | 0,720 | 0,919–0,927 | 0,579 | +#661 |
+| máx. 2 por sentencia | 0,902 | 0,722 | 0,927 | 0,579 | #60: Constitución art. 29 del rank 7 al 4 |
+| **cupo 6 + máx. 2** | **0,927** | **0,724** | 0,927 | 0,579 | +#661, sin pérdidas |
+
+| generación (sin juez) | cerradas | citación | abstención | s/pregunta |
+|---|---:|---:|---:|---:|
+| `c00_base` | 12/15 | 17,55 | 8,60 | 4,06 |
+| `c01_cupo6m2` | 12/15 | 17,55 | 8,60 | 3,81 |
+| `c02_cupo6m2_k10` (`GENERATION_K=10`) | 11/15 (pierde #528) | 17,96 | 8,60 | 4,51 |
+
+- **c01: neutra en lo determinista**. Cambia los pasajes de 21 de las 50 respuestas, así que su efecto en el texto libre solo lo mide el juez. Queda **apagada** y es candidata para la corrida final con juez.
+- **c02: REVERT**. Con k=10 el modelo ve el art. 176 en #647 y aun así elige D. En #528 inventa "SMLMV ≈ 1.000.000 COP" y pasa de C a B.
+- **Las tres cerradas no se arreglan con recuperación ni con generación**:
+  - #647: el art. 176 iguala socorro y ayuda. La distinción "ayuda = apoyo intelectual, moral y afectivo" es doctrina y ningún fragmento del corpus la trae (búsqueda de "socorro" + "ayuda" + "moral/afectivo": 5 pasajes, ninguno la define).
+  - #671: "reglas de desempate" no aparece en ninguna norma tributaria. La regla (art. 4 de los convenios) no entra a los 40 candidatos.
+  - #128: "Fintech" no aparece junto a "leasing" en ninguna norma del corpus.
+  - Además #528 depende del SMLMV del año, que ningún documento del corpus trae.
+
+**Herramientas de huecos de fuente** (solo stdlib + `citations.py`, no descargan nada):
+
+- `src/ingesta/huecos_por_citas.py`: normas que el propio corpus cita y que no están en el corpus, ordenadas por documentos citantes (47 s con multiprocessing). Tabla en `docs/ingesta/huecos_por_citas.md`: 1.006 cuerpos con ≥ 3 documentos citantes. Arriba están Leyes 715/2001, 1122/2007, 1955/2019, 1448/2011, 734/2002, 142/1994, la Ley 2294/2023 (PND) y los tratados aprobados por ley (PIDCP Ley 74/1968, CADH Ley 16/1972, OIT Ley 21/1991). Ni los convenios de doble imposición ni los decretos del SMLMV aparecen: el corpus no los cita por número.
+- `src/ingesta/huecos_preguntas.py`: sobre un lote de preguntas (solo `pregunta` y `opciones`), lista las normas nombradas que no están, los artículos nombrados ausentes y los términos con df < 3 en BM25, por área. En `sample_50` encuentra la Ley 2294/2023 (#218) y la Resolución 368/2014 (#748). Los términos raros son sobre todo erratas del banco. Para el sábado: `--entrada data/test_992.jsonl --md salidas/huecos_test.md`.

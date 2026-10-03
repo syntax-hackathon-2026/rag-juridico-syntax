@@ -82,6 +82,14 @@ if FILTRO_CITA not in {"off", "sentencias", "todo"}:
 AREA_BOOST = float(os.environ.get("SYNTAX_AREA_BOOST", "2.0"))
 if not 1.0 <= AREA_BOOST < float("inf"):
     raise ValueError("SYNTAX_AREA_BOOST debe ser un factor finito >= 1")
+# Composicion del top-k (docs/INDEXACION.md 17): las ventanas de sentencias desplazan
+# articulos (#647: CC art. 176 en el puesto 17 con 6 sentencias en el top-10).
+# CUPO_NORMAS = minimo de fragmentos de normas en el top-k (cambia sentencias por las
+# mejores normas que siguen). MAX_POR_DOC = maximo de ventanas por sentencia. 0 = apagado.
+CUPO_NORMAS = int(os.environ.get("SYNTAX_CUPO_NORMAS", "0"))
+MAX_POR_DOC = int(os.environ.get("SYNTAX_MAX_POR_DOC", "0"))
+if CUPO_NORMAS < 0 or MAX_POR_DOC < 0:
+    raise ValueError("SYNTAX_CUPO_NORMAS y SYNTAX_MAX_POR_DOC deben ser >= 0")
 EXPERIMENTS_CSV = EVALUATION_DIR / "experiments.csv"
 
 # Encoder denso (enunciado 3.1). bge-m3: MIT, 1024 dim, 8192 tokens, sin prefijos.
@@ -188,6 +196,10 @@ def filtro_metadata() -> dict:
 
 def area_metadata() -> dict:
     return {"boost": AREA_BOOST, "fuente": "corpus_manifest.json", "aplica_a": "hibrido"}
+
+
+def composicion_metadata() -> dict:
+    return {"cupo_normas": CUPO_NORMAS, "max_por_doc": MAX_POR_DOC, "aplica_a": "top-k"}
 
 
 def agentico_metadata() -> dict:
