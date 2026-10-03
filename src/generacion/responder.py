@@ -81,6 +81,8 @@ def _generar_json(decoder, msgs: list[dict], esquema: dict, max_tokens: int, lla
         llamada = {"ms": r.ms, "fin": r.fin, "uso": r.uso, "tiempos": r.tiempos, "texto": r.texto}
         if r.razonamiento:
             llamada["razonamiento"] = r.razonamiento
+        if r.cache:  # ms es el de la llamada original
+            llamada["cache"] = True
         llamadas.append(llamada)
         try:
             salida = json.loads(r.texto)
@@ -171,11 +173,15 @@ def responder(item: dict, retriever, decoder, generation_k: int | None = None,
     if abst:
         campos = postproceso.vacios(formato)
     traza["abstencion"] = {"abstiene": abst, "motivos": motivos}
-    ms_total = (time.perf_counter() - t0) * 1000
+    # Una llamada servida desde la cache cuenta con su duracion original: latencia_ms es
+    # la de generar la respuesta, no la de leerla.
+    ms_cache = sum(l["ms"] for l in llamadas if l.get("cache"))
+    ms_total = (time.perf_counter() - t0) * 1000 + ms_cache
     reg = postproceso.registro(item["id"], formato, campos, abst, [p.pasaje() for p in top], int(round(ms_total)))
     traza["citas_respuesta"] = sorted(map(list, citas.cuerpos(answer_text(reg))), key=str)
     traza["latencia"] = {"ret_ms": round(ms_ret, 1), "plan_ms": round(info_ret["plan_ms"], 1),
                          "gen_ms": round(sum(l["ms"] for l in llamadas), 1),
-                         "total_ms": round(ms_total, 1), "n_llamadas": len(llamadas)}
+                         "total_ms": round(ms_total, 1), "n_llamadas": len(llamadas),
+                         "n_cache": sum(1 for l in llamadas if l.get("cache"))}
     traza["errores_schema"] = postproceso.validar(reg)
     return reg, traza

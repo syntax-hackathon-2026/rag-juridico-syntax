@@ -138,6 +138,11 @@ LLM_URL = os.environ.get("SYNTAX_LLM_URL", "http://127.0.0.1:8080/v1")
 LLM_CTX = 8192
 LLM_SEED = 0
 LLM_TIMEOUT_S = 600
+# Cache de respuestas del decoder por hash de la peticion (generacion/llm.py): on | off.
+# off en la verificacion en vivo y al medir latencia.
+LLM_CACHE = os.environ.get("SYNTAX_LLM_CACHE", "on")
+if LLM_CACHE not in ("on", "off"):
+    raise ValueError("SYNTAX_LLM_CACHE: on | off")
 
 # Pipeline de respuesta. retrieval_k fijo en 10 (el evaluador mira los 10 primeros
 # pasajes); generation_k es el hiperparametro de cuantos ve el decoder.
@@ -178,6 +183,7 @@ if not 0.0 <= PESO_EXTRA < float("inf"):
 SALIDAS_DIR = ROOT / "salidas"  # entregas de desarrollo (en .gitignore)
 PLANES_DIR = SALIDAS_DIR / "planes"  # cache determinista de planes (planificador)
 TRAZAS_DIR = SALIDAS_DIR / "trazas"
+CACHE_LLM_DIR = SALIDAS_DIR / "cache_llm"  # un JSONL por GGUF; se puede copiar entre maquinas iguales
 SCHEMA_PATH = ROOT / "schema" / "submission.schema.json"
 SAMPLE_PATH = ROOT / "data" / "sample_50.jsonl"
 TEST_PATH = ROOT / "data" / "test_992.jsonl"  # se entrega el sabado 09:00
