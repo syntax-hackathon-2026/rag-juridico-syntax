@@ -1,4 +1,4 @@
-"""Interfaz grafica del RAG juridico de Syntax (Streamlit), con la marca de Software Colombia.
+"""Interfaz grafica del RAG juridico de Syntax (Streamlit), con la estetica de Software Colombia.
 
     streamlit run src/interfaz/app.py
 
@@ -11,9 +11,13 @@ que la entrega. Dos modos:
 
 De los ejemplos de sample_50 solo pasan los campos de runtime (responder.entrada_runtime):
 legal_basis y las respuestas nunca se muestran ni se usan.
+
+Estetica de software-colombia.com: turquesa #09ACC4 (hover #0890A8), naranja #FF993B,
+texto #32373C, Montserrat, tarjetas blancas con borde turquesa suave y pie turquesa claro.
 """
 from __future__ import annotations
 
+import base64
 import html
 import json
 import sys
@@ -29,6 +33,8 @@ from common import read_jsonl  # noqa: E402
 from evaluate import answer_text  # noqa: E402
 
 ASSETS = Path(__file__).resolve().parent / "assets"
+LOGO = ASSETS / "software_colombia.png"
+MODOS = ("Consultar", "Explorar entrega")
 FORMATOS = {"multiple_choice": "Selección múltiple", "semi_open": "Semiabierta", "open_ended": "Abierta (caso)"}
 CAMPOS_RUNTIME = ("id", "formato", "area", "pregunta", "opciones")  # = responder.CAMPOS_RUNTIME
 ETIQUETAS = {
@@ -43,26 +49,82 @@ ORDEN_CAMPOS = {
 }
 CSS = """
 <style>
-.sx-banda {border-left: 6px solid var(--primary-color, #0B4F8A); padding: .4rem 1rem; margin-bottom: 1rem;}
-.sx-banda h1 {margin: 0; font-size: 1.9rem;}
-.sx-banda p {margin: 0; opacity: .75;}
-.sx-chip {display: inline-block; padding: .15rem .6rem; margin: .15rem .25rem .15rem 0;
-          border-radius: 999px; font-size: .85rem; border: 1px solid;}
-.sx-ok {background: rgba(22, 163, 74, .12); border-color: rgba(22, 163, 74, .6);}
-.sx-no {background: rgba(220, 38, 38, .12); border-color: rgba(220, 38, 38, .6);}
-.sx-pie {opacity: .65; font-size: .8rem; margin-top: 2rem; border-top: 1px solid rgba(128,128,128,.3);
-         padding-top: .6rem;}
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap');
+:root {--sc-turquesa: #09ACC4; --sc-turquesa-osc: #0890A8; --sc-naranja: #FF993B;
+       --sc-texto: #32373C; --sc-gris: #8A8F94; --sc-borde: rgba(9, 172, 196, .22);}
+html, body, p, li, label, input, textarea, button, h1, h2, h3, h4, .stMarkdown, .stCaption {
+    font-family: 'Montserrat', sans-serif !important;}
+header[data-testid="stHeader"], [data-testid="stSidebar"], [data-testid="stSidebarCollapsedControl"] {display: none;}
+[data-testid="stMainBlockContainer"], .block-container {max-width: 1240px; padding-top: 0; padding-bottom: 0;}
+[data-testid="stMain"] {overflow-x: hidden;}
+h1, h2, h3 {color: var(--sc-texto); font-weight: 700 !important;}
+
+/* barra de navegacion */
+.st-key-nav {background: #fff; box-shadow: 0 10px 30px -18px rgba(0,0,0,.25); width: 100vw !important;
+    max-width: 100vw; margin: 0 0 .5rem calc(50% - 50vw); padding: .6rem calc(50vw - 50% + 1rem);}
+.sc-logo img {height: 64px; width: auto;}
+.st-key-modo {width: 100% !important;}
+.st-key-modo [data-testid="stRadioGroup"] {justify-content: flex-end; gap: 2.4rem;}
+.st-key-modo [data-testid="stRadioOption"] > div > div:first-child {display: none;}
+.st-key-modo [data-testid="stRadioOption"] {padding-bottom: .35rem; border-bottom: 3px solid transparent; cursor: pointer;}
+.st-key-modo [data-testid="stRadioOption"] p {text-transform: uppercase; font-weight: 700; font-size: .85rem;
+    letter-spacing: .02em; color: var(--sc-texto);}
+.st-key-modo [data-testid="stRadioOption"][data-selected="true"] {border-bottom-color: var(--sc-turquesa);}
+.st-key-modo [data-testid="stRadioOption"]:hover p {color: var(--sc-turquesa);}
+
+/* titulo de seccion */
+.sc-seccion {text-align: center; margin: 2.2rem 0 1.6rem;}
+.sc-kicker {color: var(--sc-turquesa); font-size: .95rem; margin-bottom: .2rem;}
+.sc-seccion h1 {font-size: 2.3rem; margin: 0; padding: 0;}
+.sc-barra {width: 135px; height: 4px; background: var(--sc-naranja); margin: .7rem auto 1rem;}
+.sc-sub {color: var(--sc-gris); font-size: 1.02rem; line-height: 1.75; max-width: 640px; margin: 0 auto;}
+
+/* tarjetas */
+[class*="st-key-tarjeta"] {background: #fff; border: 1px solid var(--sc-borde) !important; border-radius: 6px;
+    box-shadow: 0 6px 22px -10px rgba(9, 172, 196, .35); padding: 1.4rem 1.6rem;}
+.sc-titulo {text-align: center; font-weight: 700; font-size: 1.25rem; color: var(--sc-texto); margin-bottom: .2rem;}
+.sc-titulo-sub {text-align: center; font-weight: 400; color: var(--sc-texto); font-size: 1rem;}
+.sc-mini {width: 68px; height: 4px; background: var(--sc-turquesa); margin: .7rem auto 1.1rem;}
+.sc-campo {font-weight: 700; color: var(--sc-texto); margin: .9rem 0 .2rem;}
+.sc-opcion {border-left: 4px solid var(--sc-turquesa); background: rgba(9, 172, 196, .08);
+    padding: .8rem 1rem; border-radius: 0 4px 4px 0; color: var(--sc-texto);}
+.sc-opcion b {color: var(--sc-turquesa-osc);}
+.sc-abstiene {border-left: 4px solid var(--sc-naranja); background: rgba(255, 153, 59, .1);
+    padding: .8rem 1rem; border-radius: 0 4px 4px 0;}
+.sc-pregunta {color: var(--sc-gris); font-size: 1.02rem; line-height: 1.7; text-align: center; max-width: 900px; margin: 0 auto 1rem;}
+.sc-chip {display: inline-block; padding: .2rem .7rem; margin: .2rem .3rem .2rem 0; border-radius: 3px;
+    font-size: .8rem; font-weight: 600; color: #fff;}
+.sc-ok {background: var(--sc-turquesa);}
+.sc-no {background: #D9534F;}
+.sc-tag {display: inline-block; padding: .15rem .6rem; margin: .15rem .3rem .15rem 0; border: 1px solid var(--sc-borde);
+    border-radius: 3px; font-size: .82rem; color: var(--sc-turquesa-osc);}
+[data-testid="stExpander"] details {border: 1px solid var(--sc-borde); border-radius: 4px;}
+[data-testid="stExpander"] summary p {font-weight: 600; font-size: .9rem;}
+[data-testid="stMetricValue"] {color: var(--sc-turquesa); font-weight: 700;}
+[data-testid="stMetricLabel"] p {text-transform: uppercase; font-size: .75rem; letter-spacing: .04em; color: var(--sc-gris);}
+.stButton button, .stDownloadButton button, [data-testid="stFileUploader"] button {
+    text-transform: uppercase; font-weight: 700; letter-spacing: .03em; border-radius: 3px; padding: .55rem 1.8rem;}
+
+/* pie */
+.sc-pie {background: #E6F6F9; margin: 3.5rem calc(50% - 50vw) 0; padding: 3rem calc(50vw - 50% + 1rem) 2.5rem;}
+.sc-pie-grid {display: grid; grid-template-columns: 1.2fr 1fr 1fr; gap: 2rem; max-width: 1240px; margin: 0 auto;}
+.sc-pie h4 {text-align: center; font-size: 1.35rem; margin: 0;}
+.sc-pie .sc-barra {width: 78px; height: 3px; margin: .6rem auto 1.1rem;}
+.sc-pie p, .sc-pie li {color: var(--sc-gris); text-align: center; font-size: .92rem; line-height: 1.9; margin: 0; list-style: none;}
+.sc-pie ul {padding: 0; margin: 0;}
+.sc-pie a {color: var(--sc-turquesa); text-decoration: none;}
+.sc-pie img {height: 88px; display: block; margin: 0 auto 1rem;}
+@media (max-width: 800px) {.sc-pie-grid {grid-template-columns: 1fr;}
+    .st-key-modo [data-testid="stRadioGroup"] {justify-content: center;}}
 </style>
 """
 
 
 # ---------- recursos (se cargan una vez por proceso) ----------
 
-def _logo() -> Path | None:
-    for nombre in ("software_colombia.svg", "software_colombia.png"):
-        if (ASSETS / nombre).is_file():
-            return ASSETS / nombre
-    return None
+@st.cache_data
+def logo_b64() -> str:
+    return base64.b64encode(LOGO.read_bytes()).decode("ascii") if LOGO.is_file() else ""
 
 
 @st.cache_data
@@ -92,7 +154,62 @@ def recursos():
     return retriever, Decoder(), info_llm
 
 
-# ---------- presentacion ----------
+# ---------- piezas visuales ----------
+
+def md(texto: str) -> None:
+    st.markdown(texto, unsafe_allow_html=True)
+
+
+def seccion(kicker: str, titulo: str, sub: str) -> None:
+    md(f'<div class="sc-seccion"><div class="sc-kicker">{kicker}</div><h1>{titulo}</h1>'
+       f'<div class="sc-barra"></div><div class="sc-sub">{sub}</div></div>')
+
+
+def titulo_tarjeta(titulo: str, sub: str = "") -> None:
+    md(f'<div class="sc-titulo-sub">{sub}</div>' if sub else "")
+    md(f'<div class="sc-titulo">{titulo}</div><div class="sc-mini"></div>')
+
+
+def navegacion() -> str:
+    with st.container(key="nav"):
+        izq, der = st.columns([1, 2], vertical_alignment="center")
+        b64 = logo_b64()
+        izq.markdown(f'<div class="sc-logo"><img src="data:image/png;base64,{b64}" alt="Software Colombia"></div>'
+                     if b64 else "**Software Colombia**", unsafe_allow_html=True)
+        with der:
+            return st.radio("Modo", MODOS, horizontal=True, label_visibility="collapsed", key="modo")
+
+
+def pie() -> None:
+    m = manifest()
+    info = {}
+    if config.INDICE_INFO_PATH.is_file():
+        info = json.loads(config.INDICE_INFO_PATH.read_text(encoding="utf-8"))
+    llm = config.llm_config()
+    frag = f"{info['n_fragmentos']:,}".replace(",", ".") + " fragmentos" if info.get("n_fragmentos") else ""
+    enlace = (f'<li><a href="{html.escape(m["enlace"])}">Descargar corpus e índice</a></li>'
+              if m["enlace"].startswith("http") else "")
+    md(_pie_html(logo_b64(), llm, m, frag, enlace))
+
+
+def _pie_html(b64: str, llm: dict, m: dict, frag: str, enlace: str) -> str:
+    n_docs = f"{m['n_docs']:,}".replace(",", ".")
+    img = f'<img src="data:image/png;base64,{b64}" alt="Software Colombia">' if b64 else ""
+    return f"""<div class="sc-pie"><div class="sc-pie-grid">
+<div>{img}<p>Equipo Syntax</p><p>Sofía Morato · Joel David Niño · Santiago Muñoz</p>
+<p>Hackathon LATAM AI Week 2026 · Uniandes</p></div>
+<div><h4>Nuestro sistema</h4><div class="sc-barra"></div><ul>
+<li>Decoder {html.escape(llm['nombre'])} ({html.escape(str(llm.get('cuantizacion', '')))}), temperatura 0</li>
+<li>Recuperación híbrida BM25 + bge-m3 + RRF, top-{config.RETRIEVAL_K}</li>
+<li>Citas validadas contra los pasajes recuperados</li></ul></div>
+<div><h4>Información de interés</h4><div class="sc-barra"></div><ul>
+<li>Corpus: {n_docs} documentos{' · ' + frag if frag else ''}</li>
+<li>Licencia del corpus CC-BY-4.0</li>{enlace}
+<li>Herramienta de apoyo: no constituye asesoría legal</li></ul></div>
+</div></div>"""
+
+
+# ---------- presentacion del resultado ----------
 
 def chips(registro: dict) -> None:
     """Citas de la respuesta (como las extrae el evaluador) y si los 10 pasajes las respaldan."""
@@ -102,38 +219,35 @@ def chips(registro: dict) -> None:
     if not cuerpos:
         st.caption("La respuesta no cita normas ni sentencias.")
         return
-    html_chips = "".join(
-        f'<span class="sx-chip {"sx-ok" if c in perm else "sx-no"}">'
-        f'{"✓" if c in perm else "✗"} {html.escape(v.nombre(c))}</span>' for c in cuerpos)
+    md("".join(f'<span class="sc-chip {"sc-ok" if c in perm else "sc-no"}">'
+               f'{"✓" if c in perm else "✗"} {html.escape(v.nombre(c))}</span>' for c in cuerpos))
     n_mal = sum(c not in perm for c in cuerpos)
-    st.markdown(html_chips, unsafe_allow_html=True)
     st.caption(f"{len(cuerpos)} citas · {n_mal} sin respaldo en los 10 pasajes recuperados "
-               "(se validan con scripts/citations.py, el mismo criterio del evaluador).")
+               "(mismo criterio de scripts/citations.py que usa el evaluador).")
 
 
 def respuesta(registro: dict, item: dict | None = None) -> None:
     formato = registro["formato"]
     if registro.get("abstencion"):
-        st.warning("El sistema **se abstiene**: la evidencia recuperada no alcanza para responder con respaldo.")
-    if formato == "multiple_choice":
-        letra = registro.get("respuesta_correcta")
-        opciones = (item or {}).get("opciones") or {}
-        if letra:
-            st.success(f"**Opción {letra}**" + (f": {opciones[letra]}" if letra in opciones else ""))
+        md('<div class="sc-abstiene"><b>El sistema se abstiene:</b> la evidencia recuperada no alcanza '
+           'para responder con respaldo.</div>')
+    if formato == "multiple_choice" and (letra := registro.get("respuesta_correcta")):
+        texto = ((item or {}).get("opciones") or {}).get(letra, "")
+        md(f'<div class="sc-opcion"><b>Opción {letra}</b>{": " + html.escape(texto) if texto else ""}</div>')
     for campo in ORDEN_CAMPOS[formato]:
         valor = registro.get(campo)
         if not valor:
             continue
-        st.markdown(f"**{ETIQUETAS[campo]}**")
+        md(f'<div class="sc-campo">{ETIQUETAS[campo]}</div>')
         if isinstance(valor, list):
-            st.markdown(" · ".join(f"`{x}`" for x in valor))
+            md("".join(f'<span class="sc-tag">{html.escape(str(x))}</span>' for x in valor))
         else:
             st.write(valor)
     if formato == "multiple_choice" and registro.get("descarte_opciones"):
         with st.expander("Descarte de las otras opciones"):
             for letra, motivo in sorted(registro["descarte_opciones"].items()):
                 st.markdown(f"**{letra}.** {motivo}")
-    st.markdown("**Citas**")
+    md('<div class="sc-campo">Citas</div>')
     chips(registro)
 
 
@@ -141,9 +255,8 @@ def pasajes(registro: dict, traza: dict | None) -> None:
     titulos = manifest()["titulos"]
     k = (traza or {}).get("generation_k") or config.GENERATION_K
     lista = registro.get("pasajes_recuperados") or []
-    st.subheader(f"Evidencia: {len(lista)} pasajes recuperados")
-    st.caption(f"Texto literal del corpus. Los {k} primeros son los que lee el decoder; "
-               "los 10 cuentan como respaldo de las citas.")
+    titulo_tarjeta("Evidencia recuperada", f"{len(lista)} pasajes literales del corpus")
+    st.caption(f"Los {k} primeros (📖) son los que lee el decoder; los 10 cuentan como respaldo de las citas.")
     for i, p in enumerate(lista, 1):
         marca = "📖 " if i <= k else ""
         score = f" · score {p['score']:.4f}" if p.get("score") is not None else ""
@@ -154,11 +267,10 @@ def pasajes(registro: dict, traza: dict | None) -> None:
 
 def metricas(registro: dict, traza: dict | None) -> None:
     lat = (traza or {}).get("latencia") or {}
-    cols = st.columns(4)
+    cols = st.columns(3)
     cols[0].metric("Latencia total", f"{registro.get('latencia_ms', 0) / 1000:.1f} s")
     cols[1].metric("Recuperación", f"{lat['ret_ms'] / 1000:.2f} s" if "ret_ms" in lat else "—")
     cols[2].metric("Generación", f"{lat['gen_ms'] / 1000:.1f} s" if "gen_ms" in lat else "—")
-    cols[3].metric("Llamadas al decoder", lat.get("n_llamadas", "—"))
     if traza:
         notas = []
         if traza.get("regenerado"):
@@ -175,46 +287,50 @@ def metricas(registro: dict, traza: dict | None) -> None:
 
 
 def resultado(registro: dict, traza: dict | None, item: dict | None) -> None:
-    izq, der = st.columns([1, 1], gap="large")
-    with izq:
-        st.subheader("Respuesta")
+    izq, der = st.columns(2, gap="large")
+    with izq, st.container(key="tarjeta_respuesta"):
+        titulo_tarjeta("Respuesta", FORMATOS.get(registro["formato"], ""))
         respuesta(registro, item)
         metricas(registro, traza)
-        st.download_button("Descargar registro (JSON)", json.dumps(registro, ensure_ascii=False, indent=2),
-                           file_name=f"respuesta_{registro['id']}.json", mime="application/json")
-    with der:
+        st.download_button("Descargar JSON", json.dumps(registro, ensure_ascii=False, indent=2),
+                           file_name=f"respuesta_{registro['id']}.json", mime="application/json", type="primary")
+    with der, st.container(key="tarjeta_evidencia"):
         pasajes(registro, traza)
 
 
 # ---------- modos ----------
 
 def modo_consultar() -> None:
+    seccion("RAG de derecho colombiano", "Consulta Jurídica",
+            "Respuestas a preguntas de derecho colombiano con normas y jurisprudencia "
+            "citadas solo si están respaldadas por el corpus.")
     ej = ejemplos()
-    with st.sidebar:
-        st.markdown("**Ejemplo de `sample_50`**")
-        etiquetas = ["—"] + [f"#{e['id']} · {FORMATOS[e['formato']]} · {e['pregunta'][:50]}" for e in ej]
-        elegido = st.selectbox("Cargar ejemplo", range(len(etiquetas)), format_func=lambda i: etiquetas[i],
-                               label_visibility="collapsed")
-    base = ej[elegido - 1] if elegido else {}
-    clave = f"ej{base.get('id', 0)}"  # widgets nuevos al cambiar de ejemplo
+    with st.container(key="tarjeta_consulta"):
+        etiquetas = ["Escribir una pregunta nueva"] + [
+            f"#{e['id']} · {FORMATOS[e['formato']]} · {e['pregunta'][:70]}" for e in ej]
+        elegido = st.selectbox("Ejemplo de las preguntas de muestra", range(len(etiquetas)),
+                               format_func=lambda i: etiquetas[i])
+        base = ej[elegido - 1] if elegido else {}
+        clave = f"ej{base.get('id', 0)}"  # widgets nuevos al cambiar de ejemplo
 
-    areas = ["(sin área)"] + manifest()["areas"]
-    c1, c2 = st.columns(2)
-    formato = c1.selectbox("Formato", list(FORMATOS), format_func=FORMATOS.get, key=f"f{clave}",
-                           index=list(FORMATOS).index(base.get("formato", "semi_open")))
-    area = c2.selectbox("Área", areas, key=f"a{clave}",
-                        index=areas.index(base["area"]) if base.get("area") in areas else 0)
-    pregunta = st.text_area("Pregunta", base.get("pregunta", ""), height=140, key=f"p{clave}",
-                            placeholder="Ej.: ¿Qué término tiene el demandado para contestar la demanda en el proceso verbal?")
-    opciones = {}
-    if formato == "multiple_choice":
-        previas = base.get("opciones") or {}
-        for letra in "ABCD":
-            texto = st.text_input(f"Opción {letra}", previas.get(letra, ""), key=f"o{letra}{clave}")
-            if texto.strip():
-                opciones[letra] = texto.strip()
+        areas = ["(sin área)"] + manifest()["areas"]
+        c1, c2 = st.columns(2)
+        formato = c1.selectbox("Formato", list(FORMATOS), format_func=FORMATOS.get, key=f"f{clave}",
+                               index=list(FORMATOS).index(base.get("formato", "semi_open")))
+        area = c2.selectbox("Área", areas, key=f"a{clave}",
+                            index=areas.index(base["area"]) if base.get("area") in areas else 0)
+        pregunta = st.text_area("Pregunta", base.get("pregunta", ""), height=130, key=f"p{clave}",
+                                placeholder="Ej.: ¿Qué término tiene el demandado para contestar la demanda en el proceso verbal?")
+        opciones = {}
+        if formato == "multiple_choice":
+            previas = base.get("opciones") or {}
+            for letra in "ABCD":
+                texto = st.text_input(f"Opción {letra}", previas.get(letra, ""), key=f"o{letra}{clave}")
+                if texto.strip():
+                    opciones[letra] = texto.strip()
+        pulsado = st.button("Responder", type="primary", disabled=not pregunta.strip())
 
-    if not st.button("Responder", type="primary", disabled=not pregunta.strip()):
+    if not pulsado:
         return
     if formato == "multiple_choice" and len(opciones) < 2:
         st.error("Una pregunta de selección múltiple necesita al menos dos opciones.")
@@ -233,20 +349,22 @@ def modo_consultar() -> None:
         item["opciones"] = opciones
     with st.spinner("Recuperando evidencia y generando con Qwen3-8B…"):
         registro, traza = responder(item, retriever, decoder)
+    st.write("")
     resultado(registro, traza, item)
 
 
 def modo_explorar() -> None:
+    seccion("Verificación de resultados", "Explorar Entrega",
+            "Revisa cada respuesta de una entrega con su evidencia, sin necesidad del índice ni del decoder.")
     carpetas = sorted((config.ROOT / "evaluation" / "generacion").glob("*/entrega.jsonl"),
                       key=lambda p: p.stat().st_mtime, reverse=True)
     locales = sorted(config.ROOT.glob("submissions*.jsonl")) + sorted(config.SALIDAS_DIR.glob("*.jsonl"))
     rutas = locales + carpetas
-    with st.sidebar:
-        subido = st.file_uploader("Abrir una entrega (.jsonl)", type=["jsonl"])
-        ruta = None
-        if rutas and not subido:
-            ruta = st.selectbox("…o elegir una del repo", rutas,
-                                format_func=lambda p: p.relative_to(config.ROOT).as_posix())
+    with st.container(key="tarjeta_entrega"):
+        c1, c2 = st.columns(2)
+        ruta = c1.selectbox("Entrega del repositorio", rutas, format_func=lambda p: p.relative_to(config.ROOT).as_posix()) \
+            if rutas else None
+        subido = c2.file_uploader("…o abrir un archivo .jsonl", type=["jsonl"])
     if subido:
         registros = [json.loads(l) for l in subido.getvalue().decode("utf-8").splitlines() if l.strip()]
         trazas: dict = {}
@@ -255,67 +373,42 @@ def modo_explorar() -> None:
         cand = [ruta.with_name("trazas.jsonl"), config.TRAZAS_DIR / ruta.name.removeprefix("sample_")]
         trazas = {t["id"]: t for c in cand if c.is_file() for t in read_jsonl(c)}
     else:
-        st.info("No hay entregas en el repo: sube un .jsonl desde la barra lateral.")
+        st.info("No hay entregas en el repo: abre un .jsonl.")
         return
     if not registros:
         st.warning("La entrega está vacía.")
         return
 
-    n_abst = sum(bool(r.get("abstencion")) for r in registros)
+    st.write("")
     c = st.columns(3)
     c[0].metric("Registros", len(registros))
-    c[1].metric("Abstenciones", n_abst)
+    c[1].metric("Abstenciones", sum(bool(r.get("abstencion")) for r in registros))
     lat = [r["latencia_ms"] for r in registros if r.get("latencia_ms")]
     c[2].metric("Latencia media", f"{sum(lat) / len(lat) / 1000:.1f} s" if lat else "—")
 
     preguntas = {e["id"]: e for e in ejemplos()}
     etiqueta = {r["id"]: f"#{r['id']} · {FORMATOS.get(r['formato'], r['formato'])}"
-                + (f" · {preguntas[r['id']]['pregunta'][:60]}" if r["id"] in preguntas else "")
+                + (f" · {preguntas[r['id']]['pregunta'][:80]}" if r["id"] in preguntas else "")
                 for r in registros}
     elegido = st.selectbox("Pregunta", [r["id"] for r in registros], format_func=etiqueta.get)
     registro = next(r for r in registros if r["id"] == elegido)
     item = preguntas.get(elegido)
     if item:
-        st.markdown(f"> {item['pregunta']}")
-        for letra, texto in (item.get("opciones") or {}).items():
-            st.markdown(f"> **{letra}.** {texto}")
+        opciones = "".join(f"<br><b>{l}.</b> {html.escape(t)}" for l, t in (item.get("opciones") or {}).items())
+        md(f'<div class="sc-pregunta">{html.escape(item["pregunta"])}{opciones}</div>')
     resultado(registro, trazas.get(elegido), item)
 
 
-def acerca() -> None:
-    m = manifest()
-    with st.sidebar.expander("Configuración del sistema"):
-        info = {}
-        if config.INDICE_INFO_PATH.is_file():
-            info = json.loads(config.INDICE_INFO_PATH.read_text(encoding="utf-8"))
-        llm = config.llm_config()
-        st.markdown(
-            f"- Decoder: `{llm['nombre']}` ({llm.get('cuantizacion', '')}), temperature 0\n"
-            f"- Recuperación: {config.MODO_RECUPERACION} (BM25 + bge-m3 + RRF), top-{config.RETRIEVAL_K}\n"
-            f"- Corpus: {m['n_docs']} documentos"
-            + (f", {info['n_fragmentos']:,} fragmentos".replace(",", ".") if info.get("n_fragmentos") else "")
-            + "\n- Licencia del corpus: CC-BY-4.0")
-        if m["enlace"].startswith("http"):
-            st.markdown(f"[Descargar corpus e índice]({m['enlace']})")
-
-
 def main() -> None:
-    logo = _logo()
-    st.set_page_config(page_title="Syntax · RAG jurídico", page_icon=str(logo) if logo else "⚖️", layout="wide")
-    st.markdown(CSS, unsafe_allow_html=True)
-    if logo:
-        st.logo(str(logo), size="large")
-    st.markdown('<div class="sx-banda"><h1>Syntax · RAG de derecho colombiano</h1>'
-                '<p>con Software Colombia</p></div>', unsafe_allow_html=True)
-    modo = st.sidebar.radio("Modo", ["Consultar", "Explorar entrega"])
-    acerca()
+    st.set_page_config(page_title="Syntax · Consulta jurídica", page_icon=str(LOGO) if LOGO.is_file() else "⚖️",
+                       layout="wide", initial_sidebar_state="collapsed")
+    md(CSS)
+    modo = navegacion()
     if modo == "Consultar":
         modo_consultar()
     else:
         modo_explorar()
-    st.markdown('<div class="sx-pie">Equipo Syntax: Sofía Morato, Joel David Niño, Santiago Muñoz · '
-                'Hackathon LATAM AI Week 2026 (Uniandes) · Herramienta de apoyo: no constituye asesoría legal.'
-                '</div>', unsafe_allow_html=True)
+    pie()
 
 
 main()
