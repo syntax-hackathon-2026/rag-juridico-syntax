@@ -436,3 +436,34 @@ Generación en sample (mismo índice, Qwen3-8B Q8_0, sin juez):
 - **KEEP: rrf N=20, activado por defecto.** No saca ningún cuerpo del top-10, sube respaldo@10 y citación (+0,41/50), y cuesta +0,1 s/pregunta. N=40 y `puro` dejan subir candidatos de la cola que desplazan documentos buenos.
 - Cambian los pasajes de las 50 respuestas (todo reordenamiento cuenta). **Juez** (las dos entregas en paralelo, mismo índice; regla fijada antes: REVERT si cae más de 0,03): `e50_base_ragas` 0,4503 → `e53_rerank_rrf20_ragas` **0,4565** (+0,006, dentro del ruido ±0,03), total **52,12 → 52,72/80**. Sin ítems sin veredicto. No baja: se mantiene KEEP.
 - Medido sobre el índice de la ola 1. Tras congelar el índice del sábado hay que repetir `r50`/`r53` y el determinismo (dos corridas con `SYNTAX_LLM_CACHE=off` → `comparar_entregas.py` = 0 diferencias, también entre máquinas) antes de la corrida final. Apagar con `SYNTAX_RERANKER=off`.
+
+## 21. Tope de fragmentos por norma (`r60`–`r64`, 2026-10-03)
+
+Hipótesis: un solo documento acapara el top-10 (#748: los 10 puestos son de la Resolución 368/2014, que nombra el preámbulo). `SYNTAX_MAX_POR_DOC_NORMAS=m` (en `retriever._componer`) deja como máximo m fragmentos por norma en el top-k. Los fragmentos del lookup (artículo nombrado) no cuentan para el tope. Igual que `SYNTAX_MAX_POR_DOC` para sentencias, solo reordena candidatos de la fusión. Índice de la ola 1 (181.662 fragmentos), con el reranker activo. La base `r60` reproduce `r53` pregunta por pregunta.
+
+| híbrido (41 con fundamento) | doc_hit@10 | MRR | respaldo@10 | art_hit@10 | cambios |
+|---|---:|---:|---:|---:|---|
+| base `r60` (= `r53`) | 0,878 | 0,700 | 0,939 | 0,579 | — |
+| tope 3 `r61` | 0,878 | 0,703 | 0,951 | 0,526 | #1073 respaldo 0,5 → 1 (CST 10 → 5); **#358 pierde el artículo** (Código Civil, art. en el puesto 6 → fuera) |
+| tope 4 `r62` | 0,878 | 0,702 | 0,915 | 0,526 | #358 igual; **#748 respaldo 1 → 0** |
+| tope 5 `r63` | 0,878 | 0,701 | 0,939 | 0,526 | #358 igual; #1073 10 → 7 |
+| tope 4 + 3 por sentencia `r64` | 0,878 | 0,703 | 0,915 | 0,526 | como `r62`; #60 8 → 6 |
+
+- **REVERT (apagado, `SYNTAX_MAX_POR_DOC_NORMAS=0`).** No arregla #748: el CPACA no está entre los candidatos de la fusión, así que los puestos que libera el tope los ocupan otras resoluciones. En los códigos grandes hace daño, porque varios artículos del mismo código son legítimos (#358). El mejor caso (`r61`) cambia +1/−1 pregunta, que está dentro del ruido. A igualdad gana lo más simple.
+- #748 es un problema de consulta (el preámbulo de lectura nombra la resolución), no de composición del top-10. Ver el tramo A2 (consulta después de "Pregunta jurídica:").
+
+## 22. Consulta sin la instrucción de lectura (`r65`, `e65`, 2026-10-03)
+
+Hipótesis: en #748 el top-10 se llena con la Resolución 368/2014 porque la pregunta empieza con una instrucción fija ("Habiendo hecho la lectura previa de la Resolución No. 368 de 2014… responda la siguiente pregunta. Pregunta jurídica: …") que nombra el documento leído, no el fundamento. El fundamento es el CPACA. El mismo bloque está en **24 preguntas del test (#721–#752)**: derecho administrativo aplicado a la resolución (revocación directa, recursos, silencio, nulidad, elementos de validez).
+
+`SYNTAX_SIN_PREAMBULO=on` (`recuperacion/consulta.sin_preambulo`) quita esa instrucción y el rótulo "Pregunta jurídica:"/"Pregunta:" de la **consulta de recuperación**. El decoder sigue viendo la pregunta completa. La regla cambia exactamente esas 25 preguntas (1 de sample y 24 del test) y ninguna otra. No se tocan los casos largos con "Contexto:" o "Pregunta jurídica:" (#682, #683, #685, #708, #891), porque ahí el preámbulo trae los hechos.
+
+| híbrido, índice ola 1 (41 con fundamento) | doc_hit@10 | MRR | respaldo@10 | art_hit@10 | cambios |
+|---|---:|---:|---:|---:|---|
+| base `r60` | 0,878 | 0,700 | 0,939 | 0,579 | — |
+| **`r65_sin_preambulo`** | **0,902** | 0,702 | 0,939 | 0,579 | #748: CPACA de fuera al puesto 9; ninguna otra pregunta cambia |
+
+- **Generación** (#748, Qwen3-8B Q8_0, `SYNTAX_LLM_CACHE=off`): `e65_off_748` responde **D** (cita solo la resolución); `e65_on_748` responde **A** (correcta), con el art. 137 del CPACA.
+- **Test (24 preguntas, sin ground truth)**: las de procedimiento administrativo (#730, #734–#736, #741, #743, #750, #752) pasan a traer CPACA o Decreto 01/1984 en lugar de 6 a 10 fragmentos de la resolución. Las que la nombran en el enunciado (#721, #732, #740, #744) la conservan. Riesgos vistos: **#726** ("las medidas del artículo quinto de la resolución") pierde la resolución y trae fragmentos del Estatuto Tributario, y **#745** se llena con la SU-455/2020.
+- Variante descartada: quitar la instrucción pero seguir contando la resolución como cuerpo nombrado (boost ×1,5). No arregla #726 y vuelve a inundar #749 (10/10) y #748 (6/10). Además, en el runtime no llega la pregunta completa al retriever (`consulta_lookup` solo se pasa con `LOOKUP_FUENTE=pregunta`).
+- **KEEP: activado por defecto** (`SYNTAX_SIN_PREAMBULO=on`; apagar con `off`). Cumple la regla (doc_hit@10 y respaldo@10 ≥ base, sin pérdidas) y arregla #748 en generación. En el test cambia la recuperación de las 24 preguntas del bloque: con `SYNTAX_LLM_CACHE=on` son las únicas que se regeneran (~2 min). La verificación en vivo tiene que correr con el mismo valor.

@@ -88,8 +88,11 @@ if not 1.0 <= AREA_BOOST < float("inf"):
 # mejores normas que siguen). MAX_POR_DOC = maximo de ventanas por sentencia. 0 = apagado.
 CUPO_NORMAS = int(os.environ.get("SYNTAX_CUPO_NORMAS", "0"))
 MAX_POR_DOC = int(os.environ.get("SYNTAX_MAX_POR_DOC", "0"))
-if CUPO_NORMAS < 0 or MAX_POR_DOC < 0:
-    raise ValueError("SYNTAX_CUPO_NORMAS y SYNTAX_MAX_POR_DOC deben ser >= 0")
+# MAX_POR_DOC_NORMAS = maximo de fragmentos por norma en el top-k (#748: la Resolucion
+# 368/2014 ocupa los 10 puestos); los del lookup (articulo nombrado) no cuentan. 0 = apagado.
+MAX_POR_DOC_NORMAS = int(os.environ.get("SYNTAX_MAX_POR_DOC_NORMAS", "0"))
+if CUPO_NORMAS < 0 or MAX_POR_DOC < 0 or MAX_POR_DOC_NORMAS < 0:
+    raise ValueError("SYNTAX_CUPO_NORMAS, SYNTAX_MAX_POR_DOC y SYNTAX_MAX_POR_DOC_NORMAS deben ser >= 0")
 # Busqueda por metadatos (docs/INDEXACION.md 19). Todo en el hibrido, solo reordena o suma.
 # FACTOR_VOTO: score de las ventanas salvamento/aclaracion (salvo que la consulta pida el voto).
 # FACTOR_VIGENCIA: score de los fragmentos `derogado` (salvo que la consulta hable de vigencia).
@@ -100,6 +103,12 @@ if CUPO_NORMAS < 0 or MAX_POR_DOC < 0:
 FACTOR_VOTO = float(os.environ.get("SYNTAX_FACTOR_VOTO", "0.5"))
 FACTOR_VIGENCIA = float(os.environ.get("SYNTAX_FACTOR_VIGENCIA", "1.0"))
 CUERPO = os.environ.get("SYNTAX_CUERPO", "boost")
+# SIN_PREAMBULO: quita de la consulta de recuperacion la instruccion fija "Habiendo hecho la
+#   lectura previa de la Resolucion ... responda" (bloque #721-#752 del test, #748 en sample)
+#   y el rotulo "Pregunta juridica:". El decoder sigue viendo la pregunta completa.
+SIN_PREAMBULO = os.environ.get("SYNTAX_SIN_PREAMBULO", "on")
+if SIN_PREAMBULO not in {"off", "on"}:
+    raise ValueError("SYNTAX_SIN_PREAMBULO debe ser off|on")
 CUERPO_PESO = float(os.environ.get("SYNTAX_CUERPO_PESO", "1.0"))
 CUERPO_BOOST = float(os.environ.get("SYNTAX_CUERPO_BOOST", "1.5"))
 ALIAS = os.environ.get("SYNTAX_ALIAS", "on")
@@ -251,11 +260,13 @@ def area_metadata() -> dict:
 
 def metadatos_metadata() -> dict:
     return {"factor_voto": FACTOR_VOTO, "factor_vigencia": FACTOR_VIGENCIA, "cuerpo": CUERPO,
-            "cuerpo_peso": CUERPO_PESO, "cuerpo_boost": CUERPO_BOOST, "alias": ALIAS}
+            "cuerpo_peso": CUERPO_PESO, "cuerpo_boost": CUERPO_BOOST, "alias": ALIAS,
+            "sin_preambulo": SIN_PREAMBULO}
 
 
 def composicion_metadata() -> dict:
-    return {"cupo_normas": CUPO_NORMAS, "max_por_doc": MAX_POR_DOC, "aplica_a": "top-k"}
+    return {"cupo_normas": CUPO_NORMAS, "max_por_doc": MAX_POR_DOC,
+            "max_por_doc_normas": MAX_POR_DOC_NORMAS, "aplica_a": "top-k"}
 
 
 def reranker_metadata() -> dict:
