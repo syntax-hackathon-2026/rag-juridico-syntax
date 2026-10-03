@@ -9692,6 +9692,26 @@
       "nota": "ampliacion v4 (2026-10-02): area delgada, resuelta y validada por sondeo automatico; areas propuestas por agente, falta confirmar"
     },
     {
+      "doc_id": "providencia_csj_civil_2001_00847_2011",
+      "titulo": "Corte Suprema de Justicia, Sala de Casacion Civil, sentencia sustitutiva del 19 de octubre de 2011 (exp. 11001-3103-032-2001-00847-01)",
+      "fuente": "Ambito Juridico (texto de la providencia de la Corte Suprema de Justicia)",
+      "url": "https://ambitojuridico.com/sites/default/files/BancoMedios/Archivos/sent.%2011001310303220010084701-11.doc",
+      "areas": [
+        "Derecho comercial y sociedades"
+      ],
+      "items_del_banco": 0,
+      "canonico": [],
+      "estado": "descargado",
+      "tipo_fuente": "pdf",
+      "fecha_consulta": "2026-10-03",
+      "archivos": [
+        "providencia_csj_civil_2001_00847_2011.pdf"
+      ],
+      "bytes": 362615,
+      "sha256": "d5ea4cc96134b30b782580c1d6769054ea03fd9cbeac80963ea2b2bc6226569a",
+      "nota": "ampliacion sabado (2026-10-03): dirigida por las preguntas del test (descarga manual)"
+    },
+    {
       "doc_id": "resolucion_1036_2021",
       "titulo": "Resolucion 1036 de 2021 (Ministerio de Ambiente; relleno sanitario El Carrasco)",
       "fuente": "Ministerio de Ambiente y Desarrollo Sostenible",
@@ -11436,6 +11456,26 @@
       "bytes": 443469,
       "sha256": "0f9dfcc3a26aa96e99d83522e0184e0cc0de8a8a8107483b164ddd2464c4eb55",
       "nota": "ampliacion v3 (2026-10-02): lote de sentencias de unificacion 2020-2026 (sobrerrepresentadas en el banco); area por defecto, falta confirmar"
+    },
+    {
+      "doc_id": "sentencia_su_140_2019",
+      "titulo": "Sentencia SU-140 de 2019",
+      "fuente": "Relatoria de la Corte Constitucional",
+      "url": "https://www.corteconstitucional.gov.co/relatoria/2019/SU140-19.htm",
+      "areas": [
+        "Derecho laboral"
+      ],
+      "items_del_banco": 0,
+      "canonico": [],
+      "estado": "descargado",
+      "tipo_fuente": "html",
+      "fecha_consulta": "2026-10-03",
+      "archivos": [
+        "SU140-19.htm"
+      ],
+      "bytes": 1705875,
+      "sha256": "18057d4804adc33a387ece0269ae9f6ea33af7a598947889ee9286a050302135",
+      "nota": "ampliacion sabado (2026-10-03): dirigida por las preguntas del test"
     },
     {
       "doc_id": "sentencia_su_140_2026",

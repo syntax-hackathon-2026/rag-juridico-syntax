@@ -11323,6 +11323,26 @@
         "Derecho constitucional"
       ],
       "nota": "ampliacion sabado (2026-10-03): dirigida por las preguntas del test"
+    },
+    {
+      "doc_id": "sentencia_su_140_2019",
+      "titulo": "Sentencia SU-140 de 2019",
+      "fuente": "Relatoria de la Corte Constitucional",
+      "url": "https://www.corteconstitucional.gov.co/relatoria/2019/SU140-19.htm",
+      "areas": [
+        "Derecho laboral"
+      ],
+      "nota": "ampliacion sabado (2026-10-03): dirigida por las preguntas del test"
+    },
+    {
+      "doc_id": "providencia_csj_civil_2001_00847_2011",
+      "titulo": "Corte Suprema de Justicia, Sala de Casacion Civil, sentencia sustitutiva del 19 de octubre de 2011 (exp. 11001-3103-032-2001-00847-01)",
+      "fuente": "Ambito Juridico (texto de la providencia de la Corte Suprema de Justicia)",
+      "url": "https://ambitojuridico.com/sites/default/files/BancoMedios/Archivos/sent.%2011001310303220010084701-11.doc",
+      "areas": [
+        "Derecho comercial y sociedades"
+      ],
+      "nota": "ampliacion sabado (2026-10-03): dirigida por las preguntas del test (descarga manual)"
     }
   ],
   "_comentario_adicionales": "Documentos fuera de seed_targets.json (fuentes del legal_basis de sample_50, ver data/fuentes_faltantes_sample50.md). Su original ya esta en data/raw/ y se registra con esta fuente/URL (docs/ingesta/referencias_normativas.md); items_del_banco=0."

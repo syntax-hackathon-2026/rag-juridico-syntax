@@ -74,6 +74,9 @@ DOCUMENTOS: dict[str, str] = {
     "sentencia_ce_suj_4_005_2020": "Consejo de Estado, Sección Cuarta, Sentencia de unificación "
                                    "2020CE-SUJ-4-005 del 26 de noviembre de 2020 (expediente 21329)",
     "auto_supersociedades_2025_01_730337": "Superintendencia de Sociedades, Auto 2025-01-730337",
+    "providencia_csj_civil_2001_00847_2011": "Corte Suprema de Justicia, Sala de Casación Civil, sentencia "
+                                             "sustitutiva del 19 de octubre de 2011 (expediente "
+                                             "11001-3103-032-2001-00847-01)",
     "doctrina_ompi_agotamiento_patentes_2012": "OMPI, Seminario Regional de Bogotá (febrero de 2012), "
                                                "Tema 14: El agotamiento del derecho de patente",
     "doctrina_arbanza_grupo_sociedades_2024": "Arbanza, Análisis comparativo de la extensión del convenio "
