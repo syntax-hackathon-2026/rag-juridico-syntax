@@ -35,6 +35,7 @@ OCR_HILOS = 4
 # Sentencias de la Corte Suprema bajadas de la Relatoria sin capa de texto (SL648-2018,
 # SP1945-2019) o con una capa OCR ilegible ("RepdblicadeColombia", caracteres CJK).
 OCR_FORZADO = {
+    "resolucion_368_2014",
     "sentencia_sl_648_2018",
     "sentencia_sp_1945_2019",
     "sentencia_sc_10291_2017",

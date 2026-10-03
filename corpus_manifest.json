@@ -3,8 +3,8 @@
   "licencia": "CC-BY-4.0",
   "fecha_generacion": "2026-10-03",
   "enlace_nube": "<URL>",
-  "n_documentos": 1247,
-  "n_fragmentos": 179226,
+  "n_documentos": 1253,
+  "n_fragmentos": 181662,
   "documentos": [
     {
       "doc_id": "constitucion_politica_1991",
@@ -2868,6 +2868,20 @@
       "sha256": "ca9b36297fc02be64de421bc78b65ee1fe4e0cedb0e4f4523254745ad29c85cc"
     },
     {
+      "doc_id": "decreto_1165_2019",
+      "titulo": "Decreto 1165 de 2019 (regimen de aduanas)",
+      "fuente": "Normograma CRC",
+      "url": "https://normograma.crcom.gov.co/crc/compilacion/docs/decreto_1165_2019.htm",
+      "fecha_consulta": "2026-10-03",
+      "areas": [
+        "Derecho tributario"
+      ],
+      "n_articulos": 775,
+      "n_fragmentos": 1284,
+      "metodo_ingesta": "extraccion de PDF con PyMuPDF + limpieza de encabezados",
+      "sha256": "f252bc7ef638f871e48673a727da463e00e9f881e239eebc977a4a73bc442b42"
+    },
+    {
       "doc_id": "decreto_1260_1970",
       "titulo": "Decreto 1260 de 1970 (Estatuto del registro del estado civil de las personas)",
       "fuente": "Normograma de la CRA (compilacion Avance Juridico)",
@@ -2939,6 +2953,20 @@
       "n_fragmentos": 31,
       "metodo_ingesta": "parser HTML (BeautifulSoup) + limpieza de navegacion y notas editoriales",
       "sha256": "6d032ba30bcf2b2789790a5e4d1db1231bf2bbff3ea673e46e29a9b448f7f687"
+    },
+    {
+      "doc_id": "decreto_1400_1970",
+      "titulo": "Decreto 1400 de 1970 (Codigo de Procedimiento Civil)",
+      "fuente": "Funcion Publica - Gestor Normativo",
+      "url": "https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=6923",
+      "fecha_consulta": "2026-10-03",
+      "areas": [
+        "Derecho procesal"
+      ],
+      "n_articulos": 678,
+      "n_fragmentos": 757,
+      "metodo_ingesta": "extraccion de PDF con PyMuPDF + limpieza de encabezados",
+      "sha256": "05a7148915f67a43f45ce3cb3c6ff867ceaa3e3bd22b96695f56ec06c7c2d72c"
     },
     {
       "doc_id": "decreto_1421_1993",
@@ -3271,6 +3299,20 @@
       "sha256": "45f55c95638c3cd9e642b00655080884be05f533410fd144db2f4d05dbfde88d"
     },
     {
+      "doc_id": "decreto_920_2023",
+      "titulo": "Decreto Ley 920 de 2023 (regimen sancionatorio y de decomiso aduanero)",
+      "fuente": "Normograma DIAN",
+      "url": "https://normograma.dian.gov.co/dian/compilacion/docs/decreto_0920_2023.htm",
+      "fecha_consulta": "2026-10-03",
+      "areas": [
+        "Derecho tributario"
+      ],
+      "n_articulos": 155,
+      "n_fragmentos": 301,
+      "metodo_ingesta": "extraccion de PDF con PyMuPDF + limpieza de encabezados",
+      "sha256": "b9e31cc4c008af0587f5a18be11e0008bbde805110b2f65129506ce320e0cf94"
+    },
+    {
       "doc_id": "doctrina_arbanza_grupo_sociedades_2024",
       "titulo": "Arbanza, Analisis comparativo de la extension del convenio arbitral a partes no signatarias: Pakistan, Francia y Colombia (2024)",
       "fuente": "Arbanza (doctrina)",
@@ -3297,6 +3339,20 @@
       "n_fragmentos": 4,
       "metodo_ingesta": "extraccion de PDF con PyMuPDF + limpieza de encabezados",
       "sha256": "d3c84c3640c7a9c61c670e8692517f55c46812d9513269d4fc35f6cb00653240"
+    },
+    {
+      "doc_id": "doctrina_unbosque_agencia_comercial_cesantia_2024",
+      "titulo": "Trabajo de grado Universidad El Bosque - Contrato de agencia comercial y cesantia comercial (2024)",
+      "fuente": "Repositorio Universidad El Bosque (REDCOL)",
+      "url": "https://redcol.minciencias.gov.co/Record/UNBOSQUE2_4d108bd5eb3d5ba57603313e68fd019b/",
+      "fecha_consulta": "2026-10-03",
+      "areas": [
+        "Derecho comercial y sociedades"
+      ],
+      "n_articulos": null,
+      "n_fragmentos": 19,
+      "metodo_ingesta": "extraccion de PDF con PyMuPDF + limpieza de encabezados",
+      "sha256": "cf088f240835de160c4bfb0e74f19fe0638c3039b46dea42c3d4ece4a9a2e09e"
     },
     {
       "doc_id": "ley_1004_2005",
@@ -5713,6 +5769,34 @@
       "n_fragmentos": 135,
       "metodo_ingesta": "parser HTML (BeautifulSoup) + limpieza de navegacion y notas editoriales",
       "sha256": "fd5a76ecc606d6728c28b3b5cff8c8c8f3f8be8b6e9d6ddbee573d517f04dc0f"
+    },
+    {
+      "doc_id": "resolucion_1036_2021",
+      "titulo": "Resolucion 1036 de 2021 (Ministerio de Ambiente; relleno sanitario El Carrasco)",
+      "fuente": "Ministerio de Ambiente y Desarrollo Sostenible",
+      "url": "https://www.minambiente.gov.co/wp-content/uploads/2021/10/Resolucion-1036-de-2021.pdf",
+      "fecha_consulta": "2026-10-03",
+      "areas": [
+        "Derecho administrativo"
+      ],
+      "n_articulos": 8,
+      "n_fragmentos": 41,
+      "metodo_ingesta": "extraccion de PDF con PyMuPDF + limpieza de encabezados",
+      "sha256": "4327cfafd8ef8ce2fd6072fbf2a2646cbcc55fcbdc429b51c612ca2e044ec413"
+    },
+    {
+      "doc_id": "resolucion_368_2014",
+      "titulo": "Resolucion 368 de 2014 (Ministerio de Ambiente; relleno sanitario El Carrasco)",
+      "fuente": "Ministerio de Ambiente y Desarrollo Sostenible",
+      "url": "https://www.minambiente.gov.co/",
+      "fecha_consulta": "2026-10-03",
+      "areas": [
+        "Derecho administrativo"
+      ],
+      "n_articulos": 2,
+      "n_fragmentos": 34,
+      "metodo_ingesta": "OCR con Tesseract (spa, 300 dpi) + limpieza de encabezados",
+      "sha256": "aa10a47305a943818ee9f82b8183830ed424569a5a465dea0a789cfeb2cff6a1"
     },
     {
       "doc_id": "sentencia_c_1011_2008",

@@ -5159,6 +5159,26 @@
       "nota": "ampliacion v5: descartado por tamano (592 articulos > 400)"
     },
     {
+      "doc_id": "decreto_1165_2019",
+      "titulo": "Decreto 1165 de 2019 (regimen de aduanas)",
+      "fuente": "Normograma CRC",
+      "url": "https://normograma.crcom.gov.co/crc/compilacion/docs/decreto_1165_2019.htm",
+      "areas": [
+        "Derecho tributario"
+      ],
+      "items_del_banco": 0,
+      "canonico": [],
+      "estado": "descargado",
+      "tipo_fuente": "pdf",
+      "fecha_consulta": "2026-10-03",
+      "archivos": [
+        "decreto_1165_2019.pdf"
+      ],
+      "bytes": 4336293,
+      "sha256": "0bb810ed2ee70fc637090fe949488e389bc6f75c8005bf994e6572296b0e1ba3",
+      "nota": "ampliacion sabado (2026-10-03): dirigida por las preguntas del test (descarga manual)"
+    },
+    {
       "doc_id": "decreto_1260_1970",
       "titulo": "Decreto 1260 de 1970 (Estatuto del registro del estado civil de las personas)",
       "fuente": "Normograma de la CRA (compilacion Avance Juridico)",
@@ -5260,6 +5280,26 @@
       "bytes": 68755,
       "sha256": "6ce378aaf28ae64c6c25e64178311e688f2efd9e875adb28ee169ce0409ab9ef",
       "nota": "ampliacion v4 (2026-10-02): area delgada, resuelta y validada por sondeo automatico; areas propuestas por agente, falta confirmar"
+    },
+    {
+      "doc_id": "decreto_1400_1970",
+      "titulo": "Decreto 1400 de 1970 (Codigo de Procedimiento Civil)",
+      "fuente": "Funcion Publica - Gestor Normativo",
+      "url": "https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=6923",
+      "areas": [
+        "Derecho procesal"
+      ],
+      "items_del_banco": 0,
+      "canonico": [],
+      "estado": "descargado",
+      "tipo_fuente": "pdf",
+      "fecha_consulta": "2026-10-03",
+      "archivos": [
+        "decreto_1400_1970_funcionpublica.pdf"
+      ],
+      "bytes": 849993,
+      "sha256": "3cd3387a1fe0cde3d61918a6c04d64216b79f49b8911b52a56cc8362683afb97",
+      "nota": "ampliacion sabado (2026-10-03): dirigida por las preguntas del test (descarga manual)"
     },
     {
       "doc_id": "decreto_1421_1993",
@@ -5838,6 +5878,26 @@
       "nota": "ampliacion v4 (2026-10-02): area delgada, resuelta y validada por sondeo automatico; areas propuestas por agente, falta confirmar"
     },
     {
+      "doc_id": "decreto_920_2023",
+      "titulo": "Decreto Ley 920 de 2023 (regimen sancionatorio y de decomiso aduanero)",
+      "fuente": "Normograma DIAN",
+      "url": "https://normograma.dian.gov.co/dian/compilacion/docs/decreto_0920_2023.htm",
+      "areas": [
+        "Derecho tributario"
+      ],
+      "items_del_banco": 0,
+      "canonico": [],
+      "estado": "descargado",
+      "tipo_fuente": "pdf",
+      "fecha_consulta": "2026-10-03",
+      "archivos": [
+        "decreto_0920_2023.pdf"
+      ],
+      "bytes": 1188481,
+      "sha256": "36b3b456aeff6179e6229e8cd35b1d1f74cceb6d5e3242160d6d1da118d890dd",
+      "nota": "ampliacion sabado (2026-10-03): dirigida por las preguntas del test (descarga manual)"
+    },
+    {
       "doc_id": "doctrina_arbanza_grupo_sociedades_2024",
       "titulo": "Arbanza, Analisis comparativo de la extension del convenio arbitral a partes no signatarias: Pakistan, Francia y Colombia (2024)",
       "fuente": "Arbanza (doctrina)",
@@ -5876,6 +5936,26 @@
       "bytes": 146782,
       "sha256": "50af1eebb5de22a2fd1e2a1f528792be9086ee2b21ab8dfd83d12c7d5544a044",
       "nota": "pregunta 513 de sample_50; ponencia, no norma"
+    },
+    {
+      "doc_id": "doctrina_unbosque_agencia_comercial_cesantia_2024",
+      "titulo": "Trabajo de grado Universidad El Bosque - Contrato de agencia comercial y cesantia comercial (2024)",
+      "fuente": "Repositorio Universidad El Bosque (REDCOL)",
+      "url": "https://redcol.minciencias.gov.co/Record/UNBOSQUE2_4d108bd5eb3d5ba57603313e68fd019b/",
+      "areas": [
+        "Derecho comercial y sociedades"
+      ],
+      "items_del_banco": 0,
+      "canonico": [],
+      "estado": "descargado",
+      "tipo_fuente": "pdf",
+      "fecha_consulta": "2026-10-03",
+      "archivos": [
+        "doctrina_unbosque_agencia_comercial_cesantia_2024.pdf"
+      ],
+      "bytes": 146489,
+      "sha256": "2200a4d52976a223ccd27d3883dc465907500e7ad78a6fd0d1d6afc2fd58aebe",
+      "nota": "ampliacion sabado (2026-10-03): dirigida por las preguntas del test (descarga manual)"
     },
     {
       "doc_id": "ley_1004_2005",
@@ -9496,6 +9576,46 @@
       "bytes": 267234,
       "sha256": "dd65e65ea9e9efc120fc1e2e3bf9eecdc77b7915b4673be3383d7459701131ce",
       "nota": "ampliacion v4 (2026-10-02): area delgada, resuelta y validada por sondeo automatico; areas propuestas por agente, falta confirmar"
+    },
+    {
+      "doc_id": "resolucion_1036_2021",
+      "titulo": "Resolucion 1036 de 2021 (Ministerio de Ambiente; relleno sanitario El Carrasco)",
+      "fuente": "Ministerio de Ambiente y Desarrollo Sostenible",
+      "url": "https://www.minambiente.gov.co/wp-content/uploads/2021/10/Resolucion-1036-de-2021.pdf",
+      "areas": [
+        "Derecho administrativo"
+      ],
+      "items_del_banco": 0,
+      "canonico": [],
+      "estado": "descargado",
+      "tipo_fuente": "pdf",
+      "fecha_consulta": "2026-10-03",
+      "archivos": [
+        "resolucion_1036_2021.pdf"
+      ],
+      "bytes": 3289864,
+      "sha256": "545f78dcf603dd7ea5f27dd70eb911aeabb6105d1346d4e93c1bbb30ee176aec",
+      "nota": "ampliacion sabado (2026-10-03): dirigida por las preguntas del test (descarga manual)"
+    },
+    {
+      "doc_id": "resolucion_368_2014",
+      "titulo": "Resolucion 368 de 2014 (Ministerio de Ambiente; relleno sanitario El Carrasco)",
+      "fuente": "Ministerio de Ambiente y Desarrollo Sostenible",
+      "url": "https://www.minambiente.gov.co/",
+      "areas": [
+        "Derecho administrativo"
+      ],
+      "items_del_banco": 0,
+      "canonico": [],
+      "estado": "descargado",
+      "tipo_fuente": "pdf",
+      "fecha_consulta": "2026-10-03",
+      "archivos": [
+        "resolucion_0368_2014.pdf"
+      ],
+      "bytes": 1833821,
+      "sha256": "655acb68142b8e02b61e907d3d4535389fc6833b786d9bcf7e32225dc5251ed7",
+      "nota": "ampliacion sabado (2026-10-03): dirigida por las preguntas del test (descarga manual)"
     },
     {
       "doc_id": "sentencia_c_1011_2008",
