@@ -13,6 +13,7 @@ CLI para probar a mano:
 from __future__ import annotations
 
 import json
+import os
 import re
 import sys
 from dataclasses import dataclass, field
@@ -29,8 +30,11 @@ sys.path.insert(0, str(config.ROOT / "scripts"))
 from citations import norm  # noqa: E402
 
 MODOS = ("bm25", "denso", "hibrido")
-RRF_K = 60
-N_CANDIDATOS = 40
+RRF_K = int(os.environ.get("SYNTAX_RRF_K", "60"))
+N_CANDIDATOS = int(os.environ.get("SYNTAX_N_CANDIDATOS", "40"))
+# Peso de cada rama en la fusion RRF (1.0 = RRF clasico)
+PESO_RAMA = {"bm25": float(os.environ.get("SYNTAX_PESO_BM25", "1.0")),
+             "denso": float(os.environ.get("SYNTAX_PESO_DENSO", "1.0"))}
 # Excepciones de los factores de metadatos (texto normalizado de la consulta)
 _PIDE_VOTO = re.compile(r"salvamento|aclaracion(?:es)? de voto|disident|voto particular|salvo (?:su|el) voto")
 _PIDE_VIGENCIA = re.compile(r"derog|vigen|antes de la reforma|texto original|subrogad")
@@ -231,7 +235,7 @@ class Retriever:
                              ("denso", self._filtrar(self.buscar_denso, consulta, n_candidatos))):
             ranks_rama[nombre] = {i: r for r, (i, _) in enumerate(rama, 1)}
             for r, (i, _) in enumerate(rama, 1):
-                fusion[i] = fusion.get(i, 0.0) + 1.0 / (RRF_K + r)
+                fusion[i] = fusion.get(i, 0.0) + PESO_RAMA[nombre] / (RRF_K + r)
         # Cuerpo nombrado (docs/INDEXACION.md 19): ramas acotadas a ese documento o boost.
         self.disparos = []
         cuerpos = self._cuerpos_en_corpus(consulta) if config.CUERPO != "off" else []
