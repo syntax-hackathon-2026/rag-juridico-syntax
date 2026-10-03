@@ -1,5 +1,5 @@
 {
-  "experimento": "r61_tope_normas3",
+  "experimento": "f01_k20",
   "modo": "hibrido",
   "reranker": {
     "modo": "bge",
@@ -54,39 +54,39 @@
   "consulta": "pregunta+opciones",
   "metricas": {
     "doc_hit@1": 0.6341463414634146,
-    "doc_hit@3": 0.7317073170731707,
-    "doc_hit@5": 0.8292682926829268,
+    "doc_hit@3": 0.7560975609756098,
+    "doc_hit@5": 0.8048780487804879,
     "doc_hit@10": 0.8780487804878049,
-    "mrr": 0.7025067750677506,
-    "respaldo@10": 0.9512195121951219,
+    "mrr": 0.7055555555555555,
+    "respaldo@10": 0.9390243902439024,
     "art_hit@1": 0.3684210526315789,
-    "art_hit@10": 0.5263157894736842,
+    "art_hit@10": 0.5789473684210527,
     "n_con_articulo": 19,
     "n_preguntas": 41,
-    "latencia_ret_ms": 568.0853658536586,
+    "latencia_ret_ms": 985.829268292683,
     "subconjuntos_referencias": {
       "con_referencia": {
         "n": 14,
         "n_con_articulo_gt": 4,
         "doc_hit@10": 0.9285714285714286,
         "art_hit@10": 1.0,
-        "mrr": 0.875,
+        "mrr": 0.8928571428571429,
         "respaldo@10": 1.0
       },
       "sin_referencia": {
         "n": 27,
         "n_con_articulo_gt": 15,
         "doc_hit@10": 0.8518518518518519,
-        "art_hit@10": 0.4,
-        "mrr": 0.6130658436213992,
-        "respaldo@10": 0.9259259259259259
+        "art_hit@10": 0.4666666666666667,
+        "mrr": 0.6084362139917695,
+        "respaldo@10": 0.9074074074074074
       },
       "cerradas": {
         "n": 13,
         "n_con_articulo_gt": 7,
         "doc_hit@10": 0.9230769230769231,
-        "art_hit@10": 0.7142857142857143,
-        "mrr": 0.6014957264957265,
+        "art_hit@10": 0.8571428571428571,
+        "mrr": 0.6188034188034188,
         "respaldo@10": 1.0
       },
       "texto_libre": {
@@ -94,8 +94,8 @@
         "n_con_articulo_gt": 12,
         "doc_hit@10": 0.8571428571428571,
         "art_hit@10": 0.4166666666666667,
-        "mrr": 0.7494047619047619,
-        "respaldo@10": 0.9285714285714286
+        "mrr": 0.7458333333333333,
+        "respaldo@10": 0.9107142857142857
       }
     }
   }

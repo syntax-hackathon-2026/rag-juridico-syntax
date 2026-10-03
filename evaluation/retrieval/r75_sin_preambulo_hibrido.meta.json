@@ -1,5 +1,5 @@
 {
-  "experimento": "r65_sin_preambulo",
+  "experimento": "r75_sin_preambulo",
   "modo": "hibrido",
   "reranker": {
     "modo": "bge",

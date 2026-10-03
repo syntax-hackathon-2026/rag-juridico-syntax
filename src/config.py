@@ -112,8 +112,17 @@ if SIN_PREAMBULO not in {"off", "on"}:
 CUERPO_PESO = float(os.environ.get("SYNTAX_CUERPO_PESO", "1.0"))
 CUERPO_BOOST = float(os.environ.get("SYNTAX_CUERPO_BOOST", "1.5"))
 ALIAS = os.environ.get("SYNTAX_ALIAS", "on")
-if not (0 < FACTOR_VOTO <= 1 and 0 < FACTOR_VIGENCIA <= 1):
-    raise ValueError("SYNTAX_FACTOR_VOTO y SYNTAX_FACTOR_VIGENCIA deben estar en (0, 1]")
+# FACTOR_SENTENCIA: score de las ventanas de sentencia si la consulta no nombra una sentencia ni
+#   pide jurisprudencia (el 72 % de los fragmentos son sentencias y ganan el top-1 a la norma).
+# FACTOR_DEROGADA: score de los documentos derogados enteros (DOCS_DEROGADOS: CPC, CCA, Codigo
+#   del Menor), salvo que la consulta los nombre o hable de vigencia.
+FACTOR_SENTENCIA = float(os.environ.get("SYNTAX_FACTOR_SENTENCIA", "0.5"))
+FACTOR_DEROGADA = float(os.environ.get("SYNTAX_FACTOR_DEROGADA", "0.5"))
+# KEEP en r64/e64 (0.5 + 0.5): MRR 0,700 -> 0,742 y mismo puntaje en sample (docs/INDEXACION.md 22).
+DOCS_DEROGADOS = frozenset({"decreto_1400_1970", "decreto_1_1984", "decreto_2737_1989"})
+if not (0 < FACTOR_VOTO <= 1 and 0 < FACTOR_VIGENCIA <= 1
+        and 0 < FACTOR_SENTENCIA <= 1 and 0 < FACTOR_DEROGADA <= 1):
+    raise ValueError("SYNTAX_FACTOR_VOTO/VIGENCIA/SENTENCIA/DEROGADA deben estar en (0, 1]")
 if CUERPO not in {"off", "boost", "rama"} or ALIAS not in {"off", "on"}:
     raise ValueError("SYNTAX_CUERPO debe ser off|boost|rama y SYNTAX_ALIAS off|on")
 if CUERPO_PESO < 0 or CUERPO_BOOST < 1:
