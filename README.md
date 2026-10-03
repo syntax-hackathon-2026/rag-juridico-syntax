@@ -19,6 +19,10 @@ documentos procesados e `indice/` con el índice serializado y los fragmentos.
 
 El enlace permanece activo hasta el 2 de noviembre de 2026 (treinta días después del evento). Corpus v5: 1.285 documentos y 185.234 fragmentos; sha256 completo del comprimido y de `chunks.jsonl` en [`CORPUS.md`](CORPUS.md), sección 6.
 
+## Video
+
+[Video de presentación en YouTube](https://www.youtube.com/watch?v=QfkF2o2-lVs)
+
 ## Arquitectura
 
 ```

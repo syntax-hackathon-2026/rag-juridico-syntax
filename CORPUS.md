@@ -1482,3 +1482,10 @@ Coincide con el de `README.md` ("Corpus e índice") y con `enlace_nube` de `corp
 - sha256 de `indice/chunks.jsonl`: `9159bd3529dc59c41a7074e50e4f9e7cbf194b0ca958ff718c6c16d86454f85d` (185.234 fragmentos; `indice_info.json`).
 - Encoder `BAAI/bge-m3`, revisión `5617a9f61b028005a4858fdac845db406aefb181`, fp32.
 - La ampliación del sábado fue dirigida por las preguntas del test (solo `pregunta` y `opciones`), con la autorización de la organización del 2026-10-02.
+
+### Corpus congelado y corrida final
+
+- **Corpus congelado (v5):** 1.285 documentos y 185.234 fragmentos; `python src/validaciones/manifest.py --strict` da 0 errores y 0 avisos, y `verificar_corpus.py` confirma que `corpus/` e `indice/chunks.jsonl` son idénticos a lo publicado.
+- **Corrida final (`final_v5`, 2026-10-03):** las 992 preguntas del test con el corpus y el índice de este comprimido, la configuración por defecto de `src/config.py` y Qwen3-8B Q8_0 en una RTX 4090 por máquina, repartidas en dos particiones (`--particion 1/2` y `2/2`) y unidas con `unir_entregas.py`. Resultado: 992 de 992 ids, 290 cerradas, 652 semiabiertas, 50 abiertas, 1 abstención y schema válido (`validar_entrega.py`).
+- **Sin puntaje propio:** el test de 992 no trae respuestas, así que esta corrida no agrega fila a la tabla de la sección 4; las cifras de esa tabla son las de `sample_50`.
+- **Trazabilidad:** entorno de la corrida en `evaluation/entornos/final_v5.json` (commit, Python, torch/CUDA, GPU y paquetes), registrado en la máquina de la partición 1; la metadata de esa partición (GGUF, llama.cpp, prompt y sha256 del índice) está en `salidas/trazas/final_v5_p1de2.meta.json`.
