@@ -397,3 +397,29 @@ Regla KEEP fijada antes de medir: doc_hit@10 y respaldo@10 ≥ base, y **ninguna
 - **Generación en sample** (índice de la ola 1, Qwen3-8B Q8_0, sin juez): `e25_base` y `e25_metadatos` dan **lo mismo** (cerradas 10/15, citación 17,14, abstención 8,14, 38,61/50, 0 errores de schema, 4,1 s/pregunta; recuperación 711 → 727 ms). Queda activado por defecto porque mejora el ranking sin costo: `SYNTAX_FACTOR_VOTO=0.5`, `SYNTAX_ALIAS=on`, `SYNTAX_CUERPO=boost`. Los defaults reproducen `r48`.
 - **Aviso sobre la ola 1** (no son los metadatos): frente a `e24_final` (12/15) se pierden dos cerradas. **#528** (C → B) cita el Decreto 1400/1970 (el Código de Procedimiento Civil derogado, que ahora compite con el CGP) y **#748** (A → D) se queda sin el CPACA porque la Resolución 368/2014, que nombra la pregunta, ocupa el top-10.
 - Pendiente para las 992: `disparos_metadatos.py --entrada data/test_992.jsonl --mostrar nombres` (revisar a mano que los alias no se equivoquen de norma) y `analizar_test.py` para el respaldo nombrado@10.
+
+## 20. Reranker cross-encoder (`r50`–`r55`, `e50`, `e53`, 2026-10-03)
+
+`BAAI/bge-reranker-v2-m3` (Apache-2.0, revisión `953dc6f6f85a1b2dbfca4c34a2796e7dde08d41e`) vía `sentence_transformers.CrossEncoder`, fp32, `max_length=512`. En `retriever.retrieve` (solo híbrido), después de la fusión con área, metadatos y lookup, y antes de `_componer`: puntúa (consulta, `texto` = cabecera + literal) de los `SYNTAX_RERANK_N` primeros y reordena solo ese tramo. `SYNTAX_RERANK_MODO=rrf` funde el rango de la fusión con el del cross-encoder (1/(60+r) + 1/(60+r_ce)); `puro` usa solo el cross-encoder. Los fragmentos del lookup quedan fijos en su puesto. `pasajes_recuperados.score` sigue siendo el de la fusión. Empates: score redondeado a 1e-5 y `chunk_id`. `reproducir.py` (etapa `decoder`) baja los pesos en la revisión fijada.
+
+Techo previo (fase 0, sin lookup, índice v5 sin PND): art_hit@10 0,579 → @40 0,632 (+1 pregunta), doc_hit@10 0,878 → @40 0,951. No llegaba a la puerta del plan 05 (≥ 4 preguntas); se implementó igual para buscar la ganancia en el orden dentro del top-10 (lo que ve el decoder con `GENERATION_K=5`).
+
+| híbrido, índice ola 1 (181.662) | doc_hit@10 | MRR | respaldo@10 | art_hit@10 | ret. ms | cambios del cuerpo/artículo |
+|---|---:|---:|---:|---:|---:|---|
+| base `r50` (= `r48`) | 0,878 | 0,725 | 0,927 | 0,579 | 1.173 | — |
+| rrf N=40 `r51` | 0,829 | 0,699 | 0,939 | 0,579 | 1.714 | **#647 5 → fuera, #1073 7 → fuera** |
+| puro N=40 `r52` | 0,829 | 0,637 | 0,915 | 0,632 | 1.241 | mismas pérdidas, #748 pierde respaldo |
+| **rrf N=20 `r53`** | **0,878** | 0,700 | **0,939** | 0,579 | 1.234 | #51 respaldo 0,5 → 1; art #352 4 → 3, #358 9 → 6, #589 9 → 4; doc #58 y #79 1 → 4, #647 5 → 9 |
+| puro N=20 `r54` | 0,829 | 0,659 | 0,939 | 0,579 | 1.513 | #647 fuera, #1073 fuera |
+| rrf N=15 `r55` | 0,878 | 0,702 | 0,939 | 0,579 | 1.418 | ≈ N=20 |
+
+Generación en sample (mismo índice, Qwen3-8B Q8_0, sin juez):
+
+| | cerradas | citación | abstención | total /50 | s/pregunta |
+|---|---:|---:|---:|---:|---:|
+| `e50_base` (= `e25_metadatos`) | 10/15 | 17,14 | 8,14 | 38,61 | 4,5 |
+| **`e53_rerank_rrf20`** | 10/15 | **17,55** | 8,14 | **39,02** | 4,6 |
+
+- **KEEP: rrf N=20, activado por defecto.** No saca ningún cuerpo del top-10, sube respaldo@10 y citación (+0,41/50), y cuesta +0,1 s/pregunta. N=40 y `puro` dejan subir candidatos de la cola que desplazan documentos buenos.
+- Cambian los pasajes de las 50 respuestas (todo reordenamiento cuenta): **RAGAS sin medir**. El antecedente es la composición del top-10 (sección 17: neutra en lo determinista y −0,02 en el juez). Si se gasta un punto de control del juez, comparar `e50_base` con `e53_rerank_rrf20` sobre el mismo índice; REVERT si cae más de 0,03.
+- Medido sobre el índice de la ola 1. Tras congelar el índice del sábado hay que repetir `r50`/`r53` y el determinismo (dos corridas con `SYNTAX_LLM_CACHE=off` → `comparar_entregas.py` = 0 diferencias, también entre máquinas) antes de la corrida final. Apagar con `SYNTAX_RERANKER=off`.

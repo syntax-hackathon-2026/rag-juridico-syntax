@@ -492,6 +492,10 @@ def etapa_decoder(args, gpu) -> subprocess.Popen | None:
     r = subprocess.run([str(shutil.which("llama-server")), "--version"], capture_output=True, text=True)
     print("llama-server:", next((l for l in (r.stdout + r.stderr).splitlines() if l.startswith("version")), "?"))
     run([venv_py(), "src/generacion/modelo.py", "descargar"], env=entorno_utf8())
+    if config.RERANKER != "off":  # pesos del cross-encoder en la revision fijada (docs/INDEXACION.md 20)
+        run([venv_py(), "-c", "from huggingface_hub import snapshot_download; "
+             f"print(snapshot_download({config.RERANKER_MODEL!r}, revision={config.RERANKER_REVISION!r}))"],
+            env=entorno_utf8())
     if servidor_responde():
         print(f"ya hay un servidor en {config.LLM_URL}; se reutiliza (no se detendra al terminar)")
         return None

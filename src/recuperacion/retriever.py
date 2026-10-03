@@ -77,6 +77,7 @@ class Retriever:
         self.bm25 = bm25s.BM25.load(str(config.BM25_DIR))
         self.faiss = None
         self._encoder = None
+        self._reranker = None
         self._ultima: tuple[str, np.ndarray] | None = None
         if cargar_denso and config.FAISS_PATH.is_file():
             import faiss
@@ -295,6 +296,45 @@ class Retriever:
         tomados = set(elegidos)
         return [ranking[p] for p in elegidos] + [par for p, par in enumerate(ranking) if p not in tomados]
 
+    # --- reranker (docs/INDEXACION.md 20) -------------------------------------------
+
+    def _cross_encoder(self):
+        if self._reranker is None:
+            from sentence_transformers import CrossEncoder
+
+            self._reranker = CrossEncoder(config.RERANKER_MODEL, revision=config.RERANKER_REVISION,
+                                          max_length=config.RERANKER_MAX_SEQ,
+                                          device=config.resolver_device())
+            self._reranker.model.float().eval()  # fp32 siempre, como el encoder
+        return self._reranker
+
+    def _rerankear(self, consulta: str, ranking: list[tuple[int, float]],
+                   ranks_rama: dict) -> list[tuple[int, float]]:
+        """Reordena los RERANK_N primeros con el cross-encoder; el resto queda detras.
+
+        Los pares conservan el score de la fusion (va a pasajes_recuperados.score). Los
+        fragmentos del lookup mantienen su puesto. Empates por chunk_id: determinista.
+        """
+        top, resto = ranking[:config.RERANK_N], ranking[config.RERANK_N:]
+        if len(top) < 2:
+            return ranking
+        pares = [(consulta, self.chunks[i]["texto"]) for i, _ in top]
+        scores = self._cross_encoder().predict(pares, batch_size=16, show_progress_bar=False,
+                                               convert_to_numpy=True)
+        cid = [self.chunks[i]["chunk_id"] for i, _ in top]
+        orden_ce = sorted(range(len(top)), key=lambda j: (-round(float(scores[j]), 5), cid[j]))
+        rank_ce = {j: r for r, j in enumerate(orden_ce, 1)}
+        ranks_rama["reranker"] = {top[j][0]: r for j, r in rank_ce.items()}
+        if config.RERANK_MODO == "puro":
+            orden = orden_ce
+        else:
+            orden = sorted(range(len(top)), key=lambda j: (-(1.0 / (RRF_K + j + 1) + 1.0 / (RRF_K + rank_ce[j])),
+                                                           cid[j]))
+        fijos = {j for j, (i, _) in enumerate(top) if i in ranks_rama.get("lookup", {})}
+        libres = iter(j for j in orden if j not in fijos)
+        nuevo = [top[j] if j in fijos else top[next(libres)] for j in range(len(top))]
+        return nuevo + resto
+
     def _salida(self, ranking: list[tuple[int, float]], k: int, ranks_rama: dict,
                 area: str | None) -> list[RetrievedChunk]:
         ranking = self._componer(ranking, k)
@@ -319,6 +359,8 @@ class Retriever:
         """`area` = area de la pregunta (campo del banco); con SYNTAX_AREA_BOOST > 1 prioriza
         en el hibrido los fragmentos de documentos de esa area, sin descartar los demas."""
         ranking, ranks_rama = self._ranking(consulta, k, modo, n_candidatos, consulta_lookup, area)
+        if config.RERANKER != "off" and modo == "hibrido":
+            ranking = self._rerankear(consulta, ranking, ranks_rama)
         return self._salida(ranking, k, ranks_rama, area)
 
     def retrieve_multi(self, consultas: list[tuple[str, float]], k: int = 10, modo: str = "hibrido",
