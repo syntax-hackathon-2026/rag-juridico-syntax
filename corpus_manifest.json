@@ -3,8 +3,8 @@
   "licencia": "CC-BY-4.0",
   "fecha_generacion": "2026-10-03",
   "enlace_nube": "<URL>",
-  "n_documentos": 1284,
-  "n_fragmentos": 185215,
+  "n_documentos": 1285,
+  "n_fragmentos": 185234,
   "documentos": [
     {
       "doc_id": "constitucion_politica_1991",
@@ -3269,6 +3269,20 @@
       "n_fragmentos": 35,
       "metodo_ingesta": "parser HTML (BeautifulSoup) + limpieza de navegacion y notas editoriales",
       "sha256": "e9869ba934b33a7d69fb586bd070544210793b03d805f4f26b28054a58ef0842"
+    },
+    {
+      "doc_id": "decreto_472_2015",
+      "titulo": "Decreto 472 de 2015",
+      "fuente": "Normograma de Colpensiones (compilacion Avance Juridico)",
+      "url": "https://normativa.colpensiones.gov.co/compilacion/docs/decreto_0472_2015.htm",
+      "fecha_consulta": "2026-10-03",
+      "areas": [
+        "Derecho laboral"
+      ],
+      "n_articulos": 15,
+      "n_fragmentos": 19,
+      "metodo_ingesta": "parser HTML (BeautifulSoup) + limpieza de navegacion y notas editoriales",
+      "sha256": "6874dffcec87cc005d509afb92c13914bf32ddcbdc1c96aed730482bdd3c9fec"
     },
     {
       "doc_id": "decreto_678_2020",
