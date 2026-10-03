@@ -79,6 +79,9 @@ DOCUMENTOS: dict[str, str] = {
     "doctrina_arbanza_grupo_sociedades_2024": "Arbanza, Análisis comparativo de la extensión del convenio "
                                               "arbitral a partes no signatarias: el caso de Pakistán, "
                                               "Francia y Colombia (2024)",
+    "doctrina_unbosque_agencia_comercial_cesantia_2024": "Pérez Murcia y Romero Vivas, Contrato de agencia comercial en "
+                                                        "Colombia: ¿la cesantía comercial es de libre disposición o una "
+                                                        "obligación imperativa? (Universidad El Bosque, 2024)",
     "decision_andina_351": "Decisión 351 de 1993 de la Comisión del Acuerdo de Cartagena, Régimen Común "
                            "sobre Derecho de Autor y Derechos Conexos",
     "decision_andina_345": "Decisión 345 de 1993 de la Comisión del Acuerdo de Cartagena, Régimen Común "
