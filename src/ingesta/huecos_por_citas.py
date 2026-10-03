@@ -3,6 +3,7 @@
     python src/ingesta/huecos_por_citas.py                       # tabla en consola
     python src/ingesta/huecos_por_citas.py --md docs/ingesta/huecos_por_citas.md
     python src/ingesta/huecos_por_citas.py --contiene "doble imposicion" --min-docs 1
+    python src/ingesta/huecos_por_citas.py --min-docs 10 --csv salidas/huecos_v5.csv   # entrada de ampliar_desde_citas.py
 
 Lee data_corpus/indice/chunks.jsonl, extrae con scripts/citations.py las referencias de cada
 fragmento (sin su cabecera, que se cita a si misma) y resta los cuerpos canonicos que ya
@@ -17,6 +18,7 @@ lo que las reglas de descarga no resuelvan se descarta).
 from __future__ import annotations
 
 import argparse
+import csv
 import json
 import re
 import sys
@@ -143,11 +145,19 @@ def main() -> int:
     ap.add_argument("--limite", type=int, default=60)
     ap.add_argument("--md", type=Path, help="escribe la tabla en este .md")
     ap.add_argument("--json", type=Path, help="escribe la lista completa en este .json")
+    ap.add_argument("--csv", type=Path, help="CSV de entrada de src/ingesta/ampliar_desde_citas.py "
+                    "(n_preguntas = documentos citantes)")
     args = ap.parse_args()
     filas = [f for f in huecos(args.contiene)
              if f["docs_citantes"] >= args.min_docs and (args.tipo == "todos" or f["tipo"] == args.tipo)]
     if args.json:
         args.json.write_text(json.dumps(filas, ensure_ascii=False, indent=2) + "\n", encoding="utf-8", newline="\n")
+    if args.csv:
+        with args.csv.open("w", encoding="utf-8", newline="") as f:
+            w = csv.writer(f, lineterminator="\n")
+            w.writerow(["tipo", "numero", "anio", "areas", "n_preguntas", "ids"])
+            for fila in filas[:args.limite]:
+                w.writerow([*fila["cuerpo"], ";".join(fila["areas"]), fila["docs_citantes"], ""])
     if args.md:
         args.md.write_text(markdown(filas, args.limite), encoding="utf-8", newline="\n")
     for f in filas[:args.limite]:

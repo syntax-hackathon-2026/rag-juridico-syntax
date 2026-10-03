@@ -10,6 +10,8 @@ Tiempo estimado: ~2 h de reloj (~1 h de máquina). En un Mac el paso caro es el 
 - **No** arregla #647, #671 ni #128 de `sample_50` (doctrina) ni trae los decretos del SMLMV ni los convenios de doble imposición: el corpus no los cita por número y no hay regla automática que los encuentre.
 - En `sample_50` casi no se puede medir ganancia (sus normas ya están): el KEEP es "no diluye" (mismo criterio que v4, `docs/INDEXACION.md` 16).
 
+> **Ojo con el índice**: el `data_corpus/` del checkout principal de la 4090 es el **v3** (113.519 fragmentos). El v4 (173.393) está en `.claude/worktrees/mejoras-mc/data_corpus/` y en `data_corpus_v4.zip` (OneDrive). Comprobar siempre `wc -l data_corpus/indice/chunks.jsonl` = 173393 antes de medir o correr.
+
 ## 0. Prerrequisitos en el Mac
 
 ```bash
@@ -34,34 +36,36 @@ python src/ingesta/huecos_por_citas.py --min-docs 10 --limite 120 --json salidas
 
 Criterio fijo antes de medir: normas (`tipo=norma`) con **≥ 10 documentos citantes**, sin actos legislativos que ya estén incorporados a la Constitución, tope **80 documentos** (tiempo de indexación) y máximo 400 artículos por norma (las enormes, como un DUR completo, se descartan por tamaño igual que el Decreto 1165/2019 en v4).
 
-## 2. Sondeo y validación de URLs (script por escribir: `src/ingesta/sondear_normas.py`)
+## 2. Entrada para `ampliar_desde_citas.py`
 
-Versionarlo esta vez (el de v4 quedó en un temporal). Reutiliza de `src/ingesta/descargar_fuentes.py`: `ESPEJOS_AJ`, `descargar()`, `buscar_en_espejos()`, `es_pagina_valida()` y `partes_senado()`.
-
-Para cada `doc_id` `tipo_N_AAAA`:
-1. Probar `<tipo>_<NNNN>_<AAAA>.htm` (número con y sin ceros a 4 dígitos) en los espejos de Avance Jurídico (CRA, Colpensiones, Cancillería, DIAN) y luego en el Senado (`www.secretariasenado.gov.co/senado/basedoc/<tipo>_<NNNN>_<AAAA>.html`).
-2. Aceptar solo si el encabezado dice "<tipo> <N> de <AAAA>" y la página trae "ARTÍCULO".
-3. Escribir la entrada en `_adicionales` de `data/registros/fuentes_override.json` con `doc_id`, `titulo` (ASCII sin tildes, del encabezado), `fuente`, `url`, `areas` (las 1–3 áreas de `huecos_v5.json`) y `nota: "ampliacion v5 (AAAA-MM-DD): hueco por citas internas, N docs citantes; areas propuestas, falta confirmar"`.
-4. Lo que no valida → lista de no resueltos.
-
-## 3. Descarga y parseo
+`src/ingesta/ampliar_desde_citas.py` (de `santiago-sabado`, ya en `santiago`) hace todo el ciclo: resuelve con las reglas de `descargar_fuentes.resolver` (Senado y espejos de Avance Jurídico), descarga, parsea, valida (norma con artículos y sin avisos), escribe `_adicionales` y manda lo no resuelto a `no_resueltos.csv`. Su entrada CSV (`tipo,numero,anio,areas,n_preguntas,ids`) la escribe el detector; `n_preguntas` = documentos citantes:
 
 ```bash
-python src/ingesta/descargar_fuentes.py --solo <doc_id> ...     # baja también las partes _prNNN
-python src/ingesta/parsear_html.py                               # salta lo ya parseado
-python src/ingesta/generar_manifest.py --revisar && python src/ingesta/generar_manifest.py
+python src/ingesta/huecos_por_citas.py --min-docs 10 --limite 80 --csv salidas/huecos_v5.csv
 ```
 
-Revisar en la salida de `parsear_html.py` los avisos de saltos en la numeración (falta una parte `_prNNN`): esa norma se descarta o se rebaja.
+Usar el CSV y no la lista de texto: en la lista las áreas se separan por comas y "Derecho de los mercados [competencia, consumidor, …]" se partiría.
 
-## 4. Segmentar y registros
+## 3. Resolver, descargar, parsear y validar
 
 ```bash
-python src/indexacion/segmentar.py           # exit 1 si falla un invariante
-python src/ingesta/generar_manifest.py       # n_fragmentos
+python src/ingesta/ampliar_desde_citas.py salidas/huecos_v5.csv --plan     # solo resolver y listar; revisar
+python src/ingesta/ampliar_desde_citas.py salidas/huecos_v5.csv            # descarga + parseo + validacion
+```
+
+Cambiar la nota "ampliacion sabado" por "ampliacion v5" en las entradas nuevas de `_adicionales` si se quiere distinguirlas. Lo que no resuelve queda en `no_resueltos.csv` y **no se busca a mano**.
+
+## 4. Manifest, segmentación y registros
+
+Antes, guardar una copia de `data_corpus/indice/chunks.jsonl` (v4). Luego:
+
+```bash
+python src/ingesta/generar_manifest.py && python src/indexacion/segmentar.py && python src/ingesta/generar_manifest.py
 python src/indexacion/solo_por_cita.py       # las normas nuevas NO van al registro (se recuperan sin nombrarlas)
 python src/validaciones/manifest.py
 ```
+
+(o `ampliar_desde_citas.py ... --indexar` hace manifest e índice de una vez; en el Mac conviene separar el paso 6).
 
 Comprobar que los fragmentos de v4 no cambian: los `chunk_id` y `texto` previos deben ser idénticos (comparar contra una copia de `chunks.jsonl` v4 guardada antes de empezar).
 
